@@ -1,0 +1,13 @@
+@_exported import CoreFoundation
+
+@available(*, unavailable, message: "not available in automatic reference counting mode")
+class NSAutoreleasePool : NSObject {
+  class func add(_ anObject: Any)
+  @available(swift, obsoleted: 3, renamed: "add(_:)")
+  class func addObject(_ anObject: Any)
+  func add(_ anObject: Any)
+  @available(swift, obsoleted: 3, renamed: "add(_:)")
+  func addObject(_ anObject: Any)
+  func drain()
+  init()
+}

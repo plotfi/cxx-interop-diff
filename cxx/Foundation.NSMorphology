@@ -1,0 +1,153 @@
+@_exported import CoreFoundation
+
+@available(iOS 15.0, *)
+enum NSGrammaticalGender : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+  case notSet
+  @available(swift, obsoleted: 3, renamed: "notSet")
+  static var NotSet: NSGrammaticalGender { get }
+  case feminine
+  @available(swift, obsoleted: 3, renamed: "feminine")
+  static var Feminine: NSGrammaticalGender { get }
+  case masculine
+  @available(swift, obsoleted: 3, renamed: "masculine")
+  static var Masculine: NSGrammaticalGender { get }
+  case neuter
+  @available(swift, obsoleted: 3, renamed: "neuter")
+  static var Neuter: NSGrammaticalGender { get }
+}
+@available(iOS 15.0, *)
+enum NSGrammaticalPartOfSpeech : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+  case notSet
+  @available(swift, obsoleted: 3, renamed: "notSet")
+  static var NotSet: NSGrammaticalPartOfSpeech { get }
+  case determiner
+  @available(swift, obsoleted: 3, renamed: "determiner")
+  static var Determiner: NSGrammaticalPartOfSpeech { get }
+  case pronoun
+  @available(swift, obsoleted: 3, renamed: "pronoun")
+  static var Pronoun: NSGrammaticalPartOfSpeech { get }
+  case letter
+  @available(swift, obsoleted: 3, renamed: "letter")
+  static var Letter: NSGrammaticalPartOfSpeech { get }
+  case adverb
+  @available(swift, obsoleted: 3, renamed: "adverb")
+  static var Adverb: NSGrammaticalPartOfSpeech { get }
+  case particle
+  @available(swift, obsoleted: 3, renamed: "particle")
+  static var Particle: NSGrammaticalPartOfSpeech { get }
+  case adjective
+  @available(swift, obsoleted: 3, renamed: "adjective")
+  static var Adjective: NSGrammaticalPartOfSpeech { get }
+  case adposition
+  @available(swift, obsoleted: 3, renamed: "adposition")
+  static var Adposition: NSGrammaticalPartOfSpeech { get }
+  case verb
+  @available(swift, obsoleted: 3, renamed: "verb")
+  static var Verb: NSGrammaticalPartOfSpeech { get }
+  case noun
+  @available(swift, obsoleted: 3, renamed: "noun")
+  static var Noun: NSGrammaticalPartOfSpeech { get }
+  case conjunction
+  @available(swift, obsoleted: 3, renamed: "conjunction")
+  static var Conjunction: NSGrammaticalPartOfSpeech { get }
+  case numeral
+  @available(swift, obsoleted: 3, renamed: "numeral")
+  static var Numeral: NSGrammaticalPartOfSpeech { get }
+  case interjection
+  @available(swift, obsoleted: 3, renamed: "interjection")
+  static var Interjection: NSGrammaticalPartOfSpeech { get }
+  case preposition
+  @available(swift, obsoleted: 3, renamed: "preposition")
+  static var Preposition: NSGrammaticalPartOfSpeech { get }
+  case abbreviation
+  @available(swift, obsoleted: 3, renamed: "abbreviation")
+  static var Abbreviation: NSGrammaticalPartOfSpeech { get }
+}
+@available(iOS 15.0, *)
+enum NSGrammaticalNumber : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+  case notSet
+  @available(swift, obsoleted: 3, renamed: "notSet")
+  static var NotSet: NSGrammaticalNumber { get }
+  case singular
+  @available(swift, obsoleted: 3, renamed: "singular")
+  static var Singular: NSGrammaticalNumber { get }
+  case zero
+  @available(swift, obsoleted: 3, renamed: "zero")
+  static var Zero: NSGrammaticalNumber { get }
+  case plural
+  @available(swift, obsoleted: 3, renamed: "plural")
+  static var Plural: NSGrammaticalNumber { get }
+  case pluralTwo
+  @available(swift, obsoleted: 3, renamed: "pluralTwo")
+  static var PluralTwo: NSGrammaticalNumber { get }
+  case pluralFew
+  @available(swift, obsoleted: 3, renamed: "pluralFew")
+  static var PluralFew: NSGrammaticalNumber { get }
+  case pluralMany
+  @available(swift, obsoleted: 3, renamed: "pluralMany")
+  static var PluralMany: NSGrammaticalNumber { get }
+}
+@available(iOS 15.0, *)
+class __NSMorphology : NSObject, NSCopying, NSSecureCoding {
+  var grammaticalGender: NSGrammaticalGender
+  var partOfSpeech: NSGrammaticalPartOfSpeech
+  var number: NSGrammaticalNumber
+  init!()
+  @available(iOS 15.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 15.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 15.0, *)
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+}
+@available(iOS 15.0, *)
+extension __NSMorphology {
+  func customPronoun(forLanguage language: String) -> __NSMorphologyCustomPronoun?
+  @available(swift, obsoleted: 3, renamed: "customPronoun(forLanguage:)")
+  func customPronounForLanguage(_ language: String) -> __NSMorphologyCustomPronoun?
+  func setCustomPronoun(_ features: __NSMorphologyCustomPronoun?, forLanguage language: String) throws
+}
+@available(iOS 15.0, *)
+class __NSMorphologyCustomPronoun : NSObject, NSCopying, NSSecureCoding {
+  class func isSupported(forLanguage language: String) -> Bool
+  @available(swift, obsoleted: 3, renamed: "isSupported(forLanguage:)")
+  class func isSupportedForLanguage(_ language: String) -> Bool
+  class func requiredKeys(forLanguage language: String) -> [String]
+  @available(swift, obsoleted: 3, renamed: "requiredKeys(forLanguage:)")
+  class func requiredKeysForLanguage(_ language: String) -> [String]
+  var subjectForm: String?
+  var objectForm: String?
+  var possessiveForm: String?
+  var possessiveAdjectiveForm: String?
+  var reflexiveForm: String?
+  init!()
+  @available(iOS 15.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 15.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 15.0, *)
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+}
+extension __NSMorphology {
+  @available(iOS 15.0, *)
+  var isUnspecified: Bool { get }
+  @available(iOS 15.0, *)
+  @available(swift, obsoleted: 3, renamed: "isUnspecified")
+  var unspecified: Bool { get }
+  @available(iOS 15.0, *)
+  class var user: __NSMorphology { get }
+  @available(iOS 15.0, *)
+  @available(swift, obsoleted: 3, renamed: "user")
+  class var userMorphology: __NSMorphology { get }
+}

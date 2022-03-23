@@ -1,0 +1,35 @@
+@_exported import CoreFoundation
+
+@available(iOS 6.0, *)
+class NSUUID : NSObject, NSCopying, NSSecureCoding {
+  @available(*, unavailable, message: "superseded by import of -[NSUUID init]")
+  convenience init()
+  @available(*, unavailable, renamed: "init()", message: "Not available in Swift")
+  class func UUID() -> Self
+  init()
+  convenience init?(uuidString string: String)
+  @available(swift, obsoleted: 3, renamed: "init(uuidString:)")
+  convenience init?(UUIDString string: String)
+  convenience init(uuidBytes bytes: UnsafePointer<UInt8>?)
+  @available(swift, obsoleted: 3, renamed: "init(uuidBytes:)")
+  convenience init(UUIDBytes bytes: UnsafePointer<UInt8>?)
+  func getBytes(_ uuid: UnsafeMutablePointer<UInt8>)
+  @available(swift, obsoleted: 3, renamed: "getBytes(_:)")
+  func getUUIDBytes(_ uuid: UnsafeMutablePointer<UInt8>)
+  @available(iOS 15.0, *)
+  func compare(_ otherUUID: UUID) -> ComparisonResult
+  var uuidString: String { get }
+  @available(swift, obsoleted: 3, renamed: "uuidString")
+  var UUIDString: String { get }
+  @available(iOS 6.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 6.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 6.0, *)
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+}
+
+extension NSUUID : _HasCustomAnyHashableRepresentation {
+  @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}

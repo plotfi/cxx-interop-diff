@@ -1,0 +1,114 @@
+@_exported import CoreFoundation
+
+@available(swift, obsoleted: 3, renamed: "NSComparisonPredicate.Options")
+typealias NSComparisonPredicateOptions = NSComparisonPredicate.Options
+extension NSComparisonPredicate {
+  struct Options : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = NSComparisonPredicate.Options
+    typealias ArrayLiteralElement = NSComparisonPredicate.Options
+    static var caseInsensitive: NSComparisonPredicate.Options { get }
+    @available(swift, obsoleted: 3, renamed: "caseInsensitive")
+    static var NSCaseInsensitivePredicateOption: NSComparisonPredicate.Options { get }
+    static var diacriticInsensitive: NSComparisonPredicate.Options { get }
+    @available(swift, obsoleted: 3, renamed: "diacriticInsensitive")
+    static var NSDiacriticInsensitivePredicateOption: NSComparisonPredicate.Options { get }
+    @available(iOS 4.0, *)
+    static var normalized: NSComparisonPredicate.Options { get }
+    @available(iOS 4.0, *)
+    @available(swift, obsoleted: 3, renamed: "normalized")
+    static var NSNormalizedPredicateOption: NSComparisonPredicate.Options { get }
+  }
+  enum Modifier : UInt, @unchecked Sendable {
+    init?(rawValue: UInt)
+    var rawValue: UInt { get }
+    typealias RawValue = UInt
+    case direct
+    @available(swift, obsoleted: 3, renamed: "direct")
+    static var NSDirectPredicateModifier: NSComparisonPredicate.Modifier { get }
+    case all
+    @available(swift, obsoleted: 3, renamed: "all")
+    static var NSAllPredicateModifier: NSComparisonPredicate.Modifier { get }
+    case any
+    @available(swift, obsoleted: 3, renamed: "any")
+    static var NSAnyPredicateModifier: NSComparisonPredicate.Modifier { get }
+  }
+  enum Operator : UInt, @unchecked Sendable {
+    init?(rawValue: UInt)
+    var rawValue: UInt { get }
+    typealias RawValue = UInt
+    case lessThan
+    @available(swift, obsoleted: 3, renamed: "lessThan")
+    static var NSLessThanPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    case lessThanOrEqualTo
+    @available(swift, obsoleted: 3, renamed: "lessThanOrEqualTo")
+    static var NSLessThanOrEqualToPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    case greaterThan
+    @available(swift, obsoleted: 3, renamed: "greaterThan")
+    static var NSGreaterThanPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    case greaterThanOrEqualTo
+    @available(swift, obsoleted: 3, renamed: "greaterThanOrEqualTo")
+    static var NSGreaterThanOrEqualToPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    case equalTo
+    @available(swift, obsoleted: 3, renamed: "equalTo")
+    static var NSEqualToPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    case notEqualTo
+    @available(swift, obsoleted: 3, renamed: "notEqualTo")
+    static var NSNotEqualToPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    case matches
+    @available(swift, obsoleted: 3, renamed: "matches")
+    static var NSMatchesPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    case like
+    @available(swift, obsoleted: 3, renamed: "like")
+    static var NSLikePredicateOperatorType: NSComparisonPredicate.Operator { get }
+    case beginsWith
+    @available(swift, obsoleted: 3, renamed: "beginsWith")
+    static var NSBeginsWithPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    case endsWith
+    @available(swift, obsoleted: 3, renamed: "endsWith")
+    static var NSEndsWithPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    case `in`
+    @available(swift, obsoleted: 3, renamed: "in")
+    static var NSInPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    case customSelector
+    @available(swift, obsoleted: 3, renamed: "customSelector")
+    static var NSCustomSelectorPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    @available(iOS 3.0, *)
+    case contains
+    @available(iOS 3.0, *)
+    @available(swift, obsoleted: 3, renamed: "contains")
+    static var NSContainsPredicateOperatorType: NSComparisonPredicate.Operator { get }
+    @available(iOS 3.0, *)
+    case between
+    @available(iOS 3.0, *)
+    @available(swift, obsoleted: 3, renamed: "between")
+    static var NSBetweenPredicateOperatorType: NSComparisonPredicate.Operator { get }
+  }
+}
+@available(swift, obsoleted: 3, renamed: "NSComparisonPredicate.Modifier")
+typealias NSComparisonPredicateModifier = NSComparisonPredicate.Modifier
+@available(swift, obsoleted: 3, renamed: "NSComparisonPredicate.Operator")
+typealias NSPredicateOperatorType = NSComparisonPredicate.Operator
+@available(iOS 3.0, *)
+class NSComparisonPredicate : NSPredicate {
+  @available(*, unavailable, message: "superseded by import of -[NSComparisonPredicate initWithLeftExpression:rightExpression:modifier:type:options:]")
+  /*not inherited*/ init(leftExpression lhs: NSExpression, rightExpression rhs: NSExpression, modifier: NSComparisonPredicate.Modifier, type: NSComparisonPredicate.Operator, options: NSComparisonPredicate.Options = [])
+  @available(*, unavailable, renamed: "init(leftExpression:rightExpression:modifier:type:options:)", message: "Not available in Swift")
+  class func predicateWithLeftExpression(_ lhs: NSExpression, rightExpression rhs: NSExpression, modifier: NSComparisonPredicate.Modifier, type: NSComparisonPredicate.Operator, options: NSComparisonPredicate.Options = []) -> NSComparisonPredicate
+  @available(*, unavailable, message: "superseded by import of -[NSComparisonPredicate initWithLeftExpression:rightExpression:customSelector:]")
+  /*not inherited*/ init(leftExpression lhs: NSExpression, rightExpression rhs: NSExpression, customSelector selector: Selector)
+  @available(*, unavailable, renamed: "init(leftExpression:rightExpression:customSelector:)", message: "Not available in Swift")
+  class func predicateWithLeftExpression(_ lhs: NSExpression, rightExpression rhs: NSExpression, customSelector selector: Selector) -> NSComparisonPredicate
+  init(leftExpression lhs: NSExpression, rightExpression rhs: NSExpression, modifier: NSComparisonPredicate.Modifier, type: NSComparisonPredicate.Operator, options: NSComparisonPredicate.Options = [])
+  init(leftExpression lhs: NSExpression, rightExpression rhs: NSExpression, customSelector selector: Selector)
+  init?(coder: NSCoder)
+  var predicateOperatorType: NSComparisonPredicate.Operator { get }
+  var comparisonPredicateModifier: NSComparisonPredicate.Modifier { get }
+  var leftExpression: NSExpression { get }
+  var rightExpression: NSExpression { get }
+  var customSelector: Selector? { get }
+  var options: NSComparisonPredicate.Options { get }
+  convenience init()
+}

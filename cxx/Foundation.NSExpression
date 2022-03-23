@@ -1,0 +1,201 @@
+@_exported import CoreFoundation
+
+@available(swift, obsoleted: 3, renamed: "NSExpression.ExpressionType")
+typealias NSExpressionType = NSExpression.ExpressionType
+extension NSExpression {
+  enum ExpressionType : UInt, @unchecked Sendable {
+    init?(rawValue: UInt)
+    var rawValue: UInt { get }
+    typealias RawValue = UInt
+    case constantValueExpressionType
+    @available(swift, obsoleted: 3, renamed: "constantValueExpressionType")
+    static var ConstantValueExpressionType: NSExpression.ExpressionType { get }
+    case evaluatedObjectExpressionType
+    @available(swift, obsoleted: 3, renamed: "evaluatedObjectExpressionType")
+    static var EvaluatedObjectExpressionType: NSExpression.ExpressionType { get }
+    case variableExpressionType
+    @available(swift, obsoleted: 3, renamed: "variableExpressionType")
+    static var VariableExpressionType: NSExpression.ExpressionType { get }
+    case keyPathExpressionType
+    @available(swift, obsoleted: 3, renamed: "keyPathExpressionType")
+    static var KeyPathExpressionType: NSExpression.ExpressionType { get }
+    case functionExpressionType
+    @available(swift, obsoleted: 3, renamed: "functionExpressionType")
+    static var FunctionExpressionType: NSExpression.ExpressionType { get }
+    @available(iOS 3.0, *)
+    case unionSetExpressionType
+    @available(iOS 3.0, *)
+    @available(swift, obsoleted: 3, renamed: "unionSetExpressionType")
+    static var UnionSetExpressionType: NSExpression.ExpressionType { get }
+    @available(iOS 3.0, *)
+    case intersectSetExpressionType
+    @available(iOS 3.0, *)
+    @available(swift, obsoleted: 3, renamed: "intersectSetExpressionType")
+    static var IntersectSetExpressionType: NSExpression.ExpressionType { get }
+    @available(iOS 3.0, *)
+    case minusSetExpressionType
+    @available(iOS 3.0, *)
+    @available(swift, obsoleted: 3, renamed: "minusSetExpressionType")
+    static var MinusSetExpressionType: NSExpression.ExpressionType { get }
+    @available(iOS 3.0, *)
+    case subqueryExpressionType
+    @available(iOS 3.0, *)
+    @available(swift, obsoleted: 3, renamed: "subqueryExpressionType")
+    static var SubqueryExpressionType: NSExpression.ExpressionType { get }
+    @available(iOS 3.0, *)
+    case aggregateExpressionType
+    @available(iOS 3.0, *)
+    @available(swift, obsoleted: 3, renamed: "aggregateExpressionType")
+    static var AggregateExpressionType: NSExpression.ExpressionType { get }
+    @available(iOS 7.0, *)
+    case anyKeyExpressionType
+    @available(iOS 7.0, *)
+    @available(swift, obsoleted: 3, renamed: "anyKeyExpressionType")
+    static var AnyKeyExpressionType: NSExpression.ExpressionType { get }
+    case blockExpressionType
+    @available(swift, obsoleted: 3, renamed: "blockExpressionType")
+    static var BlockExpressionType: NSExpression.ExpressionType { get }
+    @available(iOS 9.0, *)
+    case conditionalExpressionType
+    @available(iOS 9.0, *)
+    @available(swift, obsoleted: 3, renamed: "conditionalExpressionType")
+    static var ConditionalExpressionType: NSExpression.ExpressionType { get }
+  }
+}
+@available(iOS 3.0, *)
+class NSExpression : NSObject, NSSecureCoding, NSCopying {
+  @available(iOS 4.0, *)
+  /*not inherited*/ init(format expressionFormat: String, argumentArray arguments: [Any])
+  @available(iOS 4.0, *)
+  @available(*, unavailable, renamed: "init(format:argumentArray:)", message: "Not available in Swift")
+  class func expressionWithFormat(_ expressionFormat: String, argumentArray arguments: [Any]) -> NSExpression
+  @available(iOS 4.0, *)
+  /*not inherited*/ init(format expressionFormat: String, arguments argList: CVaListPointer)
+  @available(iOS 4.0, *)
+  @available(*, unavailable, renamed: "init(format:arguments:)", message: "Not available in Swift")
+  class func expressionWithFormat(_ expressionFormat: String, arguments argList: CVaListPointer) -> NSExpression
+  /*not inherited*/ init(forConstantValue obj: Any?)
+  @available(*, unavailable, renamed: "init(forConstantValue:)", message: "Not available in Swift")
+  class func expressionForConstantValue(_ obj: Any?) -> NSExpression
+  class func forEvaluatedObject() -> NSExpression
+  @available(swift, obsoleted: 3, renamed: "forEvaluatedObject()")
+  class func expressionForEvaluatedObject() -> NSExpression
+  /*not inherited*/ init(forVariable string: String)
+  @available(*, unavailable, renamed: "init(forVariable:)", message: "Not available in Swift")
+  class func expressionForVariable(_ string: String) -> NSExpression
+  /*not inherited*/ init(forKeyPath keyPath: String)
+  @available(*, unavailable, renamed: "init(forKeyPath:)", message: "Not available in Swift")
+  class func expressionForKeyPath(_ keyPath: String) -> NSExpression
+  /*not inherited*/ init(forFunction name: String, arguments parameters: [Any])
+  @available(*, unavailable, renamed: "init(forFunction:arguments:)", message: "Not available in Swift")
+  class func expressionForFunction(_ name: String, arguments parameters: [Any]) -> NSExpression
+  @available(iOS 3.0, *)
+  /*not inherited*/ init(forAggregate subexpressions: [NSExpression])
+  @available(iOS 3.0, *)
+  @available(*, unavailable, renamed: "init(forAggregate:)", message: "Not available in Swift")
+  class func expressionForAggregate(_ subexpressions: [NSExpression]) -> NSExpression
+  @available(iOS 3.0, *)
+  /*not inherited*/ init(forUnionSet left: NSExpression, with right: NSExpression)
+  @available(iOS 3.0, *)
+  @available(*, unavailable, renamed: "init(forUnionSet:with:)", message: "Not available in Swift")
+  class func expressionForUnionSet(_ left: NSExpression, with right: NSExpression) -> NSExpression
+  @available(iOS 3.0, *)
+  /*not inherited*/ init(forIntersectSet left: NSExpression, with right: NSExpression)
+  @available(iOS 3.0, *)
+  @available(*, unavailable, renamed: "init(forIntersectSet:with:)", message: "Not available in Swift")
+  class func expressionForIntersectSet(_ left: NSExpression, with right: NSExpression) -> NSExpression
+  @available(iOS 3.0, *)
+  /*not inherited*/ init(forMinusSet left: NSExpression, with right: NSExpression)
+  @available(iOS 3.0, *)
+  @available(*, unavailable, renamed: "init(forMinusSet:with:)", message: "Not available in Swift")
+  class func expressionForMinusSet(_ left: NSExpression, with right: NSExpression) -> NSExpression
+  @available(iOS 3.0, *)
+  /*not inherited*/ init(forSubquery expression: NSExpression, usingIteratorVariable variable: String, predicate: NSPredicate)
+  @available(iOS 3.0, *)
+  @available(*, unavailable, renamed: "init(forSubquery:usingIteratorVariable:predicate:)", message: "Not available in Swift")
+  class func expressionForSubquery(_ expression: NSExpression, usingIteratorVariable variable: String, predicate: NSPredicate) -> NSExpression
+  @available(iOS 3.0, *)
+  /*not inherited*/ init(forFunction target: NSExpression, selectorName name: String, arguments parameters: [Any]?)
+  @available(iOS 3.0, *)
+  @available(*, unavailable, renamed: "init(forFunction:selectorName:arguments:)", message: "Not available in Swift")
+  class func expressionForFunction(_ target: NSExpression, selectorName name: String, arguments parameters: [Any]?) -> NSExpression
+  @available(iOS 7.0, *)
+  class func forAnyKey() -> NSExpression
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "forAnyKey()")
+  class func expressionForAnyKey() -> NSExpression
+  @available(iOS 4.0, *)
+  /*not inherited*/ init(for block: @escaping (Any?, [NSExpression], NSMutableDictionary?) -> Any, arguments: [NSExpression]?)
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(for:arguments:)")
+  /*not inherited*/ init(forBlock block: @escaping (Any?, [NSExpression], NSMutableDictionary?) -> Any, arguments: [NSExpression]?)
+  @available(iOS 4.0, *)
+  @available(*, unavailable, renamed: "init(for:arguments:)", message: "Not available in Swift")
+  class func expressionForBlock(_ block: @escaping (Any?, [NSExpression], NSMutableDictionary?) -> Any, arguments: [NSExpression]?) -> NSExpression
+  @available(iOS 9.0, *)
+  /*not inherited*/ init(forConditional predicate: NSPredicate, trueExpression: NSExpression, falseExpression: NSExpression)
+  @available(iOS 9.0, *)
+  @available(*, unavailable, renamed: "init(forConditional:trueExpression:falseExpression:)", message: "Not available in Swift")
+  class func expressionForConditional(_ predicate: NSPredicate, trueExpression: NSExpression, falseExpression: NSExpression) -> NSExpression
+  init(expressionType type: NSExpression.ExpressionType)
+  init?(coder: NSCoder)
+  var expressionType: NSExpression.ExpressionType { get }
+  var constantValue: Any? { get }
+  var keyPath: String { get }
+  var function: String { get }
+  var variable: String { get }
+  @NSCopying var operand: NSExpression { get }
+  var arguments: [NSExpression]? { get }
+  @available(iOS 3.0, *)
+  var collection: Any { get }
+  @available(iOS 3.0, *)
+  @NSCopying var predicate: NSPredicate { get }
+  @available(iOS 3.0, *)
+  @NSCopying var left: NSExpression { get }
+  @available(iOS 3.0, *)
+  @available(swift, obsoleted: 3, renamed: "left")
+  @NSCopying var leftExpression: NSExpression { get }
+  @available(iOS 3.0, *)
+  @NSCopying var right: NSExpression { get }
+  @available(iOS 3.0, *)
+  @available(swift, obsoleted: 3, renamed: "right")
+  @NSCopying var rightExpression: NSExpression { get }
+  @available(iOS 9.0, *)
+  @NSCopying var `true`: NSExpression { get }
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "true")
+  @NSCopying var trueExpression: NSExpression { get }
+  @available(iOS 9.0, *)
+  @NSCopying var `false`: NSExpression { get }
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "false")
+  @NSCopying var falseExpression: NSExpression { get }
+  @available(iOS 4.0, *)
+  var expressionBlock: (Any?, [NSExpression], NSMutableDictionary?) -> Any { get }
+  func expressionValue(with object: Any?, context: NSMutableDictionary?) -> Any?
+  @available(swift, obsoleted: 3, renamed: "expressionValue(with:context:)")
+  func expressionValueWithObject(_ object: Any?, context: NSMutableDictionary?) -> Any?
+  @available(iOS 7.0, *)
+  func allowEvaluation()
+  convenience init!()
+  @available(iOS 3.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 3.0, *)
+  func encode(with coder: NSCoder)
+  @available(iOS 3.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+}
+
+extension NSExpression {
+  convenience init(format expressionFormat: __shared String, _ args: CVarArg...)
+}
+
+extension NSExpression {
+  convenience init<Root, Value>(forKeyPath keyPath: KeyPath<Root, Value>)
+}
+struct _expressionFlags {
+  init()
+  init(_evaluationBlocked: UInt32, _reservedExpressionFlags: UInt32)
+  var _evaluationBlocked: UInt32
+  var _reservedExpressionFlags: UInt32
+}

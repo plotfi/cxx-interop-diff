@@ -1,0 +1,14 @@
+
+typealias uuid_string_t = __darwin_uuid_string_t
+let UUID_NULL: uuid_t
+func uuid_clear(_ uu: UnsafeMutablePointer<UInt8>!)
+func uuid_compare(_ uu1: UnsafePointer<UInt8>!, _ uu2: UnsafePointer<UInt8>!) -> Int32
+func uuid_copy(_ dst: UnsafeMutablePointer<UInt8>!, _ src: UnsafePointer<UInt8>!)
+func uuid_generate(_ out: UnsafeMutablePointer<UInt8>!)
+func uuid_generate_random(_ out: UnsafeMutablePointer<UInt8>!)
+func uuid_generate_time(_ out: UnsafeMutablePointer<UInt8>!)
+func uuid_is_null(_ uu: UnsafePointer<UInt8>!) -> Int32
+func uuid_parse(_ in: UnsafePointer<CChar>!, _ uu: UnsafeMutablePointer<UInt8>!) -> Int32
+func uuid_unparse(_ uu: UnsafePointer<UInt8>!, _ out: UnsafeMutablePointer<CChar>!)
+func uuid_unparse_lower(_ uu: UnsafePointer<UInt8>!, _ out: UnsafeMutablePointer<CChar>!)
+func uuid_unparse_upper(_ uu: UnsafePointer<UInt8>!, _ out: UnsafeMutablePointer<CChar>!)

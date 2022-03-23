@@ -1,0 +1,76 @@
+@_exported import CoreFoundation
+
+
+/***************	Basic protocols		***************/
+protocol NSCopying {
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(swift, obsoleted: 3, renamed: "copy(with:)")
+  func copyWithZone(_ zone: NSZone? = nil) -> Any
+}
+protocol NSMutableCopying {
+  func mutableCopy(with zone: NSZone? = nil) -> Any
+  @available(swift, obsoleted: 3, renamed: "mutableCopy(with:)")
+  func mutableCopyWithZone(_ zone: NSZone? = nil) -> Any
+}
+protocol NSCoding {
+  func encode(with coder: NSCoder)
+  @available(swift, obsoleted: 3, renamed: "encode(with:)")
+  func encodeWithCoder(_ coder: NSCoder)
+  init?(coder: NSCoder)
+}
+protocol NSSecureCoding : NSCoding {
+  static var supportsSecureCoding: Bool { get }
+}
+
+/***********	Base class		***********/
+extension NSObject {
+  class func version() -> Int
+  class func setVersion(_ aVersion: Int)
+  var classForCoder: AnyClass { get }
+  class func replacementObject(for coder: NSCoder) -> Any?
+  func replacementObject(for coder: NSCoder) -> Any?
+  @available(swift, obsoleted: 3, renamed: "replacementObject(for:)")
+  class func replacementObjectForCoder(_ coder: NSCoder) -> Any?
+  @available(swift, obsoleted: 3, renamed: "replacementObject(for:)")
+  func replacementObjectForCoder(_ coder: NSCoder) -> Any?
+  class func awakeAfter(using coder: NSCoder) -> Any?
+  func awakeAfter(using coder: NSCoder) -> Any?
+  @available(swift, obsoleted: 3, renamed: "awakeAfter(using:)")
+  class func awakeAfterUsingCoder(_ coder: NSCoder) -> Any?
+  @available(swift, obsoleted: 3, renamed: "awakeAfter(using:)")
+  func awakeAfterUsingCoder(_ coder: NSCoder) -> Any?
+  class func classForCoder() -> AnyClass
+}
+
+/***********	Discardable Content		***********/
+protocol NSDiscardableContent {
+  func beginContentAccess() -> Bool
+  func endContentAccess()
+  func discardContentIfPossible()
+  func isContentDiscarded() -> Bool
+}
+extension NSObject {
+  @available(iOS 4.0, *)
+  var autoContentAccessingProxy: Any { get }
+  class func autoContentAccessingProxy() -> Any
+}
+
+/***********	Object Allocation / Deallocation		*******/
+@available(*, unavailable, message: "not available in automatic reference counting mode")
+func NSAllocateObject(_ aClass: AnyClass, _ extraBytes: Int, _ zone: NSZone?) -> Any
+@available(*, unavailable, message: "not available in automatic reference counting mode")
+func NSDeallocateObject(_ object: Any)
+@available(*, unavailable, message: "not available in automatic reference counting mode")
+@available(iOS, unavailable, introduced: 2.0, deprecated: 6.0, message: "Not supported")
+func NSCopyObject(_ object: Any, _ extraBytes: Int, _ zone: NSZone?) -> Any
+@available(*, unavailable, message: "not available in automatic reference counting mode")
+func NSShouldRetainWithZone(_ anObject: Any, _ requestedZone: NSZone?) -> Bool
+@available(*, unavailable, message: "not available in automatic reference counting mode")
+func NSIncrementExtraRefCount(_ object: Any)
+@available(*, unavailable, message: "not available in automatic reference counting mode")
+func NSDecrementExtraRefCountWasZero(_ object: Any) -> Bool
+@available(*, unavailable, message: "not available in automatic reference counting mode")
+func NSExtraRefCount(_ object: Any) -> Int
+func CFBridgingRetain(_ X: Any?) -> CFTypeRef?
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CFBridgingRelease(_ X: CFTypeRef?) -> Any?

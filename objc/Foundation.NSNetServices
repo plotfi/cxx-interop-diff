@@ -1,0 +1,179 @@
+@_exported import CoreFoundation
+
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "NSNetService.errorCode")
+let NSNetServicesErrorCode: String
+extension NetService {
+  @available(iOS 2.0, *)
+  class let errorCode: String
+  @available(iOS 2.0, *)
+  class let errorDomain: String
+  enum ErrorCode : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case unknownError
+    @available(swift, obsoleted: 3, renamed: "unknownError")
+    static var UnknownError: NetService.ErrorCode { get }
+    case collisionError
+    @available(swift, obsoleted: 3, renamed: "collisionError")
+    static var CollisionError: NetService.ErrorCode { get }
+    case notFoundError
+    @available(swift, obsoleted: 3, renamed: "notFoundError")
+    static var NotFoundError: NetService.ErrorCode { get }
+    case activityInProgress
+    @available(swift, obsoleted: 3, renamed: "activityInProgress")
+    static var ActivityInProgress: NetService.ErrorCode { get }
+    case badArgumentError
+    @available(swift, obsoleted: 3, renamed: "badArgumentError")
+    static var BadArgumentError: NetService.ErrorCode { get }
+    case cancelledError
+    @available(swift, obsoleted: 3, renamed: "cancelledError")
+    static var CancelledError: NetService.ErrorCode { get }
+    case invalidError
+    @available(swift, obsoleted: 3, renamed: "invalidError")
+    static var InvalidError: NetService.ErrorCode { get }
+    case timeoutError
+    @available(swift, obsoleted: 3, renamed: "timeoutError")
+    static var TimeoutError: NetService.ErrorCode { get }
+    @available(iOS 14.0, *)
+    case missingRequiredConfigurationError
+    @available(iOS 14.0, *)
+    @available(swift, obsoleted: 3, renamed: "missingRequiredConfigurationError")
+    static var MissingRequiredConfigurationError: NetService.ErrorCode { get }
+  }
+  struct Options : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = NetService.Options
+    typealias ArrayLiteralElement = NetService.Options
+    static var noAutoRename: NetService.Options { get }
+    @available(swift, obsoleted: 3, renamed: "noAutoRename")
+    static var NoAutoRename: NetService.Options { get }
+    @available(iOS 7.0, *)
+    static var listenForConnections: NetService.Options { get }
+    @available(iOS 7.0, *)
+    @available(swift, obsoleted: 3, renamed: "listenForConnections")
+    static var ListenForConnections: NetService.Options { get }
+  }
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "NSNetService.errorDomain")
+let NSNetServicesErrorDomain: String
+@available(swift, obsoleted: 3, renamed: "NSNetService.ErrorCode")
+typealias NSNetServicesError = NetService.ErrorCode
+@available(swift, obsoleted: 3, renamed: "NSNetService.Options")
+typealias NSNetServiceOptions = NetService.Options
+@available(swift, obsoleted: 3, renamed: "NetService")
+@available(iOS, introduced: 2.0, deprecated: 100000, message: "Use nw_connection_t or nw_listener_t in Network framework instead")
+typealias NSNetService = NetService
+@available(iOS, introduced: 2.0, deprecated: 100000, message: "Use nw_connection_t or nw_listener_t in Network framework instead")
+class NetService : NSObject {
+  init(domain: String, type: String, name: String, port: Int32)
+  convenience init(domain: String, type: String, name: String)
+  func schedule(in aRunLoop: RunLoop, forMode mode: RunLoop.Mode)
+  @available(swift, obsoleted: 3, renamed: "schedule(in:forMode:)")
+  func scheduleInRunLoop(_ aRunLoop: RunLoop, forMode mode: RunLoop.Mode)
+  func remove(from aRunLoop: RunLoop, forMode mode: RunLoop.Mode)
+  @available(swift, obsoleted: 3, renamed: "remove(from:forMode:)")
+  func removeFromRunLoop(_ aRunLoop: RunLoop, forMode mode: RunLoop.Mode)
+  unowned(unsafe) var delegate: @sil_unmanaged NetServiceDelegate?
+  @available(iOS 7.0, *)
+  var includesPeerToPeer: Bool
+  var name: String { get }
+  var type: String { get }
+  var domain: String { get }
+  var hostName: String? { get }
+  var addresses: [Data]? { get }
+  @available(iOS 2.0, *)
+  var port: Int { get }
+  func publish()
+  @available(iOS 2.0, *)
+  func publish(options: NetService.Options = [])
+  @available(iOS 2.0, *)
+  @available(swift, obsoleted: 3, renamed: "publish(options:)")
+  func publishWithOptions(_ options: NetService.Options = [])
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 2.0, message: "Not supported")
+  func resolve()
+  func stop()
+  class func dictionary(fromTXTRecord txtData: Data) -> [String : Data]
+  @available(swift, obsoleted: 3, renamed: "dictionary(fromTXTRecord:)")
+  class func dictionaryFromTXTRecordData(_ txtData: Data) -> [String : Data]
+  class func data(fromTXTRecord txtDictionary: [String : Data]) -> Data
+  @available(swift, obsoleted: 3, renamed: "data(fromTXTRecord:)")
+  class func dataFromTXTRecordDictionary(_ txtDictionary: [String : Data]) -> Data
+  func resolve(withTimeout timeout: TimeInterval)
+  @available(swift, obsoleted: 3, renamed: "resolve(withTimeout:)")
+  func resolveWithTimeout(_ timeout: TimeInterval)
+  func getInputStream(_ inputStream: UnsafeMutablePointer<InputStream?>?, outputStream: UnsafeMutablePointer<OutputStream?>?) -> Bool
+  func setTXTRecord(_ recordData: Data?) -> Bool
+  @available(swift, obsoleted: 3, renamed: "setTXTRecord(_:)")
+  func setTXTRecordData(_ recordData: Data?) -> Bool
+  func txtRecordData() -> Data?
+  @available(swift, obsoleted: 3, renamed: "txtRecordData()")
+  func TXTRecordData() -> Data?
+  func startMonitoring()
+  func stopMonitoring()
+  convenience init()
+}
+@available(swift, obsoleted: 3, renamed: "NetServiceBrowser")
+@available(iOS, introduced: 2.0, deprecated: 100000, message: "Use nw_browser_t in Network framework instead")
+typealias NSNetServiceBrowser = NetServiceBrowser
+@available(iOS, introduced: 2.0, deprecated: 100000, message: "Use nw_browser_t in Network framework instead")
+class NetServiceBrowser : NSObject {
+  init()
+  unowned(unsafe) var delegate: @sil_unmanaged NetServiceBrowserDelegate?
+  @available(iOS 7.0, *)
+  var includesPeerToPeer: Bool
+  func schedule(in aRunLoop: RunLoop, forMode mode: RunLoop.Mode)
+  @available(swift, obsoleted: 3, renamed: "schedule(in:forMode:)")
+  func scheduleInRunLoop(_ aRunLoop: RunLoop, forMode mode: RunLoop.Mode)
+  func remove(from aRunLoop: RunLoop, forMode mode: RunLoop.Mode)
+  @available(swift, obsoleted: 3, renamed: "remove(from:forMode:)")
+  func removeFromRunLoop(_ aRunLoop: RunLoop, forMode mode: RunLoop.Mode)
+  func searchForBrowsableDomains()
+  func searchForRegistrationDomains()
+  func searchForServices(ofType type: String, inDomain domainString: String)
+  @available(swift, obsoleted: 3, renamed: "searchForServices(ofType:inDomain:)")
+  func searchForServicesOfType(_ type: String, inDomain domainString: String)
+  func stop()
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "NetServiceDelegate")
+typealias NSNetServiceDelegate = NetServiceDelegate
+@available(iOS 2.0, *)
+protocol NetServiceDelegate : NSObjectProtocol {
+  optional func netServiceWillPublish(_ sender: NetService)
+  optional func netServiceDidPublish(_ sender: NetService)
+  optional func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber])
+  optional func netServiceWillResolve(_ sender: NetService)
+  optional func netServiceDidResolveAddress(_ sender: NetService)
+  optional func netService(_ sender: NetService, didNotResolve errorDict: [String : NSNumber])
+  optional func netServiceDidStop(_ sender: NetService)
+  optional func netService(_ sender: NetService, didUpdateTXTRecord data: Data)
+  @available(swift, obsoleted: 3, renamed: "netService(_:didUpdateTXTRecord:)")
+  optional func netService(_ sender: NetService, didUpdateTXTRecordData data: Data)
+  @available(iOS 7.0, *)
+  optional func netService(_ sender: NetService, didAcceptConnectionWith inputStream: InputStream, outputStream: OutputStream)
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "netService(_:didAcceptConnectionWith:outputStream:)")
+  optional func netService(_ sender: NetService, didAcceptConnectionWithInputStream inputStream: InputStream, outputStream: OutputStream)
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "NetServiceBrowserDelegate")
+typealias NSNetServiceBrowserDelegate = NetServiceBrowserDelegate
+@available(iOS 2.0, *)
+protocol NetServiceBrowserDelegate : NSObjectProtocol {
+  optional func netServiceBrowserWillSearch(_ browser: NetServiceBrowser)
+  optional func netServiceBrowserDidStopSearch(_ browser: NetServiceBrowser)
+  optional func netServiceBrowser(_ browser: NetServiceBrowser, didNotSearch errorDict: [String : NSNumber])
+  optional func netServiceBrowser(_ browser: NetServiceBrowser, didFindDomain domainString: String, moreComing: Bool)
+  optional func netServiceBrowser(_ browser: NetServiceBrowser, didFind service: NetService, moreComing: Bool)
+  @available(swift, obsoleted: 3, renamed: "netServiceBrowser(_:didFind:moreComing:)")
+  optional func netServiceBrowser(_ browser: NetServiceBrowser, didFindService service: NetService, moreComing: Bool)
+  optional func netServiceBrowser(_ browser: NetServiceBrowser, didRemoveDomain domainString: String, moreComing: Bool)
+  optional func netServiceBrowser(_ browser: NetServiceBrowser, didRemove service: NetService, moreComing: Bool)
+  @available(swift, obsoleted: 3, renamed: "netServiceBrowser(_:didRemove:moreComing:)")
+  optional func netServiceBrowser(_ browser: NetServiceBrowser, didRemoveService service: NetService, moreComing: Bool)
+}

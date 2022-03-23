@@ -1,0 +1,1270 @@
+@_exported import CoreFoundation
+
+@available(swift, obsoleted: 3, renamed: "URLResourceKey")
+typealias NSURLResourceKey = URLResourceKey
+struct URLResourceKey : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(_ rawValue: String)
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+class NSURL : NSObject, NSSecureCoding, NSCopying {
+  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use NSURLComponents instead, which lets you create a valid URL with any valid combination of URL components and subcomponents (not just scheme, host and path), and lets you set components and subcomponents with either percent-encoded or un-percent-encoded strings.")
+  convenience init?(scheme: String, host: String?, path: String)
+  @available(iOS 9.0, *)
+  init(fileURLWithPath path: String, isDirectory isDir: Bool, relativeTo baseURL: URL?)
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(fileURLWithPath:isDirectory:relativeTo:)")
+  init(fileURLWithPath path: String, isDirectory isDir: Bool, relativeToURL baseURL: URL?)
+  @available(iOS 9.0, *)
+  init(fileURLWithPath path: String, relativeTo baseURL: URL?)
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(fileURLWithPath:relativeTo:)")
+  init(fileURLWithPath path: String, relativeToURL baseURL: URL?)
+  @available(iOS 2.0, *)
+  init(fileURLWithPath path: String, isDirectory isDir: Bool)
+  init(fileURLWithPath path: String)
+  @available(iOS 9.0, *)
+  class func fileURL(withPath path: String, isDirectory isDir: Bool, relativeTo baseURL: URL?) -> URL
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "fileURL(withPath:isDirectory:relativeTo:)")
+  class func fileURLWithPath(_ path: String, isDirectory isDir: Bool, relativeToURL baseURL: URL?) -> URL
+  @available(iOS 9.0, *)
+  class func fileURL(withPath path: String, relativeTo baseURL: URL?) -> URL
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "fileURL(withPath:relativeTo:)")
+  class func fileURLWithPath(_ path: String, relativeToURL baseURL: URL?) -> URL
+  @available(iOS 2.0, *)
+  class func fileURL(withPath path: String, isDirectory isDir: Bool) -> URL
+  @available(iOS 2.0, *)
+  @available(swift, obsoleted: 3, renamed: "fileURL(withPath:isDirectory:)")
+  class func fileURLWithPath(_ path: String, isDirectory isDir: Bool) -> URL
+  class func fileURL(withPath path: String) -> URL
+  @available(swift, obsoleted: 3, renamed: "fileURL(withPath:)")
+  class func fileURLWithPath(_ path: String) -> URL
+  @available(iOS 7.0, *)
+  init(fileURLWithFileSystemRepresentation path: UnsafePointer<CChar>, isDirectory isDir: Bool, relativeTo baseURL: URL?)
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(fileURLWithFileSystemRepresentation:isDirectory:relativeTo:)")
+  init(fileURLWithFileSystemRepresentation path: UnsafePointer<CChar>, isDirectory isDir: Bool, relativeToURL baseURL: URL?)
+  @available(iOS 7.0, *)
+  class func fileURL(withFileSystemRepresentation path: UnsafePointer<CChar>, isDirectory isDir: Bool, relativeTo baseURL: URL?) -> URL
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "fileURL(withFileSystemRepresentation:isDirectory:relativeTo:)")
+  class func fileURLWithFileSystemRepresentation(_ path: UnsafePointer<CChar>, isDirectory isDir: Bool, relativeToURL baseURL: URL?) -> URL
+  convenience init?(string URLString: String)
+  init?(string URLString: String, relativeTo baseURL: URL?)
+  @available(swift, obsoleted: 3, renamed: "init(string:relativeTo:)")
+  init?(string URLString: String, relativeToURL baseURL: URL?)
+  @available(*, unavailable, renamed: "init(string:)", message: "Not available in Swift")
+  class func URLWithString(_ URLString: String) -> Self?
+  @available(swift, obsoleted: 3, renamed: "init(string:relativeTo:)")
+  convenience init?(string URLString: String, relativeToURL baseURL: URL?)
+  @available(*, unavailable, renamed: "init(string:relativeTo:)", message: "Not available in Swift")
+  class func URLWithString(_ URLString: String, relativeToURL baseURL: URL?) -> Self?
+  @available(iOS 9.0, *)
+  init(dataRepresentation data: Data, relativeTo baseURL: URL?)
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(dataRepresentation:relativeTo:)")
+  init(dataRepresentation data: Data, relativeToURL baseURL: URL?)
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(dataRepresentation:relativeTo:)")
+  /*not inherited*/ init(dataRepresentation data: Data, relativeToURL baseURL: URL?)
+  @available(iOS 9.0, *)
+  @available(*, unavailable, renamed: "init(dataRepresentation:relativeTo:)", message: "Not available in Swift")
+  class func URLWithDataRepresentation(_ data: Data, relativeToURL baseURL: URL?) -> URL
+  @available(iOS 9.0, *)
+  init(absoluteURLWithDataRepresentation data: Data, relativeTo baseURL: URL?)
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(absoluteURLWithDataRepresentation:relativeTo:)")
+  init(absoluteURLWithDataRepresentation data: Data, relativeToURL baseURL: URL?)
+  @available(iOS 9.0, *)
+  class func absoluteURL(withDataRepresentation data: Data, relativeTo baseURL: URL?) -> URL
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "absoluteURL(withDataRepresentation:relativeTo:)")
+  class func absoluteURLWithDataRepresentation(_ data: Data, relativeToURL baseURL: URL?) -> URL
+  @available(iOS 9.0, *)
+  var dataRepresentation: Data { get }
+  var absoluteString: String? { get }
+  var relativeString: String { get }
+  var baseURL: URL? { get }
+  var absoluteURL: URL? { get }
+  var scheme: String? { get }
+  var resourceSpecifier: String? { get }
+  var host: String? { get }
+  @NSCopying var port: NSNumber? { get }
+  var user: String? { get }
+  var password: String? { get }
+  var path: String? { get }
+  var fragment: String? { get }
+  @available(iOS, introduced: 2.0, deprecated: 13.0, message: "The parameterString method is deprecated. Post deprecation for applications linked with or after the macOS 10.15, and for all iOS, watchOS, and tvOS applications, parameterString will always return nil, and the path method will return the complete path including the semicolon separator and params component if the URL string contains them.")
+  var parameterString: String? { get }
+  var query: String? { get }
+  var relativePath: String? { get }
+  @available(iOS 9.0, *)
+  var hasDirectoryPath: Bool { get }
+  @available(iOS 7.0, *)
+  func getFileSystemRepresentation(_ buffer: UnsafeMutablePointer<CChar>, maxLength maxBufferLength: Int) -> Bool
+  @available(iOS 7.0, *)
+  var fileSystemRepresentation: UnsafePointer<CChar> { get }
+  var isFileURL: Bool { get }
+  @available(swift, obsoleted: 3, renamed: "isFileURL")
+  var fileURL: Bool { get }
+  var standardized: URL? { get }
+  @available(swift, obsoleted: 3, renamed: "standardized")
+  var standardizedURL: URL? { get }
+  @available(iOS 4.0, *)
+  func checkResourceIsReachableAndReturnError(_ error: NSErrorPointer) -> Bool
+  @available(iOS 4.0, *)
+  func isFileReferenceURL() -> Bool
+  @available(iOS 4.0, *)
+  func fileReferenceURL() -> URL?
+  @available(iOS 4.0, *)
+  var filePathURL: URL? { get }
+  @available(iOS 4.0, *)
+  func getResourceValue(_ value: AutoreleasingUnsafeMutablePointer<AnyObject?>, forKey key: URLResourceKey) throws
+  @available(iOS 4.0, *)
+  func resourceValues(forKeys keys: [URLResourceKey]) throws -> [URLResourceKey : Any]
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "resourceValues(forKeys:)")
+  func resourceValuesForKeys(_ keys: [URLResourceKey]) throws -> [URLResourceKey : Any]
+  @available(iOS 4.0, *)
+  func setResourceValue(_ value: Any?, forKey key: URLResourceKey) throws
+  @available(iOS 4.0, *)
+  func setResourceValues(_ keyedValues: [URLResourceKey : Any]) throws
+  @available(iOS 7.0, *)
+  func removeCachedResourceValue(forKey key: URLResourceKey)
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "removeCachedResourceValue(forKey:)")
+  func removeCachedResourceValueForKey(_ key: URLResourceKey)
+  @available(iOS 7.0, *)
+  func removeAllCachedResourceValues()
+  @available(iOS 7.0, *)
+  func setTemporaryResourceValue(_ value: Any?, forKey key: URLResourceKey)
+  @available(iOS 4.0, *)
+  func bookmarkData(options: NSURL.BookmarkCreationOptions = [], includingResourceValuesForKeys keys: [URLResourceKey]?, relativeTo relativeURL: URL?) throws -> Data
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "bookmarkData(options:includingResourceValuesForKeys:relativeTo:)")
+  func bookmarkDataWithOptions(_ options: NSURL.BookmarkCreationOptions = [], includingResourceValuesForKeys keys: [URLResourceKey]?, relativeToURL relativeURL: URL?) throws -> Data
+  @available(iOS 4.0, *)
+  convenience init(resolvingBookmarkData bookmarkData: Data, options: NSURL.BookmarkResolutionOptions = [], relativeTo relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(resolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)")
+  convenience init(byResolvingBookmarkData bookmarkData: Data, options: NSURL.BookmarkResolutionOptions = [], relativeToURL relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
+  @available(iOS 4.0, *)
+  @available(*, unavailable, message: "Not available in Swift")
+  convenience init(byResolvingBookmarkData bookmarkData: Data, options: NSURL.BookmarkResolutionOptions = [], relativeTo relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(byResolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)")
+  @available(*, unavailable, message: "Not available in Swift")
+  convenience init(byResolvingBookmarkData bookmarkData: Data, options: NSURL.BookmarkResolutionOptions = [], relativeToURL relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
+  @available(iOS 4.0, *)
+  @available(*, unavailable, renamed: "init(byResolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func URLByResolvingBookmarkData(_ bookmarkData: Data, options: NSURL.BookmarkResolutionOptions = [], relativeToURL relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws -> Self
+  @available(iOS 4.0, *)
+  class func resourceValues(forKeys keys: [URLResourceKey], fromBookmarkData bookmarkData: Data) -> [URLResourceKey : Any]?
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "resourceValues(forKeys:fromBookmarkData:)")
+  class func resourceValuesForKeys(_ keys: [URLResourceKey], fromBookmarkData bookmarkData: Data) -> [URLResourceKey : Any]?
+  @available(iOS 4.0, *)
+  class func writeBookmarkData(_ bookmarkData: Data, to bookmarkFileURL: URL, options: NSURL.BookmarkFileCreationOptions) throws
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "writeBookmarkData(_:to:options:)")
+  class func writeBookmarkData(_ bookmarkData: Data, toURL bookmarkFileURL: URL, options: NSURL.BookmarkFileCreationOptions) throws
+  @available(iOS 4.0, *)
+  class func bookmarkData(withContentsOf bookmarkFileURL: URL) throws -> Data
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "bookmarkData(withContentsOf:)")
+  class func bookmarkDataWithContentsOfURL(_ bookmarkFileURL: URL) throws -> Data
+  @available(iOS 8.0, *)
+  convenience init(resolvingAliasFileAt url: URL, options: NSURL.BookmarkResolutionOptions = []) throws
+  @available(iOS 8.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(resolvingAliasFileAt:options:)")
+  convenience init(byResolvingAliasFileAtURL url: URL, options: NSURL.BookmarkResolutionOptions = []) throws
+  @available(iOS 8.0, *)
+  @available(*, unavailable, renamed: "init(resolvingAliasFileAt:options:)", message: "Not available in Swift")
+  class func URLByResolvingAliasFileAtURL(_ url: URL, options: NSURL.BookmarkResolutionOptions = []) throws -> Self
+  @available(iOS 8.0, *)
+  func startAccessingSecurityScopedResource() -> Bool
+  @available(iOS 8.0, *)
+  func stopAccessingSecurityScopedResource()
+  convenience init()
+  class var supportsSecureCoding: Bool { get }
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+  func copy(with zone: NSZone? = nil) -> Any
+}
+
+extension NSURL : _CustomPlaygroundQuickLookable {
+  @available(*, deprecated, message: "NSURL.customPlaygroundQuickLook will be removed in a future Swift version")
+  var customPlaygroundQuickLook: PlaygroundQuickLook { get }
+}
+
+extension NSURL : _HasCustomAnyHashableRepresentation {
+  @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}
+let NSURLFileScheme: String
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.keysOfUnsetValuesKey")
+let NSURLKeysOfUnsetValuesKey: URLResourceKey
+extension URLResourceKey {
+  @available(iOS 5.0, *)
+  static let keysOfUnsetValuesKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let nameKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let localizedNameKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let isRegularFileKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let isDirectoryKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let isSymbolicLinkKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let isVolumeKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let isPackageKey: URLResourceKey
+  @available(iOS 9.0, *)
+  static let isApplicationKey: URLResourceKey
+  @available(iOS, unavailable)
+  static let applicationIsScriptableKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let isSystemImmutableKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let isUserImmutableKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let isHiddenKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let hasHiddenExtensionKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let creationDateKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let contentAccessDateKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let contentModificationDateKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let attributeModificationDateKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let linkCountKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let parentDirectoryURLKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeURLKey: URLResourceKey
+  @available(iOS, introduced: 4.0, deprecated: 100000, message: "Use NSURLContentTypeKey instead")
+  static let typeIdentifierKey: URLResourceKey
+  @available(iOS 14.0, *)
+  static let contentTypeKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let localizedTypeDescriptionKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let labelNumberKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let labelColorKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let localizedLabelKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let effectiveIconKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let customIconKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let fileResourceIdentifierKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeIdentifierKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let preferredIOBlockSizeKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let isReadableKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let isWritableKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let isExecutableKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let fileSecurityKey: URLResourceKey
+  @available(iOS 5.1, *)
+  static let isExcludedFromBackupKey: URLResourceKey
+  @available(iOS, unavailable)
+  static let tagNamesKey: URLResourceKey
+  @available(iOS 6.0, *)
+  static let pathKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let canonicalPathKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let isMountTriggerKey: URLResourceKey
+  @available(iOS 8.0, *)
+  static let generationIdentifierKey: URLResourceKey
+  @available(iOS 8.0, *)
+  static let documentIdentifierKey: URLResourceKey
+  @available(iOS 8.0, *)
+  static let addedToDirectoryDateKey: URLResourceKey
+  @available(iOS, unavailable)
+  static let quarantinePropertiesKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let fileResourceTypeKey: URLResourceKey
+  @available(iOS 14.0, *)
+  static let fileContentIdentifierKey: URLResourceKey
+  @available(iOS 14.0, *)
+  static let mayShareFileContentKey: URLResourceKey
+  @available(iOS 14.0, *)
+  static let mayHaveExtendedAttributesKey: URLResourceKey
+  @available(iOS 14.0, *)
+  static let isPurgeableKey: URLResourceKey
+  @available(iOS 14.0, *)
+  static let isSparseKey: URLResourceKey
+  @available(iOS, introduced: 8.0, deprecated: 15.0, message: "Use the QuickLookThumbnailing framework and extension point instead")
+  static let thumbnailDictionaryKey: URLResourceKey
+  @available(iOS, unavailable)
+  static let thumbnailKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let fileSizeKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let fileAllocatedSizeKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let totalFileSizeKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let totalFileAllocatedSizeKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let isAliasFileKey: URLResourceKey
+  @available(iOS 9.0, *)
+  static let fileProtectionKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeLocalizedFormatDescriptionKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeTotalCapacityKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeAvailableCapacityKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeResourceCountKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeSupportsPersistentIDsKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeSupportsSymbolicLinksKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeSupportsHardLinksKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeSupportsJournalingKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeIsJournalingKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeSupportsSparseFilesKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeSupportsZeroRunsKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeSupportsCaseSensitiveNamesKey: URLResourceKey
+  @available(iOS 4.0, *)
+  static let volumeSupportsCasePreservedNamesKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeSupportsRootDirectoryDatesKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeSupportsVolumeSizesKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeSupportsRenamingKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeSupportsAdvisoryFileLockingKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeSupportsExtendedSecurityKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeIsBrowsableKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeMaximumFileSizeKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeIsEjectableKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeIsRemovableKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeIsInternalKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeIsAutomountedKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeIsLocalKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeIsReadOnlyKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeCreationDateKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeURLForRemountingKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeUUIDStringKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeNameKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let volumeLocalizedNameKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let volumeIsEncryptedKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let volumeIsRootFileSystemKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let volumeSupportsCompressionKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let volumeSupportsFileCloningKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let volumeSupportsSwapRenamingKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let volumeSupportsExclusiveRenamingKey: URLResourceKey
+  @available(iOS 11.0, *)
+  static let volumeSupportsImmutableFilesKey: URLResourceKey
+  @available(iOS 11.0, *)
+  static let volumeSupportsAccessPermissionsKey: URLResourceKey
+  @available(iOS 14.0, *)
+  static let volumeSupportsFileProtectionKey: URLResourceKey
+  @available(iOS 11.0, *)
+  static let volumeAvailableCapacityForImportantUsageKey: URLResourceKey
+  @available(iOS 11.0, *)
+  static let volumeAvailableCapacityForOpportunisticUsageKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let isUbiquitousItemKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let ubiquitousItemHasUnresolvedConflictsKey: URLResourceKey
+  @available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, message: "Use NSURLUbiquitousItemDownloadingStatusKey instead")
+  static let ubiquitousItemIsDownloadedKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let ubiquitousItemIsDownloadingKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let ubiquitousItemIsUploadedKey: URLResourceKey
+  @available(iOS 5.0, *)
+  static let ubiquitousItemIsUploadingKey: URLResourceKey
+  @available(iOS, unavailable, introduced: 5.0, deprecated: 6.0, message: "Use NSMetadataUbiquitousItemPercentDownloadedKey instead")
+  static let ubiquitousItemPercentDownloadedKey: URLResourceKey
+  @available(iOS, unavailable, introduced: 5.0, deprecated: 6.0, message: "Use NSMetadataUbiquitousItemPercentUploadedKey instead")
+  static let ubiquitousItemPercentUploadedKey: URLResourceKey
+  @available(iOS 7.0, *)
+  static let ubiquitousItemDownloadingStatusKey: URLResourceKey
+  @available(iOS 7.0, *)
+  static let ubiquitousItemDownloadingErrorKey: URLResourceKey
+  @available(iOS 7.0, *)
+  static let ubiquitousItemUploadingErrorKey: URLResourceKey
+  @available(iOS 8.0, *)
+  static let ubiquitousItemDownloadRequestedKey: URLResourceKey
+  @available(iOS 8.0, *)
+  static let ubiquitousItemContainerDisplayNameKey: URLResourceKey
+  @available(iOS 14.5, *)
+  static let ubiquitousItemIsExcludedFromSyncKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let ubiquitousItemIsSharedKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let ubiquitousSharedItemCurrentUserRoleKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let ubiquitousSharedItemCurrentUserPermissionsKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let ubiquitousSharedItemOwnerNameComponentsKey: URLResourceKey
+  @available(iOS 10.0, *)
+  static let ubiquitousSharedItemMostRecentEditorNameComponentsKey: URLResourceKey
+}
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.nameKey")
+let NSURLNameKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.localizedNameKey")
+let NSURLLocalizedNameKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isRegularFileKey")
+let NSURLIsRegularFileKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isDirectoryKey")
+let NSURLIsDirectoryKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isSymbolicLinkKey")
+let NSURLIsSymbolicLinkKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isVolumeKey")
+let NSURLIsVolumeKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isPackageKey")
+let NSURLIsPackageKey: URLResourceKey
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isApplicationKey")
+let NSURLIsApplicationKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.applicationIsScriptableKey")
+@available(iOS, unavailable)
+let NSURLApplicationIsScriptableKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isSystemImmutableKey")
+let NSURLIsSystemImmutableKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isUserImmutableKey")
+let NSURLIsUserImmutableKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isHiddenKey")
+let NSURLIsHiddenKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.hasHiddenExtensionKey")
+let NSURLHasHiddenExtensionKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.creationDateKey")
+let NSURLCreationDateKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.contentAccessDateKey")
+let NSURLContentAccessDateKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.contentModificationDateKey")
+let NSURLContentModificationDateKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.attributeModificationDateKey")
+let NSURLAttributeModificationDateKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.linkCountKey")
+let NSURLLinkCountKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.parentDirectoryURLKey")
+let NSURLParentDirectoryURLKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeURLKey")
+let NSURLVolumeURLKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.typeIdentifierKey")
+@available(iOS, introduced: 4.0, deprecated: 100000, message: "Use NSURLContentTypeKey instead")
+let NSURLTypeIdentifierKey: URLResourceKey
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.contentTypeKey")
+let NSURLContentTypeKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.localizedTypeDescriptionKey")
+let NSURLLocalizedTypeDescriptionKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.labelNumberKey")
+let NSURLLabelNumberKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.labelColorKey")
+let NSURLLabelColorKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.localizedLabelKey")
+let NSURLLocalizedLabelKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.effectiveIconKey")
+let NSURLEffectiveIconKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.customIconKey")
+let NSURLCustomIconKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.fileResourceIdentifierKey")
+let NSURLFileResourceIdentifierKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeIdentifierKey")
+let NSURLVolumeIdentifierKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.preferredIOBlockSizeKey")
+let NSURLPreferredIOBlockSizeKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isReadableKey")
+let NSURLIsReadableKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isWritableKey")
+let NSURLIsWritableKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isExecutableKey")
+let NSURLIsExecutableKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.fileSecurityKey")
+let NSURLFileSecurityKey: URLResourceKey
+@available(iOS 5.1, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isExcludedFromBackupKey")
+let NSURLIsExcludedFromBackupKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.tagNamesKey")
+@available(iOS, unavailable)
+let NSURLTagNamesKey: URLResourceKey
+@available(iOS 6.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.pathKey")
+let NSURLPathKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.canonicalPathKey")
+let NSURLCanonicalPathKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isMountTriggerKey")
+let NSURLIsMountTriggerKey: URLResourceKey
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.generationIdentifierKey")
+let NSURLGenerationIdentifierKey: URLResourceKey
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.documentIdentifierKey")
+let NSURLDocumentIdentifierKey: URLResourceKey
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.addedToDirectoryDateKey")
+let NSURLAddedToDirectoryDateKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.quarantinePropertiesKey")
+@available(iOS, unavailable)
+let NSURLQuarantinePropertiesKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.fileResourceTypeKey")
+let NSURLFileResourceTypeKey: URLResourceKey
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.fileContentIdentifierKey")
+let NSURLFileContentIdentifierKey: URLResourceKey
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.mayShareFileContentKey")
+let NSURLMayShareFileContentKey: URLResourceKey
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.mayHaveExtendedAttributesKey")
+let NSURLMayHaveExtendedAttributesKey: URLResourceKey
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isPurgeableKey")
+let NSURLIsPurgeableKey: URLResourceKey
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isSparseKey")
+let NSURLIsSparseKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLFileResourceType")
+typealias NSURLFileResourceType = URLFileResourceType
+struct URLFileResourceType : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileResourceType.namedPipe")
+let NSURLFileResourceTypeNamedPipe: URLFileResourceType
+extension URLFileResourceType {
+  @available(iOS 5.0, *)
+  static let namedPipe: URLFileResourceType
+  @available(iOS 5.0, *)
+  static let characterSpecial: URLFileResourceType
+  @available(iOS 5.0, *)
+  static let directory: URLFileResourceType
+  @available(iOS 5.0, *)
+  static let blockSpecial: URLFileResourceType
+  @available(iOS 5.0, *)
+  static let regular: URLFileResourceType
+  @available(iOS 5.0, *)
+  static let symbolicLink: URLFileResourceType
+  @available(iOS 5.0, *)
+  static let socket: URLFileResourceType
+  @available(iOS 5.0, *)
+  static let unknown: URLFileResourceType
+}
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileResourceType.characterSpecial")
+let NSURLFileResourceTypeCharacterSpecial: URLFileResourceType
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileResourceType.directory")
+let NSURLFileResourceTypeDirectory: URLFileResourceType
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileResourceType.blockSpecial")
+let NSURLFileResourceTypeBlockSpecial: URLFileResourceType
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileResourceType.regular")
+let NSURLFileResourceTypeRegular: URLFileResourceType
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileResourceType.symbolicLink")
+let NSURLFileResourceTypeSymbolicLink: URLFileResourceType
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileResourceType.socket")
+let NSURLFileResourceTypeSocket: URLFileResourceType
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileResourceType.unknown")
+let NSURLFileResourceTypeUnknown: URLFileResourceType
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.thumbnailDictionaryKey")
+@available(iOS, introduced: 8.0, deprecated: 15.0, message: "Use the QuickLookThumbnailing framework and extension point instead")
+let NSURLThumbnailDictionaryKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.thumbnailKey")
+@available(iOS, unavailable)
+let NSURLThumbnailKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLThumbnailDictionaryItem")
+typealias NSURLThumbnailDictionaryItem = URLThumbnailDictionaryItem
+struct URLThumbnailDictionaryItem : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(_ rawValue: String)
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+@available(swift, obsoleted: 3, renamed: "URLThumbnailDictionaryItem.NSThumbnail1024x1024SizeKey")
+@available(iOS, introduced: 8.0, deprecated: 15.0, message: "Use the QuickLookThumbnailing framework and extension point instead")
+let NSThumbnail1024x1024SizeKey: URLThumbnailDictionaryItem
+extension URLThumbnailDictionaryItem {
+  @available(iOS, introduced: 8.0, deprecated: 15.0, message: "Use the QuickLookThumbnailing framework and extension point instead")
+  static let NSThumbnail1024x1024SizeKey: URLThumbnailDictionaryItem
+}
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.fileSizeKey")
+let NSURLFileSizeKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.fileAllocatedSizeKey")
+let NSURLFileAllocatedSizeKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.totalFileSizeKey")
+let NSURLTotalFileSizeKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.totalFileAllocatedSizeKey")
+let NSURLTotalFileAllocatedSizeKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isAliasFileKey")
+let NSURLIsAliasFileKey: URLResourceKey
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.fileProtectionKey")
+let NSURLFileProtectionKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLFileProtection")
+typealias NSURLFileProtectionType = URLFileProtection
+struct URLFileProtection : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileProtection.none")
+let NSURLFileProtectionNone: URLFileProtection
+extension URLFileProtection {
+  @available(iOS 9.0, *)
+  static let none: URLFileProtection
+  @available(iOS 9.0, *)
+  static let complete: URLFileProtection
+  @available(iOS 9.0, *)
+  static let completeUnlessOpen: URLFileProtection
+  @available(iOS 9.0, *)
+  static let completeUntilFirstUserAuthentication: URLFileProtection
+}
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileProtection.complete")
+let NSURLFileProtectionComplete: URLFileProtection
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileProtection.completeUnlessOpen")
+let NSURLFileProtectionCompleteUnlessOpen: URLFileProtection
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "URLFileProtection.completeUntilFirstUserAuthentication")
+let NSURLFileProtectionCompleteUntilFirstUserAuthentication: URLFileProtection
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeLocalizedFormatDescriptionKey")
+let NSURLVolumeLocalizedFormatDescriptionKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeTotalCapacityKey")
+let NSURLVolumeTotalCapacityKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeAvailableCapacityKey")
+let NSURLVolumeAvailableCapacityKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeResourceCountKey")
+let NSURLVolumeResourceCountKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsPersistentIDsKey")
+let NSURLVolumeSupportsPersistentIDsKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsSymbolicLinksKey")
+let NSURLVolumeSupportsSymbolicLinksKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsHardLinksKey")
+let NSURLVolumeSupportsHardLinksKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsJournalingKey")
+let NSURLVolumeSupportsJournalingKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeIsJournalingKey")
+let NSURLVolumeIsJournalingKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsSparseFilesKey")
+let NSURLVolumeSupportsSparseFilesKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsZeroRunsKey")
+let NSURLVolumeSupportsZeroRunsKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsCaseSensitiveNamesKey")
+let NSURLVolumeSupportsCaseSensitiveNamesKey: URLResourceKey
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsCasePreservedNamesKey")
+let NSURLVolumeSupportsCasePreservedNamesKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsRootDirectoryDatesKey")
+let NSURLVolumeSupportsRootDirectoryDatesKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsVolumeSizesKey")
+let NSURLVolumeSupportsVolumeSizesKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsRenamingKey")
+let NSURLVolumeSupportsRenamingKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsAdvisoryFileLockingKey")
+let NSURLVolumeSupportsAdvisoryFileLockingKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsExtendedSecurityKey")
+let NSURLVolumeSupportsExtendedSecurityKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeIsBrowsableKey")
+let NSURLVolumeIsBrowsableKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeMaximumFileSizeKey")
+let NSURLVolumeMaximumFileSizeKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeIsEjectableKey")
+let NSURLVolumeIsEjectableKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeIsRemovableKey")
+let NSURLVolumeIsRemovableKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeIsInternalKey")
+let NSURLVolumeIsInternalKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeIsAutomountedKey")
+let NSURLVolumeIsAutomountedKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeIsLocalKey")
+let NSURLVolumeIsLocalKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeIsReadOnlyKey")
+let NSURLVolumeIsReadOnlyKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeCreationDateKey")
+let NSURLVolumeCreationDateKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeURLForRemountingKey")
+let NSURLVolumeURLForRemountingKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeUUIDStringKey")
+let NSURLVolumeUUIDStringKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeNameKey")
+let NSURLVolumeNameKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeLocalizedNameKey")
+let NSURLVolumeLocalizedNameKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeIsEncryptedKey")
+let NSURLVolumeIsEncryptedKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeIsRootFileSystemKey")
+let NSURLVolumeIsRootFileSystemKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsCompressionKey")
+let NSURLVolumeSupportsCompressionKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsFileCloningKey")
+let NSURLVolumeSupportsFileCloningKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsSwapRenamingKey")
+let NSURLVolumeSupportsSwapRenamingKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsExclusiveRenamingKey")
+let NSURLVolumeSupportsExclusiveRenamingKey: URLResourceKey
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsImmutableFilesKey")
+let NSURLVolumeSupportsImmutableFilesKey: URLResourceKey
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsAccessPermissionsKey")
+let NSURLVolumeSupportsAccessPermissionsKey: URLResourceKey
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeSupportsFileProtectionKey")
+let NSURLVolumeSupportsFileProtectionKey: URLResourceKey
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeAvailableCapacityForImportantUsageKey")
+let NSURLVolumeAvailableCapacityForImportantUsageKey: URLResourceKey
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.volumeAvailableCapacityForOpportunisticUsageKey")
+let NSURLVolumeAvailableCapacityForOpportunisticUsageKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.isUbiquitousItemKey")
+let NSURLIsUbiquitousItemKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemHasUnresolvedConflictsKey")
+let NSURLUbiquitousItemHasUnresolvedConflictsKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemIsDownloadedKey")
+@available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, message: "Use NSURLUbiquitousItemDownloadingStatusKey instead")
+let NSURLUbiquitousItemIsDownloadedKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemIsDownloadingKey")
+let NSURLUbiquitousItemIsDownloadingKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemIsUploadedKey")
+let NSURLUbiquitousItemIsUploadedKey: URLResourceKey
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemIsUploadingKey")
+let NSURLUbiquitousItemIsUploadingKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemPercentDownloadedKey")
+@available(iOS, unavailable, introduced: 5.0, deprecated: 6.0, message: "Use NSMetadataUbiquitousItemPercentDownloadedKey instead")
+let NSURLUbiquitousItemPercentDownloadedKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemPercentUploadedKey")
+@available(iOS, unavailable, introduced: 5.0, deprecated: 6.0, message: "Use NSMetadataUbiquitousItemPercentUploadedKey instead")
+let NSURLUbiquitousItemPercentUploadedKey: URLResourceKey
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemDownloadingStatusKey")
+let NSURLUbiquitousItemDownloadingStatusKey: URLResourceKey
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemDownloadingErrorKey")
+let NSURLUbiquitousItemDownloadingErrorKey: URLResourceKey
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemUploadingErrorKey")
+let NSURLUbiquitousItemUploadingErrorKey: URLResourceKey
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemDownloadRequestedKey")
+let NSURLUbiquitousItemDownloadRequestedKey: URLResourceKey
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemContainerDisplayNameKey")
+let NSURLUbiquitousItemContainerDisplayNameKey: URLResourceKey
+@available(iOS 14.5, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemIsExcludedFromSyncKey")
+let NSURLUbiquitousItemIsExcludedFromSyncKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousItemIsSharedKey")
+let NSURLUbiquitousItemIsSharedKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousSharedItemCurrentUserRoleKey")
+let NSURLUbiquitousSharedItemCurrentUserRoleKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousSharedItemCurrentUserPermissionsKey")
+let NSURLUbiquitousSharedItemCurrentUserPermissionsKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousSharedItemOwnerNameComponentsKey")
+let NSURLUbiquitousSharedItemOwnerNameComponentsKey: URLResourceKey
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLResourceKey.ubiquitousSharedItemMostRecentEditorNameComponentsKey")
+let NSURLUbiquitousSharedItemMostRecentEditorNameComponentsKey: URLResourceKey
+@available(swift, obsoleted: 3, renamed: "URLUbiquitousItemDownloadingStatus")
+typealias NSURLUbiquitousItemDownloadingStatus = URLUbiquitousItemDownloadingStatus
+struct URLUbiquitousItemDownloadingStatus : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "URLUbiquitousItemDownloadingStatus.notDownloaded")
+let NSURLUbiquitousItemDownloadingStatusNotDownloaded: URLUbiquitousItemDownloadingStatus
+extension URLUbiquitousItemDownloadingStatus {
+  @available(iOS 7.0, *)
+  static let notDownloaded: URLUbiquitousItemDownloadingStatus
+  @available(iOS 7.0, *)
+  static let downloaded: URLUbiquitousItemDownloadingStatus
+  @available(iOS 7.0, *)
+  static let current: URLUbiquitousItemDownloadingStatus
+}
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "URLUbiquitousItemDownloadingStatus.downloaded")
+let NSURLUbiquitousItemDownloadingStatusDownloaded: URLUbiquitousItemDownloadingStatus
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "URLUbiquitousItemDownloadingStatus.current")
+let NSURLUbiquitousItemDownloadingStatusCurrent: URLUbiquitousItemDownloadingStatus
+@available(swift, obsoleted: 3, renamed: "URLUbiquitousSharedItemRole")
+typealias NSURLUbiquitousSharedItemRole = URLUbiquitousSharedItemRole
+struct URLUbiquitousSharedItemRole : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLUbiquitousSharedItemRole.owner")
+let NSURLUbiquitousSharedItemRoleOwner: URLUbiquitousSharedItemRole
+extension URLUbiquitousSharedItemRole {
+  @available(iOS 10.0, *)
+  static let owner: URLUbiquitousSharedItemRole
+  @available(iOS 10.0, *)
+  static let participant: URLUbiquitousSharedItemRole
+}
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLUbiquitousSharedItemRole.participant")
+let NSURLUbiquitousSharedItemRoleParticipant: URLUbiquitousSharedItemRole
+@available(swift, obsoleted: 3, renamed: "URLUbiquitousSharedItemPermissions")
+typealias NSURLUbiquitousSharedItemPermissions = URLUbiquitousSharedItemPermissions
+struct URLUbiquitousSharedItemPermissions : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLUbiquitousSharedItemPermissions.readOnly")
+let NSURLUbiquitousSharedItemPermissionsReadOnly: URLUbiquitousSharedItemPermissions
+extension URLUbiquitousSharedItemPermissions {
+  @available(iOS 10.0, *)
+  static let readOnly: URLUbiquitousSharedItemPermissions
+  @available(iOS 10.0, *)
+  static let readWrite: URLUbiquitousSharedItemPermissions
+}
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "URLUbiquitousSharedItemPermissions.readWrite")
+let NSURLUbiquitousSharedItemPermissionsReadWrite: URLUbiquitousSharedItemPermissions
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "NSURL.BookmarkCreationOptions")
+typealias NSURLBookmarkCreationOptions = NSURL.BookmarkCreationOptions
+extension NSURL {
+  @available(iOS 4.0, *)
+  struct BookmarkCreationOptions : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = NSURL.BookmarkCreationOptions
+    typealias ArrayLiteralElement = NSURL.BookmarkCreationOptions
+    @available(iOS, unavailable, introduced: 4.0, deprecated: 7.0, message: "Not supported")
+    static var preferFileIDResolution: NSURL.BookmarkCreationOptions { get }
+    @available(iOS, unavailable, introduced: 4.0, deprecated: 7.0, message: "Not supported")
+    @available(swift, obsoleted: 3, renamed: "preferFileIDResolution")
+    static var PreferFileIDResolution: NSURL.BookmarkCreationOptions { get }
+    static var minimalBookmark: NSURL.BookmarkCreationOptions { get }
+    @available(swift, obsoleted: 3, renamed: "minimalBookmark")
+    static var MinimalBookmark: NSURL.BookmarkCreationOptions { get }
+    static var suitableForBookmarkFile: NSURL.BookmarkCreationOptions { get }
+    @available(swift, obsoleted: 3, renamed: "suitableForBookmarkFile")
+    static var SuitableForBookmarkFile: NSURL.BookmarkCreationOptions { get }
+    @available(iOS, unavailable)
+    static var withSecurityScope: NSURL.BookmarkCreationOptions { get }
+    @available(iOS, unavailable)
+    @available(swift, obsoleted: 3, renamed: "withSecurityScope")
+    static var WithSecurityScope: NSURL.BookmarkCreationOptions { get }
+    @available(iOS, unavailable)
+    static var securityScopeAllowOnlyReadAccess: NSURL.BookmarkCreationOptions { get }
+    @available(iOS, unavailable)
+    @available(swift, obsoleted: 3, renamed: "securityScopeAllowOnlyReadAccess")
+    static var SecurityScopeAllowOnlyReadAccess: NSURL.BookmarkCreationOptions { get }
+    @available(iOS 5.0, *)
+    static var withoutImplicitSecurityScope: NSURL.BookmarkCreationOptions { get }
+    @available(iOS 5.0, *)
+    @available(swift, obsoleted: 3, renamed: "withoutImplicitSecurityScope")
+    static var WithoutImplicitSecurityScope: NSURL.BookmarkCreationOptions { get }
+  }
+  @available(iOS 4.0, *)
+  struct BookmarkResolutionOptions : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = NSURL.BookmarkResolutionOptions
+    typealias ArrayLiteralElement = NSURL.BookmarkResolutionOptions
+    static var withoutUI: NSURL.BookmarkResolutionOptions { get }
+    @available(swift, obsoleted: 3, renamed: "withoutUI")
+    static var WithoutUI: NSURL.BookmarkResolutionOptions { get }
+    static var withoutMounting: NSURL.BookmarkResolutionOptions { get }
+    @available(swift, obsoleted: 3, renamed: "withoutMounting")
+    static var WithoutMounting: NSURL.BookmarkResolutionOptions { get }
+    @available(iOS, unavailable)
+    static var withSecurityScope: NSURL.BookmarkResolutionOptions { get }
+    @available(iOS, unavailable)
+    @available(swift, obsoleted: 3, renamed: "withSecurityScope")
+    static var WithSecurityScope: NSURL.BookmarkResolutionOptions { get }
+    @available(iOS 14.2, *)
+    static var withoutImplicitStartAccessing: NSURL.BookmarkResolutionOptions { get }
+    @available(iOS 14.2, *)
+    @available(swift, obsoleted: 3, renamed: "withoutImplicitStartAccessing")
+    static var WithoutImplicitStartAccessing: NSURL.BookmarkResolutionOptions { get }
+  }
+  typealias BookmarkFileCreationOptions = Int
+}
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "NSURL.BookmarkResolutionOptions")
+typealias NSURLBookmarkResolutionOptions = NSURL.BookmarkResolutionOptions
+@available(swift, obsoleted: 3, renamed: "NSURL.BookmarkFileCreationOptions")
+typealias NSURLBookmarkFileCreationOptions = NSURL.BookmarkFileCreationOptions
+extension NSURL {
+  @available(iOS 8.0, *)
+  func getPromisedItemResourceValue(_ value: AutoreleasingUnsafeMutablePointer<AnyObject?>, forKey key: URLResourceKey) throws
+  @available(iOS 8.0, *)
+  func promisedItemResourceValues(forKeys keys: [URLResourceKey]) throws -> [URLResourceKey : Any]
+  @available(iOS 8.0, *)
+  @available(swift, obsoleted: 3, renamed: "promisedItemResourceValues(forKeys:)")
+  func promisedItemResourceValuesForKeys(_ keys: [URLResourceKey]) throws -> [URLResourceKey : Any]
+  @available(iOS 8.0, *)
+  func checkPromisedItemIsReachableAndReturnError(_ error: NSErrorPointer) -> Bool
+}
+extension NSURL : NSItemProviderReading, NSItemProviderWriting {
+  @available(iOS 11.0, *)
+  class var readableTypeIdentifiersForItemProvider: [String] { get }
+  @available(iOS 11.0, *)
+  class var writableTypeIdentifiersForItemProvider: [String] { get }
+  @available(iOS 11.0, *)
+  var writableTypeIdentifiersForItemProvider: [String] { get }
+  @available(iOS 11.0, *)
+  class func object(withItemProviderData data: Data, typeIdentifier: String) throws -> Self
+  @available(iOS 11.0, *)
+  class func itemProviderVisibilityForRepresentation(withTypeIdentifier typeIdentifier: String) -> NSItemProviderRepresentationVisibility
+  @available(iOS 11.0, *)
+  func itemProviderVisibilityForRepresentation(withTypeIdentifier typeIdentifier: String) -> NSItemProviderRepresentationVisibility
+  @available(iOS 11.0, *)
+  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress?
+}
+@available(iOS 8.0, *)
+class NSURLQueryItem : NSObject, NSSecureCoding, NSCopying {
+  init(name: String, value: String?)
+  @available(*, unavailable, renamed: "init(name:value:)", message: "Not available in Swift")
+  class func queryItemWithName(_ name: String, value: String?) -> Self
+  var name: String { get }
+  var value: String? { get }
+  convenience init()
+  @available(iOS 8.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 8.0, *)
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+  @available(iOS 8.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+}
+
+@available(macOS 10.10, iOS 8.0, *)
+extension NSURLQueryItem : _HasCustomAnyHashableRepresentation {
+  @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}
+@available(iOS 7.0, *)
+class NSURLComponents : NSObject, NSCopying {
+  init()
+  init?(url: URL, resolvingAgainstBaseURL resolve: Bool)
+  @available(swift, obsoleted: 3, renamed: "init(url:resolvingAgainstBaseURL:)")
+  init?(URL url: URL, resolvingAgainstBaseURL resolve: Bool)
+  @available(swift, obsoleted: 3, renamed: "init(url:resolvingAgainstBaseURL:)")
+  convenience init?(URL url: URL, resolvingAgainstBaseURL resolve: Bool)
+  @available(*, unavailable, renamed: "init(url:resolvingAgainstBaseURL:)", message: "Not available in Swift")
+  class func componentsWithURL(_ url: URL, resolvingAgainstBaseURL resolve: Bool) -> Self?
+  init?(string URLString: String)
+  @available(*, unavailable, renamed: "init(string:)", message: "Not available in Swift")
+  class func componentsWithString(_ URLString: String) -> Self?
+  var url: URL? { get }
+  @available(swift, obsoleted: 3, renamed: "url")
+  var URL: URL? { get }
+  func url(relativeTo baseURL: URL?) -> URL?
+  @available(swift, obsoleted: 3, renamed: "url(relativeTo:)")
+  func URLRelativeToURL(_ baseURL: URL?) -> URL?
+  @available(iOS 8.0, *)
+  var string: String? { get }
+  var scheme: String?
+  var user: String?
+  var password: String?
+  var host: String?
+  @NSCopying var port: NSNumber?
+  var path: String?
+  var query: String?
+  var fragment: String?
+  var percentEncodedUser: String?
+  var percentEncodedPassword: String?
+  var percentEncodedHost: String?
+  var percentEncodedPath: String?
+  var percentEncodedQuery: String?
+  var percentEncodedFragment: String?
+  @available(iOS 9.0, *)
+  var rangeOfScheme: NSRange { get }
+  @available(iOS 9.0, *)
+  var rangeOfUser: NSRange { get }
+  @available(iOS 9.0, *)
+  var rangeOfPassword: NSRange { get }
+  @available(iOS 9.0, *)
+  var rangeOfHost: NSRange { get }
+  @available(iOS 9.0, *)
+  var rangeOfPort: NSRange { get }
+  @available(iOS 9.0, *)
+  var rangeOfPath: NSRange { get }
+  @available(iOS 9.0, *)
+  var rangeOfQuery: NSRange { get }
+  @available(iOS 9.0, *)
+  var rangeOfFragment: NSRange { get }
+  @available(iOS 8.0, *)
+  var queryItems: [URLQueryItem]?
+  @available(iOS 11.0, *)
+  var percentEncodedQueryItems: [URLQueryItem]?
+  @available(iOS 7.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+}
+
+extension NSURLComponents : _HasCustomAnyHashableRepresentation {
+  @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}
+extension NSCharacterSet {
+  @available(iOS 7.0, *)
+  class var urlUserAllowed: CharacterSet { get }
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "urlUserAllowed")
+  class var URLUserAllowedCharacterSet: CharacterSet { get }
+  @available(iOS 7.0, *)
+  class var urlPasswordAllowed: CharacterSet { get }
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "urlPasswordAllowed")
+  class var URLPasswordAllowedCharacterSet: CharacterSet { get }
+  @available(iOS 7.0, *)
+  class var urlHostAllowed: CharacterSet { get }
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "urlHostAllowed")
+  class var URLHostAllowedCharacterSet: CharacterSet { get }
+  @available(iOS 7.0, *)
+  class var urlPathAllowed: CharacterSet { get }
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "urlPathAllowed")
+  class var URLPathAllowedCharacterSet: CharacterSet { get }
+  @available(iOS 7.0, *)
+  class var urlQueryAllowed: CharacterSet { get }
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "urlQueryAllowed")
+  class var URLQueryAllowedCharacterSet: CharacterSet { get }
+  @available(iOS 7.0, *)
+  class var urlFragmentAllowed: CharacterSet { get }
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "urlFragmentAllowed")
+  class var URLFragmentAllowedCharacterSet: CharacterSet { get }
+}
+extension NSString {
+  @available(iOS 7.0, *)
+  func addingPercentEncoding(withAllowedCharacters allowedCharacters: CharacterSet) -> String?
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "addingPercentEncoding(withAllowedCharacters:)")
+  func stringByAddingPercentEncodingWithAllowedCharacters(_ allowedCharacters: CharacterSet) -> String?
+  @available(iOS 7.0, *)
+  var removingPercentEncoding: String? { get }
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "removingPercentEncoding")
+  var stringByRemovingPercentEncoding: String? { get }
+  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use -stringByAddingPercentEncodingWithAllowedCharacters: instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent since each URL component or subcomponent has different rules for what characters are valid.")
+  func addingPercentEscapes(using enc: UInt) -> String?
+  @available(swift, obsoleted: 3, renamed: "addingPercentEscapes(using:)")
+  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use -stringByAddingPercentEncodingWithAllowedCharacters: instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent since each URL component or subcomponent has different rules for what characters are valid.")
+  func stringByAddingPercentEscapesUsingEncoding(_ enc: UInt) -> String?
+  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use -stringByRemovingPercentEncoding instead, which always uses the recommended UTF-8 encoding.")
+  func replacingPercentEscapes(using enc: UInt) -> String?
+  @available(swift, obsoleted: 3, renamed: "replacingPercentEscapes(using:)")
+  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use -stringByRemovingPercentEncoding instead, which always uses the recommended UTF-8 encoding.")
+  func stringByReplacingPercentEscapesUsingEncoding(_ enc: UInt) -> String?
+}
+extension NSURL {
+  @available(iOS 4.0, *)
+  class func fileURL(withPathComponents components: [String]) -> URL?
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "fileURL(withPathComponents:)")
+  class func fileURLWithPathComponents(_ components: [String]) -> URL?
+  @available(iOS 4.0, *)
+  var pathComponents: [String]? { get }
+  @available(iOS 4.0, *)
+  var lastPathComponent: String? { get }
+  @available(iOS 4.0, *)
+  var pathExtension: String? { get }
+  @available(iOS 4.0, *)
+  func appendingPathComponent(_ pathComponent: String) -> URL?
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "appendingPathComponent(_:)")
+  func URLByAppendingPathComponent(_ pathComponent: String) -> URL?
+  @available(iOS 5.0, *)
+  func appendingPathComponent(_ pathComponent: String, isDirectory: Bool) -> URL?
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "appendingPathComponent(_:isDirectory:)")
+  func URLByAppendingPathComponent(_ pathComponent: String, isDirectory: Bool) -> URL?
+  @available(iOS 4.0, *)
+  var deletingLastPathComponent: URL? { get }
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "deletingLastPathComponent")
+  var URLByDeletingLastPathComponent: URL? { get }
+  @available(iOS 4.0, *)
+  func appendingPathExtension(_ pathExtension: String) -> URL?
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "appendingPathExtension(_:)")
+  func URLByAppendingPathExtension(_ pathExtension: String) -> URL?
+  @available(iOS 4.0, *)
+  var deletingPathExtension: URL? { get }
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "deletingPathExtension")
+  var URLByDeletingPathExtension: URL? { get }
+  @available(iOS 4.0, *)
+  var standardizingPath: URL? { get }
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "standardizingPath")
+  var URLByStandardizingPath: URL? { get }
+  @available(iOS 4.0, *)
+  var resolvingSymlinksInPath: URL? { get }
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "resolvingSymlinksInPath")
+  var URLByResolvingSymlinksInPath: URL? { get }
+}
+@available(iOS 5.0, *)
+class NSFileSecurity : NSObject, NSCopying, NSSecureCoding {
+  init?(coder: NSCoder)
+  convenience init()
+  @available(iOS 5.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 5.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 5.0, *)
+  func encode(with coder: NSCoder)
+}

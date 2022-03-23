@@ -1,0 +1,367 @@
+@_exported import CoreFoundation
+
+@available(swift, obsoleted: 3, renamed: "XMLParser.ExternalEntityResolvingPolicy")
+typealias NSXMLParserExternalEntityResolvingPolicy = XMLParser.ExternalEntityResolvingPolicy
+@available(swift, obsoleted: 3, renamed: "XMLParser")
+typealias NSXMLParser = XMLParser
+class XMLParser : NSObject {
+  convenience init?(contentsOf url: URL)
+  @available(swift, obsoleted: 3, renamed: "init(contentsOf:)")
+  convenience init?(contentsOfURL url: URL)
+  init(data: Data)
+  @available(iOS 5.0, *)
+  convenience init(stream: InputStream)
+  unowned(unsafe) var delegate: @sil_unmanaged XMLParserDelegate?
+  var shouldProcessNamespaces: Bool
+  var shouldReportNamespacePrefixes: Bool
+  @available(iOS 8.0, *)
+  var externalEntityResolvingPolicy: XMLParser.ExternalEntityResolvingPolicy
+  @available(iOS 8.0, *)
+  var allowedExternalEntityURLs: Set<URL>?
+  func parse() -> Bool
+  func abortParsing()
+  var parserError: Error? { get }
+  var shouldResolveExternalEntities: Bool
+  convenience init!()
+}
+extension XMLParser {
+  var publicID: String? { get }
+  var systemID: String? { get }
+  var lineNumber: Int { get }
+  var columnNumber: Int { get }
+}
+@available(swift, obsoleted: 3, renamed: "XMLParserDelegate")
+typealias NSXMLParserDelegate = XMLParserDelegate
+protocol XMLParserDelegate : NSObjectProtocol {
+  optional func parserDidStartDocument(_ parser: XMLParser)
+  optional func parserDidEndDocument(_ parser: XMLParser)
+  optional func parser(_ parser: XMLParser, foundNotationDeclarationWithName name: String, publicID: String?, systemID: String?)
+  optional func parser(_ parser: XMLParser, foundUnparsedEntityDeclarationWithName name: String, publicID: String?, systemID: String?, notationName: String?)
+  optional func parser(_ parser: XMLParser, foundAttributeDeclarationWithName attributeName: String, forElement elementName: String, type: String?, defaultValue: String?)
+  optional func parser(_ parser: XMLParser, foundElementDeclarationWithName elementName: String, model: String)
+  optional func parser(_ parser: XMLParser, foundInternalEntityDeclarationWithName name: String, value: String?)
+  optional func parser(_ parser: XMLParser, foundExternalEntityDeclarationWithName name: String, publicID: String?, systemID: String?)
+  optional func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:])
+  optional func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
+  optional func parser(_ parser: XMLParser, didStartMappingPrefix prefix: String, toURI namespaceURI: String)
+  optional func parser(_ parser: XMLParser, didEndMappingPrefix prefix: String)
+  optional func parser(_ parser: XMLParser, foundCharacters string: String)
+  optional func parser(_ parser: XMLParser, foundIgnorableWhitespace whitespaceString: String)
+  optional func parser(_ parser: XMLParser, foundProcessingInstructionWithTarget target: String, data: String?)
+  optional func parser(_ parser: XMLParser, foundComment comment: String)
+  optional func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data)
+  optional func parser(_ parser: XMLParser, resolveExternalEntityName name: String, systemID: String?) -> Data?
+  optional func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error)
+  optional func parser(_ parser: XMLParser, validationErrorOccurred validationError: Error)
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "XMLParser.errorDomain")
+let NSXMLParserErrorDomain: String
+extension XMLParser {
+  @available(iOS 2.0, *)
+  class let errorDomain: String
+  enum ErrorCode : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case internalError
+    @available(swift, obsoleted: 3, renamed: "internalError")
+    static var InternalError: XMLParser.ErrorCode { get }
+    case outOfMemoryError
+    @available(swift, obsoleted: 3, renamed: "outOfMemoryError")
+    static var OutOfMemoryError: XMLParser.ErrorCode { get }
+    case documentStartError
+    @available(swift, obsoleted: 3, renamed: "documentStartError")
+    static var DocumentStartError: XMLParser.ErrorCode { get }
+    case emptyDocumentError
+    @available(swift, obsoleted: 3, renamed: "emptyDocumentError")
+    static var EmptyDocumentError: XMLParser.ErrorCode { get }
+    case prematureDocumentEndError
+    @available(swift, obsoleted: 3, renamed: "prematureDocumentEndError")
+    static var PrematureDocumentEndError: XMLParser.ErrorCode { get }
+    case invalidHexCharacterRefError
+    @available(swift, obsoleted: 3, renamed: "invalidHexCharacterRefError")
+    static var InvalidHexCharacterRefError: XMLParser.ErrorCode { get }
+    case invalidDecimalCharacterRefError
+    @available(swift, obsoleted: 3, renamed: "invalidDecimalCharacterRefError")
+    static var InvalidDecimalCharacterRefError: XMLParser.ErrorCode { get }
+    case invalidCharacterRefError
+    @available(swift, obsoleted: 3, renamed: "invalidCharacterRefError")
+    static var InvalidCharacterRefError: XMLParser.ErrorCode { get }
+    case invalidCharacterError
+    @available(swift, obsoleted: 3, renamed: "invalidCharacterError")
+    static var InvalidCharacterError: XMLParser.ErrorCode { get }
+    case characterRefAtEOFError
+    @available(swift, obsoleted: 3, renamed: "characterRefAtEOFError")
+    static var CharacterRefAtEOFError: XMLParser.ErrorCode { get }
+    case characterRefInPrologError
+    @available(swift, obsoleted: 3, renamed: "characterRefInPrologError")
+    static var CharacterRefInPrologError: XMLParser.ErrorCode { get }
+    case characterRefInEpilogError
+    @available(swift, obsoleted: 3, renamed: "characterRefInEpilogError")
+    static var CharacterRefInEpilogError: XMLParser.ErrorCode { get }
+    case characterRefInDTDError
+    @available(swift, obsoleted: 3, renamed: "characterRefInDTDError")
+    static var CharacterRefInDTDError: XMLParser.ErrorCode { get }
+    case entityRefAtEOFError
+    @available(swift, obsoleted: 3, renamed: "entityRefAtEOFError")
+    static var EntityRefAtEOFError: XMLParser.ErrorCode { get }
+    case entityRefInPrologError
+    @available(swift, obsoleted: 3, renamed: "entityRefInPrologError")
+    static var EntityRefInPrologError: XMLParser.ErrorCode { get }
+    case entityRefInEpilogError
+    @available(swift, obsoleted: 3, renamed: "entityRefInEpilogError")
+    static var EntityRefInEpilogError: XMLParser.ErrorCode { get }
+    case entityRefInDTDError
+    @available(swift, obsoleted: 3, renamed: "entityRefInDTDError")
+    static var EntityRefInDTDError: XMLParser.ErrorCode { get }
+    case parsedEntityRefAtEOFError
+    @available(swift, obsoleted: 3, renamed: "parsedEntityRefAtEOFError")
+    static var ParsedEntityRefAtEOFError: XMLParser.ErrorCode { get }
+    case parsedEntityRefInPrologError
+    @available(swift, obsoleted: 3, renamed: "parsedEntityRefInPrologError")
+    static var ParsedEntityRefInPrologError: XMLParser.ErrorCode { get }
+    case parsedEntityRefInEpilogError
+    @available(swift, obsoleted: 3, renamed: "parsedEntityRefInEpilogError")
+    static var ParsedEntityRefInEpilogError: XMLParser.ErrorCode { get }
+    case parsedEntityRefInInternalSubsetError
+    @available(swift, obsoleted: 3, renamed: "parsedEntityRefInInternalSubsetError")
+    static var ParsedEntityRefInInternalSubsetError: XMLParser.ErrorCode { get }
+    case entityReferenceWithoutNameError
+    @available(swift, obsoleted: 3, renamed: "entityReferenceWithoutNameError")
+    static var EntityReferenceWithoutNameError: XMLParser.ErrorCode { get }
+    case entityReferenceMissingSemiError
+    @available(swift, obsoleted: 3, renamed: "entityReferenceMissingSemiError")
+    static var EntityReferenceMissingSemiError: XMLParser.ErrorCode { get }
+    case parsedEntityRefNoNameError
+    @available(swift, obsoleted: 3, renamed: "parsedEntityRefNoNameError")
+    static var ParsedEntityRefNoNameError: XMLParser.ErrorCode { get }
+    case parsedEntityRefMissingSemiError
+    @available(swift, obsoleted: 3, renamed: "parsedEntityRefMissingSemiError")
+    static var ParsedEntityRefMissingSemiError: XMLParser.ErrorCode { get }
+    case undeclaredEntityError
+    @available(swift, obsoleted: 3, renamed: "undeclaredEntityError")
+    static var UndeclaredEntityError: XMLParser.ErrorCode { get }
+    case unparsedEntityError
+    @available(swift, obsoleted: 3, renamed: "unparsedEntityError")
+    static var UnparsedEntityError: XMLParser.ErrorCode { get }
+    case entityIsExternalError
+    @available(swift, obsoleted: 3, renamed: "entityIsExternalError")
+    static var EntityIsExternalError: XMLParser.ErrorCode { get }
+    case entityIsParameterError
+    @available(swift, obsoleted: 3, renamed: "entityIsParameterError")
+    static var EntityIsParameterError: XMLParser.ErrorCode { get }
+    case unknownEncodingError
+    @available(swift, obsoleted: 3, renamed: "unknownEncodingError")
+    static var UnknownEncodingError: XMLParser.ErrorCode { get }
+    case encodingNotSupportedError
+    @available(swift, obsoleted: 3, renamed: "encodingNotSupportedError")
+    static var EncodingNotSupportedError: XMLParser.ErrorCode { get }
+    case stringNotStartedError
+    @available(swift, obsoleted: 3, renamed: "stringNotStartedError")
+    static var StringNotStartedError: XMLParser.ErrorCode { get }
+    case stringNotClosedError
+    @available(swift, obsoleted: 3, renamed: "stringNotClosedError")
+    static var StringNotClosedError: XMLParser.ErrorCode { get }
+    case namespaceDeclarationError
+    @available(swift, obsoleted: 3, renamed: "namespaceDeclarationError")
+    static var NamespaceDeclarationError: XMLParser.ErrorCode { get }
+    case entityNotStartedError
+    @available(swift, obsoleted: 3, renamed: "entityNotStartedError")
+    static var EntityNotStartedError: XMLParser.ErrorCode { get }
+    case entityNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "entityNotFinishedError")
+    static var EntityNotFinishedError: XMLParser.ErrorCode { get }
+    case lessThanSymbolInAttributeError
+    @available(swift, obsoleted: 3, renamed: "lessThanSymbolInAttributeError")
+    static var LessThanSymbolInAttributeError: XMLParser.ErrorCode { get }
+    case attributeNotStartedError
+    @available(swift, obsoleted: 3, renamed: "attributeNotStartedError")
+    static var AttributeNotStartedError: XMLParser.ErrorCode { get }
+    case attributeNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "attributeNotFinishedError")
+    static var AttributeNotFinishedError: XMLParser.ErrorCode { get }
+    case attributeHasNoValueError
+    @available(swift, obsoleted: 3, renamed: "attributeHasNoValueError")
+    static var AttributeHasNoValueError: XMLParser.ErrorCode { get }
+    case attributeRedefinedError
+    @available(swift, obsoleted: 3, renamed: "attributeRedefinedError")
+    static var AttributeRedefinedError: XMLParser.ErrorCode { get }
+    case literalNotStartedError
+    @available(swift, obsoleted: 3, renamed: "literalNotStartedError")
+    static var LiteralNotStartedError: XMLParser.ErrorCode { get }
+    case literalNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "literalNotFinishedError")
+    static var LiteralNotFinishedError: XMLParser.ErrorCode { get }
+    case commentNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "commentNotFinishedError")
+    static var CommentNotFinishedError: XMLParser.ErrorCode { get }
+    case processingInstructionNotStartedError
+    @available(swift, obsoleted: 3, renamed: "processingInstructionNotStartedError")
+    static var ProcessingInstructionNotStartedError: XMLParser.ErrorCode { get }
+    case processingInstructionNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "processingInstructionNotFinishedError")
+    static var ProcessingInstructionNotFinishedError: XMLParser.ErrorCode { get }
+    case notationNotStartedError
+    @available(swift, obsoleted: 3, renamed: "notationNotStartedError")
+    static var NotationNotStartedError: XMLParser.ErrorCode { get }
+    case notationNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "notationNotFinishedError")
+    static var NotationNotFinishedError: XMLParser.ErrorCode { get }
+    case attributeListNotStartedError
+    @available(swift, obsoleted: 3, renamed: "attributeListNotStartedError")
+    static var AttributeListNotStartedError: XMLParser.ErrorCode { get }
+    case attributeListNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "attributeListNotFinishedError")
+    static var AttributeListNotFinishedError: XMLParser.ErrorCode { get }
+    case mixedContentDeclNotStartedError
+    @available(swift, obsoleted: 3, renamed: "mixedContentDeclNotStartedError")
+    static var MixedContentDeclNotStartedError: XMLParser.ErrorCode { get }
+    case mixedContentDeclNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "mixedContentDeclNotFinishedError")
+    static var MixedContentDeclNotFinishedError: XMLParser.ErrorCode { get }
+    case elementContentDeclNotStartedError
+    @available(swift, obsoleted: 3, renamed: "elementContentDeclNotStartedError")
+    static var ElementContentDeclNotStartedError: XMLParser.ErrorCode { get }
+    case elementContentDeclNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "elementContentDeclNotFinishedError")
+    static var ElementContentDeclNotFinishedError: XMLParser.ErrorCode { get }
+    case xmlDeclNotStartedError
+    @available(swift, obsoleted: 3, renamed: "xmlDeclNotStartedError")
+    static var XMLDeclNotStartedError: XMLParser.ErrorCode { get }
+    case xmlDeclNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "xmlDeclNotFinishedError")
+    static var XMLDeclNotFinishedError: XMLParser.ErrorCode { get }
+    case conditionalSectionNotStartedError
+    @available(swift, obsoleted: 3, renamed: "conditionalSectionNotStartedError")
+    static var ConditionalSectionNotStartedError: XMLParser.ErrorCode { get }
+    case conditionalSectionNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "conditionalSectionNotFinishedError")
+    static var ConditionalSectionNotFinishedError: XMLParser.ErrorCode { get }
+    case externalSubsetNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "externalSubsetNotFinishedError")
+    static var ExternalSubsetNotFinishedError: XMLParser.ErrorCode { get }
+    case doctypeDeclNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "doctypeDeclNotFinishedError")
+    static var DOCTYPEDeclNotFinishedError: XMLParser.ErrorCode { get }
+    case misplacedCDATAEndStringError
+    @available(swift, obsoleted: 3, renamed: "misplacedCDATAEndStringError")
+    static var MisplacedCDATAEndStringError: XMLParser.ErrorCode { get }
+    case cdataNotFinishedError
+    @available(swift, obsoleted: 3, renamed: "cdataNotFinishedError")
+    static var CDATANotFinishedError: XMLParser.ErrorCode { get }
+    case misplacedXMLDeclarationError
+    @available(swift, obsoleted: 3, renamed: "misplacedXMLDeclarationError")
+    static var MisplacedXMLDeclarationError: XMLParser.ErrorCode { get }
+    case spaceRequiredError
+    @available(swift, obsoleted: 3, renamed: "spaceRequiredError")
+    static var SpaceRequiredError: XMLParser.ErrorCode { get }
+    case separatorRequiredError
+    @available(swift, obsoleted: 3, renamed: "separatorRequiredError")
+    static var SeparatorRequiredError: XMLParser.ErrorCode { get }
+    case nmtokenRequiredError
+    @available(swift, obsoleted: 3, renamed: "nmtokenRequiredError")
+    static var NMTOKENRequiredError: XMLParser.ErrorCode { get }
+    case nameRequiredError
+    @available(swift, obsoleted: 3, renamed: "nameRequiredError")
+    static var NAMERequiredError: XMLParser.ErrorCode { get }
+    case pcdataRequiredError
+    @available(swift, obsoleted: 3, renamed: "pcdataRequiredError")
+    static var PCDATARequiredError: XMLParser.ErrorCode { get }
+    case uriRequiredError
+    @available(swift, obsoleted: 3, renamed: "uriRequiredError")
+    static var URIRequiredError: XMLParser.ErrorCode { get }
+    case publicIdentifierRequiredError
+    @available(swift, obsoleted: 3, renamed: "publicIdentifierRequiredError")
+    static var PublicIdentifierRequiredError: XMLParser.ErrorCode { get }
+    case ltRequiredError
+    @available(swift, obsoleted: 3, renamed: "ltRequiredError")
+    static var LTRequiredError: XMLParser.ErrorCode { get }
+    case gtRequiredError
+    @available(swift, obsoleted: 3, renamed: "gtRequiredError")
+    static var GTRequiredError: XMLParser.ErrorCode { get }
+    case ltSlashRequiredError
+    @available(swift, obsoleted: 3, renamed: "ltSlashRequiredError")
+    static var LTSlashRequiredError: XMLParser.ErrorCode { get }
+    case equalExpectedError
+    @available(swift, obsoleted: 3, renamed: "equalExpectedError")
+    static var EqualExpectedError: XMLParser.ErrorCode { get }
+    case tagNameMismatchError
+    @available(swift, obsoleted: 3, renamed: "tagNameMismatchError")
+    static var TagNameMismatchError: XMLParser.ErrorCode { get }
+    case unfinishedTagError
+    @available(swift, obsoleted: 3, renamed: "unfinishedTagError")
+    static var UnfinishedTagError: XMLParser.ErrorCode { get }
+    case standaloneValueError
+    @available(swift, obsoleted: 3, renamed: "standaloneValueError")
+    static var StandaloneValueError: XMLParser.ErrorCode { get }
+    case invalidEncodingNameError
+    @available(swift, obsoleted: 3, renamed: "invalidEncodingNameError")
+    static var InvalidEncodingNameError: XMLParser.ErrorCode { get }
+    case commentContainsDoubleHyphenError
+    @available(swift, obsoleted: 3, renamed: "commentContainsDoubleHyphenError")
+    static var CommentContainsDoubleHyphenError: XMLParser.ErrorCode { get }
+    case invalidEncodingError
+    @available(swift, obsoleted: 3, renamed: "invalidEncodingError")
+    static var InvalidEncodingError: XMLParser.ErrorCode { get }
+    case externalStandaloneEntityError
+    @available(swift, obsoleted: 3, renamed: "externalStandaloneEntityError")
+    static var ExternalStandaloneEntityError: XMLParser.ErrorCode { get }
+    case invalidConditionalSectionError
+    @available(swift, obsoleted: 3, renamed: "invalidConditionalSectionError")
+    static var InvalidConditionalSectionError: XMLParser.ErrorCode { get }
+    case entityValueRequiredError
+    @available(swift, obsoleted: 3, renamed: "entityValueRequiredError")
+    static var EntityValueRequiredError: XMLParser.ErrorCode { get }
+    case notWellBalancedError
+    @available(swift, obsoleted: 3, renamed: "notWellBalancedError")
+    static var NotWellBalancedError: XMLParser.ErrorCode { get }
+    case extraContentError
+    @available(swift, obsoleted: 3, renamed: "extraContentError")
+    static var ExtraContentError: XMLParser.ErrorCode { get }
+    case invalidCharacterInEntityError
+    @available(swift, obsoleted: 3, renamed: "invalidCharacterInEntityError")
+    static var InvalidCharacterInEntityError: XMLParser.ErrorCode { get }
+    case parsedEntityRefInInternalError
+    @available(swift, obsoleted: 3, renamed: "parsedEntityRefInInternalError")
+    static var ParsedEntityRefInInternalError: XMLParser.ErrorCode { get }
+    case entityRefLoopError
+    @available(swift, obsoleted: 3, renamed: "entityRefLoopError")
+    static var EntityRefLoopError: XMLParser.ErrorCode { get }
+    case entityBoundaryError
+    @available(swift, obsoleted: 3, renamed: "entityBoundaryError")
+    static var EntityBoundaryError: XMLParser.ErrorCode { get }
+    case invalidURIError
+    @available(swift, obsoleted: 3, renamed: "invalidURIError")
+    static var InvalidURIError: XMLParser.ErrorCode { get }
+    case uriFragmentError
+    @available(swift, obsoleted: 3, renamed: "uriFragmentError")
+    static var URIFragmentError: XMLParser.ErrorCode { get }
+    case noDTDError
+    @available(swift, obsoleted: 3, renamed: "noDTDError")
+    static var NoDTDError: XMLParser.ErrorCode { get }
+    case delegateAbortedParseError
+    @available(swift, obsoleted: 3, renamed: "delegateAbortedParseError")
+    static var DelegateAbortedParseError: XMLParser.ErrorCode { get }
+  }
+  @available(iOS 8.0, *)
+  enum ExternalEntityResolvingPolicy : UInt, @unchecked Sendable {
+    init?(rawValue: UInt)
+    var rawValue: UInt { get }
+    typealias RawValue = UInt
+    case resolveExternalEntitiesNever
+    @available(swift, obsoleted: 3, renamed: "resolveExternalEntitiesNever")
+    static var ResolveExternalEntitiesNever: XMLParser.ExternalEntityResolvingPolicy { get }
+    case resolveExternalEntitiesNoNetwork
+    @available(swift, obsoleted: 3, renamed: "resolveExternalEntitiesNoNetwork")
+    static var ResolveExternalEntitiesNoNetwork: XMLParser.ExternalEntityResolvingPolicy { get }
+    case resolveExternalEntitiesSameOriginOnly
+    @available(swift, obsoleted: 3, renamed: "resolveExternalEntitiesSameOriginOnly")
+    static var ResolveExternalEntitiesSameOriginOnly: XMLParser.ExternalEntityResolvingPolicy { get }
+    case resolveExternalEntitiesAlways
+    @available(swift, obsoleted: 3, renamed: "resolveExternalEntitiesAlways")
+    static var ResolveExternalEntitiesAlways: XMLParser.ExternalEntityResolvingPolicy { get }
+  }
+}
+@available(swift, obsoleted: 3, renamed: "XMLParser.ErrorCode")
+typealias NSXMLParserError = XMLParser.ErrorCode

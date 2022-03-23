@@ -1,0 +1,77 @@
+@_exported import CoreFoundation
+
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "PersonNameComponentsFormatter.Style")
+typealias NSPersonNameComponentsFormatterStyle = PersonNameComponentsFormatter.Style
+extension PersonNameComponentsFormatter {
+  @available(iOS 9.0, *)
+  enum Style : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case `default`
+    @available(swift, obsoleted: 3, renamed: "default")
+    static var Default: PersonNameComponentsFormatter.Style { get }
+    case short
+    @available(swift, obsoleted: 3, renamed: "short")
+    static var Short: PersonNameComponentsFormatter.Style { get }
+    case medium
+    @available(swift, obsoleted: 3, renamed: "medium")
+    static var Medium: PersonNameComponentsFormatter.Style { get }
+    case long
+    @available(swift, obsoleted: 3, renamed: "long")
+    static var Long: PersonNameComponentsFormatter.Style { get }
+    case abbreviated
+    @available(swift, obsoleted: 3, renamed: "abbreviated")
+    static var Abbreviated: PersonNameComponentsFormatter.Style { get }
+  }
+}
+typealias NSPersonNameComponentsFormatterOptions = Int
+var NSPersonNameComponentsFormatterPhonetic: Int { get }
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "PersonNameComponentsFormatter")
+typealias NSPersonNameComponentsFormatter = PersonNameComponentsFormatter
+@available(iOS 9.0, *)
+class PersonNameComponentsFormatter : Formatter {
+  var style: PersonNameComponentsFormatter.Style
+  var isPhonetic: Bool
+  @available(swift, obsoleted: 3, renamed: "isPhonetic")
+  var phonetic: Bool
+  @available(iOS 15.0, *)
+  var locale: Locale!
+  class func localizedString(from components: PersonNameComponents, style nameFormatStyle: PersonNameComponentsFormatter.Style, options nameOptions: NSPersonNameComponentsFormatterOptions) -> String
+  @available(swift, obsoleted: 3, renamed: "localizedString(from:style:options:)")
+  class func localizedStringFromPersonNameComponents(_ components: PersonNameComponents, style nameFormatStyle: PersonNameComponentsFormatter.Style, options nameOptions: NSPersonNameComponentsFormatterOptions) -> String
+  func string(from components: PersonNameComponents) -> String
+  @available(swift, obsoleted: 3, renamed: "string(from:)")
+  func stringFromPersonNameComponents(_ components: PersonNameComponents) -> String
+  func annotatedString(from components: PersonNameComponents) -> NSAttributedString
+  @available(swift, obsoleted: 3, renamed: "annotatedString(from:)")
+  func annotatedStringFromPersonNameComponents(_ components: PersonNameComponents) -> NSAttributedString
+  @available(iOS 10.0, *)
+  func personNameComponents(from string: String) -> PersonNameComponents?
+  @available(iOS 10.0, *)
+  @available(swift, obsoleted: 3, renamed: "personNameComponents(from:)")
+  func personNameComponentsFromString(_ string: String) -> PersonNameComponents?
+  func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
+  @available(swift, obsoleted: 3, renamed: "getObjectValue(_:for:errorDescription:)")
+  func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, forString string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
+  init!()
+  init?(coder: NSCoder)
+}
+@available(iOS 9.0, *)
+let NSPersonNameComponentKey: String
+@available(iOS 9.0, *)
+let NSPersonNameComponentGivenName: String
+@available(iOS 9.0, *)
+let NSPersonNameComponentFamilyName: String
+@available(iOS 9.0, *)
+let NSPersonNameComponentMiddleName: String
+@available(iOS 9.0, *)
+let NSPersonNameComponentPrefix: String
+@available(iOS 9.0, *)
+let NSPersonNameComponentSuffix: String
+@available(iOS 9.0, *)
+let NSPersonNameComponentNickname: String
+@available(iOS 9.0, *)
+let NSPersonNameComponentDelimiter: String

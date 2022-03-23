@@ -1,0 +1,32 @@
+@_exported import CoreFoundation
+
+struct NSFastEnumerationState {
+  init()
+  init(state: UInt, itemsPtr: AutoreleasingUnsafeMutablePointer<AnyObject?>?, mutationsPtr: UnsafeMutablePointer<UInt>?, extra: (UInt, UInt, UInt, UInt, UInt))
+  var state: UInt
+  var itemsPtr: AutoreleasingUnsafeMutablePointer<AnyObject?>?
+  var mutationsPtr: UnsafeMutablePointer<UInt>?
+  var extra: (UInt, UInt, UInt, UInt, UInt)
+}
+protocol NSFastEnumeration {
+  func countByEnumerating(with state: UnsafeMutablePointer<NSFastEnumerationState>, objects buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>, count len: Int) -> Int
+  @available(swift, obsoleted: 3, renamed: "countByEnumerating(with:objects:count:)")
+  func countByEnumeratingWithState(_ state: UnsafeMutablePointer<NSFastEnumerationState>, objects buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>, count len: Int) -> Int
+}
+class NSEnumerator : NSObject, NSFastEnumeration {
+  func nextObject() -> Any?
+  init!()
+  func countByEnumerating(with state: UnsafeMutablePointer<NSFastEnumerationState>, objects buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>, count len: Int) -> Int
+}
+
+extension NSEnumerator : Sequence {
+  /// Return an *iterator* over the *enumerator*.
+  ///
+  /// - Complexity: O(1).
+  func makeIterator() -> NSFastEnumerationIterator
+  typealias Element = Any
+  typealias Iterator = NSFastEnumerationIterator
+}
+extension NSEnumerator {
+  var allObjects: [Any] { get }
+}

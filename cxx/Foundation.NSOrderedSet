@@ -1,0 +1,306 @@
+@_exported import CoreFoundation
+
+
+/****************       Immutable Ordered Set   ****************/
+@available(iOS 5.0, *)
+class NSOrderedSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding, NSFastEnumeration {
+  var count: Int { get }
+  func object(at idx: Int) -> Any
+  @available(swift, obsoleted: 3, renamed: "object(at:)")
+  func objectAtIndex(_ idx: Int) -> Any
+  func index(of object: Any) -> Int
+  @available(swift, obsoleted: 3, renamed: "index(of:)")
+  func indexOfObject(_ object: Any) -> Int
+  init()
+  init(objects: UnsafePointer<AnyObject>?, count cnt: Int)
+  init?(coder: NSCoder)
+  @available(iOS 5.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 5.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 5.0, *)
+  func mutableCopy(with zone: NSZone? = nil) -> Any
+  @available(iOS 5.0, *)
+  func encode(with coder: NSCoder)
+  @available(iOS 5.0, *)
+  func countByEnumerating(with state: UnsafeMutablePointer<NSFastEnumerationState>, objects buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>, count len: Int) -> Int
+}
+
+extension NSOrderedSet : Sequence {
+  /// Return an *iterator* over the elements of this *sequence*.
+  ///
+  /// - Complexity: O(1).
+  func makeIterator() -> NSFastEnumerationIterator
+  /// A value less than or equal to the number of elements in the collection.
+  ///
+  /// - Complexity: O(1).
+  @_alwaysEmitIntoClient @nonobjc var underestimatedCount: Int { get }
+  typealias Element = Any
+  typealias Iterator = NSFastEnumerationIterator
+}
+
+extension NSOrderedSet {
+  convenience init(objects elements: Any...)
+}
+
+extension NSOrderedSet : ExpressibleByArrayLiteral {
+  required convenience init(arrayLiteral elements: Any...)
+  typealias ArrayLiteralElement = Any
+}
+extension NSOrderedSet {
+  @available(*, unavailable, message: "Use 'array' instead")
+  func getObjects(_ objects: AutoreleasingUnsafeMutablePointer<AnyObject>?, range: NSRange)
+  func objects(at indexes: IndexSet) -> [Any]
+  @available(swift, obsoleted: 3, renamed: "objects(at:)")
+  func objectsAtIndexes(_ indexes: IndexSet) -> [Any]
+  var firstObject: Any? { get }
+  var lastObject: Any? { get }
+  func isEqual(to other: NSOrderedSet) -> Bool
+  @available(swift, obsoleted: 3, renamed: "isEqual(to:)")
+  func isEqualToOrderedSet(_ other: NSOrderedSet) -> Bool
+  func contains(_ object: Any) -> Bool
+  @available(swift, obsoleted: 3, renamed: "contains(_:)")
+  func containsObject(_ object: Any) -> Bool
+  func intersects(_ other: NSOrderedSet) -> Bool
+  @available(swift, obsoleted: 3, renamed: "intersects(_:)")
+  func intersectsOrderedSet(_ other: NSOrderedSet) -> Bool
+  func intersectsSet(_ set: Set<AnyHashable>) -> Bool
+  func isSubset(of other: NSOrderedSet) -> Bool
+  @available(swift, obsoleted: 3, renamed: "isSubset(of:)")
+  func isSubsetOfOrderedSet(_ other: NSOrderedSet) -> Bool
+  func isSubset(of set: Set<AnyHashable>) -> Bool
+  @available(swift, obsoleted: 3, renamed: "isSubset(of:)")
+  func isSubsetOfSet(_ set: Set<AnyHashable>) -> Bool
+  subscript(idx: Int) -> Any { get }
+  @available(iOS 6.0, *)
+  @available(*, unavailable, message: "use subscripting")
+  func objectAtIndexedSubscript(_ idx: Int) -> Any
+  func objectEnumerator() -> NSEnumerator
+  func reverseObjectEnumerator() -> NSEnumerator
+  @NSCopying var reversed: NSOrderedSet { get }
+  @available(swift, obsoleted: 3, renamed: "reversed")
+  @NSCopying var reversedOrderedSet: NSOrderedSet { get }
+  var array: [Any] { get }
+  var set: Set<AnyHashable> { get }
+  func enumerateObjects(_ block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(swift, obsoleted: 3, renamed: "enumerateObjects(_:)")
+  func enumerateObjectsUsingBlock(_ block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateObjects(withOptions opts: NSEnumerationOptions, using block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(swift, obsoleted: 3, renamed: "enumerateObjects(withOptions:using:)")
+  func enumerateObjectsWithOptions(_ opts: NSEnumerationOptions, usingBlock block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateObjects(at s: IndexSet, options opts: NSEnumerationOptions, using block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(swift, obsoleted: 3, renamed: "enumerateObjects(at:options:using:)")
+  func enumerateObjectsAtIndexes(_ s: IndexSet, options opts: NSEnumerationOptions, usingBlock block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func indexOfObject(passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  @available(swift, obsoleted: 3, renamed: "indexOfObject(passingTest:)")
+  func indexOfObjectPassingTest(_ predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  func indexOfObject(withOptions opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  @available(swift, obsoleted: 3, renamed: "indexOfObject(withOptions:passingTest:)")
+  func indexOfObjectWithOptions(_ opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  func indexOfObject(at s: IndexSet, options opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  @available(swift, obsoleted: 3, renamed: "indexOfObject(at:options:passingTest:)")
+  func indexOfObjectAtIndexes(_ s: IndexSet, options opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  func indexesOfObjects(passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  @available(swift, obsoleted: 3, renamed: "indexesOfObjects(passingTest:)")
+  func indexesOfObjectsPassingTest(_ predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  func indexesOfObjects(withOptions opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  @available(swift, obsoleted: 3, renamed: "indexesOfObjects(withOptions:passingTest:)")
+  func indexesOfObjectsWithOptions(_ opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  func indexesOfObjects(at s: IndexSet, options opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  @available(swift, obsoleted: 3, renamed: "indexesOfObjects(at:options:passingTest:)")
+  func indexesOfObjectsAtIndexes(_ s: IndexSet, options opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  func index(of object: Any, inSortedRange range: NSRange, options opts: NSBinarySearchingOptions, usingComparator cmp: (Any, Any) -> ComparisonResult) -> Int
+  @available(swift, obsoleted: 3, renamed: "index(of:inSortedRange:options:usingComparator:)")
+  func indexOfObject(_ object: Any, inSortedRange range: NSRange, options opts: NSBinarySearchingOptions, usingComparator cmp: (Any, Any) -> ComparisonResult) -> Int
+  func sortedArray(comparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
+  @available(swift, obsoleted: 3, renamed: "sortedArray(comparator:)")
+  func sortedArrayUsingComparator(_ cmptr: (Any, Any) -> ComparisonResult) -> [Any]
+  func sortedArray(withOptions opts: NSSortOptions, usingComparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
+  @available(swift, obsoleted: 3, renamed: "sortedArray(withOptions:usingComparator:)")
+  func sortedArrayWithOptions(_ opts: NSSortOptions, usingComparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
+  var description: String { get }
+  func description(withLocale locale: Any?) -> String
+  @available(swift, obsoleted: 3, renamed: "description(withLocale:)")
+  func descriptionWithLocale(_ locale: Any?) -> String
+  func description(withLocale locale: Any?, indent level: Int) -> String
+  @available(swift, obsoleted: 3, renamed: "description(withLocale:indent:)")
+  func descriptionWithLocale(_ locale: Any?, indent level: Int) -> String
+}
+extension NSOrderedSet {
+  @available(*, unavailable, renamed: "init()", message: "Not available in Swift")
+  class func orderedSet() -> Self
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithObject:]")
+  convenience init(object: Any)
+  @available(*, unavailable, renamed: "init(object:)", message: "Not available in Swift")
+  class func orderedSetWithObject(_ object: Any) -> Self
+  convenience init(objects: UnsafePointer<AnyObject>, count cnt: Int)
+  @available(*, unavailable, renamed: "init(objects:count:)", message: "Not available in Swift")
+  class func orderedSetWithObjects(_ objects: UnsafePointer<AnyObject>, count cnt: Int) -> Self
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithOrderedSet:]")
+  convenience init(orderedSet set: NSOrderedSet)
+  @available(*, unavailable, renamed: "init(orderedSet:)", message: "Not available in Swift")
+  class func orderedSetWithOrderedSet(_ set: NSOrderedSet) -> Self
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithOrderedSet:range:copyItems:]")
+  convenience init(orderedSet set: NSOrderedSet, range: NSRange, copyItems flag: Bool)
+  @available(*, unavailable, renamed: "init(orderedSet:range:copyItems:)", message: "Not available in Swift")
+  class func orderedSetWithOrderedSet(_ set: NSOrderedSet, range: NSRange, copyItems flag: Bool) -> Self
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithArray:]")
+  convenience init(array: [Any])
+  @available(*, unavailable, renamed: "init(array:)", message: "Not available in Swift")
+  class func orderedSetWithArray(_ array: [Any]) -> Self
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithArray:range:copyItems:]")
+  convenience init(array: [Any], range: NSRange, copyItems flag: Bool)
+  @available(*, unavailable, renamed: "init(array:range:copyItems:)", message: "Not available in Swift")
+  class func orderedSetWithArray(_ array: [Any], range: NSRange, copyItems flag: Bool) -> Self
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithSet:]")
+  convenience init(set: Set<AnyHashable>)
+  @available(*, unavailable, renamed: "init(set:)", message: "Not available in Swift")
+  class func orderedSetWithSet(_ set: Set<AnyHashable>) -> Self
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithSet:copyItems:]")
+  convenience init(set: Set<AnyHashable>, copyItems flag: Bool)
+  @available(*, unavailable, renamed: "init(set:copyItems:)", message: "Not available in Swift")
+  class func orderedSetWithSet(_ set: Set<AnyHashable>, copyItems flag: Bool) -> Self
+  convenience init(object: Any)
+  convenience init(orderedSet set: NSOrderedSet)
+  convenience init(orderedSet set: NSOrderedSet, copyItems flag: Bool)
+  convenience init(orderedSet set: NSOrderedSet, range: NSRange, copyItems flag: Bool)
+  convenience init(array: [Any])
+  convenience init(array set: [Any], copyItems flag: Bool)
+  convenience init(array set: [Any], range: NSRange, copyItems flag: Bool)
+  convenience init(set: Set<AnyHashable>)
+  convenience init(set: Set<AnyHashable>, copyItems flag: Bool)
+}
+@available(iOS 13.0, *)
+@available(*, unavailable, message: "NSOrderedSet diffing methods are not available in Swift, use Collection.difference(from:) instead")
+extension NSOrderedSet {
+  func difference(from other: NSOrderedSet, withOptions options: NSOrderedCollectionDifferenceCalculationOptions, usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
+  @available(swift, obsoleted: 3, renamed: "difference(from:withOptions:usingEquivalenceTest:)")
+  func differenceFromOrderedSet(_ other: NSOrderedSet, withOptions options: NSOrderedCollectionDifferenceCalculationOptions, usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
+  func difference(from other: NSOrderedSet, withOptions options: NSOrderedCollectionDifferenceCalculationOptions) -> CollectionDifference<Any>
+  @available(swift, obsoleted: 3, renamed: "difference(from:withOptions:)")
+  func differenceFromOrderedSet(_ other: NSOrderedSet, withOptions options: NSOrderedCollectionDifferenceCalculationOptions) -> CollectionDifference<Any>
+  func difference(from other: NSOrderedSet) -> CollectionDifference<Any>
+  @available(swift, obsoleted: 3, renamed: "difference(from:)")
+  func differenceFromOrderedSet(_ other: NSOrderedSet) -> CollectionDifference<Any>
+  func applying(_ difference: CollectionDifference<Any>) -> NSOrderedSet?
+  @available(swift, obsoleted: 3, renamed: "applying(_:)")
+  func orderedSetByApplyingDifference(_ difference: CollectionDifference<Any>) -> NSOrderedSet?
+}
+
+/****************       Mutable Ordered Set     ****************/
+@available(iOS 5.0, *)
+class NSMutableOrderedSet : NSOrderedSet {
+  func insert(_ object: Any, at idx: Int)
+  @available(swift, obsoleted: 3, renamed: "insert(_:at:)")
+  func insertObject(_ object: Any, atIndex idx: Int)
+  func removeObject(at idx: Int)
+  @available(swift, obsoleted: 3, renamed: "removeObject(at:)")
+  func removeObjectAtIndex(_ idx: Int)
+  func replaceObject(at idx: Int, with object: Any)
+  @available(swift, obsoleted: 3, renamed: "replaceObject(at:with:)")
+  func replaceObjectAtIndex(_ idx: Int, withObject object: Any)
+  init?(coder: NSCoder)
+  init()
+  init(capacity numItems: Int)
+  convenience init(objects: UnsafePointer<AnyObject>?, count cnt: Int)
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithObject:]")
+  convenience init(object: Any)
+  convenience init(objects: UnsafePointer<AnyObject>, count cnt: Int)
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithOrderedSet:]")
+  convenience init(orderedSet set: NSOrderedSet)
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithOrderedSet:range:copyItems:]")
+  convenience init(orderedSet set: NSOrderedSet, range: NSRange, copyItems flag: Bool)
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithArray:]")
+  convenience init(array: [Any])
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithArray:range:copyItems:]")
+  convenience init(array: [Any], range: NSRange, copyItems flag: Bool)
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithSet:]")
+  convenience init(set: Set<AnyHashable>)
+  @available(*, unavailable, message: "superseded by import of -[NSOrderedSet(NSOrderedSetCreation) initWithSet:copyItems:]")
+  convenience init(set: Set<AnyHashable>, copyItems flag: Bool)
+  convenience init(object: Any)
+  convenience init(orderedSet set: NSOrderedSet)
+  convenience init(orderedSet set: NSOrderedSet, copyItems flag: Bool)
+  convenience init(orderedSet set: NSOrderedSet, range: NSRange, copyItems flag: Bool)
+  convenience init(array: [Any])
+  convenience init(array set: [Any], copyItems flag: Bool)
+  convenience init(array set: [Any], range: NSRange, copyItems flag: Bool)
+  convenience init(set: Set<AnyHashable>)
+  convenience init(set: Set<AnyHashable>, copyItems flag: Bool)
+}
+extension NSMutableOrderedSet {
+  func add(_ object: Any)
+  @available(swift, obsoleted: 3, renamed: "add(_:)")
+  func addObject(_ object: Any)
+  func add(_ objects: UnsafePointer<AnyObject>?, count: Int)
+  @available(swift, obsoleted: 3, renamed: "add(_:count:)")
+  func addObjects(_ objects: UnsafePointer<AnyObject>?, count: Int)
+  func addObjects(from array: [Any])
+  @available(swift, obsoleted: 3, renamed: "addObjects(from:)")
+  func addObjectsFromArray(_ array: [Any])
+  func exchangeObject(at idx1: Int, withObjectAt idx2: Int)
+  @available(swift, obsoleted: 3, renamed: "exchangeObject(at:withObjectAt:)")
+  func exchangeObjectAtIndex(_ idx1: Int, withObjectAtIndex idx2: Int)
+  func moveObjects(at indexes: IndexSet, to idx: Int)
+  @available(swift, obsoleted: 3, renamed: "moveObjects(at:to:)")
+  func moveObjectsAtIndexes(_ indexes: IndexSet, toIndex idx: Int)
+  func insert(_ objects: [Any], at indexes: IndexSet)
+  @available(swift, obsoleted: 3, renamed: "insert(_:at:)")
+  func insertObjects(_ objects: [Any], atIndexes indexes: IndexSet)
+  func setObject(_ obj: Any, at idx: Int)
+  @available(swift, obsoleted: 3, renamed: "setObject(_:at:)")
+  func setObject(_ obj: Any, atIndex idx: Int)
+  subscript(idx: Int) -> Any
+  @available(iOS 6.0, *)
+  @available(*, unavailable, message: "use subscripting")
+  func setObject(_ obj: Any, atIndexedSubscript idx: Int)
+  func replaceObjects(in range: NSRange, with objects: UnsafePointer<AnyObject>?, count: Int)
+  @available(swift, obsoleted: 3, renamed: "replaceObjects(in:with:count:)")
+  func replaceObjectsInRange(_ range: NSRange, withObjects objects: UnsafePointer<AnyObject>?, count: Int)
+  func replaceObjects(at indexes: IndexSet, with objects: [Any])
+  @available(swift, obsoleted: 3, renamed: "replaceObjects(at:with:)")
+  func replaceObjectsAtIndexes(_ indexes: IndexSet, withObjects objects: [Any])
+  func removeObjects(in range: NSRange)
+  @available(swift, obsoleted: 3, renamed: "removeObjects(in:)")
+  func removeObjectsInRange(_ range: NSRange)
+  func removeObjects(at indexes: IndexSet)
+  @available(swift, obsoleted: 3, renamed: "removeObjects(at:)")
+  func removeObjectsAtIndexes(_ indexes: IndexSet)
+  func removeAllObjects()
+  func remove(_ object: Any)
+  @available(swift, obsoleted: 3, renamed: "remove(_:)")
+  func removeObject(_ object: Any)
+  func removeObjects(in array: [Any])
+  @available(swift, obsoleted: 3, renamed: "removeObjects(in:)")
+  func removeObjectsInArray(_ array: [Any])
+  func intersect(_ other: NSOrderedSet)
+  @available(swift, obsoleted: 3, renamed: "intersect(_:)")
+  func intersectOrderedSet(_ other: NSOrderedSet)
+  func minus(_ other: NSOrderedSet)
+  @available(swift, obsoleted: 3, renamed: "minus(_:)")
+  func minusOrderedSet(_ other: NSOrderedSet)
+  func union(_ other: NSOrderedSet)
+  @available(swift, obsoleted: 3, renamed: "union(_:)")
+  func unionOrderedSet(_ other: NSOrderedSet)
+  func intersectSet(_ other: Set<AnyHashable>)
+  func minusSet(_ other: Set<AnyHashable>)
+  func unionSet(_ other: Set<AnyHashable>)
+  func sort(comparator cmptr: (Any, Any) -> ComparisonResult)
+  @available(swift, obsoleted: 3, renamed: "sort(comparator:)")
+  func sortUsingComparator(_ cmptr: (Any, Any) -> ComparisonResult)
+  func sort(withOptions opts: NSSortOptions, usingComparator cmptr: (Any, Any) -> ComparisonResult)
+  @available(swift, obsoleted: 3, renamed: "sort(withOptions:usingComparator:)")
+  func sortWithOptions(_ opts: NSSortOptions, usingComparator cmptr: (Any, Any) -> ComparisonResult)
+  func sortRange(_ range: NSRange, options opts: NSSortOptions, usingComparator cmptr: (Any, Any) -> ComparisonResult)
+}
+extension NSMutableOrderedSet {
+  @available(*, unavailable, renamed: "init(capacity:)", message: "Not available in Swift")
+  class func orderedSetWithCapacity(_ numItems: Int) -> Self
+}
+@available(iOS 13.0, *)
+@available(*, unavailable, message: "NSMutableOrderedSet diffing methods are not available in Swift")
+extension NSMutableOrderedSet {
+  func apply(_ difference: CollectionDifference<Any>)
+  @available(swift, obsoleted: 3, renamed: "apply(_:)")
+  func applyDifference(_ difference: CollectionDifference<Any>)
+}

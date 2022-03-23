@@ -1,0 +1,241 @@
+@_exported import CoreFoundation
+
+@available(swift, obsoleted: 3, renamed: "ProgressKind")
+typealias NSProgressKind = ProgressKind
+struct ProgressKind : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(_ rawValue: String)
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+@available(swift, obsoleted: 3, renamed: "ProgressUserInfoKey")
+typealias NSProgressUserInfoKey = ProgressUserInfoKey
+struct ProgressUserInfoKey : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(_ rawValue: String)
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+@available(swift, obsoleted: 3, renamed: "Progress.FileOperationKind")
+typealias NSProgressFileOperationKind = Progress.FileOperationKind
+extension Progress {
+  struct FileOperationKind : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+    init(_ rawValue: String)
+    init(rawValue: String)
+    var _rawValue: NSString
+    var rawValue: String { get }
+    typealias RawValue = String
+    typealias _ObjectiveCType = NSString
+  }
+  typealias UnpublishingHandler = () -> Void
+  typealias PublishingHandler = (Progress) -> Progress.UnpublishingHandler?
+}
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "Progress")
+typealias NSProgress = Progress
+@available(iOS 7.0, *)
+class Progress : NSObject {
+  class func current() -> Progress?
+  @available(swift, obsoleted: 3, renamed: "current()")
+  class func currentProgress() -> Progress?
+  /*not inherited*/ init(totalUnitCount unitCount: Int64)
+  @available(*, unavailable, renamed: "init(totalUnitCount:)", message: "Not available in Swift")
+  class func progressWithTotalUnitCount(_ unitCount: Int64) -> Progress
+  @available(iOS 9.0, *)
+  class func discreteProgress(withTotalUnitCount unitCount: Int64) -> Progress
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "discreteProgress(withTotalUnitCount:)")
+  class func discreteProgressWithTotalUnitCount(_ unitCount: Int64) -> Progress
+  @available(iOS 9.0, *)
+  /*not inherited*/ init(totalUnitCount unitCount: Int64, parent: Progress, pendingUnitCount portionOfParentTotalUnitCount: Int64)
+  @available(iOS 9.0, *)
+  @available(*, unavailable, renamed: "init(totalUnitCount:parent:pendingUnitCount:)", message: "Not available in Swift")
+  class func progressWithTotalUnitCount(_ unitCount: Int64, parent: Progress, pendingUnitCount portionOfParentTotalUnitCount: Int64) -> Progress
+  init(parent parentProgressOrNil: Progress?, userInfo userInfoOrNil: [ProgressUserInfoKey : Any]? = nil)
+  func becomeCurrent(withPendingUnitCount unitCount: Int64)
+  @available(swift, obsoleted: 3, renamed: "becomeCurrent(withPendingUnitCount:)")
+  func becomeCurrentWithPendingUnitCount(_ unitCount: Int64)
+  @available(iOS 11.0, *)
+  func __performAsCurrent(withPendingUnitCount unitCount: Int64, using work: () -> Void)
+  @available(iOS 11.0, *)
+  @available(swift, obsoleted: 3, renamed: "__performAsCurrent(withPendingUnitCount:using:)")
+  func __performAsCurrentWithPendingUnitCount(_ unitCount: Int64, usingBlock work: () -> Void)
+  func resignCurrent()
+  @available(iOS 9.0, *)
+  func addChild(_ child: Progress, withPendingUnitCount inUnitCount: Int64)
+  var totalUnitCount: Int64
+  var completedUnitCount: Int64
+  var localizedDescription: String!
+  var localizedAdditionalDescription: String!
+  var isCancellable: Bool
+  @available(swift, obsoleted: 3, renamed: "isCancellable")
+  var cancellable: Bool
+  var isPausable: Bool
+  @available(swift, obsoleted: 3, renamed: "isPausable")
+  var pausable: Bool
+  var isCancelled: Bool { get }
+  @available(swift, obsoleted: 3, renamed: "isCancelled")
+  var cancelled: Bool { get }
+  var isPaused: Bool { get }
+  @available(swift, obsoleted: 3, renamed: "isPaused")
+  var paused: Bool { get }
+  var cancellationHandler: (() -> Void)?
+  var pausingHandler: (() -> Void)?
+  @available(iOS 9.0, *)
+  var resumingHandler: (() -> Void)?
+  func setUserInfoObject(_ objectOrNil: Any?, forKey key: ProgressUserInfoKey)
+  var isIndeterminate: Bool { get }
+  @available(swift, obsoleted: 3, renamed: "isIndeterminate")
+  var indeterminate: Bool { get }
+  var fractionCompleted: Double { get }
+  var isFinished: Bool { get }
+  @available(swift, obsoleted: 3, renamed: "isFinished")
+  var finished: Bool { get }
+  func cancel()
+  func pause()
+  @available(iOS 9.0, *)
+  func resume()
+  var userInfo: [ProgressUserInfoKey : Any] { get }
+  var kind: ProgressKind?
+  @available(iOS 11.0, *)
+  @NSCopying var __estimatedTimeRemaining: NSNumber?
+  @available(iOS 11.0, *)
+  @NSCopying var __throughput: NSNumber?
+  @available(iOS 11.0, *)
+  var fileOperationKind: Progress.FileOperationKind?
+  @available(iOS 11.0, *)
+  var fileURL: URL?
+  @available(iOS 11.0, *)
+  @NSCopying var __fileTotalCount: NSNumber?
+  @available(iOS 11.0, *)
+  @NSCopying var __fileCompletedCount: NSNumber?
+  @available(iOS, unavailable)
+  func publish()
+  @available(iOS, unavailable)
+  func unpublish()
+  @available(iOS, unavailable)
+  class func addSubscriber(forFileURL url: URL, withPublishingHandler publishingHandler: @escaping Progress.PublishingHandler) -> Any
+  @available(swift, obsoleted: 3, renamed: "addSubscriber(forFileURL:withPublishingHandler:)")
+  @available(iOS, unavailable)
+  class func addSubscriberForFileURL(_ url: URL, withPublishingHandler publishingHandler: @escaping Progress.PublishingHandler) -> Any
+  @available(iOS, unavailable)
+  class func removeSubscriber(_ subscriber: Any)
+  @available(iOS, unavailable)
+  var isOld: Bool { get }
+  @available(swift, obsoleted: 3, renamed: "isOld")
+  @available(iOS, unavailable)
+  var old: Bool { get }
+  convenience init!()
+}
+
+extension Progress {
+  @available(macOS 10.13, iOS 11.0, watchOS 4.0, tvOS 11.0, *)
+  var estimatedTimeRemaining: TimeInterval?
+  @available(macOS 10.13, iOS 11.0, watchOS 4.0, tvOS 11.0, *)
+  var throughput: Int?
+  @available(macOS 10.13, iOS 11.0, watchOS 4.0, tvOS 11.0, *)
+  var fileTotalCount: Int?
+  @available(macOS 10.13, iOS 11.0, watchOS 4.0, tvOS 11.0, *)
+  var fileCompletedCount: Int?
+  func performAsCurrent<ReturnType>(withPendingUnitCount unitCount: Int64, using work: () throws -> ReturnType) rethrows -> ReturnType
+}
+@available(swift, obsoleted: 3, renamed: "Progress.UnpublishingHandler")
+typealias NSProgressUnpublishingHandler = Progress.UnpublishingHandler
+@available(swift, obsoleted: 3, renamed: "Progress.PublishingHandler")
+typealias NSProgressPublishingHandler = Progress.PublishingHandler
+@available(swift, obsoleted: 3, renamed: "ProgressReporting")
+typealias NSProgressReporting = ProgressReporting
+protocol ProgressReporting : NSObjectProtocol {
+  @available(iOS 7.0, *)
+  var progress: Progress { get }
+}
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "ProgressUserInfoKey.estimatedTimeRemainingKey")
+let NSProgressEstimatedTimeRemainingKey: ProgressUserInfoKey
+extension ProgressUserInfoKey {
+  @available(iOS 7.0, *)
+  static let estimatedTimeRemainingKey: ProgressUserInfoKey
+  @available(iOS 7.0, *)
+  static let throughputKey: ProgressUserInfoKey
+  @available(iOS 7.0, *)
+  static let fileOperationKindKey: ProgressUserInfoKey
+  @available(iOS 7.0, *)
+  static let fileURLKey: ProgressUserInfoKey
+  @available(iOS 7.0, *)
+  static let fileTotalCountKey: ProgressUserInfoKey
+  @available(iOS 7.0, *)
+  static let fileCompletedCountKey: ProgressUserInfoKey
+  @available(iOS, unavailable)
+  static let fileAnimationImageKey: ProgressUserInfoKey
+  @available(iOS, unavailable)
+  static let fileAnimationImageOriginalRectKey: ProgressUserInfoKey
+  @available(iOS, unavailable)
+  static let fileIconKey: ProgressUserInfoKey
+}
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "ProgressUserInfoKey.throughputKey")
+let NSProgressThroughputKey: ProgressUserInfoKey
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "ProgressKind.file")
+let NSProgressKindFile: ProgressKind
+extension ProgressKind {
+  @available(iOS 7.0, *)
+  static let file: ProgressKind
+}
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "ProgressUserInfoKey.fileOperationKindKey")
+let NSProgressFileOperationKindKey: ProgressUserInfoKey
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "Progress.FileOperationKind.downloading")
+let NSProgressFileOperationKindDownloading: Progress.FileOperationKind
+extension Progress.FileOperationKind {
+  @available(iOS 7.0, *)
+  static let downloading: Progress.FileOperationKind
+  @available(iOS 7.0, *)
+  static let decompressingAfterDownloading: Progress.FileOperationKind
+  @available(iOS 7.0, *)
+  static let receiving: Progress.FileOperationKind
+  @available(iOS 7.0, *)
+  static let copying: Progress.FileOperationKind
+  @available(iOS 8.0, *)
+  static let uploading: Progress.FileOperationKind
+  @available(iOS 15.0, *)
+  static let duplicating: Progress.FileOperationKind
+}
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "Progress.FileOperationKind.decompressingAfterDownloading")
+let NSProgressFileOperationKindDecompressingAfterDownloading: Progress.FileOperationKind
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "Progress.FileOperationKind.receiving")
+let NSProgressFileOperationKindReceiving: Progress.FileOperationKind
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "Progress.FileOperationKind.copying")
+let NSProgressFileOperationKindCopying: Progress.FileOperationKind
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "Progress.FileOperationKind.uploading")
+let NSProgressFileOperationKindUploading: Progress.FileOperationKind
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "Progress.FileOperationKind.duplicating")
+let NSProgressFileOperationKindDuplicating: Progress.FileOperationKind
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "ProgressUserInfoKey.fileURLKey")
+let NSProgressFileURLKey: ProgressUserInfoKey
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "ProgressUserInfoKey.fileTotalCountKey")
+let NSProgressFileTotalCountKey: ProgressUserInfoKey
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "ProgressUserInfoKey.fileCompletedCountKey")
+let NSProgressFileCompletedCountKey: ProgressUserInfoKey
+@available(swift, obsoleted: 3, renamed: "ProgressUserInfoKey.fileAnimationImageKey")
+@available(iOS, unavailable)
+let NSProgressFileAnimationImageKey: ProgressUserInfoKey
+@available(swift, obsoleted: 3, renamed: "ProgressUserInfoKey.fileAnimationImageOriginalRectKey")
+@available(iOS, unavailable)
+let NSProgressFileAnimationImageOriginalRectKey: ProgressUserInfoKey
+@available(swift, obsoleted: 3, renamed: "ProgressUserInfoKey.fileIconKey")
+@available(iOS, unavailable)
+let NSProgressFileIconKey: ProgressUserInfoKey

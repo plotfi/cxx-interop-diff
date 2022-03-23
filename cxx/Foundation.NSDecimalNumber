@@ -1,0 +1,144 @@
+@_exported import CoreFoundation
+
+
+/***************	Exceptions		***********/
+@available(swift, obsoleted: 3, renamed: "NSExceptionName.decimalNumberExactnessException")
+let NSDecimalNumberExactnessException: NSExceptionName
+extension NSExceptionName {
+
+  /***************	Exceptions		***********/
+  static let decimalNumberExactnessException: NSExceptionName
+  static let decimalNumberOverflowException: NSExceptionName
+  static let decimalNumberUnderflowException: NSExceptionName
+  static let decimalNumberDivideByZeroException: NSExceptionName
+}
+@available(swift, obsoleted: 3, renamed: "NSExceptionName.decimalNumberOverflowException")
+let NSDecimalNumberOverflowException: NSExceptionName
+@available(swift, obsoleted: 3, renamed: "NSExceptionName.decimalNumberUnderflowException")
+let NSDecimalNumberUnderflowException: NSExceptionName
+@available(swift, obsoleted: 3, renamed: "NSExceptionName.decimalNumberDivideByZeroException")
+let NSDecimalNumberDivideByZeroException: NSExceptionName
+protocol NSDecimalNumberBehaviors {
+  func roundingMode() -> NSDecimalNumber.RoundingMode
+  func scale() -> Int16
+  func exceptionDuringOperation(_ operation: Selector, error: NSDecimalNumber.CalculationError, leftOperand: NSDecimalNumber, rightOperand: NSDecimalNumber?) -> NSDecimalNumber?
+}
+
+/***************	NSDecimalNumber: the class		***********/
+class NSDecimalNumber : NSNumber {
+  convenience init(mantissa: UInt64, exponent: Int16, isNegative flag: Bool)
+  init(decimal dcm: Decimal)
+  convenience init(string numberValue: String?)
+  convenience init(string numberValue: String?, locale: Any?)
+  func description(withLocale locale: Any?) -> String
+  @available(swift, obsoleted: 3, renamed: "description(withLocale:)")
+  func descriptionWithLocale(_ locale: Any?) -> String
+  var decimalValue: Decimal { get }
+  @available(*, unavailable, renamed: "init(mantissa:exponent:isNegative:)", message: "Not available in Swift")
+  class func decimalNumberWithMantissa(_ mantissa: UInt64, exponent: Int16, isNegative flag: Bool) -> NSDecimalNumber
+  @available(*, unavailable, renamed: "init(decimal:)", message: "Not available in Swift")
+  class func decimalNumberWithDecimal(_ dcm: Decimal) -> NSDecimalNumber
+  @available(*, unavailable, renamed: "init(string:)", message: "Not available in Swift")
+  class func decimalNumberWithString(_ numberValue: String?) -> NSDecimalNumber
+  @available(*, unavailable, renamed: "init(string:locale:)", message: "Not available in Swift")
+  class func decimalNumberWithString(_ numberValue: String?, locale: Any?) -> NSDecimalNumber
+  @NSCopying class var zero: NSDecimalNumber { get }
+  @NSCopying class var one: NSDecimalNumber { get }
+  @NSCopying class var minimum: NSDecimalNumber { get }
+  @available(swift, obsoleted: 3, renamed: "minimum")
+  @NSCopying class var minimumDecimalNumber: NSDecimalNumber { get }
+  @NSCopying class var maximum: NSDecimalNumber { get }
+  @available(swift, obsoleted: 3, renamed: "maximum")
+  @NSCopying class var maximumDecimalNumber: NSDecimalNumber { get }
+  @NSCopying class var notA: NSDecimalNumber { get }
+  @available(swift, obsoleted: 3, renamed: "notA")
+  @NSCopying class var notANumber: NSDecimalNumber { get }
+  func adding(_ decimalNumber: NSDecimalNumber) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "adding(_:)")
+  func decimalNumberByAdding(_ decimalNumber: NSDecimalNumber) -> NSDecimalNumber
+  func adding(_ decimalNumber: NSDecimalNumber, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "adding(_:withBehavior:)")
+  func decimalNumberByAdding(_ decimalNumber: NSDecimalNumber, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  func subtracting(_ decimalNumber: NSDecimalNumber) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "subtracting(_:)")
+  func decimalNumberBySubtracting(_ decimalNumber: NSDecimalNumber) -> NSDecimalNumber
+  func subtracting(_ decimalNumber: NSDecimalNumber, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "subtracting(_:withBehavior:)")
+  func decimalNumberBySubtracting(_ decimalNumber: NSDecimalNumber, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  func multiplying(by decimalNumber: NSDecimalNumber) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "multiplying(by:)")
+  func decimalNumberByMultiplyingBy(_ decimalNumber: NSDecimalNumber) -> NSDecimalNumber
+  func multiplying(by decimalNumber: NSDecimalNumber, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "multiplying(by:withBehavior:)")
+  func decimalNumberByMultiplyingBy(_ decimalNumber: NSDecimalNumber, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  func dividing(by decimalNumber: NSDecimalNumber) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "dividing(by:)")
+  func decimalNumberByDividingBy(_ decimalNumber: NSDecimalNumber) -> NSDecimalNumber
+  func dividing(by decimalNumber: NSDecimalNumber, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "dividing(by:withBehavior:)")
+  func decimalNumberByDividingBy(_ decimalNumber: NSDecimalNumber, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  func raising(toPower power: Int) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "raising(toPower:)")
+  func decimalNumberByRaisingToPower(_ power: Int) -> NSDecimalNumber
+  func raising(toPower power: Int, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "raising(toPower:withBehavior:)")
+  func decimalNumberByRaisingToPower(_ power: Int, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  func multiplying(byPowerOf10 power: Int16) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "multiplying(byPowerOf10:)")
+  func decimalNumberByMultiplyingByPowerOf10(_ power: Int16) -> NSDecimalNumber
+  func multiplying(byPowerOf10 power: Int16, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "multiplying(byPowerOf10:withBehavior:)")
+  func decimalNumberByMultiplyingByPowerOf10(_ power: Int16, withBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  func rounding(accordingToBehavior behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  @available(swift, obsoleted: 3, renamed: "rounding(accordingToBehavior:)")
+  func decimalNumberByRoundingAccordingToBehavior(_ behavior: NSDecimalNumberBehaviors?) -> NSDecimalNumber
+  func compare(_ decimalNumber: NSNumber) -> ComparisonResult
+  class var defaultBehavior: NSDecimalNumberBehaviors
+  var objCType: UnsafePointer<CChar> { get }
+  var doubleValue: Double { get }
+  init?(coder: NSCoder)
+  convenience init(char value: CChar)
+  convenience init(unsignedChar value: UInt8)
+  convenience init(short value: Int16)
+  convenience init(unsignedShort value: UInt16)
+  convenience init(int value: Int32)
+  convenience init(unsignedInt value: UInt32)
+  convenience init(long value: Int)
+  convenience init(unsignedLong value: UInt)
+  convenience init(longLong value: Int64)
+  convenience init(unsignedLongLong value: UInt64)
+  convenience init(float value: Float)
+  convenience init(double value: Double)
+  convenience init(bool value: Bool)
+  @available(iOS 2.0, *)
+  convenience init(integer value: Int)
+  @available(iOS 2.0, *)
+  convenience init(unsignedInteger value: UInt)
+  convenience init(bytes value: UnsafeRawPointer, objCType type: UnsafePointer<CChar>)
+  convenience init!()
+}
+
+/***********	A class for defining common behaviors		*******/
+class NSDecimalNumberHandler : NSObject, NSDecimalNumberBehaviors, NSCoding {
+  class var `default`: NSDecimalNumberHandler { get }
+  @available(swift, obsoleted: 3, renamed: "default")
+  class var defaultDecimalNumberHandler: NSDecimalNumberHandler { get }
+  init(roundingMode: NSDecimalNumber.RoundingMode, scale: Int16, raiseOnExactness exact: Bool, raiseOnOverflow overflow: Bool, raiseOnUnderflow underflow: Bool, raiseOnDivideByZero divideByZero: Bool)
+  @available(*, unavailable, renamed: "init(roundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:)", message: "Not available in Swift")
+  class func decimalNumberHandlerWithRoundingMode(_ roundingMode: NSDecimalNumber.RoundingMode, scale: Int16, raiseOnExactness exact: Bool, raiseOnOverflow overflow: Bool, raiseOnUnderflow underflow: Bool, raiseOnDivideByZero divideByZero: Bool) -> Self
+  convenience init!()
+  func roundingMode() -> NSDecimalNumber.RoundingMode
+  func scale() -> Int16
+  func exceptionDuringOperation(_ operation: Selector, error: NSDecimalNumber.CalculationError, leftOperand: NSDecimalNumber, rightOperand: NSDecimalNumber?) -> NSDecimalNumber?
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+}
+
+/***********	Extensions to other classes		*******/
+extension NSNumber {
+  var decimalValue: Decimal { get }
+}
+extension Scanner {
+  @available(iOS, introduced: 2.0, deprecated: 13.0)
+  func scanDecimal(_ dcm: UnsafeMutablePointer<Decimal>?) -> Bool
+}

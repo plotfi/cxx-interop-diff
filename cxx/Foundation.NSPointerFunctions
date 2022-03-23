@@ -1,0 +1,49 @@
+@_exported import CoreFoundation
+
+var __FOUNDATION_NSPOINTERFUNCTIONS__: Int32 { get }
+typealias NSPointerFunctionsOptions = Int
+@available(iOS 6.0, *)
+var NSPointerFunctionsStrongMemory: Int { get }
+@available(iOS, unavailable)
+var NSPointerFunctionsZeroingWeakMemory: Int { get }
+@available(iOS 6.0, *)
+var NSPointerFunctionsOpaqueMemory: Int { get }
+@available(iOS 6.0, *)
+var NSPointerFunctionsMallocMemory: Int { get }
+@available(iOS 6.0, *)
+var NSPointerFunctionsMachVirtualMemory: Int { get }
+@available(iOS 6.0, *)
+var NSPointerFunctionsWeakMemory: Int { get }
+@available(iOS 6.0, *)
+var NSPointerFunctionsObjectPersonality: Int { get }
+@available(iOS 6.0, *)
+var NSPointerFunctionsOpaquePersonality: Int { get }
+@available(iOS 6.0, *)
+var NSPointerFunctionsObjectPointerPersonality: Int { get }
+@available(iOS 6.0, *)
+var NSPointerFunctionsCStringPersonality: Int { get }
+@available(iOS 6.0, *)
+var NSPointerFunctionsStructPersonality: Int { get }
+@available(iOS 6.0, *)
+var NSPointerFunctionsIntegerPersonality: Int { get }
+@available(iOS 6.0, *)
+var NSPointerFunctionsCopyIn: Int { get }
+@available(iOS 6.0, *)
+class NSPointerFunctions : NSObject, NSCopying {
+  init(options: NSPointerFunctionsOptions)
+  @available(*, unavailable, renamed: "init(options:)", message: "Not available in Swift")
+  class func pointerFunctionsWithOptions(_ options: NSPointerFunctionsOptions) -> NSPointerFunctions
+  var hashFunction: (@convention(c) (UnsafeRawPointer, (@convention(c) (UnsafeRawPointer) -> Int)?) -> Int)?
+  var isEqualFunction: (@convention(c) (UnsafeRawPointer, UnsafeRawPointer, (@convention(c) (UnsafeRawPointer) -> Int)?) -> ObjCBool)?
+  var sizeFunction: (@convention(c) (UnsafeRawPointer) -> Int)?
+  var descriptionFunction: (@convention(c) (UnsafeRawPointer) -> String?)?
+  var relinquishFunction: (@convention(c) (UnsafeRawPointer, (@convention(c) (UnsafeRawPointer) -> Int)?) -> Void)?
+  var acquireFunction: (@convention(c) (UnsafeRawPointer, (@convention(c) (UnsafeRawPointer) -> Int)?, ObjCBool) -> UnsafeMutableRawPointer)?
+  @available(iOS, introduced: 2.0, deprecated: 10.0, message: "Garbage collection no longer supported")
+  var usesStrongWriteBarrier: Bool
+  @available(iOS, introduced: 2.0, deprecated: 10.0, message: "Garbage collection no longer supported")
+  var usesWeakReadAndWriteBarriers: Bool
+  convenience init!()
+  @available(iOS 6.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+}

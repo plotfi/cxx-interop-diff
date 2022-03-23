@@ -1,0 +1,94 @@
+@_exported import CoreFoundation
+
+@available(iOS 3.0, *)
+class NSPredicate : NSObject, NSSecureCoding, NSCopying {
+  /*not inherited*/ init(format predicateFormat: String, argumentArray arguments: [Any]?)
+  @available(*, unavailable, renamed: "init(format:argumentArray:)", message: "Not available in Swift")
+  class func predicateWithFormat(_ predicateFormat: String, argumentArray arguments: [Any]?) -> NSPredicate
+  /*not inherited*/ init(format predicateFormat: String, arguments argList: CVaListPointer)
+  @available(*, unavailable, renamed: "init(format:arguments:)", message: "Not available in Swift")
+  class func predicateWithFormat(_ predicateFormat: String, arguments argList: CVaListPointer) -> NSPredicate
+  @available(iOS, unavailable)
+  /*not inherited*/ init?(fromMetadataQueryString queryString: String)
+  @available(*, unavailable, renamed: "init(fromMetadataQueryString:)", message: "Not available in Swift")
+  @available(iOS, unavailable)
+  class func predicateFromMetadataQueryString(_ queryString: String) -> NSPredicate?
+  /*not inherited*/ init(value: Bool)
+  @available(*, unavailable, renamed: "init(value:)", message: "Not available in Swift")
+  class func predicateWithValue(_ value: Bool) -> NSPredicate
+  @available(iOS 4.0, *)
+  /*not inherited*/ init(block: @escaping (Any?, [String : Any]?) -> Bool)
+  @available(iOS 4.0, *)
+  @available(*, unavailable, renamed: "init(block:)", message: "Not available in Swift")
+  class func predicateWithBlock(_ block: @escaping (Any?, [String : Any]?) -> Bool) -> NSPredicate
+  var predicateFormat: String { get }
+  func withSubstitutionVariables(_ variables: [String : Any]) -> Self
+  @available(swift, obsoleted: 3, renamed: "withSubstitutionVariables(_:)")
+  func predicateWithSubstitutionVariables(_ variables: [String : Any]) -> Self
+  func evaluate(with object: Any?) -> Bool
+  @available(swift, obsoleted: 3, renamed: "evaluate(with:)")
+  func evaluateWithObject(_ object: Any?) -> Bool
+  @available(iOS 3.0, *)
+  func evaluate(with object: Any?, substitutionVariables bindings: [String : Any]?) -> Bool
+  @available(iOS 3.0, *)
+  @available(swift, obsoleted: 3, renamed: "evaluate(with:substitutionVariables:)")
+  func evaluateWithObject(_ object: Any?, substitutionVariables bindings: [String : Any]?) -> Bool
+  @available(iOS 7.0, *)
+  func allowEvaluation()
+  init!()
+  @available(iOS 3.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 3.0, *)
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+  @available(iOS 3.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+}
+
+extension NSPredicate {
+  convenience init(format predicateFormat: __shared String, _ args: CVarArg...)
+}
+struct _predicateFlags {
+  init()
+  init(_evaluationBlocked: UInt32, _reservedPredicateFlags: UInt32)
+  var _evaluationBlocked: UInt32
+  var _reservedPredicateFlags: UInt32
+}
+extension NSArray {
+  func filteredArray(using predicate: NSPredicate) -> [Any]
+  @available(swift, obsoleted: 3, renamed: "filteredArray(using:)")
+  func filteredArrayUsingPredicate(_ predicate: NSPredicate) -> [Any]
+}
+extension NSMutableArray {
+  func filter(using predicate: NSPredicate)
+  @available(swift, obsoleted: 3, renamed: "filter(using:)")
+  func filterUsingPredicate(_ predicate: NSPredicate)
+}
+extension NSSet {
+  @available(iOS 3.0, *)
+  func filteredSet(using predicate: NSPredicate) -> Set<AnyHashable>
+  @available(iOS 3.0, *)
+  @available(swift, obsoleted: 3, renamed: "filteredSet(using:)")
+  func filteredSetUsingPredicate(_ predicate: NSPredicate) -> Set<AnyHashable>
+}
+extension NSMutableSet {
+  @available(iOS 3.0, *)
+  func filter(using predicate: NSPredicate)
+  @available(iOS 3.0, *)
+  @available(swift, obsoleted: 3, renamed: "filter(using:)")
+  func filterUsingPredicate(_ predicate: NSPredicate)
+}
+extension NSOrderedSet {
+  @available(iOS 5.0, *)
+  func filteredOrderedSet(using p: NSPredicate) -> NSOrderedSet
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "filteredOrderedSet(using:)")
+  func filteredOrderedSetUsingPredicate(_ p: NSPredicate) -> NSOrderedSet
+}
+extension NSMutableOrderedSet {
+  @available(iOS 5.0, *)
+  func filter(using p: NSPredicate)
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "filter(using:)")
+  func filterUsingPredicate(_ p: NSPredicate)
+}

@@ -1,0 +1,53 @@
+@_exported import CoreFoundation
+
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "EnergyFormatter.Unit")
+typealias NSEnergyFormatterUnit = EnergyFormatter.Unit
+extension EnergyFormatter {
+  @available(iOS 8.0, *)
+  enum Unit : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case joule
+    @available(swift, obsoleted: 3, renamed: "joule")
+    static var Joule: EnergyFormatter.Unit { get }
+    case kilojoule
+    @available(swift, obsoleted: 3, renamed: "kilojoule")
+    static var Kilojoule: EnergyFormatter.Unit { get }
+    case calorie
+    @available(swift, obsoleted: 3, renamed: "calorie")
+    static var Calorie: EnergyFormatter.Unit { get }
+    case kilocalorie
+    @available(swift, obsoleted: 3, renamed: "kilocalorie")
+    static var Kilocalorie: EnergyFormatter.Unit { get }
+  }
+}
+@available(iOS 8.0, *)
+class EnergyFormatter : Formatter {
+  @NSCopying var numberFormatter: NumberFormatter!
+  var unitStyle: Formatter.UnitStyle
+  var isForFoodEnergyUse: Bool
+  @available(swift, obsoleted: 3, renamed: "isForFoodEnergyUse")
+  var forFoodEnergyUse: Bool
+  func string(fromValue value: Double, unit: EnergyFormatter.Unit) -> String
+  @available(swift, obsoleted: 3, renamed: "string(fromValue:unit:)")
+  func stringFromValue(_ value: Double, unit: EnergyFormatter.Unit) -> String
+  func string(fromJoules numberInJoules: Double) -> String
+  @available(swift, obsoleted: 3, renamed: "string(fromJoules:)")
+  func stringFromJoules(_ numberInJoules: Double) -> String
+  func unitString(fromValue value: Double, unit: EnergyFormatter.Unit) -> String
+  @available(swift, obsoleted: 3, renamed: "unitString(fromValue:unit:)")
+  func unitStringFromValue(_ value: Double, unit: EnergyFormatter.Unit) -> String
+  func unitString(fromJoules numberInJoules: Double, usedUnit unitp: UnsafeMutablePointer<EnergyFormatter.Unit>?) -> String
+  @available(swift, obsoleted: 3, renamed: "unitString(fromJoules:usedUnit:)")
+  func unitStringFromJoules(_ numberInJoules: Double, usedUnit unitp: UnsafeMutablePointer<EnergyFormatter.Unit>?) -> String
+  func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
+  @available(swift, obsoleted: 3, renamed: "getObjectValue(_:for:errorDescription:)")
+  func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, forString string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
+  init!()
+  init?(coder: NSCoder)
+}
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "EnergyFormatter")
+typealias NSEnergyFormatter = EnergyFormatter

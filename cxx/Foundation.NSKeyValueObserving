@@ -1,0 +1,167 @@
+@_exported import CoreFoundation
+
+typealias NSKeyValueObservingOptions = Int
+var NSKeyValueObservingOptionNew: Int { get }
+var NSKeyValueObservingOptionOld: Int { get }
+@available(iOS 2.0, *)
+var NSKeyValueObservingOptionInitial: Int { get }
+@available(iOS 2.0, *)
+var NSKeyValueObservingOptionPrior: Int { get }
+enum NSKeyValueChange : UInt, @unchecked Sendable {
+  init?(rawValue: UInt)
+  var rawValue: UInt { get }
+  typealias RawValue = UInt
+  case setting
+  @available(swift, obsoleted: 3, renamed: "setting")
+  static var Setting: NSKeyValueChange { get }
+  case insertion
+  @available(swift, obsoleted: 3, renamed: "insertion")
+  static var Insertion: NSKeyValueChange { get }
+  case removal
+  @available(swift, obsoleted: 3, renamed: "removal")
+  static var Removal: NSKeyValueChange { get }
+  case replacement
+  @available(swift, obsoleted: 3, renamed: "replacement")
+  static var Replacement: NSKeyValueChange { get }
+}
+enum NSKeyValueSetMutationKind : UInt, @unchecked Sendable {
+  init?(rawValue: UInt)
+  var rawValue: UInt { get }
+  typealias RawValue = UInt
+  case unionSetMutation
+  @available(swift, obsoleted: 3, renamed: "unionSetMutation")
+  static var UnionSetMutation: NSKeyValueSetMutationKind { get }
+  case minusSetMutation
+  @available(swift, obsoleted: 3, renamed: "minusSetMutation")
+  static var MinusSetMutation: NSKeyValueSetMutationKind { get }
+  case intersectSetMutation
+  @available(swift, obsoleted: 3, renamed: "intersectSetMutation")
+  static var IntersectSetMutation: NSKeyValueSetMutationKind { get }
+  case setSetMutation
+  @available(swift, obsoleted: 3, renamed: "setSetMutation")
+  static var SetSetMutation: NSKeyValueSetMutationKind { get }
+}
+struct NSKeyValueChangeKey : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+@available(swift, obsoleted: 3, renamed: "NSKeyValueChangeKey.kindKey")
+let NSKeyValueChangeKindKey: NSKeyValueChangeKey
+extension NSKeyValueChangeKey {
+  static let kindKey: NSKeyValueChangeKey
+  static let newKey: NSKeyValueChangeKey
+  static let oldKey: NSKeyValueChangeKey
+  static let indexesKey: NSKeyValueChangeKey
+  @available(iOS 2.0, *)
+  static let notificationIsPriorKey: NSKeyValueChangeKey
+}
+@available(swift, obsoleted: 3, renamed: "NSKeyValueChangeKey.newKey")
+let NSKeyValueChangeNewKey: NSKeyValueChangeKey
+@available(swift, obsoleted: 3, renamed: "NSKeyValueChangeKey.oldKey")
+let NSKeyValueChangeOldKey: NSKeyValueChangeKey
+@available(swift, obsoleted: 3, renamed: "NSKeyValueChangeKey.indexesKey")
+let NSKeyValueChangeIndexesKey: NSKeyValueChangeKey
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "NSKeyValueChangeKey.notificationIsPriorKey")
+let NSKeyValueChangeNotificationIsPriorKey: NSKeyValueChangeKey
+extension NSObject {
+  class func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
+  func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
+  @available(swift, obsoleted: 3, renamed: "observeValue(forKeyPath:of:change:context:)")
+  class func observeValueForKeyPath(_ keyPath: String?, ofObject object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
+  @available(swift, obsoleted: 3, renamed: "observeValue(forKeyPath:of:change:context:)")
+  func observeValueForKeyPath(_ keyPath: String?, ofObject object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
+}
+extension NSObject {
+  class func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions, context: UnsafeMutableRawPointer?)
+  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions, context: UnsafeMutableRawPointer?)
+  @available(iOS 5.0, *)
+  class func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
+  @available(iOS 5.0, *)
+  func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
+  class func removeObserver(_ observer: NSObject, forKeyPath keyPath: String)
+  func removeObserver(_ observer: NSObject, forKeyPath keyPath: String)
+}
+extension NSArray {
+  func addObserver(_ observer: NSObject, toObjectsAt indexes: IndexSet, forKeyPath keyPath: String, options: NSKeyValueObservingOptions, context: UnsafeMutableRawPointer?)
+  @available(swift, obsoleted: 3, renamed: "addObserver(_:toObjectsAt:forKeyPath:options:context:)")
+  func addObserver(_ observer: NSObject, toObjectsAtIndexes indexes: IndexSet, forKeyPath keyPath: String, options: NSKeyValueObservingOptions, context: UnsafeMutableRawPointer?)
+  @available(iOS 5.0, *)
+  func removeObserver(_ observer: NSObject, fromObjectsAt indexes: IndexSet, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "removeObserver(_:fromObjectsAt:forKeyPath:context:)")
+  func removeObserver(_ observer: NSObject, fromObjectsAtIndexes indexes: IndexSet, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
+  func removeObserver(_ observer: NSObject, fromObjectsAt indexes: IndexSet, forKeyPath keyPath: String)
+  @available(swift, obsoleted: 3, renamed: "removeObserver(_:fromObjectsAt:forKeyPath:)")
+  func removeObserver(_ observer: NSObject, fromObjectsAtIndexes indexes: IndexSet, forKeyPath keyPath: String)
+  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions, context: UnsafeMutableRawPointer?)
+  @available(iOS 5.0, *)
+  func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
+  func removeObserver(_ observer: NSObject, forKeyPath keyPath: String)
+}
+extension NSOrderedSet {
+  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions, context: UnsafeMutableRawPointer?)
+  @available(iOS 5.0, *)
+  func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
+  func removeObserver(_ observer: NSObject, forKeyPath keyPath: String)
+}
+extension NSSet {
+  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions, context: UnsafeMutableRawPointer?)
+  @available(iOS 5.0, *)
+  func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
+  func removeObserver(_ observer: NSObject, forKeyPath keyPath: String)
+}
+extension NSObject {
+  class func willChangeValue(forKey key: String)
+  func willChangeValue(forKey key: String)
+  @available(swift, obsoleted: 3, renamed: "willChangeValue(forKey:)")
+  class func willChangeValueForKey(_ key: String)
+  @available(swift, obsoleted: 3, renamed: "willChangeValue(forKey:)")
+  func willChangeValueForKey(_ key: String)
+  class func didChangeValue(forKey key: String)
+  func didChangeValue(forKey key: String)
+  @available(swift, obsoleted: 3, renamed: "didChangeValue(forKey:)")
+  class func didChangeValueForKey(_ key: String)
+  @available(swift, obsoleted: 3, renamed: "didChangeValue(forKey:)")
+  func didChangeValueForKey(_ key: String)
+  class func willChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
+  func willChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
+  @available(swift, obsoleted: 3, renamed: "willChange(_:valuesAt:forKey:)")
+  class func willChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
+  @available(swift, obsoleted: 3, renamed: "willChange(_:valuesAt:forKey:)")
+  func willChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
+  class func didChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
+  func didChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
+  @available(swift, obsoleted: 3, renamed: "didChange(_:valuesAt:forKey:)")
+  class func didChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
+  @available(swift, obsoleted: 3, renamed: "didChange(_:valuesAt:forKey:)")
+  func didChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
+  class func willChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
+  func willChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
+  @available(swift, obsoleted: 3, renamed: "willChangeValue(forKey:withSetMutation:using:)")
+  class func willChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
+  @available(swift, obsoleted: 3, renamed: "willChangeValue(forKey:withSetMutation:using:)")
+  func willChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
+  class func didChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
+  func didChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
+  @available(swift, obsoleted: 3, renamed: "didChangeValue(forKey:withSetMutation:using:)")
+  class func didChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
+  @available(swift, obsoleted: 3, renamed: "didChangeValue(forKey:withSetMutation:using:)")
+  func didChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
+}
+extension NSObject {
+  @available(iOS 2.0, *)
+  class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String>
+  @available(iOS 2.0, *)
+  @available(swift, obsoleted: 3, renamed: "keyPathsForValuesAffectingValue(forKey:)")
+  class func keyPathsForValuesAffectingValueForKey(_ key: String) -> Set<String>
+  class func automaticallyNotifiesObservers(forKey key: String) -> Bool
+  @available(swift, obsoleted: 3, renamed: "automaticallyNotifiesObservers(forKey:)")
+  class func automaticallyNotifiesObserversForKey(_ key: String) -> Bool
+  var observationInfo: UnsafeMutableRawPointer?
+  class func observationInfo() -> UnsafeMutableRawPointer?
+  class func setObservationInfo(_ observationInfo: UnsafeMutableRawPointer?)
+}

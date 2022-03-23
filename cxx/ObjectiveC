@@ -1,0 +1,150 @@
+import ObjectiveC.NSObjCRuntime
+import ObjectiveC.NSObject
+import ObjectiveC.message
+import ObjectiveC.objc
+import ObjectiveC.objc_api
+import ObjectiveC.objc_auto
+import ObjectiveC.objc_exception
+import ObjectiveC.objc_sync
+import ObjectiveC.runtime
+import _Concurrency
+
+@available(*, unavailable, message: "Use 'Bool' value 'false' instead")
+var NO: ObjCBool { get }
+
+@frozen struct NSZone {
+  var pointer: OpaquePointer
+}
+
+extension NSZone : Sendable {
+}
+
+/// The Objective-C BOOL type.
+///
+/// On 64-bit iOS, the Objective-C BOOL type is a typedef of C/C++
+/// bool. Elsewhere, it is "signed char". The Clang importer imports it as
+/// ObjCBool.
+@frozen struct ObjCBool : ExpressibleByBooleanLiteral {
+  @usableFromInline
+  var _value: Bool
+  @_transparent init(_ value: Bool)
+  /// The value of `self`, expressed as a `Bool`.
+  @_transparent var boolValue: Bool { get }
+  /// Create an instance initialized to `value`.
+  @_transparent init(booleanLiteral value: Bool)
+  typealias BooleanLiteralType = Bool
+}
+
+extension ObjCBool : CustomReflectable {
+  /// Returns a mirror that reflects `self`.
+  var customMirror: Mirror { get }
+}
+
+extension ObjCBool : CustomStringConvertible {
+  /// A textual representation of `self`.
+  var description: String { get }
+}
+
+extension ObjCBool : Sendable {
+}
+
+/// The Objective-C SEL type.
+///
+/// The Objective-C SEL type is typically an opaque pointer. Swift
+/// treats it as a distinct struct type, with operations to
+/// convert between C strings and selectors.
+///
+/// The compiler has special knowledge of this type.
+@frozen struct Selector : ExpressibleByStringLiteral {
+  var ptr: OpaquePointer
+  /// Create a selector from a string.
+  init(_ str: String)
+  /// Create an instance initialized to `value`.
+  init(stringLiteral value: String)
+  typealias ExtendedGraphemeClusterLiteralType = String
+  typealias StringLiteralType = String
+  typealias UnicodeScalarLiteralType = String
+}
+
+extension Selector : Equatable, Hashable {
+  static func == (a: Selector, b: Selector) -> Bool
+  func hash(into hasher: inout Hasher)
+  var hashValue: Int { get }
+}
+
+extension Selector : CustomStringConvertible {
+  /// A textual representation of `self`.
+  var description: String { get }
+}
+
+extension Selector : CustomReflectable {
+  /// Returns a mirror that reflects `self`.
+  var customMirror: Mirror { get }
+}
+
+extension Selector : Sendable {
+}
+
+@available(*, unavailable, message: "Use 'Bool' value 'true' instead")
+var YES: ObjCBool { get }
+
+@_transparent func _convertBoolToObjCBool(_ x: Bool) -> ObjCBool
+
+@_transparent func _convertObjCBoolToBool(_ x: ObjCBool) -> Bool
+
+func autoreleasepool<Result>(invoking body: () throws -> Result) rethrows -> Result
+
+extension String {
+  /// Construct the C string representation of an Objective-C selector.
+  init(_sel: Selector)
+}
+
+extension NSObject : Equatable, Hashable {
+  /// Returns a Boolean value indicating whether two values are
+  /// equal. `NSObject` implements this by calling `lhs.isEqual(rhs)`.
+  ///
+  /// Subclasses of `NSObject` can customize Equatable conformance by overriding
+  /// `isEqual(_:)`. If two objects are equal, they must have the same hash
+  /// value, so if you override `isEqual(_:)`, make sure you also override the
+  /// `hash` property.
+  ///
+  /// - Parameters:
+  ///   - lhs: A value to compare.
+  ///   - rhs: Another value to compare.
+  static func == (lhs: NSObject, rhs: NSObject) -> Bool
+  /// The hash value.
+  ///
+  /// `NSObject` implements this by returning `self.hash`.
+  ///
+  /// `NSObject.hashValue` is not overridable; subclasses can customize hashing
+  /// by overriding the `hash` property.
+  ///
+  /// **Axiom:** `x == y` implies `x.hashValue == y.hashValue`
+  ///
+  /// - Note: the hash value is not guaranteed to be stable across
+  ///   different invocations of the same program.  Do not persist the
+  ///   hash value across program runs.
+  @nonobjc var hashValue: Int { get }
+  /// Hashes the essential components of this value by feeding them into the
+  /// given hasher.
+  ///
+  /// NSObject implements this by feeding `self.hash` to the hasher.
+  ///
+  /// `NSObject.hash(into:)` is not overridable; subclasses can customize
+  /// hashing by overriding the `hash` property.
+  func hash(into hasher: inout Hasher)
+  func _rawHashValue(seed: Int) -> Int
+}
+
+extension NSObject : CVarArg {
+  /// Transform `self` into a series of machine words that can be
+  /// appropriately interpreted by C varargs
+  var _cVarArgEncoding: [Int] { get }
+}
+
+@available(*, unavailable, message: "Use 'Bool' value 'true' instead")
+let YES: ObjCBool { get }
+
+@available(*, unavailable, message: "Use 'Bool' value 'false' instead")
+let NO: ObjCBool { get }
+

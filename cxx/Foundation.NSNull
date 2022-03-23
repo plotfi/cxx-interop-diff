@@ -1,0 +1,13 @@
+@_exported import CoreFoundation
+
+class NSNull : NSObject, NSCopying, NSSecureCoding {
+  @available(*, unavailable, message: "superseded by import of -[NSObject init]")
+  /*not inherited*/ init()
+  @available(*, unavailable, renamed: "init()", message: "Not available in Swift")
+  class func null() -> NSNull
+  init!()
+  class var supportsSecureCoding: Bool { get }
+  func copy(with zone: NSZone? = nil) -> Any
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+}

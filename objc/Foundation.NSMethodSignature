@@ -1,0 +1,17 @@
+@_exported import CoreFoundation
+
+@available(*, unavailable, message: "NSInvocation and related APIs not available")
+class NSMethodSignature : NSObject {
+  /*not inherited*/ init?(objCTypes types: UnsafePointer<CChar>)
+  @available(*, unavailable, renamed: "init(objCTypes:)", message: "Not available in Swift")
+  class func signatureWithObjCTypes(_ types: UnsafePointer<CChar>) -> NSMethodSignature?
+  var numberOfArguments: Int { get }
+  func getArgumentType(at idx: Int) -> UnsafePointer<CChar>
+  @available(swift, obsoleted: 3, renamed: "getArgumentType(at:)")
+  func getArgumentTypeAtIndex(_ idx: Int) -> UnsafePointer<CChar>
+  var frameLength: Int { get }
+  func isOneway() -> Bool
+  var methodReturnType: UnsafePointer<CChar> { get }
+  var methodReturnLength: Int { get }
+  init()
+}

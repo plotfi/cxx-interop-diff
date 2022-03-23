@@ -1,0 +1,23 @@
+@_exported import CoreFoundation
+
+@available(iOS 8.0, *)
+class NSExtensionContext : NSObject {
+  var inputItems: [Any] { get }
+  func completeRequestReturningItems(_ items: [Any]?, completionHandler: ((Bool) -> Void)? = nil)
+  func cancelRequestWithError(_ error: Error)
+  func open(_ URL: URL, completionHandler: (@Sendable (Bool) -> Void)? = nil)
+  func open(_ URL: URL) async -> Bool
+  @available(swift, obsoleted: 3, renamed: "open(_:completionHandler:)")
+  func openURL(_ URL: URL, completionHandler: (@Sendable (Bool) -> Void)? = nil)
+  init!()
+}
+@available(iOS 8.0, *)
+let NSExtensionItemsAndErrorsKey: String
+@available(iOS 8.2, *)
+let NSExtensionHostWillEnterForegroundNotification: String
+@available(iOS 8.2, *)
+let NSExtensionHostDidEnterBackgroundNotification: String
+@available(iOS 8.2, *)
+let NSExtensionHostWillResignActiveNotification: String
+@available(iOS 8.2, *)
+let NSExtensionHostDidBecomeActiveNotification: String

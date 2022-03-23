@@ -1,0 +1,31 @@
+@_exported import CoreFoundation
+
+@available(iOS 15.0, *)
+class __NSInflectionRule : NSObject, NSCopying, NSSecureCoding {
+  @available(*, unavailable)
+  init()
+  class var automatic: __NSInflectionRule { get }
+  @available(swift, obsoleted: 3, renamed: "automatic")
+  class var automaticRule: __NSInflectionRule { get }
+  @available(iOS 15.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 15.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 15.0, *)
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+}
+@available(iOS 15.0, *)
+class __NSInflectionRuleExplicit : __NSInflectionRule {
+  init(morphology: __NSMorphology)
+  @NSCopying var morphology: __NSMorphology { get }
+  @available(*, unavailable)
+  convenience init()
+  init?(coder: NSCoder)
+}
+extension __NSInflectionRule {
+  @available(iOS 15.0, *)
+  class func canInflectLanguage(_ language: String) -> Bool
+  @available(iOS 15.0, *)
+  class var canInflectPreferredLocalization: Bool { get }
+}

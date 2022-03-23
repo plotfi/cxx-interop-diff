@@ -1,0 +1,152 @@
+@_exported import CoreFoundation
+
+var NSWindowsNTOperatingSystem: Int { get }
+var NSWindows95OperatingSystem: Int { get }
+var NSSolarisOperatingSystem: Int { get }
+var NSHPUXOperatingSystem: Int { get }
+var NSMACHOperatingSystem: Int { get }
+var NSSunOSOperatingSystem: Int { get }
+var NSOSF1OperatingSystem: Int { get }
+@available(swift, obsoleted: 3, renamed: "OperatingSystemVersion")
+typealias NSOperatingSystemVersion = OperatingSystemVersion
+struct OperatingSystemVersion {
+  init()
+  init(majorVersion: Int, minorVersion: Int, patchVersion: Int)
+  var majorVersion: Int
+  var minorVersion: Int
+  var patchVersion: Int
+}
+@available(swift, obsoleted: 3, renamed: "ProcessInfo")
+typealias NSProcessInfo = ProcessInfo
+class ProcessInfo : NSObject {
+  class var processInfo: ProcessInfo { get }
+  var environment: [String : String] { get }
+  var arguments: [String] { get }
+  var hostName: String { get }
+  var processName: String
+  var processIdentifier: Int32 { get }
+  var globallyUniqueString: String { get }
+  @available(iOS, introduced: 2.0, deprecated: 8.0, message: "-operatingSystem always returns NSMACHOperatingSystem, use -operatingSystemVersion or -isOperatingSystemAtLeastVersion: instead")
+  func operatingSystem() -> Int
+  @available(iOS, introduced: 2.0, deprecated: 8.0, message: "-operatingSystemName always returns NSMACHOperatingSystem, use -operatingSystemVersionString instead")
+  func operatingSystemName() -> String
+  var operatingSystemVersionString: String { get }
+  @available(iOS 8.0, *)
+  var operatingSystemVersion: OperatingSystemVersion { get }
+  @available(iOS 2.0, *)
+  var processorCount: Int { get }
+  @available(iOS 2.0, *)
+  var activeProcessorCount: Int { get }
+  @available(iOS 2.0, *)
+  var physicalMemory: UInt64 { get }
+  @available(iOS 8.0, *)
+  func isOperatingSystem(atLeastVersion version: OperatingSystemVersion) -> Bool
+  @available(iOS 8.0, *)
+  @available(swift, obsoleted: 3, renamed: "isOperatingSystem(atLeastVersion:)")
+  func isOperatingSystemAtLeastVersion(_ version: OperatingSystemVersion) -> Bool
+  @available(iOS 4.0, *)
+  var systemUptime: TimeInterval { get }
+  @available(iOS, unavailable)
+  func disableSuddenTermination()
+  @available(iOS, unavailable)
+  func enableSuddenTermination()
+  @available(iOS, unavailable)
+  func disableAutomaticTermination(_ reason: String)
+  @available(iOS, unavailable)
+  func enableAutomaticTermination(_ reason: String)
+  @available(iOS, unavailable)
+  var automaticTerminationSupportEnabled: Bool
+  init!()
+}
+typealias NSActivityOptions = UInt64
+var NSActivityIdleDisplaySleepDisabled: UInt64 { get }
+var NSActivityIdleSystemSleepDisabled: UInt64 { get }
+var NSActivitySuddenTerminationDisabled: UInt64 { get }
+var NSActivityAutomaticTerminationDisabled: UInt64 { get }
+var NSActivityUserInitiated: UInt64 { get }
+var NSActivityUserInitiatedAllowingIdleSystemSleep: UInt64 { get }
+var NSActivityBackground: UInt64 { get }
+var NSActivityLatencyCritical: UInt64 { get }
+extension ProcessInfo {
+  @available(iOS 7.0, *)
+  func beginActivity(withOptions options: NSActivityOptions, reason: String) -> NSObjectProtocol
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "beginActivity(withOptions:reason:)")
+  func beginActivityWithOptions(_ options: NSActivityOptions, reason: String) -> NSObjectProtocol
+  @available(iOS 7.0, *)
+  func endActivity(_ activity: NSObjectProtocol)
+  @available(iOS 7.0, *)
+  func performActivity(withOptions options: NSActivityOptions, reason: String, using block: @escaping () -> Void)
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "performActivity(withOptions:reason:using:)")
+  func performActivityWithOptions(_ options: NSActivityOptions, reason: String, usingBlock block: @escaping () -> Void)
+  @available(iOS 8.2, *)
+  func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void)
+  @available(iOS 8.2, *)
+  @available(swift, obsoleted: 3, renamed: "performExpiringActivity(withReason:using:)")
+  func performExpiringActivityWithReason(_ reason: String, usingBlock block: @escaping (Bool) -> Void)
+}
+extension ProcessInfo {
+  @available(iOS, unavailable)
+  var userName: String { get }
+  @available(iOS, unavailable)
+  var fullUserName: String { get }
+}
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "ProcessInfo.ThermalState")
+typealias NSProcessInfoThermalState = ProcessInfo.ThermalState
+extension ProcessInfo {
+  @available(iOS 11.0, *)
+  enum ThermalState : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case nominal
+    @available(swift, obsoleted: 3, renamed: "nominal")
+    static var Nominal: ProcessInfo.ThermalState { get }
+    case fair
+    @available(swift, obsoleted: 3, renamed: "fair")
+    static var Fair: ProcessInfo.ThermalState { get }
+    case serious
+    @available(swift, obsoleted: 3, renamed: "serious")
+    static var Serious: ProcessInfo.ThermalState { get }
+    case critical
+    @available(swift, obsoleted: 3, renamed: "critical")
+    static var Critical: ProcessInfo.ThermalState { get }
+  }
+  @available(iOS 11.0, *)
+  class let thermalStateDidChangeNotification: NSNotification.Name
+}
+extension ProcessInfo {
+  @available(iOS 11.0, *)
+  var thermalState: ProcessInfo.ThermalState { get }
+}
+extension ProcessInfo {
+  @available(iOS 9.0, *)
+  var isLowPowerModeEnabled: Bool { get }
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "isLowPowerModeEnabled")
+  var lowPowerModeEnabled: Bool { get }
+}
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "ProcessInfo.thermalStateDidChangeNotification")
+let NSProcessInfoThermalStateDidChangeNotification: NSNotification.Name
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "NSNotification.Name.NSProcessInfoPowerStateDidChange")
+let NSProcessInfoPowerStateDidChangeNotification: NSNotification.Name
+extension NSNotification.Name {
+  @available(iOS 9.0, *)
+  static let NSProcessInfoPowerStateDidChange: NSNotification.Name
+}
+extension ProcessInfo {
+  @available(iOS 13.0, *)
+  var isMacCatalystApp: Bool { get }
+  @available(iOS 13.0, *)
+  @available(swift, obsoleted: 3, renamed: "isMacCatalystApp")
+  var macCatalystApp: Bool { get }
+  @available(iOS 14.0, *)
+  var isiOSAppOnMac: Bool { get }
+  @available(iOS 14.0, *)
+  @available(swift, obsoleted: 3, renamed: "isiOSAppOnMac")
+  var iOSAppOnMac: Bool { get }
+}

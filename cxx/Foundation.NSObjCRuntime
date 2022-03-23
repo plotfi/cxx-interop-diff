@@ -1,0 +1,197 @@
+@_exported import CoreFoundation
+
+var NSFoundationVersionNumber: Double
+var NSFoundationVersionNumber10_0: Double { get }
+var NSFoundationVersionNumber10_1: Double { get }
+var NSFoundationVersionNumber10_1_1: Double { get }
+var NSFoundationVersionNumber10_1_2: Double { get }
+var NSFoundationVersionNumber10_1_3: Double { get }
+var NSFoundationVersionNumber10_1_4: Double { get }
+var NSFoundationVersionNumber10_2: Double { get }
+var NSFoundationVersionNumber10_2_1: Double { get }
+var NSFoundationVersionNumber10_2_2: Double { get }
+var NSFoundationVersionNumber10_2_3: Double { get }
+var NSFoundationVersionNumber10_2_4: Double { get }
+var NSFoundationVersionNumber10_2_5: Double { get }
+var NSFoundationVersionNumber10_2_6: Double { get }
+var NSFoundationVersionNumber10_2_7: Double { get }
+var NSFoundationVersionNumber10_2_8: Double { get }
+var NSFoundationVersionNumber10_3: Double { get }
+var NSFoundationVersionNumber10_3_1: Double { get }
+var NSFoundationVersionNumber10_3_2: Double { get }
+var NSFoundationVersionNumber10_3_3: Double { get }
+var NSFoundationVersionNumber10_3_4: Double { get }
+var NSFoundationVersionNumber10_3_5: Double { get }
+var NSFoundationVersionNumber10_3_6: Double { get }
+var NSFoundationVersionNumber10_3_7: Double { get }
+var NSFoundationVersionNumber10_3_8: Double { get }
+var NSFoundationVersionNumber10_3_9: Double { get }
+var NSFoundationVersionNumber10_4: Double { get }
+var NSFoundationVersionNumber10_4_1: Double { get }
+var NSFoundationVersionNumber10_4_2: Double { get }
+var NSFoundationVersionNumber10_4_3: Double { get }
+var NSFoundationVersionNumber10_4_4_Intel: Double { get }
+var NSFoundationVersionNumber10_4_4_PowerPC: Double { get }
+var NSFoundationVersionNumber10_4_5: Double { get }
+var NSFoundationVersionNumber10_4_6: Double { get }
+var NSFoundationVersionNumber10_4_7: Double { get }
+var NSFoundationVersionNumber10_4_8: Double { get }
+var NSFoundationVersionNumber10_4_9: Double { get }
+var NSFoundationVersionNumber10_4_10: Double { get }
+var NSFoundationVersionNumber10_4_11: Double { get }
+var NSFoundationVersionNumber10_5: Double { get }
+var NSFoundationVersionNumber10_5_1: Double { get }
+var NSFoundationVersionNumber10_5_2: Double { get }
+var NSFoundationVersionNumber10_5_3: Double { get }
+var NSFoundationVersionNumber10_5_4: Double { get }
+var NSFoundationVersionNumber10_5_5: Double { get }
+var NSFoundationVersionNumber10_5_6: Double { get }
+var NSFoundationVersionNumber10_5_7: Double { get }
+var NSFoundationVersionNumber10_5_8: Double { get }
+var NSFoundationVersionNumber10_6: Double { get }
+var NSFoundationVersionNumber10_6_1: Double { get }
+var NSFoundationVersionNumber10_6_2: Double { get }
+var NSFoundationVersionNumber10_6_3: Double { get }
+var NSFoundationVersionNumber10_6_4: Double { get }
+var NSFoundationVersionNumber10_6_5: Double { get }
+var NSFoundationVersionNumber10_6_6: Double { get }
+var NSFoundationVersionNumber10_6_7: Double { get }
+var NSFoundationVersionNumber10_6_8: Double { get }
+var NSFoundationVersionNumber10_7: Double { get }
+var NSFoundationVersionNumber10_7_1: Double { get }
+var NSFoundationVersionNumber10_7_2: Double { get }
+var NSFoundationVersionNumber10_7_3: Double { get }
+var NSFoundationVersionNumber10_7_4: Double { get }
+var NSFoundationVersionNumber10_8: Double { get }
+var NSFoundationVersionNumber10_8_1: Double { get }
+var NSFoundationVersionNumber10_8_2: Double { get }
+var NSFoundationVersionNumber10_8_3: Double { get }
+var NSFoundationVersionNumber10_8_4: Double { get }
+var NSFoundationVersionNumber10_9: Int32 { get }
+var NSFoundationVersionNumber10_9_1: Int32 { get }
+var NSFoundationVersionNumber10_9_2: Double { get }
+var NSFoundationVersionNumber10_10: Double { get }
+var NSFoundationVersionNumber10_10_1: Double { get }
+var NSFoundationVersionNumber10_10_2: Double { get }
+var NSFoundationVersionNumber10_10_3: Double { get }
+var NSFoundationVersionNumber10_10_4: Double { get }
+var NSFoundationVersionNumber10_10_5: Int32 { get }
+var NSFoundationVersionNumber10_10_Max: Int32 { get }
+var NSFoundationVersionNumber10_11: Int32 { get }
+var NSFoundationVersionNumber10_11_1: Double { get }
+var NSFoundationVersionNumber10_11_2: Double { get }
+var NSFoundationVersionNumber10_11_3: Double { get }
+var NSFoundationVersionNumber10_11_4: Int32 { get }
+var NSFoundationVersionNumber10_11_Max: Int32 { get }
+var NSFoundationVersionNumber_iPhoneOS_2_0: Double { get }
+var NSFoundationVersionNumber_iPhoneOS_2_1: Double { get }
+var NSFoundationVersionNumber_iPhoneOS_2_2: Double { get }
+var NSFoundationVersionNumber_iPhoneOS_3_0: Double { get }
+var NSFoundationVersionNumber_iPhoneOS_3_1: Double { get }
+var NSFoundationVersionNumber_iPhoneOS_3_2: Double { get }
+var NSFoundationVersionNumber_iOS_4_0: Double { get }
+var NSFoundationVersionNumber_iOS_4_1: Double { get }
+var NSFoundationVersionNumber_iOS_4_2: Double { get }
+var NSFoundationVersionNumber_iOS_4_3: Double { get }
+var NSFoundationVersionNumber_iOS_5_0: Double { get }
+var NSFoundationVersionNumber_iOS_5_1: Double { get }
+var NSFoundationVersionNumber_iOS_6_0: Double { get }
+var NSFoundationVersionNumber_iOS_6_1: Double { get }
+var NSFoundationVersionNumber_iOS_7_0: Double { get }
+var NSFoundationVersionNumber_iOS_7_1: Double { get }
+var NSFoundationVersionNumber_iOS_8_0: Double { get }
+var NSFoundationVersionNumber_iOS_8_1: Double { get }
+var NSFoundationVersionNumber_iOS_8_2: Double { get }
+var NSFoundationVersionNumber_iOS_8_3: Double { get }
+var NSFoundationVersionNumber_iOS_8_4: Double { get }
+var NSFoundationVersionNumber_iOS_8_x_Max: Int32 { get }
+var NSFoundationVersionNumber_iOS_9_0: Double { get }
+var NSFoundationVersionNumber_iOS_9_1: Double { get }
+var NSFoundationVersionNumber_iOS_9_2: Double { get }
+var NSFoundationVersionNumber_iOS_9_3: Double { get }
+var NSFoundationVersionNumber_iOS_9_4: Double { get }
+var NSFoundationVersionNumber_iOS_9_x_Max: Int32 { get }
+struct NSExceptionName : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(_ rawValue: String)
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+@available(swift, obsoleted: 3, renamed: "RunLoop.Mode")
+typealias NSRunLoopMode = RunLoop.Mode
+@available(swift, obsoleted: 4.2, renamed: "RunLoop.Mode")
+typealias RunLoopMode = RunLoop.Mode
+extension RunLoop {
+  struct Mode : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+    init(_ rawValue: String)
+    init(rawValue: String)
+    var _rawValue: NSString
+    var rawValue: String { get }
+    typealias RawValue = String
+    typealias _ObjectiveCType = NSString
+  }
+}
+func NSStringFromSelector(_ aSelector: Selector) -> String
+func NSSelectorFromString(_ aSelectorName: String) -> Selector
+func NSStringFromClass(_ aClass: AnyClass) -> String
+func NSClassFromString(_ aClassName: String) -> AnyClass?
+@available(iOS 2.0, *)
+func NSStringFromProtocol(_ proto: Protocol) -> String
+@available(iOS 2.0, *)
+func NSProtocolFromString(_ namestr: String) -> Protocol?
+func NSGetSizeAndAlignment(_ typePtr: UnsafePointer<CChar>, _ sizep: UnsafeMutablePointer<Int>?, _ alignp: UnsafeMutablePointer<Int>?) -> UnsafePointer<CChar>
+@available(*, unavailable, message: "Variadic function is unavailable")
+func NSLog(_ format: String, _ varargs: Any...)
+func NSLogv(_ format: String, _ args: CVaListPointer)
+@frozen enum ComparisonResult : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+  case orderedAscending
+  @available(swift, obsoleted: 3, renamed: "orderedAscending")
+  static var OrderedAscending: ComparisonResult { get }
+  case orderedSame
+  @available(swift, obsoleted: 3, renamed: "orderedSame")
+  static var OrderedSame: ComparisonResult { get }
+  case orderedDescending
+  @available(swift, obsoleted: 3, renamed: "orderedDescending")
+  static var OrderedDescending: ComparisonResult { get }
+}
+@available(swift, obsoleted: 3, renamed: "ComparisonResult")
+typealias NSComparisonResult = ComparisonResult
+typealias Comparator = (Any, Any) -> ComparisonResult
+@available(swift, obsoleted: 3, renamed: "Comparator")
+typealias NSComparator = Comparator
+typealias NSEnumerationOptions = Int
+var NSEnumerationConcurrent: Int { get }
+var NSEnumerationReverse: Int { get }
+typealias NSSortOptions = Int
+var NSSortConcurrent: Int { get }
+var NSSortStable: Int { get }
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "QualityOfService")
+typealias NSQualityOfService = QualityOfService
+@available(iOS 8.0, *)
+enum QualityOfService : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+  case userInteractive
+  @available(swift, obsoleted: 3, renamed: "userInteractive")
+  static var UserInteractive: QualityOfService { get }
+  case userInitiated
+  @available(swift, obsoleted: 3, renamed: "userInitiated")
+  static var UserInitiated: QualityOfService { get }
+  case utility
+  @available(swift, obsoleted: 3, renamed: "utility")
+  static var Utility: QualityOfService { get }
+  case background
+  @available(swift, obsoleted: 3, renamed: "background")
+  static var Background: QualityOfService { get }
+  case `default`
+  @available(swift, obsoleted: 3, renamed: "default")
+  static var Default: QualityOfService { get }
+}
+let NSNotFound: Int

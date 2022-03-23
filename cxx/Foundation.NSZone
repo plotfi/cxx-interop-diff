@@ -1,0 +1,34 @@
+@_exported import CoreFoundation
+
+@available(*, unavailable, message: "Zone-based memory management is unavailable")
+func NSDefaultMallocZone() -> NSZone
+@available(*, unavailable, message: "Zone-based memory management is unavailable")
+func NSCreateZone(_ startSize: Int, _ granularity: Int, _ canFree: Bool) -> NSZone
+@available(*, unavailable, message: "Zone-based memory management is unavailable")
+func NSRecycleZone(_ zone: NSZone)
+@available(*, unavailable, message: "Zone-based memory management is unavailable")
+func NSSetZoneName(_ zone: NSZone?, _ name: String)
+@available(*, unavailable, message: "Zone-based memory management is unavailable")
+func NSZoneName(_ zone: NSZone?) -> String
+@available(*, unavailable, message: "Zone-based memory management is unavailable")
+func NSZoneFromPointer(_ ptr: UnsafeMutableRawPointer) -> NSZone?
+@available(*, unavailable, message: "Zone-based memory management is unavailable")
+func NSZoneMalloc(_ zone: NSZone?, _ size: Int) -> UnsafeMutableRawPointer
+@available(*, unavailable, message: "Zone-based memory management is unavailable")
+func NSZoneCalloc(_ zone: NSZone?, _ numElems: Int, _ byteSize: Int) -> UnsafeMutableRawPointer
+@available(*, unavailable, message: "Zone-based memory management is unavailable")
+func NSZoneRealloc(_ zone: NSZone?, _ ptr: UnsafeMutableRawPointer?, _ size: Int) -> UnsafeMutableRawPointer
+@available(*, unavailable, message: "Zone-based memory management is unavailable")
+func NSZoneFree(_ zone: NSZone?, _ ptr: UnsafeMutableRawPointer)
+@available(*, unavailable, message: "not available in automatic reference counting mode")
+@available(*, unavailable, message: "Garbage Collection is not supported")
+func NSMakeCollectable(_ cf: CFTypeRef?) -> Any?
+func NSPageSize() -> Int
+func NSLogPageSize() -> Int
+func NSRoundUpToMultipleOfPageSize(_ bytes: Int) -> Int
+func NSRoundDownToMultipleOfPageSize(_ bytes: Int) -> Int
+func NSAllocateMemoryPages(_ bytes: Int) -> UnsafeMutableRawPointer
+func NSDeallocateMemoryPages(_ ptr: UnsafeMutableRawPointer, _ bytes: Int)
+func NSCopyMemoryPages(_ source: UnsafeRawPointer, _ dest: UnsafeMutableRawPointer, _ bytes: Int)
+@available(iOS, unavailable, introduced: 2.0, deprecated: 6.0, message: "Use NSProcessInfo instead")
+func NSRealMemoryAvailable() -> Int

@@ -1,0 +1,173 @@
+@_exported import CoreFoundation
+
+class NSIndexSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
+  @available(*, unavailable, message: "superseded by import of -[NSObject init]")
+  convenience init()
+  @available(*, unavailable, renamed: "init()", message: "Not available in Swift")
+  class func indexSet() -> Self
+  @available(*, unavailable, message: "superseded by import of -[NSIndexSet initWithIndex:]")
+  convenience init(index value: Int)
+  @available(*, unavailable, renamed: "init(index:)", message: "Not available in Swift")
+  class func indexSetWithIndex(_ value: Int) -> Self
+  @available(*, unavailable, message: "superseded by import of -[NSIndexSet initWithIndexesInRange:]")
+  convenience init(indexesIn range: NSRange)
+  @available(swift, obsoleted: 3, renamed: "init(indexesIn:)")
+  convenience init(indexesInRange range: NSRange)
+  @available(*, unavailable, renamed: "init(indexesIn:)", message: "Not available in Swift")
+  class func indexSetWithIndexesInRange(_ range: NSRange) -> Self
+  init(indexesIn range: NSRange)
+  @available(swift, obsoleted: 3, renamed: "init(indexesIn:)")
+  init(indexesInRange range: NSRange)
+  init(indexSet: IndexSet)
+  convenience init(index value: Int)
+  func isEqual(to indexSet: IndexSet) -> Bool
+  @available(swift, obsoleted: 3, renamed: "isEqual(to:)")
+  func isEqualToIndexSet(_ indexSet: IndexSet) -> Bool
+  var count: Int { get }
+  var firstIndex: Int { get }
+  var lastIndex: Int { get }
+  func indexGreaterThanIndex(_ value: Int) -> Int
+  func indexLessThanIndex(_ value: Int) -> Int
+  func indexGreaterThanOrEqual(to value: Int) -> Int
+  @available(swift, obsoleted: 3, renamed: "indexGreaterThanOrEqual(to:)")
+  func indexGreaterThanOrEqualToIndex(_ value: Int) -> Int
+  func indexLessThanOrEqual(to value: Int) -> Int
+  @available(swift, obsoleted: 3, renamed: "indexLessThanOrEqual(to:)")
+  func indexLessThanOrEqualToIndex(_ value: Int) -> Int
+  func getIndexes(_ indexBuffer: UnsafeMutablePointer<Int>, maxCount bufferSize: Int, inIndexRange range: NSRangePointer?) -> Int
+  @available(iOS 2.0, *)
+  func countOfIndexes(in range: NSRange) -> Int
+  @available(iOS 2.0, *)
+  @available(swift, obsoleted: 3, renamed: "countOfIndexes(in:)")
+  func countOfIndexesInRange(_ range: NSRange) -> Int
+  func contains(_ value: Int) -> Bool
+  @available(swift, obsoleted: 3, renamed: "contains(_:)")
+  func containsIndex(_ value: Int) -> Bool
+  func contains(in range: NSRange) -> Bool
+  @available(swift, obsoleted: 3, renamed: "contains(in:)")
+  func containsIndexesInRange(_ range: NSRange) -> Bool
+  func contains(_ indexSet: IndexSet) -> Bool
+  @available(swift, obsoleted: 3, renamed: "contains(_:)")
+  func containsIndexes(_ indexSet: IndexSet) -> Bool
+  func intersects(in range: NSRange) -> Bool
+  @available(swift, obsoleted: 3, renamed: "intersects(in:)")
+  func intersectsIndexesInRange(_ range: NSRange) -> Bool
+  @available(iOS 4.0, *)
+  func enumerate(_ block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "enumerate(_:)")
+  func enumerateIndexesUsingBlock(_ block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(iOS 4.0, *)
+  func enumerate(withOptions opts: NSEnumerationOptions, using block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "enumerate(withOptions:using:)")
+  func enumerateIndexesWithOptions(_ opts: NSEnumerationOptions, usingBlock block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(iOS 4.0, *)
+  func enumerate(in range: NSRange, options opts: NSEnumerationOptions, using block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "enumerate(in:options:using:)")
+  func enumerateIndexesInRange(_ range: NSRange, options opts: NSEnumerationOptions, usingBlock block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(iOS 4.0, *)
+  func index(passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "index(passingTest:)")
+  func indexPassingTest(_ predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  @available(iOS 4.0, *)
+  func index(withOptions opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "index(withOptions:passingTest:)")
+  func indexWithOptions(_ opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  @available(iOS 4.0, *)
+  func index(in range: NSRange, options opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "index(in:options:passingTest:)")
+  func indexInRange(_ range: NSRange, options opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  @available(iOS 4.0, *)
+  func indexes(passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "indexes(passingTest:)")
+  func indexesPassingTest(_ predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  @available(iOS 4.0, *)
+  func indexes(withOptions opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "indexes(withOptions:passingTest:)")
+  func indexesWithOptions(_ opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  @available(iOS 4.0, *)
+  func indexes(in range: NSRange, options opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "indexes(in:options:passingTest:)")
+  func indexesInRange(_ range: NSRange, options opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  @available(iOS 5.0, *)
+  func enumerateRanges(_ block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "enumerateRanges(_:)")
+  func enumerateRangesUsingBlock(_ block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(iOS 5.0, *)
+  func enumerateRanges(withOptions opts: NSEnumerationOptions, using block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "enumerateRanges(withOptions:using:)")
+  func enumerateRangesWithOptions(_ opts: NSEnumerationOptions, usingBlock block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(iOS 5.0, *)
+  func enumerateRanges(in range: NSRange, options opts: NSEnumerationOptions, using block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "enumerateRanges(in:options:using:)")
+  func enumerateRangesInRange(_ range: NSRange, options opts: NSEnumerationOptions, usingBlock block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  convenience init!()
+  class var supportsSecureCoding: Bool { get }
+  func copy(with zone: NSZone? = nil) -> Any
+  func mutableCopy(with zone: NSZone? = nil) -> Any
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+}
+
+extension NSIndexSet : _HasCustomAnyHashableRepresentation {
+  @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}
+
+extension NSIndexSet : Sequence {
+  /// Return an *iterator* over the elements of this *sequence*.
+  ///
+  /// - Complexity: O(1).
+  func makeIterator() -> NSIndexSetIterator
+  /// A value less than or equal to the number of elements in the collection.
+  ///
+  /// - Complexity: O(1).
+  @_alwaysEmitIntoClient @nonobjc var underestimatedCount: Int { get }
+  typealias Element = NSIndexSetIterator.Element
+  typealias Iterator = NSIndexSetIterator
+}
+class NSMutableIndexSet : NSIndexSet {
+  func add(_ indexSet: IndexSet)
+  @available(swift, obsoleted: 3, renamed: "add(_:)")
+  func addIndexes(_ indexSet: IndexSet)
+  func remove(_ indexSet: IndexSet)
+  @available(swift, obsoleted: 3, renamed: "remove(_:)")
+  func removeIndexes(_ indexSet: IndexSet)
+  func removeAllIndexes()
+  func add(_ value: Int)
+  @available(swift, obsoleted: 3, renamed: "add(_:)")
+  func addIndex(_ value: Int)
+  func remove(_ value: Int)
+  @available(swift, obsoleted: 3, renamed: "remove(_:)")
+  func removeIndex(_ value: Int)
+  func add(in range: NSRange)
+  @available(swift, obsoleted: 3, renamed: "add(in:)")
+  func addIndexesInRange(_ range: NSRange)
+  func remove(in range: NSRange)
+  @available(swift, obsoleted: 3, renamed: "remove(in:)")
+  func removeIndexesInRange(_ range: NSRange)
+  func shiftIndexesStarting(at index: Int, by delta: Int)
+  @available(swift, obsoleted: 3, renamed: "shiftIndexesStarting(at:by:)")
+  func shiftIndexesStartingAtIndex(_ index: Int, by delta: Int)
+  @available(*, unavailable, message: "superseded by import of -[NSObject init]")
+  convenience init()
+  @available(*, unavailable, message: "superseded by import of -[NSIndexSet initWithIndex:]")
+  convenience init(index value: Int)
+  @available(*, unavailable, message: "superseded by import of -[NSIndexSet initWithIndexesInRange:]")
+  convenience init(indexesIn range: NSRange)
+  init(indexesIn range: NSRange)
+  init(indexSet: IndexSet)
+  convenience init(index value: Int)
+  convenience init!()
+  init?(coder: NSCoder)
+}

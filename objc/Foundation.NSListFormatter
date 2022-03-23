@@ -1,0 +1,21 @@
+@_exported import CoreFoundation
+
+@available(iOS 13.0, *)
+class ListFormatter : Formatter {
+  var locale: Locale!
+  @NSCopying var itemFormatter: Formatter?
+  class func localizedString(byJoining strings: [String]) -> String
+  @available(swift, obsoleted: 3, renamed: "localizedString(byJoining:)")
+  class func localizedStringByJoiningStrings(_ strings: [String]) -> String
+  func string(from items: [Any]) -> String?
+  @available(swift, obsoleted: 3, renamed: "string(from:)")
+  func stringFromItems(_ items: [Any]) -> String?
+  func string(for obj: Any?) -> String?
+  @available(swift, obsoleted: 3, renamed: "string(for:)")
+  func stringForObjectValue(_ obj: Any?) -> String?
+  init()
+  init?(coder: NSCoder)
+}
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "ListFormatter")
+typealias NSListFormatter = ListFormatter

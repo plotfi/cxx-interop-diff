@@ -1,0 +1,167 @@
+@_exported import CoreFoundation
+
+@available(swift, obsoleted: 3, renamed: "NSExceptionName.undefinedKeyException")
+let NSUndefinedKeyException: NSExceptionName
+extension NSExceptionName {
+  static let undefinedKeyException: NSExceptionName
+}
+struct NSKeyValueOperator : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(rawValue: String)
+  var _rawValue: NSString
+  var rawValue: String { get }
+  typealias RawValue = String
+  typealias _ObjectiveCType = NSString
+}
+@available(swift, obsoleted: 3, renamed: "NSKeyValueOperator.averageKeyValueOperator")
+let NSAverageKeyValueOperator: NSKeyValueOperator
+extension NSKeyValueOperator {
+  static let averageKeyValueOperator: NSKeyValueOperator
+  static let countKeyValueOperator: NSKeyValueOperator
+  static let distinctUnionOfArraysKeyValueOperator: NSKeyValueOperator
+  static let distinctUnionOfObjectsKeyValueOperator: NSKeyValueOperator
+  static let distinctUnionOfSetsKeyValueOperator: NSKeyValueOperator
+  static let maximumKeyValueOperator: NSKeyValueOperator
+  static let minimumKeyValueOperator: NSKeyValueOperator
+  static let sumKeyValueOperator: NSKeyValueOperator
+  static let unionOfArraysKeyValueOperator: NSKeyValueOperator
+  static let unionOfObjectsKeyValueOperator: NSKeyValueOperator
+  static let unionOfSetsKeyValueOperator: NSKeyValueOperator
+}
+@available(swift, obsoleted: 3, renamed: "NSKeyValueOperator.countKeyValueOperator")
+let NSCountKeyValueOperator: NSKeyValueOperator
+@available(swift, obsoleted: 3, renamed: "NSKeyValueOperator.distinctUnionOfArraysKeyValueOperator")
+let NSDistinctUnionOfArraysKeyValueOperator: NSKeyValueOperator
+@available(swift, obsoleted: 3, renamed: "NSKeyValueOperator.distinctUnionOfObjectsKeyValueOperator")
+let NSDistinctUnionOfObjectsKeyValueOperator: NSKeyValueOperator
+@available(swift, obsoleted: 3, renamed: "NSKeyValueOperator.distinctUnionOfSetsKeyValueOperator")
+let NSDistinctUnionOfSetsKeyValueOperator: NSKeyValueOperator
+@available(swift, obsoleted: 3, renamed: "NSKeyValueOperator.maximumKeyValueOperator")
+let NSMaximumKeyValueOperator: NSKeyValueOperator
+@available(swift, obsoleted: 3, renamed: "NSKeyValueOperator.minimumKeyValueOperator")
+let NSMinimumKeyValueOperator: NSKeyValueOperator
+@available(swift, obsoleted: 3, renamed: "NSKeyValueOperator.sumKeyValueOperator")
+let NSSumKeyValueOperator: NSKeyValueOperator
+@available(swift, obsoleted: 3, renamed: "NSKeyValueOperator.unionOfArraysKeyValueOperator")
+let NSUnionOfArraysKeyValueOperator: NSKeyValueOperator
+@available(swift, obsoleted: 3, renamed: "NSKeyValueOperator.unionOfObjectsKeyValueOperator")
+let NSUnionOfObjectsKeyValueOperator: NSKeyValueOperator
+@available(swift, obsoleted: 3, renamed: "NSKeyValueOperator.unionOfSetsKeyValueOperator")
+let NSUnionOfSetsKeyValueOperator: NSKeyValueOperator
+extension NSObject {
+  class var accessInstanceVariablesDirectly: Bool { get }
+  class func value(forKey key: String) -> Any?
+  func value(forKey key: String) -> Any?
+  @available(swift, obsoleted: 3, renamed: "value(forKey:)")
+  class func valueForKey(_ key: String) -> Any?
+  @available(swift, obsoleted: 3, renamed: "value(forKey:)")
+  func valueForKey(_ key: String) -> Any?
+  class func setValue(_ value: Any?, forKey key: String)
+  func setValue(_ value: Any?, forKey key: String)
+  class func validateValue(_ ioValue: AutoreleasingUnsafeMutablePointer<AnyObject?>, forKey inKey: String) throws
+  func validateValue(_ ioValue: AutoreleasingUnsafeMutablePointer<AnyObject?>, forKey inKey: String) throws
+  class func mutableArrayValue(forKey key: String) -> NSMutableArray
+  func mutableArrayValue(forKey key: String) -> NSMutableArray
+  @available(swift, obsoleted: 3, renamed: "mutableArrayValue(forKey:)")
+  class func mutableArrayValueForKey(_ key: String) -> NSMutableArray
+  @available(swift, obsoleted: 3, renamed: "mutableArrayValue(forKey:)")
+  func mutableArrayValueForKey(_ key: String) -> NSMutableArray
+  @available(iOS 5.0, *)
+  class func mutableOrderedSetValue(forKey key: String) -> NSMutableOrderedSet
+  @available(iOS 5.0, *)
+  func mutableOrderedSetValue(forKey key: String) -> NSMutableOrderedSet
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "mutableOrderedSetValue(forKey:)")
+  class func mutableOrderedSetValueForKey(_ key: String) -> NSMutableOrderedSet
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "mutableOrderedSetValue(forKey:)")
+  func mutableOrderedSetValueForKey(_ key: String) -> NSMutableOrderedSet
+  class func mutableSetValue(forKey key: String) -> NSMutableSet
+  func mutableSetValue(forKey key: String) -> NSMutableSet
+  @available(swift, obsoleted: 3, renamed: "mutableSetValue(forKey:)")
+  class func mutableSetValueForKey(_ key: String) -> NSMutableSet
+  @available(swift, obsoleted: 3, renamed: "mutableSetValue(forKey:)")
+  func mutableSetValueForKey(_ key: String) -> NSMutableSet
+  class func value(forKeyPath keyPath: String) -> Any?
+  func value(forKeyPath keyPath: String) -> Any?
+  @available(swift, obsoleted: 3, renamed: "value(forKeyPath:)")
+  class func valueForKeyPath(_ keyPath: String) -> Any?
+  @available(swift, obsoleted: 3, renamed: "value(forKeyPath:)")
+  func valueForKeyPath(_ keyPath: String) -> Any?
+  class func setValue(_ value: Any?, forKeyPath keyPath: String)
+  func setValue(_ value: Any?, forKeyPath keyPath: String)
+  class func validateValue(_ ioValue: AutoreleasingUnsafeMutablePointer<AnyObject?>, forKeyPath inKeyPath: String) throws
+  func validateValue(_ ioValue: AutoreleasingUnsafeMutablePointer<AnyObject?>, forKeyPath inKeyPath: String) throws
+  class func mutableArrayValue(forKeyPath keyPath: String) -> NSMutableArray
+  func mutableArrayValue(forKeyPath keyPath: String) -> NSMutableArray
+  @available(swift, obsoleted: 3, renamed: "mutableArrayValue(forKeyPath:)")
+  class func mutableArrayValueForKeyPath(_ keyPath: String) -> NSMutableArray
+  @available(swift, obsoleted: 3, renamed: "mutableArrayValue(forKeyPath:)")
+  func mutableArrayValueForKeyPath(_ keyPath: String) -> NSMutableArray
+  @available(iOS 5.0, *)
+  class func mutableOrderedSetValue(forKeyPath keyPath: String) -> NSMutableOrderedSet
+  @available(iOS 5.0, *)
+  func mutableOrderedSetValue(forKeyPath keyPath: String) -> NSMutableOrderedSet
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "mutableOrderedSetValue(forKeyPath:)")
+  class func mutableOrderedSetValueForKeyPath(_ keyPath: String) -> NSMutableOrderedSet
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "mutableOrderedSetValue(forKeyPath:)")
+  func mutableOrderedSetValueForKeyPath(_ keyPath: String) -> NSMutableOrderedSet
+  class func mutableSetValue(forKeyPath keyPath: String) -> NSMutableSet
+  func mutableSetValue(forKeyPath keyPath: String) -> NSMutableSet
+  @available(swift, obsoleted: 3, renamed: "mutableSetValue(forKeyPath:)")
+  class func mutableSetValueForKeyPath(_ keyPath: String) -> NSMutableSet
+  @available(swift, obsoleted: 3, renamed: "mutableSetValue(forKeyPath:)")
+  func mutableSetValueForKeyPath(_ keyPath: String) -> NSMutableSet
+  class func value(forUndefinedKey key: String) -> Any?
+  func value(forUndefinedKey key: String) -> Any?
+  @available(swift, obsoleted: 3, renamed: "value(forUndefinedKey:)")
+  class func valueForUndefinedKey(_ key: String) -> Any?
+  @available(swift, obsoleted: 3, renamed: "value(forUndefinedKey:)")
+  func valueForUndefinedKey(_ key: String) -> Any?
+  class func setValue(_ value: Any?, forUndefinedKey key: String)
+  func setValue(_ value: Any?, forUndefinedKey key: String)
+  class func setNilValueForKey(_ key: String)
+  func setNilValueForKey(_ key: String)
+  class func dictionaryWithValues(forKeys keys: [String]) -> [String : Any]
+  func dictionaryWithValues(forKeys keys: [String]) -> [String : Any]
+  @available(swift, obsoleted: 3, renamed: "dictionaryWithValues(forKeys:)")
+  class func dictionaryWithValuesForKeys(_ keys: [String]) -> [String : Any]
+  @available(swift, obsoleted: 3, renamed: "dictionaryWithValues(forKeys:)")
+  func dictionaryWithValuesForKeys(_ keys: [String]) -> [String : Any]
+  class func setValuesForKeysWith(_ keyedValues: [String : Any])
+  func setValuesForKeysWith(_ keyedValues: [String : Any])
+  @available(swift, obsoleted: 3, renamed: "setValuesForKeysWith(_:)")
+  class func setValuesForKeysWithDictionary(_ keyedValues: [String : Any])
+  @available(swift, obsoleted: 3, renamed: "setValuesForKeysWith(_:)")
+  func setValuesForKeysWithDictionary(_ keyedValues: [String : Any])
+}
+extension NSArray {
+  func value(forKey key: String) -> Any
+  @available(swift, obsoleted: 3, renamed: "value(forKey:)")
+  func valueForKey(_ key: String) -> Any
+  func setValue(_ value: Any?, forKey key: String)
+}
+extension NSDictionary {
+  func value(forKey key: String) -> Any?
+  @available(swift, obsoleted: 3, renamed: "value(forKey:)")
+  func valueForKey(_ key: String) -> Any?
+}
+extension NSMutableDictionary {
+  func setValue(_ value: Any?, forKey key: String)
+}
+extension NSOrderedSet {
+  @available(iOS 5.0, *)
+  func value(forKey key: String) -> Any
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "value(forKey:)")
+  func valueForKey(_ key: String) -> Any
+  @available(iOS 5.0, *)
+  func setValue(_ value: Any?, forKey key: String)
+}
+extension NSSet {
+  func value(forKey key: String) -> Any
+  @available(swift, obsoleted: 3, renamed: "value(forKey:)")
+  func valueForKey(_ key: String) -> Any
+  func setValue(_ value: Any?, forKey key: String)
+}
