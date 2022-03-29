@@ -1,138 +1,50 @@
-@_exported import Foundation
-
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextContentManager.EnumerationOptions")
-typealias NSTextContentManagerEnumerationOptions = NSTextContentManager.EnumerationOptions
-extension NSTextContentManager {
-  @available(iOS 15.0, *)
-  struct EnumerationOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSTextContentManager.EnumerationOptions
-    typealias ArrayLiteralElement = NSTextContentManager.EnumerationOptions
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var none: NSTextContentManager.EnumerationOptions { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "none")
-    static var None: NSTextContentManager.EnumerationOptions { get }
-    static var reverse: NSTextContentManager.EnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "reverse")
-    static var Reverse: NSTextContentManager.EnumerationOptions { get }
-  }
-}
-@available(iOS 15.0, *)
-protocol NSTextElementProvider : NSObjectProtocol {
-  var documentRange: NSTextRange { get }
-  func enumerateTextElements(from textLocation: NSTextLocation?, options: NSTextContentManager.EnumerationOptions = [], using block: (NSTextElement) -> Bool) -> NSTextLocation?
-  @available(swift, obsoleted: 3, renamed: "enumerateTextElements(from:options:using:)")
-  func enumerateTextElementsFromLocation(_ textLocation: NSTextLocation?, options: NSTextContentManager.EnumerationOptions = [], usingBlock block: (NSTextElement) -> Bool) -> NSTextLocation?
-  func replaceContents(in range: NSTextRange, with textElements: [NSTextElement]?)
-  @available(swift, obsoleted: 3, renamed: "replaceContents(in:with:)")
-  func replaceContentsInRange(_ range: NSTextRange, withTextElements textElements: [NSTextElement]?)
-  func synchronizeToBackingStore(_ completionHandler: (@Sendable (Error?) -> Void)? = nil)
-  func synchronizeToBackingStore() async throws
-  optional func location(_ location: NSTextLocation, offsetBy offset: Int) -> NSTextLocation?
-  @available(swift, obsoleted: 3, renamed: "location(_:offsetBy:)")
-  optional func locationFromLocation(_ location: NSTextLocation, withOffset offset: Int) -> NSTextLocation?
-  optional func offset(from: NSTextLocation, to: NSTextLocation) -> Int
-  @available(swift, obsoleted: 3, renamed: "offset(from:to:)")
-  optional func offsetFromLocation(_ from: NSTextLocation, toLocation to: NSTextLocation) -> Int
-  optional func adjustedRange(from textRange: NSTextRange, forEditingTextSelection: Bool) -> NSTextRange?
-  @available(swift, obsoleted: 3, renamed: "adjustedRange(from:forEditingTextSelection:)")
-  optional func adjustedRangeFromRange(_ textRange: NSTextRange, forEditingTextSelection: Bool) -> NSTextRange?
-}
-@available(iOS 15.0, *)
-class NSTextContentManager : NSObject, NSTextElementProvider, NSSecureCoding {
-  init()
-  init?(coder: NSCoder)
-  weak var delegate: @sil_weak NSTextContentManagerDelegate?
-  var textLayoutManagers: [NSTextLayoutManager] { get }
-  func addTextLayoutManager(_ textLayoutManager: NSTextLayoutManager)
-  func removeTextLayoutManager(_ textLayoutManager: NSTextLayoutManager)
-  var primaryTextLayoutManager: NSTextLayoutManager?
-  func synchronizeTextLayoutManagers(_ completionHandler: (@Sendable (Error?) -> Void)? = nil)
-  func synchronizeTextLayoutManagers() async throws
-  func textElements(for range: NSTextRange) -> [NSTextElement]
-  @available(swift, obsoleted: 3, renamed: "textElements(for:)")
-  func textElementsForRange(_ range: NSTextRange) -> [NSTextElement]
-  var hasEditingTransaction: Bool { get }
-  func performEditingTransaction(_ transaction: () -> Void)
-  @available(swift, obsoleted: 3, renamed: "performEditingTransaction(_:)")
-  func performEditingTransactionUsingBlock(_ transaction: () -> Void)
-  func recordEditAction(in originalTextRange: NSTextRange, newTextRange: NSTextRange)
-  @available(swift, obsoleted: 3, renamed: "recordEditAction(in:newTextRange:)")
-  func recordEditActionInRange(_ originalTextRange: NSTextRange, newTextRange: NSTextRange)
-  var automaticallySynchronizesTextLayoutManagers: Bool
-  var automaticallySynchronizesToBackingStore: Bool
-  @available(iOS 15.0, *)
-  var documentRange: NSTextRange { get }
-  @available(iOS 15.0, *)
-  class var supportsSecureCoding: Bool { get }
-  @available(iOS 15.0, *)
-  func enumerateTextElements(from textLocation: NSTextLocation?, options: NSTextContentManager.EnumerationOptions = [], using block: (NSTextElement) -> Bool) -> NSTextLocation?
-  @available(iOS 15.0, *)
-  func replaceContents(in range: NSTextRange, with textElements: [NSTextElement]?)
-  @available(iOS 15.0, *)
-  func synchronizeToBackingStore(_ completionHandler: (@Sendable (Error?) -> Void)? = nil)
-  @available(iOS 15.0, *)
-  func synchronizeToBackingStore() async throws
-  @available(iOS 15.0, *)
-  func location(_ location: NSTextLocation, offsetBy offset: Int) -> NSTextLocation?
-  @available(iOS 15.0, *)
-  func offset(from: NSTextLocation, to: NSTextLocation) -> Int
-  @available(iOS 15.0, *)
-  func adjustedRange(from textRange: NSTextRange, forEditingTextSelection: Bool) -> NSTextRange?
-  @available(iOS 15.0, *)
-  func encode(with coder: NSCoder)
-}
-@available(iOS 15.0, *)
-protocol NSTextContentManagerDelegate : NSObjectProtocol {
-  optional func textContentManager(_ textContentManager: NSTextContentManager, textElementAt location: NSTextLocation) -> NSTextElement?
-  @available(swift, obsoleted: 3, renamed: "textContentManager(_:textElementAt:)")
-  optional func textContentManager(_ textContentManager: NSTextContentManager, textElementAtLocation location: NSTextLocation) -> NSTextElement?
-  optional func textContentManager(_ textContentManager: NSTextContentManager, shouldEnumerate textElement: NSTextElement, options: NSTextContentManager.EnumerationOptions = []) -> Bool
-  @available(swift, obsoleted: 3, renamed: "textContentManager(_:shouldEnumerate:options:)")
-  optional func textContentManager(_ textContentManager: NSTextContentManager, shouldEnumerateTextElement textElement: NSTextElement, options: NSTextContentManager.EnumerationOptions = []) -> Bool
-}
-@available(iOS 15.0, *)
-protocol NSTextContentStorageDelegate : NSTextContentManagerDelegate {
-  optional func textContentStorage(_ textContentStorage: NSTextContentStorage, textParagraphWith range: NSRange) -> NSTextParagraph?
-  @available(swift, obsoleted: 3, renamed: "textContentStorage(_:textParagraphWith:)")
-  optional func textContentStorage(_ textContentStorage: NSTextContentStorage, textParagraphWithRange range: NSRange) -> NSTextParagraph?
-}
-@available(iOS 15.0, *)
-class NSTextContentStorage : NSTextContentManager, NSTextStorageObserving {
-  weak var delegate: @sil_weak NSTextContentStorageDelegate?
-  @NSCopying var attributedString: NSAttributedString?
-  func attributedString(for textElement: NSTextElement) -> NSAttributedString?
-  @available(swift, obsoleted: 3, renamed: "attributedString(for:)")
-  func attributedStringForTextElement(_ textElement: NSTextElement) -> NSAttributedString?
-  func textElement(for attributedString: NSAttributedString) -> NSTextElement?
-  @available(swift, obsoleted: 3, renamed: "textElement(for:)")
-  func textElementForAttributedString(_ attributedString: NSAttributedString) -> NSTextElement?
-  func location(_ location: NSTextLocation, offsetBy offset: Int) -> NSTextLocation?
-  @available(swift, obsoleted: 3, renamed: "location(_:offsetBy:)")
-  func locationFromLocation(_ location: NSTextLocation, withOffset offset: Int) -> NSTextLocation?
-  func offset(from: NSTextLocation, to: NSTextLocation) -> Int
-  @available(swift, obsoleted: 3, renamed: "offset(from:to:)")
-  func offsetFromLocation(_ from: NSTextLocation, toLocation to: NSTextLocation) -> Int
-  func adjustedRange(from textRange: NSTextRange, forEditingTextSelection: Bool) -> NSTextRange?
-  @available(swift, obsoleted: 3, renamed: "adjustedRange(from:forEditingTextSelection:)")
-  func adjustedRangeFromRange(_ textRange: NSTextRange, forEditingTextSelection: Bool) -> NSTextRange?
-  init()
-  init?(coder: NSCoder)
-  @available(iOS 15.0, *)
-  var textStorage: NSTextStorage?
-  @available(iOS 15.0, *)
-  func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
-  @available(iOS 15.0, *)
-  func performEditingTransaction(for textStorage: NSTextStorage, using transaction: () -> Void)
-}
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSNotification.Name.unsupportedAttributeAddedNotification")
-let NSTextContentStorageUnsupportedAttributeAddedNotification: NSNotification.Name
-extension NSNotification.Name {
-  @available(iOS 15.0, *)
-  static let unsupportedAttributeAddedNotification: NSNotification.Name
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
+#import <FileProvider/NSFileProviderItem.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
+#import <UIKit/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.NSTextContentManager'

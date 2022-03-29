@@ -1,5 +1,7 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSKeyValueObservingOptions = Int
 struct NSKeyValueObservingOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt

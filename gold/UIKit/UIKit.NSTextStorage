@@ -1,107 +1,50 @@
-@_exported import Foundation
-
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 4.2, renamed: "NSTextStorage.EditActions")
-typealias NSTextStorageEditActions = NSTextStorage.EditActions
-extension NSTextStorage {
-  @available(iOS 7.0, *)
-  struct EditActions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSTextStorage.EditActions
-    typealias ArrayLiteralElement = NSTextStorage.EditActions
-    static var editedAttributes: NSTextStorage.EditActions { get }
-    @available(swift, obsoleted: 3, renamed: "editedAttributes")
-    static var EditedAttributes: NSTextStorage.EditActions { get }
-    static var editedCharacters: NSTextStorage.EditActions { get }
-    @available(swift, obsoleted: 3, renamed: "editedCharacters")
-    static var EditedCharacters: NSTextStorage.EditActions { get }
-  }
-
-  /**** Notifications ****/
-  @available(iOS 7.0, *)
-  class let willProcessEditingNotification: NSNotification.Name
-  @available(iOS 7.0, *)
-  class let didProcessEditingNotification: NSNotification.Name
-}
-@available(iOS 7.0, *)
-class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
-
-  /**************************** Layout manager ****************************/
-  var layoutManagers: [NSLayoutManager] { get }
-  func addLayoutManager(_ aLayoutManager: NSLayoutManager)
-  func removeLayoutManager(_ aLayoutManager: NSLayoutManager)
-
-  /**************************** Pending edit info ****************************/
-  var editedMask: NSTextStorage.EditActions { get }
-  var editedRange: NSRange { get }
-  var changeInLength: Int { get }
-
-  /**************************** Delegate ****************************/
-  weak var delegate: @sil_weak NSTextStorageDelegate?
-
-  /**************************** Edit management ****************************/
-  func edited(_ editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int)
-  func processEditing()
-
-  /**************************** Attribute fixing ****************************/
-  var fixesAttributesLazily: Bool { get }
-  func invalidateAttributes(in range: NSRange)
-  @available(swift, obsoleted: 3, renamed: "invalidateAttributes(in:)")
-  func invalidateAttributesInRange(_ range: NSRange)
-  func ensureAttributesAreFixed(in range: NSRange)
-  @available(swift, obsoleted: 3, renamed: "ensureAttributesAreFixed(in:)")
-  func ensureAttributesAreFixedInRange(_ range: NSRange)
-
-  /**************************** NSTextStorageObserving ****************************/
-  @available(iOS 15.0, *)
-  weak var textStorageObserver: @sil_weak NSTextStorageObserving?
-  init()
-  init?(coder: NSCoder)
-  @available(iOS 9.0, *)
-  init(url: URL, options: [NSAttributedString.DocumentReadingOptionKey : Any] = [:], documentAttributes dict: AutoreleasingUnsafeMutablePointer<NSDictionary?>?) throws
-  @available(iOS 7.0, *)
-  init(data: Data, options: [NSAttributedString.DocumentReadingOptionKey : Any] = [:], documentAttributes dict: AutoreleasingUnsafeMutablePointer<NSDictionary?>?) throws
-  @available(iOS, introduced: 7.0, deprecated: 9.0)
-  init(fileURL url: URL, options: [AnyHashable : Any] = [:], documentAttributes dict: AutoreleasingUnsafeMutablePointer<NSDictionary?>?) throws
-
-  /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
-  @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
-  @available(iOS 15.0, *)
-  init(__contentsOfMarkdownFileAt markdownFile: URL, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
-  @available(iOS 15.0, *)
-  init(__markdown markdown: Data, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
-  @available(iOS 15.0, *)
-  init(__markdownString markdownString: String, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
-  init(string str: String)
-  init(string str: String, attributes attrs: [NSAttributedString.Key : Any]? = nil)
-  init(attributedString attrStr: NSAttributedString)
-}
-
-/****  NSTextStorage delegate methods ****/
-protocol NSTextStorageDelegate : NSObjectProtocol {
-  @available(iOS 7.0, *)
-  optional func textStorage(_ textStorage: NSTextStorage, willProcessEditing editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int)
-  @available(iOS 7.0, *)
-  optional func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int)
-}
-
-/**** Notifications ****/
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextStorage.willProcessEditingNotification")
-let NSTextStorageWillProcessEditingNotification: NSNotification.Name
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextStorage.didProcessEditingNotification")
-let NSTextStorageDidProcessEditingNotification: NSNotification.Name
-@available(iOS 15.0, *)
-protocol NSTextStorageObserving : NSObjectProtocol {
-  var textStorage: NSTextStorage? { get set }
-  func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
-  @available(swift, obsoleted: 3, renamed: "processEditing(for:edited:range:changeInLength:invalidatedRange:)")
-  func processEditingForTextStorage(_ textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
-  func performEditingTransaction(for textStorage: NSTextStorage, using transaction: () -> Void)
-  @available(swift, obsoleted: 3, renamed: "performEditingTransaction(for:using:)")
-  func performEditingTransactionForTextStorage(_ textStorage: NSTextStorage, usingBlock transaction: () -> Void)
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
+#import <FileProvider/NSFileProviderItem.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
+#import <UIKit/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.NSTextStorage'

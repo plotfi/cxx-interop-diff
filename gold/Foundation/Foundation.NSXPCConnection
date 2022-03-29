@@ -6,21 +6,18 @@ protocol NSXPCProxyCreating {
   @available(iOS 9.0, *)
   optional func synchronousRemoteObjectProxyWithErrorHandler(_ handler: @escaping (Error) -> Void) -> Any
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSXPCConnectionOptions = Int
 @available(iOS 6.0, *)
-@available(swift, obsoleted: 3, renamed: "NSXPCConnection.Options")
-typealias NSXPCConnectionOptions = NSXPCConnection.Options
-extension NSXPCConnection {
-  @available(iOS 6.0, *)
-  struct Options : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSXPCConnection.Options
-    typealias ArrayLiteralElement = NSXPCConnection.Options
-    static var privileged: NSXPCConnection.Options { get }
-    @available(swift, obsoleted: 3, renamed: "privileged")
-    static var Privileged: NSXPCConnection.Options { get }
-  }
+struct NSXPCConnectionOptions : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt)
+  let rawValue: UInt
+  typealias RawValue = UInt
+  typealias Element = NSXPCConnectionOptions
+  typealias ArrayLiteralElement = NSXPCConnectionOptions
+  static var privileged: NSXPCConnectionOptions { get }
+  @available(swift, obsoleted: 3, renamed: "privileged")
+  static var Privileged: NSXPCConnectionOptions { get }
 }
 @available(iOS 6.0, *)
 class NSXPCConnection : NSObject, NSXPCProxyCreating {
@@ -28,7 +25,7 @@ class NSXPCConnection : NSObject, NSXPCProxyCreating {
   init(serviceName: String)
   var serviceName: String? { get }
   @available(iOS, unavailable)
-  init(machServiceName name: String, options: NSXPCConnection.Options = [])
+  init(machServiceName name: String, options: NSXPCConnectionOptions = [])
   init(listenerEndpoint endpoint: NSXPCListenerEndpoint)
   var endpoint: NSXPCListenerEndpoint { get }
   var exportedInterface: NSXPCInterface?

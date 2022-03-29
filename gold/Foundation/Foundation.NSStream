@@ -40,38 +40,38 @@ extension Stream {
     @available(swift, obsoleted: 3, renamed: "error")
     static var Error: Stream.Status { get }
   }
-  struct Event : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = Stream.Event
-    typealias ArrayLiteralElement = Stream.Event
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var none: Stream.Event { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "none")
-    static var None: Stream.Event { get }
-    static var openCompleted: Stream.Event { get }
-    @available(swift, obsoleted: 3, renamed: "openCompleted")
-    static var OpenCompleted: Stream.Event { get }
-    static var hasBytesAvailable: Stream.Event { get }
-    @available(swift, obsoleted: 3, renamed: "hasBytesAvailable")
-    static var HasBytesAvailable: Stream.Event { get }
-    static var hasSpaceAvailable: Stream.Event { get }
-    @available(swift, obsoleted: 3, renamed: "hasSpaceAvailable")
-    static var HasSpaceAvailable: Stream.Event { get }
-    static var errorOccurred: Stream.Event { get }
-    @available(swift, obsoleted: 3, renamed: "errorOccurred")
-    static var ErrorOccurred: Stream.Event { get }
-    static var endEncountered: Stream.Event { get }
-    @available(swift, obsoleted: 3, renamed: "endEncountered")
-    static var EndEncountered: Stream.Event { get }
-  }
 }
 @available(swift, obsoleted: 3, renamed: "Stream.Status")
 typealias NSStreamStatus = Stream.Status
-@available(swift, obsoleted: 3, renamed: "Stream.Event")
-typealias NSStreamEvent = Stream.Event
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSStreamEvent = Int
+struct NSStreamEvent : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt)
+  let rawValue: UInt
+  typealias RawValue = UInt
+  typealias Element = NSStreamEvent
+  typealias ArrayLiteralElement = NSStreamEvent
+  @available(*, unavailable, message: "use [] to construct an empty option set")
+  static var none: NSStreamEvent { get }
+  @available(*, unavailable, message: "use [] to construct an empty option set")
+  @available(swift, obsoleted: 3, renamed: "none")
+  static var None: NSStreamEvent { get }
+  static var openCompleted: NSStreamEvent { get }
+  @available(swift, obsoleted: 3, renamed: "openCompleted")
+  static var OpenCompleted: NSStreamEvent { get }
+  static var hasBytesAvailable: NSStreamEvent { get }
+  @available(swift, obsoleted: 3, renamed: "hasBytesAvailable")
+  static var HasBytesAvailable: NSStreamEvent { get }
+  static var hasSpaceAvailable: NSStreamEvent { get }
+  @available(swift, obsoleted: 3, renamed: "hasSpaceAvailable")
+  static var HasSpaceAvailable: NSStreamEvent { get }
+  static var errorOccurred: NSStreamEvent { get }
+  @available(swift, obsoleted: 3, renamed: "errorOccurred")
+  static var ErrorOccurred: NSStreamEvent { get }
+  static var endEncountered: NSStreamEvent { get }
+  @available(swift, obsoleted: 3, renamed: "endEncountered")
+  static var EndEncountered: NSStreamEvent { get }
+}
 @available(swift, obsoleted: 3, renamed: "Stream")
 typealias NSStream = Stream
 class Stream : NSObject {
@@ -166,9 +166,7 @@ extension OutputStream {
 @available(swift, obsoleted: 3, renamed: "StreamDelegate")
 typealias NSStreamDelegate = StreamDelegate
 protocol StreamDelegate : NSObjectProtocol {
-  optional func stream(_ aStream: Stream, handle eventCode: Stream.Event)
-  @available(swift, obsoleted: 3, renamed: "stream(_:handle:)")
-  optional func stream(_ aStream: Stream, handleEvent eventCode: Stream.Event)
+  optional func stream(_ aStream: Stream, handleEvent eventCode: NSStreamEvent)
 }
 @available(iOS 2.0, *)
 @available(swift, obsoleted: 3, renamed: "Stream.PropertyKey.socketSecurityLevelKey")
