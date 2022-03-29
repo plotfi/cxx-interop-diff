@@ -1,8 +1,0 @@
-@_exported import CoreFoundation
-
-protocol NSExtensionRequestHandling : NSObjectProtocol {
-  @available(iOS 8.0, *)
-  func beginRequest(with context: NSExtensionContext)
-  @available(swift, obsoleted: 3, renamed: "beginRequest(with:)")
-  func beginRequestWithExtensionContext(_ context: NSExtensionContext)
-}
