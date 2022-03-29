@@ -1,0 +1,50 @@
+@_exported import CoreFoundation
+
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "DateIntervalFormatter.Style")
+typealias NSDateIntervalFormatterStyle = DateIntervalFormatter.Style
+extension DateIntervalFormatter {
+  @available(iOS 8.0, *)
+  enum Style : UInt, @unchecked Sendable {
+    init?(rawValue: UInt)
+    var rawValue: UInt { get }
+    typealias RawValue = UInt
+    case none
+    @available(swift, obsoleted: 3, renamed: "none")
+    static var NSDateIntervalFormatterNoStyle: DateIntervalFormatter.Style { get }
+    case short
+    @available(swift, obsoleted: 3, renamed: "short")
+    static var NSDateIntervalFormatterShortStyle: DateIntervalFormatter.Style { get }
+    case medium
+    @available(swift, obsoleted: 3, renamed: "medium")
+    static var NSDateIntervalFormatterMediumStyle: DateIntervalFormatter.Style { get }
+    case long
+    @available(swift, obsoleted: 3, renamed: "long")
+    static var NSDateIntervalFormatterLongStyle: DateIntervalFormatter.Style { get }
+    case full
+    @available(swift, obsoleted: 3, renamed: "full")
+    static var NSDateIntervalFormatterFullStyle: DateIntervalFormatter.Style { get }
+  }
+}
+@available(iOS 8.0, *)
+class DateIntervalFormatter : Formatter {
+  var locale: Locale!
+  var calendar: Calendar!
+  var timeZone: TimeZone!
+  var dateTemplate: String!
+  var dateStyle: DateIntervalFormatter.Style
+  var timeStyle: DateIntervalFormatter.Style
+  func string(from fromDate: Date, to toDate: Date) -> String
+  @available(swift, obsoleted: 3, renamed: "string(from:to:)")
+  func stringFromDate(_ fromDate: Date, toDate: Date) -> String
+  @available(iOS 10.0, *)
+  func string(from dateInterval: DateInterval) -> String?
+  @available(iOS 10.0, *)
+  @available(swift, obsoleted: 3, renamed: "string(from:)")
+  func stringFromDateInterval(_ dateInterval: DateInterval) -> String?
+  init()
+  init?(coder: NSCoder)
+}
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "DateIntervalFormatter")
+typealias NSDateIntervalFormatter = DateIntervalFormatter

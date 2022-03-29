@@ -1,0 +1,41 @@
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+protocol NSTextLocation : NSObjectProtocol {
+  @available(iOS 15.0, *)
+  func compare(_ location: NSTextLocation) -> ComparisonResult
+}
+@available(iOS 15.0, *)
+class NSTextRange : NSObject {
+  init?(location: NSTextLocation, end endLocation: NSTextLocation?)
+  @available(swift, obsoleted: 3, renamed: "init(location:end:)")
+  init?(location: NSTextLocation, endLocation: NSTextLocation?)
+  convenience init(location: NSTextLocation)
+  @available(*, unavailable)
+  convenience init()
+  @available(*, unavailable)
+  class func new() -> Self
+  var isEmpty: Bool { get }
+  @available(swift, obsoleted: 3, renamed: "isEmpty")
+  var empty: Bool { get }
+  var location: NSTextLocation { get }
+  var endLocation: NSTextLocation { get }
+  func isEqual(to textRange: NSTextRange) -> Bool
+  @available(swift, obsoleted: 3, renamed: "isEqual(to:)")
+  func isEqualToTextRange(_ textRange: NSTextRange) -> Bool
+  func contains(_ location: NSTextLocation) -> Bool
+  @available(swift, obsoleted: 3, renamed: "contains(_:)")
+  func containsLocation(_ location: NSTextLocation) -> Bool
+  func contains(_ textRange: NSTextRange) -> Bool
+  @available(swift, obsoleted: 3, renamed: "contains(_:)")
+  func containsRange(_ textRange: NSTextRange) -> Bool
+  func intersects(_ textRange: NSTextRange) -> Bool
+  @available(swift, obsoleted: 3, renamed: "intersects(_:)")
+  func intersectsWithTextRange(_ textRange: NSTextRange) -> Bool
+  func intersection(_ textRange: NSTextRange) -> Self?
+  @available(swift, obsoleted: 3, renamed: "intersection(_:)")
+  func textRangeByIntersectingWithTextRange(_ textRange: NSTextRange) -> Self?
+  func union(_ textRange: NSTextRange) -> Self
+  @available(swift, obsoleted: 3, renamed: "union(_:)")
+  func textRangeByFormingUnionWithTextRange(_ textRange: NSTextRange) -> Self
+}

@@ -1,0 +1,90 @@
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+class UIFocusEffect : NSObject, NSCopying {
+
+  /// Creates a default system effect using metrics inferred from the focus item.
+  @available(*, unavailable, message: "superseded by import of -[NSObject init]")
+  convenience init()
+
+  /// Creates a default system effect using metrics inferred from the focus item.
+  @available(*, unavailable, renamed: "init()", message: "Not available in Swift")
+  class func effect() -> Self
+  @available(*, unavailable)
+  class func new() -> Self
+  init()
+  @available(iOS 15.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+}
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "UIFocusHaloEffect.Position")
+typealias UIFocusHaloEffectPosition = UIFocusHaloEffect.Position
+extension UIFocusHaloEffect {
+  @available(iOS 15.0, *)
+  enum Position : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+
+    /// Automatically detects the best position depending on the the focus item and its containing view hierarchy.
+    case automatic
+
+    /// Automatically detects the best position depending on the the focus item and its containing view hierarchy.
+    @available(swift, obsoleted: 3, renamed: "automatic")
+    static var Automatic: UIFocusHaloEffect.Position { get }
+
+    /// Draws the halo around the given shape.
+    case outside
+
+    /// Draws the halo around the given shape.
+    @available(swift, obsoleted: 3, renamed: "outside")
+    static var Outside: UIFocusHaloEffect.Position { get }
+
+    /// Draws the halo inside the given shape.
+    case inside
+
+    /// Draws the halo inside the given shape.
+    @available(swift, obsoleted: 3, renamed: "inside")
+    static var Inside: UIFocusHaloEffect.Position { get }
+  }
+}
+@available(iOS 15.0, *)
+class UIFocusHaloEffect : UIFocusEffect {
+
+  /// Creates a rectangular halo.
+  convenience init(rect: CGRect)
+
+  /// Creates a rectangular halo.
+  @available(*, unavailable, renamed: "init(rect:)", message: "Not available in Swift")
+  class func effectWithRect(_ rect: CGRect) -> Self
+
+  /// Creates a rounded rect halo using the specified corner radius and corner curve.
+  convenience init(roundedRect rect: CGRect, cornerRadius: CGFloat, curve: CALayerCornerCurve)
+
+  /// Creates a rounded rect halo using the specified corner radius and corner curve.
+  @available(*, unavailable, renamed: "init(roundedRect:cornerRadius:curve:)", message: "Not available in Swift")
+  class func effectWithRoundedRect(_ rect: CGRect, cornerRadius: CGFloat, curve: CALayerCornerCurve) -> Self
+
+  /// Creates a halo with the given bezier path.
+  convenience init(path bezierPath: UIBezierPath)
+
+  /// Creates a halo with the given bezier path.
+  @available(*, unavailable, renamed: "init(path:)", message: "Not available in Swift")
+  class func effectWithPath(_ bezierPath: UIBezierPath) -> Self
+
+  /// Container view in which to place the effect. When not set, the container is determined automatically
+  /// from the focus item that provided this effect and the @c referenceView (if present).
+  weak var containerView: @sil_weak UIView?
+
+  /// When set, the halo is placed above this view. If a @c containerView is also set, the @c referenceView must be a descendant
+  /// of the @c containerView. The system will ensure that the halo is in the container but visually above the @c referenceView.
+  weak var referenceView: @sil_weak UIView?
+
+  /// Position of the halo relative to the specified shape. Defaults to @c UIFocusHaloEffectPositionAutomatic.
+  var position: UIFocusHaloEffect.Position
+
+  /// Creates a default system effect using metrics inferred from the focus item.
+  @available(*, unavailable, message: "superseded by import of -[NSObject init]")
+  convenience init()
+  init()
+}

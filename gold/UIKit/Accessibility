@@ -1,0 +1,75 @@
+@_exported import Accessibility.AXAudiograph
+@_exported import Accessibility.AXBrailleMap
+@_exported import Accessibility.AXColorUtilities
+@_exported import Accessibility.AXCustomContent
+@_exported import Accessibility.AXFoundation
+@_exported import Accessibility.AXHearingUtilities
+import Foundation
+import _Concurrency
+
+@available(macOS 12.2, iOS 15.2, tvOS 15.2, watchOS 8.2, *)
+extension AXBrailleMap {
+  subscript(point: CGPoint) -> Float
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension AXNumericDataAxisDescriptor {
+  var range: ClosedRange<Double>
+  var gridlinePositions: [Double]
+  convenience init(title: String, range: ClosedRange<Double>, gridlinePositions: [Double], valueDescriptionProvider: @escaping ((Double) -> String))
+  convenience init(attributedTitle: NSAttributedString, range: ClosedRange<Double>, gridlinePositions: [Double], valueDescriptionProvider: @escaping ((Double) -> String))
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension AXDataPoint {
+  enum Value {
+    case number(Double)
+    case category(String)
+  }
+  /// Initializer for a data point with a numeric X value.
+  convenience init(x: Double, y: Double? = nil, additionalValues: [AXDataPoint.Value] = [], label: String? = nil)
+  /// Initializer for a data point with a categorical X value.
+  convenience init(x: String, y: Double? = nil, additionalValues: [AXDataPoint.Value] = [], label: String? = nil)
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension AXChartDescriptor {
+  var xAxis: AXDataAxisDescriptor
+  var additionalAxes: [AXDataAxisDescriptor]
+  convenience init(title: String? = nil, summary: String? = nil, xAxis: AXDataAxisDescriptor, yAxis: AXNumericDataAxisDescriptor? = nil, additionalAxes: [AXDataAxisDescriptor] = [], series: [AXDataSeriesDescriptor])
+  convenience init(attributedTitle: NSAttributedString? = nil, summary: String? = nil, xAxis: AXDataAxisDescriptor, yAxis: AXNumericDataAxisDescriptor? = nil, additionalAxes: [AXDataAxisDescriptor] = [], series: [AXDataSeriesDescriptor])
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension AttributeScopes {
+  /// The scope of accessibility related attributes
+  var accessibility: AttributeScopes.AccessibilityAttributes.Type { get }
+  /// A scope of accessibility attributes to enrich how assistive technologies
+  /// will describe text.
+  struct AccessibilityAttributes : AttributeScope {
+    /// The level of this heading.
+    let accessibilityHeadingLevel: AttributeScopes.AccessibilityAttributes.HeadingLevelAttribute
+    /// Custom, localized text attributes.
+    let accessibilityTextCustom: AttributeScopes.AccessibilityAttributes.TextCustomAttribute
+    /// The textual context.
+    let accessibilityTextualContext: AttributeScopes.AccessibilityAttributes.TextualContextAttribute
+    /// Customizes whether punctuation should be spoken.
+    let accessibilitySpeechIncludesPunctuation: AttributeScopes.AccessibilityAttributes.IncludesPunctuationAttribute
+    /// Customizes the pitch the spoken speech.
+    let accessibilitySpeechAdjustedPitch: AttributeScopes.AccessibilityAttributes.AdjustedPitchAttribute
+    /// Customizes whether each character should be spoken separately.
+    let accessibilitySpeechSpellsOutCharacters: AttributeScopes.AccessibilityAttributes.SpellOutAttribute
+    /// Customizes if speech announcements should be queued.
+    let accessibilitySpeechAnnouncementsQueued: AttributeScopes.AccessibilityAttributes.QueueAnnouncementAttribute
+    /// The International Phonetic Alphabet representation for speech.
+    let accessibilitySpeechPhoneticNotation: AttributeScopes.AccessibilityAttributes.IPANotationAttribute
+    typealias DecodingConfiguration = AttributeScopeCodableConfiguration
+    typealias EncodingConfiguration = AttributeScopeCodableConfiguration
+  }
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension AttributeDynamicLookup {
+  subscript<T>(dynamicMember keyPath: KeyPath<AttributeScopes.AccessibilityAttributes, T>) -> T where T : AttributedStringKey { get }
+}
+

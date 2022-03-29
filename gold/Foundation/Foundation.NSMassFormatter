@@ -1,0 +1,56 @@
+@_exported import CoreFoundation
+
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "MassFormatter.Unit")
+typealias NSMassFormatterUnit = MassFormatter.Unit
+extension MassFormatter {
+  @available(iOS 8.0, *)
+  enum Unit : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case gram
+    @available(swift, obsoleted: 3, renamed: "gram")
+    static var Gram: MassFormatter.Unit { get }
+    case kilogram
+    @available(swift, obsoleted: 3, renamed: "kilogram")
+    static var Kilogram: MassFormatter.Unit { get }
+    case ounce
+    @available(swift, obsoleted: 3, renamed: "ounce")
+    static var Ounce: MassFormatter.Unit { get }
+    case pound
+    @available(swift, obsoleted: 3, renamed: "pound")
+    static var Pound: MassFormatter.Unit { get }
+    case stone
+    @available(swift, obsoleted: 3, renamed: "stone")
+    static var Stone: MassFormatter.Unit { get }
+  }
+}
+@available(iOS 8.0, *)
+class MassFormatter : Formatter {
+  @NSCopying var numberFormatter: NumberFormatter!
+  var unitStyle: Formatter.UnitStyle
+  var isForPersonMassUse: Bool
+  @available(swift, obsoleted: 3, renamed: "isForPersonMassUse")
+  var forPersonMassUse: Bool
+  func string(fromValue value: Double, unit: MassFormatter.Unit) -> String
+  @available(swift, obsoleted: 3, renamed: "string(fromValue:unit:)")
+  func stringFromValue(_ value: Double, unit: MassFormatter.Unit) -> String
+  func string(fromKilograms numberInKilograms: Double) -> String
+  @available(swift, obsoleted: 3, renamed: "string(fromKilograms:)")
+  func stringFromKilograms(_ numberInKilograms: Double) -> String
+  func unitString(fromValue value: Double, unit: MassFormatter.Unit) -> String
+  @available(swift, obsoleted: 3, renamed: "unitString(fromValue:unit:)")
+  func unitStringFromValue(_ value: Double, unit: MassFormatter.Unit) -> String
+  func unitString(fromKilograms numberInKilograms: Double, usedUnit unitp: UnsafeMutablePointer<MassFormatter.Unit>?) -> String
+  @available(swift, obsoleted: 3, renamed: "unitString(fromKilograms:usedUnit:)")
+  func unitStringFromKilograms(_ numberInKilograms: Double, usedUnit unitp: UnsafeMutablePointer<MassFormatter.Unit>?) -> String
+  func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
+  @available(swift, obsoleted: 3, renamed: "getObjectValue(_:for:errorDescription:)")
+  func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, forString string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
+  init()
+  init?(coder: NSCoder)
+}
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "MassFormatter")
+typealias NSMassFormatter = MassFormatter

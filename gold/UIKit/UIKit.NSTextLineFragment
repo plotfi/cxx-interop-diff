@@ -1,0 +1,30 @@
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+class NSTextLineFragment : NSObject, NSSecureCoding {
+  init(attributedString: NSAttributedString, range: NSRange)
+  init?(coder aDecoder: NSCoder)
+  convenience init(string: String, attributes: [NSAttributedString.Key : Any] = [:], range: NSRange)
+  @available(*, unavailable)
+  convenience init()
+  var attributedString: NSAttributedString { get }
+  var characterRange: NSRange { get }
+  var typographicBounds: CGRect { get }
+  var glyphOrigin: CGPoint { get }
+  func draw(at point: CGPoint, in context: CGContext)
+  @available(swift, obsoleted: 3, renamed: "draw(at:in:)")
+  func drawAtPoint(_ point: CGPoint, inContext context: CGContext)
+  func locationForCharacter(at index: Int) -> CGPoint
+  @available(swift, obsoleted: 3, renamed: "locationForCharacter(at:)")
+  func locationForCharacterAtIndex(_ index: Int) -> CGPoint
+  func characterIndex(for point: CGPoint) -> Int
+  @available(swift, obsoleted: 3, renamed: "characterIndex(for:)")
+  func characterIndexForPoint(_ point: CGPoint) -> Int
+  func fractionOfDistanceThroughGlyph(for point: CGPoint) -> CGFloat
+  @available(swift, obsoleted: 3, renamed: "fractionOfDistanceThroughGlyph(for:)")
+  func fractionOfDistanceThroughGlyphForPoint(_ point: CGPoint) -> CGFloat
+  @available(iOS 15.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 15.0, *)
+  func encode(with coder: NSCoder)
+}

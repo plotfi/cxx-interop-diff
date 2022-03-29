@@ -1,0 +1,65 @@
+@_exported import CoreFoundation
+
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "RelativeDateTimeFormatter.DateTimeStyle")
+typealias NSRelativeDateTimeFormatterStyle = RelativeDateTimeFormatter.DateTimeStyle
+extension RelativeDateTimeFormatter {
+  @available(iOS 13.0, *)
+  enum DateTimeStyle : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case numeric
+    @available(swift, obsoleted: 3, renamed: "numeric")
+    static var Numeric: RelativeDateTimeFormatter.DateTimeStyle { get }
+    case named
+    @available(swift, obsoleted: 3, renamed: "named")
+    static var Named: RelativeDateTimeFormatter.DateTimeStyle { get }
+  }
+  @available(iOS 13.0, *)
+  enum UnitsStyle : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case full
+    @available(swift, obsoleted: 3, renamed: "full")
+    static var Full: RelativeDateTimeFormatter.UnitsStyle { get }
+    case spellOut
+    @available(swift, obsoleted: 3, renamed: "spellOut")
+    static var SpellOut: RelativeDateTimeFormatter.UnitsStyle { get }
+    case short
+    @available(swift, obsoleted: 3, renamed: "short")
+    static var Short: RelativeDateTimeFormatter.UnitsStyle { get }
+    case abbreviated
+    @available(swift, obsoleted: 3, renamed: "abbreviated")
+    static var Abbreviated: RelativeDateTimeFormatter.UnitsStyle { get }
+  }
+}
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "RelativeDateTimeFormatter.UnitsStyle")
+typealias NSRelativeDateTimeFormatterUnitsStyle = RelativeDateTimeFormatter.UnitsStyle
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "RelativeDateTimeFormatter")
+typealias NSRelativeDateTimeFormatter = RelativeDateTimeFormatter
+@available(iOS 13.0, *)
+class RelativeDateTimeFormatter : Formatter {
+  var dateTimeStyle: RelativeDateTimeFormatter.DateTimeStyle
+  var unitsStyle: RelativeDateTimeFormatter.UnitsStyle
+  var formattingContext: Formatter.Context
+  var calendar: Calendar!
+  var locale: Locale!
+  func localizedString(from dateComponents: DateComponents) -> String
+  @available(swift, obsoleted: 3, renamed: "localizedString(from:)")
+  func localizedStringFromDateComponents(_ dateComponents: DateComponents) -> String
+  func localizedString(fromTimeInterval timeInterval: TimeInterval) -> String
+  @available(swift, obsoleted: 3, renamed: "localizedString(fromTimeInterval:)")
+  func localizedStringFromTimeInterval(_ timeInterval: TimeInterval) -> String
+  func localizedString(for date: Date, relativeTo referenceDate: Date) -> String
+  @available(swift, obsoleted: 3, renamed: "localizedString(for:relativeTo:)")
+  func localizedStringForDate(_ date: Date, relativeToDate referenceDate: Date) -> String
+  func string(for obj: Any?) -> String?
+  @available(swift, obsoleted: 3, renamed: "string(for:)")
+  func stringForObjectValue(_ obj: Any?) -> String?
+  init()
+  init?(coder: NSCoder)
+}

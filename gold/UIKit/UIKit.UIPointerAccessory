@@ -1,0 +1,95 @@
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+struct __UIPointerAccessoryPosition {
+  init()
+  init(offset: CGFloat, angle: CGFloat)
+
+  /// Offset from the primary pointer shape. Only allows positive values.
+  var offset: CGFloat
+
+  /// Clock-wise angle from top in radians.
+  var angle: CGFloat
+}
+@available(iOS 15.0, *)
+func __UIPointerAccessoryPositionMake(_ offset: CGFloat, _ angle: CGFloat) -> __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionTop: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionTopRight: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionRight: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionBottomRight: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionBottom: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionBottomLeft: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionLeft: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionTopLeft: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+@MainActor class UIPointerAccessory : NSObject, NSCopying {
+
+  /// This accessory's shape.
+  @NSCopying var __shape: __UIPointerShape { get }
+
+  /// This accessory shape's position relative to the pointer.
+  var position: __UIPointerAccessoryPosition { get }
+
+  /// Indicates whether the accessory is rotated to match its angle.
+  /// This is false by default for custom accessories, but varies for system vended ones.
+  var orientationMatchesAngle: Bool
+
+  /**
+   * @abstract Creates an accessory with the given pointer shape and position.
+   *
+   * @param shape     The desired accessory shape.
+   * @param position  The desired accessory position.
+   */
+  convenience init(__shape shape: __UIPointerShape, position: __UIPointerAccessoryPosition)
+
+  /**
+   * @abstract Creates an accessory with the given pointer shape and position.
+   *
+   * @param shape     The desired accessory shape.
+   * @param position  The desired accessory position.
+   */
+  @available(*, unavailable, renamed: "init(__shape:position:)", message: "Not available in Swift")
+  class func __accessoryWithShape(_ shape: __UIPointerShape, position: __UIPointerAccessoryPosition) -> Self
+
+  /// Returns an arrow shaped accessory with the given position.
+  class func __arrowAccessory(with position: __UIPointerAccessoryPosition) -> Self
+
+  /// Returns an arrow shaped accessory with the given position.
+  @available(swift, obsoleted: 3, renamed: "__arrowAccessory(with:)")
+  class func __arrowAccessoryWithPosition(_ position: __UIPointerAccessoryPosition) -> Self
+  @available(*, unavailable)
+  init()
+  @available(*, unavailable)
+  class func new() -> Self
+  @available(iOS 15.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+}
+
+@available(iOS 15.0, *)
+extension UIPointerAccessory {
+  struct Position {
+    static let defaultOffset: CGFloat
+    var offset: CGFloat
+    var angle: CGFloat
+    init(offset: CGFloat = Position.defaultOffset, angle: CGFloat = 0)
+    static var top: UIPointerAccessory.Position { get }
+    static var topRight: UIPointerAccessory.Position { get }
+    static var right: UIPointerAccessory.Position { get }
+    static var bottomRight: UIPointerAccessory.Position { get }
+    static var bottom: UIPointerAccessory.Position { get }
+    static var bottomLeft: UIPointerAccessory.Position { get }
+    static var left: UIPointerAccessory.Position { get }
+    static var topLeft: UIPointerAccessory.Position { get }
+  }
+  @MainActor convenience init(_ shape: UIPointerShape, position: UIPointerAccessory.Position)
+  @MainActor class func arrow(_ position: UIPointerAccessory.Position) -> Self
+  @MainActor var shape: UIPointerShape { get }
+}

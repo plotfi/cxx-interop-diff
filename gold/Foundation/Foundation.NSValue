@@ -1,0 +1,240 @@
+@_exported import CoreFoundation
+
+class NSValue : NSObject, NSCopying, NSSecureCoding {
+  @available(iOS 11.0, *)
+  func getValue(_ value: UnsafeMutableRawPointer, size: Int)
+  var objCType: UnsafePointer<CChar> { get }
+  init(bytes value: UnsafeRawPointer, objCType type: UnsafePointer<CChar>)
+  init?(coder: NSCoder)
+  convenience init()
+  class var supportsSecureCoding: Bool { get }
+  func copy(with zone: NSZone? = nil) -> Any
+  func encode(with coder: NSCoder)
+}
+
+extension NSValue {
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+  func value<StoredType>(of type: StoredType.Type) -> StoredType?
+}
+extension NSValue {
+  @available(*, unavailable, renamed: "init(bytes:objCType:)", message: "Not available in Swift")
+  class func valueWithBytes(_ value: UnsafeRawPointer, objCType type: UnsafePointer<CChar>) -> NSValue
+  /*not inherited*/ init(_ value: UnsafeRawPointer, withObjCType type: UnsafePointer<CChar>)
+  @available(*, unavailable, renamed: "init(_:withObjCType:)", message: "Not available in Swift")
+  class func value(_ value: UnsafeRawPointer, withObjCType type: UnsafePointer<CChar>) -> NSValue
+}
+extension NSValue {
+  /*not inherited*/ init(nonretainedObject anObject: Any?)
+  @available(*, unavailable, renamed: "init(nonretainedObject:)", message: "Not available in Swift")
+  class func valueWithNonretainedObject(_ anObject: Any?) -> NSValue
+  var nonretainedObjectValue: Any? { get }
+  /*not inherited*/ init(pointer: UnsafeRawPointer?)
+  @available(*, unavailable, renamed: "init(pointer:)", message: "Not available in Swift")
+  class func valueWithPointer(_ pointer: UnsafeRawPointer?) -> NSValue
+  var pointerValue: UnsafeMutableRawPointer? { get }
+  func isEqual(to value: NSValue) -> Bool
+  @available(swift, obsoleted: 3, renamed: "isEqual(to:)")
+  func isEqualToValue(_ value: NSValue) -> Bool
+}
+class NSNumber : NSValue {
+  init?(coder: NSCoder)
+  init(value: CChar)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(char value: CChar)
+  init(value: UInt8)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(unsignedChar value: UInt8)
+  init(value: Int16)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(short value: Int16)
+  init(value: UInt16)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(unsignedShort value: UInt16)
+  init(value: Int32)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(int value: Int32)
+  init(value: UInt32)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(unsignedInt value: UInt32)
+  @available(*, unavailable, message: "Not available in Swift")
+  init(long value: Int)
+  @available(*, unavailable, message: "Not available in Swift")
+  init(unsignedLong value: UInt)
+  init(value: Int64)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(longLong value: Int64)
+  init(value: UInt64)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(unsignedLongLong value: UInt64)
+  init(value: Float)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(float value: Float)
+  init(value: Double)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(double value: Double)
+  init(value: Bool)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(bool value: Bool)
+  @available(iOS 2.0, *)
+  init(value: Int)
+  @available(iOS 2.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(integer value: Int)
+  @available(iOS 2.0, *)
+  init(value: UInt)
+  @available(iOS 2.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(value:)")
+  init(unsignedInteger value: UInt)
+  var int8Value: CChar { get }
+  @available(swift, obsoleted: 3, renamed: "int8Value")
+  var charValue: CChar { get }
+  var uint8Value: UInt8 { get }
+  @available(swift, obsoleted: 3, renamed: "uint8Value")
+  var unsignedCharValue: UInt8 { get }
+  var int16Value: Int16 { get }
+  @available(swift, obsoleted: 3, renamed: "int16Value")
+  var shortValue: Int16 { get }
+  var uint16Value: UInt16 { get }
+  @available(swift, obsoleted: 3, renamed: "uint16Value")
+  var unsignedShortValue: UInt16 { get }
+  var int32Value: Int32 { get }
+  @available(swift, obsoleted: 3, renamed: "int32Value")
+  var intValue: Int32 { get }
+  var uint32Value: UInt32 { get }
+  @available(swift, obsoleted: 3, renamed: "uint32Value")
+  var unsignedIntValue: UInt32 { get }
+  @available(*, unavailable, message: "Not available in Swift")
+  var longValue: Int { get }
+  @available(*, unavailable, message: "use 'uintValue'")
+  var unsignedLongValue: UInt { get }
+  var int64Value: Int64 { get }
+  @available(swift, obsoleted: 3, renamed: "int64Value")
+  var longLongValue: Int64 { get }
+  var uint64Value: UInt64 { get }
+  @available(swift, obsoleted: 3, renamed: "uint64Value")
+  var unsignedLongLongValue: UInt64 { get }
+  var floatValue: Float { get }
+  var doubleValue: Double { get }
+  var boolValue: Bool { get }
+  @available(iOS 2.0, *)
+  var intValue: Int { get }
+  @available(iOS 2.0, *)
+  @available(swift, obsoleted: 3, renamed: "intValue")
+  var integerValue: Int { get }
+  @available(iOS 2.0, *)
+  var uintValue: UInt { get }
+  @available(iOS 2.0, *)
+  @available(swift, obsoleted: 3, renamed: "uintValue")
+  var unsignedIntegerValue: UInt { get }
+  var stringValue: String { get }
+  func compare(_ otherNumber: NSNumber) -> ComparisonResult
+  func isEqual(to number: NSNumber) -> Bool
+  @available(swift, obsoleted: 3, renamed: "isEqual(to:)")
+  func isEqualToNumber(_ number: NSNumber) -> Bool
+  func description(withLocale locale: Any?) -> String
+  @available(swift, obsoleted: 3, renamed: "description(withLocale:)")
+  func descriptionWithLocale(_ locale: Any?) -> String
+  convenience init(bytes value: UnsafeRawPointer, objCType type: UnsafePointer<CChar>)
+  convenience init()
+}
+
+extension NSNumber : ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral, ExpressibleByBooleanLiteral {
+  /// Create an instance initialized to `value`.
+  @nonobjc required convenience init(integerLiteral value: Int)
+  /// Create an instance initialized to `value`.
+  @nonobjc required convenience init(floatLiteral value: Double)
+  /// Create an instance initialized to `value`.
+  @nonobjc required convenience init(booleanLiteral value: Bool)
+  typealias BooleanLiteralType = Bool
+  typealias FloatLiteralType = Double
+  typealias IntegerLiteralType = Int
+}
+
+extension NSNumber : _HasCustomAnyHashableRepresentation {
+  @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}
+extension NSNumber {
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(char value: CChar)
+  @available(*, unavailable, renamed: "init(char:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithChar(_ value: CChar) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(unsignedChar value: UInt8)
+  @available(*, unavailable, renamed: "init(unsignedChar:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithUnsignedChar(_ value: UInt8) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(short value: Int16)
+  @available(*, unavailable, renamed: "init(short:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithShort(_ value: Int16) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(unsignedShort value: UInt16)
+  @available(*, unavailable, renamed: "init(unsignedShort:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithUnsignedShort(_ value: UInt16) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(int value: Int32)
+  @available(*, unavailable, renamed: "init(int:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithInt(_ value: Int32) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(unsignedInt value: UInt32)
+  @available(*, unavailable, renamed: "init(unsignedInt:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithUnsignedInt(_ value: UInt32) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(long value: Int)
+  @available(*, unavailable, renamed: "init(long:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithLong(_ value: Int) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(unsignedLong value: UInt)
+  @available(*, unavailable, renamed: "init(unsignedLong:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithUnsignedLong(_ value: UInt) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(longLong value: Int64)
+  @available(*, unavailable, renamed: "init(longLong:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithLongLong(_ value: Int64) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(unsignedLongLong value: UInt64)
+  @available(*, unavailable, renamed: "init(unsignedLongLong:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithUnsignedLongLong(_ value: UInt64) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(float value: Float)
+  @available(*, unavailable, renamed: "init(float:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithFloat(_ value: Float) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(double value: Double)
+  @available(*, unavailable, renamed: "init(double:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithDouble(_ value: Double) -> NSNumber
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(bool value: Bool)
+  @available(*, unavailable, renamed: "init(bool:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithBool(_ value: Bool) -> NSNumber
+  @available(iOS 2.0, *)
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(integer value: Int)
+  @available(iOS 2.0, *)
+  @available(*, unavailable, renamed: "init(integer:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithInteger(_ value: Int) -> NSNumber
+  @available(iOS 2.0, *)
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init(unsignedInteger value: UInt)
+  @available(iOS 2.0, *)
+  @available(*, unavailable, renamed: "init(unsignedInteger:)", message: "Not available in Swift")
+  @available(*, unavailable, message: "Not available in Swift")
+  class func numberWithUnsignedInteger(_ value: UInt) -> NSNumber
+}
+extension NSValue {
+  @available(iOS, introduced: 2.0, deprecated: 100000)
+  func getValue(_ value: UnsafeMutableRawPointer)
+}

@@ -1,0 +1,40 @@
+@_exported import CoreFoundation
+
+@available(iOS 10.0, *)
+class NSDateInterval : NSObject, NSCopying, NSSecureCoding {
+  var startDate: Date { get }
+  var endDate: Date { get }
+  var duration: TimeInterval { get }
+  convenience init()
+  init(coder: NSCoder)
+  init(start startDate: Date, duration: TimeInterval)
+  @available(swift, obsoleted: 3, renamed: "init(start:duration:)")
+  init(startDate: Date, duration: TimeInterval)
+  convenience init(start startDate: Date, end endDate: Date)
+  @available(swift, obsoleted: 3, renamed: "init(start:end:)")
+  convenience init(startDate: Date, endDate: Date)
+  func compare(_ dateInterval: DateInterval) -> ComparisonResult
+  func isEqual(to dateInterval: DateInterval) -> Bool
+  @available(swift, obsoleted: 3, renamed: "isEqual(to:)")
+  func isEqualToDateInterval(_ dateInterval: DateInterval) -> Bool
+  func intersects(_ dateInterval: DateInterval) -> Bool
+  @available(swift, obsoleted: 3, renamed: "intersects(_:)")
+  func intersectsDateInterval(_ dateInterval: DateInterval) -> Bool
+  func intersection(with dateInterval: DateInterval) -> DateInterval?
+  @available(swift, obsoleted: 3, renamed: "intersection(with:)")
+  func intersectionWithDateInterval(_ dateInterval: DateInterval) -> DateInterval?
+  func contains(_ date: Date) -> Bool
+  @available(swift, obsoleted: 3, renamed: "contains(_:)")
+  func containsDate(_ date: Date) -> Bool
+  @available(iOS 10.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 10.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 10.0, *)
+  func encode(with coder: NSCoder)
+}
+
+@available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
+extension NSDateInterval : _HasCustomAnyHashableRepresentation {
+  @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}

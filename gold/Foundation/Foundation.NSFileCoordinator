@@ -1,0 +1,112 @@
+@_exported import CoreFoundation
+
+@available(swift, obsoleted: 3, renamed: "NSFileCoordinator.ReadingOptions")
+typealias NSFileCoordinatorReadingOptions = NSFileCoordinator.ReadingOptions
+extension NSFileCoordinator {
+  struct ReadingOptions : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = NSFileCoordinator.ReadingOptions
+    typealias ArrayLiteralElement = NSFileCoordinator.ReadingOptions
+    static var withoutChanges: NSFileCoordinator.ReadingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "withoutChanges")
+    static var WithoutChanges: NSFileCoordinator.ReadingOptions { get }
+    static var resolvesSymbolicLink: NSFileCoordinator.ReadingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "resolvesSymbolicLink")
+    static var ResolvesSymbolicLink: NSFileCoordinator.ReadingOptions { get }
+    @available(iOS 8.0, *)
+    static var immediatelyAvailableMetadataOnly: NSFileCoordinator.ReadingOptions { get }
+    @available(iOS 8.0, *)
+    @available(swift, obsoleted: 3, renamed: "immediatelyAvailableMetadataOnly")
+    static var ImmediatelyAvailableMetadataOnly: NSFileCoordinator.ReadingOptions { get }
+    @available(iOS 8.0, *)
+    static var forUploading: NSFileCoordinator.ReadingOptions { get }
+    @available(iOS 8.0, *)
+    @available(swift, obsoleted: 3, renamed: "forUploading")
+    static var ForUploading: NSFileCoordinator.ReadingOptions { get }
+  }
+  struct WritingOptions : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = NSFileCoordinator.WritingOptions
+    typealias ArrayLiteralElement = NSFileCoordinator.WritingOptions
+    static var forDeleting: NSFileCoordinator.WritingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "forDeleting")
+    static var ForDeleting: NSFileCoordinator.WritingOptions { get }
+    static var forMoving: NSFileCoordinator.WritingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "forMoving")
+    static var ForMoving: NSFileCoordinator.WritingOptions { get }
+    static var forMerging: NSFileCoordinator.WritingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "forMerging")
+    static var ForMerging: NSFileCoordinator.WritingOptions { get }
+    static var forReplacing: NSFileCoordinator.WritingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "forReplacing")
+    static var ForReplacing: NSFileCoordinator.WritingOptions { get }
+    @available(iOS 8.0, *)
+    static var contentIndependentMetadataOnly: NSFileCoordinator.WritingOptions { get }
+    @available(iOS 8.0, *)
+    @available(swift, obsoleted: 3, renamed: "contentIndependentMetadataOnly")
+    static var ContentIndependentMetadataOnly: NSFileCoordinator.WritingOptions { get }
+  }
+}
+@available(swift, obsoleted: 3, renamed: "NSFileCoordinator.WritingOptions")
+typealias NSFileCoordinatorWritingOptions = NSFileCoordinator.WritingOptions
+@available(iOS 8.0, *)
+class NSFileAccessIntent : NSObject {
+  class func readingIntent(with url: URL, options: NSFileCoordinator.ReadingOptions = []) -> Self
+  @available(swift, obsoleted: 3, renamed: "readingIntent(with:options:)")
+  class func readingIntentWithURL(_ url: URL, options: NSFileCoordinator.ReadingOptions = []) -> Self
+  class func writingIntent(with url: URL, options: NSFileCoordinator.WritingOptions = []) -> Self
+  @available(swift, obsoleted: 3, renamed: "writingIntent(with:options:)")
+  class func writingIntentWithURL(_ url: URL, options: NSFileCoordinator.WritingOptions = []) -> Self
+  var url: URL { get }
+  @available(swift, obsoleted: 3, renamed: "url")
+  var URL: URL { get }
+  init()
+}
+@available(iOS 5.0, *)
+class NSFileCoordinator : NSObject {
+  class func addFilePresenter(_ filePresenter: NSFilePresenter)
+  class func removeFilePresenter(_ filePresenter: NSFilePresenter)
+  class var filePresenters: [NSFilePresenter] { get }
+  init(filePresenter filePresenterOrNil: NSFilePresenter?)
+  @available(iOS 5.0, *)
+  var purposeIdentifier: String
+  @available(iOS 8.0, *)
+  func coordinate(with intents: [NSFileAccessIntent], queue: OperationQueue, byAccessor accessor: @escaping (Error?) -> Void)
+  @available(iOS 8.0, *)
+  @available(swift, obsoleted: 3, renamed: "coordinate(with:queue:byAccessor:)")
+  func coordinateAccessWithIntents(_ intents: [NSFileAccessIntent], queue: OperationQueue, byAccessor accessor: @escaping (Error?) -> Void)
+  func coordinate(readingItemAt url: URL, options: NSFileCoordinator.ReadingOptions = [], error outError: NSErrorPointer, byAccessor reader: (URL) -> Void)
+  @available(swift, obsoleted: 3, renamed: "coordinate(readingItemAt:options:error:byAccessor:)")
+  func coordinateReadingItemAtURL(_ url: URL, options: NSFileCoordinator.ReadingOptions = [], error outError: NSErrorPointer, byAccessor reader: (URL) -> Void)
+  func coordinate(writingItemAt url: URL, options: NSFileCoordinator.WritingOptions = [], error outError: NSErrorPointer, byAccessor writer: (URL) -> Void)
+  @available(swift, obsoleted: 3, renamed: "coordinate(writingItemAt:options:error:byAccessor:)")
+  func coordinateWritingItemAtURL(_ url: URL, options: NSFileCoordinator.WritingOptions = [], error outError: NSErrorPointer, byAccessor writer: (URL) -> Void)
+  func coordinate(readingItemAt readingURL: URL, options readingOptions: NSFileCoordinator.ReadingOptions = [], writingItemAt writingURL: URL, options writingOptions: NSFileCoordinator.WritingOptions = [], error outError: NSErrorPointer, byAccessor readerWriter: (URL, URL) -> Void)
+  @available(swift, obsoleted: 3, renamed: "coordinate(readingItemAt:options:writingItemAt:options:error:byAccessor:)")
+  func coordinateReadingItemAtURL(_ readingURL: URL, options readingOptions: NSFileCoordinator.ReadingOptions = [], writingItemAtURL writingURL: URL, options writingOptions: NSFileCoordinator.WritingOptions = [], error outError: NSErrorPointer, byAccessor readerWriter: (URL, URL) -> Void)
+  func coordinate(writingItemAt url1: URL, options options1: NSFileCoordinator.WritingOptions = [], writingItemAt url2: URL, options options2: NSFileCoordinator.WritingOptions = [], error outError: NSErrorPointer, byAccessor writer: (URL, URL) -> Void)
+  @available(swift, obsoleted: 3, renamed: "coordinate(writingItemAt:options:writingItemAt:options:error:byAccessor:)")
+  func coordinateWritingItemAtURL(_ url1: URL, options options1: NSFileCoordinator.WritingOptions = [], writingItemAtURL url2: URL, options options2: NSFileCoordinator.WritingOptions = [], error outError: NSErrorPointer, byAccessor writer: (URL, URL) -> Void)
+  func prepare(forReadingItemsAt readingURLs: [URL], options readingOptions: NSFileCoordinator.ReadingOptions = [], writingItemsAt writingURLs: [URL], options writingOptions: NSFileCoordinator.WritingOptions = [], error outError: NSErrorPointer, byAccessor batchAccessor: (@escaping () -> Void) -> Void)
+  @available(swift, obsoleted: 3, renamed: "prepare(forReadingItemsAt:options:writingItemsAt:options:error:byAccessor:)")
+  func prepareForReadingItemsAtURLs(_ readingURLs: [URL], options readingOptions: NSFileCoordinator.ReadingOptions = [], writingItemsAtURLs writingURLs: [URL], options writingOptions: NSFileCoordinator.WritingOptions = [], error outError: NSErrorPointer, byAccessor batchAccessor: (@escaping () -> Void) -> Void)
+  @available(iOS 6.0, *)
+  func item(at oldURL: URL, willMoveTo newURL: URL)
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "item(at:willMoveTo:)")
+  func itemAtURL(_ oldURL: URL, willMoveToURL newURL: URL)
+  func item(at oldURL: URL, didMoveTo newURL: URL)
+  @available(swift, obsoleted: 3, renamed: "item(at:didMoveTo:)")
+  func itemAtURL(_ oldURL: URL, didMoveToURL newURL: URL)
+  @available(iOS 11.0, *)
+  func item(at url: URL, didChangeUbiquityAttributes attributes: Set<URLResourceKey>)
+  @available(iOS 11.0, *)
+  @available(swift, obsoleted: 3, renamed: "item(at:didChangeUbiquityAttributes:)")
+  func itemAtURL(_ url: URL, didChangeUbiquityAttributes attributes: Set<URLResourceKey>)
+  func cancel()
+  convenience init()
+}

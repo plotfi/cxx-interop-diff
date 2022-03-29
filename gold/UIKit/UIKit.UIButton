@@ -1,0 +1,460 @@
+@_exported import Foundation
+
+@available(swift, obsoleted: 4.2, renamed: "UIButton.ButtonType")
+typealias UIButtonType = UIButton.ButtonType
+extension UIButton {
+  enum ButtonType : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case custom
+    @available(swift, obsoleted: 3, renamed: "custom")
+    static var Custom: UIButton.ButtonType { get }
+    @available(iOS 7.0, *)
+    case system
+    @available(iOS 7.0, *)
+    @available(swift, obsoleted: 3, renamed: "system")
+    static var System: UIButton.ButtonType { get }
+    case detailDisclosure
+    @available(swift, obsoleted: 3, renamed: "detailDisclosure")
+    static var DetailDisclosure: UIButton.ButtonType { get }
+    case infoLight
+    @available(swift, obsoleted: 3, renamed: "infoLight")
+    static var InfoLight: UIButton.ButtonType { get }
+    case infoDark
+    @available(swift, obsoleted: 3, renamed: "infoDark")
+    static var InfoDark: UIButton.ButtonType { get }
+    case contactAdd
+    @available(swift, obsoleted: 3, renamed: "contactAdd")
+    static var ContactAdd: UIButton.ButtonType { get }
+    @available(iOS, unavailable)
+    case plain
+    @available(iOS 13.0, *)
+    case close
+    @available(iOS 13.0, *)
+    @available(swift, obsoleted: 3, renamed: "close")
+    static var Close: UIButton.ButtonType { get }
+    static var roundedRect: UIButton.ButtonType { get }
+  }
+  @available(iOS 14.0, *)
+  enum Role : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case normal
+    @available(swift, obsoleted: 3, renamed: "normal")
+    static var Normal: UIButton.Role { get }
+    case primary
+    @available(swift, obsoleted: 3, renamed: "primary")
+    static var Primary: UIButton.Role { get }
+    case cancel
+    @available(swift, obsoleted: 3, renamed: "cancel")
+    static var Cancel: UIButton.Role { get }
+    case destructive
+    @available(swift, obsoleted: 3, renamed: "destructive")
+    static var Destructive: UIButton.Role { get }
+  }
+  @available(iOS 15.0, *)
+  typealias ConfigurationUpdateHandler = (UIButton) -> Void
+}
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "UIButton.Role")
+typealias UIButtonRole = UIButton.Role
+@available(iOS 13.4, *)
+typealias UIButtonPointerStyleProvider = (UIButton, __UIPointerEffect, __UIPointerShape) -> UIPointerStyle?
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "UIButton.ConfigurationUpdateHandler")
+typealias UIButtonConfigurationUpdateHandler = UIButton.ConfigurationUpdateHandler
+@available(iOS 2.0, *)
+@MainActor class UIButton : UIControl, NSCoding {
+  init(frame: CGRect)
+  init?(coder: NSCoder)
+
+  /// Initializes a custom button, registers primaryAction for the UIControlEventPrimaryActionTriggered control event, and uses primaryAction's title & image as the button's title & image.
+  @available(iOS 14.0, *)
+  convenience init(frame: CGRect, primaryAction: UIAction?)
+  convenience init(type buttonType: UIButton.ButtonType)
+  @available(*, unavailable, renamed: "init(type:)", message: "Not available in Swift")
+  class func buttonWithType(_ buttonType: UIButton.ButtonType) -> Self
+  @available(iOS 13.0, *)
+  class func systemButton(with image: UIImage, target: Any?, action: Selector?) -> Self
+  @available(iOS 13.0, *)
+  @available(swift, obsoleted: 3, renamed: "systemButton(with:target:action:)")
+  class func systemButtonWithImage(_ image: UIImage, target: Any?, action: Selector?) -> Self
+
+  /// Creates a system button, registers primaryAction for the UIControlEventPrimaryActionTriggered control event, and uses primaryAction's title & image as the button's title & image.
+  @available(iOS 14.0, *)
+  @available(*, unavailable, message: "Prefer init(type:primaryAction:)")
+  class func systemButton(withPrimaryAction primaryAction: UIAction?) -> Self
+
+  /// Creates a system button, registers primaryAction for the UIControlEventPrimaryActionTriggered control event, and uses primaryAction's title & image as the button's title & image.
+  @available(iOS 14.0, *)
+  @available(swift, obsoleted: 3, renamed: "systemButton(withPrimaryAction:)")
+  @available(*, unavailable, message: "Prefer init(type:primaryAction:)")
+  class func systemButtonWithPrimaryAction(_ primaryAction: UIAction?) -> Self
+
+  /// Creates a button of the given type, registers primaryAction for the UIControlEventPrimaryActionTriggered control event, and if appropriate uses primaryAction's title & image as the button's title & image.
+  @available(iOS 14.0, *)
+  convenience init(__type buttonType: UIButton.ButtonType, primaryAction: UIAction?)
+
+  /// Creates a button of the given type, registers primaryAction for the UIControlEventPrimaryActionTriggered control event, and if appropriate uses primaryAction's title & image as the button's title & image.
+  @available(iOS 14.0, *)
+  @available(*, unavailable, renamed: "init(__type:primaryAction:)", message: "Not available in Swift")
+  class func __buttonWithType(_ buttonType: UIButton.ButtonType, primaryAction: UIAction?) -> Self
+
+  /// Construct a new UIButton. `configuration` will be installed on the created button, and `primaryAction` added to handle the .primaryActionTriggered control event. If `primaryAction` has a title or image, they will be copied to `configuration`
+  @available(iOS 15.0, *)
+  convenience init(__configuration configuration: __UIButtonConfiguration, primaryAction: UIAction?)
+
+  /// Construct a new UIButton. `configuration` will be installed on the created button, and `primaryAction` added to handle the .primaryActionTriggered control event. If `primaryAction` has a title or image, they will be copied to `configuration`
+  @available(iOS 15.0, *)
+  @available(*, unavailable, renamed: "init(__configuration:primaryAction:)", message: "Not available in Swift")
+  class func __buttonWithConfiguration(_ configuration: __UIButtonConfiguration, primaryAction: UIAction?) -> Self
+
+  /// Setting a non-nil value for `configuration` will opt into configuration-based behavior on UIButton, update the button in a platform specific manner, and enable/disable some API.
+  @available(iOS 15.0, *)
+  @NSCopying var __configuration: __UIButtonConfiguration?
+
+  /// Requests the view update its configuration for its current state. This method is called automatically when the button's state may have changed, as well as in other circumstances where an update may be required. Multiple requests may be coalesced into a single update at the appropriate time.
+  @available(iOS 15.0, *)
+  func setNeedsUpdateConfiguration()
+
+  /// Subclasses should override this method and update the button's `configuration`. This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
+  @available(iOS 15.0, *)
+  func updateConfiguration()
+
+  /// Block-based equivalent to overriding -updateConfiguration in a subclass. Setting this handler will force the button into configuration-based behavior (see the `configuration` property). This block is called after `-updateConfiguration`
+  @available(iOS 15.0, *)
+  var configurationUpdateHandler: UIButton.ConfigurationUpdateHandler?
+
+  /// When YES, the button will automatically call -updatedConfigurationForButton: on its `configuration ` when the button's state changes, and apply the updated configuration to the button. The default value is YES.
+  @available(iOS 15.0, *)
+  var automaticallyUpdatesConfiguration: Bool
+  @available(iOS 5.0, *)
+  var tintColor: UIColor!
+  var buttonType: UIButton.ButtonType { get }
+
+  /// If pointer effects are enabled for the button, this will return true when an effect is active.
+  @available(iOS 15.0, *)
+  var isHovered: Bool { get }
+
+  /// If pointer effects are enabled for the button, this will return true when an effect is active.
+  @available(iOS 15.0, *)
+  @available(swift, obsoleted: 3, renamed: "isHovered")
+  var hovered: Bool { get }
+
+  /// Returns true while the button is presenting a menu.
+  @available(iOS 15.0, *)
+  var isHeld: Bool { get }
+
+  /// Returns true while the button is presenting a menu.
+  @available(iOS 15.0, *)
+  @available(swift, obsoleted: 3, renamed: "isHeld")
+  var held: Bool { get }
+  @available(iOS 14.0, *)
+  var role: UIButton.Role
+
+  /// Enables this button's built-in pointer interaction.
+  @available(iOS 13.4, *)
+  var isPointerInteractionEnabled: Bool
+
+  /// Enables this button's built-in pointer interaction.
+  @available(iOS 13.4, *)
+  @available(swift, obsoleted: 3, renamed: "isPointerInteractionEnabled")
+  var pointerInteractionEnabled: Bool
+
+  /**
+   * @abstract Called when the system pointer hovers over this button if its pointer interaction is enabled. The
+   *           system calls this block with a proposed UIPointerEffect and UIPointerShape. You may use them to construct
+   *           a customized version of the system provided style or return an entirely custom one.
+   *           Setting this property automatically enables the button's pointer interaction and sets @c pointerInteractionEnabled to true.
+   */
+  @available(iOS 13.4, *)
+  var __pointerStyleProvider: UIButtonPointerStyleProvider?
+
+  /// An optional menu for the button to display. The button will automatically enable or disable its contextMenuInteraction when a non-nil or nil menu is set. Defaults to nil.
+  @available(iOS 14.0, *)
+  @NSCopying var menu: UIMenu?
+
+  /// Indicates if the button changes selection as its primary action.
+  /// This shows the menu as options for selection if a menu is populated and showsMenuAsPrimaryAction is enabled.
+  /// If no menu is provided or it is not the primary action, UIControlStateSelected is toggled on and off for the primary action.
+  @available(iOS 15.0, *)
+  var changesSelectionAsPrimaryAction: Bool
+  func setTitle(_ title: String?, for state: UIControl.State)
+  @available(swift, obsoleted: 3, renamed: "setTitle(_:for:)")
+  func setTitle(_ title: String?, forState state: UIControl.State)
+  func setTitleColor(_ color: UIColor?, for state: UIControl.State)
+  @available(swift, obsoleted: 3, renamed: "setTitleColor(_:for:)")
+  func setTitleColor(_ color: UIColor?, forState state: UIControl.State)
+  func setTitleShadowColor(_ color: UIColor?, for state: UIControl.State)
+  @available(swift, obsoleted: 3, renamed: "setTitleShadowColor(_:for:)")
+  func setTitleShadowColor(_ color: UIColor?, forState state: UIControl.State)
+  func setImage(_ image: UIImage?, for state: UIControl.State)
+  @available(swift, obsoleted: 3, renamed: "setImage(_:for:)")
+  func setImage(_ image: UIImage?, forState state: UIControl.State)
+  func setBackgroundImage(_ image: UIImage?, for state: UIControl.State)
+  @available(swift, obsoleted: 3, renamed: "setBackgroundImage(_:for:)")
+  func setBackgroundImage(_ image: UIImage?, forState state: UIControl.State)
+  @available(iOS 13.0, *)
+  func setPreferredSymbolConfiguration(_ configuration: UIImage.SymbolConfiguration?, forImageIn state: UIControl.State)
+  @available(iOS 13.0, *)
+  @available(swift, obsoleted: 3, renamed: "setPreferredSymbolConfiguration(_:forImageIn:)")
+  func setPreferredSymbolConfiguration(_ configuration: UIImage.SymbolConfiguration?, forImageInState state: UIControl.State)
+  @available(iOS 6.0, *)
+  func setAttributedTitle(_ title: NSAttributedString?, for state: UIControl.State)
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "setAttributedTitle(_:for:)")
+  func setAttributedTitle(_ title: NSAttributedString?, forState state: UIControl.State)
+  func title(for state: UIControl.State) -> String?
+  @available(swift, obsoleted: 3, renamed: "title(for:)")
+  func titleForState(_ state: UIControl.State) -> String?
+  func titleColor(for state: UIControl.State) -> UIColor?
+  @available(swift, obsoleted: 3, renamed: "titleColor(for:)")
+  func titleColorForState(_ state: UIControl.State) -> UIColor?
+  func titleShadowColor(for state: UIControl.State) -> UIColor?
+  @available(swift, obsoleted: 3, renamed: "titleShadowColor(for:)")
+  func titleShadowColorForState(_ state: UIControl.State) -> UIColor?
+  func image(for state: UIControl.State) -> UIImage?
+  @available(swift, obsoleted: 3, renamed: "image(for:)")
+  func imageForState(_ state: UIControl.State) -> UIImage?
+  func backgroundImage(for state: UIControl.State) -> UIImage?
+  @available(swift, obsoleted: 3, renamed: "backgroundImage(for:)")
+  func backgroundImageForState(_ state: UIControl.State) -> UIImage?
+  @available(iOS 13.0, *)
+  func preferredSymbolConfigurationForImage(in state: UIControl.State) -> UIImage.SymbolConfiguration?
+  @available(iOS 13.0, *)
+  @available(swift, obsoleted: 3, renamed: "preferredSymbolConfigurationForImage(in:)")
+  func preferredSymbolConfigurationForImageInState(_ state: UIControl.State) -> UIImage.SymbolConfiguration?
+  @available(iOS 6.0, *)
+  func attributedTitle(for state: UIControl.State) -> NSAttributedString?
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "attributedTitle(for:)")
+  func attributedTitleForState(_ state: UIControl.State) -> NSAttributedString?
+  var currentTitle: String? { get }
+  var currentTitleColor: UIColor { get }
+  var currentTitleShadowColor: UIColor? { get }
+  var currentImage: UIImage? { get }
+  var currentBackgroundImage: UIImage? { get }
+  @available(iOS 13.0, *)
+  var currentPreferredSymbolConfiguration: UIImage.SymbolConfiguration? { get }
+  @available(iOS 6.0, *)
+  var currentAttributedTitle: NSAttributedString? { get }
+  @available(iOS 3.0, *)
+  var titleLabel: UILabel? { get }
+  @available(iOS 3.0, *)
+  var imageView: UIImageView? { get }
+
+  /// The label used to display the subtitle, when present.
+  @available(iOS 15.0, *)
+  var subtitleLabel: UILabel? { get }
+  convenience init()
+}
+
+@available(iOS 13.4, *)
+extension UIButton {
+  typealias PointerStyleProvider = (_ button: UIButton, _ proposedEffect: UIPointerEffect, _ proposedShape: UIPointerShape) -> UIPointerStyle?
+  @MainActor var pointerStyleProvider: UIButton.PointerStyleProvider?
+}
+
+extension UIButton {
+  @available(iOS 14.0, *)
+  @MainActor convenience init(type buttonType: UIButton.ButtonType = .system, primaryAction: UIAction?)
+}
+
+@available(iOS 15.0, tvOS 15.0, *)
+extension UIButton {
+  struct Configuration : Hashable {
+    enum Size {
+      case mini
+      case small
+      case medium
+      case large
+      static func == (a: UIButton.Configuration.Size, b: UIButton.Configuration.Size) -> Bool
+      func hash(into hasher: inout Hasher)
+      var hashValue: Int { get }
+    }
+    enum TitleAlignment {
+      /// Align title & subtitle automatically
+      case automatic
+      /// Align title & subtitle along their leading edges
+      case leading
+      /// Align title & subtitle to be centered with respect to each other
+      case center
+      /// Align title & subtitle along their trailing edges
+      case trailing
+      static func == (a: UIButton.Configuration.TitleAlignment, b: UIButton.Configuration.TitleAlignment) -> Bool
+      func hash(into hasher: inout Hasher)
+      var hashValue: Int { get }
+    }
+    enum CornerStyle {
+      /// The corner radius provided by the background style will be used as is, without adjusting for dynamic type
+      case fixed
+      /// The corner radius provided by the background style is adjusted based on dynamic type
+      case dynamic
+      /// Ignore the corner radius provided by the background style and substitute a small system defined corner radius.
+      case small
+      /// Ignore the corner radius provided by the background style and substitute a medium system defined corner radius.
+      case medium
+      /// Ignore the corner radius provided by the background style and substitute a large system defined corner radius.
+      case large
+      /// Ignore the corner radius provided by the background style and always set the corner radius to generate a capsule.
+      case capsule
+      static func == (a: UIButton.Configuration.CornerStyle, b: UIButton.Configuration.CornerStyle) -> Bool
+      func hash(into hasher: inout Hasher)
+      var hashValue: Int { get }
+    }
+    enum MacIdiomStyle {
+      /// Automatically select the style to use
+      case automatic
+      /// Always use a bordered style button
+      case bordered
+      /// Always use a borderless style button
+      case borderless
+      /// Always use a tinted, borderless style button
+      case borderlessTinted
+      static func == (a: UIButton.Configuration.MacIdiomStyle, b: UIButton.Configuration.MacIdiomStyle) -> Bool
+      func hash(into hasher: inout Hasher)
+      var hashValue: Int { get }
+    }
+    static func plain() -> UIButton.Configuration
+    static func tinted() -> UIButton.Configuration
+    static func gray() -> UIButton.Configuration
+    static func filled() -> UIButton.Configuration
+    static func borderless() -> UIButton.Configuration
+    static func bordered() -> UIButton.Configuration
+    static func borderedTinted() -> UIButton.Configuration
+    static func borderedProminent() -> UIButton.Configuration
+    /// Returns a copy of the configuration updated based on the given button, by applying the configuration's default values for that button's state to any properties that have not been customized.
+    func updated(for button: UIButton) -> UIButton.Configuration
+    var background: UIBackgroundConfiguration
+    /// The corner style controls how background.cornerRadius is interpreted by the button. Defaults to `.dynamic`.
+    var cornerStyle: UIButton.Configuration.CornerStyle
+    /// Determines the metrics and ideal size of the button. Clients may resize the button arbitrarily regardless of this value.
+    var buttonSize: UIButton.Configuration.Size
+    /// Button style to use when running under the Mac idiom.
+    var macIdiomStyle: UIButton.Configuration.MacIdiomStyle
+    /// The base color to use for foreground elements. This color may be modified before being passed to a transformer, and finally applied to specific elements. Setting nil will cede full control to the configuration to select a color appropriate to the style.
+    var baseForegroundColor: UIColor?
+    /// The base color to use for background elements. This color may be modified before being passed to a transformer, and finally applied to specific elements. Setting nil will cede full control to the configuration to select a color appropriate to the style.
+    var baseBackgroundColor: UIColor?
+    var image: UIImage?
+    var imageColorTransformer: UIConfigurationColorTransformer?
+    var preferredSymbolConfigurationForImage: UIImage.SymbolConfiguration?
+    /// Shows an activity indicator in place of an image. Its placement is controlled by the imagePlacement property.
+    var showsActivityIndicator: Bool
+    var activityIndicatorColorTransformer: UIConfigurationColorTransformer?
+    var title: String?
+    var attributedTitle: AttributedString?
+    var titleTextAttributesTransformer: UIConfigurationTextAttributesTransformer?
+    var subtitle: String?
+    var attributedSubtitle: AttributedString?
+    var subtitleTextAttributesTransformer: UIConfigurationTextAttributesTransformer?
+    /// By default the button's content region is inset from its bounds based on the button's styling properties. The contentInsets are an additional inset applied afterwards.
+    var contentInsets: NSDirectionalEdgeInsets
+    /// Restore the default content insets.
+    mutating func setDefaultContentInsets()
+    /// Defaults to Leading, only single edge values (top/leading/bottom/trailing) are supported.
+    var imagePlacement: NSDirectionalRectEdge
+    /// When a button has both image and text content, this value is the padding between the image and the text.
+    var imagePadding: CGFloat
+    /// When a button has both a title & subtitle, this value is the padding between those titles.
+    var titlePadding: CGFloat
+    /// The alignment to use for relative layout between title & subtitle.
+    var titleAlignment: UIButton.Configuration.TitleAlignment
+    /// If the style should automatically update when the button is selected. Default varies by style. Disable to customize selection behavior.
+    var automaticallyUpdateForSelection: Bool
+    func hash(into hasher: inout Hasher)
+    static func == (a: UIButton.Configuration, b: UIButton.Configuration) -> Bool
+    var hashValue: Int { get }
+  }
+  @MainActor convenience init(configuration: UIButton.Configuration, primaryAction: UIAction? = nil)
+  @MainActor var configuration: UIButton.Configuration?
+}
+
+@available(iOS 15.0, tvOS 15.0, *)
+extension UIButton.Configuration : _ObjectiveCBridgeable {
+  @_semantics("convertToObjectiveC") func _bridgeToObjectiveC() -> __UIButtonConfiguration
+  static func _forceBridgeFromObjectiveC(_ input: __UIButtonConfiguration, result: inout UIButton.Configuration?)
+  static func _conditionallyBridgeFromObjectiveC(_ input: __UIButtonConfiguration, result: inout UIButton.Configuration?) -> Bool
+  @_effects(readonly) static func _unconditionallyBridgeFromObjectiveC(_ _config: __UIButtonConfiguration?) -> UIButton.Configuration
+  typealias _ObjectiveCType = __UIButtonConfiguration
+}
+
+@available(iOS 15.0, tvOS 15.0, *)
+extension UIButton.Configuration.Size : Equatable {
+}
+
+@available(iOS 15.0, tvOS 15.0, *)
+extension UIButton.Configuration.Size : Hashable {
+}
+
+@available(iOS 15.0, tvOS 15.0, *)
+extension UIButton.Configuration.TitleAlignment : Equatable {
+}
+
+@available(iOS 15.0, tvOS 15.0, *)
+extension UIButton.Configuration.TitleAlignment : Hashable {
+}
+
+@available(iOS 15.0, tvOS 15.0, *)
+extension UIButton.Configuration.CornerStyle : Equatable {
+}
+
+@available(iOS 15.0, tvOS 15.0, *)
+extension UIButton.Configuration.CornerStyle : Hashable {
+}
+
+@available(iOS 15.0, tvOS 15.0, *)
+extension UIButton.Configuration.MacIdiomStyle : Equatable {
+}
+
+@available(iOS 15.0, tvOS 15.0, *)
+extension UIButton.Configuration.MacIdiomStyle : Hashable {
+}
+extension UIButton {
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 3.0, message: "Specify an attributed title with a custom font")
+  var font: UIFont
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 3.0, message: "Specify an attributed title with a customized paragraph style")
+  var lineBreakMode: NSLineBreakMode
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 3.0, message: "Specify an attributed title with a customized shadow style")
+  var titleShadowOffset: CGSize
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "This property is ignored when using UIButtonConfiguration")
+  var contentEdgeInsets: UIEdgeInsets
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "This property is ignored when using UIButtonConfiguration")
+  var titleEdgeInsets: UIEdgeInsets
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "This property is ignored when using UIButtonConfiguration")
+  var imageEdgeInsets: UIEdgeInsets
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "This property is ignored when using UIButtonConfiguration, you may customize to replicate this behavior via a configurationUpdateHandler")
+  var reversesTitleShadowWhenHighlighted: Bool
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "This property is ignored when using UIButtonConfiguration, you may customize to replicate this behavior via a configurationUpdateHandler")
+  var adjustsImageWhenHighlighted: Bool
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "This property is ignored when using UIButtonConfiguration, you may customize to replicate this behavior via a configurationUpdateHandler")
+  var adjustsImageWhenDisabled: Bool
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "This property is ignored when using UIButtonConfiguration")
+  var showsTouchWhenHighlighted: Bool
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "Override layoutSubviews, call super, and position views as you desire.")
+  func backgroundRect(forBounds bounds: CGRect) -> CGRect
+  @available(swift, obsoleted: 3, renamed: "backgroundRect(forBounds:)")
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "Override layoutSubviews, call super, and position views as you desire.")
+  func backgroundRectForBounds(_ bounds: CGRect) -> CGRect
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "Override layoutSubviews, call super, and position views as you desire.")
+  func contentRect(forBounds bounds: CGRect) -> CGRect
+  @available(swift, obsoleted: 3, renamed: "contentRect(forBounds:)")
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "Override layoutSubviews, call super, and position views as you desire.")
+  func contentRectForBounds(_ bounds: CGRect) -> CGRect
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "Override layoutSubviews, call super, and position views as you desire.")
+  func titleRect(forContentRect contentRect: CGRect) -> CGRect
+  @available(swift, obsoleted: 3, renamed: "titleRect(forContentRect:)")
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "Override layoutSubviews, call super, and position views as you desire.")
+  func titleRectForContentRect(_ contentRect: CGRect) -> CGRect
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "Override layoutSubviews, call super, and position views as you desire.")
+  func imageRect(forContentRect contentRect: CGRect) -> CGRect
+  @available(swift, obsoleted: 3, renamed: "imageRect(forContentRect:)")
+  @available(iOS, introduced: 2.0, deprecated: 15.0, message: "Override layoutSubviews, call super, and position views as you desire.")
+  func imageRectForContentRect(_ contentRect: CGRect) -> CGRect
+}
+extension UIButton : UISpringLoadedInteractionSupporting {
+  @available(iOS 11.0, *)
+  var isSpringLoaded: Bool
+}

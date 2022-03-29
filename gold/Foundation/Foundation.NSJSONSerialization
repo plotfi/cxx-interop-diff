@@ -1,0 +1,86 @@
+@_exported import CoreFoundation
+
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "JSONSerialization.ReadingOptions")
+typealias NSJSONReadingOptions = JSONSerialization.ReadingOptions
+extension JSONSerialization {
+  @available(iOS 5.0, *)
+  struct ReadingOptions : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = JSONSerialization.ReadingOptions
+    typealias ArrayLiteralElement = JSONSerialization.ReadingOptions
+    static var mutableContainers: JSONSerialization.ReadingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "mutableContainers")
+    static var MutableContainers: JSONSerialization.ReadingOptions { get }
+    static var mutableLeaves: JSONSerialization.ReadingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "mutableLeaves")
+    static var MutableLeaves: JSONSerialization.ReadingOptions { get }
+    static var fragmentsAllowed: JSONSerialization.ReadingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "fragmentsAllowed")
+    static var FragmentsAllowed: JSONSerialization.ReadingOptions { get }
+    @available(iOS 15.0, *)
+    static var json5Allowed: JSONSerialization.ReadingOptions { get }
+    @available(iOS 15.0, *)
+    @available(swift, obsoleted: 3, renamed: "json5Allowed")
+    static var JSON5Allowed: JSONSerialization.ReadingOptions { get }
+    @available(iOS 15.0, *)
+    static var topLevelDictionaryAssumed: JSONSerialization.ReadingOptions { get }
+    @available(iOS 15.0, *)
+    @available(swift, obsoleted: 3, renamed: "topLevelDictionaryAssumed")
+    static var TopLevelDictionaryAssumed: JSONSerialization.ReadingOptions { get }
+    @available(iOS, introduced: 5.0, deprecated: 100000, renamed: "JSONSerialization.ReadingOptions.fragmentsAllowed")
+    static var allowFragments: JSONSerialization.ReadingOptions { get }
+    @available(iOS, introduced: 5.0, deprecated: 100000, renamed: "JSONSerialization.ReadingOptions.fragmentsAllowed")
+    @available(swift, obsoleted: 3, renamed: "allowFragments")
+    static var AllowFragments: JSONSerialization.ReadingOptions { get }
+  }
+  @available(iOS 5.0, *)
+  struct WritingOptions : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = JSONSerialization.WritingOptions
+    typealias ArrayLiteralElement = JSONSerialization.WritingOptions
+    static var prettyPrinted: JSONSerialization.WritingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "prettyPrinted")
+    static var PrettyPrinted: JSONSerialization.WritingOptions { get }
+    @available(iOS 11.0, *)
+    static var sortedKeys: JSONSerialization.WritingOptions { get }
+    @available(iOS 11.0, *)
+    @available(swift, obsoleted: 3, renamed: "sortedKeys")
+    static var SortedKeys: JSONSerialization.WritingOptions { get }
+    static var fragmentsAllowed: JSONSerialization.WritingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "fragmentsAllowed")
+    static var FragmentsAllowed: JSONSerialization.WritingOptions { get }
+    @available(iOS 13.0, *)
+    static var withoutEscapingSlashes: JSONSerialization.WritingOptions { get }
+    @available(iOS 13.0, *)
+    @available(swift, obsoleted: 3, renamed: "withoutEscapingSlashes")
+    static var WithoutEscapingSlashes: JSONSerialization.WritingOptions { get }
+  }
+}
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "JSONSerialization.WritingOptions")
+typealias NSJSONWritingOptions = JSONSerialization.WritingOptions
+@available(iOS 5.0, *)
+class JSONSerialization : NSObject {
+  class func isValidJSONObject(_ obj: Any) -> Bool
+  class func data(withJSONObject obj: Any, options opt: JSONSerialization.WritingOptions = []) throws -> Data
+  @available(swift, obsoleted: 3, renamed: "data(withJSONObject:options:)")
+  class func dataWithJSONObject(_ obj: Any, options opt: JSONSerialization.WritingOptions = []) throws -> Data
+  class func jsonObject(with data: Data, options opt: JSONSerialization.ReadingOptions = []) throws -> Any
+  @available(swift, obsoleted: 3, renamed: "jsonObject(with:options:)")
+  class func JSONObjectWithData(_ data: Data, options opt: JSONSerialization.ReadingOptions = []) throws -> Any
+  class func writeJSONObject(_ obj: Any, to stream: OutputStream, options opt: JSONSerialization.WritingOptions = [], error: NSErrorPointer) -> Int
+  @available(swift, obsoleted: 3, renamed: "writeJSONObject(_:to:options:error:)")
+  class func writeJSONObject(_ obj: Any, toStream stream: OutputStream, options opt: JSONSerialization.WritingOptions = [], error: NSErrorPointer) -> Int
+  class func jsonObject(with stream: InputStream, options opt: JSONSerialization.ReadingOptions = []) throws -> Any
+  @available(swift, obsoleted: 3, renamed: "jsonObject(with:options:)")
+  class func JSONObjectWithStream(_ stream: InputStream, options opt: JSONSerialization.ReadingOptions = []) throws -> Any
+  init()
+}
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "JSONSerialization")
+typealias NSJSONSerialization = JSONSerialization

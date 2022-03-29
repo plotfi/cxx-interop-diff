@@ -1,0 +1,3 @@
+@_exported import Foundation
+
+var UIKIT_HAS_UIFOUNDATION_SYMBOLS: Int32 { get }

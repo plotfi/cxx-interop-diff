@@ -1,0 +1,53 @@
+@_exported import Foundation
+
+
+/// Behavioral Styles are values that determine how a class — such as a view or control — behaves. This includes how the control is drawn, and what behaviors it supports. For example, handling certain customizations in one style, but not another.
+@available(iOS 15.0, *)
+enum UIBehavioralStyle : UInt, @unchecked Sendable {
+  init?(rawValue: UInt)
+  var rawValue: UInt { get }
+  typealias RawValue = UInt
+
+  /// The system will choose the most appropriate style for the targetted platform.
+  case automatic
+
+  /// The system will choose the most appropriate style for the targetted platform.
+  @available(swift, obsoleted: 3, renamed: "automatic")
+  static var Automatic: UIBehavioralStyle { get }
+
+  /// A style and set of behaviors best for iOS/iPadOS applications
+  case pad
+
+  /// A style and set of behaviors best for iOS/iPadOS applications
+  @available(swift, obsoleted: 3, renamed: "pad")
+  static var Pad: UIBehavioralStyle { get }
+
+  /// A style and set of behaviors best for macOS applications
+  case mac
+
+  /// A style and set of behaviors best for macOS applications
+  @available(swift, obsoleted: 3, renamed: "mac")
+  static var Mac: UIBehavioralStyle { get }
+}
+@available(iOS 15.0, *)
+extension UIButton {
+
+  /// The button's behavioral style. This property always returns a concrete, resolved style (never UIBehavioralStyleAutomatic).
+  @available(iOS 15.0, *)
+  var behavioralStyle: UIBehavioralStyle { get }
+
+  /// Request a style for the button. If the style changed, the button will redraw and its metrics may change.
+  @available(iOS 15.0, *)
+  var preferredBehavioralStyle: UIBehavioralStyle
+}
+@available(iOS 15.0, *)
+extension UISlider {
+
+  /// The slider's behavioral style. This property always returns a concrete, resolved style (never UIBehavioralStyleAutomatic).
+  @available(iOS 15.0, *)
+  var behavioralStyle: UIBehavioralStyle { get }
+
+  /// Request a style for the slider. If the style changes, the slider will redraw and its metrics may change.
+  @available(iOS 15.0, *)
+  var preferredBehavioralStyle: UIBehavioralStyle
+}

@@ -1,0 +1,32 @@
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+protocol NSTextViewportLayoutControllerDelegate : NSObjectProtocol {
+  func viewportBounds(for textViewportLayoutController: NSTextViewportLayoutController) -> CGRect
+  @available(swift, obsoleted: 3, renamed: "viewportBounds(for:)")
+  func viewportBoundsForTextViewportLayoutController(_ textViewportLayoutController: NSTextViewportLayoutController) -> CGRect
+  func textViewportLayoutController(_ textViewportLayoutController: NSTextViewportLayoutController, configureRenderingSurfaceFor textLayoutFragment: NSTextLayoutFragment)
+  @available(swift, obsoleted: 3, renamed: "textViewportLayoutController(_:configureRenderingSurfaceFor:)")
+  func textViewportLayoutController(_ textViewportLayoutController: NSTextViewportLayoutController, configureRenderingSurfaceForTextLayoutFragment textLayoutFragment: NSTextLayoutFragment)
+  optional func textViewportLayoutControllerWillLayout(_ textViewportLayoutController: NSTextViewportLayoutController)
+  optional func textViewportLayoutControllerDidLayout(_ textViewportLayoutController: NSTextViewportLayoutController)
+}
+@available(iOS 15.0, *)
+class NSTextViewportLayoutController : NSObject {
+  init(textLayoutManager: NSTextLayoutManager)
+  @available(*, unavailable)
+  class func new() -> Self
+  @available(*, unavailable)
+  convenience init()
+  weak var delegate: @sil_weak NSTextViewportLayoutControllerDelegate?
+  weak var textLayoutManager: @sil_weak NSTextLayoutManager? { get }
+  var viewportBounds: CGRect { get }
+  var viewportRange: NSTextRange? { get }
+  func layoutViewport()
+  func relocateViewport(to textLocation: NSTextLocation) -> CGFloat
+  @available(swift, obsoleted: 3, renamed: "relocateViewport(to:)")
+  func relocateViewportToTextLocation(_ textLocation: NSTextLocation) -> CGFloat
+  func adjustViewport(byVerticalOffset verticalOffset: CGFloat)
+  @available(swift, obsoleted: 3, renamed: "adjustViewport(byVerticalOffset:)")
+  func adjustViewportByVerticalOffset(_ verticalOffset: CGFloat)
+}

@@ -1,0 +1,367 @@
+@_exported import CoreFoundation
+
+
+/***************	Type definitions		***********/
+@available(swift, obsoleted: 3, renamed: "NSDecimalNumber.RoundingMode")
+typealias NSRoundingMode = NSDecimalNumber.RoundingMode
+extension NSDecimalNumber {
+
+  /***************	Type definitions		***********/
+  enum RoundingMode : UInt, @unchecked Sendable {
+    init?(rawValue: UInt)
+    var rawValue: UInt { get }
+    typealias RawValue = UInt
+    case plain
+    @available(swift, obsoleted: 3, renamed: "plain")
+    static var NSRoundPlain: NSDecimalNumber.RoundingMode { get }
+    case down
+    @available(swift, obsoleted: 3, renamed: "down")
+    static var NSRoundDown: NSDecimalNumber.RoundingMode { get }
+    case up
+    @available(swift, obsoleted: 3, renamed: "up")
+    static var NSRoundUp: NSDecimalNumber.RoundingMode { get }
+    case bankers
+    @available(swift, obsoleted: 3, renamed: "bankers")
+    static var NSRoundBankers: NSDecimalNumber.RoundingMode { get }
+  }
+  enum CalculationError : UInt, @unchecked Sendable {
+    init?(rawValue: UInt)
+    var rawValue: UInt { get }
+    typealias RawValue = UInt
+    case noError
+    @available(swift, obsoleted: 3, renamed: "noError")
+    static var NoError: NSDecimalNumber.CalculationError { get }
+    case lossOfPrecision
+    @available(swift, obsoleted: 3, renamed: "lossOfPrecision")
+    static var LossOfPrecision: NSDecimalNumber.CalculationError { get }
+    case underflow
+    @available(swift, obsoleted: 3, renamed: "underflow")
+    static var Underflow: NSDecimalNumber.CalculationError { get }
+    case overflow
+    @available(swift, obsoleted: 3, renamed: "overflow")
+    static var Overflow: NSDecimalNumber.CalculationError { get }
+    case divideByZero
+    @available(swift, obsoleted: 3, renamed: "divideByZero")
+    static var DivideByZero: NSDecimalNumber.CalculationError { get }
+  }
+}
+@available(swift, obsoleted: 3, renamed: "NSDecimalNumber.CalculationError")
+typealias NSCalculationError = NSDecimalNumber.CalculationError
+var NSDecimalMaxSize: Int32 { get }
+var NSDecimalNoScale: Int32 { get }
+struct Decimal {
+  init()
+  init(_exponent: Int32, _length: UInt32, _isNegative: UInt32, _isCompact: UInt32, _reserved: UInt32, _mantissa: (UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16))
+  var _exponent: Int32
+  var _length: UInt32
+  var _isNegative: UInt32
+  var _isCompact: UInt32
+  var _reserved: UInt32
+  var _mantissa: (UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16)
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal {
+  struct FormatStyle : FormatStyle {
+    var locale: Locale
+    init(locale: Locale = .autoupdatingCurrent)
+    var attributed: Decimal.FormatStyle.Attributed { get }
+    typealias Configuration = NumberFormatStyleConfiguration
+    func grouping(_ group: Decimal.FormatStyle.Configuration.Grouping) -> Decimal.FormatStyle
+    func precision(_ p: Decimal.FormatStyle.Configuration.Precision) -> Decimal.FormatStyle
+    func sign(strategy: Decimal.FormatStyle.Configuration.SignDisplayStrategy) -> Decimal.FormatStyle
+    func decimalSeparator(strategy: Decimal.FormatStyle.Configuration.DecimalSeparatorDisplayStrategy) -> Decimal.FormatStyle
+    func rounded(rule: Decimal.FormatStyle.Configuration.RoundingRule = .toNearestOrEven, increment: Int? = nil) -> Decimal.FormatStyle
+    func scale(_ multiplicand: Double) -> Decimal.FormatStyle
+    func notation(_ notation: Decimal.FormatStyle.Configuration.Notation) -> Decimal.FormatStyle
+    func format(_ value: Decimal) -> String
+    func locale(_ locale: Locale) -> Decimal.FormatStyle
+    func hash(into hasher: inout Hasher)
+    static func == (a: Decimal.FormatStyle, b: Decimal.FormatStyle) -> Bool
+    typealias FormatInput = Decimal
+    typealias FormatOutput = String
+    func encode(to encoder: Encoder) throws
+    var hashValue: Int { get }
+    init(from decoder: Decoder) throws
+  }
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal {
+  /// Format `self` using `Decimal.FormatStyle`
+  func formatted() -> String
+  /// Format `self` with the given format.
+  func formatted<S>(_ format: S) -> S.FormatOutput where S : FormatStyle, S.FormatInput == Decimal
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal {
+  struct ParseStrategy<Format> : ParseStrategy, Codable, Hashable where Format : FormatStyle, Format.FormatInput == Decimal {
+    var formatStyle: Format
+    var lenient: Bool
+    func parse(_ value: String) throws -> Format.FormatInput
+    func hash(into hasher: inout Hasher)
+    static func == (a: Decimal.ParseStrategy<Format>, b: Decimal.ParseStrategy<Format>) -> Bool
+    typealias ParseInput = String
+    typealias ParseOutput = Decimal
+    func encode(to encoder: Encoder) throws
+    var hashValue: Int { get }
+    init(from decoder: Decoder) throws
+  }
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal {
+  /// Initialize an instance by parsing `value` with the given `strategy`.
+  init<S>(_ value: S.ParseInput, strategy: S) throws where S : ParseStrategy, S.ParseOutput == Decimal
+  init(_ value: String, format: Decimal.FormatStyle, lenient: Bool = true) throws
+  init(_ value: String, format: Decimal.FormatStyle.Percent, lenient: Bool = true) throws
+  init(_ value: String, format: Decimal.FormatStyle.Currency, lenient: Bool = true) throws
+}
+
+extension Decimal {
+  typealias RoundingMode = NSDecimalNumber.RoundingMode
+  typealias CalculationError = NSDecimalNumber.CalculationError
+}
+
+extension Decimal : Hashable, Comparable {
+  func hash(into hasher: inout Hasher)
+  static func == (lhs: Decimal, rhs: Decimal) -> Bool
+  static func < (lhs: Decimal, rhs: Decimal) -> Bool
+  var hashValue: Int { get }
+}
+
+extension Decimal : CustomStringConvertible {
+  init?(string: __shared String, locale: __shared Locale? = nil)
+  var description: String { get }
+}
+
+extension Decimal : Codable {
+  init(from decoder: Decoder) throws
+  func encode(to encoder: Encoder) throws
+}
+
+extension Decimal : ExpressibleByFloatLiteral {
+  init(floatLiteral value: Double)
+  typealias FloatLiteralType = Double
+}
+
+extension Decimal : ExpressibleByIntegerLiteral {
+  init(integerLiteral value: Int)
+  typealias IntegerLiteralType = Int
+}
+
+extension Decimal : SignedNumeric {
+  var magnitude: Decimal { get }
+  init?<T>(exactly source: T) where T : BinaryInteger
+  static func += (lhs: inout Decimal, rhs: Decimal)
+  static func -= (lhs: inout Decimal, rhs: Decimal)
+  static func *= (lhs: inout Decimal, rhs: Decimal)
+  static func /= (lhs: inout Decimal, rhs: Decimal)
+  static func + (lhs: Decimal, rhs: Decimal) -> Decimal
+  static func - (lhs: Decimal, rhs: Decimal) -> Decimal
+  static func * (lhs: Decimal, rhs: Decimal) -> Decimal
+  static func / (lhs: Decimal, rhs: Decimal) -> Decimal
+  mutating func negate()
+  typealias Magnitude = Decimal
+}
+
+extension Decimal {
+  @available(swift, obsoleted: 4, message: "Please use arithmetic operators instead")
+  @_transparent mutating func add(_ other: Decimal)
+  @available(swift, obsoleted: 4, message: "Please use arithmetic operators instead")
+  @_transparent mutating func subtract(_ other: Decimal)
+  @available(swift, obsoleted: 4, message: "Please use arithmetic operators instead")
+  @_transparent mutating func multiply(by other: Decimal)
+  @available(swift, obsoleted: 4, message: "Please use arithmetic operators instead")
+  @_transparent mutating func divide(by other: Decimal)
+}
+
+extension Decimal : Strideable {
+  func distance(to other: Decimal) -> Decimal
+  func advanced(by n: Decimal) -> Decimal
+  typealias Stride = Decimal
+}
+
+extension Decimal {
+  static let leastFiniteMagnitude: Decimal
+  static let greatestFiniteMagnitude: Decimal
+  static let leastNormalMagnitude: Decimal
+  static let leastNonzeroMagnitude: Decimal
+  static let pi: Decimal
+  @available(*, unavailable, message: "Decimal does not yet fully adopt FloatingPoint.")
+  static var infinity: Decimal { get }
+  @available(*, unavailable, message: "Decimal does not yet fully adopt FloatingPoint.")
+  static var signalingNaN: Decimal { get }
+  static var quietNaN: Decimal { get }
+  static var nan: Decimal { get }
+  static var radix: Int { get }
+  init(_ value: UInt8)
+  init(_ value: Int8)
+  init(_ value: UInt16)
+  init(_ value: Int16)
+  init(_ value: UInt32)
+  init(_ value: Int32)
+  init(_ value: UInt64)
+  init(_ value: Int64)
+  init(_ value: UInt)
+  init(_ value: Int)
+  init(_ value: Double)
+  init(sign: FloatingPointSign, exponent: Int, significand: Decimal)
+  init(signOf: Decimal, magnitudeOf magnitude: Decimal)
+  var exponent: Int { get }
+  var significand: Decimal { get }
+  var sign: FloatingPointSign { get }
+  var ulp: Decimal { get }
+  var nextUp: Decimal { get }
+  var nextDown: Decimal { get }
+  /// The IEEE 754 "class" of this type.
+  var floatingPointClass: FloatingPointClassification { get }
+  var isCanonical: Bool { get }
+  /// `true` if `self` is negative, `false` otherwise.
+  var isSignMinus: Bool { get }
+  /// `true` if `self` is +0.0 or -0.0, `false` otherwise.
+  var isZero: Bool { get }
+  /// `true` if `self` is subnormal, `false` otherwise.
+  var isSubnormal: Bool { get }
+  /// `true` if `self` is normal (not zero, subnormal, infinity, or NaN),
+  /// `false` otherwise.
+  var isNormal: Bool { get }
+  /// `true` if `self` is zero, subnormal, or normal (not infinity or NaN),
+  /// `false` otherwise.
+  var isFinite: Bool { get }
+  /// `true` if `self` is infinity, `false` otherwise.
+  var isInfinite: Bool { get }
+  /// `true` if `self` is NaN, `false` otherwise.
+  var isNaN: Bool { get }
+  /// `true` if `self` is a signaling NaN, `false` otherwise.
+  var isSignaling: Bool { get }
+  /// `true` if `self` is a signaling NaN, `false` otherwise.
+  var isSignalingNaN: Bool { get }
+  func isEqual(to other: Decimal) -> Bool
+  func isLess(than other: Decimal) -> Bool
+  func isLessThanOrEqualTo(_ other: Decimal) -> Bool
+  func isTotallyOrdered(belowOrEqualTo other: Decimal) -> Bool
+  @available(*, unavailable, message: "Decimal does not yet fully adopt FloatingPoint.")
+  mutating func formTruncatingRemainder(dividingBy other: Decimal)
+}
+
+extension Decimal : _ObjectiveCBridgeable {
+  @_semantics("convertToObjectiveC") func _bridgeToObjectiveC() -> NSDecimalNumber
+  static func _forceBridgeFromObjectiveC(_ x: NSDecimalNumber, result: inout Decimal?)
+  static func _conditionallyBridgeFromObjectiveC(_ input: NSDecimalNumber, result: inout Decimal?) -> Bool
+  @_effects(readonly) static func _unconditionallyBridgeFromObjectiveC(_ source: NSDecimalNumber?) -> Decimal
+  typealias _ObjectiveCType = NSDecimalNumber
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal.FormatStyle {
+  struct Percent : FormatStyle {
+    var locale: Locale
+    init(locale: Locale = .autoupdatingCurrent)
+    var attributed: Decimal.FormatStyle.Attributed { get }
+    typealias Configuration = NumberFormatStyleConfiguration
+    func grouping(_ group: Decimal.FormatStyle.Percent.Configuration.Grouping) -> Decimal.FormatStyle.Percent
+    func precision(_ p: Decimal.FormatStyle.Percent.Configuration.Precision) -> Decimal.FormatStyle.Percent
+    func sign(strategy: Decimal.FormatStyle.Percent.Configuration.SignDisplayStrategy) -> Decimal.FormatStyle.Percent
+    func decimalSeparator(strategy: Decimal.FormatStyle.Percent.Configuration.DecimalSeparatorDisplayStrategy) -> Decimal.FormatStyle.Percent
+    func rounded(rule: Decimal.FormatStyle.Percent.Configuration.RoundingRule = .toNearestOrEven, increment: Int? = nil) -> Decimal.FormatStyle.Percent
+    func scale(_ multiplicand: Double) -> Decimal.FormatStyle.Percent
+    func notation(_ notation: Decimal.FormatStyle.Percent.Configuration.Notation) -> Decimal.FormatStyle.Percent
+    func format(_ value: Decimal) -> String
+    func locale(_ locale: Locale) -> Decimal.FormatStyle.Percent
+    func hash(into hasher: inout Hasher)
+    static func == (a: Decimal.FormatStyle.Percent, b: Decimal.FormatStyle.Percent) -> Bool
+    typealias FormatInput = Decimal
+    typealias FormatOutput = String
+    func encode(to encoder: Encoder) throws
+    var hashValue: Int { get }
+    init(from decoder: Decoder) throws
+  }
+  @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+  struct Currency : FormatStyle {
+    typealias Configuration = CurrencyFormatStyleConfiguration
+    var locale: Locale
+    var currencyCode: String
+    init(code: String, locale: Locale = .autoupdatingCurrent)
+    var attributed: Decimal.FormatStyle.Attributed { get }
+    func grouping(_ group: Decimal.FormatStyle.Currency.Configuration.Grouping) -> Decimal.FormatStyle.Currency
+    func precision(_ p: Decimal.FormatStyle.Currency.Configuration.Precision) -> Decimal.FormatStyle.Currency
+    func sign(strategy: Decimal.FormatStyle.Currency.Configuration.SignDisplayStrategy) -> Decimal.FormatStyle.Currency
+    func decimalSeparator(strategy: Decimal.FormatStyle.Currency.Configuration.DecimalSeparatorDisplayStrategy) -> Decimal.FormatStyle.Currency
+    func rounded(rule: Decimal.FormatStyle.Currency.Configuration.RoundingRule = .toNearestOrEven, increment: Int? = nil) -> Decimal.FormatStyle.Currency
+    func scale(_ multiplicand: Double) -> Decimal.FormatStyle.Currency
+    func presentation(_ p: Decimal.FormatStyle.Currency.Configuration.Presentation) -> Decimal.FormatStyle.Currency
+    func format(_ value: Decimal) -> String
+    func locale(_ locale: Locale) -> Decimal.FormatStyle.Currency
+    func hash(into hasher: inout Hasher)
+    static func == (a: Decimal.FormatStyle.Currency, b: Decimal.FormatStyle.Currency) -> Bool
+    typealias FormatInput = Decimal
+    typealias FormatOutput = String
+    func encode(to encoder: Encoder) throws
+    var hashValue: Int { get }
+    init(from decoder: Decoder) throws
+  }
+  struct Attributed : FormatStyle {
+    /// Returns an attributed string with `NumberFormatAttributes.SymbolAttribute` and `NumberFormatAttributes.NumberPartAttribute`.
+    func format(_ value: Decimal) -> AttributedString
+    func locale(_ locale: Locale) -> Decimal.FormatStyle.Attributed
+    func hash(into hasher: inout Hasher)
+    static func == (a: Decimal.FormatStyle.Attributed, b: Decimal.FormatStyle.Attributed) -> Bool
+    typealias FormatInput = Decimal
+    typealias FormatOutput = AttributedString
+    func encode(to encoder: Encoder) throws
+    var hashValue: Int { get }
+    init(from decoder: Decoder) throws
+  }
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal.FormatStyle : ParseableFormatStyle {
+  var parseStrategy: Decimal.ParseStrategy<Decimal.FormatStyle> { get }
+  typealias Strategy = Decimal.ParseStrategy<Decimal.FormatStyle>
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal.ParseStrategy where Format == Decimal.FormatStyle {
+  init(format: Format, lenient: Bool = true)
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal.ParseStrategy where Format == Decimal.FormatStyle.Percent {
+  init(format: Format, lenient: Bool = true)
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal.ParseStrategy where Format == Decimal.FormatStyle.Currency {
+  init(format: Format, lenient: Bool = true)
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal.FormatStyle.Percent : ParseableFormatStyle {
+  var parseStrategy: Decimal.ParseStrategy<Decimal.FormatStyle.Percent> { get }
+  typealias Strategy = Decimal.ParseStrategy<Decimal.FormatStyle.Percent>
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal.FormatStyle.Currency : ParseableFormatStyle {
+  var parseStrategy: Decimal.ParseStrategy<Decimal.FormatStyle.Currency> { get }
+  typealias Strategy = Decimal.ParseStrategy<Decimal.FormatStyle.Currency>
+}
+@available(swift, obsoleted: 3, renamed: "Decimal")
+typealias NSDecimal = Decimal
+func NSDecimalIsNotANumber(_ dcm: UnsafePointer<Decimal>) -> Bool
+
+/***************	Operations		***********/
+func NSDecimalCopy(_ destination: UnsafeMutablePointer<Decimal>, _ source: UnsafePointer<Decimal>)
+func NSDecimalCompact(_ number: UnsafeMutablePointer<Decimal>)
+func NSDecimalCompare(_ leftOperand: UnsafePointer<Decimal>, _ rightOperand: UnsafePointer<Decimal>) -> ComparisonResult
+func NSDecimalRound(_ result: UnsafeMutablePointer<Decimal>, _ number: UnsafePointer<Decimal>, _ scale: Int, _ roundingMode: NSDecimalNumber.RoundingMode)
+func NSDecimalNormalize(_ number1: UnsafeMutablePointer<Decimal>, _ number2: UnsafeMutablePointer<Decimal>, _ roundingMode: NSDecimalNumber.RoundingMode) -> NSDecimalNumber.CalculationError
+func NSDecimalAdd(_ result: UnsafeMutablePointer<Decimal>, _ leftOperand: UnsafePointer<Decimal>, _ rightOperand: UnsafePointer<Decimal>, _ roundingMode: NSDecimalNumber.RoundingMode) -> NSDecimalNumber.CalculationError
+func NSDecimalSubtract(_ result: UnsafeMutablePointer<Decimal>, _ leftOperand: UnsafePointer<Decimal>, _ rightOperand: UnsafePointer<Decimal>, _ roundingMode: NSDecimalNumber.RoundingMode) -> NSDecimalNumber.CalculationError
+func NSDecimalMultiply(_ result: UnsafeMutablePointer<Decimal>, _ leftOperand: UnsafePointer<Decimal>, _ rightOperand: UnsafePointer<Decimal>, _ roundingMode: NSDecimalNumber.RoundingMode) -> NSDecimalNumber.CalculationError
+func NSDecimalDivide(_ result: UnsafeMutablePointer<Decimal>, _ leftOperand: UnsafePointer<Decimal>, _ rightOperand: UnsafePointer<Decimal>, _ roundingMode: NSDecimalNumber.RoundingMode) -> NSDecimalNumber.CalculationError
+func NSDecimalPower(_ result: UnsafeMutablePointer<Decimal>, _ number: UnsafePointer<Decimal>, _ power: Int, _ roundingMode: NSDecimalNumber.RoundingMode) -> NSDecimalNumber.CalculationError
+func NSDecimalMultiplyByPowerOf10(_ result: UnsafeMutablePointer<Decimal>, _ number: UnsafePointer<Decimal>, _ power: Int16, _ roundingMode: NSDecimalNumber.RoundingMode) -> NSDecimalNumber.CalculationError
+func NSDecimalString(_ dcm: UnsafePointer<Decimal>, _ locale: Any?) -> String

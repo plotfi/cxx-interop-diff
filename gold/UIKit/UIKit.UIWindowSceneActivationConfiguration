@@ -1,0 +1,24 @@
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "UIWindowScene.ActivationConfiguration")
+typealias UIWindowSceneActivationConfiguration = UIWindowScene.ActivationConfiguration
+extension UIWindowScene {
+  @available(iOS 15.0, *)
+  class ActivationConfiguration : NSObject {
+
+    /// The user activity that will be used to request a scene
+    var userActivity: NSUserActivity { get }
+
+    /// Options for customizing the scene request. If omitted default options are used.
+    var options: UIWindowScene.ActivationRequestOptions?
+
+    /// An optional preview used to define the visual "source" of the newly activated scene for use in system animations.
+    var preview: UITargetedPreview?
+    init(__userActivity userActivity: NSUserActivity)
+    @available(*, unavailable)
+    convenience init()
+    @available(*, unavailable)
+    class func new() -> Self
+  }
+}

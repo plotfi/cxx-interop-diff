@@ -1,0 +1,54 @@
+@_exported import Foundation
+
+
+/// Return a @c UIWindowSceneActivationConfiguration
+///
+/// @param interaction The @c UIWindowSceneActivationInteraction requesting a configuration.
+/// @param location Location in the interaction's view for which a configuration is being requested.
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "UIWindowSceneActivationInteraction.ConfigurationProvider")
+typealias UIWindowSceneActivationInteractionConfigurationProvider = UIWindowScene.ActivationInteraction.ConfigurationProvider
+extension UIWindowScene.ActivationInteraction {
+
+  /// Return a @c UIWindowSceneActivationConfiguration
+  ///
+  /// @param interaction The @c UIWindowSceneActivationInteraction requesting a configuration.
+  /// @param location Location in the interaction's view for which a configuration is being requested.
+  @available(iOS 15.0, *)
+  typealias ConfigurationProvider = (UIWindowScene.ActivationInteraction, CGPoint) -> UIWindowScene.ActivationConfiguration?
+}
+
+/// An interaction that facilitates activating a @c UIWindowScene when the user pinches out on the interaction's view.
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "UIWindowScene.ActivationInteraction")
+typealias UIWindowSceneActivationInteraction = UIWindowScene.ActivationInteraction
+extension UIWindowScene {
+
+  /// An interaction that facilitates activating a @c UIWindowScene when the user pinches out on the interaction's view.
+  @available(iOS 15.0, *)
+  class ActivationInteraction : NSObject, UIInteraction {
+
+    /// Returns a new @c UIWindowSceneActivationInteraction
+    ///
+    /// @param configurationProvider Called when the interaction has been triggered. It should return a @c UIWindowSceneActivationConfiguration whose user activity will be used to request scene activation.
+    /// @param errorHandler Called when the activation request fails.
+    init(_ configurationProvider: @escaping UIWindowScene.ActivationInteraction.ConfigurationProvider, errorHandler: @escaping (Error) -> Void)
+
+    /// Returns a new @c UIWindowSceneActivationInteraction
+    ///
+    /// @param configurationProvider Called when the interaction has been triggered. It should return a @c UIWindowSceneActivationConfiguration whose user activity will be used to request scene activation.
+    /// @param errorHandler Called when the activation request fails.
+    @available(swift, obsoleted: 3, renamed: "init(_:errorHandler:)")
+    init(configurationProvider: @escaping UIWindowScene.ActivationInteraction.ConfigurationProvider, errorHandler: @escaping (Error) -> Void)
+    @available(*, unavailable)
+    convenience init()
+    @available(*, unavailable)
+    class func new() -> Self
+    @available(iOS 11.0, *)
+    weak var view: @sil_weak UIView? { get }
+    @available(iOS 11.0, *)
+    func willMove(to view: UIView?)
+    @available(iOS 11.0, *)
+    func didMove(to view: UIView?)
+  }
+}

@@ -1,0 +1,29 @@
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+@MainActor class UITrackingLayoutGuide : UILayoutGuide {
+
+  /// @param trackingConstraints Constraints to activate when the guide is close to the specified edge, and deactivate when it moves away. Sending nil will deactivate any currently active constraints associated with this edge and remove them from tracking.
+  /// @param edge When the tracking layout guide is close to this edge, specified constraints will change
+  func setConstraints(_ trackingConstraints: [NSLayoutConstraint], activeWhenNearEdge edge: NSDirectionalRectEdge)
+  func constraints(activeWhenNearEdge edge: NSDirectionalRectEdge) -> [NSLayoutConstraint]
+  @available(swift, obsoleted: 3, renamed: "constraints(activeWhenNearEdge:)")
+  func constraintsActiveWhenNearEdge(_ edge: NSDirectionalRectEdge) -> [NSLayoutConstraint]
+
+  /// @param trackingConstraints Constraints to deactivate when the guide is close to the specified edge, and activate when it moves away. Sending nil will remove the constraints associated with this edge from tracking.
+  /// @param edge When the tracking layout guide is close to this edge, specified constraints will change
+  func setConstraints(_ trackingConstraints: [NSLayoutConstraint], activeWhenAwayFrom edge: NSDirectionalRectEdge)
+
+  /// @param trackingConstraints Constraints to deactivate when the guide is close to the specified edge, and activate when it moves away. Sending nil will remove the constraints associated with this edge from tracking.
+  /// @param edge When the tracking layout guide is close to this edge, specified constraints will change
+  @available(swift, obsoleted: 3, renamed: "setConstraints(_:activeWhenAwayFrom:)")
+  func setConstraints(_ trackingConstraints: [NSLayoutConstraint], activeWhenAwayFromEdge edge: NSDirectionalRectEdge)
+  func constraints(activeWhenAwayFrom edge: NSDirectionalRectEdge) -> [NSLayoutConstraint]
+  @available(swift, obsoleted: 3, renamed: "constraints(activeWhenAwayFrom:)")
+  func constraintsActiveWhenAwayFromEdge(_ edge: NSDirectionalRectEdge) -> [NSLayoutConstraint]
+
+  /// Manually remove all constraints from this guide's tracking. 
+  func removeAllTrackedConstraints()
+  init()
+  init?(coder: NSCoder)
+}

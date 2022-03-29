@@ -1,0 +1,18 @@
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+class NSTextElement : NSObject {
+  init(textContentManager: NSTextContentManager?)
+  weak var textContentManager: @sil_weak NSTextContentManager?
+  var elementRange: NSTextRange?
+  convenience init()
+}
+@available(iOS 15.0, *)
+class NSTextParagraph : NSTextElement {
+  init(attributedString: NSAttributedString?)
+  var attributedString: NSAttributedString { get }
+  var paragraphContentRange: NSTextRange? { get }
+  var paragraphSeparatorRange: NSTextRange? { get }
+  convenience init(textContentManager: NSTextContentManager?)
+  convenience init()
+}

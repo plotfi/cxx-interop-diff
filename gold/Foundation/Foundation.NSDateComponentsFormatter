@@ -1,0 +1,103 @@
+@_exported import CoreFoundation
+
+@available(swift, obsoleted: 3, renamed: "DateComponentsFormatter.UnitsStyle")
+typealias NSDateComponentsFormatterUnitsStyle = DateComponentsFormatter.UnitsStyle
+extension DateComponentsFormatter {
+  @available(iOS 8.0, *)
+  enum UnitsStyle : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case positional
+    @available(swift, obsoleted: 3, renamed: "positional")
+    static var Positional: DateComponentsFormatter.UnitsStyle { get }
+    case abbreviated
+    @available(swift, obsoleted: 3, renamed: "abbreviated")
+    static var Abbreviated: DateComponentsFormatter.UnitsStyle { get }
+    case short
+    @available(swift, obsoleted: 3, renamed: "short")
+    static var Short: DateComponentsFormatter.UnitsStyle { get }
+    case full
+    @available(swift, obsoleted: 3, renamed: "full")
+    static var Full: DateComponentsFormatter.UnitsStyle { get }
+    case spellOut
+    @available(swift, obsoleted: 3, renamed: "spellOut")
+    static var SpellOut: DateComponentsFormatter.UnitsStyle { get }
+    @available(iOS 10.0, *)
+    case brief
+    @available(iOS 10.0, *)
+    @available(swift, obsoleted: 3, renamed: "brief")
+    static var Brief: DateComponentsFormatter.UnitsStyle { get }
+  }
+  @available(iOS 8.0, *)
+  struct ZeroFormattingBehavior : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = DateComponentsFormatter.ZeroFormattingBehavior
+    typealias ArrayLiteralElement = DateComponentsFormatter.ZeroFormattingBehavior
+    @available(*, unavailable, message: "use [] to construct an empty option set")
+    static var none: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(*, unavailable, message: "use [] to construct an empty option set")
+    @available(swift, obsoleted: 3, renamed: "none")
+    static var None: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var `default`: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "default")
+    static var Default: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var dropLeading: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "dropLeading")
+    static var DropLeading: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var dropMiddle: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "dropMiddle")
+    static var DropMiddle: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var dropTrailing: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "dropTrailing")
+    static var DropTrailing: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var dropAll: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "dropAll")
+    static var DropAll: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var pad: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "pad")
+    static var Pad: DateComponentsFormatter.ZeroFormattingBehavior { get }
+  }
+}
+@available(swift, obsoleted: 3, renamed: "DateComponentsFormatter.ZeroFormattingBehavior")
+typealias NSDateComponentsFormatterZeroFormattingBehavior = DateComponentsFormatter.ZeroFormattingBehavior
+@available(iOS 8.0, *)
+class DateComponentsFormatter : Formatter {
+  func string(for obj: Any?) -> String?
+  @available(swift, obsoleted: 3, renamed: "string(for:)")
+  func stringForObjectValue(_ obj: Any?) -> String?
+  func string(from components: DateComponents) -> String?
+  @available(swift, obsoleted: 3, renamed: "string(from:)")
+  func stringFromDateComponents(_ components: DateComponents) -> String?
+  func string(from startDate: Date, to endDate: Date) -> String?
+  @available(swift, obsoleted: 3, renamed: "string(from:to:)")
+  func stringFromDate(_ startDate: Date, toDate endDate: Date) -> String?
+  func string(from ti: TimeInterval) -> String?
+  @available(swift, obsoleted: 3, renamed: "string(from:)")
+  func stringFromTimeInterval(_ ti: TimeInterval) -> String?
+  class func localizedString(from components: DateComponents, unitsStyle: DateComponentsFormatter.UnitsStyle) -> String?
+  @available(swift, obsoleted: 3, renamed: "localizedString(from:unitsStyle:)")
+  class func localizedStringFromDateComponents(_ components: DateComponents, unitsStyle: DateComponentsFormatter.UnitsStyle) -> String?
+  var unitsStyle: DateComponentsFormatter.UnitsStyle
+  var allowedUnits: NSCalendar.Unit
+  var zeroFormattingBehavior: DateComponentsFormatter.ZeroFormattingBehavior
+  var calendar: Calendar?
+  @available(iOS 11.0, *)
+  var referenceDate: Date?
+  var allowsFractionalUnits: Bool
+  var maximumUnitCount: Int
+  var collapsesLargestUnit: Bool
+  var includesApproximationPhrase: Bool
+  var includesTimeRemainingPhrase: Bool
+  var formattingContext: Formatter.Context
+  func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
+  @available(swift, obsoleted: 3, renamed: "getObjectValue(_:for:errorDescription:)")
+  func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, forString string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
+  init()
+  init?(coder: NSCoder)
+}
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 3, renamed: "DateComponentsFormatter")
+typealias NSDateComponentsFormatter = DateComponentsFormatter
