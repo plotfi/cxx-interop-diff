@@ -146,95 +146,43 @@ extension NSLayoutConstraint {
     @available(swift, obsoleted: 3, renamed: "notAnAttribute")
     static var NotAnAttribute: NSLayoutConstraint.Attribute { get }
   }
-  struct FormatOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSLayoutConstraint.FormatOptions
-    typealias ArrayLiteralElement = NSLayoutConstraint.FormatOptions
-    static var alignAllLeft: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "alignAllLeft")
-    static var AlignAllLeft: NSLayoutConstraint.FormatOptions { get }
-    static var alignAllRight: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "alignAllRight")
-    static var AlignAllRight: NSLayoutConstraint.FormatOptions { get }
-    static var alignAllTop: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "alignAllTop")
-    static var AlignAllTop: NSLayoutConstraint.FormatOptions { get }
-    static var alignAllBottom: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "alignAllBottom")
-    static var AlignAllBottom: NSLayoutConstraint.FormatOptions { get }
-    static var alignAllLeading: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "alignAllLeading")
-    static var AlignAllLeading: NSLayoutConstraint.FormatOptions { get }
-    static var alignAllTrailing: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "alignAllTrailing")
-    static var AlignAllTrailing: NSLayoutConstraint.FormatOptions { get }
-    static var alignAllCenterX: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "alignAllCenterX")
-    static var AlignAllCenterX: NSLayoutConstraint.FormatOptions { get }
-    static var alignAllCenterY: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "alignAllCenterY")
-    static var AlignAllCenterY: NSLayoutConstraint.FormatOptions { get }
-    static var alignAllLastBaseline: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "alignAllLastBaseline")
-    static var AlignAllLastBaseline: NSLayoutConstraint.FormatOptions { get }
-    @available(iOS 8.0, *)
-    static var alignAllFirstBaseline: NSLayoutConstraint.FormatOptions { get }
-    @available(iOS 8.0, *)
-    @available(swift, obsoleted: 3, renamed: "alignAllFirstBaseline")
-    static var AlignAllFirstBaseline: NSLayoutConstraint.FormatOptions { get }
-    @available(*, unavailable, message: "Use 'alignAllLastBaseline' instead")
-    static var alignAllBaseline: NSLayoutConstraint.FormatOptions { get }
-    @available(*, unavailable, message: "Use 'alignAllLastBaseline' instead")
-    @available(swift, obsoleted: 3, renamed: "alignAllBaseline")
-    static var AlignAllBaseline: NSLayoutConstraint.FormatOptions { get }
-    static var alignmentMask: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "alignmentMask")
-    static var AlignmentMask: NSLayoutConstraint.FormatOptions { get }
-    static var directionLeadingToTrailing: NSLayoutConstraint.FormatOptions { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "directionLeadingToTrailing")
-    static var DirectionLeadingToTrailing: NSLayoutConstraint.FormatOptions { get }
-    static var directionLeftToRight: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "directionLeftToRight")
-    static var DirectionLeftToRight: NSLayoutConstraint.FormatOptions { get }
-    static var directionRightToLeft: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "directionRightToLeft")
-    static var DirectionRightToLeft: NSLayoutConstraint.FormatOptions { get }
-    static var directionMask: NSLayoutConstraint.FormatOptions { get }
-    @available(swift, obsoleted: 3, renamed: "directionMask")
-    static var DirectionMask: NSLayoutConstraint.FormatOptions { get }
-    @available(iOS 11.0, *)
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var spacingEdgeToEdge: NSLayoutConstraint.FormatOptions { get }
-    @available(iOS 11.0, *)
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "spacingEdgeToEdge")
-    static var SpacingEdgeToEdge: NSLayoutConstraint.FormatOptions { get }
-    @available(iOS 11.0, *)
-    static var spacingBaselineToBaseline: NSLayoutConstraint.FormatOptions { get }
-    @available(iOS 11.0, *)
-    @available(swift, obsoleted: 3, renamed: "spacingBaselineToBaseline")
-    static var SpacingBaselineToBaseline: NSLayoutConstraint.FormatOptions { get }
-    @available(iOS 11.0, *)
-    static var spacingMask: NSLayoutConstraint.FormatOptions { get }
-    @available(iOS 11.0, *)
-    @available(swift, obsoleted: 3, renamed: "spacingMask")
-    static var SpacingMask: NSLayoutConstraint.FormatOptions { get }
-  }
 }
 @available(swift, obsoleted: 4.2, renamed: "NSLayoutConstraint.Attribute")
 typealias NSLayoutAttribute = NSLayoutConstraint.Attribute
-@available(swift, obsoleted: 4.2, renamed: "NSLayoutConstraint.FormatOptions")
-typealias NSLayoutFormatOptions = NSLayoutConstraint.FormatOptions
+typealias NSLayoutFormatOptions = Int
+var NSLayoutFormatAlignAllLeft: Int { get }
+var NSLayoutFormatAlignAllRight: Int { get }
+var NSLayoutFormatAlignAllTop: Int { get }
+var NSLayoutFormatAlignAllBottom: Int { get }
+var NSLayoutFormatAlignAllLeading: Int { get }
+var NSLayoutFormatAlignAllTrailing: Int { get }
+var NSLayoutFormatAlignAllCenterX: Int { get }
+var NSLayoutFormatAlignAllCenterY: Int { get }
+var NSLayoutFormatAlignAllLastBaseline: Int { get }
+@available(iOS 8.0, *)
+var NSLayoutFormatAlignAllFirstBaseline: Int { get }
+@available(*, unavailable, message: "Use 'alignAllLastBaseline' instead")
+var NSLayoutFormatAlignAllBaseline: Int { get }
+var NSLayoutFormatAlignmentMask: Int { get }
+@available(swift, obsoleted: 3, renamed: "directionLeadingToTrailing")
+var NSLayoutFormatDirectionLeadingToTrailing: Int { get }
+var directionLeadingToTrailing: Int { get }
+var NSLayoutFormatDirectionLeftToRight: Int { get }
+var NSLayoutFormatDirectionRightToLeft: Int { get }
+var NSLayoutFormatDirectionMask: Int { get }
+@available(iOS 11.0, *)
+var NSLayoutFormatSpacingEdgeToEdge: Int { get }
+@available(iOS 11.0, *)
+var NSLayoutFormatSpacingBaselineToBaseline: Int { get }
+@available(iOS 11.0, *)
+var NSLayoutFormatSpacingMask: Int { get }
 @available(iOS 6.0, *)
 @MainActor class NSLayoutConstraint : NSObject {
   @available(iOS 6.0, *)
-  class func constraints(withVisualFormat format: String, options opts: NSLayoutConstraint.FormatOptions = [], metrics: [String : Any]?, views: [String : Any]) -> [NSLayoutConstraint]
+  class func constraints(withVisualFormat format: String, options opts: NSLayoutFormatOptions, metrics: [String : Any]?, views: [String : Any]) -> [NSLayoutConstraint]
   @available(iOS 6.0, *)
   @available(swift, obsoleted: 3, renamed: "constraints(withVisualFormat:options:metrics:views:)")
-  class func constraintsWithVisualFormat(_ format: String, options opts: NSLayoutConstraint.FormatOptions = [], metrics: [String : Any]?, views: [String : Any]) -> [NSLayoutConstraint]
+  class func constraintsWithVisualFormat(_ format: String, options opts: NSLayoutFormatOptions, metrics: [String : Any]?, views: [String : Any]) -> [NSLayoutConstraint]
   @available(iOS 6.0, *)
   convenience init(item view1: Any, attribute attr1: NSLayoutConstraint.Attribute, relatedBy relation: NSLayoutConstraint.Relation, toItem view2: Any?, attribute attr2: NSLayoutConstraint.Attribute, multiplier: CGFloat, constant c: CGFloat)
   @available(iOS 6.0, *)

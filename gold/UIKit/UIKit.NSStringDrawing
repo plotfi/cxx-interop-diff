@@ -41,51 +41,35 @@ extension NSAttributedString {
   @available(swift, obsoleted: 3, renamed: "draw(in:)")
   func drawInRect(_ rect: CGRect)
 }
+typealias NSStringDrawingOptions = Int
+var NSStringDrawingUsesLineFragmentOrigin: Int { get }
+var NSStringDrawingUsesFontLeading: Int { get }
+var NSStringDrawingUsesDeviceMetrics: Int { get }
 @available(iOS 6.0, *)
-struct NSStringDrawingOptions : OptionSet, @unchecked Sendable {
-  init(rawValue: Int)
-  let rawValue: Int
-  typealias RawValue = Int
-  typealias Element = NSStringDrawingOptions
-  typealias ArrayLiteralElement = NSStringDrawingOptions
-  static var usesLineFragmentOrigin: NSStringDrawingOptions { get }
-  @available(swift, obsoleted: 3, renamed: "usesLineFragmentOrigin")
-  static var UsesLineFragmentOrigin: NSStringDrawingOptions { get }
-  static var usesFontLeading: NSStringDrawingOptions { get }
-  @available(swift, obsoleted: 3, renamed: "usesFontLeading")
-  static var UsesFontLeading: NSStringDrawingOptions { get }
-  static var usesDeviceMetrics: NSStringDrawingOptions { get }
-  @available(swift, obsoleted: 3, renamed: "usesDeviceMetrics")
-  static var UsesDeviceMetrics: NSStringDrawingOptions { get }
-  @available(iOS 6.0, *)
-  static var truncatesLastVisibleLine: NSStringDrawingOptions { get }
-  @available(iOS 6.0, *)
-  @available(swift, obsoleted: 3, renamed: "truncatesLastVisibleLine")
-  static var TruncatesLastVisibleLine: NSStringDrawingOptions { get }
-}
+var NSStringDrawingTruncatesLastVisibleLine: Int { get }
 extension NSString {
   @available(iOS 7.0, *)
-  func draw(with rect: CGRect, options: NSStringDrawingOptions = [], attributes: [NSAttributedString.Key : Any]? = nil, context: NSStringDrawingContext?)
+  func draw(with rect: CGRect, options: NSStringDrawingOptions, attributes: [NSAttributedString.Key : Any]? = nil, context: NSStringDrawingContext?)
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "draw(with:options:attributes:context:)")
-  func drawWithRect(_ rect: CGRect, options: NSStringDrawingOptions = [], attributes: [NSAttributedString.Key : Any]? = nil, context: NSStringDrawingContext?)
+  func drawWithRect(_ rect: CGRect, options: NSStringDrawingOptions, attributes: [NSAttributedString.Key : Any]? = nil, context: NSStringDrawingContext?)
   @available(iOS 7.0, *)
-  func boundingRect(with size: CGSize, options: NSStringDrawingOptions = [], attributes: [NSAttributedString.Key : Any]? = nil, context: NSStringDrawingContext?) -> CGRect
+  func boundingRect(with size: CGSize, options: NSStringDrawingOptions, attributes: [NSAttributedString.Key : Any]? = nil, context: NSStringDrawingContext?) -> CGRect
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "boundingRect(with:options:attributes:context:)")
-  func boundingRectWithSize(_ size: CGSize, options: NSStringDrawingOptions = [], attributes: [NSAttributedString.Key : Any]? = nil, context: NSStringDrawingContext?) -> CGRect
+  func boundingRectWithSize(_ size: CGSize, options: NSStringDrawingOptions, attributes: [NSAttributedString.Key : Any]? = nil, context: NSStringDrawingContext?) -> CGRect
 }
 extension NSAttributedString {
   @available(iOS 6.0, *)
-  func draw(with rect: CGRect, options: NSStringDrawingOptions = [], context: NSStringDrawingContext?)
+  func draw(with rect: CGRect, options: NSStringDrawingOptions, context: NSStringDrawingContext?)
   @available(iOS 6.0, *)
   @available(swift, obsoleted: 3, renamed: "draw(with:options:context:)")
-  func drawWithRect(_ rect: CGRect, options: NSStringDrawingOptions = [], context: NSStringDrawingContext?)
+  func drawWithRect(_ rect: CGRect, options: NSStringDrawingOptions, context: NSStringDrawingContext?)
   @available(iOS 6.0, *)
-  func boundingRect(with size: CGSize, options: NSStringDrawingOptions = [], context: NSStringDrawingContext?) -> CGRect
+  func boundingRect(with size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect
   @available(iOS 6.0, *)
   @available(swift, obsoleted: 3, renamed: "boundingRect(with:options:context:)")
-  func boundingRectWithSize(_ size: CGSize, options: NSStringDrawingOptions = [], context: NSStringDrawingContext?) -> CGRect
+  func boundingRectWithSize(_ size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect
 }
 
 /************************ Deprecated ************************/

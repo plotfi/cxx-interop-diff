@@ -1,82 +1,30 @@
 @_exported import Foundation
 
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 4.2, renamed: "UIFontDescriptor.SymbolicTraits")
-typealias UIFontDescriptorSymbolicTraits = UIFontDescriptor.SymbolicTraits
+typealias UIFontDescriptorSymbolicTraits = UInt32
+var UIFontDescriptorTraitItalic: UInt32 { get }
+var UIFontDescriptorTraitBold: UInt32 { get }
+var UIFontDescriptorTraitExpanded: UInt32 { get }
+var UIFontDescriptorTraitCondensed: UInt32 { get }
+var UIFontDescriptorTraitMonoSpace: UInt32 { get }
+var UIFontDescriptorTraitVertical: UInt32 { get }
+var UIFontDescriptorTraitUIOptimized: UInt32 { get }
+var UIFontDescriptorTraitTightLeading: UInt32 { get }
+var UIFontDescriptorTraitLooseLeading: UInt32 { get }
+var UIFontDescriptorClassMask: UInt32 { get }
+var UIFontDescriptorClassUnknown: UInt32 { get }
+var UIFontDescriptorClassOldStyleSerifs: UInt32 { get }
+var UIFontDescriptorClassTransitionalSerifs: UInt32 { get }
+var UIFontDescriptorClassModernSerifs: UInt32 { get }
+var UIFontDescriptorClassClarendonSerifs: UInt32 { get }
+var UIFontDescriptorClassSlabSerifs: UInt32 { get }
+var UIFontDescriptorClassFreeformSerifs: UInt32 { get }
+var UIFontDescriptorClassSansSerif: UInt32 { get }
+var UIFontDescriptorClassOrnamentals: UInt32 { get }
+var UIFontDescriptorClassScripts: UInt32 { get }
+var UIFontDescriptorClassSymbolic: UInt32 { get }
+@available(swift, obsoleted: 4.2, renamed: "UIFontDescriptor.Class")
+typealias UIFontDescriptorClass = UIFontDescriptor.Class
 extension UIFontDescriptor {
-  @available(iOS 7.0, *)
-  struct SymbolicTraits : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt32)
-    let rawValue: UInt32
-    typealias RawValue = UInt32
-    typealias Element = UIFontDescriptor.SymbolicTraits
-    typealias ArrayLiteralElement = UIFontDescriptor.SymbolicTraits
-    static var traitItalic: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "traitItalic")
-    static var TraitItalic: UIFontDescriptor.SymbolicTraits { get }
-    static var traitBold: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "traitBold")
-    static var TraitBold: UIFontDescriptor.SymbolicTraits { get }
-    static var traitExpanded: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "traitExpanded")
-    static var TraitExpanded: UIFontDescriptor.SymbolicTraits { get }
-    static var traitCondensed: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "traitCondensed")
-    static var TraitCondensed: UIFontDescriptor.SymbolicTraits { get }
-    static var traitMonoSpace: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "traitMonoSpace")
-    static var TraitMonoSpace: UIFontDescriptor.SymbolicTraits { get }
-    static var traitVertical: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "traitVertical")
-    static var TraitVertical: UIFontDescriptor.SymbolicTraits { get }
-    static var traitUIOptimized: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "traitUIOptimized")
-    static var TraitUIOptimized: UIFontDescriptor.SymbolicTraits { get }
-    static var traitTightLeading: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "traitTightLeading")
-    static var TraitTightLeading: UIFontDescriptor.SymbolicTraits { get }
-    static var traitLooseLeading: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "traitLooseLeading")
-    static var TraitLooseLeading: UIFontDescriptor.SymbolicTraits { get }
-    static var classMask: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "classMask")
-    static var ClassMask: UIFontDescriptor.SymbolicTraits { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var classUnknown: UIFontDescriptor.SymbolicTraits { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "classUnknown")
-    static var ClassUnknown: UIFontDescriptor.SymbolicTraits { get }
-    static var classOldStyleSerifs: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "classOldStyleSerifs")
-    static var ClassOldStyleSerifs: UIFontDescriptor.SymbolicTraits { get }
-    static var classTransitionalSerifs: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "classTransitionalSerifs")
-    static var ClassTransitionalSerifs: UIFontDescriptor.SymbolicTraits { get }
-    static var classModernSerifs: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "classModernSerifs")
-    static var ClassModernSerifs: UIFontDescriptor.SymbolicTraits { get }
-    static var classClarendonSerifs: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "classClarendonSerifs")
-    static var ClassClarendonSerifs: UIFontDescriptor.SymbolicTraits { get }
-    static var classSlabSerifs: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "classSlabSerifs")
-    static var ClassSlabSerifs: UIFontDescriptor.SymbolicTraits { get }
-    static var classFreeformSerifs: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "classFreeformSerifs")
-    static var ClassFreeformSerifs: UIFontDescriptor.SymbolicTraits { get }
-    static var classSansSerif: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "classSansSerif")
-    static var ClassSansSerif: UIFontDescriptor.SymbolicTraits { get }
-    static var classOrnamentals: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "classOrnamentals")
-    static var ClassOrnamentals: UIFontDescriptor.SymbolicTraits { get }
-    static var classScripts: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "classScripts")
-    static var ClassScripts: UIFontDescriptor.SymbolicTraits { get }
-    static var classSymbolic: UIFontDescriptor.SymbolicTraits { get }
-    @available(swift, obsoleted: 3, renamed: "classSymbolic")
-    static var ClassSymbolic: UIFontDescriptor.SymbolicTraits { get }
-  }
   typealias Class = Int
   struct AttributeName : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
     init(rawValue: String)
@@ -108,8 +56,6 @@ extension UIFontDescriptor {
     typealias _ObjectiveCType = NSString
   }
 }
-@available(swift, obsoleted: 4.2, renamed: "UIFontDescriptor.Class")
-typealias UIFontDescriptorClass = UIFontDescriptor.Class
 @available(swift, obsoleted: 4.2, renamed: "UIFont.TextStyle")
 typealias UIFontTextStyle = UIFont.TextStyle
 extension UIFont {
@@ -166,7 +112,7 @@ class UIFontDescriptor : NSObject, NSCopying, NSSecureCoding {
   var postscriptName: String { get }
   var pointSize: CGFloat { get }
   var matrix: CGAffineTransform { get }
-  var symbolicTraits: UIFontDescriptor.SymbolicTraits { get }
+  var symbolicTraits: UIFontDescriptorSymbolicTraits { get }
   func object(forKey anAttribute: UIFontDescriptor.AttributeName) -> Any?
   @available(swift, obsoleted: 3, renamed: "object(forKey:)")
   func objectForKey(_ anAttribute: UIFontDescriptor.AttributeName) -> Any?
@@ -208,9 +154,9 @@ class UIFontDescriptor : NSObject, NSCopying, NSSecureCoding {
   func withFamily(_ newFamily: String) -> UIFontDescriptor
   @available(swift, obsoleted: 3, renamed: "withFamily(_:)")
   func fontDescriptorWithFamily(_ newFamily: String) -> UIFontDescriptor
-  func withSymbolicTraits(_ symbolicTraits: UIFontDescriptor.SymbolicTraits) -> UIFontDescriptor?
+  func withSymbolicTraits(_ symbolicTraits: UIFontDescriptorSymbolicTraits) -> UIFontDescriptor?
   @available(swift, obsoleted: 3, renamed: "withSymbolicTraits(_:)")
-  func fontDescriptorWithSymbolicTraits(_ symbolicTraits: UIFontDescriptor.SymbolicTraits) -> UIFontDescriptor?
+  func fontDescriptorWithSymbolicTraits(_ symbolicTraits: UIFontDescriptorSymbolicTraits) -> UIFontDescriptor?
   @available(iOS 13.0, *)
   func withDesign(_ design: UIFontDescriptor.SystemDesign) -> UIFontDescriptor?
   @available(iOS 13.0, *)

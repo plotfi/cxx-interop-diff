@@ -17,26 +17,17 @@ extension NotificationQueue {
     @available(swift, obsoleted: 3, renamed: "now")
     static var NSPostNow: NotificationQueue.PostingStyle { get }
   }
-  struct NotificationCoalescing : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NotificationQueue.NotificationCoalescing
-    typealias ArrayLiteralElement = NotificationQueue.NotificationCoalescing
-    static var none: NotificationQueue.NotificationCoalescing { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "none")
-    static var NSNotificationNoCoalescing: NotificationQueue.NotificationCoalescing { get }
-    static var onName: NotificationQueue.NotificationCoalescing { get }
-    @available(swift, obsoleted: 3, renamed: "onName")
-    static var NSNotificationCoalescingOnName: NotificationQueue.NotificationCoalescing { get }
-    static var onSender: NotificationQueue.NotificationCoalescing { get }
-    @available(swift, obsoleted: 3, renamed: "onSender")
-    static var NSNotificationCoalescingOnSender: NotificationQueue.NotificationCoalescing { get }
-  }
 }
-@available(swift, obsoleted: 3, renamed: "NotificationQueue.NotificationCoalescing")
-typealias NSNotificationCoalescing = NotificationQueue.NotificationCoalescing
+typealias NSNotificationCoalescing = Int
+@available(swift, obsoleted: 3, renamed: "none")
+var NSNotificationNoCoalescing: Int { get }
+var none: Int { get }
+@available(swift, obsoleted: 3, renamed: "onName")
+var NSNotificationCoalescingOnName: Int { get }
+var onName: Int { get }
+@available(swift, obsoleted: 3, renamed: "onSender")
+var NSNotificationCoalescingOnSender: Int { get }
+var onSender: Int { get }
 @available(swift, obsoleted: 3, renamed: "NotificationQueue")
 typealias NSNotificationQueue = NotificationQueue
 class NotificationQueue : NSObject {
@@ -47,9 +38,9 @@ class NotificationQueue : NSObject {
   func enqueue(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle)
   @available(swift, obsoleted: 3, renamed: "enqueue(_:postingStyle:)")
   func enqueueNotification(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle)
-  func enqueue(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle, coalesceMask: NotificationQueue.NotificationCoalescing, forModes modes: [RunLoop.Mode]?)
+  func enqueue(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle, coalesceMask: NSNotificationCoalescing, forModes modes: [RunLoop.Mode]?)
   @available(swift, obsoleted: 3, renamed: "enqueue(_:postingStyle:coalesceMask:forModes:)")
-  func enqueueNotification(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle, coalesceMask: NotificationQueue.NotificationCoalescing, forModes modes: [RunLoop.Mode]?)
+  func enqueueNotification(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle, coalesceMask: NSNotificationCoalescing, forModes modes: [RunLoop.Mode]?)
   func dequeueNotifications(matching notification: Notification, coalesceMask: Int)
   @available(swift, obsoleted: 3, renamed: "dequeueNotifications(matching:coalesceMask:)")
   func dequeueNotificationsMatching(_ notification: Notification, coalesceMask: Int)

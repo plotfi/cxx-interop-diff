@@ -1,30 +1,8 @@
 @_exported import Foundation
 
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 4.2, renamed: "NSTextStorage.EditActions")
-typealias NSTextStorageEditActions = NSTextStorage.EditActions
-extension NSTextStorage {
-  @available(iOS 7.0, *)
-  struct EditActions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSTextStorage.EditActions
-    typealias ArrayLiteralElement = NSTextStorage.EditActions
-    static var editedAttributes: NSTextStorage.EditActions { get }
-    @available(swift, obsoleted: 3, renamed: "editedAttributes")
-    static var EditedAttributes: NSTextStorage.EditActions { get }
-    static var editedCharacters: NSTextStorage.EditActions { get }
-    @available(swift, obsoleted: 3, renamed: "editedCharacters")
-    static var EditedCharacters: NSTextStorage.EditActions { get }
-  }
-
-  /**** Notifications ****/
-  @available(iOS 7.0, *)
-  class let willProcessEditingNotification: NSNotification.Name
-  @available(iOS 7.0, *)
-  class let didProcessEditingNotification: NSNotification.Name
-}
+typealias NSTextStorageEditActions = Int
+var NSTextStorageEditedAttributes: Int { get }
+var NSTextStorageEditedCharacters: Int { get }
 @available(iOS 7.0, *)
 class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
 
@@ -34,7 +12,7 @@ class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
   func removeLayoutManager(_ aLayoutManager: NSLayoutManager)
 
   /**************************** Pending edit info ****************************/
-  var editedMask: NSTextStorage.EditActions { get }
+  var editedMask: NSTextStorageEditActions { get }
   var editedRange: NSRange { get }
   var changeInLength: Int { get }
 
@@ -42,7 +20,7 @@ class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
   weak var delegate: @sil_weak NSTextStorageDelegate?
 
   /**************************** Edit management ****************************/
-  func edited(_ editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int)
+  func edited(_ editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int)
   func processEditing()
 
   /**************************** Attribute fixing ****************************/
@@ -68,7 +46,7 @@ class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
 
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
+  init(__format format: NSAttributedString, options: NSAttributedStringFormattingOptions, locale: Locale?, arguments: CVaListPointer)
   @available(iOS 15.0, *)
   init(__contentsOfMarkdownFileAt markdownFile: URL, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
   @available(iOS 15.0, *)
@@ -83,24 +61,32 @@ class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
 /****  NSTextStorage delegate methods ****/
 protocol NSTextStorageDelegate : NSObjectProtocol {
   @available(iOS 7.0, *)
-  optional func textStorage(_ textStorage: NSTextStorage, willProcessEditing editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int)
+  optional func textStorage(_ textStorage: NSTextStorage, willProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int)
   @available(iOS 7.0, *)
-  optional func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int)
+  optional func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int)
 }
 
 /**** Notifications ****/
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "NSTextStorage.willProcessEditingNotification")
 let NSTextStorageWillProcessEditingNotification: NSNotification.Name
+extension NSTextStorage {
+
+  /**** Notifications ****/
+  @available(iOS 7.0, *)
+  class let willProcessEditingNotification: NSNotification.Name
+  @available(iOS 7.0, *)
+  class let didProcessEditingNotification: NSNotification.Name
+}
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "NSTextStorage.didProcessEditingNotification")
 let NSTextStorageDidProcessEditingNotification: NSNotification.Name
 @available(iOS 15.0, *)
 protocol NSTextStorageObserving : NSObjectProtocol {
   var textStorage: NSTextStorage? { get set }
-  func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
+  func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
   @available(swift, obsoleted: 3, renamed: "processEditing(for:edited:range:changeInLength:invalidatedRange:)")
-  func processEditingForTextStorage(_ textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
+  func processEditingForTextStorage(_ textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
   func performEditingTransaction(for textStorage: NSTextStorage, using transaction: () -> Void)
   @available(swift, obsoleted: 3, renamed: "performEditingTransaction(for:using:)")
   func performEditingTransactionForTextStorage(_ textStorage: NSTextStorage, usingBlock transaction: () -> Void)

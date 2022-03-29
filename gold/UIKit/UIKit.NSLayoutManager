@@ -17,59 +17,19 @@ extension NSLayoutManager {
     @available(swift, obsoleted: 3, renamed: "vertical")
     static var Vertical: NSLayoutManager.TextLayoutOrientation { get }
   }
-  @available(iOS 7.0, *)
-  struct GlyphProperty : OptionSet, @unchecked Sendable {
-    init(rawValue: Int)
-    let rawValue: Int
-    typealias RawValue = Int
-    typealias Element = NSLayoutManager.GlyphProperty
-    typealias ArrayLiteralElement = NSLayoutManager.GlyphProperty
-    static var null: NSLayoutManager.GlyphProperty { get }
-    @available(swift, obsoleted: 3, renamed: "null")
-    static var Null: NSLayoutManager.GlyphProperty { get }
-    static var controlCharacter: NSLayoutManager.GlyphProperty { get }
-    @available(swift, obsoleted: 3, renamed: "controlCharacter")
-    static var ControlCharacter: NSLayoutManager.GlyphProperty { get }
-    static var elastic: NSLayoutManager.GlyphProperty { get }
-    @available(swift, obsoleted: 3, renamed: "elastic")
-    static var Elastic: NSLayoutManager.GlyphProperty { get }
-    static var nonBaseCharacter: NSLayoutManager.GlyphProperty { get }
-    @available(swift, obsoleted: 3, renamed: "nonBaseCharacter")
-    static var NonBaseCharacter: NSLayoutManager.GlyphProperty { get }
-  }
-  @available(iOS 7.0, *)
-  struct ControlCharacterAction : OptionSet, @unchecked Sendable {
-    init(rawValue: Int)
-    let rawValue: Int
-    typealias RawValue = Int
-    typealias Element = NSLayoutManager.ControlCharacterAction
-    typealias ArrayLiteralElement = NSLayoutManager.ControlCharacterAction
-    static var zeroAdvancement: NSLayoutManager.ControlCharacterAction { get }
-    @available(swift, obsoleted: 3, renamed: "zeroAdvancement")
-    static var ZeroAdvancement: NSLayoutManager.ControlCharacterAction { get }
-    static var whitespace: NSLayoutManager.ControlCharacterAction { get }
-    @available(swift, obsoleted: 3, renamed: "whitespace")
-    static var Whitespace: NSLayoutManager.ControlCharacterAction { get }
-    static var horizontalTab: NSLayoutManager.ControlCharacterAction { get }
-    @available(swift, obsoleted: 3, renamed: "horizontalTab")
-    static var HorizontalTab: NSLayoutManager.ControlCharacterAction { get }
-    static var lineBreak: NSLayoutManager.ControlCharacterAction { get }
-    @available(swift, obsoleted: 3, renamed: "lineBreak")
-    static var LineBreak: NSLayoutManager.ControlCharacterAction { get }
-    static var paragraphBreak: NSLayoutManager.ControlCharacterAction { get }
-    @available(swift, obsoleted: 3, renamed: "paragraphBreak")
-    static var ParagraphBreak: NSLayoutManager.ControlCharacterAction { get }
-    static var containerBreak: NSLayoutManager.ControlCharacterAction { get }
-    @available(swift, obsoleted: 3, renamed: "containerBreak")
-    static var ContainerBreak: NSLayoutManager.ControlCharacterAction { get }
-  }
 }
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 4, renamed: "NSLayoutManager.GlyphProperty")
-typealias NSGlyphProperty = NSLayoutManager.GlyphProperty
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 4, renamed: "NSLayoutManager.ControlCharacterAction")
-typealias NSControlCharacterAction = NSLayoutManager.ControlCharacterAction
+typealias NSGlyphProperty = Int
+var NSGlyphPropertyNull: Int { get }
+var NSGlyphPropertyControlCharacter: Int { get }
+var NSGlyphPropertyElastic: Int { get }
+var NSGlyphPropertyNonBaseCharacter: Int { get }
+typealias NSControlCharacterAction = Int
+var NSControlCharacterActionZeroAdvancement: Int { get }
+var NSControlCharacterActionWhitespace: Int { get }
+var NSControlCharacterActionHorizontalTab: Int { get }
+var NSControlCharacterActionLineBreak: Int { get }
+var NSControlCharacterActionParagraphBreak: Int { get }
+var NSControlCharacterActionContainerBreak: Int { get }
 protocol NSTextLayoutOrientationProvider {
   @available(iOS 7.0, *)
   var layoutOrientation: NSLayoutManager.TextLayoutOrientation { get }
@@ -129,10 +89,10 @@ class NSLayoutManager : NSObject, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "invalidateDisplay(forGlyphRange:)")
   func invalidateDisplayForGlyphRange(_ glyphRange: NSRange)
   @available(iOS 7.0, *)
-  func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
+  func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "processEditing(for:edited:range:changeInLength:invalidatedRange:)")
-  func processEditingForTextStorage(_ textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
+  func processEditingForTextStorage(_ textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
 
   /************************ Causing glyph generation and layout ************************/
   func ensureGlyphs(forCharacterRange charRange: NSRange)
@@ -158,7 +118,7 @@ class NSLayoutManager : NSObject, NSSecureCoding {
 
   /************************ Set glyphs and glyph properties ************************/
   @available(iOS 7.0, *)
-  func setGlyphs(_ glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: UIFont, forGlyphRange glyphRange: NSRange)
+  func setGlyphs(_ glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSGlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: UIFont, forGlyphRange glyphRange: NSRange)
 
   /************************ Get glyphs and glyph properties ************************/
   var numberOfGlyphs: Int { get }
@@ -175,10 +135,10 @@ class NSLayoutManager : NSObject, NSSecureCoding {
   @available(iOS 7.0, *)
   func isValidGlyphIndex(_ glyphIndex: Int) -> Bool
   @available(iOS 7.0, *)
-  func propertyForGlyph(at glyphIndex: Int) -> NSLayoutManager.GlyphProperty
+  func propertyForGlyph(at glyphIndex: Int) -> NSGlyphProperty
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "propertyForGlyph(at:)")
-  func propertyForGlyphAtIndex(_ glyphIndex: Int) -> NSLayoutManager.GlyphProperty
+  func propertyForGlyphAtIndex(_ glyphIndex: Int) -> NSGlyphProperty
   func characterIndexForGlyph(at glyphIndex: Int) -> Int
   @available(swift, obsoleted: 3, renamed: "characterIndexForGlyph(at:)")
   func characterIndexForGlyphAtIndex(_ glyphIndex: Int) -> Int
@@ -186,10 +146,10 @@ class NSLayoutManager : NSObject, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "glyphIndexForCharacter(at:)")
   func glyphIndexForCharacterAtIndex(_ charIndex: Int) -> Int
   @available(iOS 7.0, *)
-  func getGlyphs(in glyphRange: NSRange, glyphs glyphBuffer: UnsafeMutablePointer<CGGlyph>?, properties props: UnsafeMutablePointer<NSLayoutManager.GlyphProperty>?, characterIndexes charIndexBuffer: UnsafeMutablePointer<Int>?, bidiLevels bidiLevelBuffer: UnsafeMutablePointer<UInt8>?) -> Int
+  func getGlyphs(in glyphRange: NSRange, glyphs glyphBuffer: UnsafeMutablePointer<CGGlyph>?, properties props: UnsafeMutablePointer<NSGlyphProperty>?, characterIndexes charIndexBuffer: UnsafeMutablePointer<Int>?, bidiLevels bidiLevelBuffer: UnsafeMutablePointer<UInt8>?) -> Int
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "getGlyphs(in:glyphs:properties:characterIndexes:bidiLevels:)")
-  func getGlyphsInRange(_ glyphRange: NSRange, glyphs glyphBuffer: UnsafeMutablePointer<CGGlyph>?, properties props: UnsafeMutablePointer<NSLayoutManager.GlyphProperty>?, characterIndexes charIndexBuffer: UnsafeMutablePointer<Int>?, bidiLevels bidiLevelBuffer: UnsafeMutablePointer<UInt8>?) -> Int
+  func getGlyphsInRange(_ glyphRange: NSRange, glyphs glyphBuffer: UnsafeMutablePointer<CGGlyph>?, properties props: UnsafeMutablePointer<NSGlyphProperty>?, characterIndexes charIndexBuffer: UnsafeMutablePointer<Int>?, bidiLevels bidiLevelBuffer: UnsafeMutablePointer<UInt8>?) -> Int
   func setTextContainer(_ container: NSTextContainer, forGlyphRange glyphRange: NSRange)
   func setLineFragmentRect(_ fragmentRect: CGRect, forGlyphRange glyphRange: NSRange, usedRect: CGRect)
   func setExtraLineFragmentRect(_ fragmentRect: CGRect, usedRect: CGRect, textContainer container: NSTextContainer)
@@ -337,7 +297,7 @@ protocol NSLayoutManagerDelegate : NSObjectProtocol {
 
   /************************ Glyph generation ************************/
   @available(iOS 7.0, *)
-  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: UIFont, forGlyphRange glyphRange: NSRange) -> Int
+  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSGlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: UIFont, forGlyphRange glyphRange: NSRange) -> Int
 
   /************************ Line layout ************************/
   @available(iOS 7.0, *)
@@ -358,10 +318,10 @@ protocol NSLayoutManagerDelegate : NSObjectProtocol {
   @available(swift, obsoleted: 3, renamed: "layoutManager(_:paragraphSpacingAfterGlyphAt:withProposedLineFragmentRect:)")
   optional func layoutManager(_ layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat
   @available(iOS 7.0, *)
-  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction
+  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldUseAction action: NSControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSControlCharacterAction
   @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "layoutManager(_:shouldUse:forControlCharacterAt:)")
-  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldUseAction action: NSLayoutManager.ControlCharacterAction, forControlCharacterAtIndex charIndex: Int) -> NSLayoutManager.ControlCharacterAction
+  @available(swift, obsoleted: 3, renamed: "layoutManager(_:shouldUseAction:forControlCharacterAt:)")
+  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldUseAction action: NSControlCharacterAction, forControlCharacterAtIndex charIndex: Int) -> NSControlCharacterAction
   @available(iOS 7.0, *)
   optional func layoutManager(_ layoutManager: NSLayoutManager, shouldBreakLineByWordBeforeCharacterAt charIndex: Int) -> Bool
   @available(iOS 7.0, *)
@@ -397,17 +357,17 @@ protocol NSLayoutManagerDelegate : NSObjectProtocol {
   @available(swift, obsoleted: 3, renamed: "layoutManager(_:textContainer:didChangeGeometryFrom:)")
   optional func layoutManager(_ layoutManager: NSLayoutManager, textContainer: NSTextContainer, didChangeGeometryFromSize oldSize: CGSize)
 }
-@available(iOS, introduced: 7.0, deprecated: 9.0, renamed: "NSLayoutManager.ControlCharacterAction.zeroAdvancement")
+@available(iOS, introduced: 7.0, deprecated: 9.0)
 var NSControlCharacterZeroAdvancementAction: Int { get }
-@available(iOS, introduced: 7.0, deprecated: 9.0, renamed: "NSLayoutManager.ControlCharacterAction.whitespace")
+@available(iOS, introduced: 7.0, deprecated: 9.0)
 var NSControlCharacterWhitespaceAction: Int { get }
-@available(iOS, introduced: 7.0, deprecated: 9.0, renamed: "NSLayoutManager.ControlCharacterAction.horizontalTab")
+@available(iOS, introduced: 7.0, deprecated: 9.0)
 var NSControlCharacterHorizontalTabAction: Int { get }
-@available(iOS, introduced: 7.0, deprecated: 9.0, renamed: "NSLayoutManager.ControlCharacterAction.lineBreak")
+@available(iOS, introduced: 7.0, deprecated: 9.0)
 var NSControlCharacterLineBreakAction: Int { get }
-@available(iOS, introduced: 7.0, deprecated: 9.0, renamed: "NSLayoutManager.ControlCharacterAction.paragraphBreak")
+@available(iOS, introduced: 7.0, deprecated: 9.0)
 var NSControlCharacterParagraphBreakAction: Int { get }
-@available(iOS, introduced: 7.0, deprecated: 9.0, renamed: "NSLayoutManager.ControlCharacterAction.containerBreak")
+@available(iOS, introduced: 7.0, deprecated: 9.0)
 var NSControlCharacterContainerBreakAction: Int { get }
 extension NSLayoutManager {
   func glyph(at glyphIndex: Int, isValidIndex: UnsafeMutablePointer<ObjCBool>?) -> CGGlyph

@@ -16,9 +16,9 @@ enum UIBarMetrics : Int, @unchecked Sendable {
   case compactPrompt
   @available(swift, obsoleted: 3, renamed: "compactPrompt")
   static var CompactPrompt: UIBarMetrics { get }
-  @available(iOS, introduced: 5.0, deprecated: 8.0, renamed: "UIBarMetrics.compact")
+  @available(iOS, introduced: 5.0, deprecated: 8.0)
   static var landscapePhone: UIBarMetrics { get }
-  @available(iOS, introduced: 7.0, deprecated: 8.0, renamed: "UIBarMetrics.compactPrompt")
+  @available(iOS, introduced: 7.0, deprecated: 8.0)
   static var landscapePhonePrompt: UIBarMetrics { get }
 }
 @available(iOS 7.0, *)

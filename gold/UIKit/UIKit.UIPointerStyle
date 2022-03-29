@@ -76,7 +76,6 @@
 @available(iOS 13.4, *)
 extension UIPointerStyle {
   @MainActor convenience init(effect: UIPointerEffect, shape: UIPointerShape? = nil)
-  @MainActor convenience init(shape: UIPointerShape, constrainedAxes: UIAxis = [])
 }
 @available(iOS 13.4, *)
 @MainActor class __UIPointerEffect : NSObject, NSCopying {

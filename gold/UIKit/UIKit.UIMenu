@@ -13,41 +13,18 @@ extension UIMenu {
     typealias RawValue = String
     typealias _ObjectiveCType = NSString
   }
-  @available(iOS 13.0, *)
-  struct Options : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = UIMenu.Options
-    typealias ArrayLiteralElement = UIMenu.Options
-
-    /// Show children inline in parent, instead of hierarchically
-    static var displayInline: UIMenu.Options { get }
-
-    /// Show children inline in parent, instead of hierarchically
-    @available(swift, obsoleted: 3, renamed: "displayInline")
-    static var DisplayInline: UIMenu.Options { get }
-
-    /// Indicates whether the menu should be rendered with a destructive appearance in its parent
-    static var destructive: UIMenu.Options { get }
-
-    /// Indicates whether the menu should be rendered with a destructive appearance in its parent
-    @available(swift, obsoleted: 3, renamed: "destructive")
-    static var Destructive: UIMenu.Options { get }
-
-    /// Indicates whether the menu (and any submenus) should only allow a single "on" menu item.
-    @available(iOS 15.0, *)
-    static var singleSelection: UIMenu.Options { get }
-
-    /// Indicates whether the menu (and any submenus) should only allow a single "on" menu item.
-    @available(iOS 15.0, *)
-    @available(swift, obsoleted: 3, renamed: "singleSelection")
-    static var SingleSelection: UIMenu.Options { get }
-  }
 }
-@available(iOS 13.0, *)
-@available(swift, obsoleted: 3, renamed: "UIMenu.Options")
-typealias UIMenuOptions = UIMenu.Options
+typealias UIMenuOptions = Int
+
+/// Show children inline in parent, instead of hierarchically
+var UIMenuOptionsDisplayInline: Int { get }
+
+/// Indicates whether the menu should be rendered with a destructive appearance in its parent
+var UIMenuOptionsDestructive: Int { get }
+
+/// Indicates whether the menu (and any submenus) should only allow a single "on" menu item.
+@available(iOS 15.0, *)
+var UIMenuOptionsSingleSelection: Int { get }
 @available(iOS 13.0, *)
 @MainActor class UIMenu : UIMenuElement {
 
@@ -55,7 +32,7 @@ typealias UIMenuOptions = UIMenu.Options
   var identifier: UIMenu.Identifier { get }
 
   /// Options.
-  var options: UIMenu.Options { get }
+  var options: UIMenuOptions { get }
 
   /// The menu's sub-elements and sub-menus. On iOS 14.0, elements of your own menus are mutable, -copying a menu will produce mutable elements, and UIKit will take immutable copies of menus it receives. Prior to iOS 14.0, menus are always fully immutable.
   var children: [UIMenuElement] { get }
@@ -122,7 +99,7 @@ typealias UIMenuOptions = UIMenu.Options
    * @return A new UIMenu.
    */
   @available(*, unavailable, message: "Use init(title:image:identifier:options:children:) instead")
-  /*not inherited*/ init(title: String, image: UIImage?, identifier: UIMenu.Identifier?, options: UIMenu.Options = [], children: [UIMenuElement])
+  /*not inherited*/ init(title: String, image: UIImage?, identifier: UIMenu.Identifier?, options: UIMenuOptions, children: [UIMenuElement])
 
   /**
    * @abstract Creates a UIMenu with the given arguments.
@@ -137,7 +114,7 @@ typealias UIMenuOptions = UIMenu.Options
    */
   @available(*, unavailable, renamed: "init(title:image:identifier:options:children:)", message: "Not available in Swift")
   @available(*, unavailable, message: "Use init(title:image:identifier:options:children:) instead")
-  class func menuWithTitle(_ title: String, image: UIImage?, identifier: UIMenu.Identifier?, options: UIMenu.Options = [], children: [UIMenuElement]) -> UIMenu
+  class func menuWithTitle(_ title: String, image: UIImage?, identifier: UIMenu.Identifier?, options: UIMenuOptions, children: [UIMenuElement]) -> UIMenu
   init?(coder: NSCoder)
   @available(*, unavailable)
   convenience init()
@@ -166,17 +143,6 @@ typealias UIMenuOptions = UIMenu.Options
 
 @available(iOS 13.0, tvOS 14.0, *)
 extension UIMenu {
-  /// Creates a UIMenu with the given arguments.
-  ///
-  /// - Parameters:
-  ///   - title: The menu's title.
-  ///   - image: Image to be displayed alongside the menu's title.
-  ///   - identifier: The menu's unique identifier. Pass nil to use an auto-generated identifier.
-  ///   - options: The menu's options.
-  ///   - children: The menu's sub-elements and sub-menus.
-  @_disfavoredOverload @MainActor convenience init(title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: UIMenu.Options = [], children: [UIMenuElement] = [])
-  @available(iOS 15.0, tvOS 15.0, *)
-  @MainActor convenience init(title: String = "", subtitle: String? = nil, image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: UIMenu.Options = [], children: [UIMenuElement] = [])
 }
 
 /// Application menu top-level menu

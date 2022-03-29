@@ -19,38 +19,14 @@ extension NSTextLayoutManager {
     @available(swift, obsoleted: 3, renamed: "highlight")
     static var Highlight: NSTextLayoutManager.SegmentType { get }
   }
-  @available(iOS 15.0, *)
-  struct SegmentOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSTextLayoutManager.SegmentOptions
-    typealias ArrayLiteralElement = NSTextLayoutManager.SegmentOptions
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var none: NSTextLayoutManager.SegmentOptions { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "none")
-    static var None: NSTextLayoutManager.SegmentOptions { get }
-    static var rangeNotRequired: NSTextLayoutManager.SegmentOptions { get }
-    @available(swift, obsoleted: 3, renamed: "rangeNotRequired")
-    static var RangeNotRequired: NSTextLayoutManager.SegmentOptions { get }
-    static var middleFragmentsExcluded: NSTextLayoutManager.SegmentOptions { get }
-    @available(swift, obsoleted: 3, renamed: "middleFragmentsExcluded")
-    static var MiddleFragmentsExcluded: NSTextLayoutManager.SegmentOptions { get }
-    static var headSegmentExtended: NSTextLayoutManager.SegmentOptions { get }
-    @available(swift, obsoleted: 3, renamed: "headSegmentExtended")
-    static var HeadSegmentExtended: NSTextLayoutManager.SegmentOptions { get }
-    static var tailSegmentExtended: NSTextLayoutManager.SegmentOptions { get }
-    @available(swift, obsoleted: 3, renamed: "tailSegmentExtended")
-    static var TailSegmentExtended: NSTextLayoutManager.SegmentOptions { get }
-    static var upstreamAffinity: NSTextLayoutManager.SegmentOptions { get }
-    @available(swift, obsoleted: 3, renamed: "upstreamAffinity")
-    static var UpstreamAffinity: NSTextLayoutManager.SegmentOptions { get }
-  }
 }
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextLayoutManager.SegmentOptions")
-typealias NSTextLayoutManagerSegmentOptions = NSTextLayoutManager.SegmentOptions
+typealias NSTextLayoutManagerSegmentOptions = Int
+var NSTextLayoutManagerSegmentOptionsNone: Int { get }
+var NSTextLayoutManagerSegmentOptionsRangeNotRequired: Int { get }
+var NSTextLayoutManagerSegmentOptionsMiddleFragmentsExcluded: Int { get }
+var NSTextLayoutManagerSegmentOptionsHeadSegmentExtended: Int { get }
+var NSTextLayoutManagerSegmentOptionsTailSegmentExtended: Int { get }
+var NSTextLayoutManagerSegmentOptionsUpstreamAffinity: Int { get }
 @available(iOS 15.0, *)
 class NSTextLayoutManager : NSObject, NSSecureCoding, NSTextSelectionDataSource {
   init()
@@ -82,9 +58,9 @@ class NSTextLayoutManager : NSObject, NSSecureCoding, NSTextSelectionDataSource 
   func textLayoutFragment(for location: NSTextLocation) -> NSTextLayoutFragment?
   @available(swift, obsoleted: 3, renamed: "textLayoutFragment(for:)")
   func textLayoutFragmentForLocation(_ location: NSTextLocation) -> NSTextLayoutFragment?
-  func enumerateTextLayoutFragments(from location: NSTextLocation?, options: NSTextLayoutFragment.EnumerationOptions = [], using block: (NSTextLayoutFragment) -> Bool) -> NSTextLocation?
+  func enumerateTextLayoutFragments(from location: NSTextLocation?, options: NSTextLayoutFragmentEnumerationOptions, using block: (NSTextLayoutFragment) -> Bool) -> NSTextLocation?
   @available(swift, obsoleted: 3, renamed: "enumerateTextLayoutFragments(from:options:using:)")
-  func enumerateTextLayoutFragmentsFromLocation(_ location: NSTextLocation?, options: NSTextLayoutFragment.EnumerationOptions = [], usingBlock block: (NSTextLayoutFragment) -> Bool) -> NSTextLocation?
+  func enumerateTextLayoutFragmentsFromLocation(_ location: NSTextLocation?, options: NSTextLayoutFragmentEnumerationOptions, usingBlock block: (NSTextLayoutFragment) -> Bool) -> NSTextLocation?
   var textSelections: [NSTextSelection]
   var textSelectionNavigation: NSTextSelectionNavigation
   func enumerateRenderingAttributes(from location: NSTextLocation, reverse: Bool, using block: (NSTextLayoutManager, [NSAttributedString.Key : Any], NSTextRange) -> Bool)
@@ -107,9 +83,9 @@ class NSTextLayoutManager : NSObject, NSSecureCoding, NSTextSelectionDataSource 
   func renderingAttributes(forLink link: Any, at location: NSTextLocation) -> [NSAttributedString.Key : Any]
   @available(swift, obsoleted: 3, renamed: "renderingAttributes(forLink:at:)")
   func renderingAttributesForLink(_ link: Any, atLocation location: NSTextLocation) -> [NSAttributedString.Key : Any]
-  func enumerateTextSegments(in textRange: NSTextRange, type: NSTextLayoutManager.SegmentType, options: NSTextLayoutManager.SegmentOptions = [], using block: (NSTextRange?, CGRect, CGFloat, NSTextContainer) -> Bool)
+  func enumerateTextSegments(in textRange: NSTextRange, type: NSTextLayoutManager.SegmentType, options: NSTextLayoutManagerSegmentOptions, using block: (NSTextRange?, CGRect, CGFloat, NSTextContainer) -> Bool)
   @available(swift, obsoleted: 3, renamed: "enumerateTextSegments(in:type:options:using:)")
-  func enumerateTextSegmentsInRange(_ textRange: NSTextRange, type: NSTextLayoutManager.SegmentType, options: NSTextLayoutManager.SegmentOptions = [], usingBlock block: (NSTextRange?, CGRect, CGFloat, NSTextContainer) -> Bool)
+  func enumerateTextSegmentsInRange(_ textRange: NSTextRange, type: NSTextLayoutManager.SegmentType, options: NSTextLayoutManagerSegmentOptions, usingBlock block: (NSTextRange?, CGRect, CGFloat, NSTextContainer) -> Bool)
   func replaceContents(in range: NSTextRange, with textElements: [NSTextElement])
   @available(swift, obsoleted: 3, renamed: "replaceContents(in:with:)")
   func replaceContentsInRange(_ range: NSTextRange, withTextElements textElements: [NSTextElement])
@@ -123,7 +99,7 @@ class NSTextLayoutManager : NSObject, NSSecureCoding, NSTextSelectionDataSource 
   @available(iOS 15.0, *)
   func encode(with coder: NSCoder)
   @available(iOS 15.0, *)
-  func enumerateSubstrings(from location: NSTextLocation, options: NSString.EnumerationOptions = [], using block: (String?, NSTextRange, NSTextRange?, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateSubstrings(from location: NSTextLocation, options: NSStringEnumerationOptions, using block: (String?, NSTextRange, NSTextRange?, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 15.0, *)
   func textRange(for selectionGranularity: NSTextSelection.Granularity, enclosing location: NSTextLocation) -> NSTextRange?
   @available(iOS 15.0, *)

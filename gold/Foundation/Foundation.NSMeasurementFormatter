@@ -1,30 +1,12 @@
 @_exported import CoreFoundation
 
-@available(iOS 10.0, *)
-@available(swift, obsoleted: 3, renamed: "MeasurementFormatter.UnitOptions")
-typealias NSMeasurementFormatterUnitOptions = MeasurementFormatter.UnitOptions
-extension MeasurementFormatter {
-  @available(iOS 10.0, *)
-  struct UnitOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = MeasurementFormatter.UnitOptions
-    typealias ArrayLiteralElement = MeasurementFormatter.UnitOptions
-    static var providedUnit: MeasurementFormatter.UnitOptions { get }
-    @available(swift, obsoleted: 3, renamed: "providedUnit")
-    static var ProvidedUnit: MeasurementFormatter.UnitOptions { get }
-    static var naturalScale: MeasurementFormatter.UnitOptions { get }
-    @available(swift, obsoleted: 3, renamed: "naturalScale")
-    static var NaturalScale: MeasurementFormatter.UnitOptions { get }
-    static var temperatureWithoutUnit: MeasurementFormatter.UnitOptions { get }
-    @available(swift, obsoleted: 3, renamed: "temperatureWithoutUnit")
-    static var TemperatureWithoutUnit: MeasurementFormatter.UnitOptions { get }
-  }
-}
+typealias NSMeasurementFormatterUnitOptions = Int
+var NSMeasurementFormatterUnitOptionsProvidedUnit: Int { get }
+var NSMeasurementFormatterUnitOptionsNaturalScale: Int { get }
+var NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit: Int { get }
 @available(iOS 10.0, *)
 class MeasurementFormatter : Formatter, NSSecureCoding {
-  var unitOptions: MeasurementFormatter.UnitOptions
+  var unitOptions: NSMeasurementFormatterUnitOptions
   var unitStyle: Formatter.UnitStyle
   var locale: Locale!
   @NSCopying var numberFormatter: NumberFormatter!

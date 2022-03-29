@@ -56,23 +56,6 @@ extension NSTextSelectionNavigation {
     static var Document: NSTextSelectionNavigation.Destination { get }
   }
   @available(iOS 15.0, *)
-  struct Modifier : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSTextSelectionNavigation.Modifier
-    typealias ArrayLiteralElement = NSTextSelectionNavigation.Modifier
-    static var extend: NSTextSelectionNavigation.Modifier { get }
-    @available(swift, obsoleted: 3, renamed: "extend")
-    static var Extend: NSTextSelectionNavigation.Modifier { get }
-    static var visual: NSTextSelectionNavigation.Modifier { get }
-    @available(swift, obsoleted: 3, renamed: "visual")
-    static var Visual: NSTextSelectionNavigation.Modifier { get }
-    static var multiple: NSTextSelectionNavigation.Modifier { get }
-    @available(swift, obsoleted: 3, renamed: "multiple")
-    static var Multiple: NSTextSelectionNavigation.Modifier { get }
-  }
-  @available(iOS 15.0, *)
   enum WritingDirection : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
@@ -100,9 +83,10 @@ extension NSTextSelectionNavigation {
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "NSTextSelectionNavigation.Destination")
 typealias NSTextSelectionNavigationDestination = NSTextSelectionNavigation.Destination
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextSelectionNavigation.Modifier")
-typealias NSTextSelectionNavigationModifier = NSTextSelectionNavigation.Modifier
+typealias NSTextSelectionNavigationModifier = Int
+var NSTextSelectionNavigationModifierExtend: Int { get }
+var NSTextSelectionNavigationModifierVisual: Int { get }
+var NSTextSelectionNavigationModifierMultiple: Int { get }
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "NSTextSelectionNavigation.WritingDirection")
 typealias NSTextSelectionNavigationWritingDirection = NSTextSelectionNavigation.WritingDirection
@@ -123,9 +107,9 @@ class NSTextSelectionNavigation : NSObject {
   func destinationSelection(for textSelection: NSTextSelection, direction: NSTextSelectionNavigation.Direction, destination: NSTextSelectionNavigation.Destination, extending: Bool, confined: Bool) -> NSTextSelection?
   @available(swift, obsoleted: 3, renamed: "destinationSelection(for:direction:destination:extending:confined:)")
   func destinationSelectionForTextSelection(_ textSelection: NSTextSelection, direction: NSTextSelectionNavigation.Direction, destination: NSTextSelectionNavigation.Destination, extending: Bool, confined: Bool) -> NSTextSelection?
-  func textSelections(interactingAt point: CGPoint, inContainerAt containerLocation: NSTextLocation, anchors: [NSTextSelection], modifiers: NSTextSelectionNavigation.Modifier, selecting: Bool, bounds: CGRect) -> [NSTextSelection]
+  func textSelections(interactingAt point: CGPoint, inContainerAt containerLocation: NSTextLocation, anchors: [NSTextSelection], modifiers: NSTextSelectionNavigationModifier, selecting: Bool, bounds: CGRect) -> [NSTextSelection]
   @available(swift, obsoleted: 3, renamed: "textSelections(interactingAt:inContainerAt:anchors:modifiers:selecting:bounds:)")
-  func textSelectionsInteractingAtPoint(_ point: CGPoint, inContainerAtLocation containerLocation: NSTextLocation, anchors: [NSTextSelection], modifiers: NSTextSelectionNavigation.Modifier, selecting: Bool, bounds: CGRect) -> [NSTextSelection]
+  func textSelectionsInteractingAtPoint(_ point: CGPoint, inContainerAtLocation containerLocation: NSTextLocation, anchors: [NSTextSelection], modifiers: NSTextSelectionNavigationModifier, selecting: Bool, bounds: CGRect) -> [NSTextSelection]
   func textSelection(for selectionGranularity: NSTextSelection.Granularity, enclosing textSelection: NSTextSelection) -> NSTextSelection
   @available(swift, obsoleted: 3, renamed: "textSelection(for:enclosing:)")
   func textSelectionForSelectionGranularity(_ selectionGranularity: NSTextSelection.Granularity, enclosingTextSelection textSelection: NSTextSelection) -> NSTextSelection
@@ -142,9 +126,9 @@ class NSTextSelectionNavigation : NSObject {
 @available(iOS 15.0, *)
 protocol NSTextSelectionDataSource : NSObjectProtocol {
   var documentRange: NSTextRange { get }
-  func enumerateSubstrings(from location: NSTextLocation, options: NSString.EnumerationOptions = [], using block: (String?, NSTextRange, NSTextRange?, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateSubstrings(from location: NSTextLocation, options: NSStringEnumerationOptions, using block: (String?, NSTextRange, NSTextRange?, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(swift, obsoleted: 3, renamed: "enumerateSubstrings(from:options:using:)")
-  func enumerateSubstringsFromLocation(_ location: NSTextLocation, options: NSString.EnumerationOptions = [], usingBlock block: (String?, NSTextRange, NSTextRange?, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateSubstringsFromLocation(_ location: NSTextLocation, options: NSStringEnumerationOptions, usingBlock block: (String?, NSTextRange, NSTextRange?, UnsafeMutablePointer<ObjCBool>) -> Void)
   func textRange(for selectionGranularity: NSTextSelection.Granularity, enclosing location: NSTextLocation) -> NSTextRange?
   @available(swift, obsoleted: 3, renamed: "textRange(for:enclosing:)")
   func textRangeForSelectionGranularity(_ selectionGranularity: NSTextSelection.Granularity, enclosingLocation location: NSTextLocation) -> NSTextRange?

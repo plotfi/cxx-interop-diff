@@ -144,32 +144,26 @@ typealias UISegmentedControlSegment = UISegmentedControl.Segment
   @available(iOS 13.0, *)
   var selectedSegmentTintColor: UIColor?
   @available(iOS 5.0, *)
-  func setBackgroundImage(_ backgroundImage: UIImage?, for state: UIControl.State, barMetrics: UIBarMetrics)
+  func setBackgroundImage(_ backgroundImage: UIImage?, forState state: UIControlState, barMetrics: UIBarMetrics)
   @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "setBackgroundImage(_:for:barMetrics:)")
-  func setBackgroundImage(_ backgroundImage: UIImage?, forState state: UIControl.State, barMetrics: UIBarMetrics)
+  func backgroundImage(forState state: UIControlState, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
-  func backgroundImage(for state: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
+  @available(swift, obsoleted: 3, renamed: "backgroundImage(forState:barMetrics:)")
+  func backgroundImageForState(_ state: UIControlState, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "backgroundImage(for:barMetrics:)")
-  func backgroundImageForState(_ state: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
+  func setDividerImage(_ dividerImage: UIImage?, forLeftSegmentState leftState: UIControlState, rightSegmentState rightState: UIControlState, barMetrics: UIBarMetrics)
   @available(iOS 5.0, *)
-  func setDividerImage(_ dividerImage: UIImage?, forLeftSegmentState leftState: UIControl.State, rightSegmentState rightState: UIControl.State, barMetrics: UIBarMetrics)
-  @available(iOS 5.0, *)
-  func dividerImage(forLeftSegmentState leftState: UIControl.State, rightSegmentState rightState: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
+  func dividerImage(forLeftSegmentState leftState: UIControlState, rightSegmentState rightState: UIControlState, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
   @available(swift, obsoleted: 3, renamed: "dividerImage(forLeftSegmentState:rightSegmentState:barMetrics:)")
-  func dividerImageForLeftSegmentState(_ leftState: UIControl.State, rightSegmentState rightState: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
+  func dividerImageForLeftSegmentState(_ leftState: UIControlState, rightSegmentState rightState: UIControlState, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
-  func setTitleTextAttributes(_ attributes: [NSAttributedString.Key : Any]?, for state: UIControl.State)
+  func setTitleTextAttributes(_ attributes: [NSAttributedString.Key : Any]?, forState state: UIControlState)
   @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "setTitleTextAttributes(_:for:)")
-  func setTitleTextAttributes(_ attributes: [NSAttributedString.Key : Any]?, forState state: UIControl.State)
+  func titleTextAttributes(forState state: UIControlState) -> [NSAttributedString.Key : Any]?
   @available(iOS 5.0, *)
-  func titleTextAttributes(for state: UIControl.State) -> [NSAttributedString.Key : Any]?
-  @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "titleTextAttributes(for:)")
-  func titleTextAttributesForState(_ state: UIControl.State) -> [NSAttributedString.Key : Any]?
+  @available(swift, obsoleted: 3, renamed: "titleTextAttributes(forState:)")
+  func titleTextAttributesForState(_ state: UIControlState) -> [NSAttributedString.Key : Any]?
   @available(iOS 5.0, *)
   func setContentPositionAdjustment(_ adjustment: UIOffset, forSegmentType leftCenterRightOrAlone: UISegmentedControl.Segment, barMetrics: UIBarMetrics)
   @available(iOS 5.0, *)

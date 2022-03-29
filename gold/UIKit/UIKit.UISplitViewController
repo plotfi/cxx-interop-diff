@@ -36,11 +36,11 @@ extension UISplitViewController {
     @available(iOS 14.0, *)
     @available(swift, obsoleted: 3, renamed: "twoDisplaceSecondary")
     static var TwoDisplaceSecondary: UISplitViewController.DisplayMode { get }
-    @available(iOS, introduced: 8.0, deprecated: 14.0, renamed: "UISplitViewController.DisplayMode.secondaryOnly")
+    @available(iOS, introduced: 8.0, deprecated: 14.0)
     static var primaryHidden: UISplitViewController.DisplayMode { get }
-    @available(iOS, introduced: 8.0, deprecated: 14.0, renamed: "UISplitViewController.DisplayMode.oneBesideSecondary")
+    @available(iOS, introduced: 8.0, deprecated: 14.0)
     static var allVisible: UISplitViewController.DisplayMode { get }
-    @available(iOS, introduced: 8.0, deprecated: 14.0, renamed: "UISplitViewController.DisplayMode.oneOverSecondary")
+    @available(iOS, introduced: 8.0, deprecated: 14.0)
     static var primaryOverlay: UISplitViewController.DisplayMode { get }
   }
   @available(iOS 11.0, *)

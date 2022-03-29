@@ -1,26 +1,12 @@
 @_exported import CoreFoundation
 
-@available(swift, obsoleted: 3, renamed: "PropertyListSerialization.MutabilityOptions")
-typealias NSPropertyListMutabilityOptions = PropertyListSerialization.MutabilityOptions
+typealias NSPropertyListMutabilityOptions = Int
+var NSPropertyListImmutable: Int { get }
+var NSPropertyListMutableContainers: Int { get }
+var NSPropertyListMutableContainersAndLeaves: Int { get }
+@available(swift, obsoleted: 3, renamed: "PropertyListSerialization.PropertyListFormat")
+typealias NSPropertyListFormat = PropertyListSerialization.PropertyListFormat
 extension PropertyListSerialization {
-  struct MutabilityOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = PropertyListSerialization.MutabilityOptions
-    typealias ArrayLiteralElement = PropertyListSerialization.MutabilityOptions
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var immutable: PropertyListSerialization.MutabilityOptions { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "immutable")
-    static var Immutable: PropertyListSerialization.MutabilityOptions { get }
-    static var mutableContainers: PropertyListSerialization.MutabilityOptions { get }
-    @available(swift, obsoleted: 3, renamed: "mutableContainers")
-    static var MutableContainers: PropertyListSerialization.MutabilityOptions { get }
-    static var mutableContainersAndLeaves: PropertyListSerialization.MutabilityOptions { get }
-    @available(swift, obsoleted: 3, renamed: "mutableContainersAndLeaves")
-    static var MutableContainersAndLeaves: PropertyListSerialization.MutabilityOptions { get }
-  }
   enum PropertyListFormat : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
@@ -35,11 +21,9 @@ extension PropertyListSerialization {
     @available(swift, obsoleted: 3, renamed: "binary")
     static var NSPropertyListBinaryFormat_v1_0: PropertyListSerialization.PropertyListFormat { get }
   }
-  typealias ReadOptions = PropertyListSerialization.MutabilityOptions
+  typealias ReadOptions = NSPropertyListMutabilityOptions
   typealias WriteOptions = Int
 }
-@available(swift, obsoleted: 3, renamed: "PropertyListSerialization.PropertyListFormat")
-typealias NSPropertyListFormat = PropertyListSerialization.PropertyListFormat
 @available(swift, obsoleted: 3, renamed: "PropertyListSerialization.ReadOptions")
 typealias NSPropertyListReadOptions = PropertyListSerialization.ReadOptions
 @available(swift, obsoleted: 3, renamed: "PropertyListSerialization.WriteOptions")
@@ -61,18 +45,18 @@ class PropertyListSerialization : NSObject {
   @available(swift, obsoleted: 3, renamed: "writePropertyList(_:to:format:options:error:)")
   class func writePropertyList(_ plist: Any, toStream stream: OutputStream, format: PropertyListSerialization.PropertyListFormat, options opt: PropertyListSerialization.WriteOptions, error: NSErrorPointer) -> Int
   @available(iOS 4.0, *)
-  class func propertyList(from data: Data, options opt: PropertyListSerialization.ReadOptions = [], format: UnsafeMutablePointer<PropertyListSerialization.PropertyListFormat>?) throws -> Any
+  class func propertyList(from data: Data, options opt: PropertyListSerialization.ReadOptions, format: UnsafeMutablePointer<PropertyListSerialization.PropertyListFormat>?) throws -> Any
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "propertyList(from:options:format:)")
-  class func propertyListWithData(_ data: Data, options opt: PropertyListSerialization.ReadOptions = [], format: UnsafeMutablePointer<PropertyListSerialization.PropertyListFormat>?) throws -> Any
+  class func propertyListWithData(_ data: Data, options opt: PropertyListSerialization.ReadOptions, format: UnsafeMutablePointer<PropertyListSerialization.PropertyListFormat>?) throws -> Any
   @available(iOS 4.0, *)
-  class func propertyList(with stream: InputStream, options opt: PropertyListSerialization.ReadOptions = [], format: UnsafeMutablePointer<PropertyListSerialization.PropertyListFormat>?) throws -> Any
+  class func propertyList(with stream: InputStream, options opt: PropertyListSerialization.ReadOptions, format: UnsafeMutablePointer<PropertyListSerialization.PropertyListFormat>?) throws -> Any
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "propertyList(with:options:format:)")
-  class func propertyListWithStream(_ stream: InputStream, options opt: PropertyListSerialization.ReadOptions = [], format: UnsafeMutablePointer<PropertyListSerialization.PropertyListFormat>?) throws -> Any
+  class func propertyListWithStream(_ stream: InputStream, options opt: PropertyListSerialization.ReadOptions, format: UnsafeMutablePointer<PropertyListSerialization.PropertyListFormat>?) throws -> Any
   @available(iOS, introduced: 2.0, deprecated: 8.0, message: "Use dataWithPropertyList:format:options:error: instead.")
   class func dataFromPropertyList(_ plist: Any, format: PropertyListSerialization.PropertyListFormat, errorDescription errorString: UnsafeMutablePointer<NSString?>?) -> Data?
   @available(iOS, introduced: 2.0, deprecated: 8.0, message: "Use propertyListWithData:options:format:error: instead.")
-  class func propertyListFromData(_ data: Data, mutabilityOption opt: PropertyListSerialization.MutabilityOptions = [], format: UnsafeMutablePointer<PropertyListSerialization.PropertyListFormat>?, errorDescription errorString: UnsafeMutablePointer<NSString?>?) -> Any?
+  class func propertyListFromData(_ data: Data, mutabilityOption opt: NSPropertyListMutabilityOptions, format: UnsafeMutablePointer<PropertyListSerialization.PropertyListFormat>?, errorDescription errorString: UnsafeMutablePointer<NSString?>?) -> Any?
   init()
 }

@@ -12,23 +12,10 @@ enum UIScrollType : UInt, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "continuous")
   static var Continuous: UIScrollType { get }
 }
-@available(iOS 13.4, *)
-struct UIScrollTypeMask : OptionSet, @unchecked Sendable {
-  init(rawValue: Int)
-  let rawValue: Int
-  typealias RawValue = Int
-  typealias Element = UIScrollTypeMask
-  typealias ArrayLiteralElement = UIScrollTypeMask
-  static var discrete: UIScrollTypeMask { get }
-  @available(swift, obsoleted: 3, renamed: "discrete")
-  static var Discrete: UIScrollTypeMask { get }
-  static var continuous: UIScrollTypeMask { get }
-  @available(swift, obsoleted: 3, renamed: "continuous")
-  static var Continuous: UIScrollTypeMask { get }
-  static var all: UIScrollTypeMask { get }
-  @available(swift, obsoleted: 3, renamed: "all")
-  static var All: UIScrollTypeMask { get }
-}
+typealias UIScrollTypeMask = Int
+var UIScrollTypeMaskDiscrete: Int { get }
+var UIScrollTypeMaskContinuous: Int { get }
+var UIScrollTypeMaskAll: Int { get }
 @available(iOS 3.2, *)
 @MainActor class UIPanGestureRecognizer : UIGestureRecognizer {
   var minimumNumberOfTouches: Int

@@ -42,29 +42,16 @@ extension NetService {
     @available(swift, obsoleted: 3, renamed: "missingRequiredConfigurationError")
     static var MissingRequiredConfigurationError: NetService.ErrorCode { get }
   }
-  struct Options : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NetService.Options
-    typealias ArrayLiteralElement = NetService.Options
-    static var noAutoRename: NetService.Options { get }
-    @available(swift, obsoleted: 3, renamed: "noAutoRename")
-    static var NoAutoRename: NetService.Options { get }
-    @available(iOS 7.0, *)
-    static var listenForConnections: NetService.Options { get }
-    @available(iOS 7.0, *)
-    @available(swift, obsoleted: 3, renamed: "listenForConnections")
-    static var ListenForConnections: NetService.Options { get }
-  }
 }
 @available(iOS 2.0, *)
 @available(swift, obsoleted: 3, renamed: "NSNetService.errorDomain")
 let NSNetServicesErrorDomain: String
 @available(swift, obsoleted: 3, renamed: "NSNetService.ErrorCode")
 typealias NSNetServicesError = NetService.ErrorCode
-@available(swift, obsoleted: 3, renamed: "NSNetService.Options")
-typealias NSNetServiceOptions = NetService.Options
+typealias NSNetServiceOptions = Int
+var NSNetServiceNoAutoRename: Int { get }
+@available(iOS 7.0, *)
+var NSNetServiceListenForConnections: Int { get }
 @available(swift, obsoleted: 3, renamed: "NetService")
 @available(iOS, introduced: 2.0, deprecated: 100000, message: "Use nw_connection_t or nw_listener_t in Network framework instead")
 typealias NSNetService = NetService
@@ -90,10 +77,10 @@ class NetService : NSObject {
   var port: Int { get }
   func publish()
   @available(iOS 2.0, *)
-  func publish(options: NetService.Options = [])
+  func publish(withOptions options: NSNetServiceOptions)
   @available(iOS 2.0, *)
-  @available(swift, obsoleted: 3, renamed: "publish(options:)")
-  func publishWithOptions(_ options: NetService.Options = [])
+  @available(swift, obsoleted: 3, renamed: "publish(withOptions:)")
+  func publishWithOptions(_ options: NSNetServiceOptions)
   @available(iOS, unavailable, introduced: 2.0, deprecated: 2.0, message: "Not supported")
   func resolve()
   func stop()

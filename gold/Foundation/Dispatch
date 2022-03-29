@@ -1,7 +1,9 @@
 import Combine
 import _Concurrency
 @_exported import os_object
+@_exported import std_config
 
+var __bool_true_false_are_defined: Int32 { get }
 var DISPATCH_API_VERSION: Int32 { get }
 var DISPATCH_SWIFT3_OVERLAY: Int32 { get }
 @available(*, unavailable, message: "Not available in Swift")
@@ -1235,7 +1237,6 @@ func dispatch_get_main_queue() -> dispatch_queue_main_t
 var DISPATCH_QUEUE_PRIORITY_HIGH: Int32 { get }
 var DISPATCH_QUEUE_PRIORITY_DEFAULT: Int32 { get }
 var DISPATCH_QUEUE_PRIORITY_LOW: Int32 { get }
-var DISPATCH_QUEUE_PRIORITY_BACKGROUND: Int32 { get }
 @available(*, unavailable, message: "Not available in Swift")
 typealias dispatch_queue_priority_t = Int
 
@@ -1284,8 +1285,6 @@ class __OS_dispatch_queue_attr : DispatchObject {
 }
 @available(*, unavailable, message: "Not available in Swift")
 typealias dispatch_queue_attr_t = __OS_dispatch_queue_attr
-@available(*, unavailable, message: "use 'nil' instead of this imported macro")
-var DISPATCH_QUEUE_SERIAL: ()
 
 /**
  * @function dispatch_queue_attr_make_initially_inactive
@@ -1432,8 +1431,6 @@ enum __dispatch_autorelease_frequency_t : UInt, @unchecked Sendable {
  */
 @available(iOS 8.0, *)
 @_effects(readonly) func __dispatch_queue_attr_make_with_qos_class(_ attr: __OS_dispatch_queue_attr?, _ qos_class: qos_class_t, _ relative_priority: Int32) -> __OS_dispatch_queue_attr
-@available(*, unavailable, message: "use 'nil' instead of this imported macro")
-var DISPATCH_TARGET_QUEUE_DEFAULT: ()
 
 /**
  * @function dispatch_queue_create_with_target
@@ -1535,8 +1532,6 @@ func __dispatch_queue_create_with_target(_ label: UnsafePointer<CChar>?, _ attr:
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "DispatchQueue.init(__label:attr:)")
 func __dispatch_queue_create(_ label: UnsafePointer<CChar>?, _ attr: __OS_dispatch_queue_attr?) -> DispatchQueue
-@available(*, unavailable, message: "use 'nil' instead of this imported macro")
-var DISPATCH_CURRENT_QUEUE_LABEL: ()
 
 /**
  * @function dispatch_queue_get_label
@@ -2402,8 +2397,6 @@ extension DispatchSourceProtocol {
   var data: UInt { get }
   var isCancelled: Bool { get }
 }
-@available(swift, obsoleted: 3, renamed: "DispatchSourceProtocol")
-typealias OS_dispatch_sourceProtocol = DispatchSourceProtocol
 extension DispatchSource : DispatchSourceProtocol {
 }
 
@@ -2436,8 +2429,6 @@ extension DispatchSourceUserDataAdd {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceUserDataAdd")
 typealias OS_dispatch_source_data_add = DispatchSourceUserDataAdd
-extension DispatchSource : DispatchSourceUserDataAdd {
-}
 protocol DispatchSourceUserDataOr : DispatchSourceProtocol {
 }
 
@@ -2455,8 +2446,6 @@ extension DispatchSourceUserDataOr {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceUserDataOr")
 typealias OS_dispatch_source_data_or = DispatchSourceUserDataOr
-extension DispatchSource : DispatchSourceUserDataOr {
-}
 protocol DispatchSourceUserDataReplace : DispatchSourceProtocol {
 }
 
@@ -2474,8 +2463,6 @@ extension DispatchSourceUserDataReplace {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceUserDataReplace")
 typealias OS_dispatch_source_data_replace = DispatchSourceUserDataReplace
-extension DispatchSource : DispatchSourceUserDataReplace {
-}
 protocol DispatchSourceMachSend : DispatchSourceProtocol {
 }
 
@@ -2486,8 +2473,6 @@ extension DispatchSourceMachSend {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceMachSend")
 typealias OS_dispatch_source_mach_send = DispatchSourceMachSend
-extension DispatchSource : DispatchSourceMachSend {
-}
 protocol DispatchSourceMachReceive : DispatchSourceProtocol {
 }
 
@@ -2496,8 +2481,6 @@ extension DispatchSourceMachReceive {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceMachReceive")
 typealias OS_dispatch_source_mach_recv = DispatchSourceMachReceive
-extension DispatchSource : DispatchSourceMachReceive {
-}
 protocol DispatchSourceMemoryPressure : DispatchSourceProtocol {
 }
 
@@ -2507,8 +2490,6 @@ extension DispatchSourceMemoryPressure {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceMemoryPressure")
 typealias OS_dispatch_source_memorypressure = DispatchSourceMemoryPressure
-extension DispatchSource : DispatchSourceMemoryPressure {
-}
 protocol DispatchSourceProcess : DispatchSourceProtocol {
 }
 
@@ -2519,20 +2500,14 @@ extension DispatchSourceProcess {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceProcess")
 typealias OS_dispatch_source_proc = DispatchSourceProcess
-extension DispatchSource : DispatchSourceProcess {
-}
 protocol DispatchSourceRead : DispatchSourceProtocol {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceRead")
 typealias OS_dispatch_source_read = DispatchSourceRead
-extension DispatchSource : DispatchSourceRead {
-}
 protocol DispatchSourceSignal : DispatchSourceProtocol {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceSignal")
 typealias OS_dispatch_source_signal = DispatchSourceSignal
-extension DispatchSource : DispatchSourceSignal {
-}
 protocol DispatchSourceTimer : DispatchSourceProtocol {
 }
 
@@ -2848,8 +2823,6 @@ extension DispatchSourceTimer {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceTimer")
 typealias OS_dispatch_source_timer = DispatchSourceTimer
-extension DispatchSource : DispatchSourceTimer {
-}
 protocol DispatchSourceFileSystemObject : DispatchSourceProtocol {
 }
 
@@ -2860,14 +2833,10 @@ extension DispatchSourceFileSystemObject {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceFileSystemObject")
 typealias OS_dispatch_source_vnode = DispatchSourceFileSystemObject
-extension DispatchSource : DispatchSourceFileSystemObject {
-}
 protocol DispatchSourceWrite : DispatchSourceProtocol {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceWrite")
 typealias OS_dispatch_source_write = DispatchSourceWrite
-extension DispatchSource : DispatchSourceWrite {
-}
 var DISPATCH_MACH_SEND_DEAD: Int32 { get }
 @available(*, unavailable, message: "Not available in Swift")
 typealias dispatch_source_mach_send_flags_t = UInt
@@ -3576,8 +3545,6 @@ class __DispatchData : NSObject {
 }
 @available(*, unavailable, message: "Not available in Swift")
 typealias dispatch_data_t = __DispatchData
-@available(*, unavailable, message: "use 'nil' instead of this imported macro")
-var DISPATCH_DATA_DESTRUCTOR_DEFAULT: ()
 @available(iOS 5.0, *)
 @available(*, unavailable, message: "Not available in Swift")
 let _dispatch_data_destructor_free: @convention(block) () -> Void

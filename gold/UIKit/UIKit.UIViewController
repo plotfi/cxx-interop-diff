@@ -289,20 +289,15 @@ extension UIViewController {
 
   /// Aggregate values (e.g., NSDirectionalRectEdgeAll) are accepted in the `edge` parameter; NSDirectionalRectEdgeLeading and Trailing are ignored on iOS 15.0
   @available(iOS 15.0, *)
-  func setContentScrollView(_ scrollView: UIScrollView?, for edge: NSDirectionalRectEdge)
-
-  /// Aggregate values (e.g., NSDirectionalRectEdgeAll) are accepted in the `edge` parameter; NSDirectionalRectEdgeLeading and Trailing are ignored on iOS 15.0
-  @available(iOS 15.0, *)
-  @available(swift, obsoleted: 3, renamed: "setContentScrollView(_:for:)")
   func setContentScrollView(_ scrollView: UIScrollView?, forEdge edge: NSDirectionalRectEdge)
 
   /// Pass only a single edge (e.g., NSDirectionalRectEdgeTop) in the `edge` parameter. Raises an exception when passed an aggregate edge (e.g., NSDirectionalRectEdgeAll)
   @available(iOS 15.0, *)
-  func contentScrollView(for edge: NSDirectionalRectEdge) -> UIScrollView?
+  func contentScrollView(forEdge edge: NSDirectionalRectEdge) -> UIScrollView?
 
   /// Pass only a single edge (e.g., NSDirectionalRectEdgeTop) in the `edge` parameter. Raises an exception when passed an aggregate edge (e.g., NSDirectionalRectEdgeAll)
   @available(iOS 15.0, *)
-  @available(swift, obsoleted: 3, renamed: "contentScrollView(for:)")
+  @available(swift, obsoleted: 3, renamed: "contentScrollView(forEdge:)")
   func contentScrollViewForEdge(_ edge: NSDirectionalRectEdge) -> UIScrollView?
   @available(iOS 7.0, *)
   var preferredContentSize: CGSize
@@ -481,10 +476,10 @@ extension UIViewController {
   @available(swift, obsoleted: 4.2, renamed: "removeFromParent()")
   func removeFromParentViewController()
   @available(iOS 5.0, *)
-  func transition(from fromViewController: UIViewController, to toViewController: UIViewController, duration: TimeInterval, options: UIView.AnimationOptions = [], animations: (() -> Void)?, completion: ((Bool) -> Void)? = nil)
+  func transition(from fromViewController: UIViewController, to toViewController: UIViewController, duration: TimeInterval, options: UIViewAnimationOptions, animations: (() -> Void)?, completion: ((Bool) -> Void)? = nil)
   @available(iOS 5.0, *)
   @available(swift, obsoleted: 3, renamed: "transition(from:to:duration:options:animations:completion:)")
-  func transitionFromViewController(_ fromViewController: UIViewController, toViewController: UIViewController, duration: TimeInterval, options: UIView.AnimationOptions = [], animations: (() -> Void)?, completion: ((Bool) -> Void)? = nil)
+  func transitionFromViewController(_ fromViewController: UIViewController, toViewController: UIViewController, duration: TimeInterval, options: UIViewAnimationOptions, animations: (() -> Void)?, completion: ((Bool) -> Void)? = nil)
   @available(iOS 5.0, *)
   func beginAppearanceTransition(_ isAppearing: Bool, animated: Bool)
   @available(iOS 5.0, *)
@@ -617,35 +612,35 @@ extension UIViewController {
   var modalInPresentation: Bool
 }
 @MainActor protocol UIViewControllerPreviewing : NSObjectProtocol {
-  @available(iOS, introduced: 9.0, deprecated: 13.0, renamed: "UIContextMenuInteraction")
+  @available(iOS, introduced: 9.0, deprecated: 13.0)
   var previewingGestureRecognizerForFailureRelationship: UIGestureRecognizer { get }
-  @available(iOS, introduced: 9.0, deprecated: 13.0, renamed: "UIContextMenuInteraction")
+  @available(iOS, introduced: 9.0, deprecated: 13.0)
   var delegate: UIViewControllerPreviewingDelegate { get }
-  @available(iOS, introduced: 9.0, deprecated: 13.0, renamed: "UIContextMenuInteraction")
+  @available(iOS, introduced: 9.0, deprecated: 13.0)
   var sourceView: UIView { get }
-  @available(iOS, introduced: 9.0, deprecated: 13.0, renamed: "UIContextMenuInteraction")
+  @available(iOS, introduced: 9.0, deprecated: 13.0)
   var sourceRect: CGRect { get set }
 }
 @available(iOS 9.0, *)
 @MainActor protocol UIViewControllerPreviewingDelegate : NSObjectProtocol {
-  @available(iOS, introduced: 9.0, deprecated: 13.0, renamed: "UIContextMenuInteraction")
+  @available(iOS, introduced: 9.0, deprecated: 13.0)
   func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController?
-  @available(iOS, introduced: 9.0, deprecated: 13.0, renamed: "UIContextMenuInteraction")
+  @available(iOS, introduced: 9.0, deprecated: 13.0)
   func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController)
   @available(swift, obsoleted: 3, renamed: "previewingContext(_:commit:)")
-  @available(iOS, introduced: 9.0, deprecated: 13.0, renamed: "UIContextMenuInteraction")
+  @available(iOS, introduced: 9.0, deprecated: 13.0)
   func previewingContext(_ previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController)
 }
 extension UIViewController {
-  @available(iOS, introduced: 9.0, deprecated: 13.0, renamed: "UIContextMenuInteraction")
+  @available(iOS, introduced: 9.0, deprecated: 13.0)
   func registerForPreviewing(with delegate: UIViewControllerPreviewingDelegate, sourceView: UIView) -> UIViewControllerPreviewing
   @available(swift, obsoleted: 3, renamed: "registerForPreviewing(with:sourceView:)")
-  @available(iOS, introduced: 9.0, deprecated: 13.0, renamed: "UIContextMenuInteraction")
+  @available(iOS, introduced: 9.0, deprecated: 13.0)
   func registerForPreviewingWithDelegate(_ delegate: UIViewControllerPreviewingDelegate, sourceView: UIView) -> UIViewControllerPreviewing
-  @available(iOS, introduced: 9.0, deprecated: 13.0, renamed: "UIContextMenuInteraction")
+  @available(iOS, introduced: 9.0, deprecated: 13.0)
   func unregisterForPreviewing(withContext previewing: UIViewControllerPreviewing)
   @available(swift, obsoleted: 3, renamed: "unregisterForPreviewing(withContext:)")
-  @available(iOS, introduced: 9.0, deprecated: 13.0, renamed: "UIContextMenuInteraction")
+  @available(iOS, introduced: 9.0, deprecated: 13.0)
   func unregisterForPreviewingWithContext(_ previewing: UIViewControllerPreviewing)
 }
 extension UIViewController {

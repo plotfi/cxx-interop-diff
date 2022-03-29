@@ -56,7 +56,7 @@
   /// block of another propertyAnimator that is interruptible, the implicit
   /// animations defined by this call will be tracked by the outer
   /// propertyAnimator.
-  class func runningPropertyAnimator(withDuration duration: TimeInterval, delay: TimeInterval, options: UIView.AnimationOptions = [], animations: @escaping () -> Void, completion: ((UIViewAnimatingPosition) -> Void)? = nil) -> Self
+  class func runningPropertyAnimator(withDuration duration: TimeInterval, delay: TimeInterval, options: UIViewAnimationOptions, animations: @escaping () -> Void, completion: ((UIViewAnimatingPosition) -> Void)? = nil) -> Self
 
   /// @abstract This method provides compatibility with the old style [UIView
   /// animationWithDuration:...]  method. It is also useful for controlling
@@ -72,7 +72,7 @@
   /// animations defined by this call will be tracked by the outer
   /// propertyAnimator.
   @available(swift, obsoleted: 3, renamed: "runningPropertyAnimator(withDuration:delay:options:animations:completion:)")
-  class func runningPropertyAnimatorWithDuration(_ duration: TimeInterval, delay: TimeInterval, options: UIView.AnimationOptions = [], animations: @escaping () -> Void, completion: ((UIViewAnimatingPosition) -> Void)? = nil) -> Self
+  class func runningPropertyAnimatorWithDuration(_ duration: TimeInterval, delay: TimeInterval, options: UIViewAnimationOptions, animations: @escaping () -> Void, completion: ((UIViewAnimatingPosition) -> Void)? = nil) -> Self
 
   /// Animatable view properties that are set by the animation block will be
   /// animated to their new values. The animations will commence at delayFactor *
