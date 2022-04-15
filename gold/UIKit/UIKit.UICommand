@@ -1,137 +1,50 @@
-@_exported import Foundation
-
-typealias UIKeyModifierFlags = Int
-var UIKeyModifierAlphaShift: Int { get }
-var UIKeyModifierShift: Int { get }
-var UIKeyModifierControl: Int { get }
-var UIKeyModifierAlternate: Int { get }
-var UIKeyModifierCommand: Int { get }
-var UIKeyModifierNumericPad: Int { get }
-
-/// Represents an alternate action to take for a command.
-///
-/// Two alternates are equal iff their modifierFlags are equal.
-@available(iOS 13.0, *)
-@MainActor class UICommandAlternate : NSObject, NSCopying, NSSecureCoding {
-
-  /// Short display title.
-  var title: String { get }
-
-  /// Action to take on choosing this command alternate.
-  var action: Selector { get }
-
-  /// Bitmask of modifier flags to choose this command alternate.
-  var modifierFlags: UIKeyModifierFlags { get }
-
-  /// Initialize an alternate action to take for a command.
-  ///
-  /// @param title Short display title. This should be localized.
-  /// @param action Action to take on choosing this command alternate.
-  /// @param modifierFlags Bitmask of modifier flags to choose this command alternate.
-  /// @return A new command alternate.
-  convenience init(title: String, action: Selector, modifierFlags: UIKeyModifierFlags)
-
-  /// Initialize an alternate action to take for a command.
-  ///
-  /// @param title Short display title. This should be localized.
-  /// @param action Action to take on choosing this command alternate.
-  /// @param modifierFlags Bitmask of modifier flags to choose this command alternate.
-  /// @return A new command alternate.
-  @available(*, unavailable, renamed: "init(title:action:modifierFlags:)", message: "Not available in Swift")
-  class func alternateWithTitle(_ title: String, action: Selector, modifierFlags: UIKeyModifierFlags) -> Self
-  @available(*, unavailable)
-  class func new() -> Self
-  @available(*, unavailable)
-  convenience init()
-  init?(coder: NSCoder)
-  @available(iOS 13.0, *)
-  class var supportsSecureCoding: Bool { get }
-  @available(iOS 13.0, *)
-  func copy(with zone: NSZone? = nil) -> Any
-  @available(iOS 13.0, *)
-  func encode(with coder: NSCoder)
-}
-
-/// Represents an action to take.
-@available(iOS 13.0, *)
-@MainActor class UICommand : UIMenuElement {
-
-  /// Short display title.
-  var title: String
-
-  /// Image that can appear next to this command
-  @NSCopying var image: UIImage?
-
-  /// Elaborated title, if any.
-  var discoverabilityTitle: String?
-
-  /// Action to take on choosing this command.
-  var action: Selector { get }
-
-  /// Property list object to distinguish commands, if needed.
-  var propertyList: Any? { get }
-
-  /// Command attributes.
-  var attributes: UIMenuElementAttributes
-
-  /// State that can appear next to the command.
-  var state: UIMenuElement.State
-
-  /// Alternates that differ in modifier flags, if any.
-  var alternates: [UICommandAlternate] { get }
-
-  /// Initializes a keyless command.
-  ///
-  /// @param title Short display title. This should be localized.
-  /// @param image Image that can appear next to this command, if needed.
-  /// @param action Action to take on choosing this command.
-  /// @param propertyList Property list object to distinguish commands, if needed.
-  /// @return A new keyless command.
-  @available(*, unavailable, message: "Use init(title:image:action:propertyList:alternates:discoverabilityTitle:attributes:state:) instead.")
-  convenience init(title: String, image: UIImage?, action: Selector, propertyList: Any?)
-
-  /// Initializes a keyless command.
-  ///
-  /// @param title Short display title. This should be localized.
-  /// @param image Image that can appear next to this command, if needed.
-  /// @param action Action to take on choosing this command.
-  /// @param propertyList Property list object to distinguish commands, if needed.
-  /// @return A new keyless command.
-  @available(*, unavailable, renamed: "init(title:image:action:propertyList:)", message: "Not available in Swift")
-  @available(*, unavailable, message: "Use init(title:image:action:propertyList:alternates:discoverabilityTitle:attributes:state:) instead.")
-  class func commandWithTitle(_ title: String, image: UIImage?, action: Selector, propertyList: Any?) -> Self
-
-  /// Initializes a keyless command with alternates.
-  ///
-  /// @param title Short display title. This should be localized.
-  /// @param image Image that can appear next to this command, if needed.
-  /// @param action Action to take on choosing this command.
-  /// @param propertyList Property list object to distinguish commands, if needed.
-  /// @param alternates Alternates that differ in modifier flags.
-  /// @return A new keyless command with alternates.
-  @available(*, unavailable, message: "Use init(title:image:action:propertyList:alternates:discoverabilityTitle:attributes:state:) instead.")
-  convenience init(title: String, image: UIImage?, action: Selector, propertyList: Any?, alternates: [UICommandAlternate])
-
-  /// Initializes a keyless command with alternates.
-  ///
-  /// @param title Short display title. This should be localized.
-  /// @param image Image that can appear next to this command, if needed.
-  /// @param action Action to take on choosing this command.
-  /// @param propertyList Property list object to distinguish commands, if needed.
-  /// @param alternates Alternates that differ in modifier flags.
-  /// @return A new keyless command with alternates.
-  @available(*, unavailable, renamed: "init(title:image:action:propertyList:alternates:)", message: "Not available in Swift")
-  @available(*, unavailable, message: "Use init(title:image:action:propertyList:alternates:discoverabilityTitle:attributes:state:) instead.")
-  class func commandWithTitle(_ title: String, image: UIImage?, action: Selector, propertyList: Any?, alternates: [UICommandAlternate]) -> Self
-  @available(*, unavailable)
-  class func new() -> Self
-  @available(*, unavailable)
-  convenience init()
-  init?(coder: NSCoder)
-}
-
-@available(iOS 13.0, *)
-extension UICommand {
-}
-@available(iOS 13.0, *)
-let UICommandTagShare: String
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
+#import <FileProvider/NSFileProviderItem.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
+#import <UIKit/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UICommand'

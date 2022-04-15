@@ -1,92 +1,50 @@
-@_exported import Foundation
-
-@available(iOS, introduced: 2.0, deprecated: 13.0, message: "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead.")
-enum UIActionSheetStyle : Int, @unchecked Sendable {
-  init?(rawValue: Int)
-  var rawValue: Int { get }
-  typealias RawValue = Int
-  case automatic
-  @available(swift, obsoleted: 3, renamed: "automatic")
-  static var Automatic: UIActionSheetStyle { get }
-  case `default`
-  @available(swift, obsoleted: 3, renamed: "default")
-  static var Default: UIActionSheetStyle { get }
-  case blackTranslucent
-  @available(swift, obsoleted: 3, renamed: "blackTranslucent")
-  static var BlackTranslucent: UIActionSheetStyle { get }
-  case blackOpaque
-  @available(swift, obsoleted: 3, renamed: "blackOpaque")
-  static var BlackOpaque: UIActionSheetStyle { get }
-}
-@available(iOS, introduced: 2.0, deprecated: 8.3, message: "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead")
-@MainActor class UIActionSheet : UIView {
-  init(title: String?, delegate: UIActionSheetDelegate?, cancelButtonTitle: String?, destructiveButtonTitle: String?)
-  weak var delegate: @sil_weak UIActionSheetDelegate?
-  var title: String
-  var actionSheetStyle: UIActionSheetStyle
-  func addButton(withTitle title: String?) -> Int
-  @available(swift, obsoleted: 3, renamed: "addButton(withTitle:)")
-  func addButtonWithTitle(_ title: String?) -> Int
-  func buttonTitle(at buttonIndex: Int) -> String?
-  @available(swift, obsoleted: 3, renamed: "buttonTitle(at:)")
-  func buttonTitleAtIndex(_ buttonIndex: Int) -> String?
-  var numberOfButtons: Int { get }
-  var cancelButtonIndex: Int
-  var destructiveButtonIndex: Int
-  var firstOtherButtonIndex: Int { get }
-  var isVisible: Bool { get }
-  @available(swift, obsoleted: 3, renamed: "isVisible")
-  var visible: Bool { get }
-  func show(from view: UIToolbar)
-  @available(swift, obsoleted: 3, renamed: "show(from:)")
-  func showFromToolbar(_ view: UIToolbar)
-  func show(from view: UITabBar)
-  @available(swift, obsoleted: 3, renamed: "show(from:)")
-  func showFromTabBar(_ view: UITabBar)
-  @available(iOS 3.2, *)
-  func show(from item: UIBarButtonItem, animated: Bool)
-  @available(iOS 3.2, *)
-  @available(swift, obsoleted: 3, renamed: "show(from:animated:)")
-  func showFromBarButtonItem(_ item: UIBarButtonItem, animated: Bool)
-  @available(iOS 3.2, *)
-  func show(from rect: CGRect, in view: UIView, animated: Bool)
-  @available(iOS 3.2, *)
-  @available(swift, obsoleted: 3, renamed: "show(from:in:animated:)")
-  func showFromRect(_ rect: CGRect, inView view: UIView, animated: Bool)
-  func show(in view: UIView)
-  @available(swift, obsoleted: 3, renamed: "show(in:)")
-  func showInView(_ view: UIView)
-  func dismiss(withClickedButtonIndex buttonIndex: Int, animated: Bool)
-  @available(swift, obsoleted: 3, renamed: "dismiss(withClickedButtonIndex:animated:)")
-  func dismissWithClickedButtonIndex(_ buttonIndex: Int, animated: Bool)
-  init(frame: CGRect)
-  init?(coder: NSCoder)
-  convenience init()
-}
-
-extension UIActionSheet {
-  @MainActor convenience init(title: String?, delegate: UIActionSheetDelegate?, cancelButtonTitle: String?, destructiveButtonTitle: String?, otherButtonTitles firstButtonTitle: String, _ moreButtonTitles: String...)
-}
-@MainActor protocol UIActionSheetDelegate : NSObjectProtocol {
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  optional func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int)
-  @available(swift, obsoleted: 3, renamed: "actionSheet(_:clickedButtonAt:)")
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  optional func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int)
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  optional func actionSheetCancel(_ actionSheet: UIActionSheet)
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  optional func willPresent(_ actionSheet: UIActionSheet)
-  @available(swift, obsoleted: 3, renamed: "willPresent(_:)")
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  optional func willPresentActionSheet(_ actionSheet: UIActionSheet)
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  optional func didPresent(_ actionSheet: UIActionSheet)
-  @available(swift, obsoleted: 3, renamed: "didPresent(_:)")
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  optional func didPresentActionSheet(_ actionSheet: UIActionSheet)
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  optional func actionSheet(_ actionSheet: UIActionSheet, willDismissWithButtonIndex buttonIndex: Int)
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  optional func actionSheet(_ actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int)
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
+#import <FileProvider/NSFileProviderItem.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
+#import <UIKit/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIActionSheet'

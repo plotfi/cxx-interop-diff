@@ -1,156 +1,50 @@
-@_exported import Foundation
-
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextSelectionNavigation.Direction")
-typealias NSTextSelectionNavigationDirection = NSTextSelectionNavigation.Direction
-extension NSTextSelectionNavigation {
-  @available(iOS 15.0, *)
-  enum Direction : Int, @unchecked Sendable {
-    init?(rawValue: Int)
-    var rawValue: Int { get }
-    typealias RawValue = Int
-    case forward
-    @available(swift, obsoleted: 3, renamed: "forward")
-    static var Forward: NSTextSelectionNavigation.Direction { get }
-    case backward
-    @available(swift, obsoleted: 3, renamed: "backward")
-    static var Backward: NSTextSelectionNavigation.Direction { get }
-    case right
-    @available(swift, obsoleted: 3, renamed: "right")
-    static var Right: NSTextSelectionNavigation.Direction { get }
-    case left
-    @available(swift, obsoleted: 3, renamed: "left")
-    static var Left: NSTextSelectionNavigation.Direction { get }
-    case up
-    @available(swift, obsoleted: 3, renamed: "up")
-    static var Up: NSTextSelectionNavigation.Direction { get }
-    case down
-    @available(swift, obsoleted: 3, renamed: "down")
-    static var Down: NSTextSelectionNavigation.Direction { get }
-  }
-  @available(iOS 15.0, *)
-  enum Destination : Int, @unchecked Sendable {
-    init?(rawValue: Int)
-    var rawValue: Int { get }
-    typealias RawValue = Int
-    case character
-    @available(swift, obsoleted: 3, renamed: "character")
-    static var Character: NSTextSelectionNavigation.Destination { get }
-    case word
-    @available(swift, obsoleted: 3, renamed: "word")
-    static var Word: NSTextSelectionNavigation.Destination { get }
-    case line
-    @available(swift, obsoleted: 3, renamed: "line")
-    static var Line: NSTextSelectionNavigation.Destination { get }
-    case sentence
-    @available(swift, obsoleted: 3, renamed: "sentence")
-    static var Sentence: NSTextSelectionNavigation.Destination { get }
-    case paragraph
-    @available(swift, obsoleted: 3, renamed: "paragraph")
-    static var Paragraph: NSTextSelectionNavigation.Destination { get }
-    case container
-    @available(swift, obsoleted: 3, renamed: "container")
-    static var Container: NSTextSelectionNavigation.Destination { get }
-    case document
-    @available(swift, obsoleted: 3, renamed: "document")
-    static var Document: NSTextSelectionNavigation.Destination { get }
-  }
-  @available(iOS 15.0, *)
-  enum WritingDirection : Int, @unchecked Sendable {
-    init?(rawValue: Int)
-    var rawValue: Int { get }
-    typealias RawValue = Int
-    case leftToRight
-    @available(swift, obsoleted: 3, renamed: "leftToRight")
-    static var LeftToRight: NSTextSelectionNavigation.WritingDirection { get }
-    case rightToLeft
-    @available(swift, obsoleted: 3, renamed: "rightToLeft")
-    static var RightToLeft: NSTextSelectionNavigation.WritingDirection { get }
-  }
-  @available(iOS 15.0, *)
-  enum LayoutOrientation : Int, @unchecked Sendable {
-    init?(rawValue: Int)
-    var rawValue: Int { get }
-    typealias RawValue = Int
-    case horizontal
-    @available(swift, obsoleted: 3, renamed: "horizontal")
-    static var Horizontal: NSTextSelectionNavigation.LayoutOrientation { get }
-    case vertical
-    @available(swift, obsoleted: 3, renamed: "vertical")
-    static var Vertical: NSTextSelectionNavigation.LayoutOrientation { get }
-  }
-}
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextSelectionNavigation.Destination")
-typealias NSTextSelectionNavigationDestination = NSTextSelectionNavigation.Destination
-typealias NSTextSelectionNavigationModifier = Int
-var NSTextSelectionNavigationModifierExtend: Int { get }
-var NSTextSelectionNavigationModifierVisual: Int { get }
-var NSTextSelectionNavigationModifierMultiple: Int { get }
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextSelectionNavigation.WritingDirection")
-typealias NSTextSelectionNavigationWritingDirection = NSTextSelectionNavigation.WritingDirection
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextSelectionNavigation.LayoutOrientation")
-typealias NSTextSelectionNavigationLayoutOrientation = NSTextSelectionNavigation.LayoutOrientation
-@available(iOS 15.0, *)
-class NSTextSelectionNavigation : NSObject {
-  init(dataSource: NSTextSelectionDataSource)
-  @available(*, unavailable)
-  class func new() -> Self
-  @available(*, unavailable)
-  convenience init()
-  weak var textSelectionDataSource: @sil_weak NSTextSelectionDataSource? { get }
-  var allowsNonContiguousRanges: Bool
-  var rotatesCoordinateSystemForLayoutOrientation: Bool
-  func flushLayoutCache()
-  func destinationSelection(for textSelection: NSTextSelection, direction: NSTextSelectionNavigation.Direction, destination: NSTextSelectionNavigation.Destination, extending: Bool, confined: Bool) -> NSTextSelection?
-  @available(swift, obsoleted: 3, renamed: "destinationSelection(for:direction:destination:extending:confined:)")
-  func destinationSelectionForTextSelection(_ textSelection: NSTextSelection, direction: NSTextSelectionNavigation.Direction, destination: NSTextSelectionNavigation.Destination, extending: Bool, confined: Bool) -> NSTextSelection?
-  func textSelections(interactingAt point: CGPoint, inContainerAt containerLocation: NSTextLocation, anchors: [NSTextSelection], modifiers: NSTextSelectionNavigationModifier, selecting: Bool, bounds: CGRect) -> [NSTextSelection]
-  @available(swift, obsoleted: 3, renamed: "textSelections(interactingAt:inContainerAt:anchors:modifiers:selecting:bounds:)")
-  func textSelectionsInteractingAtPoint(_ point: CGPoint, inContainerAtLocation containerLocation: NSTextLocation, anchors: [NSTextSelection], modifiers: NSTextSelectionNavigationModifier, selecting: Bool, bounds: CGRect) -> [NSTextSelection]
-  func textSelection(for selectionGranularity: NSTextSelection.Granularity, enclosing textSelection: NSTextSelection) -> NSTextSelection
-  @available(swift, obsoleted: 3, renamed: "textSelection(for:enclosing:)")
-  func textSelectionForSelectionGranularity(_ selectionGranularity: NSTextSelection.Granularity, enclosingTextSelection textSelection: NSTextSelection) -> NSTextSelection
-  func textSelection(for selectionGranularity: NSTextSelection.Granularity, enclosing point: CGPoint, inContainerAt location: NSTextLocation) -> NSTextSelection?
-  @available(swift, obsoleted: 3, renamed: "textSelection(for:enclosing:inContainerAt:)")
-  func textSelectionForSelectionGranularity(_ selectionGranularity: NSTextSelection.Granularity, enclosingPoint point: CGPoint, inContainerAtLocation location: NSTextLocation) -> NSTextSelection?
-  func resolvedInsertionLocation(for textSelection: NSTextSelection, writingDirection: NSTextSelectionNavigation.WritingDirection) -> NSTextLocation?
-  @available(swift, obsoleted: 3, renamed: "resolvedInsertionLocation(for:writingDirection:)")
-  func resolvedInsertionLocationForTextSelection(_ textSelection: NSTextSelection, writingDirection: NSTextSelectionNavigation.WritingDirection) -> NSTextLocation?
-  func deletionRanges(for textSelection: NSTextSelection, direction: NSTextSelectionNavigation.Direction, destination: NSTextSelectionNavigation.Destination, allowsDecomposition: Bool) -> [NSTextRange]
-  @available(swift, obsoleted: 3, renamed: "deletionRanges(for:direction:destination:allowsDecomposition:)")
-  func deletionRangesForTextSelection(_ textSelection: NSTextSelection, direction: NSTextSelectionNavigation.Direction, destination: NSTextSelectionNavigation.Destination, allowsDecomposition: Bool) -> [NSTextRange]
-}
-@available(iOS 15.0, *)
-protocol NSTextSelectionDataSource : NSObjectProtocol {
-  var documentRange: NSTextRange { get }
-  func enumerateSubstrings(from location: NSTextLocation, options: NSStringEnumerationOptions, using block: (String?, NSTextRange, NSTextRange?, UnsafeMutablePointer<ObjCBool>) -> Void)
-  @available(swift, obsoleted: 3, renamed: "enumerateSubstrings(from:options:using:)")
-  func enumerateSubstringsFromLocation(_ location: NSTextLocation, options: NSStringEnumerationOptions, usingBlock block: (String?, NSTextRange, NSTextRange?, UnsafeMutablePointer<ObjCBool>) -> Void)
-  func textRange(for selectionGranularity: NSTextSelection.Granularity, enclosing location: NSTextLocation) -> NSTextRange?
-  @available(swift, obsoleted: 3, renamed: "textRange(for:enclosing:)")
-  func textRangeForSelectionGranularity(_ selectionGranularity: NSTextSelection.Granularity, enclosingLocation location: NSTextLocation) -> NSTextRange?
-  func location(_ location: NSTextLocation, offsetBy offset: Int) -> NSTextLocation?
-  @available(swift, obsoleted: 3, renamed: "location(_:offsetBy:)")
-  func locationFromLocation(_ location: NSTextLocation, withOffset offset: Int) -> NSTextLocation?
-  func offset(from: NSTextLocation, to: NSTextLocation) -> Int
-  @available(swift, obsoleted: 3, renamed: "offset(from:to:)")
-  func offsetFromLocation(_ from: NSTextLocation, toLocation to: NSTextLocation) -> Int
-  func baseWritingDirection(at location: NSTextLocation) -> NSTextSelectionNavigation.WritingDirection
-  @available(swift, obsoleted: 3, renamed: "baseWritingDirection(at:)")
-  func baseWritingDirectionAtLocation(_ location: NSTextLocation) -> NSTextSelectionNavigation.WritingDirection
-  func enumerateCaretOffsetsInLineFragment(at location: NSTextLocation, using block: (CGFloat, NSTextLocation, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
-  @available(swift, obsoleted: 3, renamed: "enumerateCaretOffsetsInLineFragment(at:using:)")
-  func enumerateCaretOffsetsInLineFragmentAtLocation(_ location: NSTextLocation, usingBlock block: (CGFloat, NSTextLocation, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
-  func lineFragmentRange(for point: CGPoint, inContainerAt location: NSTextLocation) -> NSTextRange?
-  @available(swift, obsoleted: 3, renamed: "lineFragmentRange(for:inContainerAt:)")
-  func lineFragmentRangeForPoint(_ point: CGPoint, inContainerAtLocation location: NSTextLocation) -> NSTextRange?
-  optional func enumerateContainerBoundaries(from location: NSTextLocation, reverse: Bool, using block: (NSTextLocation, UnsafeMutablePointer<ObjCBool>) -> Void)
-  @available(swift, obsoleted: 3, renamed: "enumerateContainerBoundaries(from:reverse:using:)")
-  optional func enumerateContainerBoundariesFromLocation(_ location: NSTextLocation, reverse: Bool, usingBlock block: (NSTextLocation, UnsafeMutablePointer<ObjCBool>) -> Void)
-  optional func textLayoutOrientation(at location: NSTextLocation) -> NSTextSelectionNavigation.LayoutOrientation
-  @available(swift, obsoleted: 3, renamed: "textLayoutOrientation(at:)")
-  optional func textLayoutOrientationAtLocation(_ location: NSTextLocation) -> NSTextSelectionNavigation.LayoutOrientation
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
+#import <FileProvider/NSFileProviderItem.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
+#import <UIKit/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.NSTextSelectionNavigation'

@@ -2,82 +2,20 @@
 
 
 /****************	Read/Write Options	****************/
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSDataReadingOptions = Int
-@available(swift, obsoleted: 3, renamed: "mappedIfSafe")
-var NSDataReadingMappedIfSafe: Int { get }
-var mappedIfSafe: Int { get }
-@available(swift, obsoleted: 3, renamed: "uncached")
-var NSDataReadingUncached: Int { get }
-var uncached: Int { get }
-@available(iOS 5.0, *)
-@available(swift, obsoleted: 3, renamed: "alwaysMapped")
-var NSDataReadingMappedAlways: Int { get }
-@available(iOS 5.0, *)
-var alwaysMapped: Int { get }
-@available(iOS, introduced: 2.0, deprecated: 100000)
-var NSDataReadingMapped: Int { get }
-@available(iOS, introduced: 2.0, deprecated: 100000)
-var NSMappedRead: Int { get }
-@available(iOS, introduced: 2.0, deprecated: 100000)
-var NSUncachedRead: Int { get }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSDataWritingOptions = Int
-@available(swift, obsoleted: 3, renamed: "atomic")
-var NSDataWritingAtomic: Int { get }
-var atomic: Int { get }
-@available(iOS 6.0, *)
-@available(swift, obsoleted: 3, renamed: "withoutOverwriting")
-var NSDataWritingWithoutOverwriting: Int { get }
-@available(iOS 6.0, *)
-var withoutOverwriting: Int { get }
-@available(iOS 4.0, *)
-@available(swift, obsoleted: 3, renamed: "noFileProtection")
-var NSDataWritingFileProtectionNone: Int { get }
-@available(iOS 4.0, *)
-var noFileProtection: Int { get }
-@available(iOS 4.0, *)
-@available(swift, obsoleted: 3, renamed: "completeFileProtection")
-var NSDataWritingFileProtectionComplete: Int { get }
-@available(iOS 4.0, *)
-var completeFileProtection: Int { get }
-@available(iOS 5.0, *)
-@available(swift, obsoleted: 3, renamed: "completeFileProtectionUnlessOpen")
-var NSDataWritingFileProtectionCompleteUnlessOpen: Int { get }
-@available(iOS 5.0, *)
-var completeFileProtectionUnlessOpen: Int { get }
-@available(iOS 5.0, *)
-@available(swift, obsoleted: 3, renamed: "completeFileProtectionUntilFirstUserAuthentication")
-var NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication: Int { get }
-@available(iOS 5.0, *)
-var completeFileProtectionUntilFirstUserAuthentication: Int { get }
-@available(iOS 4.0, *)
-@available(swift, obsoleted: 3, renamed: "fileProtectionMask")
-var NSDataWritingFileProtectionMask: Int { get }
-@available(iOS 4.0, *)
-var fileProtectionMask: Int { get }
-@available(iOS, introduced: 2.0, deprecated: 100000)
-var NSAtomicWrite: Int { get }
 
 /****************	Data Search Options	****************/
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSDataSearchOptions = Int
-var NSDataSearchBackwards: Int { get }
-var NSDataSearchAnchored: Int { get }
 
 /****************        Base 64 Options	****************/
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSDataBase64EncodingOptions = Int
-@available(swift, obsoleted: 3, renamed: "lineLength64Characters")
-var NSDataBase64Encoding64CharacterLineLength: Int { get }
-var lineLength64Characters: Int { get }
-@available(swift, obsoleted: 3, renamed: "lineLength76Characters")
-var NSDataBase64Encoding76CharacterLineLength: Int { get }
-var lineLength76Characters: Int { get }
-@available(swift, obsoleted: 3, renamed: "endLineWithCarriageReturn")
-var NSDataBase64EncodingEndLineWithCarriageReturn: Int { get }
-var endLineWithCarriageReturn: Int { get }
-@available(swift, obsoleted: 3, renamed: "endLineWithLineFeed")
-var NSDataBase64EncodingEndLineWithLineFeed: Int { get }
-var endLineWithLineFeed: Int { get }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSDataBase64DecodingOptions = Int
-var NSDataBase64DecodingIgnoreUnknownCharacters: Int { get }
 
 /****************	Immutable Data		****************/
 class NSData : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
@@ -125,17 +63,17 @@ extension NSData {
   func write(to url: URL, atomically: Bool) -> Bool
   @available(swift, obsoleted: 3, renamed: "write(to:atomically:)")
   func writeToURL(_ url: URL, atomically: Bool) -> Bool
-  func write(toFile path: String, options writeOptionsMask: NSDataWritingOptions) throws
+  func write(toFile path: String, options writeOptionsMask: Int) throws
   @available(swift, obsoleted: 3, renamed: "write(toFile:options:)")
-  func writeToFile(_ path: String, options writeOptionsMask: NSDataWritingOptions) throws
-  func write(to url: URL, options writeOptionsMask: NSDataWritingOptions) throws
+  func writeToFile(_ path: String, options writeOptionsMask: Int) throws
+  func write(to url: URL, options writeOptionsMask: Int) throws
   @available(swift, obsoleted: 3, renamed: "write(to:options:)")
-  func writeToURL(_ url: URL, options writeOptionsMask: NSDataWritingOptions) throws
+  func writeToURL(_ url: URL, options writeOptionsMask: Int) throws
   @available(iOS 4.0, *)
-  func range(of dataToFind: Data, options mask: NSDataSearchOptions, in searchRange: NSRange) -> NSRange
+  func range(of dataToFind: Data, options mask: Int, in searchRange: NSRange) -> NSRange
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "range(of:options:in:)")
-  func rangeOfData(_ dataToFind: Data, options mask: NSDataSearchOptions, range searchRange: NSRange) -> NSRange
+  func rangeOfData(_ dataToFind: Data, options mask: Int, range searchRange: NSRange) -> NSRange
   @available(iOS 7.0, *)
   func enumerateBytes(_ block: (UnsafeRawPointer, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 7.0, *)
@@ -158,15 +96,15 @@ extension NSData {
   @available(*, unavailable, renamed: "init(bytesNoCopy:length:freeWhenDone:)", message: "Not available in Swift")
   class func dataWithBytesNoCopy(_ bytes: UnsafeMutableRawPointer, length: Int, freeWhenDone b: Bool) -> Self
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithContentsOfFile:options:error:]")
-  convenience init(contentsOfFile path: String, options readOptionsMask: NSDataReadingOptions) throws
+  convenience init(contentsOfFile path: String, options readOptionsMask: Int) throws
   @available(*, unavailable, renamed: "init(contentsOfFile:options:)", message: "Not available in Swift")
-  class func dataWithContentsOfFile(_ path: String, options readOptionsMask: NSDataReadingOptions) throws -> Self
+  class func dataWithContentsOfFile(_ path: String, options readOptionsMask: Int) throws -> Self
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithContentsOfURL:options:error:]")
-  convenience init(contentsOf url: URL, options readOptionsMask: NSDataReadingOptions) throws
+  convenience init(contentsOf url: URL, options readOptionsMask: Int) throws
   @available(swift, obsoleted: 3, renamed: "init(contentsOf:options:)")
-  convenience init(contentsOfURL url: URL, options readOptionsMask: NSDataReadingOptions) throws
+  convenience init(contentsOfURL url: URL, options readOptionsMask: Int) throws
   @available(*, unavailable, renamed: "init(contentsOf:options:)", message: "Not available in Swift")
-  class func dataWithContentsOfURL(_ url: URL, options readOptionsMask: NSDataReadingOptions) throws -> Self
+  class func dataWithContentsOfURL(_ url: URL, options readOptionsMask: Int) throws -> Self
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithContentsOfFile:]")
   convenience init?(contentsOfFile path: String)
   @available(*, unavailable, renamed: "init(contentsOfFile:)", message: "Not available in Swift")
@@ -182,10 +120,10 @@ extension NSData {
   init(bytesNoCopy bytes: UnsafeMutableRawPointer, length: Int, freeWhenDone b: Bool)
   @available(iOS 7.0, *)
   init(bytesNoCopy bytes: UnsafeMutableRawPointer, length: Int, deallocator: ((UnsafeMutableRawPointer, Int) -> Void)? = nil)
-  init(contentsOfFile path: String, options readOptionsMask: NSDataReadingOptions) throws
-  init(contentsOf url: URL, options readOptionsMask: NSDataReadingOptions) throws
+  init(contentsOfFile path: String, options readOptionsMask: Int) throws
+  init(contentsOf url: URL, options readOptionsMask: Int) throws
   @available(swift, obsoleted: 3, renamed: "init(contentsOf:options:)")
-  init(contentsOfURL url: URL, options readOptionsMask: NSDataReadingOptions) throws
+  init(contentsOfURL url: URL, options readOptionsMask: Int) throws
   init?(contentsOfFile path: String)
   init?(contentsOf url: URL)
   @available(swift, obsoleted: 3, renamed: "init(contentsOf:)")
@@ -196,25 +134,25 @@ extension NSData {
 }
 extension NSData {
   @available(iOS 7.0, *)
-  init?(base64Encoded base64String: String, options: NSDataBase64DecodingOptions)
+  init?(base64Encoded base64String: String, options: Int)
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "init(base64Encoded:options:)")
-  init?(base64EncodedString base64String: String, options: NSDataBase64DecodingOptions)
+  init?(base64EncodedString base64String: String, options: Int)
   @available(iOS 7.0, *)
-  func base64EncodedString(withOptions options: NSDataBase64EncodingOptions) -> String
+  func base64EncodedString(withOptions options: Int) -> String
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "base64EncodedString(withOptions:)")
-  func base64EncodedStringWithOptions(_ options: NSDataBase64EncodingOptions) -> String
+  func base64EncodedStringWithOptions(_ options: Int) -> String
   @available(iOS 7.0, *)
-  init?(base64Encoded base64Data: Data, options: NSDataBase64DecodingOptions)
+  init?(base64Encoded base64Data: Data, options: Int)
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "init(base64Encoded:options:)")
-  init?(base64EncodedData base64Data: Data, options: NSDataBase64DecodingOptions)
+  init?(base64EncodedData base64Data: Data, options: Int)
   @available(iOS 7.0, *)
-  func base64EncodedData(withOptions options: NSDataBase64EncodingOptions) -> Data
+  func base64EncodedData(withOptions options: Int) -> Data
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "base64EncodedData(withOptions:)")
-  func base64EncodedDataWithOptions(_ options: NSDataBase64EncodingOptions) -> Data
+  func base64EncodedDataWithOptions(_ options: Int) -> Data
 }
 @available(iOS 13.0, *)
 @available(swift, obsoleted: 3, renamed: "NSData.CompressionAlgorithm")
@@ -277,9 +215,9 @@ class NSMutableData : NSData {
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithBytesNoCopy:length:freeWhenDone:]")
   convenience init(bytesNoCopy bytes: UnsafeMutableRawPointer, length: Int, freeWhenDone b: Bool)
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithContentsOfFile:options:error:]")
-  convenience init(contentsOfFile path: String, options readOptionsMask: NSDataReadingOptions) throws
+  convenience init(contentsOfFile path: String, options readOptionsMask: Int) throws
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithContentsOfURL:options:error:]")
-  convenience init(contentsOf url: URL, options readOptionsMask: NSDataReadingOptions) throws
+  convenience init(contentsOf url: URL, options readOptionsMask: Int) throws
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithContentsOfFile:]")
   convenience init?(contentsOfFile path: String)
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithContentsOfURL:]")
@@ -289,15 +227,15 @@ class NSMutableData : NSData {
   init(bytesNoCopy bytes: UnsafeMutableRawPointer, length: Int, freeWhenDone b: Bool)
   @available(iOS 7.0, *)
   init(bytesNoCopy bytes: UnsafeMutableRawPointer, length: Int, deallocator: ((UnsafeMutableRawPointer, Int) -> Void)? = nil)
-  init(contentsOfFile path: String, options readOptionsMask: NSDataReadingOptions) throws
-  init(contentsOf url: URL, options readOptionsMask: NSDataReadingOptions) throws
+  init(contentsOfFile path: String, options readOptionsMask: Int) throws
+  init(contentsOf url: URL, options readOptionsMask: Int) throws
   init?(contentsOfFile path: String)
   init?(contentsOf url: URL)
   init(data: Data)
   @available(iOS 7.0, *)
-  init?(base64Encoded base64String: String, options: NSDataBase64DecodingOptions)
+  init?(base64Encoded base64String: String, options: Int)
   @available(iOS 7.0, *)
-  init?(base64Encoded base64Data: Data, options: NSDataBase64DecodingOptions)
+  init?(base64Encoded base64Data: Data, options: Int)
   @available(iOS, introduced: 2.0, deprecated: 8.0, message: "Use -initWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead.")
   init?(contentsOfMappedFile path: String)
   @available(iOS, unavailable, introduced: 4.0, deprecated: 7.0, message: "Use initWithBase64EncodedString:options: instead")
@@ -361,9 +299,9 @@ class NSPurgeableData : NSMutableData, NSDiscardableContent {
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithBytesNoCopy:length:freeWhenDone:]")
   convenience init(bytesNoCopy bytes: UnsafeMutableRawPointer, length: Int, freeWhenDone b: Bool)
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithContentsOfFile:options:error:]")
-  convenience init(contentsOfFile path: String, options readOptionsMask: NSDataReadingOptions) throws
+  convenience init(contentsOfFile path: String, options readOptionsMask: Int) throws
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithContentsOfURL:options:error:]")
-  convenience init(contentsOf url: URL, options readOptionsMask: NSDataReadingOptions) throws
+  convenience init(contentsOf url: URL, options readOptionsMask: Int) throws
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithContentsOfFile:]")
   convenience init?(contentsOfFile path: String)
   @available(*, unavailable, message: "superseded by import of -[NSData(NSDataCreation) initWithContentsOfURL:]")
@@ -373,15 +311,15 @@ class NSPurgeableData : NSMutableData, NSDiscardableContent {
   init(bytesNoCopy bytes: UnsafeMutableRawPointer, length: Int, freeWhenDone b: Bool)
   @available(iOS 7.0, *)
   init(bytesNoCopy bytes: UnsafeMutableRawPointer, length: Int, deallocator: ((UnsafeMutableRawPointer, Int) -> Void)? = nil)
-  init(contentsOfFile path: String, options readOptionsMask: NSDataReadingOptions) throws
-  init(contentsOf url: URL, options readOptionsMask: NSDataReadingOptions) throws
+  init(contentsOfFile path: String, options readOptionsMask: Int) throws
+  init(contentsOf url: URL, options readOptionsMask: Int) throws
   init?(contentsOfFile path: String)
   init?(contentsOf url: URL)
   init(data: Data)
   @available(iOS 7.0, *)
-  init?(base64Encoded base64String: String, options: NSDataBase64DecodingOptions)
+  init?(base64Encoded base64String: String, options: Int)
   @available(iOS 7.0, *)
-  init?(base64Encoded base64Data: Data, options: NSDataBase64DecodingOptions)
+  init?(base64Encoded base64Data: Data, options: Int)
   @available(iOS, introduced: 2.0, deprecated: 8.0, message: "Use -initWithContentsOfURL:options:error: and NSDataReadingMappedIfSafe or NSDataReadingMappedAlways instead.")
   init?(contentsOfMappedFile path: String)
   @available(iOS, unavailable, introduced: 4.0, deprecated: 7.0, message: "Use initWithBase64EncodedString:options: instead")

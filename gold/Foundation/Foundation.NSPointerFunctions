@@ -1,44 +1,13 @@
 @_exported import CoreFoundation
 
 var __FOUNDATION_NSPOINTERFUNCTIONS__: Int32 { get }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSPointerFunctionsOptions = Int
 @available(iOS 6.0, *)
-@available(swift, obsoleted: 3, renamed: "strongMemory")
-var NSPointerFunctionsStrongMemory: Int { get }
-@available(iOS 6.0, *)
-var strongMemory: Int { get }
-@available(iOS, unavailable)
-var NSPointerFunctionsZeroingWeakMemory: Int { get }
-@available(iOS 6.0, *)
-var NSPointerFunctionsOpaqueMemory: Int { get }
-@available(iOS 6.0, *)
-var NSPointerFunctionsMallocMemory: Int { get }
-@available(iOS 6.0, *)
-var NSPointerFunctionsMachVirtualMemory: Int { get }
-@available(iOS 6.0, *)
-var NSPointerFunctionsWeakMemory: Int { get }
-@available(iOS 6.0, *)
-@available(swift, obsoleted: 3, renamed: "objectPersonality")
-var NSPointerFunctionsObjectPersonality: Int { get }
-@available(iOS 6.0, *)
-var objectPersonality: Int { get }
-@available(iOS 6.0, *)
-var NSPointerFunctionsOpaquePersonality: Int { get }
-@available(iOS 6.0, *)
-var NSPointerFunctionsObjectPointerPersonality: Int { get }
-@available(iOS 6.0, *)
-var NSPointerFunctionsCStringPersonality: Int { get }
-@available(iOS 6.0, *)
-var NSPointerFunctionsStructPersonality: Int { get }
-@available(iOS 6.0, *)
-var NSPointerFunctionsIntegerPersonality: Int { get }
-@available(iOS 6.0, *)
-var NSPointerFunctionsCopyIn: Int { get }
-@available(iOS 6.0, *)
 class NSPointerFunctions : NSObject, NSCopying {
-  init(options: NSPointerFunctionsOptions)
+  init(options: Int)
   @available(*, unavailable, renamed: "init(options:)", message: "Not available in Swift")
-  class func pointerFunctionsWithOptions(_ options: NSPointerFunctionsOptions) -> NSPointerFunctions
+  class func pointerFunctionsWithOptions(_ options: Int) -> NSPointerFunctions
   var hashFunction: (@convention(c) (UnsafeRawPointer, (@convention(c) (UnsafeRawPointer) -> Int)?) -> Int)?
   var isEqualFunction: (@convention(c) (UnsafeRawPointer, UnsafeRawPointer, (@convention(c) (UnsafeRawPointer) -> Int)?) -> ObjCBool)?
   var sizeFunction: (@convention(c) (UnsafeRawPointer) -> Int)?

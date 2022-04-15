@@ -19,8 +19,8 @@ enum NSItemProviderRepresentationVisibility : Int, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "ownProcess")
   static var OwnProcess: NSItemProviderRepresentationVisibility { get }
 }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSItemProviderFileOptions = Int
-var NSItemProviderFileOptionOpenInPlace: Int { get }
 @available(iOS 11.0, *)
 protocol NSItemProviderWriting : NSObjectProtocol {
   static var writableTypeIdentifiersForItemProvider: [String] { get }
@@ -81,22 +81,22 @@ class NSItemProvider : NSObject, NSCopying {
   @available(swift, obsoleted: 3, renamed: "registerDataRepresentation(forTypeIdentifier:visibility:loadHandler:)")
   func registerDataRepresentationForTypeIdentifier(_ typeIdentifier: String, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping (@escaping (Data?, Error?) -> Void) -> Progress?)
   @available(iOS 11.0, *)
-  func registerFileRepresentation(forTypeIdentifier typeIdentifier: String, fileOptions: NSItemProviderFileOptions, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping (@escaping (URL?, Bool, Error?) -> Void) -> Progress?)
+  func registerFileRepresentation(forTypeIdentifier typeIdentifier: String, fileOptions: Int, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping (@escaping (URL?, Bool, Error?) -> Void) -> Progress?)
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "registerFileRepresentation(forTypeIdentifier:fileOptions:visibility:loadHandler:)")
-  func registerFileRepresentationForTypeIdentifier(_ typeIdentifier: String, fileOptions: NSItemProviderFileOptions, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping (@escaping (URL?, Bool, Error?) -> Void) -> Progress?)
+  func registerFileRepresentationForTypeIdentifier(_ typeIdentifier: String, fileOptions: Int, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping (@escaping (URL?, Bool, Error?) -> Void) -> Progress?)
   var registeredTypeIdentifiers: [String] { get }
   @available(iOS 11.0, *)
-  func registeredTypeIdentifiers(withFileOptions fileOptions: NSItemProviderFileOptions) -> [String]
+  func registeredTypeIdentifiers(withFileOptions fileOptions: Int) -> [String]
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "registeredTypeIdentifiers(withFileOptions:)")
-  func registeredTypeIdentifiersWithFileOptions(_ fileOptions: NSItemProviderFileOptions) -> [String]
+  func registeredTypeIdentifiersWithFileOptions(_ fileOptions: Int) -> [String]
   func hasItemConformingToTypeIdentifier(_ typeIdentifier: String) -> Bool
   @available(iOS 11.0, *)
-  func hasRepresentationConforming(toTypeIdentifier typeIdentifier: String, fileOptions: NSItemProviderFileOptions) -> Bool
+  func hasRepresentationConforming(toTypeIdentifier typeIdentifier: String, fileOptions: Int) -> Bool
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "hasRepresentationConforming(toTypeIdentifier:fileOptions:)")
-  func hasRepresentationConformingToTypeIdentifier(_ typeIdentifier: String, fileOptions: NSItemProviderFileOptions) -> Bool
+  func hasRepresentationConformingToTypeIdentifier(_ typeIdentifier: String, fileOptions: Int) -> Bool
   @available(iOS 11.0, *)
   func loadDataRepresentation(forTypeIdentifier typeIdentifier: String, completionHandler: @escaping (Data?, Error?) -> Void) -> Progress
   @available(iOS 11.0, *)

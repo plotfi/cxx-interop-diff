@@ -58,60 +58,60 @@ class NSIndexSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "enumerate(_:)")
   func enumerateIndexesUsingBlock(_ block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
-  func enumerate(withOptions opts: NSEnumerationOptions, using block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerate(withOptions opts: Int, using block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerate(withOptions:using:)")
-  func enumerateIndexesWithOptions(_ opts: NSEnumerationOptions, usingBlock block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateIndexesWithOptions(_ opts: Int, usingBlock block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
-  func enumerate(in range: NSRange, options opts: NSEnumerationOptions, using block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerate(in range: NSRange, options opts: Int, using block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerate(in:options:using:)")
-  func enumerateIndexesInRange(_ range: NSRange, options opts: NSEnumerationOptions, usingBlock block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateIndexesInRange(_ range: NSRange, options opts: Int, usingBlock block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   func index(passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "index(passingTest:)")
   func indexPassingTest(_ predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
-  func index(withOptions opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  func index(withOptions opts: Int, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "index(withOptions:passingTest:)")
-  func indexWithOptions(_ opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  func indexWithOptions(_ opts: Int, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
-  func index(in range: NSRange, options opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  func index(in range: NSRange, options opts: Int, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "index(in:options:passingTest:)")
-  func indexInRange(_ range: NSRange, options opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  func indexInRange(_ range: NSRange, options opts: Int, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
   func indexes(passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "indexes(passingTest:)")
   func indexesPassingTest(_ predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 4.0, *)
-  func indexes(withOptions opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  func indexes(withOptions opts: Int, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "indexes(withOptions:passingTest:)")
-  func indexesWithOptions(_ opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  func indexesWithOptions(_ opts: Int, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 4.0, *)
-  func indexes(in range: NSRange, options opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  func indexes(in range: NSRange, options opts: Int, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "indexes(in:options:passingTest:)")
-  func indexesInRange(_ range: NSRange, options opts: NSEnumerationOptions, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  func indexesInRange(_ range: NSRange, options opts: Int, passingTest predicate: (Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 5.0, *)
   func enumerateRanges(_ block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 5.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateRanges(_:)")
   func enumerateRangesUsingBlock(_ block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 5.0, *)
-  func enumerateRanges(withOptions opts: NSEnumerationOptions, using block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateRanges(withOptions opts: Int, using block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 5.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateRanges(withOptions:using:)")
-  func enumerateRangesWithOptions(_ opts: NSEnumerationOptions, usingBlock block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateRangesWithOptions(_ opts: Int, usingBlock block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 5.0, *)
-  func enumerateRanges(in range: NSRange, options opts: NSEnumerationOptions, using block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateRanges(in range: NSRange, options opts: Int, using block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 5.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateRanges(in:options:using:)")
-  func enumerateRangesInRange(_ range: NSRange, options opts: NSEnumerationOptions, usingBlock block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateRangesInRange(_ range: NSRange, options opts: Int, usingBlock block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   convenience init()
   class var supportsSecureCoding: Bool { get }
   func copy(with zone: NSZone? = nil) -> Any

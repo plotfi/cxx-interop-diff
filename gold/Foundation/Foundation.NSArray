@@ -146,65 +146,63 @@ extension NSArray {
   @available(swift, obsoleted: 3, renamed: "enumerateObjects(_:)")
   func enumerateObjectsUsingBlock(_ block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
-  func enumerateObjects(withOptions opts: NSEnumerationOptions, using block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateObjects(withOptions opts: Int, using block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateObjects(withOptions:using:)")
-  func enumerateObjectsWithOptions(_ opts: NSEnumerationOptions, usingBlock block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateObjectsWithOptions(_ opts: Int, usingBlock block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
-  func enumerateObjects(at s: IndexSet, options opts: NSEnumerationOptions, using block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateObjects(at s: IndexSet, options opts: Int, using block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateObjects(at:options:using:)")
-  func enumerateObjectsAtIndexes(_ s: IndexSet, options opts: NSEnumerationOptions, usingBlock block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateObjectsAtIndexes(_ s: IndexSet, options opts: Int, usingBlock block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   func indexOfObject(passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "indexOfObject(passingTest:)")
   func indexOfObjectPassingTest(_ predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
-  func indexOfObject(withOptions opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  func indexOfObject(withOptions opts: Int, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "indexOfObject(withOptions:passingTest:)")
-  func indexOfObjectWithOptions(_ opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  func indexOfObjectWithOptions(_ opts: Int, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
-  func indexOfObject(at s: IndexSet, options opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  func indexOfObject(at s: IndexSet, options opts: Int, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "indexOfObject(at:options:passingTest:)")
-  func indexOfObjectAtIndexes(_ s: IndexSet, options opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
+  func indexOfObjectAtIndexes(_ s: IndexSet, options opts: Int, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int
   @available(iOS 4.0, *)
   func indexesOfObjects(passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "indexesOfObjects(passingTest:)")
   func indexesOfObjectsPassingTest(_ predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 4.0, *)
-  func indexesOfObjects(withOptions opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  func indexesOfObjects(withOptions opts: Int, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "indexesOfObjects(withOptions:passingTest:)")
-  func indexesOfObjectsWithOptions(_ opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  func indexesOfObjectsWithOptions(_ opts: Int, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 4.0, *)
-  func indexesOfObjects(at s: IndexSet, options opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  func indexesOfObjects(at s: IndexSet, options opts: Int, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "indexesOfObjects(at:options:passingTest:)")
-  func indexesOfObjectsAtIndexes(_ s: IndexSet, options opts: NSEnumerationOptions, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
+  func indexesOfObjectsAtIndexes(_ s: IndexSet, options opts: Int, passingTest predicate: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet
   @available(iOS 4.0, *)
   func sortedArray(comparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "sortedArray(comparator:)")
   func sortedArrayUsingComparator(_ cmptr: (Any, Any) -> ComparisonResult) -> [Any]
   @available(iOS 4.0, *)
-  func sortedArray(withOptions opts: NSSortOptions, usingComparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
+  func sortedArray(withOptions opts: Int, usingComparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "sortedArray(withOptions:usingComparator:)")
-  func sortedArrayWithOptions(_ opts: NSSortOptions, usingComparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
+  func sortedArrayWithOptions(_ opts: Int, usingComparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
   @available(iOS 4.0, *)
-  func index(of obj: Any, inSortedRange r: NSRange, options opts: NSBinarySearchingOptions, usingComparator cmp: (Any, Any) -> ComparisonResult) -> Int
+  func index(of obj: Any, inSortedRange r: NSRange, options opts: Int, usingComparator cmp: (Any, Any) -> ComparisonResult) -> Int
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "index(of:inSortedRange:options:usingComparator:)")
-  func indexOfObject(_ obj: Any, inSortedRange r: NSRange, options opts: NSBinarySearchingOptions, usingComparator cmp: (Any, Any) -> ComparisonResult) -> Int
+  func indexOfObject(_ obj: Any, inSortedRange r: NSRange, options opts: Int, usingComparator cmp: (Any, Any) -> ComparisonResult) -> Int
 }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSBinarySearchingOptions = Int
-var NSBinarySearchingFirstEqual: Int { get }
-var NSBinarySearchingLastEqual: Int { get }
-var NSBinarySearchingInsertionIndex: Int { get }
 extension NSArray {
   @available(*, unavailable, renamed: "init()", message: "Not available in Swift")
   class func array() -> Self
@@ -237,12 +235,12 @@ extension NSArray {
 @available(iOS 13.0, *)
 @available(*, unavailable, message: "NSArray diffing methods are not available in Swift, use Collection.difference(from:) instead")
 extension NSArray {
-  func difference(from other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions, usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
+  func difference(from other: [Any], withOptions options: Int, usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
   @available(swift, obsoleted: 3, renamed: "difference(from:withOptions:usingEquivalenceTest:)")
-  func differenceFromArray(_ other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions, usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
-  func difference(from other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions) -> CollectionDifference<Any>
+  func differenceFromArray(_ other: [Any], withOptions options: Int, usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
+  func difference(from other: [Any], withOptions options: Int) -> CollectionDifference<Any>
   @available(swift, obsoleted: 3, renamed: "difference(from:withOptions:)")
-  func differenceFromArray(_ other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions) -> CollectionDifference<Any>
+  func differenceFromArray(_ other: [Any], withOptions options: Int) -> CollectionDifference<Any>
   func difference(from other: [Any]) -> CollectionDifference<Any>
   @available(swift, obsoleted: 3, renamed: "difference(from:)")
   func differenceFromArray(_ other: [Any]) -> CollectionDifference<Any>
@@ -383,10 +381,10 @@ extension NSMutableArray {
   @available(swift, obsoleted: 3, renamed: "sort(comparator:)")
   func sortUsingComparator(_ cmptr: (Any, Any) -> ComparisonResult)
   @available(iOS 4.0, *)
-  func sort(withOptions opts: NSSortOptions, usingComparator cmptr: (Any, Any) -> ComparisonResult)
+  func sort(withOptions opts: Int, usingComparator cmptr: (Any, Any) -> ComparisonResult)
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "sort(withOptions:usingComparator:)")
-  func sortWithOptions(_ opts: NSSortOptions, usingComparator cmptr: (Any, Any) -> ComparisonResult)
+  func sortWithOptions(_ opts: Int, usingComparator cmptr: (Any, Any) -> ComparisonResult)
 }
 extension NSMutableArray {
   @available(*, unavailable, renamed: "init(capacity:)", message: "Not available in Swift")

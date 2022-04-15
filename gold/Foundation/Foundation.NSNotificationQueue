@@ -18,16 +18,8 @@ extension NotificationQueue {
     static var NSPostNow: NotificationQueue.PostingStyle { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSNotificationCoalescing = Int
-@available(swift, obsoleted: 3, renamed: "none")
-var NSNotificationNoCoalescing: Int { get }
-var none: Int { get }
-@available(swift, obsoleted: 3, renamed: "onName")
-var NSNotificationCoalescingOnName: Int { get }
-var onName: Int { get }
-@available(swift, obsoleted: 3, renamed: "onSender")
-var NSNotificationCoalescingOnSender: Int { get }
-var onSender: Int { get }
 @available(swift, obsoleted: 3, renamed: "NotificationQueue")
 typealias NSNotificationQueue = NotificationQueue
 class NotificationQueue : NSObject {
@@ -38,9 +30,9 @@ class NotificationQueue : NSObject {
   func enqueue(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle)
   @available(swift, obsoleted: 3, renamed: "enqueue(_:postingStyle:)")
   func enqueueNotification(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle)
-  func enqueue(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle, coalesceMask: NSNotificationCoalescing, forModes modes: [RunLoop.Mode]?)
+  func enqueue(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle, coalesceMask: Int, forModes modes: [RunLoop.Mode]?)
   @available(swift, obsoleted: 3, renamed: "enqueue(_:postingStyle:coalesceMask:forModes:)")
-  func enqueueNotification(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle, coalesceMask: NSNotificationCoalescing, forModes modes: [RunLoop.Mode]?)
+  func enqueueNotification(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle, coalesceMask: Int, forModes modes: [RunLoop.Mode]?)
   func dequeueNotifications(matching notification: Notification, coalesceMask: Int)
   @available(swift, obsoleted: 3, renamed: "dequeueNotifications(matching:coalesceMask:)")
   func dequeueNotificationsMatching(_ notification: Notification, coalesceMask: Int)
