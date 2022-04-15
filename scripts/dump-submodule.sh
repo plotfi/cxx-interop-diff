@@ -11,6 +11,6 @@ mkdir -p $OutputDir
 swift-ide-test \
   -sdk  $SDKDir \
   -print-module -module-to-print=$SubModuleName -source-filename=x -enable-objc-interop \
-  -enable-cxx-interop \
+  --enable-experimental-cxx-interop \
   -target $TRIPLE \
   --iframework=$IFrameworkDir &> $3/$SubModuleName
