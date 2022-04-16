@@ -1,50 +1,233 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UIButtonConfiguration'
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+typealias __UIConfigurationTextAttributesTransformer = ([NSAttributedString.Key : Any]) -> [NSAttributedString.Key : Any]
+@available(iOS 15.0, *)
+enum __UIButtonConfigurationSize : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+  case medium
+  @available(swift, obsoleted: 3, renamed: "medium")
+  static var Medium: __UIButtonConfigurationSize { get }
+  case small
+  @available(swift, obsoleted: 3, renamed: "small")
+  static var Small: __UIButtonConfigurationSize { get }
+  case mini
+  @available(swift, obsoleted: 3, renamed: "mini")
+  static var Mini: __UIButtonConfigurationSize { get }
+  case large
+  @available(swift, obsoleted: 3, renamed: "large")
+  static var Large: __UIButtonConfigurationSize { get }
+}
+@available(iOS 15.0, *)
+enum __UIButtonConfigurationTitleAlignment : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+
+  /// Align title & subtitle automatically
+  case automatic
+
+  /// Align title & subtitle automatically
+  @available(swift, obsoleted: 3, renamed: "automatic")
+  static var Automatic: __UIButtonConfigurationTitleAlignment { get }
+
+  /// Align title & subtitle along their leading edges
+  case leading
+
+  /// Align title & subtitle along their leading edges
+  @available(swift, obsoleted: 3, renamed: "leading")
+  static var Leading: __UIButtonConfigurationTitleAlignment { get }
+
+  /// Align title & subtitle to be centered with respect to each other
+  case center
+
+  /// Align title & subtitle to be centered with respect to each other
+  @available(swift, obsoleted: 3, renamed: "center")
+  static var Center: __UIButtonConfigurationTitleAlignment { get }
+
+  /// Align title & subtitle along their trailing edges
+  case trailing
+
+  /// Align title & subtitle along their trailing edges
+  @available(swift, obsoleted: 3, renamed: "trailing")
+  static var Trailing: __UIButtonConfigurationTitleAlignment { get }
+}
+@available(iOS 15.0, *)
+enum __UIButtonConfigurationCornerStyle : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+
+  /// The corner radius provided by the background style will be used as is, without adjusting for dynamic type
+  case fixed
+
+  /// The corner radius provided by the background style will be used as is, without adjusting for dynamic type
+  @available(swift, obsoleted: 3, renamed: "fixed")
+  static var Fixed: __UIButtonConfigurationCornerStyle { get }
+
+  /// The corner radius provided by the background style is adjusted based on dynamic type
+  case dynamic
+
+  /// The corner radius provided by the background style is adjusted based on dynamic type
+  @available(swift, obsoleted: 3, renamed: "dynamic")
+  static var Dynamic: __UIButtonConfigurationCornerStyle { get }
+
+  /// Ignore the corner radius provided by the background style and substitute a small system defined corner radius.
+  case small
+
+  /// Ignore the corner radius provided by the background style and substitute a small system defined corner radius.
+  @available(swift, obsoleted: 3, renamed: "small")
+  static var Small: __UIButtonConfigurationCornerStyle { get }
+
+  /// Ignore the corner radius provided by the background style and substitute a medium system defined corner radius.
+  case medium
+
+  /// Ignore the corner radius provided by the background style and substitute a medium system defined corner radius.
+  @available(swift, obsoleted: 3, renamed: "medium")
+  static var Medium: __UIButtonConfigurationCornerStyle { get }
+
+  /// Ignore the corner radius provided by the background style and substitute a large system defined corner radius.
+  case large
+
+  /// Ignore the corner radius provided by the background style and substitute a large system defined corner radius.
+  @available(swift, obsoleted: 3, renamed: "large")
+  static var Large: __UIButtonConfigurationCornerStyle { get }
+
+  /// Ignore the corner radius provided by the background style and always set the corner radius to generate a capsule.
+  case capsule
+
+  /// Ignore the corner radius provided by the background style and always set the corner radius to generate a capsule.
+  @available(swift, obsoleted: 3, renamed: "capsule")
+  static var Capsule: __UIButtonConfigurationCornerStyle { get }
+}
+@available(iOS 15.0, *)
+enum __UIButtonConfigurationMacIdiomStyle : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+
+  /// Automatically select the style to use
+  case automatic
+
+  /// Automatically select the style to use
+  @available(swift, obsoleted: 3, renamed: "automatic")
+  static var Automatic: __UIButtonConfigurationMacIdiomStyle { get }
+
+  /// Always use a bordered style button
+  case bordered
+
+  /// Always use a bordered style button
+  @available(swift, obsoleted: 3, renamed: "bordered")
+  static var Bordered: __UIButtonConfigurationMacIdiomStyle { get }
+
+  /// Always use a borderless style button
+  case borderless
+
+  /// Always use a borderless style button
+  @available(swift, obsoleted: 3, renamed: "borderless")
+  static var Borderless: __UIButtonConfigurationMacIdiomStyle { get }
+
+  /// Always use a tinted, borderless style button
+  case borderlessTinted
+
+  /// Always use a tinted, borderless style button
+  @available(swift, obsoleted: 3, renamed: "borderlessTinted")
+  static var BorderlessTinted: __UIButtonConfigurationMacIdiomStyle { get }
+}
+@available(iOS 15.0, *)
+@MainActor class __UIButtonConfiguration : NSObject, NSCopying, NSSecureCoding {
+  class func plain() -> Self
+  @available(swift, obsoleted: 3, renamed: "plain()")
+  class func plainButtonConfiguration() -> Self
+  class func tinted() -> Self
+  @available(swift, obsoleted: 3, renamed: "tinted()")
+  class func tintedButtonConfiguration() -> Self
+  class func gray() -> Self
+  @available(swift, obsoleted: 3, renamed: "gray()")
+  class func grayButtonConfiguration() -> Self
+  class func filled() -> Self
+  @available(swift, obsoleted: 3, renamed: "filled()")
+  class func filledButtonConfiguration() -> Self
+  class func borderless() -> Self
+  @available(swift, obsoleted: 3, renamed: "borderless()")
+  class func borderlessButtonConfiguration() -> Self
+  class func bordered() -> Self
+  @available(swift, obsoleted: 3, renamed: "bordered()")
+  class func borderedButtonConfiguration() -> Self
+  class func borderedTinted() -> Self
+  @available(swift, obsoleted: 3, renamed: "borderedTinted()")
+  class func borderedTintedButtonConfiguration() -> Self
+  class func borderedProminent() -> Self
+  @available(swift, obsoleted: 3, renamed: "borderedProminent()")
+  class func borderedProminentButtonConfiguration() -> Self
+  @available(*, unavailable)
+  class func new() -> Self
+  @available(*, unavailable)
+  init()
+
+  /// Returns a copy of the configuration updated based on the given button, by applying the configuration's default values for that button's state to any properties that have not been customized.
+  func updatedConfiguration(for button: UIButton) -> Self
+
+  /// Returns a copy of the configuration updated based on the given button, by applying the configuration's default values for that button's state to any properties that have not been customized.
+  @available(swift, obsoleted: 3, renamed: "updatedConfiguration(for:)")
+  func updatedConfigurationForButton(_ button: UIButton) -> Self
+
+  /// A UIBackgroundConfiguration describing the button's background. UIKit provides a value by default with values appropriate for a UIButton.
+  var background: __UIBackgroundConfiguration
+
+  /// The corner style controls how background.cornerRadius is interpreted by the button. Defaults to `Dynamic`.
+  var cornerStyle: __UIButtonConfigurationCornerStyle
+
+  /// Determines the metrics and ideal size of the button. Clients may resize the button arbitrarily regardless of this value.
+  var buttonSize: __UIButtonConfigurationSize
+  var macIdiomStyle: __UIButtonConfigurationMacIdiomStyle
+
+  /// The base color to use for foreground elements. This color may be modified before being passed to a transformer, and finally applied to specific elements. Setting nil will cede full control to the configuration to select a color appropriate to the style.
+  var baseForegroundColor: UIColor?
+
+  /// The base color to use for background elements. This color may be modified before being passed to a transformer, and finally applied to specific elements. Setting nil will cede full control to the configuration to select a color appropriate to the style.
+  var baseBackgroundColor: UIColor?
+  var image: UIImage?
+  var imageColorTransformer: __UIConfigurationColorTransformer?
+  @NSCopying var preferredSymbolConfigurationForImage: UIImage.SymbolConfiguration?
+
+  /// Shows an activity indicator in place of an image. Its placement is controlled by the imagePlacement property.
+  var showsActivityIndicator: Bool
+  var activityIndicatorColorTransformer: __UIConfigurationColorTransformer?
+  var title: String?
+  @NSCopying var attributedTitle: NSAttributedString?
+  var titleTextAttributesTransformer: __UIConfigurationTextAttributesTransformer?
+  var subtitle: String?
+  @NSCopying var attributedSubtitle: NSAttributedString?
+  var subtitleTextAttributesTransformer: __UIConfigurationTextAttributesTransformer?
+
+  /// Insets from the bounds of the button to create the content region. Defaults styles provide insets based on the button size.
+  var contentInsets: NSDirectionalEdgeInsets
+
+  /// Restore the default content insets.
+  func setDefaultContentInsets()
+
+  /// Defaults to Leading, only single edge values (top/leading/bottom/trailing) are supported.
+  var imagePlacement: NSDirectionalRectEdge
+
+  /// When a button has both image and text content, this value is the padding between the image and the text.
+  var imagePadding: CGFloat
+
+  /// When a button has both a title & subtitle, this value is the padding between those titles.
+  var titlePadding: CGFloat
+
+  /// The alignment to use for relative layout between title & subtitle.
+  var titleAlignment: __UIButtonConfigurationTitleAlignment
+
+  /// If the style should automatically update when the button is selected. Default varies by style. Disable to customize selection behavior.
+  var automaticallyUpdateForSelection: Bool
+  @available(iOS 15.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 15.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 15.0, *)
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+}

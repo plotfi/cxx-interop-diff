@@ -1,50 +1,68 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UIGestureRecognizerSubclass'
+@_exported import Foundation
+
+extension UIGestureRecognizer {
+  func ignore(_ touch: UITouch, for event: UIEvent)
+  @available(swift, obsoleted: 3, renamed: "ignore(_:for:)")
+  func ignoreTouch(_ touch: UITouch, forEvent event: UIEvent)
+  @available(iOS 9.0, *)
+  func ignore(_ button: UIPress, for event: UIPressesEvent)
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "ignore(_:for:)")
+  func ignorePress(_ button: UIPress, forEvent event: UIPressesEvent)
+  func reset()
+  func canPrevent(_ preventedGestureRecognizer: UIGestureRecognizer) -> Bool
+  @available(swift, obsoleted: 3, renamed: "canPrevent(_:)")
+  func canPreventGestureRecognizer(_ preventedGestureRecognizer: UIGestureRecognizer) -> Bool
+  func canBePrevented(by preventingGestureRecognizer: UIGestureRecognizer) -> Bool
+  @available(swift, obsoleted: 3, renamed: "canBePrevented(by:)")
+  func canBePreventedByGestureRecognizer(_ preventingGestureRecognizer: UIGestureRecognizer) -> Bool
+  @available(iOS 7.0, *)
+  func shouldRequireFailure(of otherGestureRecognizer: UIGestureRecognizer) -> Bool
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "shouldRequireFailure(of:)")
+  func shouldRequireFailureOfGestureRecognizer(_ otherGestureRecognizer: UIGestureRecognizer) -> Bool
+  @available(iOS 7.0, *)
+  func shouldBeRequiredToFail(by otherGestureRecognizer: UIGestureRecognizer) -> Bool
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "shouldBeRequiredToFail(by:)")
+  func shouldBeRequiredToFailByGestureRecognizer(_ otherGestureRecognizer: UIGestureRecognizer) -> Bool
+  @available(iOS 13.4, *)
+  func shouldReceive(_ event: UIEvent) -> Bool
+  @available(iOS 13.4, *)
+  @available(swift, obsoleted: 3, renamed: "shouldReceive(_:)")
+  func shouldReceiveEvent(_ event: UIEvent) -> Bool
+  func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent)
+  @available(swift, obsoleted: 3, renamed: "touchesBegan(_:with:)")
+  func touchesBegan(_ touches: Set<UITouch>, withEvent event: UIEvent)
+  func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent)
+  @available(swift, obsoleted: 3, renamed: "touchesMoved(_:with:)")
+  func touchesMoved(_ touches: Set<UITouch>, withEvent event: UIEvent)
+  func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent)
+  @available(swift, obsoleted: 3, renamed: "touchesEnded(_:with:)")
+  func touchesEnded(_ touches: Set<UITouch>, withEvent event: UIEvent)
+  func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent)
+  @available(swift, obsoleted: 3, renamed: "touchesCancelled(_:with:)")
+  func touchesCancelled(_ touches: Set<UITouch>, withEvent event: UIEvent)
+  @available(iOS 9.1, *)
+  func touchesEstimatedPropertiesUpdated(_ touches: Set<UITouch>)
+  @available(iOS 9.0, *)
+  func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent)
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "pressesBegan(_:with:)")
+  func pressesBegan(_ presses: Set<UIPress>, withEvent event: UIPressesEvent)
+  @available(iOS 9.0, *)
+  func pressesChanged(_ presses: Set<UIPress>, with event: UIPressesEvent)
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "pressesChanged(_:with:)")
+  func pressesChanged(_ presses: Set<UIPress>, withEvent event: UIPressesEvent)
+  @available(iOS 9.0, *)
+  func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent)
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "pressesEnded(_:with:)")
+  func pressesEnded(_ presses: Set<UIPress>, withEvent event: UIPressesEvent)
+  @available(iOS 9.0, *)
+  func pressesCancelled(_ presses: Set<UIPress>, with event: UIPressesEvent)
+  @available(iOS 9.0, *)
+  @available(swift, obsoleted: 3, renamed: "pressesCancelled(_:with:)")
+  func pressesCancelled(_ presses: Set<UIPress>, withEvent event: UIPressesEvent)
+}

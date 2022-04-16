@@ -1,50 +1,65 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UISearchSuggestion'
+@_exported import Foundation
+
+@available(iOS, unavailable)
+@MainActor protocol UISearchSuggestion : NSObjectProtocol {
+
+  /// The localized suggestion that will be displayed as the search string
+  var localizedSuggestion: String? { get }
+
+  /// The localized description used as accessibility string
+  optional var localizedDescription: String? { get }
+
+  /// Icon that represents this search suggestion item
+  optional var iconImage: UIImage? { get }
+}
+
+/// A concrete container for search suggestion string and optional image and associated information for providing shortcuts in search experience on tvOS.
+@available(iOS, unavailable)
+@MainActor class UISearchSuggestionItem : NSObject, UISearchSuggestion {
+
+  /// Returns a new search suggestion object with a specified suggestion string.
+  @available(*, unavailable, message: "Use init(string suggestionString: String) instead.")
+  class func suggestion(withLocalizedSuggestion suggestion: String) -> Self
+
+  /// Returns a new search suggestion object with a specified suggestion string.
+  @available(swift, obsoleted: 3, renamed: "suggestion(withLocalizedSuggestion:)")
+  @available(*, unavailable, message: "Use init(string suggestionString: String) instead.")
+  class func suggestionWithLocalizedSuggestion(_ suggestion: String) -> Self
+
+  /// Returns a new search suggestion object with a specified suggestion string and a description string.
+  @available(*, unavailable, message: "Use init(string suggestionString: String, descriptionString: String?) instead.")
+  class func suggestion(withLocalizedSuggestion suggestion: String, descriptionString description: String?) -> Self
+
+  /// Returns a new search suggestion object with a specified suggestion string and a description string.
+  @available(swift, obsoleted: 3, renamed: "suggestion(withLocalizedSuggestion:descriptionString:)")
+  @available(*, unavailable, message: "Use init(string suggestionString: String, descriptionString: String?) instead.")
+  class func suggestionWithLocalizedSuggestion(_ suggestion: String, descriptionString description: String?) -> Self
+
+  /// Returns a new search suggestion object with a specified suggestion string, description string, and a search icon image.
+  @available(*, unavailable, message: "Use init(string suggestionString: String, descriptionString: String?, iconImage: UIImage?) instead.")
+  class func suggestion(withLocalizedSuggestion suggestion: String, descriptionString description: String?, iconImage: UIImage?) -> Self
+
+  /// Returns a new search suggestion object with a specified suggestion string, description string, and a search icon image.
+  @available(swift, obsoleted: 3, renamed: "suggestion(withLocalizedSuggestion:descriptionString:iconImage:)")
+  @available(*, unavailable, message: "Use init(string suggestionString: String, descriptionString: String?, iconImage: UIImage?) instead.")
+  class func suggestionWithLocalizedSuggestion(_ suggestion: String, descriptionString description: String?, iconImage: UIImage?) -> Self
+
+  /// Initializes a search suggestion object with a specified search suggestion string.
+  init(localizedSuggestion suggestion: String)
+
+  /// Initializes a search suggestion object with a specified search suggestion string and a description string.
+  init(localizedSuggestion suggestion: String, localizedDescription description: String?)
+
+  /// Initializes a search suggestion object with a specified search suggestion string, a description string, and a search icon image.
+  init(localizedSuggestion suggestion: String, localizedDescription description: String?, iconImage: UIImage?)
+
+  /// The localized suggestion that will be displayed as the search string
+  var localizedSuggestion: String? { get }
+
+  /// The localized description used as accessibility string
+  var localizedDescription: String? { get }
+
+  /// Icon that represents this search suggestion item
+  var iconImage: UIImage? { get }
+  init()
+}

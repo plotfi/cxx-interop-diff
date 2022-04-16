@@ -1,50 +1,104 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UITableViewHeaderFooterView'
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+typealias __UITableViewHeaderFooterViewConfigurationUpdateHandler = (UITableViewHeaderFooterView, __UIViewConfigurationState) -> Void
+@available(iOS 6.0, *)
+@MainActor class UITableViewHeaderFooterView : UIView {
+  init(reuseIdentifier: String?)
+  init?(coder: NSCoder)
+
+  /// Returns the current configuration state for the header/footer.
+  /// To add your own custom state(s), override the getter and call super to obtain an instance with the
+  /// system properties set, then set your own custom states as desired.
+  @available(iOS 14.0, *)
+  var __configurationState: __UIViewConfigurationState { get }
+
+  /// Requests the view update its configuration for its current state. This method is called automatically
+  /// when the view's `configurationState` may have changed, as well as in other circumstances where an
+  /// update may be required. Multiple requests may be coalesced into a single update at the appropriate time.
+  @available(iOS 14.0, *)
+  func setNeedsUpdateConfiguration()
+
+  /// Subclasses should override this method and update the view's configuration using the state provided.
+  /// This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
+  @available(iOS 14.0, *)
+  func __updateConfiguration(using state: __UIViewConfigurationState)
+
+  /// Subclasses should override this method and update the view's configuration using the state provided.
+  /// This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
+  @available(iOS 14.0, *)
+  @available(swift, obsoleted: 3, renamed: "__updateConfiguration(using:)")
+  func __updateConfigurationUsingState(_ state: __UIViewConfigurationState)
+
+  /// Optional block-based alternative to overriding `-updateConfigurationUsingState:` in a subclass. This handler
+  /// is called after `-updateConfigurationUsingState:`. Setting a new handler triggers `setNeedsUpdateConfiguration`.
+  @available(iOS 15.0, *)
+  var __configurationUpdateHandler: __UITableViewHeaderFooterViewConfigurationUpdateHandler?
+
+  /// Returns a default list content configuration for the header/footer view's style.
+  @available(iOS 14.0, *)
+  func __defaultContentConfiguration() -> __UIListContentConfiguration
+
+  /// Setting a content configuration replaces the existing contentView of the header/footer with a new content view instance from the configuration,
+  /// or directly applies the configuration to the existing content view if the configuration is compatible with the existing content view type.
+  /// The default value is nil. After a configuration has been set, setting this property to nil will replace the current content view with a new content view.
+  @available(iOS 14.0, *)
+  @NSCopying var __contentConfiguration: __UIContentConfiguration?
+
+  /// When YES, the header/footer will automatically call -updatedConfigurationForState: on its `contentConfiguration` when the header/footer's
+  /// configuration state changes, and apply the updated configuration back to the header/footer. The default value is YES.
+  @available(iOS 14.0, *)
+  var automaticallyUpdatesContentConfiguration: Bool
+  var contentView: UIView { get }
+  @available(iOS, introduced: 6.0, deprecated: 100000, message: "Use UIListContentConfiguration instead, this property will be deprecated in a future release.")
+  var textLabel: UILabel? { get }
+  @available(iOS, introduced: 6.0, deprecated: 100000, message: "Use UIListContentConfiguration instead, this property will be deprecated in a future release.")
+  var detailTextLabel: UILabel? { get }
+
+  /// Setting a background configuration supersedes the header/footer's backgroundView. The default value is nil.
+  @available(iOS 14.0, *)
+  @NSCopying var __backgroundConfiguration: __UIBackgroundConfiguration?
+
+  /// When YES, the header/footer will automatically call -updatedConfigurationForState: on its `backgroundConfiguration` when the header/footer's
+  /// configuration state changes, and apply the updated configuration back to the header/footer. The default value is YES.
+  @available(iOS 14.0, *)
+  var automaticallyUpdatesBackgroundConfiguration: Bool
+  var backgroundView: UIView?
+  var reuseIdentifier: String? { get }
+  func prepareForReuse()
+  convenience init(frame: CGRect)
+  convenience init()
+}
+
+@available(iOS 14.0, tvOS 14.0, *)
+extension UITableViewHeaderFooterView {
+  @available(iOS 14.0, tvOS 14.0, *)
+  @MainActor var contentConfiguration: UIContentConfiguration?
+  @available(iOS 14.0, tvOS 14.0, *)
+  @MainActor func defaultContentConfiguration() -> UIListContentConfiguration
+}
+
+@available(iOS 14.0, tvOS 14.0, *)
+extension UITableViewHeaderFooterView {
+  @available(iOS 14.0, tvOS 14.0, *)
+  @MainActor var backgroundConfiguration: UIBackgroundConfiguration?
+}
+
+@available(iOS 14.0, tvOS 14.0, *)
+extension UITableViewHeaderFooterView {
+  /// Returns the current configuration state for the header/footer.
+  /// To add your own custom state(s), override the getter and call super to obtain a struct with the
+  /// system properties set, then set your own custom states as desired.
+  @available(iOS 14.0, tvOS 14.0, *)
+  @objc(_bridgedConfigurationState) @MainActor dynamic var configurationState: UIViewConfigurationState { get }
+  /// Subclasses should override this method and update the view's configuration using the state provided.
+  /// This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
+  @available(iOS 14.0, tvOS 14.0, *)
+  @objc(_bridgedUpdateConfigurationUsingState:) @MainActor dynamic func updateConfiguration(using state: UIViewConfigurationState)
+  @available(iOS 15.0, tvOS 15.0, *)
+  typealias ConfigurationUpdateHandler = (_ headerFooterView: UITableViewHeaderFooterView, _ state: UIViewConfigurationState) -> Void
+  /// Optional closure-based alternative to overriding `updateConfiguration(using:)` in a subclass. This handler
+  /// is called after `updateConfiguration(using:)`. Setting a new handler triggers `setNeedsUpdateConfiguration`.
+  @available(iOS 15.0, tvOS 15.0, *)
+  @MainActor var configurationUpdateHandler: UITableViewHeaderFooterView.ConfigurationUpdateHandler?
+}

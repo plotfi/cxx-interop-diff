@@ -1,7 +1,17 @@
 @_exported import CoreFoundation
 
-@available(*, unavailable, message: "Not available in Swift")
 typealias NSByteCountFormatterUnits = Int
+var NSByteCountFormatterUseDefault: Int { get }
+var NSByteCountFormatterUseBytes: Int { get }
+var NSByteCountFormatterUseKB: Int { get }
+var NSByteCountFormatterUseMB: Int { get }
+var NSByteCountFormatterUseGB: Int { get }
+var NSByteCountFormatterUseTB: Int { get }
+var NSByteCountFormatterUsePB: Int { get }
+var NSByteCountFormatterUseEB: Int { get }
+var NSByteCountFormatterUseZB: Int { get }
+var NSByteCountFormatterUseYBOrHigher: Int { get }
+var NSByteCountFormatterUseAll: Int { get }
 @available(swift, obsoleted: 3, renamed: "ByteCountFormatter.CountStyle")
 typealias NSByteCountFormatterCountStyle = ByteCountFormatter.CountStyle
 extension ByteCountFormatter {
@@ -44,7 +54,7 @@ class ByteCountFormatter : Formatter {
   func string(for obj: Any?) -> String?
   @available(swift, obsoleted: 3, renamed: "string(for:)")
   func stringForObjectValue(_ obj: Any?) -> String?
-  var allowedUnits: Int
+  var allowedUnits: NSByteCountFormatterUnits
   var countStyle: ByteCountFormatter.CountStyle
   var allowsNonnumericFormatting: Bool
   var includesUnit: Bool

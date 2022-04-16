@@ -1,50 +1,152 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.NSParagraphStyle'
+@_exported import Foundation
+
+var __NSPARAGRAPH_STYLE_SHARED_SECTION__: Int32 { get }
+@available(iOS 6.0, *)
+enum NSLineBreakMode : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+  case byWordWrapping
+  @available(swift, obsoleted: 3, renamed: "byWordWrapping")
+  static var ByWordWrapping: NSLineBreakMode { get }
+  case byCharWrapping
+  @available(swift, obsoleted: 3, renamed: "byCharWrapping")
+  static var ByCharWrapping: NSLineBreakMode { get }
+  case byClipping
+  @available(swift, obsoleted: 3, renamed: "byClipping")
+  static var ByClipping: NSLineBreakMode { get }
+  case byTruncatingHead
+  @available(swift, obsoleted: 3, renamed: "byTruncatingHead")
+  static var ByTruncatingHead: NSLineBreakMode { get }
+  case byTruncatingTail
+  @available(swift, obsoleted: 3, renamed: "byTruncatingTail")
+  static var ByTruncatingTail: NSLineBreakMode { get }
+  case byTruncatingMiddle
+  @available(swift, obsoleted: 3, renamed: "byTruncatingMiddle")
+  static var ByTruncatingMiddle: NSLineBreakMode { get }
+}
+typealias NSLineBreakStrategy = Int
+var NSLineBreakStrategyNone: Int { get }
+@available(iOS 9.0, *)
+var NSLineBreakStrategyPushOut: Int { get }
+@available(iOS 14.0, *)
+var NSLineBreakStrategyHangulWordPriority: Int { get }
+@available(iOS 14.0, *)
+var NSLineBreakStrategyStandard: Int { get }
+@available(swift, obsoleted: 3, renamed: "NSTextTab.OptionKey")
+typealias NSTextTabOptionKey = NSTextTab.OptionKey
+extension NSTextTab {
+  struct OptionKey : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+    init(rawValue: String)
+    var _rawValue: NSString
+    var rawValue: String { get }
+    typealias RawValue = String
+    typealias _ObjectiveCType = NSString
+  }
+}
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextTab.OptionKey.columnTerminators")
+let NSTabColumnTerminatorsAttributeName: NSTextTab.OptionKey
+extension NSTextTab.OptionKey {
+  @available(iOS 7.0, *)
+  static let columnTerminators: NSTextTab.OptionKey
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 4, renamed: "NSTextTab.OptionKey.columnTerminators")
+  static let NSTabColumnTerminatorsAttributeName: NSTextTab.OptionKey
+}
+@available(iOS 7.0, *)
+class NSTextTab : NSObject, NSCopying, NSCoding, NSSecureCoding {
+  @available(iOS 7.0, *)
+  class func columnTerminators(for aLocale: Locale?) -> CharacterSet
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "columnTerminators(for:)")
+  class func columnTerminatorsForLocale(_ aLocale: Locale?) -> CharacterSet
+  init(textAlignment alignment: NSTextAlignment, location loc: CGFloat, options: [NSTextTab.OptionKey : Any] = [:])
+  var alignment: NSTextAlignment { get }
+  var location: CGFloat { get }
+  var options: [NSTextTab.OptionKey : Any] { get }
+  convenience init()
+  @available(iOS 7.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 7.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 7.0, *)
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+}
+@available(iOS 6.0, *)
+class NSParagraphStyle : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
+  @NSCopying class var `default`: NSParagraphStyle { get }
+  @available(swift, obsoleted: 3, renamed: "default")
+  @NSCopying class var defaultParagraphStyle: NSParagraphStyle { get }
+  class func defaultWritingDirection(forLanguage languageName: String?) -> NSWritingDirection
+  @available(swift, obsoleted: 3, renamed: "defaultWritingDirection(forLanguage:)")
+  class func defaultWritingDirectionForLanguage(_ languageName: String?) -> NSWritingDirection
+  var lineSpacing: CGFloat { get }
+  var paragraphSpacing: CGFloat { get }
+  var alignment: NSTextAlignment { get }
+  var headIndent: CGFloat { get }
+  var tailIndent: CGFloat { get }
+  var firstLineHeadIndent: CGFloat { get }
+  var minimumLineHeight: CGFloat { get }
+  var maximumLineHeight: CGFloat { get }
+  var lineBreakMode: NSLineBreakMode { get }
+  var baseWritingDirection: NSWritingDirection { get }
+  var lineHeightMultiple: CGFloat { get }
+  var paragraphSpacingBefore: CGFloat { get }
+  var hyphenationFactor: Float { get }
+  @available(iOS 15.0, *)
+  var usesDefaultHyphenation: Bool { get }
+  @available(iOS 7.0, *)
+  var tabStops: [NSTextTab] { get }
+  @available(iOS 7.0, *)
+  var defaultTabInterval: CGFloat { get }
+  @available(iOS 9.0, *)
+  var allowsDefaultTighteningForTruncation: Bool { get }
+  @available(iOS 9.0, *)
+  var lineBreakStrategy: NSLineBreakStrategy { get }
+  init()
+  @available(iOS 6.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 6.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 6.0, *)
+  func mutableCopy(with zone: NSZone? = nil) -> Any
+  @available(iOS 6.0, *)
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+}
+@available(iOS 6.0, *)
+class NSMutableParagraphStyle : NSParagraphStyle {
+  var lineSpacing: CGFloat
+  var paragraphSpacing: CGFloat
+  var alignment: NSTextAlignment
+  var firstLineHeadIndent: CGFloat
+  var headIndent: CGFloat
+  var tailIndent: CGFloat
+  var lineBreakMode: NSLineBreakMode
+  var minimumLineHeight: CGFloat
+  var maximumLineHeight: CGFloat
+  var baseWritingDirection: NSWritingDirection
+  var lineHeightMultiple: CGFloat
+  var paragraphSpacingBefore: CGFloat
+  var hyphenationFactor: Float
+  @available(iOS 15.0, *)
+  var usesDefaultHyphenation: Bool
+  @available(iOS 7.0, *)
+  var tabStops: [NSTextTab]!
+  @available(iOS 7.0, *)
+  var defaultTabInterval: CGFloat
+  @available(iOS 9.0, *)
+  var allowsDefaultTighteningForTruncation: Bool
+  @available(iOS 9.0, *)
+  var lineBreakStrategy: NSLineBreakStrategy
+  @available(iOS 9.0, *)
+  func addTabStop(_ anObject: NSTextTab)
+  @available(iOS 9.0, *)
+  func removeTabStop(_ anObject: NSTextTab)
+  @available(iOS 9.0, *)
+  func setParagraphStyle(_ obj: NSParagraphStyle)
+  init()
+  init?(coder: NSCoder)
+}

@@ -1,50 +1,78 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UISheetPresentationController'
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "UISheetPresentationControllerDetent.Identifier")
+typealias UISheetPresentationControllerDetentIdentifier = UISheetPresentationController.Detent.Identifier
+extension UISheetPresentationController.Detent {
+  @available(iOS 15.0, *)
+  struct Identifier : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+    init(_ rawValue: String)
+    init(rawValue: String)
+    var _rawValue: NSString
+    var rawValue: String { get }
+    typealias RawValue = String
+    typealias _ObjectiveCType = NSString
+  }
+}
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "UISheetPresentationControllerDetent.Identifier.medium")
+let UISheetPresentationControllerDetentIdentifierMedium: UISheetPresentationController.Detent.Identifier
+extension UISheetPresentationController.Detent.Identifier {
+  @available(iOS 15.0, *)
+  static let medium: UISheetPresentationController.Detent.Identifier
+  @available(iOS 15.0, *)
+  static let large: UISheetPresentationController.Detent.Identifier
+}
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "UISheetPresentationControllerDetent.Identifier.large")
+let UISheetPresentationControllerDetentIdentifierLarge: UISheetPresentationController.Detent.Identifier
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "UISheetPresentationController.Detent")
+@MainActor typealias UISheetPresentationControllerDetent = UISheetPresentationController.Detent
+extension UISheetPresentationController {
+  @available(iOS 15.0, *)
+  @MainActor class Detent : NSObject {
+    @available(*, unavailable)
+    init()
+    @available(*, unavailable)
+    class func new() -> Self
+    class func medium() -> Self
+    @available(swift, obsoleted: 3, renamed: "medium()")
+    class func mediumDetent() -> Self
+    class func large() -> Self
+    @available(swift, obsoleted: 3, renamed: "large()")
+    class func largeDetent() -> Self
+  }
+}
+@available(iOS 15.0, *)
+let __UISheetPresentationControllerAutomaticDimension: CGFloat
+@available(iOS 15.0, *)
+@MainActor protocol UISheetPresentationControllerDelegate : UIAdaptivePresentationControllerDelegate {
+  optional func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController)
+}
+@available(iOS 15.0, *)
+@MainActor class UISheetPresentationController : UIPresentationController {
+  weak var delegate: @sil_weak UISheetPresentationControllerDelegate?
+  var sourceView: UIView?
+  var prefersEdgeAttachedInCompactHeight: Bool
+  var widthFollowsPreferredContentSizeWhenEdgeAttached: Bool
+  var prefersGrabberVisible: Bool
+  var __preferredCornerRadius: CGFloat
+  var detents: [UISheetPresentationController.Detent]
+  var selectedDetentIdentifier: UISheetPresentationController.Detent.Identifier?
+  var largestUndimmedDetentIdentifier: UISheetPresentationController.Detent.Identifier?
+  var prefersScrollingExpandsWhenScrolledToEdge: Bool
+  func animateChanges(_ changes: () -> Void)
+  init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?)
+  @available(*, unavailable)
+  convenience init()
+}
+
+@available(iOS 15.0, *)
+extension UISheetPresentationController {
+  /// The preferred corner radius of the sheet when presented.
+  /// This value is only respected when the sheet is at the front of its stack.
+  /// Default: nil
+  @available(iOS 15.0, *)
+  @MainActor var preferredCornerRadius: CGFloat?
+}

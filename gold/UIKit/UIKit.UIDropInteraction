@@ -1,50 +1,71 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UIDropInteraction'
+@_exported import Foundation
+
+@available(iOS 11.0, *)
+@MainActor class UIDropInteraction : NSObject, UIInteraction {
+  init(delegate: UIDropInteractionDelegate)
+  @available(*, unavailable)
+  convenience init()
+  @available(*, unavailable)
+  class func new() -> Self
+  weak var delegate: @sil_weak UIDropInteractionDelegate? { get }
+  var allowsSimultaneousDropSessions: Bool
+  @available(iOS 11.0, *)
+  weak var view: @sil_weak UIView? { get }
+  @available(iOS 11.0, *)
+  func willMove(to view: UIView?)
+  @available(iOS 11.0, *)
+  func didMove(to view: UIView?)
+}
+@available(iOS 11.0, *)
+enum UIDropOperation : UInt, @unchecked Sendable {
+  init?(rawValue: UInt)
+  var rawValue: UInt { get }
+  typealias RawValue = UInt
+  case cancel
+  @available(swift, obsoleted: 3, renamed: "cancel")
+  static var Cancel: UIDropOperation { get }
+  case forbidden
+  @available(swift, obsoleted: 3, renamed: "forbidden")
+  static var Forbidden: UIDropOperation { get }
+  case copy
+  @available(swift, obsoleted: 3, renamed: "copy")
+  static var Copy: UIDropOperation { get }
+  case move
+  @available(swift, obsoleted: 3, renamed: "move")
+  static var Move: UIDropOperation { get }
+}
+@available(iOS 11.0, *)
+@MainActor class UIDropProposal : NSObject, NSCopying {
+  init(operation: UIDropOperation)
+  @available(swift, obsoleted: 3, renamed: "init(operation:)")
+  init(dropOperation operation: UIDropOperation)
+  @available(*, unavailable)
+  convenience init()
+  @available(*, unavailable)
+  class func new() -> Self
+  var operation: UIDropOperation { get }
+  var isPrecise: Bool
+  @available(swift, obsoleted: 3, renamed: "isPrecise")
+  var precise: Bool
+  var prefersFullSizePreview: Bool
+  @available(iOS 11.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+}
+@available(iOS 11.0, *)
+@MainActor protocol UIDropInteractionDelegate : NSObjectProtocol {
+  optional func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool
+  @available(swift, obsoleted: 3, renamed: "dropInteraction(_:canHandle:)")
+  optional func dropInteraction(_ interaction: UIDropInteraction, canHandleSession session: UIDropSession) -> Bool
+  optional func dropInteraction(_ interaction: UIDropInteraction, sessionDidEnter session: UIDropSession)
+  optional func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal
+  optional func dropInteraction(_ interaction: UIDropInteraction, sessionDidExit session: UIDropSession)
+  optional func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession)
+  optional func dropInteraction(_ interaction: UIDropInteraction, concludeDrop session: UIDropSession)
+  optional func dropInteraction(_ interaction: UIDropInteraction, sessionDidEnd session: UIDropSession)
+  optional func dropInteraction(_ interaction: UIDropInteraction, previewForDropping item: UIDragItem, withDefault defaultPreview: UITargetedDragPreview) -> UITargetedDragPreview?
+  @available(swift, obsoleted: 3, renamed: "dropInteraction(_:previewForDropping:withDefault:)")
+  optional func dropInteraction(_ interaction: UIDropInteraction, previewForDroppingItem item: UIDragItem, withDefault defaultPreview: UITargetedDragPreview) -> UITargetedDragPreview?
+  optional func dropInteraction(_ interaction: UIDropInteraction, item: UIDragItem, willAnimateDropWith animator: UIDragAnimating)
+  @available(swift, obsoleted: 3, renamed: "dropInteraction(_:item:willAnimateDropWith:)")
+  optional func dropInteraction(_ interaction: UIDropInteraction, item: UIDragItem, willAnimateDropWithAnimator animator: UIDragAnimating)
+}
