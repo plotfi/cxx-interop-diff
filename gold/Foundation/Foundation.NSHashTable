@@ -14,11 +14,11 @@ let NSHashTableWeakMemory: Int
 typealias NSHashTableOptions = Int
 @available(iOS 6.0, *)
 class NSHashTable<ObjectType> : NSObject, NSCopying, NSSecureCoding, NSFastEnumeration where ObjectType : AnyObject {
-  init(options: Int, capacity initialCapacity: Int)
+  init(options: Int = [], capacity initialCapacity: Int)
   init(pointerFunctions functions: NSPointerFunctions, capacity initialCapacity: Int)
-  /*not inherited*/ init(options: Int)
+  /*not inherited*/ init(options: Int = [])
   @available(*, unavailable, renamed: "init(options:)", message: "Not available in Swift")
-  class func hashTableWithOptions(_ options: Int) -> NSHashTable<ObjectType>
+  class func hashTableWithOptions(_ options: Int = []) -> NSHashTable<ObjectType>
   @available(iOS, unavailable)
   class func hashTableWithWeakObjects() -> Any
   @available(iOS 6.0, *)

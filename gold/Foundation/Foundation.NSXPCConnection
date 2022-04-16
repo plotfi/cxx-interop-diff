@@ -14,7 +14,7 @@ class NSXPCConnection : NSObject, NSXPCProxyCreating {
   init(serviceName: String)
   var serviceName: String? { get }
   @available(iOS, unavailable)
-  init(machServiceName name: String, options: Int)
+  init(machServiceName name: String, options: Int = [])
   init(listenerEndpoint endpoint: NSXPCListenerEndpoint)
   var endpoint: NSXPCListenerEndpoint { get }
   var exportedInterface: NSXPCInterface?

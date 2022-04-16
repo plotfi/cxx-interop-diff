@@ -75,10 +75,10 @@ class NetService : NSObject {
   var port: Int { get }
   func publish()
   @available(iOS 2.0, *)
-  func publish(withOptions options: Int)
+  func publish(options: Int = [])
   @available(iOS 2.0, *)
-  @available(swift, obsoleted: 3, renamed: "publish(withOptions:)")
-  func publishWithOptions(_ options: Int)
+  @available(swift, obsoleted: 3, renamed: "publish(options:)")
+  func publishWithOptions(_ options: Int = [])
   @available(iOS, unavailable, introduced: 2.0, deprecated: 2.0, message: "Not supported")
   func resolve()
   func stop()

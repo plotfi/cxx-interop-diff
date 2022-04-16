@@ -7,10 +7,10 @@ typealias NSFileWrapperWritingOptions = Int
 @available(iOS 4.0, *)
 class FileWrapper : NSObject, NSSecureCoding {
   @available(iOS 4.0, *)
-  init(url: URL, options: Int) throws
+  init(url: URL, options: Int = []) throws
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "init(url:options:)")
-  init(URL url: URL, options: Int) throws
+  init(URL url: URL, options: Int = []) throws
   init(directoryWithFileWrappers childrenByPreferredName: [String : FileWrapper])
   init(regularFileWithContents contents: Data)
   @available(iOS 4.0, *)
@@ -35,15 +35,15 @@ class FileWrapper : NSObject, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "matchesContents(of:)")
   func matchesContentsOfURL(_ url: URL) -> Bool
   @available(iOS 4.0, *)
-  func read(from url: URL, options: Int) throws
+  func read(from url: URL, options: Int = []) throws
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "read(from:options:)")
-  func readFromURL(_ url: URL, options: Int) throws
+  func readFromURL(_ url: URL, options: Int = []) throws
   @available(iOS 4.0, *)
-  func write(to url: URL, options: Int, originalContentsURL: URL?) throws
+  func write(to url: URL, options: Int = [], originalContentsURL: URL?) throws
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "write(to:options:originalContentsURL:)")
-  func writeToURL(_ url: URL, options: Int, originalContentsURL: URL?) throws
+  func writeToURL(_ url: URL, options: Int = [], originalContentsURL: URL?) throws
   var serializedRepresentation: Data? { get }
   func addFileWrapper(_ child: FileWrapper) -> String
   func addRegularFile(withContents data: Data, preferredFilename fileName: String) -> String

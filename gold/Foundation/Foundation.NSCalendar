@@ -191,12 +191,12 @@ class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   func components(_ unitFlags: Int, from date: Date) -> DateComponents
   @available(swift, obsoleted: 3, renamed: "components(_:from:)")
   func components(_ unitFlags: Int, fromDate date: Date) -> DateComponents
-  func date(byAdding comps: DateComponents, to date: Date, options opts: Int) -> Date?
+  func date(byAdding comps: DateComponents, to date: Date, options opts: Int = []) -> Date?
   @available(swift, obsoleted: 3, renamed: "date(byAdding:to:options:)")
-  func dateByAddingComponents(_ comps: DateComponents, toDate date: Date, options opts: Int) -> Date?
-  func components(_ unitFlags: Int, from startingDate: Date, to resultDate: Date, options opts: Int) -> DateComponents
+  func dateByAddingComponents(_ comps: DateComponents, toDate date: Date, options opts: Int = []) -> Date?
+  func components(_ unitFlags: Int, from startingDate: Date, to resultDate: Date, options opts: Int = []) -> DateComponents
   @available(swift, obsoleted: 3, renamed: "components(_:from:to:options:)")
-  func components(_ unitFlags: Int, fromDate startingDate: Date, toDate resultDate: Date, options opts: Int) -> DateComponents
+  func components(_ unitFlags: Int, fromDate startingDate: Date, toDate resultDate: Date, options opts: Int = []) -> DateComponents
   @available(iOS 8.0, *)
   func getEra(_ eraValuePointer: UnsafeMutablePointer<Int>?, year yearValuePointer: UnsafeMutablePointer<Int>?, month monthValuePointer: UnsafeMutablePointer<Int>?, day dayValuePointer: UnsafeMutablePointer<Int>?, from date: Date)
   @available(iOS 8.0, *)
@@ -266,50 +266,50 @@ class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "range(ofWeekendStart:interval:containing:)")
   func rangeOfWeekendStartDate(_ datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, containingDate date: Date) -> Bool
   @available(iOS 8.0, *)
-  func nextWeekendStart(_ datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, options: Int, after date: Date) -> Bool
+  func nextWeekendStart(_ datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, options: Int = [], after date: Date) -> Bool
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "nextWeekendStart(_:interval:options:after:)")
-  func nextWeekendStartDate(_ datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, options: Int, afterDate date: Date) -> Bool
+  func nextWeekendStartDate(_ datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, options: Int = [], afterDate date: Date) -> Bool
   @available(iOS 8.0, *)
-  func components(_ unitFlags: Int, from startingDateComp: DateComponents, to resultDateComp: DateComponents, options: Int) -> DateComponents
+  func components(_ unitFlags: Int, from startingDateComp: DateComponents, to resultDateComp: DateComponents, options: Int = []) -> DateComponents
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "components(_:from:to:options:)")
-  func components(_ unitFlags: Int, fromDateComponents startingDateComp: DateComponents, toDateComponents resultDateComp: DateComponents, options: Int) -> DateComponents
+  func components(_ unitFlags: Int, fromDateComponents startingDateComp: DateComponents, toDateComponents resultDateComp: DateComponents, options: Int = []) -> DateComponents
   @available(iOS 8.0, *)
-  func date(byAddingUnit unit: Int, value: Int, to date: Date, options: Int) -> Date?
+  func date(byAddingUnit unit: Int, value: Int, to date: Date, options: Int = []) -> Date?
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "date(byAddingUnit:value:to:options:)")
-  func dateByAddingUnit(_ unit: Int, value: Int, toDate date: Date, options: Int) -> Date?
+  func dateByAddingUnit(_ unit: Int, value: Int, toDate date: Date, options: Int = []) -> Date?
   @available(iOS 8.0, *)
-  func enumerateDates(startingAfter start: Date, matching comps: DateComponents, options opts: Int, using block: (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateDates(startingAfter start: Date, matching comps: DateComponents, options opts: Int = [], using block: (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateDates(startingAfter:matching:options:using:)")
-  func enumerateDatesStartingAfterDate(_ start: Date, matchingComponents comps: DateComponents, options opts: Int, usingBlock block: (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateDatesStartingAfterDate(_ start: Date, matchingComponents comps: DateComponents, options opts: Int = [], usingBlock block: (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 8.0, *)
-  func nextDate(after date: Date, matching comps: DateComponents, options: Int) -> Date?
+  func nextDate(after date: Date, matching comps: DateComponents, options: Int = []) -> Date?
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "nextDate(after:matching:options:)")
-  func nextDateAfterDate(_ date: Date, matchingComponents comps: DateComponents, options: Int) -> Date?
+  func nextDateAfterDate(_ date: Date, matchingComponents comps: DateComponents, options: Int = []) -> Date?
   @available(iOS 8.0, *)
-  func nextDate(after date: Date, matchingUnit unit: Int, value: Int, options: Int) -> Date?
+  func nextDate(after date: Date, matchingUnit unit: Int, value: Int, options: Int = []) -> Date?
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "nextDate(after:matchingUnit:value:options:)")
-  func nextDateAfterDate(_ date: Date, matchingUnit unit: Int, value: Int, options: Int) -> Date?
+  func nextDateAfterDate(_ date: Date, matchingUnit unit: Int, value: Int, options: Int = []) -> Date?
   @available(iOS 8.0, *)
-  func nextDate(after date: Date, matchingHour hourValue: Int, minute minuteValue: Int, second secondValue: Int, options: Int) -> Date?
+  func nextDate(after date: Date, matchingHour hourValue: Int, minute minuteValue: Int, second secondValue: Int, options: Int = []) -> Date?
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "nextDate(after:matchingHour:minute:second:options:)")
-  func nextDateAfterDate(_ date: Date, matchingHour hourValue: Int, minute minuteValue: Int, second secondValue: Int, options: Int) -> Date?
+  func nextDateAfterDate(_ date: Date, matchingHour hourValue: Int, minute minuteValue: Int, second secondValue: Int, options: Int = []) -> Date?
   @available(iOS 8.0, *)
-  func date(bySettingUnit unit: Int, value v: Int, of date: Date, options opts: Int) -> Date?
+  func date(bySettingUnit unit: Int, value v: Int, of date: Date, options opts: Int = []) -> Date?
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "date(bySettingUnit:value:of:options:)")
-  func dateBySettingUnit(_ unit: Int, value v: Int, ofDate date: Date, options opts: Int) -> Date?
+  func dateBySettingUnit(_ unit: Int, value v: Int, ofDate date: Date, options opts: Int = []) -> Date?
   @available(iOS 8.0, *)
-  func date(bySettingHour h: Int, minute m: Int, second s: Int, of date: Date, options opts: Int) -> Date?
+  func date(bySettingHour h: Int, minute m: Int, second s: Int, of date: Date, options opts: Int = []) -> Date?
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "date(bySettingHour:minute:second:of:options:)")
-  func dateBySettingHour(_ h: Int, minute m: Int, second s: Int, ofDate date: Date, options opts: Int) -> Date?
+  func dateBySettingHour(_ h: Int, minute m: Int, second s: Int, ofDate date: Date, options opts: Int = []) -> Date?
   @available(iOS 8.0, *)
   func date(_ date: Date, matchesComponents components: DateComponents) -> Bool
   class var supportsSecureCoding: Bool { get }

@@ -100,30 +100,30 @@ extension NSDictionary {
   @available(swift, obsoleted: 3, renamed: "enumerateKeysAndObjects(_:)")
   func enumerateKeysAndObjectsUsingBlock(_ block: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
-  func enumerateKeysAndObjects(withOptions opts: Int, using block: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateKeysAndObjects(options opts: Int = [], using block: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
-  @available(swift, obsoleted: 3, renamed: "enumerateKeysAndObjects(withOptions:using:)")
-  func enumerateKeysAndObjectsWithOptions(_ opts: Int, usingBlock block: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(swift, obsoleted: 3, renamed: "enumerateKeysAndObjects(options:using:)")
+  func enumerateKeysAndObjectsWithOptions(_ opts: Int = [], usingBlock block: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   func keysSortedByValue(comparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "keysSortedByValue(comparator:)")
   func keysSortedByValueUsingComparator(_ cmptr: (Any, Any) -> ComparisonResult) -> [Any]
   @available(iOS 4.0, *)
-  func keysSortedByValue(withOptions opts: Int, usingComparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
+  func keysSortedByValue(options opts: Int = [], usingComparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
   @available(iOS 4.0, *)
-  @available(swift, obsoleted: 3, renamed: "keysSortedByValue(withOptions:usingComparator:)")
-  func keysSortedByValueWithOptions(_ opts: Int, usingComparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
+  @available(swift, obsoleted: 3, renamed: "keysSortedByValue(options:usingComparator:)")
+  func keysSortedByValueWithOptions(_ opts: Int = [], usingComparator cmptr: (Any, Any) -> ComparisonResult) -> [Any]
   @available(iOS 4.0, *)
   func keysOfEntries(passingTest predicate: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "keysOfEntries(passingTest:)")
   func keysOfEntriesPassingTest(_ predicate: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
   @available(iOS 4.0, *)
-  func keysOfEntries(withOptions opts: Int, passingTest predicate: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
+  func keysOfEntries(options opts: Int = [], passingTest predicate: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
   @available(iOS 4.0, *)
-  @available(swift, obsoleted: 3, renamed: "keysOfEntries(withOptions:passingTest:)")
-  func keysOfEntriesWithOptions(_ opts: Int, passingTest predicate: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
+  @available(swift, obsoleted: 3, renamed: "keysOfEntries(options:passingTest:)")
+  func keysOfEntriesWithOptions(_ opts: Int = [], passingTest predicate: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
 }
 extension NSDictionary {
 

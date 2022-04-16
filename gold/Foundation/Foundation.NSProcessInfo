@@ -62,17 +62,17 @@ class ProcessInfo : NSObject {
 typealias NSActivityOptions = UInt64
 extension ProcessInfo {
   @available(iOS 7.0, *)
-  func beginActivity(withOptions options: UInt64, reason: String) -> NSObjectProtocol
+  func beginActivity(options: UInt64 = [], reason: String) -> NSObjectProtocol
   @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "beginActivity(withOptions:reason:)")
-  func beginActivityWithOptions(_ options: UInt64, reason: String) -> NSObjectProtocol
+  @available(swift, obsoleted: 3, renamed: "beginActivity(options:reason:)")
+  func beginActivityWithOptions(_ options: UInt64 = [], reason: String) -> NSObjectProtocol
   @available(iOS 7.0, *)
   func endActivity(_ activity: NSObjectProtocol)
   @available(iOS 7.0, *)
-  func performActivity(withOptions options: UInt64, reason: String, using block: @escaping () -> Void)
+  func performActivity(options: UInt64 = [], reason: String, using block: @escaping () -> Void)
   @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "performActivity(withOptions:reason:using:)")
-  func performActivityWithOptions(_ options: UInt64, reason: String, usingBlock block: @escaping () -> Void)
+  @available(swift, obsoleted: 3, renamed: "performActivity(options:reason:using:)")
+  func performActivityWithOptions(_ options: UInt64 = [], reason: String, usingBlock block: @escaping () -> Void)
   @available(iOS 8.2, *)
   func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void)
   @available(iOS 8.2, *)

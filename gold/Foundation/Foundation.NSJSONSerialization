@@ -7,18 +7,18 @@ typealias NSJSONWritingOptions = Int
 @available(iOS 5.0, *)
 class JSONSerialization : NSObject {
   class func isValidJSONObject(_ obj: Any) -> Bool
-  class func data(withJSONObject obj: Any, options opt: Int) throws -> Data
+  class func data(withJSONObject obj: Any, options opt: Int = []) throws -> Data
   @available(swift, obsoleted: 3, renamed: "data(withJSONObject:options:)")
-  class func dataWithJSONObject(_ obj: Any, options opt: Int) throws -> Data
-  class func jsonObject(with data: Data, options opt: Int) throws -> Any
+  class func dataWithJSONObject(_ obj: Any, options opt: Int = []) throws -> Data
+  class func jsonObject(with data: Data, options opt: Int = []) throws -> Any
   @available(swift, obsoleted: 3, renamed: "jsonObject(with:options:)")
-  class func JSONObjectWithData(_ data: Data, options opt: Int) throws -> Any
-  class func writeJSONObject(_ obj: Any, to stream: OutputStream, options opt: Int, error: NSErrorPointer) -> Int
+  class func JSONObjectWithData(_ data: Data, options opt: Int = []) throws -> Any
+  class func writeJSONObject(_ obj: Any, to stream: OutputStream, options opt: Int = [], error: NSErrorPointer) -> Int
   @available(swift, obsoleted: 3, renamed: "writeJSONObject(_:to:options:error:)")
-  class func writeJSONObject(_ obj: Any, toStream stream: OutputStream, options opt: Int, error: NSErrorPointer) -> Int
-  class func jsonObject(with stream: InputStream, options opt: Int) throws -> Any
+  class func writeJSONObject(_ obj: Any, toStream stream: OutputStream, options opt: Int = [], error: NSErrorPointer) -> Int
+  class func jsonObject(with stream: InputStream, options opt: Int = []) throws -> Any
   @available(swift, obsoleted: 3, renamed: "jsonObject(with:options:)")
-  class func JSONObjectWithStream(_ stream: InputStream, options opt: Int) throws -> Any
+  class func JSONObjectWithStream(_ stream: InputStream, options opt: Int = []) throws -> Any
   init()
 }
 @available(iOS 5.0, *)

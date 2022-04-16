@@ -13,9 +13,9 @@ class ISO8601DateFormatter : Formatter, NSSecureCoding {
   func date(from string: String) -> Date?
   @available(swift, obsoleted: 3, renamed: "date(from:)")
   func dateFromString(_ string: String) -> Date?
-  class func string(from date: Date, timeZone: TimeZone, formatOptions: Int) -> String
+  class func string(from date: Date, timeZone: TimeZone, formatOptions: Int = []) -> String
   @available(swift, obsoleted: 3, renamed: "string(from:timeZone:formatOptions:)")
-  class func stringFromDate(_ date: Date, timeZone: TimeZone, formatOptions: Int) -> String
+  class func stringFromDate(_ date: Date, timeZone: TimeZone, formatOptions: Int = []) -> String
   init?(coder: NSCoder)
   @available(iOS 10.0, *)
   class var supportsSecureCoding: Bool { get }

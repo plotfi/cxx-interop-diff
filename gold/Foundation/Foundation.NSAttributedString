@@ -64,15 +64,15 @@ extension NSAttributedString {
   init(string str: String, attributes attrs: [NSAttributedString.Key : Any]? = nil)
   init(attributedString attrStr: NSAttributedString)
   @available(iOS 4.0, *)
-  func enumerateAttributes(in enumerationRange: NSRange, options opts: Int, using block: ([NSAttributedString.Key : Any], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateAttributes(in enumerationRange: NSRange, options opts: Int = [], using block: ([NSAttributedString.Key : Any], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateAttributes(in:options:using:)")
-  func enumerateAttributesInRange(_ enumerationRange: NSRange, options opts: Int, usingBlock block: ([NSAttributedString.Key : Any], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateAttributesInRange(_ enumerationRange: NSRange, options opts: Int = [], usingBlock block: ([NSAttributedString.Key : Any], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
-  func enumerateAttribute(_ attrName: NSAttributedString.Key, in enumerationRange: NSRange, options opts: Int, using block: (Any?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateAttribute(_ attrName: NSAttributedString.Key, in enumerationRange: NSRange, options opts: Int = [], using block: (Any?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateAttribute(_:in:options:using:)")
-  func enumerateAttribute(_ attrName: NSAttributedString.Key, inRange enumerationRange: NSRange, options opts: Int, usingBlock block: (Any?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateAttribute(_ attrName: NSAttributedString.Key, inRange enumerationRange: NSRange, options opts: Int = [], usingBlock block: (Any?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
 }
 @available(*, unavailable, message: "Not available in Swift")
 typealias NSAttributedStringEnumerationOptions = Int
@@ -96,7 +96,7 @@ class NSMutableAttributedString : NSAttributedString {
 
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: Int, locale: Locale?, arguments: CVaListPointer)
+  init(__format format: NSAttributedString, options: Int = [], locale: Locale?, arguments: CVaListPointer)
 }
 extension NSMutableAttributedString {
   var mutableString: NSMutableString { get }
@@ -243,7 +243,7 @@ extension NSAttributedString {
 
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: Int, locale: Locale?, arguments: CVaListPointer)
+  init(__format format: NSAttributedString, options: Int = [], locale: Locale?, arguments: CVaListPointer)
 }
 extension NSMutableAttributedString {
 }

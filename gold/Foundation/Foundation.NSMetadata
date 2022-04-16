@@ -40,10 +40,10 @@ class NSMetadataQuery : NSObject {
   @available(swift, obsoleted: 3, renamed: "enumerateResults(_:)")
   func enumerateResultsUsingBlock(_ block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 7.0, *)
-  func enumerateResults(withOptions opts: Int, using block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateResults(options opts: Int = [], using block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "enumerateResults(withOptions:using:)")
-  func enumerateResultsWithOptions(_ opts: Int, usingBlock block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  @available(swift, obsoleted: 3, renamed: "enumerateResults(options:using:)")
+  func enumerateResultsWithOptions(_ opts: Int = [], usingBlock block: (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   var results: [Any] { get }
   func index(ofResult result: Any) -> Int
   @available(swift, obsoleted: 3, renamed: "index(ofResult:)")
