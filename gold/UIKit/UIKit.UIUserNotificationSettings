@@ -1,128 +1,50 @@
-@_exported import Foundation
-
-typealias UIUserNotificationType = Int
-var UIUserNotificationTypeNone: Int { get }
-var UIUserNotificationTypeBadge: Int { get }
-var UIUserNotificationTypeSound: Int { get }
-var UIUserNotificationTypeAlert: Int { get }
-@available(iOS, introduced: 9.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction")
-enum UIUserNotificationActionBehavior : UInt, @unchecked Sendable {
-  init?(rawValue: UInt)
-  var rawValue: UInt { get }
-  typealias RawValue = UInt
-  case `default`
-  @available(swift, obsoleted: 3, renamed: "default")
-  static var Default: UIUserNotificationActionBehavior { get }
-  case textInput
-  @available(swift, obsoleted: 3, renamed: "textInput")
-  static var TextInput: UIUserNotificationActionBehavior { get }
-}
-@available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationActionOptions")
-enum UIUserNotificationActivationMode : UInt, @unchecked Sendable {
-  init?(rawValue: UInt)
-  var rawValue: UInt { get }
-  typealias RawValue = UInt
-  case foreground
-  @available(swift, obsoleted: 3, renamed: "foreground")
-  static var Foreground: UIUserNotificationActivationMode { get }
-  case background
-  @available(swift, obsoleted: 3, renamed: "background")
-  static var Background: UIUserNotificationActivationMode { get }
-}
-@available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]")
-enum UIUserNotificationActionContext : UInt, @unchecked Sendable {
-  init?(rawValue: UInt)
-  var rawValue: UInt { get }
-  typealias RawValue = UInt
-  case `default`
-  @available(swift, obsoleted: 3, renamed: "default")
-  static var Default: UIUserNotificationActionContext { get }
-  case minimal
-  @available(swift, obsoleted: 3, renamed: "minimal")
-  static var Minimal: UIUserNotificationActionContext { get }
-}
-@available(iOS, introduced: 9.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNTextInputNotificationAction textInputButtonTitle]")
-let UIUserNotificationTextInputActionButtonTitleKey: String
-@available(iOS, introduced: 9.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNTextInputNotificationResponse userText]")
-let UIUserNotificationActionResponseTypedTextKey: String
-@available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationSettings")
-@MainActor class UIUserNotificationSettings : NSObject {
-  convenience init(types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?)
-  @available(swift, obsoleted: 3, renamed: "init(types:categories:)")
-  convenience init(forTypes types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?)
-  @available(*, unavailable, renamed: "init(types:categories:)", message: "Not available in Swift")
-  class func settingsForTypes(_ types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Self
-  var types: UIUserNotificationType { get }
-  var categories: Set<UIUserNotificationCategory>? { get }
-  init()
-}
-@available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationCategory")
-@MainActor class UIUserNotificationCategory : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
-  init()
-  init?(coder: NSCoder)
-  var identifier: String? { get }
-  func actions(for context: UIUserNotificationActionContext) -> [UIUserNotificationAction]?
-  @available(swift, obsoleted: 3, renamed: "actions(for:)")
-  func actionsForContext(_ context: UIUserNotificationActionContext) -> [UIUserNotificationAction]?
-  @available(iOS 8.0, *)
-  class var supportsSecureCoding: Bool { get }
-  @available(iOS 8.0, *)
-  func copy(with zone: NSZone? = nil) -> Any
-  @available(iOS 8.0, *)
-  func mutableCopy(with zone: NSZone? = nil) -> Any
-  @available(iOS 8.0, *)
-  func encode(with coder: NSCoder)
-}
-@available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationCategory")
-@MainActor class UIMutableUserNotificationCategory : UIUserNotificationCategory {
-  var identifier: String?
-  func setActions(_ actions: [UIUserNotificationAction]?, for context: UIUserNotificationActionContext)
-  @available(swift, obsoleted: 3, renamed: "setActions(_:for:)")
-  func setActions(_ actions: [UIUserNotificationAction]?, forContext context: UIUserNotificationActionContext)
-  init()
-  init?(coder: NSCoder)
-}
-@available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationAction")
-@MainActor class UIUserNotificationAction : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
-  init()
-  init?(coder: NSCoder)
-  var identifier: String? { get }
-  var title: String? { get }
-  @available(iOS 9.0, *)
-  var behavior: UIUserNotificationActionBehavior { get }
-  @available(iOS 9.0, *)
-  var parameters: [AnyHashable : Any] { get }
-  var activationMode: UIUserNotificationActivationMode { get }
-  var isAuthenticationRequired: Bool { get }
-  @available(swift, obsoleted: 3, renamed: "isAuthenticationRequired")
-  var authenticationRequired: Bool { get }
-  var isDestructive: Bool { get }
-  @available(swift, obsoleted: 3, renamed: "isDestructive")
-  var destructive: Bool { get }
-  @available(iOS 8.0, *)
-  class var supportsSecureCoding: Bool { get }
-  @available(iOS 8.0, *)
-  func copy(with zone: NSZone? = nil) -> Any
-  @available(iOS 8.0, *)
-  func mutableCopy(with zone: NSZone? = nil) -> Any
-  @available(iOS 8.0, *)
-  func encode(with coder: NSCoder)
-}
-@available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationAction")
-@MainActor class UIMutableUserNotificationAction : UIUserNotificationAction {
-  var identifier: String?
-  var title: String?
-  @available(iOS 9.0, *)
-  var behavior: UIUserNotificationActionBehavior
-  @available(iOS 9.0, *)
-  var parameters: [AnyHashable : Any]
-  var activationMode: UIUserNotificationActivationMode
-  var isAuthenticationRequired: Bool
-  @available(swift, obsoleted: 3, renamed: "isAuthenticationRequired")
-  var authenticationRequired: Bool
-  var isDestructive: Bool
-  @available(swift, obsoleted: 3, renamed: "isDestructive")
-  var destructive: Bool
-  init()
-  init?(coder: NSCoder)
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
+#import <FileProvider/NSFileProviderItem.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
+#import <UIKit/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIUserNotificationSettings'

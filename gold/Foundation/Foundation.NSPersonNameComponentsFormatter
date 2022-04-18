@@ -26,8 +26,8 @@ extension PersonNameComponentsFormatter {
     static var Abbreviated: PersonNameComponentsFormatter.Style { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSPersonNameComponentsFormatterOptions = Int
-var NSPersonNameComponentsFormatterPhonetic: Int { get }
 @available(iOS 9.0, *)
 @available(swift, obsoleted: 3, renamed: "PersonNameComponentsFormatter")
 typealias NSPersonNameComponentsFormatter = PersonNameComponentsFormatter
@@ -39,9 +39,9 @@ class PersonNameComponentsFormatter : Formatter {
   var phonetic: Bool
   @available(iOS 15.0, *)
   var locale: Locale!
-  class func localizedString(from components: PersonNameComponents, style nameFormatStyle: PersonNameComponentsFormatter.Style, options nameOptions: NSPersonNameComponentsFormatterOptions = []) -> String
+  class func localizedString(from components: PersonNameComponents, style nameFormatStyle: PersonNameComponentsFormatter.Style, options nameOptions: Int = []) -> String
   @available(swift, obsoleted: 3, renamed: "localizedString(from:style:options:)")
-  class func localizedStringFromPersonNameComponents(_ components: PersonNameComponents, style nameFormatStyle: PersonNameComponentsFormatter.Style, options nameOptions: NSPersonNameComponentsFormatterOptions = []) -> String
+  class func localizedStringFromPersonNameComponents(_ components: PersonNameComponents, style nameFormatStyle: PersonNameComponentsFormatter.Style, options nameOptions: Int = []) -> String
   func string(from components: PersonNameComponents) -> String
   @available(swift, obsoleted: 3, renamed: "string(from:)")
   func stringFromPersonNameComponents(_ components: PersonNameComponents) -> String

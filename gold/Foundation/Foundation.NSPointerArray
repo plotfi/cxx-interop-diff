@@ -2,10 +2,10 @@
 
 @available(iOS 6.0, *)
 class NSPointerArray : NSObject, NSFastEnumeration, NSCopying, NSSecureCoding {
-  init(options: NSPointerFunctionsOptions = [])
+  init(options: Int = [])
   init(pointerFunctions functions: NSPointerFunctions)
   @available(*, unavailable, renamed: "init(options:)", message: "Not available in Swift")
-  class func pointerArrayWithOptions(_ options: NSPointerFunctionsOptions = []) -> NSPointerArray
+  class func pointerArrayWithOptions(_ options: Int = []) -> NSPointerArray
   @available(*, unavailable, renamed: "init(pointerFunctions:)", message: "Not available in Swift")
   class func pointerArrayWithPointerFunctions(_ functions: NSPointerFunctions) -> NSPointerArray
   @NSCopying var pointerFunctions: NSPointerFunctions { get }

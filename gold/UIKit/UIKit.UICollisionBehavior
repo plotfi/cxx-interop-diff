@@ -1,52 +1,50 @@
-@_exported import Foundation
-
-typealias UICollisionBehaviorMode = Int
-var UICollisionBehaviorModeItems: Int { get }
-var UICollisionBehaviorModeBoundaries: Int { get }
-var UICollisionBehaviorModeEverything: Int { get }
-@MainActor protocol UICollisionBehaviorDelegate : NSObjectProtocol {
-  @available(iOS 7.0, *)
-  optional func collisionBehavior(_ behavior: UICollisionBehavior, beganContactFor item1: UIDynamicItem, with item2: UIDynamicItem, at p: CGPoint)
-  @available(swift, obsoleted: 3, renamed: "collisionBehavior(_:beganContactFor:with:at:)")
-  optional func collisionBehavior(_ behavior: UICollisionBehavior, beganContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem, atPoint p: CGPoint)
-  @available(iOS 7.0, *)
-  optional func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item1: UIDynamicItem, with item2: UIDynamicItem)
-  @available(swift, obsoleted: 3, renamed: "collisionBehavior(_:endedContactFor:with:)")
-  optional func collisionBehavior(_ behavior: UICollisionBehavior, endedContactForItem item1: UIDynamicItem, withItem item2: UIDynamicItem)
-  @available(iOS 7.0, *)
-  optional func collisionBehavior(_ behavior: UICollisionBehavior, beganContactFor item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, at p: CGPoint)
-  @available(swift, obsoleted: 3, renamed: "collisionBehavior(_:beganContactFor:withBoundaryIdentifier:at:)")
-  optional func collisionBehavior(_ behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?, atPoint p: CGPoint)
-  @available(iOS 7.0, *)
-  optional func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?)
-  @available(swift, obsoleted: 3, renamed: "collisionBehavior(_:endedContactFor:withBoundaryIdentifier:)")
-  optional func collisionBehavior(_ behavior: UICollisionBehavior, endedContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?)
-}
-@available(iOS 7.0, *)
-@MainActor class UICollisionBehavior : UIDynamicBehavior {
-  init(items: [UIDynamicItem])
-  func addItem(_ item: UIDynamicItem)
-  func removeItem(_ item: UIDynamicItem)
-  var items: [UIDynamicItem] { get }
-  var collisionMode: UICollisionBehaviorMode
-  var translatesReferenceBoundsIntoBoundary: Bool
-  func setTranslatesReferenceBoundsIntoBoundary(with insets: UIEdgeInsets)
-  @available(swift, obsoleted: 3, renamed: "setTranslatesReferenceBoundsIntoBoundary(with:)")
-  func setTranslatesReferenceBoundsIntoBoundaryWithInsets(_ insets: UIEdgeInsets)
-  func addBoundary(withIdentifier identifier: NSCopying, for bezierPath: UIBezierPath)
-  @available(swift, obsoleted: 3, renamed: "addBoundary(withIdentifier:for:)")
-  func addBoundaryWithIdentifier(_ identifier: NSCopying, forPath bezierPath: UIBezierPath)
-  func addBoundary(withIdentifier identifier: NSCopying, from p1: CGPoint, to p2: CGPoint)
-  @available(swift, obsoleted: 3, renamed: "addBoundary(withIdentifier:from:to:)")
-  func addBoundaryWithIdentifier(_ identifier: NSCopying, fromPoint p1: CGPoint, toPoint p2: CGPoint)
-  func boundary(withIdentifier identifier: NSCopying) -> UIBezierPath?
-  @available(swift, obsoleted: 3, renamed: "boundary(withIdentifier:)")
-  func boundaryWithIdentifier(_ identifier: NSCopying) -> UIBezierPath?
-  func removeBoundary(withIdentifier identifier: NSCopying)
-  @available(swift, obsoleted: 3, renamed: "removeBoundary(withIdentifier:)")
-  func removeBoundaryWithIdentifier(_ identifier: NSCopying)
-  var boundaryIdentifiers: [NSCopying]? { get }
-  func removeAllBoundaries()
-  weak var collisionDelegate: @sil_weak UICollisionBehaviorDelegate?
-  convenience init()
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
+#import <FileProvider/NSFileProviderItem.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
+#import <UIKit/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UICollisionBehavior'

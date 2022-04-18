@@ -1,9 +1,9 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSFileVersionAddingOptions = Int
-var NSFileVersionAddingByMoving: Int { get }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSFileVersionReplacingOptions = Int
-var NSFileVersionReplacingByMoving: Int { get }
 @available(iOS 5.0, *)
 class NSFileVersion : NSObject {
   class func currentVersionOfItem(at url: URL) -> NSFileVersion?
@@ -28,10 +28,10 @@ class NSFileVersion : NSObject {
   @available(*, unavailable, renamed: "version(itemAt:forPersistentIdentifier:)", message: "Not available in Swift")
   class func versionOfItemAtURL(_ url: URL, forPersistentIdentifier persistentIdentifier: Any) -> NSFileVersion?
   @available(iOS, unavailable)
-  class func addOfItem(at url: URL, withContentsOf contentsURL: URL, options: NSFileVersionAddingOptions = []) throws -> NSFileVersion
+  class func addOfItem(at url: URL, withContentsOf contentsURL: URL, options: Int = []) throws -> NSFileVersion
   @available(swift, obsoleted: 3, renamed: "addOfItem(at:withContentsOf:options:)")
   @available(iOS, unavailable)
-  class func addVersionOfItemAtURL(_ url: URL, withContentsOfURL contentsURL: URL, options: NSFileVersionAddingOptions = []) throws -> NSFileVersion
+  class func addVersionOfItemAtURL(_ url: URL, withContentsOfURL contentsURL: URL, options: Int = []) throws -> NSFileVersion
   @available(iOS, unavailable)
   class func temporaryDirectoryURLForNewVersionOfItem(at url: URL) -> URL
   @available(swift, obsoleted: 3, renamed: "temporaryDirectoryURLForNewVersionOfItem(at:)")
@@ -61,9 +61,9 @@ class NSFileVersion : NSObject {
   var hasLocalContents: Bool { get }
   @available(iOS 8.0, *)
   var hasThumbnail: Bool { get }
-  func replaceItem(at url: URL, options: NSFileVersionReplacingOptions = []) throws -> URL
+  func replaceItem(at url: URL, options: Int = []) throws -> URL
   @available(swift, obsoleted: 3, renamed: "replaceItem(at:options:)")
-  func replaceItemAtURL(_ url: URL, options: NSFileVersionReplacingOptions = []) throws -> URL
+  func replaceItemAtURL(_ url: URL, options: Int = []) throws -> URL
   func remove() throws
   class func removeOtherVersionsOfItem(at url: URL) throws
   @available(swift, obsoleted: 3, renamed: "removeOtherVersionsOfItem(at:)")

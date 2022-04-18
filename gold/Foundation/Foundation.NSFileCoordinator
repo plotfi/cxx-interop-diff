@@ -1,27 +1,17 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSFileCoordinatorReadingOptions = Int
-var NSFileCoordinatorReadingWithoutChanges: Int { get }
-var NSFileCoordinatorReadingResolvesSymbolicLink: Int { get }
-@available(iOS 8.0, *)
-var NSFileCoordinatorReadingImmediatelyAvailableMetadataOnly: Int { get }
-@available(iOS 8.0, *)
-var NSFileCoordinatorReadingForUploading: Int { get }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSFileCoordinatorWritingOptions = Int
-var NSFileCoordinatorWritingForDeleting: Int { get }
-var NSFileCoordinatorWritingForMoving: Int { get }
-var NSFileCoordinatorWritingForMerging: Int { get }
-var NSFileCoordinatorWritingForReplacing: Int { get }
-@available(iOS 8.0, *)
-var NSFileCoordinatorWritingContentIndependentMetadataOnly: Int { get }
 @available(iOS 8.0, *)
 class NSFileAccessIntent : NSObject {
-  class func readingIntent(with url: URL, options: NSFileCoordinatorReadingOptions = []) -> Self
+  class func readingIntent(with url: URL, options: Int = []) -> Self
   @available(swift, obsoleted: 3, renamed: "readingIntent(with:options:)")
-  class func readingIntentWithURL(_ url: URL, options: NSFileCoordinatorReadingOptions = []) -> Self
-  class func writingIntent(with url: URL, options: NSFileCoordinatorWritingOptions = []) -> Self
+  class func readingIntentWithURL(_ url: URL, options: Int = []) -> Self
+  class func writingIntent(with url: URL, options: Int = []) -> Self
   @available(swift, obsoleted: 3, renamed: "writingIntent(with:options:)")
-  class func writingIntentWithURL(_ url: URL, options: NSFileCoordinatorWritingOptions = []) -> Self
+  class func writingIntentWithURL(_ url: URL, options: Int = []) -> Self
   var url: URL { get }
   @available(swift, obsoleted: 3, renamed: "url")
   var URL: URL { get }
@@ -40,21 +30,21 @@ class NSFileCoordinator : NSObject {
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "coordinate(with:queue:byAccessor:)")
   func coordinateAccessWithIntents(_ intents: [NSFileAccessIntent], queue: OperationQueue, byAccessor accessor: @escaping (Error?) -> Void)
-  func coordinate(readingItemAt url: URL, options: NSFileCoordinatorReadingOptions = [], error outError: NSErrorPointer, byAccessor reader: (URL) -> Void)
+  func coordinate(readingItemAt url: URL, options: Int = [], error outError: NSErrorPointer, byAccessor reader: (URL) -> Void)
   @available(swift, obsoleted: 3, renamed: "coordinate(readingItemAt:options:error:byAccessor:)")
-  func coordinateReadingItemAtURL(_ url: URL, options: NSFileCoordinatorReadingOptions = [], error outError: NSErrorPointer, byAccessor reader: (URL) -> Void)
-  func coordinate(writingItemAt url: URL, options: NSFileCoordinatorWritingOptions = [], error outError: NSErrorPointer, byAccessor writer: (URL) -> Void)
+  func coordinateReadingItemAtURL(_ url: URL, options: Int = [], error outError: NSErrorPointer, byAccessor reader: (URL) -> Void)
+  func coordinate(writingItemAt url: URL, options: Int = [], error outError: NSErrorPointer, byAccessor writer: (URL) -> Void)
   @available(swift, obsoleted: 3, renamed: "coordinate(writingItemAt:options:error:byAccessor:)")
-  func coordinateWritingItemAtURL(_ url: URL, options: NSFileCoordinatorWritingOptions = [], error outError: NSErrorPointer, byAccessor writer: (URL) -> Void)
-  func coordinate(readingItemAt readingURL: URL, options readingOptions: NSFileCoordinatorReadingOptions = [], writingItemAt writingURL: URL, options writingOptions: NSFileCoordinatorWritingOptions = [], error outError: NSErrorPointer, byAccessor readerWriter: (URL, URL) -> Void)
+  func coordinateWritingItemAtURL(_ url: URL, options: Int = [], error outError: NSErrorPointer, byAccessor writer: (URL) -> Void)
+  func coordinate(readingItemAt readingURL: URL, options readingOptions: Int = [], writingItemAt writingURL: URL, options writingOptions: Int = [], error outError: NSErrorPointer, byAccessor readerWriter: (URL, URL) -> Void)
   @available(swift, obsoleted: 3, renamed: "coordinate(readingItemAt:options:writingItemAt:options:error:byAccessor:)")
-  func coordinateReadingItemAtURL(_ readingURL: URL, options readingOptions: NSFileCoordinatorReadingOptions = [], writingItemAtURL writingURL: URL, options writingOptions: NSFileCoordinatorWritingOptions = [], error outError: NSErrorPointer, byAccessor readerWriter: (URL, URL) -> Void)
-  func coordinate(writingItemAt url1: URL, options options1: NSFileCoordinatorWritingOptions = [], writingItemAt url2: URL, options options2: NSFileCoordinatorWritingOptions = [], error outError: NSErrorPointer, byAccessor writer: (URL, URL) -> Void)
+  func coordinateReadingItemAtURL(_ readingURL: URL, options readingOptions: Int = [], writingItemAtURL writingURL: URL, options writingOptions: Int = [], error outError: NSErrorPointer, byAccessor readerWriter: (URL, URL) -> Void)
+  func coordinate(writingItemAt url1: URL, options options1: Int = [], writingItemAt url2: URL, options options2: Int = [], error outError: NSErrorPointer, byAccessor writer: (URL, URL) -> Void)
   @available(swift, obsoleted: 3, renamed: "coordinate(writingItemAt:options:writingItemAt:options:error:byAccessor:)")
-  func coordinateWritingItemAtURL(_ url1: URL, options options1: NSFileCoordinatorWritingOptions = [], writingItemAtURL url2: URL, options options2: NSFileCoordinatorWritingOptions = [], error outError: NSErrorPointer, byAccessor writer: (URL, URL) -> Void)
-  func prepare(forReadingItemsAt readingURLs: [URL], options readingOptions: NSFileCoordinatorReadingOptions = [], writingItemsAt writingURLs: [URL], options writingOptions: NSFileCoordinatorWritingOptions = [], error outError: NSErrorPointer, byAccessor batchAccessor: (@escaping () -> Void) -> Void)
+  func coordinateWritingItemAtURL(_ url1: URL, options options1: Int = [], writingItemAtURL url2: URL, options options2: Int = [], error outError: NSErrorPointer, byAccessor writer: (URL, URL) -> Void)
+  func prepare(forReadingItemsAt readingURLs: [URL], options readingOptions: Int = [], writingItemsAt writingURLs: [URL], options writingOptions: Int = [], error outError: NSErrorPointer, byAccessor batchAccessor: (@escaping () -> Void) -> Void)
   @available(swift, obsoleted: 3, renamed: "prepare(forReadingItemsAt:options:writingItemsAt:options:error:byAccessor:)")
-  func prepareForReadingItemsAtURLs(_ readingURLs: [URL], options readingOptions: NSFileCoordinatorReadingOptions = [], writingItemsAtURLs writingURLs: [URL], options writingOptions: NSFileCoordinatorWritingOptions = [], error outError: NSErrorPointer, byAccessor batchAccessor: (@escaping () -> Void) -> Void)
+  func prepareForReadingItemsAtURLs(_ readingURLs: [URL], options readingOptions: Int = [], writingItemsAtURLs writingURLs: [URL], options writingOptions: Int = [], error outError: NSErrorPointer, byAccessor batchAccessor: (@escaping () -> Void) -> Void)
   @available(iOS 6.0, *)
   func item(at oldURL: URL, willMoveTo newURL: URL)
   @available(iOS 6.0, *)

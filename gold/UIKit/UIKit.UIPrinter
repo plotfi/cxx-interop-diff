@@ -1,153 +1,50 @@
-@_exported import Foundation
-
-@available(iOS 8.0, *)
-@MainActor class UIPrinter : NSObject {
-
-  /**
-   *  @method     printerWithURL:
-   *  @abstract   Create a printer from its URL
-   *  @discussion This method creates a new printer object from the printer's URL.
-   *	        A UIPrinter object is returned even if the printer is not available
-   *	        on the network.
-   */
-  /*not inherited*/ init(url: URL)
-
-  /**
-   *  @method     printerWithURL:
-   *  @abstract   Create a printer from its URL
-   *  @discussion This method creates a new printer object from the printer's URL.
-   *	        A UIPrinter object is returned even if the printer is not available
-   *	        on the network.
-   */
-  @available(swift, obsoleted: 3, renamed: "init(url:)")
-  /*not inherited*/ init(URL url: URL)
-
-  /**
-   *  @method     printerWithURL:
-   *  @abstract   Create a printer from its URL
-   *  @discussion This method creates a new printer object from the printer's URL.
-   *	        A UIPrinter object is returned even if the printer is not available
-   *	        on the network.
-   */
-  @available(*, unavailable, renamed: "init(url:)", message: "Not available in Swift")
-  class func printerWithURL(_ url: URL) -> UIPrinter
-
-  /**
-   *  @abstract   Return the URL of the printer.
-   *  @discussion This method returns the full URL of the printer which can be
-   *	        used in future calls to printerWithURL to access the same
-   *	        printer.
-   */
-  var url: URL { get }
-
-  /**
-   *  @abstract   Return the URL of the printer.
-   *  @discussion This method returns the full URL of the printer which can be
-   *	        used in future calls to printerWithURL to access the same
-   *	        printer.
-   */
-  @available(swift, obsoleted: 3, renamed: "url")
-  var URL: URL { get }
-
-  /**
-   *  @abstract   Return a human-readable printer name.
-   *  @discussion This method returns the printer name suitable for displaying in the UI.
-   */
-  var displayName: String { get }
-
-  /**
-   *  @abstract   Return a human-readable location.
-   *  @discussion This method returns the printer's location. This is human-readable text that
-   * 	        usually appears in the UI below the printer's name (such as "Front Office").
-   *  	        Returns nil if the printer doesn't have a location string.
-   *		This property's value is undefined until contactPrinter: has been called and
-   *		completed successfully.
-   */
-  var displayLocation: String? { get }
-
-  /**
-   *  @abstract   Returns the supported job types of this printer.
-   *  @discussion This method returns a mask with all the UIPrinterJobTypes values that
-   *		the printer supports.
-   *		This property's value is undefined until contactPrinter: has been called and
-   *		completed successfully.
-   */
-  var supportedJobTypes: UIPrinterJobTypes { get }
-
-  /**
-   *  @abstract   Return make (manufacturer) and model of the printer.
-   *  @discussion This method returns the make and model of the printer, which
-   *		is usually the manufacturer, model, and model number.
-   *		This property's value is undefined until contactPrinter: has been called and
-   *		completed successfully.
-   */
-  var makeAndModel: String? { get }
-
-  /**
-   *  @abstract   Return whether this printer supports color printing.
-   *  @discussion This method returns YES if the printer supports full color printing, NO
-   * 		otherwise.
-   *		This property's value is undefined until contactPrinter: has been called and
-   *		completed successfully.
-   *
-   */
-  var supportsColor: Bool { get }
-
-  /**
-   *  @abstract   Return whether this printer supports duplex (double-sided) printing.
-   *  @discussion This method returns YES if the printer supports duplex (double-sided)
-   *		printing, NO otherwise.
-   *		This property's value is undefined until contactPrinter: has been called and
-   *		completed successfully.
-   */
-  var supportsDuplex: Bool { get }
-
-  /**
-   *  @method     contactPrinter:
-   *  @abstract   Check if printer is reachable, and update printer information.
-   *  @discussion This method checks to see if this printer is available on the network,
-   * 		and sets the displayName, displayLocation, supportedJobTypes, makeAndModel,
-   *		supportsColor, and supportsDuplex for the printer.
-   *		The operation can take up to 30 seconds.
-   */
-  func contactPrinter(_ completionHandler: (@Sendable (Bool) -> Void)? = nil)
-
-  /**
-   *  @method     contactPrinter:
-   *  @abstract   Check if printer is reachable, and update printer information.
-   *  @discussion This method checks to see if this printer is available on the network,
-   * 		and sets the displayName, displayLocation, supportedJobTypes, makeAndModel,
-   *		supportsColor, and supportsDuplex for the printer.
-   *		The operation can take up to 30 seconds.
-   */
-  func contactPrinter() async -> Bool
-  init()
-}
-
-/**
- *  @enum       UIPrinterJobTypes
- *  @abstract   Job types supported by a printer.
- *  @discussion This enumeration provides the abstract job types
- *  		reported by the UIPrinter supportedJobTypes method.
- *  @constant   UIPrinterJobTypeUnknown		Unknown printer support.
- *  @constant   UIPrinterJobTypeDocument   	The printer supports standard document printing.
- *  @constant   UIPrinterJobTypeEnvelope	The printer supports printing on envelopes.
- *  @constant   UIPrinterJobTypeLabel      	The printer supports printing on cut labels.
- *  @constant   UIPrinterJobTypePhoto      	The printer supports printing with photographic print quality.
- *  @constant   UIPrinterJobTypeReceipt    	The printer supports printing receipts on continuous rolls.
- *  @constant   UIPrinterJobTypeRoll       	The printer supports printing documents or photos on continuous rolls.
- *  @constant   UIPrinterJobTypeLargeFormat     The printer supports printing larger than ISO A3 size.
- *  @constant   UIPrinterJobTypePostcard        The printer supports printing on postcards.
- */
-typealias UIPrinterJobTypes = Int
-@available(swift, obsoleted: 3, renamed: "unknown")
-var UIPrinterJobTypeUnknown: Int { get }
-var unknown: Int { get }
-var UIPrinterJobTypeDocument: Int { get }
-var UIPrinterJobTypeEnvelope: Int { get }
-var UIPrinterJobTypeLabel: Int { get }
-var UIPrinterJobTypePhoto: Int { get }
-var UIPrinterJobTypeReceipt: Int { get }
-var UIPrinterJobTypeRoll: Int { get }
-var UIPrinterJobTypeLargeFormat: Int { get }
-var UIPrinterJobTypePostcard: Int { get }
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
+#import <FileProvider/NSFileProviderItem.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
+#import <UIKit/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIPrinter'

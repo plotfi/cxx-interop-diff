@@ -1,96 +1,50 @@
-@_exported import Foundation
-
-@available(swift, obsoleted: 4.2, renamed: "UITabBarItem.SystemItem")
-typealias UITabBarSystemItem = UITabBarItem.SystemItem
-extension UITabBarItem {
-  enum SystemItem : Int, @unchecked Sendable {
-    init?(rawValue: Int)
-    var rawValue: Int { get }
-    typealias RawValue = Int
-    case more
-    @available(swift, obsoleted: 3, renamed: "more")
-    static var More: UITabBarItem.SystemItem { get }
-    case favorites
-    @available(swift, obsoleted: 3, renamed: "favorites")
-    static var Favorites: UITabBarItem.SystemItem { get }
-    case featured
-    @available(swift, obsoleted: 3, renamed: "featured")
-    static var Featured: UITabBarItem.SystemItem { get }
-    case topRated
-    @available(swift, obsoleted: 3, renamed: "topRated")
-    static var TopRated: UITabBarItem.SystemItem { get }
-    case recents
-    @available(swift, obsoleted: 3, renamed: "recents")
-    static var Recents: UITabBarItem.SystemItem { get }
-    case contacts
-    @available(swift, obsoleted: 3, renamed: "contacts")
-    static var Contacts: UITabBarItem.SystemItem { get }
-    case history
-    @available(swift, obsoleted: 3, renamed: "history")
-    static var History: UITabBarItem.SystemItem { get }
-    case bookmarks
-    @available(swift, obsoleted: 3, renamed: "bookmarks")
-    static var Bookmarks: UITabBarItem.SystemItem { get }
-    case search
-    @available(swift, obsoleted: 3, renamed: "search")
-    static var Search: UITabBarItem.SystemItem { get }
-    case downloads
-    @available(swift, obsoleted: 3, renamed: "downloads")
-    static var Downloads: UITabBarItem.SystemItem { get }
-    case mostRecent
-    @available(swift, obsoleted: 3, renamed: "mostRecent")
-    static var MostRecent: UITabBarItem.SystemItem { get }
-    case mostViewed
-    @available(swift, obsoleted: 3, renamed: "mostViewed")
-    static var MostViewed: UITabBarItem.SystemItem { get }
-  }
-}
-@available(iOS 2.0, *)
-@MainActor class UITabBarItem : UIBarItem {
-  init()
-  init?(coder: NSCoder)
-  convenience init(title: String?, image: UIImage?, tag: Int)
-  @available(iOS 7.0, *)
-  convenience init(title: String?, image: UIImage?, selectedImage: UIImage?)
-  convenience init(tabBarSystemItem systemItem: UITabBarItem.SystemItem, tag: Int)
-  @available(iOS 7.0, *)
-  var selectedImage: UIImage?
-  var badgeValue: String?
-  @available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, message: "Use initWithTitle:image:selectedImage: or the image and selectedImage properties along with UIImageRenderingModeAlwaysOriginal")
-  func setFinishedSelectedImage(_ selectedImage: UIImage?, withFinishedUnselectedImage unselectedImage: UIImage?)
-  @available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
-  func finishedSelectedImage() -> UIImage?
-  @available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
-  func finishedUnselectedImage() -> UIImage?
-  @available(iOS 5.0, *)
-  var titlePositionAdjustment: UIOffset
-
-  /// If this item displays a badge, this color will be used for the badge's background. If set to nil, the default background color will be used instead.
-  @available(iOS 10.0, *)
-  @NSCopying var badgeColor: UIColor?
-
-  /// Provide text attributes to use to draw the badge text for the given singular control state (Normal, Disabled, Focused, Selected, or Highlighted). Default values will be supplied for keys that are not provided by this dictionary. See NSAttributedString.h for details on what keys are available.
-  @available(iOS 10.0, *)
-  func setBadgeTextAttributes(_ textAttributes: [NSAttributedString.Key : Any]?, forState state: UIControlState)
-
-  /// Returns attributes previously set via -setBadgeTextAttributes:forState:.
-  @available(iOS 10.0, *)
-  func badgeTextAttributes(forState state: UIControlState) -> [NSAttributedString.Key : Any]?
-
-  /// Returns attributes previously set via -setBadgeTextAttributes:forState:.
-  @available(iOS 10.0, *)
-  @available(swift, obsoleted: 3, renamed: "badgeTextAttributes(forState:)")
-  func badgeTextAttributesForState(_ state: UIControlState) -> [NSAttributedString.Key : Any]?
-
-  ///  When set and this item is selected, overrides the hosting tab bar's standardAppearance.
-  @available(iOS 13.0, *)
-  @NSCopying var standardAppearance: UITabBarAppearance?
-
-  ///  When set and this item is selected, overrides the hosting tab bar's scrollEdgeAppearance.
-  @available(iOS 15.0, *)
-  @NSCopying var scrollEdgeAppearance: UITabBarAppearance?
-}
-extension UITabBarItem : UISpringLoadedInteractionSupporting {
-  @available(iOS 11.0, *)
-  var isSpringLoaded: Bool
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
+#import <FileProvider/NSFileProviderItem.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
+#import <UIKit/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UITabBarItem'

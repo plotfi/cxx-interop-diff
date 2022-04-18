@@ -105,20 +105,20 @@ extension NSSet {
   @available(swift, obsoleted: 3, renamed: "enumerateObjects(_:)")
   func enumerateObjectsUsingBlock(_ block: (Any, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
-  func enumerateObjects(options opts: NSEnumerationOptions = [], using block: (Any, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateObjects(options opts: Int = [], using block: (Any, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateObjects(options:using:)")
-  func enumerateObjectsWithOptions(_ opts: NSEnumerationOptions = [], usingBlock block: (Any, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateObjectsWithOptions(_ opts: Int = [], usingBlock block: (Any, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   func objects(passingTest predicate: (Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "objects(passingTest:)")
   func objectsPassingTest(_ predicate: (Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
   @available(iOS 4.0, *)
-  func objects(options opts: NSEnumerationOptions = [], passingTest predicate: (Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
+  func objects(options opts: Int = [], passingTest predicate: (Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "objects(options:passingTest:)")
-  func objectsWithOptions(_ opts: NSEnumerationOptions = [], passingTest predicate: (Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
+  func objectsWithOptions(_ opts: Int = [], passingTest predicate: (Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>
 }
 extension NSSet {
   @available(*, unavailable, renamed: "init()", message: "Not available in Swift")

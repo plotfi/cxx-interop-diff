@@ -144,26 +144,26 @@ class NSURL : NSObject, NSSecureCoding, NSCopying {
   @available(iOS 7.0, *)
   func setTemporaryResourceValue(_ value: Any?, forKey key: URLResourceKey)
   @available(iOS 4.0, *)
-  func bookmarkData(options: NSURLBookmarkCreationOptions = [], includingResourceValuesForKeys keys: [URLResourceKey]?, relativeTo relativeURL: URL?) throws -> Data
+  func bookmarkData(options: Int = [], includingResourceValuesForKeys keys: [URLResourceKey]?, relativeTo relativeURL: URL?) throws -> Data
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "bookmarkData(options:includingResourceValuesForKeys:relativeTo:)")
-  func bookmarkDataWithOptions(_ options: NSURLBookmarkCreationOptions = [], includingResourceValuesForKeys keys: [URLResourceKey]?, relativeToURL relativeURL: URL?) throws -> Data
+  func bookmarkDataWithOptions(_ options: Int = [], includingResourceValuesForKeys keys: [URLResourceKey]?, relativeToURL relativeURL: URL?) throws -> Data
   @available(iOS 4.0, *)
-  convenience init(resolvingBookmarkData bookmarkData: Data, options: NSURLBookmarkResolutionOptions = [], relativeTo relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
+  convenience init(resolvingBookmarkData bookmarkData: Data, options: Int = [], relativeTo relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "init(resolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)")
-  convenience init(byResolvingBookmarkData bookmarkData: Data, options: NSURLBookmarkResolutionOptions = [], relativeToURL relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
+  convenience init(byResolvingBookmarkData bookmarkData: Data, options: Int = [], relativeToURL relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
   @available(iOS 4.0, *)
   @available(*, unavailable, message: "Not available in Swift")
-  convenience init(byResolvingBookmarkData bookmarkData: Data, options: NSURLBookmarkResolutionOptions = [], relativeTo relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
+  convenience init(byResolvingBookmarkData bookmarkData: Data, options: Int = [], relativeTo relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "init(byResolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)")
   @available(*, unavailable, message: "Not available in Swift")
-  convenience init(byResolvingBookmarkData bookmarkData: Data, options: NSURLBookmarkResolutionOptions = [], relativeToURL relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
+  convenience init(byResolvingBookmarkData bookmarkData: Data, options: Int = [], relativeToURL relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws
   @available(iOS 4.0, *)
   @available(*, unavailable, renamed: "init(byResolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)", message: "Not available in Swift")
   @available(*, unavailable, message: "Not available in Swift")
-  class func URLByResolvingBookmarkData(_ bookmarkData: Data, options: NSURLBookmarkResolutionOptions = [], relativeToURL relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws -> Self
+  class func URLByResolvingBookmarkData(_ bookmarkData: Data, options: Int = [], relativeToURL relativeURL: URL?, bookmarkDataIsStale isStale: UnsafeMutablePointer<ObjCBool>?) throws -> Self
   @available(iOS 4.0, *)
   class func resourceValues(forKeys keys: [URLResourceKey], fromBookmarkData bookmarkData: Data) -> [URLResourceKey : Any]?
   @available(iOS 4.0, *)
@@ -180,13 +180,13 @@ class NSURL : NSObject, NSSecureCoding, NSCopying {
   @available(swift, obsoleted: 3, renamed: "bookmarkData(withContentsOf:)")
   class func bookmarkDataWithContentsOfURL(_ bookmarkFileURL: URL) throws -> Data
   @available(iOS 8.0, *)
-  convenience init(resolvingAliasFileAt url: URL, options: NSURLBookmarkResolutionOptions = []) throws
+  convenience init(resolvingAliasFileAt url: URL, options: Int = []) throws
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "init(resolvingAliasFileAt:options:)")
-  convenience init(byResolvingAliasFileAtURL url: URL, options: NSURLBookmarkResolutionOptions = []) throws
+  convenience init(byResolvingAliasFileAtURL url: URL, options: Int = []) throws
   @available(iOS 8.0, *)
   @available(*, unavailable, renamed: "init(resolvingAliasFileAt:options:)", message: "Not available in Swift")
-  class func URLByResolvingAliasFileAtURL(_ url: URL, options: NSURLBookmarkResolutionOptions = []) throws -> Self
+  class func URLByResolvingAliasFileAtURL(_ url: URL, options: Int = []) throws -> Self
   @available(iOS 8.0, *)
   func startAccessingSecurityScopedResource() -> Bool
   @available(iOS 8.0, *)
@@ -976,24 +976,10 @@ extension URLUbiquitousSharedItemPermissions {
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "URLUbiquitousSharedItemPermissions.readWrite")
 let NSURLUbiquitousSharedItemPermissionsReadWrite: URLUbiquitousSharedItemPermissions
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSURLBookmarkCreationOptions = Int
-@available(iOS, unavailable, introduced: 4.0, deprecated: 7.0, message: "Not supported")
-var NSURLBookmarkCreationPreferFileIDResolution: Int { get }
-var NSURLBookmarkCreationMinimalBookmark: Int { get }
-var NSURLBookmarkCreationSuitableForBookmarkFile: Int { get }
-@available(iOS, unavailable)
-var NSURLBookmarkCreationWithSecurityScope: Int { get }
-@available(iOS, unavailable)
-var NSURLBookmarkCreationSecurityScopeAllowOnlyReadAccess: Int { get }
-@available(iOS 5.0, *)
-var NSURLBookmarkCreationWithoutImplicitSecurityScope: Int { get }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSURLBookmarkResolutionOptions = Int
-var NSURLBookmarkResolutionWithoutUI: Int { get }
-var NSURLBookmarkResolutionWithoutMounting: Int { get }
-@available(iOS, unavailable)
-var NSURLBookmarkResolutionWithSecurityScope: Int { get }
-@available(iOS 14.2, *)
-var NSURLBookmarkResolutionWithoutImplicitStartAccessing: Int { get }
 @available(swift, obsoleted: 3, renamed: "NSURL.BookmarkFileCreationOptions")
 typealias NSURLBookmarkFileCreationOptions = NSURL.BookmarkFileCreationOptions
 extension NSURL {

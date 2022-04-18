@@ -6,15 +6,15 @@ protocol NSXPCProxyCreating {
   @available(iOS 9.0, *)
   optional func synchronousRemoteObjectProxyWithErrorHandler(_ handler: @escaping (Error) -> Void) -> Any
 }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSXPCConnectionOptions = Int
-var NSXPCConnectionPrivileged: Int { get }
 @available(iOS 6.0, *)
 class NSXPCConnection : NSObject, NSXPCProxyCreating {
   @available(iOS, unavailable)
   init(serviceName: String)
   var serviceName: String? { get }
   @available(iOS, unavailable)
-  init(machServiceName name: String, options: NSXPCConnectionOptions = [])
+  init(machServiceName name: String, options: Int = [])
   init(listenerEndpoint endpoint: NSXPCListenerEndpoint)
   var endpoint: NSXPCListenerEndpoint { get }
   var exportedInterface: NSXPCInterface?

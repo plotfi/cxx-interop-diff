@@ -58,28 +58,21 @@ class ProcessInfo : NSObject {
   var automaticTerminationSupportEnabled: Bool
   init()
 }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSActivityOptions = UInt64
-var NSActivityIdleDisplaySleepDisabled: UInt64 { get }
-var NSActivityIdleSystemSleepDisabled: UInt64 { get }
-var NSActivitySuddenTerminationDisabled: UInt64 { get }
-var NSActivityAutomaticTerminationDisabled: UInt64 { get }
-var NSActivityUserInitiated: UInt64 { get }
-var NSActivityUserInitiatedAllowingIdleSystemSleep: UInt64 { get }
-var NSActivityBackground: UInt64 { get }
-var NSActivityLatencyCritical: UInt64 { get }
 extension ProcessInfo {
   @available(iOS 7.0, *)
-  func beginActivity(options: NSActivityOptions = [], reason: String) -> NSObjectProtocol
+  func beginActivity(options: UInt64 = [], reason: String) -> NSObjectProtocol
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "beginActivity(options:reason:)")
-  func beginActivityWithOptions(_ options: NSActivityOptions = [], reason: String) -> NSObjectProtocol
+  func beginActivityWithOptions(_ options: UInt64 = [], reason: String) -> NSObjectProtocol
   @available(iOS 7.0, *)
   func endActivity(_ activity: NSObjectProtocol)
   @available(iOS 7.0, *)
-  func performActivity(options: NSActivityOptions = [], reason: String, using block: @escaping () -> Void)
+  func performActivity(options: UInt64 = [], reason: String, using block: @escaping () -> Void)
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "performActivity(options:reason:using:)")
-  func performActivityWithOptions(_ options: NSActivityOptions = [], reason: String, usingBlock block: @escaping () -> Void)
+  func performActivityWithOptions(_ options: UInt64 = [], reason: String, usingBlock block: @escaping () -> Void)
   @available(iOS 8.2, *)
   func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void)
   @available(iOS 8.2, *)

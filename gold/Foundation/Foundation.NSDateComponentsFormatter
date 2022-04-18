@@ -31,14 +31,8 @@ extension DateComponentsFormatter {
   }
 }
 @available(iOS 8.0, *)
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSDateComponentsFormatterZeroFormattingBehavior = Int
-var NSDateComponentsFormatterZeroFormattingBehaviorNone: Int { get }
-var NSDateComponentsFormatterZeroFormattingBehaviorDefault: Int { get }
-var NSDateComponentsFormatterZeroFormattingBehaviorDropLeading: Int { get }
-var NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle: Int { get }
-var NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing: Int { get }
-var NSDateComponentsFormatterZeroFormattingBehaviorDropAll: Int { get }
-var NSDateComponentsFormatterZeroFormattingBehaviorPad: Int { get }
 @available(iOS 8.0, *)
 class DateComponentsFormatter : Formatter {
   func string(for obj: Any?) -> String?
@@ -57,8 +51,8 @@ class DateComponentsFormatter : Formatter {
   @available(swift, obsoleted: 3, renamed: "localizedString(from:unitsStyle:)")
   class func localizedStringFromDateComponents(_ components: DateComponents, unitsStyle: DateComponentsFormatter.UnitsStyle) -> String?
   var unitsStyle: DateComponentsFormatter.UnitsStyle
-  var allowedUnits: NSCalendarUnit
-  var zeroFormattingBehavior: NSDateComponentsFormatterZeroFormattingBehavior
+  var allowedUnits: Int
+  var zeroFormattingBehavior: Int
   var calendar: Calendar?
   @available(iOS 11.0, *)
   var referenceDate: Date?

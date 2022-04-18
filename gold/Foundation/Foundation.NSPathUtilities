@@ -163,10 +163,6 @@ extension FileManager {
     static var TrashDirectory: FileManager.SearchPathDirectory { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSSearchPathDomainMask = Int
-var NSUserDomainMask: Int { get }
-var NSLocalDomainMask: Int { get }
-var NSNetworkDomainMask: Int { get }
-var NSSystemDomainMask: Int { get }
-var NSAllDomainsMask: Int { get }
-func NSSearchPathForDirectoriesInDomains(_ directory: FileManager.SearchPathDirectory, _ domainMask: NSSearchPathDomainMask, _ expandTilde: Bool) -> [String]
+func NSSearchPathForDirectoriesInDomains(_ directory: FileManager.SearchPathDirectory, _ domainMask: Int, _ expandTilde: Bool) -> [String]

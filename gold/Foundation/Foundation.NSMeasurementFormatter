@@ -1,12 +1,10 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
 typealias NSMeasurementFormatterUnitOptions = Int
-var NSMeasurementFormatterUnitOptionsProvidedUnit: Int { get }
-var NSMeasurementFormatterUnitOptionsNaturalScale: Int { get }
-var NSMeasurementFormatterUnitOptionsTemperatureWithoutUnit: Int { get }
 @available(iOS 10.0, *)
 class MeasurementFormatter : Formatter, NSSecureCoding {
-  var unitOptions: NSMeasurementFormatterUnitOptions
+  var unitOptions: Int
   var unitStyle: Formatter.UnitStyle
   var locale: Locale!
   @NSCopying var numberFormatter: NumberFormatter!
