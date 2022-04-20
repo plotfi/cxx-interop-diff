@@ -170,10 +170,10 @@ class NSURL : NSObject, NSSecureCoding, NSCopying {
   @available(swift, obsoleted: 3, renamed: "resourceValues(forKeys:fromBookmarkData:)")
   class func resourceValuesForKeys(_ keys: [URLResourceKey], fromBookmarkData bookmarkData: Data) -> [URLResourceKey : Any]?
   @available(iOS 4.0, *)
-  class func writeBookmarkData(_ bookmarkData: Data, to bookmarkFileURL: URL, options: NSURL.BookmarkFileCreationOptions = []) throws
+  class func writeBookmarkData(_ bookmarkData: Data, to bookmarkFileURL: URL, options: NSURL.BookmarkFileCreationOptions) throws
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "writeBookmarkData(_:to:options:)")
-  class func writeBookmarkData(_ bookmarkData: Data, toURL bookmarkFileURL: URL, options: NSURL.BookmarkFileCreationOptions = []) throws
+  class func writeBookmarkData(_ bookmarkData: Data, toURL bookmarkFileURL: URL, options: NSURL.BookmarkFileCreationOptions) throws
   @available(iOS 4.0, *)
   class func bookmarkData(withContentsOf bookmarkFileURL: URL) throws -> Data
   @available(iOS 4.0, *)

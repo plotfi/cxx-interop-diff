@@ -1,3 +1,39 @@
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLResource.h:174:5: warning: imported declaration 'MTLResourceStorageModeShared' could not be mapped to 'storageModeShared'
+    MTLResourceStorageModeShared API_AVAILABLE(macos(10.11), ios(9.0)) = MTLStorageModeShared << MTLResourceStorageModeShift,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLResource.h:174:5: note: please report this issue to the owners of 'Metal'
+    MTLResourceStorageModeShared API_AVAILABLE(macos(10.11), ios(9.0)) = MTLStorageModeShared << MTLResourceStorageModeShift,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLResource.h:174:5: warning: imported declaration 'MTLResourceStorageModeShared' could not be mapped to 'storageModeShared'
+    MTLResourceStorageModeShared API_AVAILABLE(macos(10.11), ios(9.0)) = MTLStorageModeShared << MTLResourceStorageModeShift,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLResource.h:174:5: note: please report this issue to the owners of 'Metal'
+    MTLResourceStorageModeShared API_AVAILABLE(macos(10.11), ios(9.0)) = MTLStorageModeShared << MTLResourceStorageModeShift,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLTexture.h:99:5: warning: imported declaration 'MTLTextureUsageUnknown' could not be mapped to 'unknown'
+    MTLTextureUsageUnknown         = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLTexture.h:99:5: note: please report this issue to the owners of 'Metal'
+    MTLTextureUsageUnknown         = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLTexture.h:99:5: warning: imported declaration 'MTLTextureUsageUnknown' could not be mapped to 'unknown'
+    MTLTextureUsageUnknown         = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLTexture.h:99:5: note: please report this issue to the owners of 'Metal'
+    MTLTextureUsageUnknown         = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTStringAttributes.h:332:5: warning: imported declaration 'kCTUnderlinePatternSolid' could not be mapped to 'patternSolid'
+    kCTUnderlinePatternSolid        = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTStringAttributes.h:332:5: note: please report this issue to the owners of 'CoreText'
+    kCTUnderlinePatternSolid        = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTStringAttributes.h:332:5: warning: imported declaration 'kCTUnderlinePatternSolid' could not be mapped to 'patternSolid'
+    kCTUnderlinePatternSolid        = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTStringAttributes.h:332:5: note: please report this issue to the owners of 'CoreText'
+    kCTUnderlinePatternSolid        = 0x0000,
+    ^
 /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
 #import <FileProvider/NSFileProviderExtension.h>
         ^
