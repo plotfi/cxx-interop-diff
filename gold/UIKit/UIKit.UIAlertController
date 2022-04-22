@@ -1,50 +1,77 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UIAlertController'
+@_exported import Foundation
+
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 4.2, renamed: "UIAlertAction.Style")
+typealias UIAlertActionStyle = UIAlertAction.Style
+extension UIAlertAction {
+  @available(iOS 8.0, *)
+  enum Style : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case `default`
+    @available(swift, obsoleted: 3, renamed: "default")
+    static var Default: UIAlertAction.Style { get }
+    case cancel
+    @available(swift, obsoleted: 3, renamed: "cancel")
+    static var Cancel: UIAlertAction.Style { get }
+    case destructive
+    @available(swift, obsoleted: 3, renamed: "destructive")
+    static var Destructive: UIAlertAction.Style { get }
+  }
+}
+@available(iOS 8.0, *)
+@available(swift, obsoleted: 4.2, renamed: "UIAlertController.Style")
+typealias UIAlertControllerStyle = UIAlertController.Style
+extension UIAlertController {
+  @available(iOS 8.0, *)
+  enum Style : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case actionSheet
+    @available(swift, obsoleted: 3, renamed: "actionSheet")
+    static var ActionSheet: UIAlertController.Style { get }
+    case alert
+    @available(swift, obsoleted: 3, renamed: "alert")
+    static var Alert: UIAlertController.Style { get }
+  }
+}
+@available(iOS 8.0, *)
+@MainActor class UIAlertAction : NSObject, NSCopying {
+  convenience init(title: String?, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)? = nil)
+  @available(*, unavailable, renamed: "init(title:style:handler:)", message: "Not available in Swift")
+  class func actionWithTitle(_ title: String?, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)? = nil) -> Self
+  var title: String? { get }
+  var style: UIAlertAction.Style { get }
+  var isEnabled: Bool
+  @available(swift, obsoleted: 3, renamed: "isEnabled")
+  var enabled: Bool
+  init()
+  @available(iOS 8.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+}
+@available(iOS 8.0, *)
+@MainActor class UIAlertController : UIViewController {
+  convenience init(title: String?, message: String?, preferredStyle: UIAlertController.Style)
+  @available(*, unavailable, renamed: "init(title:message:preferredStyle:)", message: "Not available in Swift")
+  class func alertControllerWithTitle(_ title: String?, message: String?, preferredStyle: UIAlertController.Style) -> Self
+  func addAction(_ action: UIAlertAction)
+  var actions: [UIAlertAction] { get }
+  @available(iOS 9.0, *)
+  var preferredAction: UIAlertAction?
+  func addTextField(configurationHandler: ((UITextField) -> Void)? = nil)
+  @available(swift, obsoleted: 3, renamed: "addTextField(configurationHandler:)")
+  func addTextFieldWithConfigurationHandler(_ configurationHandler: ((UITextField) -> Void)? = nil)
+  var textFields: [UITextField]? { get }
+  var title: String?
+  var message: String?
+  var preferredStyle: UIAlertController.Style { get }
+  init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+  init?(coder: NSCoder)
+  convenience init()
+}
+extension UIAlertController : UISpringLoadedInteractionSupporting {
+  @available(iOS 11.0, *)
+  var isSpringLoaded: Bool
+}

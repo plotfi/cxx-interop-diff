@@ -1,50 +1,75 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UIPrintInfo'
+@_exported import Foundation
+
+@available(swift, obsoleted: 4.2, renamed: "UIPrintInfo.OutputType")
+typealias UIPrintInfoOutputType = UIPrintInfo.OutputType
+extension UIPrintInfo {
+  enum OutputType : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case general
+    @available(swift, obsoleted: 3, renamed: "general")
+    static var General: UIPrintInfo.OutputType { get }
+    case photo
+    @available(swift, obsoleted: 3, renamed: "photo")
+    static var Photo: UIPrintInfo.OutputType { get }
+    case grayscale
+    @available(swift, obsoleted: 3, renamed: "grayscale")
+    static var Grayscale: UIPrintInfo.OutputType { get }
+    @available(iOS 7.0, *)
+    case photoGrayscale
+    @available(iOS 7.0, *)
+    @available(swift, obsoleted: 3, renamed: "photoGrayscale")
+    static var PhotoGrayscale: UIPrintInfo.OutputType { get }
+  }
+  enum Orientation : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case portrait
+    @available(swift, obsoleted: 3, renamed: "portrait")
+    static var Portrait: UIPrintInfo.Orientation { get }
+    case landscape
+    @available(swift, obsoleted: 3, renamed: "landscape")
+    static var Landscape: UIPrintInfo.Orientation { get }
+  }
+  enum Duplex : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case none
+    @available(swift, obsoleted: 3, renamed: "none")
+    static var None: UIPrintInfo.Duplex { get }
+    case longEdge
+    @available(swift, obsoleted: 3, renamed: "longEdge")
+    static var LongEdge: UIPrintInfo.Duplex { get }
+    case shortEdge
+    @available(swift, obsoleted: 3, renamed: "shortEdge")
+    static var ShortEdge: UIPrintInfo.Duplex { get }
+  }
+}
+@available(swift, obsoleted: 4.2, renamed: "UIPrintInfo.Orientation")
+typealias UIPrintInfoOrientation = UIPrintInfo.Orientation
+@available(swift, obsoleted: 4.2, renamed: "UIPrintInfo.Duplex")
+typealias UIPrintInfoDuplex = UIPrintInfo.Duplex
+@available(iOS 4.2, *)
+@MainActor class UIPrintInfo : NSObject, NSCopying, NSCoding {
+  init?(coder: NSCoder)
+  class func printInfo() -> UIPrintInfo
+  @available(swift, obsoleted: 3, renamed: "printInfo()")
+  /*not inherited*/ init()
+  /*not inherited*/ init(dictionary: [AnyHashable : Any]?)
+  @available(*, unavailable, renamed: "init(dictionary:)", message: "Not available in Swift")
+  class func printInfoWithDictionary(_ dictionary: [AnyHashable : Any]?) -> UIPrintInfo
+  var printerID: String?
+  var jobName: String
+  var outputType: UIPrintInfo.OutputType
+  var orientation: UIPrintInfo.Orientation
+  var duplex: UIPrintInfo.Duplex
+  var dictionaryRepresentation: [AnyHashable : Any] { get }
+  convenience init()
+  @available(iOS 4.2, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 4.2, *)
+  func encode(with coder: NSCoder)
+}

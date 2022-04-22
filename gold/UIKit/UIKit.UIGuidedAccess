@@ -1,50 +1,75 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UIGuidedAccess'
+@_exported import Foundation
+
+@available(iOS 12.2, *)
+@available(swift, obsoleted: 3, renamed: "UIAccessibility.guidedAccessErrorDomain")
+let UIGuidedAccessErrorDomain: String
+extension UIAccessibility {
+  @available(iOS 12.2, *)
+  static let guidedAccessErrorDomain: String
+  @available(iOS 12.2, *)
+  struct GuidedAccessError : _BridgedStoredNSError {
+    let _nsError: NSError
+    init(_nsError: NSError)
+    static var errorDomain: String { get }
+    @available(iOS 12.2, *)
+    enum Code : Int, _ErrorCodeProtocol, @unchecked Sendable {
+      init?(rawValue: Int)
+      var rawValue: Int { get }
+      typealias RawValue = Int
+      typealias _ErrorType = UIAccessibility.GuidedAccessError
+      case permissionDenied
+      @available(swift, obsoleted: 3, renamed: "permissionDenied")
+      static var PermissionDenied: UIAccessibility.GuidedAccessError.Code { get }
+      case failed
+      @available(swift, obsoleted: 3, renamed: "failed")
+      static var Failed: UIAccessibility.GuidedAccessError.Code { get }
+    }
+    static var permissionDenied: UIAccessibility.GuidedAccessError.Code { get }
+    static var failed: UIAccessibility.GuidedAccessError.Code { get }
+  }
+  enum GuidedAccessRestrictionState : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case allow
+    @available(swift, obsoleted: 3, renamed: "allow")
+    static var Allow: UIAccessibility.GuidedAccessRestrictionState { get }
+    case deny
+    @available(swift, obsoleted: 3, renamed: "deny")
+    static var Deny: UIAccessibility.GuidedAccessRestrictionState { get }
+  }
+  @available(iOS 7.0, *)
+  static func guidedAccessRestrictionState(forIdentifier restrictionIdentifier: String) -> UIAccessibility.GuidedAccessRestrictionState
+  @available(iOS 12.2, *)
+  static func configureForGuidedAccess(features: UIGuidedAccessAccessibilityFeature, enabled: Bool, completionHandler completion: @escaping (Bool, Error?) -> Void)
+}
+@available(iOS 12.2, *)
+@available(swift, obsoleted: 3, renamed: "UIAccessibility.GuidedAccessError")
+typealias UIGuidedAccessError = UIAccessibility.GuidedAccessError.Code
+@available(swift, obsoleted: 4.2, renamed: "UIAccessibility.GuidedAccessRestrictionState")
+typealias UIGuidedAccessRestrictionState = UIAccessibility.GuidedAccessRestrictionState
+@available(iOS 7.0, *)
+@MainActor protocol UIGuidedAccessRestrictionDelegate : NSObjectProtocol {
+  var guidedAccessRestrictionIdentifiers: [String]? { get }
+  func guidedAccessRestriction(withIdentifier restrictionIdentifier: String, didChange newRestrictionState: UIAccessibility.GuidedAccessRestrictionState)
+  @available(swift, obsoleted: 3, renamed: "guidedAccessRestriction(withIdentifier:didChange:)")
+  func guidedAccessRestrictionWithIdentifier(_ restrictionIdentifier: String, didChangeState newRestrictionState: UIAccessibility.GuidedAccessRestrictionState)
+  func textForGuidedAccessRestriction(withIdentifier restrictionIdentifier: String) -> String?
+  @available(swift, obsoleted: 3, renamed: "textForGuidedAccessRestriction(withIdentifier:)")
+  func textForGuidedAccessRestrictionWithIdentifier(_ restrictionIdentifier: String) -> String?
+  optional func detailTextForGuidedAccessRestriction(withIdentifier restrictionIdentifier: String) -> String?
+  @available(swift, obsoleted: 3, renamed: "detailTextForGuidedAccessRestriction(withIdentifier:)")
+  optional func detailTextForGuidedAccessRestrictionWithIdentifier(_ restrictionIdentifier: String) -> String?
+}
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "UIAccessibility.guidedAccessRestrictionState(forIdentifier:)")
+func UIGuidedAccessRestrictionStateForIdentifier(_ restrictionIdentifier: String) -> UIAccessibility.GuidedAccessRestrictionState
+typealias UIGuidedAccessAccessibilityFeature = Int
+var UIGuidedAccessAccessibilityFeatureVoiceOver: Int { get }
+var UIGuidedAccessAccessibilityFeatureZoom: Int { get }
+var UIGuidedAccessAccessibilityFeatureAssistiveTouch: Int { get }
+var UIGuidedAccessAccessibilityFeatureInvertColors: Int { get }
+var UIGuidedAccessAccessibilityFeatureGrayscaleDisplay: Int { get }
+@available(iOS 12.2, *)
+@available(swift, obsoleted: 3, renamed: "UIAccessibility.configureForGuidedAccess(features:enabled:completionHandler:)")
+func UIGuidedAccessConfigureAccessibilityFeatures(_ features: UIGuidedAccessAccessibilityFeature, _ enabled: Bool, _ completion: @escaping (Bool, Error?) -> Void)

@@ -1,50 +1,95 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UIPointerAccessory'
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+struct __UIPointerAccessoryPosition {
+  init()
+  init(offset: CGFloat, angle: CGFloat)
+
+  /// Offset from the primary pointer shape. Only allows positive values.
+  var offset: CGFloat
+
+  /// Clock-wise angle from top in radians.
+  var angle: CGFloat
+}
+@available(iOS 15.0, *)
+func __UIPointerAccessoryPositionMake(_ offset: CGFloat, _ angle: CGFloat) -> __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionTop: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionTopRight: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionRight: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionBottomRight: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionBottom: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionBottomLeft: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionLeft: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+let __UIPointerAccessoryPositionTopLeft: __UIPointerAccessoryPosition
+@available(iOS 15.0, *)
+@MainActor class UIPointerAccessory : NSObject, NSCopying {
+
+  /// This accessory's shape.
+  @NSCopying var __shape: __UIPointerShape { get }
+
+  /// This accessory shape's position relative to the pointer.
+  var position: __UIPointerAccessoryPosition { get }
+
+  /// Indicates whether the accessory is rotated to match its angle.
+  /// This is false by default for custom accessories, but varies for system vended ones.
+  var orientationMatchesAngle: Bool
+
+  /**
+   * @abstract Creates an accessory with the given pointer shape and position.
+   *
+   * @param shape     The desired accessory shape.
+   * @param position  The desired accessory position.
+   */
+  convenience init(__shape shape: __UIPointerShape, position: __UIPointerAccessoryPosition)
+
+  /**
+   * @abstract Creates an accessory with the given pointer shape and position.
+   *
+   * @param shape     The desired accessory shape.
+   * @param position  The desired accessory position.
+   */
+  @available(*, unavailable, renamed: "init(__shape:position:)", message: "Not available in Swift")
+  class func __accessoryWithShape(_ shape: __UIPointerShape, position: __UIPointerAccessoryPosition) -> Self
+
+  /// Returns an arrow shaped accessory with the given position.
+  class func __arrowAccessory(with position: __UIPointerAccessoryPosition) -> Self
+
+  /// Returns an arrow shaped accessory with the given position.
+  @available(swift, obsoleted: 3, renamed: "__arrowAccessory(with:)")
+  class func __arrowAccessoryWithPosition(_ position: __UIPointerAccessoryPosition) -> Self
+  @available(*, unavailable)
+  init()
+  @available(*, unavailable)
+  class func new() -> Self
+  @available(iOS 15.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+}
+
+@available(iOS 15.0, *)
+extension UIPointerAccessory {
+  struct Position {
+    static let defaultOffset: CGFloat
+    var offset: CGFloat
+    var angle: CGFloat
+    init(offset: CGFloat = Position.defaultOffset, angle: CGFloat = 0)
+    static var top: UIPointerAccessory.Position { get }
+    static var topRight: UIPointerAccessory.Position { get }
+    static var right: UIPointerAccessory.Position { get }
+    static var bottomRight: UIPointerAccessory.Position { get }
+    static var bottom: UIPointerAccessory.Position { get }
+    static var bottomLeft: UIPointerAccessory.Position { get }
+    static var left: UIPointerAccessory.Position { get }
+    static var topLeft: UIPointerAccessory.Position { get }
+  }
+  @MainActor convenience init(_ shape: UIPointerShape, position: UIPointerAccessory.Position)
+  @MainActor class func arrow(_ position: UIPointerAccessory.Position) -> Self
+  @MainActor var shape: UIPointerShape { get }
+}

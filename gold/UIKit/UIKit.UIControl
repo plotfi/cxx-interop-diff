@@ -1,50 +1,265 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UIControl'
+@_exported import Foundation
+
+typealias UIControlEvents = Int
+var UIControlEventTouchDown: Int { get }
+var UIControlEventTouchDownRepeat: Int { get }
+var UIControlEventTouchDragInside: Int { get }
+var UIControlEventTouchDragOutside: Int { get }
+var UIControlEventTouchDragEnter: Int { get }
+var UIControlEventTouchDragExit: Int { get }
+var UIControlEventTouchUpInside: Int { get }
+var UIControlEventTouchUpOutside: Int { get }
+var UIControlEventTouchCancel: Int { get }
+var UIControlEventValueChanged: Int { get }
+@available(iOS 9.0, *)
+var UIControlEventPrimaryActionTriggered: Int { get }
+@available(iOS 14.0, *)
+var UIControlEventMenuActionTriggered: Int { get }
+var UIControlEventEditingDidBegin: Int { get }
+var UIControlEventEditingChanged: Int { get }
+var UIControlEventEditingDidEnd: Int { get }
+var UIControlEventEditingDidEndOnExit: Int { get }
+var UIControlEventAllTouchEvents: Int { get }
+var UIControlEventAllEditingEvents: Int { get }
+var UIControlEventApplicationReserved: Int { get }
+var UIControlEventSystemReserved: Int { get }
+var UIControlEventAllEvents: Int { get }
+@available(swift, obsoleted: 4.2, renamed: "UIControl.ContentVerticalAlignment")
+typealias UIControlContentVerticalAlignment = UIControl.ContentVerticalAlignment
+extension UIControl {
+  enum ContentVerticalAlignment : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case center
+    @available(swift, obsoleted: 3, renamed: "center")
+    static var Center: UIControl.ContentVerticalAlignment { get }
+    case top
+    @available(swift, obsoleted: 3, renamed: "top")
+    static var Top: UIControl.ContentVerticalAlignment { get }
+    case bottom
+    @available(swift, obsoleted: 3, renamed: "bottom")
+    static var Bottom: UIControl.ContentVerticalAlignment { get }
+    case fill
+    @available(swift, obsoleted: 3, renamed: "fill")
+    static var Fill: UIControl.ContentVerticalAlignment { get }
+  }
+  enum ContentHorizontalAlignment : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case center
+    @available(swift, obsoleted: 3, renamed: "center")
+    static var Center: UIControl.ContentHorizontalAlignment { get }
+    case left
+    @available(swift, obsoleted: 3, renamed: "left")
+    static var Left: UIControl.ContentHorizontalAlignment { get }
+    case right
+    @available(swift, obsoleted: 3, renamed: "right")
+    static var Right: UIControl.ContentHorizontalAlignment { get }
+    case fill
+    @available(swift, obsoleted: 3, renamed: "fill")
+    static var Fill: UIControl.ContentHorizontalAlignment { get }
+    @available(iOS 11.0, *)
+    case leading
+    @available(iOS 11.0, *)
+    @available(swift, obsoleted: 3, renamed: "leading")
+    static var Leading: UIControl.ContentHorizontalAlignment { get }
+    @available(iOS 11.0, *)
+    case trailing
+    @available(iOS 11.0, *)
+    @available(swift, obsoleted: 3, renamed: "trailing")
+    static var Trailing: UIControl.ContentHorizontalAlignment { get }
+  }
+}
+@available(swift, obsoleted: 4.2, renamed: "UIControl.ContentHorizontalAlignment")
+typealias UIControlContentHorizontalAlignment = UIControl.ContentHorizontalAlignment
+typealias UIControlState = Int
+@available(swift, obsoleted: 3, renamed: "normal")
+var UIControlStateNormal: Int { get }
+var normal: Int { get }
+var UIControlStateHighlighted: Int { get }
+var UIControlStateDisabled: Int { get }
+var UIControlStateSelected: Int { get }
+@available(iOS 9.0, *)
+var UIControlStateFocused: Int { get }
+var UIControlStateApplication: Int { get }
+var UIControlStateReserved: Int { get }
+@available(iOS 2.0, *)
+@MainActor class UIControl : UIView {
+  init(frame: CGRect)
+  init?(coder: NSCoder)
+
+  /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
+  @available(iOS 14.0, *)
+  convenience init(frame: CGRect, primaryAction: UIAction?)
+  var isEnabled: Bool
+  @available(swift, obsoleted: 3, renamed: "isEnabled")
+  var enabled: Bool
+  var isSelected: Bool
+  @available(swift, obsoleted: 3, renamed: "isSelected")
+  var selected: Bool
+  var isHighlighted: Bool
+  @available(swift, obsoleted: 3, renamed: "isHighlighted")
+  var highlighted: Bool
+  var contentVerticalAlignment: UIControl.ContentVerticalAlignment
+  var contentHorizontalAlignment: UIControl.ContentHorizontalAlignment
+  var effectiveContentHorizontalAlignment: UIControl.ContentHorizontalAlignment { get }
+  var state: UIControlState { get }
+  var isTracking: Bool { get }
+  @available(swift, obsoleted: 3, renamed: "isTracking")
+  var tracking: Bool { get }
+  var isTouchInside: Bool { get }
+  @available(swift, obsoleted: 3, renamed: "isTouchInside")
+  var touchInside: Bool { get }
+  func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool
+  @available(swift, obsoleted: 3, renamed: "beginTracking(_:with:)")
+  func beginTrackingWithTouch(_ touch: UITouch, withEvent event: UIEvent?) -> Bool
+  func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool
+  @available(swift, obsoleted: 3, renamed: "continueTracking(_:with:)")
+  func continueTrackingWithTouch(_ touch: UITouch, withEvent event: UIEvent?) -> Bool
+  func endTracking(_ touch: UITouch?, with event: UIEvent?)
+  @available(swift, obsoleted: 3, renamed: "endTracking(_:with:)")
+  func endTrackingWithTouch(_ touch: UITouch?, withEvent event: UIEvent?)
+  func cancelTracking(with event: UIEvent?)
+  @available(swift, obsoleted: 3, renamed: "cancelTracking(with:)")
+  func cancelTrackingWithEvent(_ event: UIEvent?)
+  func addTarget(_ target: Any?, action: Selector, forControlEvents controlEvents: UIControlEvents)
+  func removeTarget(_ target: Any?, action: Selector?, forControlEvents controlEvents: UIControlEvents)
+
+  /// Adds the UIAction to a given event. UIActions are uniqued based on their identifier, and subsequent actions with the same identifier replace previously added actions. You may add multiple UIActions for corresponding controlEvents, and you may add the same action to multiple controlEvents.
+  @available(iOS 14.0, *)
+  func addAction(_ action: UIAction, for controlEvents: UIControlEvents)
+
+  /// Adds the UIAction to a given event. UIActions are uniqued based on their identifier, and subsequent actions with the same identifier replace previously added actions. You may add multiple UIActions for corresponding controlEvents, and you may add the same action to multiple controlEvents.
+  @available(iOS 14.0, *)
+  @available(swift, obsoleted: 3, renamed: "addAction(_:for:)")
+  func addAction(_ action: UIAction, forControlEvents controlEvents: UIControlEvents)
+
+  /// Removes the action from the set of passed control events.
+  @available(iOS 14.0, *)
+  func removeAction(_ action: UIAction, for controlEvents: UIControlEvents)
+
+  /// Removes the action from the set of passed control events.
+  @available(iOS 14.0, *)
+  @available(swift, obsoleted: 3, renamed: "removeAction(_:for:)")
+  func removeAction(_ action: UIAction, forControlEvents controlEvents: UIControlEvents)
+
+  /// Removes the action with the provided identifier from the set of passed control events.
+  @available(iOS 14.0, *)
+  func removeAction(identifiedBy actionIdentifier: UIAction.Identifier, for controlEvents: UIControlEvents)
+
+  /// Removes the action with the provided identifier from the set of passed control events.
+  @available(iOS 14.0, *)
+  @available(swift, obsoleted: 3, renamed: "removeAction(identifiedBy:for:)")
+  func removeActionForIdentifier(_ actionIdentifier: UIAction.Identifier, forControlEvents controlEvents: UIControlEvents)
+  var allTargets: Set<AnyHashable> { get }
+  var allControlEvents: UIControlEvents { get }
+  func actions(forTarget target: Any?, forControlEvent controlEvent: UIControlEvents) -> [String]?
+  @available(swift, obsoleted: 3, renamed: "actions(forTarget:forControlEvent:)")
+  func actionsForTarget(_ target: Any?, forControlEvent controlEvent: UIControlEvents) -> [String]?
+
+  /// Iterate over the event handlers installed on this control at the time this method is called. For each call, either actionHandler or action will be non-nil. controlEvents is always non-zero. Setting *stop to YES will terminate the enumeration early. It is legal to manipulate the control's event handlers within the block.
+  @available(iOS 14.0, *)
+  func __enumerateEventHandlers(_ iterator: (UIAction?, Any?, Selector?, UIControlEvents, UnsafeMutablePointer<ObjCBool>) -> Void)
+
+  /// Dispatch the target-action pair. This method is called repeatedly by -sendActionsForControlEvents: and is a point at which you can observe or override behavior.
+  func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?)
+
+  /// Dispatch the target-action pair. This method is called repeatedly by -sendActionsForControlEvents: and is a point at which you can observe or override behavior.
+  @available(swift, obsoleted: 3, renamed: "sendAction(_:to:for:)")
+  func sendAction(_ action: Selector, to target: Any?, forEvent event: UIEvent?)
+
+  /// Like -sendAction:to:forEvent:, this method is called by -sendActionsForControlEvents:. You may override this method to observe or modify behavior. If you override this method, you should call super precisely once to dispatch the action, or not call super to suppress sending that action.
+  @available(iOS 14.0, *)
+  func sendAction(_ action: UIAction)
+
+  /// send all actions associated with the given control events
+  func sendActions(forControlEvents controlEvents: UIControlEvents)
+
+  /// send all actions associated with the given control events
+  @available(swift, obsoleted: 3, renamed: "sendActions(forControlEvents:)")
+  func sendActionsForControlEvents(_ controlEvents: UIControlEvents)
+
+  /// Returns a UIContextMenuInteraction with this control set as its delegate. Before constructing the UIContextMenuInteraction, UIControl verifies 'self' is a viable delegate. See 'Implementing UIControl Menus' below for more details.
+  @available(iOS 14.0, *)
+  var contextMenuInteraction: UIContextMenuInteraction? { get }
+
+  /// Specifies if the context menu interaction is enabled. NO by default.
+  @available(iOS 14.0, *)
+  var isContextMenuInteractionEnabled: Bool
+
+  /// Specifies if the context menu interaction is enabled. NO by default.
+  @available(iOS 14.0, *)
+  @available(swift, obsoleted: 3, renamed: "isContextMenuInteractionEnabled")
+  var contextMenuInteractionEnabled: Bool
+
+  /// If the contextMenuInteraction is the primary action of the control, invoked on touch-down. NO by default.
+  @available(iOS 14.0, *)
+  var showsMenuAsPrimaryAction: Bool
+
+  /// Return a point in this control's coordinate space to which to attach the given configuration's menu.
+  @available(iOS 14.0, *)
+  func menuAttachmentPoint(for configuration: UIContextMenuConfiguration) -> CGPoint
+
+  /// Return a point in this control's coordinate space to which to attach the given configuration's menu.
+  @available(iOS 14.0, *)
+  @available(swift, obsoleted: 3, renamed: "menuAttachmentPoint(for:)")
+  func menuAttachmentPointForConfiguration(_ configuration: UIContextMenuConfiguration) -> CGPoint
+
+  /// Assigning a value to this property causes the tool tip to be displayed for the view. Setting the property to nil cancels the display of the tool tip for the view.
+  @available(iOS 15.0, *)
+  var toolTip: String?
+
+  /// Returns the control's default UIToolTipInteraction.
+  @available(iOS 15.0, *)
+  var toolTipInteraction: UIToolTipInteraction? { get }
+  convenience init()
+}
+
+extension UIControl {
+}
+
+/// Implementing UIControl Menus
+/// UIControl will only create a UIContextMenuInteraction if you've created a subclass of UIControl with a minimum viable delegate implementation. UIControl extends the contract of UIContextMenuInteractionDelegate for these methods, see each method for more detail.
+extension UIControl : UIContextMenuInteractionDelegate {
+
+  /// An override is required for UIControl to create a UIContextMenuInteraction. Direct UIControl subclasses do not need to call super.
+  @available(iOS 14.0, *)
+  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration?
+
+  /// Direct UIControl subclasses do not need to call super.
+  @available(iOS 14.0, *)
+  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview?
+
+  /// Direct UIControl subclasses do not need to call super.
+  @available(iOS 14.0, *)
+  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForDismissingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview?
+
+  /// UIControl subclasses should always call super.
+  @available(iOS 14.0, *)
+  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willDisplayMenuFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?)
+
+  /// UIControl subclasses should always call super.
+  @available(iOS 14.0, *)
+  @available(swift, obsoleted: 3, renamed: "contextMenuInteraction(_:willDisplayMenuFor:animator:)")
+  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willDisplayMenuForConfiguration configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?)
+
+  /// UIControl subclasses should always call super.
+  @available(iOS 14.0, *)
+  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willEndFor configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?)
+
+  /// UIControl subclasses should always call super.
+  @available(iOS 14.0, *)
+  @available(swift, obsoleted: 3, renamed: "contextMenuInteraction(_:willEndFor:animator:)")
+  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willEndForConfiguration configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?)
+
+  /// UIControl based menus do not display previews, so this method will not be called even if implemented. UIControl does not have an implementation.
+  @available(*, unavailable)
+  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating)
+
+  /// UIControl based menus do not display previews, so this method will not be called even if implemented. UIControl does not have an implementation.
+  @available(swift, obsoleted: 3, renamed: "contextMenuInteraction(_:willPerformPreviewActionForMenuWith:animator:)")
+  @available(*, unavailable)
+  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWithConfiguration configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating)
+}

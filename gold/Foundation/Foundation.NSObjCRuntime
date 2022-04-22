@@ -164,10 +164,12 @@ typealias NSComparisonResult = ComparisonResult
 typealias Comparator = (Any, Any) -> ComparisonResult
 @available(swift, obsoleted: 3, renamed: "Comparator")
 typealias NSComparator = Comparator
-@available(*, unavailable, message: "Not available in Swift")
 typealias NSEnumerationOptions = Int
-@available(*, unavailable, message: "Not available in Swift")
+var NSEnumerationConcurrent: Int { get }
+var NSEnumerationReverse: Int { get }
 typealias NSSortOptions = Int
+var NSSortConcurrent: Int { get }
+var NSSortStable: Int { get }
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 3, renamed: "QualityOfService")
 typealias NSQualityOfService = QualityOfService

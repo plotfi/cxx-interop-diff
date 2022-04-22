@@ -2,8 +2,17 @@
 
 
 /// Options supported by methods that produce difference objects.
-@available(*, unavailable, message: "Not available in Swift")
 typealias NSOrderedCollectionDifferenceCalculationOptions = Int
+
+/// Insertion changes do not store a reference to the inserted object.
+var NSOrderedCollectionDifferenceCalculationOmitInsertedObjects: Int { get }
+
+/// Insertion changes do not store a reference to the removed object.
+var NSOrderedCollectionDifferenceCalculationOmitRemovedObjects: Int { get }
+
+/// Assume objects that were uniquely removed and inserted were moved.
+/// This is useful when diffing based on identity instead of equality.
+var NSOrderedCollectionDifferenceCalculationInferMoves: Int { get }
 @available(iOS 13.0, *)
 class NSOrderedCollectionDifference : NSObject, NSFastEnumeration {
 

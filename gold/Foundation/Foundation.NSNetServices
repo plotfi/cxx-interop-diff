@@ -48,8 +48,10 @@ extension NetService {
 let NSNetServicesErrorDomain: String
 @available(swift, obsoleted: 3, renamed: "NSNetService.ErrorCode")
 typealias NSNetServicesError = NetService.ErrorCode
-@available(*, unavailable, message: "Not available in Swift")
 typealias NSNetServiceOptions = Int
+var NSNetServiceNoAutoRename: Int { get }
+@available(iOS 7.0, *)
+var NSNetServiceListenForConnections: Int { get }
 @available(swift, obsoleted: 3, renamed: "NetService")
 @available(iOS, introduced: 2.0, deprecated: 100000, message: "Use nw_connection_t or nw_listener_t in Network framework instead")
 typealias NSNetService = NetService
@@ -75,10 +77,10 @@ class NetService : NSObject {
   var port: Int { get }
   func publish()
   @available(iOS 2.0, *)
-  func publish(options: Int = [])
+  func publish(options: NSNetServiceOptions = [])
   @available(iOS 2.0, *)
   @available(swift, obsoleted: 3, renamed: "publish(options:)")
-  func publishWithOptions(_ options: Int = [])
+  func publishWithOptions(_ options: NSNetServiceOptions = [])
   @available(iOS, unavailable, introduced: 2.0, deprecated: 2.0, message: "Not supported")
   func resolve()
   func stop()

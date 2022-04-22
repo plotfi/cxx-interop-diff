@@ -386,11 +386,8 @@ extension AttributeScopes.FoundationAttributes {
   }
   @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
   @frozen enum InlinePresentationIntentAttribute : CodableAttributedStringKey, ObjectiveCConvertibleAttributedStringKey {
-    typealias Value = InlinePresentationIntent
     typealias ObjectiveCValue = NSNumber
     static let name: String
-    static func objectiveCValue(for value: InlinePresentationIntent) throws -> NSNumber
-    static func value(for object: NSNumber) throws -> InlinePresentationIntent
   }
   @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
   @frozen enum PresentationIntentAttribute : CodableAttributedStringKey {
@@ -11098,10 +11095,6 @@ extension NSIndexSet : Sequence {
 @available(macOS 10.11, iOS 9.0, *)
 extension NSPersonNameComponents : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
-}
-
-@available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
-extension InlinePresentationIntent : Hashable, Codable {
 }
 
 extension NSCharacterSet : _HasCustomAnyHashableRepresentation {

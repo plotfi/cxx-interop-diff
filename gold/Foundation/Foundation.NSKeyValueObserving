@@ -1,7 +1,12 @@
 @_exported import CoreFoundation
 
-@available(*, unavailable, message: "Not available in Swift")
 typealias NSKeyValueObservingOptions = Int
+var NSKeyValueObservingOptionNew: Int { get }
+var NSKeyValueObservingOptionOld: Int { get }
+@available(iOS 2.0, *)
+var NSKeyValueObservingOptionInitial: Int { get }
+@available(iOS 2.0, *)
+var NSKeyValueObservingOptionPrior: Int { get }
 enum NSKeyValueChange : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
@@ -71,8 +76,8 @@ extension NSObject {
   func observeValueForKeyPath(_ keyPath: String?, ofObject object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
 }
 extension NSObject {
-  class func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: Int = [], context: UnsafeMutableRawPointer?)
-  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: Int = [], context: UnsafeMutableRawPointer?)
+  class func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?)
+  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?)
   @available(iOS 5.0, *)
   class func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
   @available(iOS 5.0, *)
@@ -81,9 +86,9 @@ extension NSObject {
   func removeObserver(_ observer: NSObject, forKeyPath keyPath: String)
 }
 extension NSArray {
-  func addObserver(_ observer: NSObject, toObjectsAt indexes: IndexSet, forKeyPath keyPath: String, options: Int = [], context: UnsafeMutableRawPointer?)
+  func addObserver(_ observer: NSObject, toObjectsAt indexes: IndexSet, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?)
   @available(swift, obsoleted: 3, renamed: "addObserver(_:toObjectsAt:forKeyPath:options:context:)")
-  func addObserver(_ observer: NSObject, toObjectsAtIndexes indexes: IndexSet, forKeyPath keyPath: String, options: Int = [], context: UnsafeMutableRawPointer?)
+  func addObserver(_ observer: NSObject, toObjectsAtIndexes indexes: IndexSet, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?)
   @available(iOS 5.0, *)
   func removeObserver(_ observer: NSObject, fromObjectsAt indexes: IndexSet, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
   @available(iOS 5.0, *)
@@ -92,19 +97,19 @@ extension NSArray {
   func removeObserver(_ observer: NSObject, fromObjectsAt indexes: IndexSet, forKeyPath keyPath: String)
   @available(swift, obsoleted: 3, renamed: "removeObserver(_:fromObjectsAt:forKeyPath:)")
   func removeObserver(_ observer: NSObject, fromObjectsAtIndexes indexes: IndexSet, forKeyPath keyPath: String)
-  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: Int = [], context: UnsafeMutableRawPointer?)
+  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?)
   @available(iOS 5.0, *)
   func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
   func removeObserver(_ observer: NSObject, forKeyPath keyPath: String)
 }
 extension NSOrderedSet {
-  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: Int = [], context: UnsafeMutableRawPointer?)
+  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?)
   @available(iOS 5.0, *)
   func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
   func removeObserver(_ observer: NSObject, forKeyPath keyPath: String)
 }
 extension NSSet {
-  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: Int = [], context: UnsafeMutableRawPointer?)
+  func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?)
   @available(iOS 5.0, *)
   func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
   func removeObserver(_ observer: NSObject, forKeyPath keyPath: String)

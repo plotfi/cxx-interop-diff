@@ -51,12 +51,12 @@ class NSMachPort : Port {
   func setDelegate(_ anObject: NSMachPortDelegate?)
   func delegate() -> NSMachPortDelegate?
   @available(iOS 2.0, *)
-  class func port(withMachPort machPort: UInt32, options f: Int = []) -> Port
+  class func port(withMachPort machPort: UInt32, options f: NSMachPortOptions = []) -> Port
   @available(iOS 2.0, *)
   @available(swift, obsoleted: 3, renamed: "port(withMachPort:options:)")
-  class func portWithMachPort(_ machPort: UInt32, options f: Int = []) -> Port
+  class func portWithMachPort(_ machPort: UInt32, options f: NSMachPortOptions = []) -> Port
   @available(iOS 2.0, *)
-  init(machPort: UInt32, options f: Int = [])
+  init(machPort: UInt32, options f: NSMachPortOptions = [])
   var machPort: UInt32 { get }
   func schedule(in runLoop: RunLoop, forMode mode: RunLoop.Mode)
   @available(swift, obsoleted: 3, renamed: "schedule(in:forMode:)")
@@ -67,8 +67,10 @@ class NSMachPort : Port {
   convenience init()
   init?(coder: NSCoder)
 }
-@available(*, unavailable, message: "Not available in Swift")
 typealias NSMachPortOptions = Int
+var NSMachPortDeallocateNone: Int { get }
+var NSMachPortDeallocateSendRight: Int { get }
+var NSMachPortDeallocateReceiveRight: Int { get }
 protocol NSMachPortDelegate : PortDelegate {
   optional func handleMachMessage(_ msg: UnsafeMutableRawPointer)
 }

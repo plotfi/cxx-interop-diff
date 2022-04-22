@@ -1,8 +1,42 @@
 @_exported import CoreFoundation
 
 typealias unichar = UInt16
-@available(*, unavailable, message: "Not available in Swift")
 typealias NSStringCompareOptions = Int
+@available(swift, obsoleted: 3, renamed: "caseInsensitive")
+var NSCaseInsensitiveSearch: Int { get }
+var caseInsensitive: Int { get }
+@available(swift, obsoleted: 3, renamed: "literal")
+var NSLiteralSearch: Int { get }
+var literal: Int { get }
+@available(swift, obsoleted: 3, renamed: "backwards")
+var NSBackwardsSearch: Int { get }
+var backwards: Int { get }
+@available(swift, obsoleted: 3, renamed: "anchored")
+var NSAnchoredSearch: Int { get }
+var anchored: Int { get }
+@available(swift, obsoleted: 3, renamed: "numeric")
+var NSNumericSearch: Int { get }
+var numeric: Int { get }
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "diacriticInsensitive")
+var NSDiacriticInsensitiveSearch: Int { get }
+@available(iOS 2.0, *)
+var diacriticInsensitive: Int { get }
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "widthInsensitive")
+var NSWidthInsensitiveSearch: Int { get }
+@available(iOS 2.0, *)
+var widthInsensitive: Int { get }
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "forcedOrdering")
+var NSForcedOrderingSearch: Int { get }
+@available(iOS 2.0, *)
+var forcedOrdering: Int { get }
+@available(iOS 3.2, *)
+@available(swift, obsoleted: 3, renamed: "regularExpression")
+var NSRegularExpressionSearch: Int { get }
+@available(iOS 3.2, *)
+var regularExpression: Int { get }
 var NSASCIIStringEncoding: UInt { get }
 var NSNEXTSTEPStringEncoding: UInt { get }
 var NSJapaneseEUCStringEncoding: UInt { get }
@@ -26,8 +60,9 @@ var NSUTF16LittleEndianStringEncoding: UInt { get }
 var NSUTF32StringEncoding: UInt { get }
 var NSUTF32BigEndianStringEncoding: UInt { get }
 var NSUTF32LittleEndianStringEncoding: UInt { get }
-@available(*, unavailable, message: "Not available in Swift")
 typealias NSStringEncodingConversionOptions = Int
+var NSStringEncodingConversionAllowLossy: Int { get }
+var NSStringEncodingConversionExternalRepresentation: Int { get }
 class NSString : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   var length: Int { get }
   func character(at index: Int) -> unichar
@@ -86,9 +121,9 @@ extension NSString {
   func substringWithRange(_ range: NSRange) -> String
   func getCharacters(_ buffer: UnsafeMutablePointer<unichar>, range: NSRange)
   func compare(_ string: String) -> ComparisonResult
-  func compare(_ string: String, options mask: Int = []) -> ComparisonResult
-  func compare(_ string: String, options mask: Int = [], range rangeOfReceiverToCompare: NSRange) -> ComparisonResult
-  func compare(_ string: String, options mask: Int = [], range rangeOfReceiverToCompare: NSRange, locale: Any?) -> ComparisonResult
+  func compare(_ string: String, options mask: NSStringCompareOptions = []) -> ComparisonResult
+  func compare(_ string: String, options mask: NSStringCompareOptions = [], range rangeOfReceiverToCompare: NSRange) -> ComparisonResult
+  func compare(_ string: String, options mask: NSStringCompareOptions = [], range rangeOfReceiverToCompare: NSRange, locale: Any?) -> ComparisonResult
   func caseInsensitiveCompare(_ string: String) -> ComparisonResult
   func localizedCompare(_ string: String) -> ComparisonResult
   func localizedCaseInsensitiveCompare(_ string: String) -> ComparisonResult
@@ -99,9 +134,9 @@ extension NSString {
   func isEqualToString(_ aString: String) -> Bool
   func hasPrefix(_ str: String) -> Bool
   func hasSuffix(_ str: String) -> Bool
-  func commonPrefix(with str: String, options mask: Int = []) -> String
+  func commonPrefix(with str: String, options mask: NSStringCompareOptions = []) -> String
   @available(swift, obsoleted: 3, renamed: "commonPrefix(with:options:)")
-  func commonPrefixWithString(_ str: String, options mask: Int = []) -> String
+  func commonPrefixWithString(_ str: String, options mask: NSStringCompareOptions = []) -> String
   @available(iOS 8.0, *)
   func contains(_ str: String) -> Bool
   @available(iOS 8.0, *)
@@ -125,26 +160,26 @@ extension NSString {
   func range(of searchString: String) -> NSRange
   @available(swift, obsoleted: 3, renamed: "range(of:)")
   func rangeOfString(_ searchString: String) -> NSRange
-  func range(of searchString: String, options mask: Int = []) -> NSRange
+  func range(of searchString: String, options mask: NSStringCompareOptions = []) -> NSRange
   @available(swift, obsoleted: 3, renamed: "range(of:options:)")
-  func rangeOfString(_ searchString: String, options mask: Int = []) -> NSRange
-  func range(of searchString: String, options mask: Int = [], range rangeOfReceiverToSearch: NSRange) -> NSRange
+  func rangeOfString(_ searchString: String, options mask: NSStringCompareOptions = []) -> NSRange
+  func range(of searchString: String, options mask: NSStringCompareOptions = [], range rangeOfReceiverToSearch: NSRange) -> NSRange
   @available(swift, obsoleted: 3, renamed: "range(of:options:range:)")
-  func rangeOfString(_ searchString: String, options mask: Int = [], range rangeOfReceiverToSearch: NSRange) -> NSRange
+  func rangeOfString(_ searchString: String, options mask: NSStringCompareOptions = [], range rangeOfReceiverToSearch: NSRange) -> NSRange
   @available(iOS 2.0, *)
-  func range(of searchString: String, options mask: Int = [], range rangeOfReceiverToSearch: NSRange, locale: Locale?) -> NSRange
+  func range(of searchString: String, options mask: NSStringCompareOptions = [], range rangeOfReceiverToSearch: NSRange, locale: Locale?) -> NSRange
   @available(iOS 2.0, *)
   @available(swift, obsoleted: 3, renamed: "range(of:options:range:locale:)")
-  func rangeOfString(_ searchString: String, options mask: Int = [], range rangeOfReceiverToSearch: NSRange, locale: Locale?) -> NSRange
+  func rangeOfString(_ searchString: String, options mask: NSStringCompareOptions = [], range rangeOfReceiverToSearch: NSRange, locale: Locale?) -> NSRange
   func rangeOfCharacter(from searchSet: CharacterSet) -> NSRange
   @available(swift, obsoleted: 3, renamed: "rangeOfCharacter(from:)")
   func rangeOfCharacterFromSet(_ searchSet: CharacterSet) -> NSRange
-  func rangeOfCharacter(from searchSet: CharacterSet, options mask: Int = []) -> NSRange
+  func rangeOfCharacter(from searchSet: CharacterSet, options mask: NSStringCompareOptions = []) -> NSRange
   @available(swift, obsoleted: 3, renamed: "rangeOfCharacter(from:options:)")
-  func rangeOfCharacterFromSet(_ searchSet: CharacterSet, options mask: Int = []) -> NSRange
-  func rangeOfCharacter(from searchSet: CharacterSet, options mask: Int = [], range rangeOfReceiverToSearch: NSRange) -> NSRange
+  func rangeOfCharacterFromSet(_ searchSet: CharacterSet, options mask: NSStringCompareOptions = []) -> NSRange
+  func rangeOfCharacter(from searchSet: CharacterSet, options mask: NSStringCompareOptions = [], range rangeOfReceiverToSearch: NSRange) -> NSRange
   @available(swift, obsoleted: 3, renamed: "rangeOfCharacter(from:options:range:)")
-  func rangeOfCharacterFromSet(_ searchSet: CharacterSet, options mask: Int = [], range rangeOfReceiverToSearch: NSRange) -> NSRange
+  func rangeOfCharacterFromSet(_ searchSet: CharacterSet, options mask: NSStringCompareOptions = [], range rangeOfReceiverToSearch: NSRange) -> NSRange
   func rangeOfComposedCharacterSequence(at index: Int) -> NSRange
   @available(swift, obsoleted: 3, renamed: "rangeOfComposedCharacterSequence(at:)")
   func rangeOfComposedCharacterSequenceAtIndex(_ index: Int) -> NSRange
@@ -217,10 +252,10 @@ extension NSString {
   @available(swift, obsoleted: 3, renamed: "paragraphRange(for:)")
   func paragraphRangeForRange(_ range: NSRange) -> NSRange
   @available(iOS 4.0, *)
-  func enumerateSubstrings(in range: NSRange, options opts: Int = [], using block: @escaping (String?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateSubstrings(in range: NSRange, options opts: NSStringEnumerationOptions = [], using block: @escaping (String?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateSubstrings(in:options:using:)")
-  func enumerateSubstringsInRange(_ range: NSRange, options opts: Int = [], usingBlock block: @escaping (String?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateSubstringsInRange(_ range: NSRange, options opts: NSStringEnumerationOptions = [], usingBlock block: @escaping (String?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   func enumerateLines(_ block: @escaping (String, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
@@ -244,9 +279,9 @@ extension NSString {
   @available(swift, obsoleted: 3, renamed: "cString(using:)")
   func cStringUsingEncoding(_ encoding: UInt) -> UnsafePointer<CChar>?
   func getCString(_ buffer: UnsafeMutablePointer<CChar>, maxLength maxBufferCount: Int, encoding: UInt) -> Bool
-  func getBytes(_ buffer: UnsafeMutableRawPointer?, maxLength maxBufferCount: Int, usedLength usedBufferCount: UnsafeMutablePointer<Int>?, encoding: UInt, options: Int = [], range: NSRange, remaining leftover: NSRangePointer?) -> Bool
+  func getBytes(_ buffer: UnsafeMutableRawPointer?, maxLength maxBufferCount: Int, usedLength usedBufferCount: UnsafeMutablePointer<Int>?, encoding: UInt, options: NSStringEncodingConversionOptions = [], range: NSRange, remaining leftover: NSRangePointer?) -> Bool
   @available(swift, obsoleted: 3, renamed: "getBytes(_:maxLength:usedLength:encoding:options:range:remaining:)")
-  func getBytes(_ buffer: UnsafeMutableRawPointer?, maxLength maxBufferCount: Int, usedLength usedBufferCount: UnsafeMutablePointer<Int>?, encoding: UInt, options: Int = [], range: NSRange, remainingRange leftover: NSRangePointer?) -> Bool
+  func getBytes(_ buffer: UnsafeMutableRawPointer?, maxLength maxBufferCount: Int, usedLength usedBufferCount: UnsafeMutablePointer<Int>?, encoding: UInt, options: NSStringEncodingConversionOptions = [], range: NSRange, remainingRange leftover: NSRangePointer?) -> Bool
   func maximumLengthOfBytes(using enc: UInt) -> Int
   @available(swift, obsoleted: 3, renamed: "maximumLengthOfBytes(using:)")
   func maximumLengthOfBytesUsingEncoding(_ enc: UInt) -> Int
@@ -277,15 +312,15 @@ extension NSString {
   @available(swift, obsoleted: 3, renamed: "padding(toLength:withPad:startingAt:)")
   func stringByPaddingToLength(_ newLength: Int, withString padString: String, startingAtIndex padIndex: Int) -> String
   @available(iOS 2.0, *)
-  func folding(options: Int = [], locale: Locale?) -> String
+  func folding(options: NSStringCompareOptions = [], locale: Locale?) -> String
   @available(iOS 2.0, *)
   @available(swift, obsoleted: 3, renamed: "folding(options:locale:)")
-  func stringByFoldingWithOptions(_ options: Int = [], locale: Locale?) -> String
+  func stringByFoldingWithOptions(_ options: NSStringCompareOptions = [], locale: Locale?) -> String
   @available(iOS 2.0, *)
-  func replacingOccurrences(of target: String, with replacement: String, options: Int = [], range searchRange: NSRange) -> String
+  func replacingOccurrences(of target: String, with replacement: String, options: NSStringCompareOptions = [], range searchRange: NSRange) -> String
   @available(iOS 2.0, *)
   @available(swift, obsoleted: 3, renamed: "replacingOccurrences(of:with:options:range:)")
-  func stringByReplacingOccurrencesOfString(_ target: String, withString replacement: String, options: Int = [], range searchRange: NSRange) -> String
+  func stringByReplacingOccurrencesOfString(_ target: String, withString replacement: String, options: NSStringCompareOptions = [], range searchRange: NSRange) -> String
   @available(iOS 2.0, *)
   func replacingOccurrences(of target: String, with replacement: String) -> String
   @available(iOS 2.0, *)
@@ -360,8 +395,21 @@ extension NSString {
   @available(*, unavailable, renamed: "init(contentsOfFile:usedEncoding:)", message: "Not available in Swift")
   class func stringWithContentsOfFile(_ path: String, usedEncoding enc: UnsafeMutablePointer<UInt>?) throws -> Self
 }
-@available(*, unavailable, message: "Not available in Swift")
 typealias NSStringEnumerationOptions = Int
+@available(swift, obsoleted: 3, renamed: "byLines")
+var NSStringEnumerationByLines: Int { get }
+var byLines: Int { get }
+var NSStringEnumerationByParagraphs: Int { get }
+var NSStringEnumerationByComposedCharacterSequences: Int { get }
+var NSStringEnumerationByWords: Int { get }
+var NSStringEnumerationBySentences: Int { get }
+@available(iOS 14.0, *)
+var NSStringEnumerationByCaretPositions: Int { get }
+@available(iOS 14.0, *)
+var NSStringEnumerationByDeletionClusters: Int { get }
+var NSStringEnumerationReverse: Int { get }
+var NSStringEnumerationSubstringNotRequired: Int { get }
+var NSStringEnumerationLocalized: Int { get }
 @available(swift, obsoleted: 3, renamed: "StringTransform")
 typealias NSStringTransform = StringTransform
 struct StringTransform : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
@@ -571,9 +619,9 @@ extension NSMutableString {
   @available(swift, obsoleted: 3, renamed: "append(_:)")
   func appendString(_ aString: String)
   func setString(_ aString: String)
-  func replaceOccurrences(of target: String, with replacement: String, options: Int = [], range searchRange: NSRange) -> Int
+  func replaceOccurrences(of target: String, with replacement: String, options: NSStringCompareOptions = [], range searchRange: NSRange) -> Int
   @available(swift, obsoleted: 3, renamed: "replaceOccurrences(of:with:options:range:)")
-  func replaceOccurrencesOfString(_ target: String, withString replacement: String, options: Int = [], range searchRange: NSRange) -> Int
+  func replaceOccurrencesOfString(_ target: String, withString replacement: String, options: NSStringCompareOptions = [], range searchRange: NSRange) -> Int
   @available(iOS 9.0, *)
   func applyTransform(_ transform: StringTransform, reverse: Bool, range: NSRange, updatedRange resultingRange: NSRangePointer?) -> Bool
   init(capacity: Int)

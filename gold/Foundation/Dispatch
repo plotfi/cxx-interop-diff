@@ -2397,6 +2397,8 @@ extension DispatchSourceProtocol {
   var data: UInt { get }
   var isCancelled: Bool { get }
 }
+@available(swift, obsoleted: 3, renamed: "DispatchSourceProtocol")
+typealias OS_dispatch_sourceProtocol = DispatchSourceProtocol
 extension DispatchSource : DispatchSourceProtocol {
 }
 

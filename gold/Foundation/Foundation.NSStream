@@ -43,8 +43,13 @@ extension Stream {
 }
 @available(swift, obsoleted: 3, renamed: "Stream.Status")
 typealias NSStreamStatus = Stream.Status
-@available(*, unavailable, message: "Not available in Swift")
 typealias NSStreamEvent = Int
+var NSStreamEventNone: Int { get }
+var NSStreamEventOpenCompleted: Int { get }
+var NSStreamEventHasBytesAvailable: Int { get }
+var NSStreamEventHasSpaceAvailable: Int { get }
+var NSStreamEventErrorOccurred: Int { get }
+var NSStreamEventEndEncountered: Int { get }
 @available(swift, obsoleted: 3, renamed: "Stream")
 typealias NSStream = Stream
 class Stream : NSObject {
@@ -139,7 +144,7 @@ extension OutputStream {
 @available(swift, obsoleted: 3, renamed: "StreamDelegate")
 typealias NSStreamDelegate = StreamDelegate
 protocol StreamDelegate : NSObjectProtocol {
-  optional func stream(_ aStream: Stream, handleEvent eventCode: Int)
+  optional func stream(_ aStream: Stream, handleEvent eventCode: NSStreamEvent)
 }
 @available(iOS 2.0, *)
 @available(swift, obsoleted: 3, renamed: "Stream.PropertyKey.socketSecurityLevelKey")

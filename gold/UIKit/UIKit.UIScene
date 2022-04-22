@@ -1,50 +1,79 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UIScene'
+@_exported import Foundation
+
+@available(iOS 13.0, *)
+@MainActor class UIScene : UIResponder {
+  @available(*, unavailable)
+  class func new() -> Self
+  @available(*, unavailable)
+  convenience init()
+  init(session: UISceneSession, connectionOptions: UIScene.ConnectionOptions)
+  var session: UISceneSession { get }
+  var delegate: UISceneDelegate?
+  var activationState: UIScene.ActivationState { get }
+  func open(_ url: URL, options: UIScene.OpenExternalURLOptions?, completionHandler completion: (@Sendable (Bool) -> Void)? = nil)
+  func open(_ url: URL, options: UIScene.OpenExternalURLOptions?) async -> Bool
+  @available(swift, obsoleted: 3, renamed: "open(_:options:completionHandler:)")
+  func openURL(_ url: URL, options: UIScene.OpenExternalURLOptions?, completionHandler completion: (@Sendable (Bool) -> Void)? = nil)
+  var title: String!
+  @available(iOS 15.0, *)
+  var subtitle: String
+  var activationConditions: UISceneActivationConditions
+}
+@available(iOS 13.0, *)
+@MainActor protocol UISceneDelegate : NSObjectProtocol {
+  optional func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
+  @available(swift, obsoleted: 3, renamed: "scene(_:willConnectTo:options:)")
+  optional func scene(_ scene: UIScene, willConnectToSession session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
+  optional func sceneDidDisconnect(_ scene: UIScene)
+  optional func sceneDidBecomeActive(_ scene: UIScene)
+  optional func sceneWillResignActive(_ scene: UIScene)
+  optional func sceneWillEnterForeground(_ scene: UIScene)
+  optional func sceneDidEnterBackground(_ scene: UIScene)
+  optional func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
+  optional func stateRestorationActivity(for scene: UIScene) -> NSUserActivity?
+  @available(swift, obsoleted: 3, renamed: "stateRestorationActivity(for:)")
+  optional func stateRestorationActivityForScene(_ scene: UIScene) -> NSUserActivity?
+  optional func scene(_ scene: UIScene, restoreInteractionStateWith stateRestorationActivity: NSUserActivity)
+  @available(swift, obsoleted: 3, renamed: "scene(_:restoreInteractionStateWith:)")
+  optional func scene(_ scene: UIScene, restoreInteractionStateWithUserActivity stateRestorationActivity: NSUserActivity)
+  optional func scene(_ scene: UIScene, willContinueUserActivityWithType userActivityType: String)
+  optional func scene(_ scene: UIScene, continue userActivity: NSUserActivity)
+  @available(swift, obsoleted: 3, renamed: "scene(_:continue:)")
+  optional func scene(_ scene: UIScene, continueUserActivity userActivity: NSUserActivity)
+  optional func scene(_ scene: UIScene, didFailToContinueUserActivityWithType userActivityType: String, error: Error)
+  optional func scene(_ scene: UIScene, didUpdate userActivity: NSUserActivity)
+  @available(swift, obsoleted: 3, renamed: "scene(_:didUpdate:)")
+  optional func scene(_ scene: UIScene, didUpdateUserActivity userActivity: NSUserActivity)
+}
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "UIScene.willConnectNotification")
+let UISceneWillConnectNotification: NSNotification.Name
+extension UIScene {
+  @available(iOS 13.0, *)
+  class let willConnectNotification: NSNotification.Name
+  @available(iOS 13.0, *)
+  class let didDisconnectNotification: NSNotification.Name
+  @available(iOS 13.0, *)
+  class let didActivateNotification: NSNotification.Name
+  @available(iOS 13.0, *)
+  class let willDeactivateNotification: NSNotification.Name
+  @available(iOS 13.0, *)
+  class let willEnterForegroundNotification: NSNotification.Name
+  @available(iOS 13.0, *)
+  class let didEnterBackgroundNotification: NSNotification.Name
+}
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "UIScene.didDisconnectNotification")
+let UISceneDidDisconnectNotification: NSNotification.Name
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "UIScene.didActivateNotification")
+let UISceneDidActivateNotification: NSNotification.Name
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "UIScene.willDeactivateNotification")
+let UISceneWillDeactivateNotification: NSNotification.Name
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "UIScene.willEnterForegroundNotification")
+let UISceneWillEnterForegroundNotification: NSNotification.Name
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "UIScene.didEnterBackgroundNotification")
+let UISceneDidEnterBackgroundNotification: NSNotification.Name

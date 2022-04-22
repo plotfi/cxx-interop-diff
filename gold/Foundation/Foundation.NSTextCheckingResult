@@ -1,7 +1,22 @@
 @_exported import CoreFoundation
 
-@available(*, unavailable, message: "Not available in Swift")
 typealias NSTextCheckingType = UInt64
+var NSTextCheckingTypeOrthography: UInt64 { get }
+var NSTextCheckingTypeSpelling: UInt64 { get }
+var NSTextCheckingTypeGrammar: UInt64 { get }
+var NSTextCheckingTypeDate: UInt64 { get }
+var NSTextCheckingTypeAddress: UInt64 { get }
+var NSTextCheckingTypeLink: UInt64 { get }
+var NSTextCheckingTypeQuote: UInt64 { get }
+var NSTextCheckingTypeDash: UInt64 { get }
+var NSTextCheckingTypeReplacement: UInt64 { get }
+var NSTextCheckingTypeCorrection: UInt64 { get }
+@available(iOS 4.0, *)
+var NSTextCheckingTypeRegularExpression: UInt64 { get }
+@available(iOS 4.0, *)
+var NSTextCheckingTypePhoneNumber: UInt64 { get }
+@available(iOS 4.0, *)
+var NSTextCheckingTypeTransitInformation: UInt64 { get }
 typealias NSTextCheckingTypes = UInt64
 var NSTextCheckingAllSystemTypes: NSTextCheckingTypes { get }
 var NSTextCheckingAllCustomTypes: NSTextCheckingTypes { get }
@@ -16,7 +31,7 @@ struct NSTextCheckingKey : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNew
 }
 @available(iOS 4.0, *)
 class NSTextCheckingResult : NSObject, NSCopying, NSSecureCoding {
-  var resultType: UInt64 { get }
+  var resultType: NSTextCheckingType { get }
   var range: NSRange { get }
   init()
   @available(iOS 4.0, *)

@@ -1,50 +1,89 @@
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
-#import <FileProvider/NSFileProviderItem.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<module-includes>:1:9: note: in file included from <module-includes>:1:
-#import "Headers/FileProvider.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
-#import <FileProvider/NSFileProviderDomain.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
-typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
-                               ^
-<module-includes>:2:9: note: in file included from <module-includes>:2:
-#import "Headers/UIKit.h"
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
-#import <UIKit/UIKitCore.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
-#import <UIKit/NSFileProviderExtension.h>
-        ^
-/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
-#import <FileProvider/NSFileProviderExtension.h>
-        ^
-<unknown>:0: error: could not build Objective-C module 'UIKit'
-error: could not find module 'UIKit.UIToolTipInteraction'
+@_exported import Foundation
+
+@available(iOS 15.0, *)
+class UIToolTipInteraction : NSObject, UIInteraction {
+
+  /// The interaction's delegate.
+  weak var delegate: @sil_weak UIToolTipInteractionDelegate?
+
+  /// Indicates whether the interaction is enabled. Defaults to YES.
+  var isEnabled: Bool
+
+  /// Indicates whether the interaction is enabled. Defaults to YES.
+  @available(swift, obsoleted: 3, renamed: "isEnabled")
+  var enabled: Bool
+
+  /// The interaction's default tool tip string.
+  var defaultToolTip: String?
+
+  /**
+   * @abstract Creates a UIToolTipInteraction.
+   */
+  init()
+  init(defaultToolTip: String)
+  @available(iOS 11.0, *)
+  weak var view: @sil_weak UIView? { get }
+  @available(iOS 11.0, *)
+  func willMove(to view: UIView?)
+  @available(iOS 11.0, *)
+  func didMove(to view: UIView?)
+}
+@available(iOS 15.0, *)
+class UIToolTipConfiguration : NSObject {
+
+  /// The string to annotate the contents at a given point.
+  var toolTip: String { get }
+
+  /// The rectangle containing the contents being annotated by the tool tip. Value is CGRectNull if the tool tip applies to the entire view.
+  var __sourceRect: CGRect { get }
+
+  /// Creates a UIToolTipConfiguration with the provided string, applied to the entire view.
+  convenience init(toolTip: String)
+
+  /// Creates a UIToolTipConfiguration with the provided string, applied to the entire view.
+  @available(*, unavailable, renamed: "init(toolTip:)", message: "Not available in Swift")
+  class func configurationWithToolTip(_ toolTip: String) -> Self
+
+  /// Creates a UIToolTipConfiguration with the provided string, applied to the specified region.
+  convenience init(toolTip: String, in sourceRect: CGRect)
+
+  /// Creates a UIToolTipConfiguration with the provided string, applied to the specified region.
+  @available(swift, obsoleted: 3, renamed: "init(toolTip:in:)")
+  convenience init(toolTip: String, inRect sourceRect: CGRect)
+
+  /// Creates a UIToolTipConfiguration with the provided string, applied to the specified region.
+  @available(*, unavailable, renamed: "init(toolTip:in:)", message: "Not available in Swift")
+  class func configurationWithToolTip(_ toolTip: String, inRect sourceRect: CGRect) -> Self
+  @available(*, unavailable)
+  class func new() -> Self
+  @available(*, unavailable)
+  init()
+}
+
+@available(iOS 15.0, *)
+@available(tvOS, unavailable)
+extension UIToolTipConfiguration {
+  var sourceRect: CGRect? { get }
+}
+@available(iOS 15.0, *)
+protocol UIToolTipInteractionDelegate : NSObjectProtocol {
+
+  /**
+   * @abstract Called when the interaction is about to begin.
+   *
+   * @param interaction  This UIToolTipInteraction.
+   *
+   * @return The tool tip configuration containing the string and rectangle for this interaction. Return nil if the interaction is inactive or the hit test fails.
+   */
+  optional func toolTipInteraction(_ interaction: UIToolTipInteraction, configurationAt point: CGPoint) -> UIToolTipConfiguration?
+
+  /**
+   * @abstract Called when the interaction is about to begin.
+   *
+   * @param interaction  This UIToolTipInteraction.
+   *
+   * @return The tool tip configuration containing the string and rectangle for this interaction. Return nil if the interaction is inactive or the hit test fails.
+   */
+  @available(swift, obsoleted: 3, renamed: "toolTipInteraction(_:configurationAt:)")
+  optional func toolTipInteraction(_ interaction: UIToolTipInteraction, configurationAtPoint point: CGPoint) -> UIToolTipConfiguration?
+}
