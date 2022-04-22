@@ -64,29 +64,12 @@ typealias UIGuidedAccessRestrictionState = UIAccessibility.GuidedAccessRestricti
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "UIAccessibility.guidedAccessRestrictionState(forIdentifier:)")
 func UIGuidedAccessRestrictionStateForIdentifier(_ restrictionIdentifier: String) -> UIAccessibility.GuidedAccessRestrictionState
-@available(iOS 12.2, *)
-struct UIGuidedAccessAccessibilityFeature : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = UIGuidedAccessAccessibilityFeature
-  typealias ArrayLiteralElement = UIGuidedAccessAccessibilityFeature
-  static var voiceOver: UIGuidedAccessAccessibilityFeature { get }
-  @available(swift, obsoleted: 3, renamed: "voiceOver")
-  static var VoiceOver: UIGuidedAccessAccessibilityFeature { get }
-  static var zoom: UIGuidedAccessAccessibilityFeature { get }
-  @available(swift, obsoleted: 3, renamed: "zoom")
-  static var Zoom: UIGuidedAccessAccessibilityFeature { get }
-  static var assistiveTouch: UIGuidedAccessAccessibilityFeature { get }
-  @available(swift, obsoleted: 3, renamed: "assistiveTouch")
-  static var AssistiveTouch: UIGuidedAccessAccessibilityFeature { get }
-  static var invertColors: UIGuidedAccessAccessibilityFeature { get }
-  @available(swift, obsoleted: 3, renamed: "invertColors")
-  static var InvertColors: UIGuidedAccessAccessibilityFeature { get }
-  static var grayscaleDisplay: UIGuidedAccessAccessibilityFeature { get }
-  @available(swift, obsoleted: 3, renamed: "grayscaleDisplay")
-  static var GrayscaleDisplay: UIGuidedAccessAccessibilityFeature { get }
-}
+typealias UIGuidedAccessAccessibilityFeature = Int
+var UIGuidedAccessAccessibilityFeatureVoiceOver: Int { get }
+var UIGuidedAccessAccessibilityFeatureZoom: Int { get }
+var UIGuidedAccessAccessibilityFeatureAssistiveTouch: Int { get }
+var UIGuidedAccessAccessibilityFeatureInvertColors: Int { get }
+var UIGuidedAccessAccessibilityFeatureGrayscaleDisplay: Int { get }
 @available(iOS 12.2, *)
 @available(swift, obsoleted: 3, renamed: "UIAccessibility.configureForGuidedAccess(features:enabled:completionHandler:)")
 func UIGuidedAccessConfigureAccessibilityFeatures(_ features: UIGuidedAccessAccessibilityFeature, _ enabled: Bool, _ completion: @escaping (Bool, Error?) -> Void)

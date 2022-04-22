@@ -238,11 +238,11 @@ enum UITextAlternativeStyle : Int, @unchecked Sendable {
   @available(iOS 9.0, *)
   optional func endFloatingCursor()
 }
-@available(iOS, introduced: 3.2, deprecated: 8.0, renamed: "NSAttributedString.Key.backgroundColor")
+@available(iOS, introduced: 3.2, deprecated: 8.0)
 let UITextInputTextBackgroundColorKey: String
-@available(iOS, introduced: 3.2, deprecated: 8.0, renamed: "NSAttributedString.Key.foregroundColor")
+@available(iOS, introduced: 3.2, deprecated: 8.0)
 let UITextInputTextColorKey: String
-@available(iOS, introduced: 3.2, deprecated: 8.0, renamed: "NSAttributedString.Key.font")
+@available(iOS, introduced: 3.2, deprecated: 8.0)
 let UITextInputTextFontKey: String
 @available(iOS 3.2, *)
 @MainActor class UITextPosition : NSObject {
@@ -322,14 +322,14 @@ extension UITextInputMode {
   @available(iOS 4.2, *)
   class let currentInputModeDidChangeNotification: NSNotification.Name
 }
-@available(iOS, introduced: 3.2, deprecated: 13.0, renamed: "NSWritingDirection")
+@available(iOS, introduced: 3.2, deprecated: 13.0)
 typealias UITextWritingDirection = NSWritingDirection
-@available(iOS, introduced: 3.2, deprecated: 13.0, renamed: "NSWritingDirection.natural")
+@available(iOS, introduced: 3.2, deprecated: 13.0)
 @available(*, unavailable, message: "Not available in Swift")
 let UITextWritingDirectionNatural: UITextWritingDirection
-@available(iOS, introduced: 3.2, deprecated: 13.0, renamed: "NSWritingDirection.leftToRight")
+@available(iOS, introduced: 3.2, deprecated: 13.0)
 @available(*, unavailable, message: "Not available in Swift")
 let UITextWritingDirectionLeftToRight: UITextWritingDirection
-@available(iOS, introduced: 3.2, deprecated: 13.0, renamed: "NSWritingDirection.rightToLeft")
+@available(iOS, introduced: 3.2, deprecated: 13.0)
 @available(*, unavailable, message: "Not available in Swift")
 let UITextWritingDirectionRightToLeft: UITextWritingDirection

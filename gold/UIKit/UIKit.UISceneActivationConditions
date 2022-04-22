@@ -11,5 +11,3 @@
   @available(iOS 13.0, *)
   func encode(with coder: NSCoder)
 }
-extension NSUserActivity {
-}

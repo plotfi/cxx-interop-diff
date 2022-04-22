@@ -4,8 +4,15 @@
 typealias UIDocumentChangeKind = UIDocument.ChangeKind
 @available(swift, obsoleted: 4.2, renamed: "UIDocument.SaveOperation")
 typealias UIDocumentSaveOperation = UIDocument.SaveOperation
-@available(swift, obsoleted: 4.2, renamed: "UIDocument.State")
-typealias UIDocumentState = UIDocument.State
+typealias UIDocumentState = Int
+@available(swift, obsoleted: 3, renamed: "normal")
+var UIDocumentStateNormal: Int { get }
+var normal: Int { get }
+var UIDocumentStateClosed: Int { get }
+var UIDocumentStateInConflict: Int { get }
+var UIDocumentStateSavingError: Int { get }
+var UIDocumentStateEditingDisabled: Int { get }
+var UIDocumentStateProgressAvailable: Int { get }
 @available(iOS 5.0, *)
 @available(swift, obsoleted: 3, renamed: "UIDocument.stateChangedNotification")
 let UIDocumentStateChangedNotification: NSNotification.Name
@@ -16,7 +23,7 @@ let UIDocumentStateChangedNotification: NSNotification.Name
   var localizedName: String { get }
   var fileType: String? { get }
   var fileModificationDate: Date?
-  var documentState: UIDocument.State { get }
+  var documentState: UIDocumentState { get }
   @available(iOS 9.0, *)
   var progress: Progress? { get }
   func open(completionHandler: (@Sendable (Bool) -> Void)? = nil)
@@ -163,32 +170,6 @@ extension UIDocument {
     case forOverwriting
     @available(swift, obsoleted: 3, renamed: "forOverwriting")
     static var ForOverwriting: UIDocument.SaveOperation { get }
-  }
-  struct State : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = UIDocument.State
-    typealias ArrayLiteralElement = UIDocument.State
-    static var normal: UIDocument.State { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "normal")
-    static var Normal: UIDocument.State { get }
-    static var closed: UIDocument.State { get }
-    @available(swift, obsoleted: 3, renamed: "closed")
-    static var Closed: UIDocument.State { get }
-    static var inConflict: UIDocument.State { get }
-    @available(swift, obsoleted: 3, renamed: "inConflict")
-    static var InConflict: UIDocument.State { get }
-    static var savingError: UIDocument.State { get }
-    @available(swift, obsoleted: 3, renamed: "savingError")
-    static var SavingError: UIDocument.State { get }
-    static var editingDisabled: UIDocument.State { get }
-    @available(swift, obsoleted: 3, renamed: "editingDisabled")
-    static var EditingDisabled: UIDocument.State { get }
-    static var progressAvailable: UIDocument.State { get }
-    @available(swift, obsoleted: 3, renamed: "progressAvailable")
-    static var ProgressAvailable: UIDocument.State { get }
   }
   @available(iOS 5.0, *)
   class let stateChangedNotification: NSNotification.Name

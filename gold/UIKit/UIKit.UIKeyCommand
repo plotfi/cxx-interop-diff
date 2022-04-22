@@ -28,7 +28,7 @@
 
   /// Command attributes.
   @available(iOS 13.0, *)
-  var attributes: UIMenuElement.Attributes
+  var attributes: UIMenuElementAttributes
 
   /// State that can appear next to this command.
   @available(iOS 13.0, *)
@@ -144,18 +144,4 @@
 
 @available(iOS 13.0, *)
 extension UIKeyCommand {
-  /// Initializes a key command with extra properties.
-  ///
-  /// - Parameters:
-  ///   - title: Short display title. This should be localized.
-  ///   - action: Action to execute on choosing this command.
-  ///   - input: Keys that must be pressed to choose this command.
-  ///   - modifierFlags: Bit mask of key modifier flags to choose this command.
-  ///   - propertyList: Property list object to distinguish commands, if needed.
-  ///   - alternates: Alternates that differ in modifier flags, if needed.
-  ///   - image: Image that can appear next to the command, if any.
-  ///   - discoverabilityTitle: Elaborated title, if any.
-  ///   - isEnabled: Whether to enable or disable the command.
-  ///   - state: State that can appear next to the command.
-  @MainActor convenience init(title: String = "", image: UIImage? = nil, action: Selector, input: String, modifierFlags: UIKeyModifierFlags = [], propertyList: Any? = nil, alternates: [UICommandAlternate] = [], discoverabilityTitle: String? = nil, attributes: UIMenuElement.Attributes = [], state: UIMenuElement.State = .off)
 }

@@ -173,29 +173,7 @@ extension UIAccessibility {
   @available(iOS 7.0, *)
   static func requestGuidedAccessSession(enabled enable: Bool, completionHandler: @escaping (Bool) -> Void)
   @available(iOS 10.0, *)
-  struct HearingDeviceEar : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = UIAccessibility.HearingDeviceEar
-    typealias ArrayLiteralElement = UIAccessibility.HearingDeviceEar
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var none: UIAccessibility.HearingDeviceEar { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "none")
-    static var None: UIAccessibility.HearingDeviceEar { get }
-    static var left: UIAccessibility.HearingDeviceEar { get }
-    @available(swift, obsoleted: 3, renamed: "left")
-    static var Left: UIAccessibility.HearingDeviceEar { get }
-    static var right: UIAccessibility.HearingDeviceEar { get }
-    @available(swift, obsoleted: 3, renamed: "right")
-    static var Right: UIAccessibility.HearingDeviceEar { get }
-    static var both: UIAccessibility.HearingDeviceEar { get }
-    @available(swift, obsoleted: 3, renamed: "both")
-    static var Both: UIAccessibility.HearingDeviceEar { get }
-  }
-  @available(iOS 10.0, *)
-  static var hearingDevicePairedEar: UIAccessibility.HearingDeviceEar { get }
+  static var hearingDevicePairedEar: UIAccessibilityHearingDeviceEar { get }
   @available(iOS 10.0, *)
   static let hearingDevicePairedEarDidChangeNotification: NSNotification.Name
 }
@@ -321,7 +299,7 @@ func UIAccessibilityPostNotification(_ notification: UIAccessibility.Notificatio
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "getter:UIAccessibility.isVoiceOverRunning()")
 func UIAccessibilityIsVoiceOverRunning() -> Bool
-@available(iOS, introduced: 4.0, deprecated: 11.0, renamed: "UIAccessibility.voiceOverStatusDidChangeNotification")
+@available(iOS, introduced: 4.0, deprecated: 11.0)
 let UIAccessibilityVoiceOverStatusChanged: String
 @available(iOS 11.0, *)
 @available(swift, obsoleted: 3, renamed: "UIAccessibility.voiceOverStatusDidChangeNotification")
@@ -443,12 +421,14 @@ let UIAccessibilityOnOffSwitchLabelsDidChangeNotification: NSNotification.Name
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "UIAccessibility.requestGuidedAccessSession(enabled:completionHandler:)")
 func UIAccessibilityRequestGuidedAccessSession(_ enable: Bool, _ completionHandler: @escaping (Bool) -> Void)
-@available(iOS 10.0, *)
-@available(swift, obsoleted: 4.2, renamed: "UIAccessibility.HearingDeviceEar")
-typealias UIAccessibilityHearingDeviceEar = UIAccessibility.HearingDeviceEar
+typealias UIAccessibilityHearingDeviceEar = Int
+var UIAccessibilityHearingDeviceEarNone: Int { get }
+var UIAccessibilityHearingDeviceEarLeft: Int { get }
+var UIAccessibilityHearingDeviceEarRight: Int { get }
+var UIAccessibilityHearingDeviceEarBoth: Int { get }
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "getter:UIAccessibility.hearingDevicePairedEar()")
-func UIAccessibilityHearingDevicePairedEar() -> UIAccessibility.HearingDeviceEar
+func UIAccessibilityHearingDevicePairedEar() -> UIAccessibilityHearingDeviceEar
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UIAccessibility.hearingDevicePairedEarDidChangeNotification")
 let UIAccessibilityHearingDevicePairedEarDidChangeNotification: NSNotification.Name

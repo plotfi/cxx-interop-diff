@@ -1,8 +1,8 @@
 @_exported import Foundation
 
-@available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, renamed: "NSAttributedString.Key.font", message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
+@available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
 let UITextAttributeFont: String
-@available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, renamed: "NSAttributedString.Key.foregroundColor", message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
+@available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
 let UITextAttributeTextColor: String
 @available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, message: "Use NSShadowAttributeName with an NSShadow instance as the value")
 let UITextAttributeTextShadowColor: String

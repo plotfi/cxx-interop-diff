@@ -21,15 +21,6 @@
    */
   weak var windowScene: @sil_weak UIWindowScene? { get }
 }
-@available(iOS 13.0, *)
-extension UIWindowScene {
-
-  /**
-   @abstract The screenshot object associated with the scene
-   @discussion This is non-null if the screenshot service is available for this window scene
-   */
-  var screenshotService: UIScreenshotService? { get }
-}
 @MainActor protocol UIScreenshotServiceDelegate : NSObjectProtocol {
 
   /**

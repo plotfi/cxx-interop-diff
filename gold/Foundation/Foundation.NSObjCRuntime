@@ -164,32 +164,12 @@ typealias NSComparisonResult = ComparisonResult
 typealias Comparator = (Any, Any) -> ComparisonResult
 @available(swift, obsoleted: 3, renamed: "Comparator")
 typealias NSComparator = Comparator
-struct NSEnumerationOptions : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = NSEnumerationOptions
-  typealias ArrayLiteralElement = NSEnumerationOptions
-  static var concurrent: NSEnumerationOptions { get }
-  @available(swift, obsoleted: 3, renamed: "concurrent")
-  static var Concurrent: NSEnumerationOptions { get }
-  static var reverse: NSEnumerationOptions { get }
-  @available(swift, obsoleted: 3, renamed: "reverse")
-  static var Reverse: NSEnumerationOptions { get }
-}
-struct NSSortOptions : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = NSSortOptions
-  typealias ArrayLiteralElement = NSSortOptions
-  static var concurrent: NSSortOptions { get }
-  @available(swift, obsoleted: 3, renamed: "concurrent")
-  static var Concurrent: NSSortOptions { get }
-  static var stable: NSSortOptions { get }
-  @available(swift, obsoleted: 3, renamed: "stable")
-  static var Stable: NSSortOptions { get }
-}
+typealias NSEnumerationOptions = Int
+var NSEnumerationConcurrent: Int { get }
+var NSEnumerationReverse: Int { get }
+typealias NSSortOptions = Int
+var NSSortConcurrent: Int { get }
+var NSSortStable: Int { get }
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 3, renamed: "QualityOfService")
 typealias NSQualityOfService = QualityOfService

@@ -65,7 +65,7 @@ extension UIGestureRecognizer {
   @available(iOS 13.4, *)
   var modifierFlags: UIKeyModifierFlags { get }
   @available(iOS 13.4, *)
-  var buttonMask: UIEvent.ButtonMask { get }
+  var buttonMask: UIEventButtonMask { get }
 }
 @MainActor protocol UIGestureRecognizerDelegate : NSObjectProtocol {
   @available(iOS 3.2, *)

@@ -1,31 +1,12 @@
 @_exported import Foundation
 
-@available(iOS 7.0, *)
-struct UIKeyModifierFlags : OptionSet, @unchecked Sendable {
-  init(rawValue: Int)
-  let rawValue: Int
-  typealias RawValue = Int
-  typealias Element = UIKeyModifierFlags
-  typealias ArrayLiteralElement = UIKeyModifierFlags
-  static var alphaShift: UIKeyModifierFlags { get }
-  @available(swift, obsoleted: 3, renamed: "alphaShift")
-  static var AlphaShift: UIKeyModifierFlags { get }
-  static var shift: UIKeyModifierFlags { get }
-  @available(swift, obsoleted: 3, renamed: "shift")
-  static var Shift: UIKeyModifierFlags { get }
-  static var control: UIKeyModifierFlags { get }
-  @available(swift, obsoleted: 3, renamed: "control")
-  static var Control: UIKeyModifierFlags { get }
-  static var alternate: UIKeyModifierFlags { get }
-  @available(swift, obsoleted: 3, renamed: "alternate")
-  static var Alternate: UIKeyModifierFlags { get }
-  static var command: UIKeyModifierFlags { get }
-  @available(swift, obsoleted: 3, renamed: "command")
-  static var Command: UIKeyModifierFlags { get }
-  static var numericPad: UIKeyModifierFlags { get }
-  @available(swift, obsoleted: 3, renamed: "numericPad")
-  static var NumericPad: UIKeyModifierFlags { get }
-}
+typealias UIKeyModifierFlags = Int
+var UIKeyModifierAlphaShift: Int { get }
+var UIKeyModifierShift: Int { get }
+var UIKeyModifierControl: Int { get }
+var UIKeyModifierAlternate: Int { get }
+var UIKeyModifierCommand: Int { get }
+var UIKeyModifierNumericPad: Int { get }
 
 /// Represents an alternate action to take for a command.
 ///
@@ -91,7 +72,7 @@ struct UIKeyModifierFlags : OptionSet, @unchecked Sendable {
   var propertyList: Any? { get }
 
   /// Command attributes.
-  var attributes: UIMenuElement.Attributes
+  var attributes: UIMenuElementAttributes
 
   /// State that can appear next to the command.
   var state: UIMenuElement.State
@@ -151,20 +132,6 @@ struct UIKeyModifierFlags : OptionSet, @unchecked Sendable {
 
 @available(iOS 13.0, *)
 extension UICommand {
-  /// Initializes a keyless command with extra properties.
-  ///
-  /// - Parameters:
-  ///   - title: Short display title. This should be localized.
-  ///   - image: Image that can appear next to the command, if any.
-  ///   - action: Action to execute on choosing this command.
-  ///   - propertyList: Property list object to distinguish commands, if needed.
-  ///   - alternates: Alternates that differ in modifier flags, if needed.
-  ///   - discoverabilityTitle: Elaborated title, if any.
-  ///   - attributes: Command attributes.
-  ///   - state: State that can appear next to the command.
-  @_disfavoredOverload @MainActor convenience init(title: String = "", image: UIImage? = nil, action: Selector, propertyList: Any? = nil, alternates: [UICommandAlternate] = [], discoverabilityTitle: String? = nil, attributes: UIMenuElement.Attributes = [], state: UIMenuElement.State = .off)
-  @available(iOS 15.0, tvOS 15.0, *)
-  @MainActor convenience init(title: String = "", subtitle: String? = nil, image: UIImage? = nil, action: Selector, propertyList: Any? = nil, alternates: [UICommandAlternate] = [], discoverabilityTitle: String? = nil, attributes: UIMenuElement.Attributes = [], state: UIMenuElement.State = .off)
 }
 @available(iOS 13.0, *)
 let UICommandTagShare: String

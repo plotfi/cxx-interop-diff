@@ -12,42 +12,33 @@
   var maximumValue: Double
   var stepValue: Double
   @available(iOS 6.0, *)
-  func setBackgroundImage(_ image: UIImage?, for state: UIControl.State)
+  func setBackgroundImage(_ image: UIImage?, forState state: UIControlState)
   @available(iOS 6.0, *)
-  @available(swift, obsoleted: 3, renamed: "setBackgroundImage(_:for:)")
-  func setBackgroundImage(_ image: UIImage?, forState state: UIControl.State)
+  func backgroundImage(forState state: UIControlState) -> UIImage?
   @available(iOS 6.0, *)
-  func backgroundImage(for state: UIControl.State) -> UIImage?
+  @available(swift, obsoleted: 3, renamed: "backgroundImage(forState:)")
+  func backgroundImageForState(_ state: UIControlState) -> UIImage?
   @available(iOS 6.0, *)
-  @available(swift, obsoleted: 3, renamed: "backgroundImage(for:)")
-  func backgroundImageForState(_ state: UIControl.State) -> UIImage?
+  func setDividerImage(_ image: UIImage?, forLeftSegmentState leftState: UIControlState, rightSegmentState rightState: UIControlState)
   @available(iOS 6.0, *)
-  func setDividerImage(_ image: UIImage?, forLeftSegmentState leftState: UIControl.State, rightSegmentState rightState: UIControl.State)
-  @available(iOS 6.0, *)
-  func dividerImage(forLeftSegmentState state: UIControl.State, rightSegmentState state: UIControl.State) -> UIImage?
+  func dividerImage(forLeftSegmentState state: UIControlState, rightSegmentState state: UIControlState) -> UIImage?
   @available(iOS 6.0, *)
   @available(swift, obsoleted: 3, renamed: "dividerImage(forLeftSegmentState:rightSegmentState:)")
-  func dividerImageForLeftSegmentState(_ state: UIControl.State, rightSegmentState state: UIControl.State) -> UIImage?
+  func dividerImageForLeftSegmentState(_ state: UIControlState, rightSegmentState state: UIControlState) -> UIImage?
   @available(iOS 6.0, *)
-  func setIncrementImage(_ image: UIImage?, for state: UIControl.State)
+  func setIncrementImage(_ image: UIImage?, forState state: UIControlState)
   @available(iOS 6.0, *)
-  @available(swift, obsoleted: 3, renamed: "setIncrementImage(_:for:)")
-  func setIncrementImage(_ image: UIImage?, forState state: UIControl.State)
+  func incrementImage(forState state: UIControlState) -> UIImage?
   @available(iOS 6.0, *)
-  func incrementImage(for state: UIControl.State) -> UIImage?
+  @available(swift, obsoleted: 3, renamed: "incrementImage(forState:)")
+  func incrementImageForState(_ state: UIControlState) -> UIImage?
   @available(iOS 6.0, *)
-  @available(swift, obsoleted: 3, renamed: "incrementImage(for:)")
-  func incrementImageForState(_ state: UIControl.State) -> UIImage?
+  func setDecrementImage(_ image: UIImage?, forState state: UIControlState)
   @available(iOS 6.0, *)
-  func setDecrementImage(_ image: UIImage?, for state: UIControl.State)
+  func decrementImage(forState state: UIControlState) -> UIImage?
   @available(iOS 6.0, *)
-  @available(swift, obsoleted: 3, renamed: "setDecrementImage(_:for:)")
-  func setDecrementImage(_ image: UIImage?, forState state: UIControl.State)
-  @available(iOS 6.0, *)
-  func decrementImage(for state: UIControl.State) -> UIImage?
-  @available(iOS 6.0, *)
-  @available(swift, obsoleted: 3, renamed: "decrementImage(for:)")
-  func decrementImageForState(_ state: UIControl.State) -> UIImage?
+  @available(swift, obsoleted: 3, renamed: "decrementImage(forState:)")
+  func decrementImageForState(_ state: UIControlState) -> UIImage?
   init(frame: CGRect)
   init?(coder: NSCoder)
 

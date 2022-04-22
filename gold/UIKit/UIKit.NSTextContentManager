@@ -1,32 +1,14 @@
 @_exported import Foundation
 
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextContentManager.EnumerationOptions")
-typealias NSTextContentManagerEnumerationOptions = NSTextContentManager.EnumerationOptions
-extension NSTextContentManager {
-  @available(iOS 15.0, *)
-  struct EnumerationOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSTextContentManager.EnumerationOptions
-    typealias ArrayLiteralElement = NSTextContentManager.EnumerationOptions
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var none: NSTextContentManager.EnumerationOptions { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "none")
-    static var None: NSTextContentManager.EnumerationOptions { get }
-    static var reverse: NSTextContentManager.EnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "reverse")
-    static var Reverse: NSTextContentManager.EnumerationOptions { get }
-  }
-}
+typealias NSTextContentManagerEnumerationOptions = Int
+var NSTextContentManagerEnumerationOptionsNone: Int { get }
+var NSTextContentManagerEnumerationOptionsReverse: Int { get }
 @available(iOS 15.0, *)
 protocol NSTextElementProvider : NSObjectProtocol {
   var documentRange: NSTextRange { get }
-  func enumerateTextElements(from textLocation: NSTextLocation?, options: NSTextContentManager.EnumerationOptions = [], using block: (NSTextElement) -> Bool) -> NSTextLocation?
+  func enumerateTextElements(from textLocation: NSTextLocation?, options: NSTextContentManagerEnumerationOptions = [], using block: (NSTextElement) -> Bool) -> NSTextLocation?
   @available(swift, obsoleted: 3, renamed: "enumerateTextElements(from:options:using:)")
-  func enumerateTextElementsFromLocation(_ textLocation: NSTextLocation?, options: NSTextContentManager.EnumerationOptions = [], usingBlock block: (NSTextElement) -> Bool) -> NSTextLocation?
+  func enumerateTextElementsFromLocation(_ textLocation: NSTextLocation?, options: NSTextContentManagerEnumerationOptions = [], usingBlock block: (NSTextElement) -> Bool) -> NSTextLocation?
   func replaceContents(in range: NSTextRange, with textElements: [NSTextElement]?)
   @available(swift, obsoleted: 3, renamed: "replaceContents(in:with:)")
   func replaceContentsInRange(_ range: NSTextRange, withTextElements textElements: [NSTextElement]?)
@@ -70,7 +52,7 @@ class NSTextContentManager : NSObject, NSTextElementProvider, NSSecureCoding {
   @available(iOS 15.0, *)
   class var supportsSecureCoding: Bool { get }
   @available(iOS 15.0, *)
-  func enumerateTextElements(from textLocation: NSTextLocation?, options: NSTextContentManager.EnumerationOptions = [], using block: (NSTextElement) -> Bool) -> NSTextLocation?
+  func enumerateTextElements(from textLocation: NSTextLocation?, options: NSTextContentManagerEnumerationOptions = [], using block: (NSTextElement) -> Bool) -> NSTextLocation?
   @available(iOS 15.0, *)
   func replaceContents(in range: NSTextRange, with textElements: [NSTextElement]?)
   @available(iOS 15.0, *)
@@ -91,9 +73,9 @@ protocol NSTextContentManagerDelegate : NSObjectProtocol {
   optional func textContentManager(_ textContentManager: NSTextContentManager, textElementAt location: NSTextLocation) -> NSTextElement?
   @available(swift, obsoleted: 3, renamed: "textContentManager(_:textElementAt:)")
   optional func textContentManager(_ textContentManager: NSTextContentManager, textElementAtLocation location: NSTextLocation) -> NSTextElement?
-  optional func textContentManager(_ textContentManager: NSTextContentManager, shouldEnumerate textElement: NSTextElement, options: NSTextContentManager.EnumerationOptions = []) -> Bool
+  optional func textContentManager(_ textContentManager: NSTextContentManager, shouldEnumerate textElement: NSTextElement, options: NSTextContentManagerEnumerationOptions = []) -> Bool
   @available(swift, obsoleted: 3, renamed: "textContentManager(_:shouldEnumerate:options:)")
-  optional func textContentManager(_ textContentManager: NSTextContentManager, shouldEnumerateTextElement textElement: NSTextElement, options: NSTextContentManager.EnumerationOptions = []) -> Bool
+  optional func textContentManager(_ textContentManager: NSTextContentManager, shouldEnumerateTextElement textElement: NSTextElement, options: NSTextContentManagerEnumerationOptions = []) -> Bool
 }
 @available(iOS 15.0, *)
 protocol NSTextContentStorageDelegate : NSTextContentManagerDelegate {
@@ -125,7 +107,7 @@ class NSTextContentStorage : NSTextContentManager, NSTextStorageObserving {
   @available(iOS 15.0, *)
   var textStorage: NSTextStorage?
   @available(iOS 15.0, *)
-  func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
+  func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
   @available(iOS 15.0, *)
   func performEditingTransaction(for textStorage: NSTextStorage, using transaction: () -> Void)
 }

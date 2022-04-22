@@ -1,26 +1,20 @@
 @_exported import CoreFoundation
 
-@available(swift, obsoleted: 3, renamed: "NSComparisonPredicate.Options")
-typealias NSComparisonPredicateOptions = NSComparisonPredicate.Options
+typealias NSComparisonPredicateOptions = Int
+@available(swift, obsoleted: 3, renamed: "caseInsensitive")
+var NSCaseInsensitivePredicateOption: Int { get }
+var caseInsensitive: Int { get }
+@available(swift, obsoleted: 3, renamed: "diacriticInsensitive")
+var NSDiacriticInsensitivePredicateOption: Int { get }
+var diacriticInsensitive: Int { get }
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "normalized")
+var NSNormalizedPredicateOption: Int { get }
+@available(iOS 4.0, *)
+var normalized: Int { get }
+@available(swift, obsoleted: 3, renamed: "NSComparisonPredicate.Modifier")
+typealias NSComparisonPredicateModifier = NSComparisonPredicate.Modifier
 extension NSComparisonPredicate {
-  struct Options : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSComparisonPredicate.Options
-    typealias ArrayLiteralElement = NSComparisonPredicate.Options
-    static var caseInsensitive: NSComparisonPredicate.Options { get }
-    @available(swift, obsoleted: 3, renamed: "caseInsensitive")
-    static var NSCaseInsensitivePredicateOption: NSComparisonPredicate.Options { get }
-    static var diacriticInsensitive: NSComparisonPredicate.Options { get }
-    @available(swift, obsoleted: 3, renamed: "diacriticInsensitive")
-    static var NSDiacriticInsensitivePredicateOption: NSComparisonPredicate.Options { get }
-    @available(iOS 4.0, *)
-    static var normalized: NSComparisonPredicate.Options { get }
-    @available(iOS 4.0, *)
-    @available(swift, obsoleted: 3, renamed: "normalized")
-    static var NSNormalizedPredicateOption: NSComparisonPredicate.Options { get }
-  }
   enum Modifier : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
@@ -87,21 +81,19 @@ extension NSComparisonPredicate {
     static var NSBetweenPredicateOperatorType: NSComparisonPredicate.Operator { get }
   }
 }
-@available(swift, obsoleted: 3, renamed: "NSComparisonPredicate.Modifier")
-typealias NSComparisonPredicateModifier = NSComparisonPredicate.Modifier
 @available(swift, obsoleted: 3, renamed: "NSComparisonPredicate.Operator")
 typealias NSPredicateOperatorType = NSComparisonPredicate.Operator
 @available(iOS 3.0, *)
 class NSComparisonPredicate : NSPredicate {
   @available(*, unavailable, message: "superseded by import of -[NSComparisonPredicate initWithLeftExpression:rightExpression:modifier:type:options:]")
-  /*not inherited*/ init(leftExpression lhs: NSExpression, rightExpression rhs: NSExpression, modifier: NSComparisonPredicate.Modifier, type: NSComparisonPredicate.Operator, options: NSComparisonPredicate.Options = [])
+  /*not inherited*/ init(leftExpression lhs: NSExpression, rightExpression rhs: NSExpression, modifier: NSComparisonPredicate.Modifier, type: NSComparisonPredicate.Operator, options: NSComparisonPredicateOptions = [])
   @available(*, unavailable, renamed: "init(leftExpression:rightExpression:modifier:type:options:)", message: "Not available in Swift")
-  class func predicateWithLeftExpression(_ lhs: NSExpression, rightExpression rhs: NSExpression, modifier: NSComparisonPredicate.Modifier, type: NSComparisonPredicate.Operator, options: NSComparisonPredicate.Options = []) -> NSComparisonPredicate
+  class func predicateWithLeftExpression(_ lhs: NSExpression, rightExpression rhs: NSExpression, modifier: NSComparisonPredicate.Modifier, type: NSComparisonPredicate.Operator, options: NSComparisonPredicateOptions = []) -> NSComparisonPredicate
   @available(*, unavailable, message: "superseded by import of -[NSComparisonPredicate initWithLeftExpression:rightExpression:customSelector:]")
   /*not inherited*/ init(leftExpression lhs: NSExpression, rightExpression rhs: NSExpression, customSelector selector: Selector)
   @available(*, unavailable, renamed: "init(leftExpression:rightExpression:customSelector:)", message: "Not available in Swift")
   class func predicateWithLeftExpression(_ lhs: NSExpression, rightExpression rhs: NSExpression, customSelector selector: Selector) -> NSComparisonPredicate
-  init(leftExpression lhs: NSExpression, rightExpression rhs: NSExpression, modifier: NSComparisonPredicate.Modifier, type: NSComparisonPredicate.Operator, options: NSComparisonPredicate.Options = [])
+  init(leftExpression lhs: NSExpression, rightExpression rhs: NSExpression, modifier: NSComparisonPredicate.Modifier, type: NSComparisonPredicate.Operator, options: NSComparisonPredicateOptions = [])
   init(leftExpression lhs: NSExpression, rightExpression rhs: NSExpression, customSelector selector: Selector)
   init?(coder: NSCoder)
   var predicateOperatorType: NSComparisonPredicate.Operator { get }
@@ -109,6 +101,6 @@ class NSComparisonPredicate : NSPredicate {
   var leftExpression: NSExpression { get }
   var rightExpression: NSExpression { get }
   var customSelector: Selector? { get }
-  var options: NSComparisonPredicate.Options { get }
+  var options: NSComparisonPredicateOptions { get }
   convenience init()
 }

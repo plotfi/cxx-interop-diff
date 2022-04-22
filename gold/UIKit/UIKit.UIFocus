@@ -1,46 +1,17 @@
 @_exported import Foundation
 
-@available(iOS 9.0, *)
-struct UIFocusHeading : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = UIFocusHeading
-  typealias ArrayLiteralElement = UIFocusHeading
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  static var none: UIFocusHeading { get }
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  @available(swift, obsoleted: 3, renamed: "none")
-  static var None: UIFocusHeading { get }
-  static var up: UIFocusHeading { get }
-  @available(swift, obsoleted: 3, renamed: "up")
-  static var Up: UIFocusHeading { get }
-  static var down: UIFocusHeading { get }
-  @available(swift, obsoleted: 3, renamed: "down")
-  static var Down: UIFocusHeading { get }
-  static var left: UIFocusHeading { get }
-  @available(swift, obsoleted: 3, renamed: "left")
-  static var Left: UIFocusHeading { get }
-  static var right: UIFocusHeading { get }
-  @available(swift, obsoleted: 3, renamed: "right")
-  static var Right: UIFocusHeading { get }
-  static var next: UIFocusHeading { get }
-  @available(swift, obsoleted: 3, renamed: "next")
-  static var Next: UIFocusHeading { get }
-  static var previous: UIFocusHeading { get }
-  @available(swift, obsoleted: 3, renamed: "previous")
-  static var Previous: UIFocusHeading { get }
-  @available(iOS 13.0, *)
-  static var first: UIFocusHeading { get }
-  @available(iOS 13.0, *)
-  @available(swift, obsoleted: 3, renamed: "first")
-  static var First: UIFocusHeading { get }
-  @available(iOS 13.0, *)
-  static var last: UIFocusHeading { get }
-  @available(iOS 13.0, *)
-  @available(swift, obsoleted: 3, renamed: "last")
-  static var Last: UIFocusHeading { get }
-}
+typealias UIFocusHeading = Int
+var UIFocusHeadingNone: Int { get }
+var UIFocusHeadingUp: Int { get }
+var UIFocusHeadingDown: Int { get }
+var UIFocusHeadingLeft: Int { get }
+var UIFocusHeadingRight: Int { get }
+var UIFocusHeadingNext: Int { get }
+var UIFocusHeadingPrevious: Int { get }
+@available(iOS 13.0, *)
+var UIFocusHeadingFirst: Int { get }
+@available(iOS 13.0, *)
+var UIFocusHeadingLast: Int { get }
 struct UIFocusSoundIdentifier : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
   init(_ rawValue: String)
   init(rawValue: String)

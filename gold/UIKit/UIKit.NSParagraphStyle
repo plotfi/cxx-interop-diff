@@ -25,37 +25,14 @@ enum NSLineBreakMode : Int, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "byTruncatingMiddle")
   static var ByTruncatingMiddle: NSLineBreakMode { get }
 }
-@available(swift, obsoleted: 3, renamed: "NSParagraphStyle.LineBreakStrategy")
-typealias NSLineBreakStrategy = NSParagraphStyle.LineBreakStrategy
-extension NSParagraphStyle {
-  struct LineBreakStrategy : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSParagraphStyle.LineBreakStrategy
-    typealias ArrayLiteralElement = NSParagraphStyle.LineBreakStrategy
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var none: NSParagraphStyle.LineBreakStrategy { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "none")
-    static var None: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 9.0, *)
-    static var pushOut: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 9.0, *)
-    @available(swift, obsoleted: 3, renamed: "pushOut")
-    static var PushOut: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 14.0, *)
-    static var hangulWordPriority: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 14.0, *)
-    @available(swift, obsoleted: 3, renamed: "hangulWordPriority")
-    static var HangulWordPriority: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 14.0, *)
-    static var standard: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 14.0, *)
-    @available(swift, obsoleted: 3, renamed: "standard")
-    static var Standard: NSParagraphStyle.LineBreakStrategy { get }
-  }
-}
+typealias NSLineBreakStrategy = Int
+var NSLineBreakStrategyNone: Int { get }
+@available(iOS 9.0, *)
+var NSLineBreakStrategyPushOut: Int { get }
+@available(iOS 14.0, *)
+var NSLineBreakStrategyHangulWordPriority: Int { get }
+@available(iOS 14.0, *)
+var NSLineBreakStrategyStandard: Int { get }
 @available(swift, obsoleted: 3, renamed: "NSTextTab.OptionKey")
 typealias NSTextTabOptionKey = NSTextTab.OptionKey
 extension NSTextTab {
@@ -127,7 +104,7 @@ class NSParagraphStyle : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   @available(iOS 9.0, *)
   var allowsDefaultTighteningForTruncation: Bool { get }
   @available(iOS 9.0, *)
-  var lineBreakStrategy: NSParagraphStyle.LineBreakStrategy { get }
+  var lineBreakStrategy: NSLineBreakStrategy { get }
   init()
   @available(iOS 6.0, *)
   class var supportsSecureCoding: Bool { get }
@@ -163,7 +140,7 @@ class NSMutableParagraphStyle : NSParagraphStyle {
   @available(iOS 9.0, *)
   var allowsDefaultTighteningForTruncation: Bool
   @available(iOS 9.0, *)
-  var lineBreakStrategy: NSParagraphStyle.LineBreakStrategy
+  var lineBreakStrategy: NSLineBreakStrategy
   @available(iOS 9.0, *)
   func addTabStop(_ anObject: NSTextTab)
   @available(iOS 9.0, *)

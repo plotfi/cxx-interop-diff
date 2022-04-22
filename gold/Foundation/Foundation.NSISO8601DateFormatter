@@ -1,90 +1,38 @@
 @_exported import CoreFoundation
 
-@available(swift, obsoleted: 3, renamed: "ISO8601DateFormatter.Options")
-typealias NSISO8601DateFormatOptions = ISO8601DateFormatter.Options
-extension ISO8601DateFormatter {
-  struct Options : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = ISO8601DateFormatter.Options
-    typealias ArrayLiteralElement = ISO8601DateFormatter.Options
-    @available(iOS 10.0, *)
-    static var withYear: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withYear")
-    static var WithYear: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withMonth: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withMonth")
-    static var WithMonth: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withWeekOfYear: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withWeekOfYear")
-    static var WithWeekOfYear: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withDay: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withDay")
-    static var WithDay: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withTime: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withTime")
-    static var WithTime: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withTimeZone: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withTimeZone")
-    static var WithTimeZone: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withSpaceBetweenDateAndTime: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withSpaceBetweenDateAndTime")
-    static var WithSpaceBetweenDateAndTime: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withDashSeparatorInDate: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withDashSeparatorInDate")
-    static var WithDashSeparatorInDate: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withColonSeparatorInTime: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withColonSeparatorInTime")
-    static var WithColonSeparatorInTime: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withColonSeparatorInTimeZone: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withColonSeparatorInTimeZone")
-    static var WithColonSeparatorInTimeZone: ISO8601DateFormatter.Options { get }
-    @available(iOS 11.0, *)
-    static var withFractionalSeconds: ISO8601DateFormatter.Options { get }
-    @available(iOS 11.0, *)
-    @available(swift, obsoleted: 3, renamed: "withFractionalSeconds")
-    static var WithFractionalSeconds: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withFullDate: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withFullDate")
-    static var WithFullDate: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withFullTime: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withFullTime")
-    static var WithFullTime: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    static var withInternetDateTime: ISO8601DateFormatter.Options { get }
-    @available(iOS 10.0, *)
-    @available(swift, obsoleted: 3, renamed: "withInternetDateTime")
-    static var WithInternetDateTime: ISO8601DateFormatter.Options { get }
-  }
-}
+typealias NSISO8601DateFormatOptions = Int
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithYear: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithMonth: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithWeekOfYear: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithDay: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithTime: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithTimeZone: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithSpaceBetweenDateAndTime: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithDashSeparatorInDate: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithColonSeparatorInTime: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithColonSeparatorInTimeZone: Int { get }
+@available(iOS 11.0, *)
+var NSISO8601DateFormatWithFractionalSeconds: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithFullDate: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithFullTime: Int { get }
+@available(iOS 10.0, *)
+var NSISO8601DateFormatWithInternetDateTime: Int { get }
 @available(iOS 10.0, *)
 class ISO8601DateFormatter : Formatter, NSSecureCoding {
   var timeZone: TimeZone!
-  var formatOptions: ISO8601DateFormatter.Options
+  var formatOptions: NSISO8601DateFormatOptions
   init()
   func string(from date: Date) -> String
   @available(swift, obsoleted: 3, renamed: "string(from:)")
@@ -92,9 +40,9 @@ class ISO8601DateFormatter : Formatter, NSSecureCoding {
   func date(from string: String) -> Date?
   @available(swift, obsoleted: 3, renamed: "date(from:)")
   func dateFromString(_ string: String) -> Date?
-  class func string(from date: Date, timeZone: TimeZone, formatOptions: ISO8601DateFormatter.Options = []) -> String
+  class func string(from date: Date, timeZone: TimeZone, formatOptions: NSISO8601DateFormatOptions = []) -> String
   @available(swift, obsoleted: 3, renamed: "string(from:timeZone:formatOptions:)")
-  class func stringFromDate(_ date: Date, timeZone: TimeZone, formatOptions: ISO8601DateFormatter.Options = []) -> String
+  class func stringFromDate(_ date: Date, timeZone: TimeZone, formatOptions: NSISO8601DateFormatOptions = []) -> String
   init?(coder: NSCoder)
   @available(iOS 10.0, *)
   class var supportsSecureCoding: Bool { get }

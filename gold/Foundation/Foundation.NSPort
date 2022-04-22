@@ -51,12 +51,12 @@ class NSMachPort : Port {
   func setDelegate(_ anObject: NSMachPortDelegate?)
   func delegate() -> NSMachPortDelegate?
   @available(iOS 2.0, *)
-  class func port(withMachPort machPort: UInt32, options f: NSMachPort.Options = []) -> Port
+  class func port(withMachPort machPort: UInt32, options f: NSMachPortOptions = []) -> Port
   @available(iOS 2.0, *)
   @available(swift, obsoleted: 3, renamed: "port(withMachPort:options:)")
-  class func portWithMachPort(_ machPort: UInt32, options f: NSMachPort.Options = []) -> Port
+  class func portWithMachPort(_ machPort: UInt32, options f: NSMachPortOptions = []) -> Port
   @available(iOS 2.0, *)
-  init(machPort: UInt32, options f: NSMachPort.Options = [])
+  init(machPort: UInt32, options f: NSMachPortOptions = [])
   var machPort: UInt32 { get }
   func schedule(in runLoop: RunLoop, forMode mode: RunLoop.Mode)
   @available(swift, obsoleted: 3, renamed: "schedule(in:forMode:)")
@@ -67,30 +67,10 @@ class NSMachPort : Port {
   convenience init()
   init?(coder: NSCoder)
 }
-@available(iOS 2.0, *)
-@available(swift, obsoleted: 3, renamed: "NSMachPort.Options")
-typealias NSMachPortOptions = NSMachPort.Options
-extension NSMachPort {
-  @available(iOS 2.0, *)
-  struct Options : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSMachPort.Options
-    typealias ArrayLiteralElement = NSMachPort.Options
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var deallocateNone: NSMachPort.Options { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "deallocateNone")
-    static var DeallocateNone: NSMachPort.Options { get }
-    static var deallocateSendRight: NSMachPort.Options { get }
-    @available(swift, obsoleted: 3, renamed: "deallocateSendRight")
-    static var DeallocateSendRight: NSMachPort.Options { get }
-    static var deallocateReceiveRight: NSMachPort.Options { get }
-    @available(swift, obsoleted: 3, renamed: "deallocateReceiveRight")
-    static var DeallocateReceiveRight: NSMachPort.Options { get }
-  }
-}
+typealias NSMachPortOptions = Int
+var NSMachPortDeallocateNone: Int { get }
+var NSMachPortDeallocateSendRight: Int { get }
+var NSMachPortDeallocateReceiveRight: Int { get }
 protocol NSMachPortDelegate : PortDelegate {
   optional func handleMachMessage(_ msg: UnsafeMutableRawPointer)
 }

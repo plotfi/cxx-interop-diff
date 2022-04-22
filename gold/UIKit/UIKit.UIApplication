@@ -17,9 +17,9 @@ enum UIStatusBarStyle : Int, @unchecked Sendable {
   @available(iOS 13.0, *)
   @available(swift, obsoleted: 3, renamed: "darkContent")
   static var DarkContent: UIStatusBarStyle { get }
-  @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, renamed: "UIStatusBarStyle.lightContent", message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
   static var blackTranslucent: UIStatusBarStyle { get }
-  @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, renamed: "UIStatusBarStyle.lightContent", message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
   case blackOpaque
 }
 enum UIStatusBarAnimation : Int, @unchecked Sendable {
@@ -63,34 +63,14 @@ enum UIInterfaceOrientation : Int, @unchecked Sendable {
 @available(iOS 6.0, *)
 @available(swift, obsoleted: 3, renamed: "UIApplication.invalidInterfaceOrientationException")
 let UIApplicationInvalidInterfaceOrientationException: NSExceptionName
-struct UIInterfaceOrientationMask : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = UIInterfaceOrientationMask
-  typealias ArrayLiteralElement = UIInterfaceOrientationMask
-  static var portrait: UIInterfaceOrientationMask { get }
-  @available(swift, obsoleted: 3, renamed: "portrait")
-  static var Portrait: UIInterfaceOrientationMask { get }
-  static var landscapeLeft: UIInterfaceOrientationMask { get }
-  @available(swift, obsoleted: 3, renamed: "landscapeLeft")
-  static var LandscapeLeft: UIInterfaceOrientationMask { get }
-  static var landscapeRight: UIInterfaceOrientationMask { get }
-  @available(swift, obsoleted: 3, renamed: "landscapeRight")
-  static var LandscapeRight: UIInterfaceOrientationMask { get }
-  static var portraitUpsideDown: UIInterfaceOrientationMask { get }
-  @available(swift, obsoleted: 3, renamed: "portraitUpsideDown")
-  static var PortraitUpsideDown: UIInterfaceOrientationMask { get }
-  static var landscape: UIInterfaceOrientationMask { get }
-  @available(swift, obsoleted: 3, renamed: "landscape")
-  static var Landscape: UIInterfaceOrientationMask { get }
-  static var all: UIInterfaceOrientationMask { get }
-  @available(swift, obsoleted: 3, renamed: "all")
-  static var All: UIInterfaceOrientationMask { get }
-  static var allButUpsideDown: UIInterfaceOrientationMask { get }
-  @available(swift, obsoleted: 3, renamed: "allButUpsideDown")
-  static var AllButUpsideDown: UIInterfaceOrientationMask { get }
-}
+typealias UIInterfaceOrientationMask = Int
+var UIInterfaceOrientationMaskPortrait: Int { get }
+var UIInterfaceOrientationMaskLandscapeLeft: Int { get }
+var UIInterfaceOrientationMaskLandscapeRight: Int { get }
+var UIInterfaceOrientationMaskPortraitUpsideDown: Int { get }
+var UIInterfaceOrientationMaskLandscape: Int { get }
+var UIInterfaceOrientationMaskAll: Int { get }
+var UIInterfaceOrientationMaskAllButUpsideDown: Int { get }
 @available(swift, obsoleted: 3, renamed: "getter:UIInterfaceOrientation.isPortrait(self:)")
 func UIInterfaceOrientationIsPortrait(_ orientation: UIInterfaceOrientation) -> Bool
 extension UIInterfaceOrientation {
@@ -99,31 +79,12 @@ extension UIInterfaceOrientation {
 }
 @available(swift, obsoleted: 3, renamed: "getter:UIInterfaceOrientation.isLandscape(self:)")
 func UIInterfaceOrientationIsLandscape(_ orientation: UIInterfaceOrientation) -> Bool
-@available(iOS, introduced: 3.0, deprecated: 8.0, message: "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead.")
-struct UIRemoteNotificationType : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = UIRemoteNotificationType
-  typealias ArrayLiteralElement = UIRemoteNotificationType
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  static var none: UIRemoteNotificationType { get }
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  @available(swift, obsoleted: 3, renamed: "none")
-  static var None: UIRemoteNotificationType { get }
-  static var badge: UIRemoteNotificationType { get }
-  @available(swift, obsoleted: 3, renamed: "badge")
-  static var Badge: UIRemoteNotificationType { get }
-  static var sound: UIRemoteNotificationType { get }
-  @available(swift, obsoleted: 3, renamed: "sound")
-  static var Sound: UIRemoteNotificationType { get }
-  static var alert: UIRemoteNotificationType { get }
-  @available(swift, obsoleted: 3, renamed: "alert")
-  static var Alert: UIRemoteNotificationType { get }
-  static var newsstandContentAvailability: UIRemoteNotificationType { get }
-  @available(swift, obsoleted: 3, renamed: "newsstandContentAvailability")
-  static var NewsstandContentAvailability: UIRemoteNotificationType { get }
-}
+typealias UIRemoteNotificationType = Int
+var UIRemoteNotificationTypeNone: Int { get }
+var UIRemoteNotificationTypeBadge: Int { get }
+var UIRemoteNotificationTypeSound: Int { get }
+var UIRemoteNotificationTypeAlert: Int { get }
+var UIRemoteNotificationTypeNewsstandContentAvailability: Int { get }
 @available(iOS 7.0, *)
 enum UIBackgroundFetchResult : UInt, @unchecked Sendable {
   init?(rawValue: UInt)

@@ -1,34 +1,15 @@
 @_exported import Foundation
 
+typealias NSTextLayoutFragmentEnumerationOptions = Int
+var NSTextLayoutFragmentEnumerationOptionsNone: Int { get }
+var NSTextLayoutFragmentEnumerationOptionsReverse: Int { get }
+var NSTextLayoutFragmentEnumerationOptionsEstimatesSize: Int { get }
+var NSTextLayoutFragmentEnumerationOptionsEnsuresLayout: Int { get }
+var NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment: Int { get }
 @available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextLayoutFragment.EnumerationOptions")
-typealias NSTextLayoutFragmentEnumerationOptions = NSTextLayoutFragment.EnumerationOptions
+@available(swift, obsoleted: 3, renamed: "NSTextLayoutFragment.State")
+typealias NSTextLayoutFragmentState = NSTextLayoutFragment.State
 extension NSTextLayoutFragment {
-  @available(iOS 15.0, *)
-  struct EnumerationOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSTextLayoutFragment.EnumerationOptions
-    typealias ArrayLiteralElement = NSTextLayoutFragment.EnumerationOptions
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var none: NSTextLayoutFragment.EnumerationOptions { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "none")
-    static var None: NSTextLayoutFragment.EnumerationOptions { get }
-    static var reverse: NSTextLayoutFragment.EnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "reverse")
-    static var Reverse: NSTextLayoutFragment.EnumerationOptions { get }
-    static var estimatesSize: NSTextLayoutFragment.EnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "estimatesSize")
-    static var EstimatesSize: NSTextLayoutFragment.EnumerationOptions { get }
-    static var ensuresLayout: NSTextLayoutFragment.EnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "ensuresLayout")
-    static var EnsuresLayout: NSTextLayoutFragment.EnumerationOptions { get }
-    static var ensuresExtraLineFragment: NSTextLayoutFragment.EnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "ensuresExtraLineFragment")
-    static var EnsuresExtraLineFragment: NSTextLayoutFragment.EnumerationOptions { get }
-  }
   @available(iOS 15.0, *)
   enum State : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
@@ -48,9 +29,6 @@ extension NSTextLayoutFragment {
     static var LayoutAvailable: NSTextLayoutFragment.State { get }
   }
 }
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextLayoutFragment.State")
-typealias NSTextLayoutFragmentState = NSTextLayoutFragment.State
 @available(iOS 15.0, *)
 class NSTextLayoutFragment : NSObject, NSSecureCoding {
   init(textElement: NSTextElement, range rangeInElement: NSTextRange?)

@@ -17,19 +17,19 @@ extension UIActivityIndicatorView {
     @available(iOS 13.0, *)
     @available(swift, obsoleted: 3, renamed: "large")
     static var Large: UIActivityIndicatorView.Style { get }
-    @available(iOS, introduced: 2.0, deprecated: 13.0, renamed: "UIActivityIndicatorView.Style.large")
+    @available(iOS, introduced: 2.0, deprecated: 13.0)
     case whiteLarge
-    @available(iOS, introduced: 2.0, deprecated: 13.0, renamed: "UIActivityIndicatorView.Style.large")
+    @available(iOS, introduced: 2.0, deprecated: 13.0)
     @available(swift, obsoleted: 3, renamed: "whiteLarge")
     static var WhiteLarge: UIActivityIndicatorView.Style { get }
-    @available(iOS, introduced: 2.0, deprecated: 13.0, renamed: "UIActivityIndicatorView.Style.medium")
+    @available(iOS, introduced: 2.0, deprecated: 13.0)
     case white
-    @available(iOS, introduced: 2.0, deprecated: 13.0, renamed: "UIActivityIndicatorView.Style.medium")
+    @available(iOS, introduced: 2.0, deprecated: 13.0)
     @available(swift, obsoleted: 3, renamed: "white")
     static var White: UIActivityIndicatorView.Style { get }
-    @available(iOS, introduced: 2.0, deprecated: 13.0, renamed: "UIActivityIndicatorView.Style.medium")
+    @available(iOS, introduced: 2.0, deprecated: 13.0)
     case gray
-    @available(iOS, introduced: 2.0, deprecated: 13.0, renamed: "UIActivityIndicatorView.Style.medium")
+    @available(iOS, introduced: 2.0, deprecated: 13.0)
     @available(swift, obsoleted: 3, renamed: "gray")
     static var Gray: UIActivityIndicatorView.Style { get }
   }

@@ -1,27 +1,9 @@
 @_exported import Foundation
 
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 4.2, renamed: "UICollisionBehavior.Mode")
-typealias UICollisionBehaviorMode = UICollisionBehavior.Mode
-extension UICollisionBehavior {
-  @available(iOS 7.0, *)
-  struct Mode : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = UICollisionBehavior.Mode
-    typealias ArrayLiteralElement = UICollisionBehavior.Mode
-    static var items: UICollisionBehavior.Mode { get }
-    @available(swift, obsoleted: 3, renamed: "items")
-    static var Items: UICollisionBehavior.Mode { get }
-    static var boundaries: UICollisionBehavior.Mode { get }
-    @available(swift, obsoleted: 3, renamed: "boundaries")
-    static var Boundaries: UICollisionBehavior.Mode { get }
-    static var everything: UICollisionBehavior.Mode { get }
-    @available(swift, obsoleted: 3, renamed: "everything")
-    static var Everything: UICollisionBehavior.Mode { get }
-  }
-}
+typealias UICollisionBehaviorMode = Int
+var UICollisionBehaviorModeItems: Int { get }
+var UICollisionBehaviorModeBoundaries: Int { get }
+var UICollisionBehaviorModeEverything: Int { get }
 @MainActor protocol UICollisionBehaviorDelegate : NSObjectProtocol {
   @available(iOS 7.0, *)
   optional func collisionBehavior(_ behavior: UICollisionBehavior, beganContactFor item1: UIDynamicItem, with item2: UIDynamicItem, at p: CGPoint)
@@ -46,7 +28,7 @@ extension UICollisionBehavior {
   func addItem(_ item: UIDynamicItem)
   func removeItem(_ item: UIDynamicItem)
   var items: [UIDynamicItem] { get }
-  var collisionMode: UICollisionBehavior.Mode
+  var collisionMode: UICollisionBehaviorMode
   var translatesReferenceBoundsIntoBoundary: Bool
   func setTranslatesReferenceBoundsIntoBoundary(with insets: UIEdgeInsets)
   @available(swift, obsoleted: 3, renamed: "setTranslatesReferenceBoundsIntoBoundary(with:)")

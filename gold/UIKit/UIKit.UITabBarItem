@@ -71,21 +71,16 @@ extension UITabBarItem {
 
   /// Provide text attributes to use to draw the badge text for the given singular control state (Normal, Disabled, Focused, Selected, or Highlighted). Default values will be supplied for keys that are not provided by this dictionary. See NSAttributedString.h for details on what keys are available.
   @available(iOS 10.0, *)
-  func setBadgeTextAttributes(_ textAttributes: [NSAttributedString.Key : Any]?, for state: UIControl.State)
-
-  /// Provide text attributes to use to draw the badge text for the given singular control state (Normal, Disabled, Focused, Selected, or Highlighted). Default values will be supplied for keys that are not provided by this dictionary. See NSAttributedString.h for details on what keys are available.
-  @available(iOS 10.0, *)
-  @available(swift, obsoleted: 3, renamed: "setBadgeTextAttributes(_:for:)")
-  func setBadgeTextAttributes(_ textAttributes: [NSAttributedString.Key : Any]?, forState state: UIControl.State)
+  func setBadgeTextAttributes(_ textAttributes: [NSAttributedString.Key : Any]?, forState state: UIControlState)
 
   /// Returns attributes previously set via -setBadgeTextAttributes:forState:.
   @available(iOS 10.0, *)
-  func badgeTextAttributes(for state: UIControl.State) -> [NSAttributedString.Key : Any]?
+  func badgeTextAttributes(forState state: UIControlState) -> [NSAttributedString.Key : Any]?
 
   /// Returns attributes previously set via -setBadgeTextAttributes:forState:.
   @available(iOS 10.0, *)
-  @available(swift, obsoleted: 3, renamed: "badgeTextAttributes(for:)")
-  func badgeTextAttributesForState(_ state: UIControl.State) -> [NSAttributedString.Key : Any]?
+  @available(swift, obsoleted: 3, renamed: "badgeTextAttributes(forState:)")
+  func badgeTextAttributesForState(_ state: UIControlState) -> [NSAttributedString.Key : Any]?
 
   ///  When set and this item is selected, overrides the hosting tab bar's standardAppearance.
   @available(iOS 13.0, *)

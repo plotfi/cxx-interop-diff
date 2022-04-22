@@ -78,24 +78,6 @@ extension UIEvent {
     @available(swift, obsoleted: 3, renamed: "remoteControlEndSeekingForward")
     static var RemoteControlEndSeekingForward: UIEvent.EventSubtype { get }
   }
-
-  /// Set of buttons pressed for the current event
-  /// Raw format of: 1 << (buttonNumber - 1)
-  /// UIEventButtonMaskPrimary = 1 << 0
-  @available(iOS 13.4, *)
-  struct ButtonMask : OptionSet, @unchecked Sendable {
-    init(rawValue: Int)
-    let rawValue: Int
-    typealias RawValue = Int
-    typealias Element = UIEvent.ButtonMask
-    typealias ArrayLiteralElement = UIEvent.ButtonMask
-    static var primary: UIEvent.ButtonMask { get }
-    @available(swift, obsoleted: 3, renamed: "primary")
-    static var Primary: UIEvent.ButtonMask { get }
-    static var secondary: UIEvent.ButtonMask { get }
-    @available(swift, obsoleted: 3, renamed: "secondary")
-    static var Secondary: UIEvent.ButtonMask { get }
-  }
 }
 @available(swift, obsoleted: 4.2, renamed: "UIEvent.EventSubtype")
 typealias UIEventSubtype = UIEvent.EventSubtype
@@ -103,24 +85,16 @@ typealias UIEventSubtype = UIEvent.EventSubtype
 /// Set of buttons pressed for the current event
 /// Raw format of: 1 << (buttonNumber - 1)
 /// UIEventButtonMaskPrimary = 1 << 0
-@available(iOS 13.4, *)
-@available(swift, obsoleted: 3, renamed: "UIEvent.ButtonMask")
-typealias UIEventButtonMask = UIEvent.ButtonMask
+typealias UIEventButtonMask = Int
+var UIEventButtonMaskPrimary: Int { get }
+var UIEventButtonMaskSecondary: Int { get }
 
 /// Convenience initializer for a button mask where `buttonNumber` is a one-based index of the button on the input device
 /// .button(1) == .primary
 /// .button(2) == .secondary
 @available(iOS 13.4, *)
 @available(swift, obsoleted: 3, renamed: "UIEventButtonMask.button(_:)")
-func UIEventButtonMaskForButtonNumber(_ buttonNumber: Int) -> UIEvent.ButtonMask
-extension UIEvent.ButtonMask {
-
-  /// Convenience initializer for a button mask where `buttonNumber` is a one-based index of the button on the input device
-  /// .button(1) == .primary
-  /// .button(2) == .secondary
-  @available(iOS 13.4, *)
-  static func button(_ buttonNumber: Int) -> UIEvent.ButtonMask
-}
+func UIEventButtonMaskForButtonNumber(_ buttonNumber: Int) -> UIEventButtonMask
 @available(iOS 2.0, *)
 @MainActor class UIEvent : NSObject {
   @available(iOS 3.0, *)
@@ -131,7 +105,7 @@ extension UIEvent.ButtonMask {
   @available(iOS 13.4, *)
   var modifierFlags: UIKeyModifierFlags { get }
   @available(iOS 13.4, *)
-  var buttonMask: UIEvent.ButtonMask { get }
+  var buttonMask: UIEventButtonMask { get }
   var allTouches: Set<UITouch>? { get }
   func touches(for window: UIWindow) -> Set<UITouch>?
   @available(swift, obsoleted: 3, renamed: "touches(for:)")

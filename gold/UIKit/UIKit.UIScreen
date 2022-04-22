@@ -29,7 +29,7 @@ extension UIScreen {
     @available(iOS 9.0, *)
     @available(swift, obsoleted: 3, renamed: "none")
     static var None: UIScreen.OverscanCompensation { get }
-    @available(iOS, introduced: 5.0, deprecated: 9.0, renamed: "UIScreen.OverscanCompensation.none")
+    @available(iOS, introduced: 5.0, deprecated: 9.0)
     static var insetApplicationFrame: UIScreen.OverscanCompensation { get }
   }
 }
