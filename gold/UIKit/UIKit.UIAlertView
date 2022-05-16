@@ -1,81 +1,62 @@
-@_exported import Foundation
-
-enum UIAlertViewStyle : Int, @unchecked Sendable {
-  init?(rawValue: Int)
-  var rawValue: Int { get }
-  typealias RawValue = Int
-  case `default`
-  @available(swift, obsoleted: 3, renamed: "default")
-  static var Default: UIAlertViewStyle { get }
-  case secureTextInput
-  @available(swift, obsoleted: 3, renamed: "secureTextInput")
-  static var SecureTextInput: UIAlertViewStyle { get }
-  case plainTextInput
-  @available(swift, obsoleted: 3, renamed: "plainTextInput")
-  static var PlainTextInput: UIAlertViewStyle { get }
-  case loginAndPasswordInput
-  @available(swift, obsoleted: 3, renamed: "loginAndPasswordInput")
-  static var LoginAndPasswordInput: UIAlertViewStyle { get }
-}
-@available(iOS, introduced: 2.0, deprecated: 9.0, message: "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead")
-@MainActor class UIAlertView : UIView {
-  convenience init(title: String?, message: String?, delegate: Any?, cancelButtonTitle: String?)
-  init(frame: CGRect)
-  init?(coder: NSCoder)
-  weak var delegate: @sil_weak AnyObject?
-  var title: String
-  var message: String?
-  func addButton(withTitle title: String?) -> Int
-  @available(swift, obsoleted: 3, renamed: "addButton(withTitle:)")
-  func addButtonWithTitle(_ title: String?) -> Int
-  func buttonTitle(at buttonIndex: Int) -> String?
-  @available(swift, obsoleted: 3, renamed: "buttonTitle(at:)")
-  func buttonTitleAtIndex(_ buttonIndex: Int) -> String?
-  var numberOfButtons: Int { get }
-  var cancelButtonIndex: Int
-  var firstOtherButtonIndex: Int { get }
-  var isVisible: Bool { get }
-  @available(swift, obsoleted: 3, renamed: "isVisible")
-  var visible: Bool { get }
-  func show()
-  func dismiss(withClickedButtonIndex buttonIndex: Int, animated: Bool)
-  @available(swift, obsoleted: 3, renamed: "dismiss(withClickedButtonIndex:animated:)")
-  func dismissWithClickedButtonIndex(_ buttonIndex: Int, animated: Bool)
-  @available(iOS 5.0, *)
-  var alertViewStyle: UIAlertViewStyle
-  @available(iOS 5.0, *)
-  func textField(at textFieldIndex: Int) -> UITextField?
-  @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "textField(at:)")
-  func textFieldAtIndex(_ textFieldIndex: Int) -> UITextField?
-  convenience init()
-}
-
-extension UIAlertView {
-  @MainActor convenience init(title: String, message: String, delegate: UIAlertViewDelegate?, cancelButtonTitle: String?, otherButtonTitles firstButtonTitle: String, _ moreButtonTitles: String...)
-}
-@MainActor protocol UIAlertViewDelegate : NSObjectProtocol {
-  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use UIAlertController instead.")
-  optional func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int)
-  @available(swift, obsoleted: 3, renamed: "alertView(_:clickedButtonAt:)")
-  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use UIAlertController instead.")
-  optional func alertView(_ alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
-  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use UIAlertController instead.")
-  optional func alertViewCancel(_ alertView: UIAlertView)
-  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use UIAlertController instead.")
-  optional func willPresent(_ alertView: UIAlertView)
-  @available(swift, obsoleted: 3, renamed: "willPresent(_:)")
-  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use UIAlertController instead.")
-  optional func willPresentAlertView(_ alertView: UIAlertView)
-  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use UIAlertController instead.")
-  optional func didPresent(_ alertView: UIAlertView)
-  @available(swift, obsoleted: 3, renamed: "didPresent(_:)")
-  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use UIAlertController instead.")
-  optional func didPresentAlertView(_ alertView: UIAlertView)
-  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use UIAlertController instead.")
-  optional func alertView(_ alertView: UIAlertView, willDismissWithButtonIndex buttonIndex: Int)
-  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use UIAlertController instead.")
-  optional func alertView(_ alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int)
-  @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use UIAlertController instead.")
-  optional func alertViewShouldEnableFirstOtherButton(_ alertView: UIAlertView) -> Bool
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIAlertView'

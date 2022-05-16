@@ -1,86 +1,62 @@
-@_exported import Foundation
-
-
-/// Return a @c UIWindowSceneActivationConfiguration
-///
-/// @param action The @c UIWindowSceneActivationAction requesting a configuration.
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "UIWindowSceneActivationAction.ConfigurationProvider")
-typealias UIWindowSceneActivationActionConfigurationProvider = UIWindowScene.ActivationAction.ConfigurationProvider
-extension UIWindowScene.ActivationAction {
-
-  /// Return a @c UIWindowSceneActivationConfiguration
-  ///
-  /// @param action The @c UIWindowSceneActivationAction requesting a configuration.
-  @available(iOS 15.0, *)
-  typealias ConfigurationProvider = (UIWindowScene.ActivationAction) -> UIWindowScene.ActivationConfiguration?
-}
-
-/// An action that facilitates activating a @c UIWindowScene when performed.
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "UIWindowScene.ActivationAction")
-typealias UIWindowSceneActivationAction = UIWindowScene.ActivationAction
-extension UIWindowScene {
-
-  /// An action that facilitates activating a @c UIWindowScene when performed.
-  @available(iOS 15.0, *)
-  class ActivationAction : UIAction {
-
-    /// The actions title. Set to nil to use the default title.
-    var title: String!
-
-    /// Returns a new @c UIWindowSceneActivationAction
-    ///
-    /// @param identifier The action's identifier. Pass nil to use an auto-generated identifier.
-    /// @param alternateAction If running on a platform that doesn't support multiple windows, the alternate action is used. Otherwise, the alternates handler is called if the scene activation request fails.
-    /// @param configurationProvider Called when the action has been triggered. It should return a @c UIWindowSceneActivationConfiguration whose user activity will be used to request scene activation.
-    @available(*, unavailable, message: "Use init(title:image:identifier:discoverabilityTitle:attributes:alternate:_:) instead.")
-    convenience init(identifier: UIAction.Identifier?, alternateAction: UIAction?, configurationProvider: @escaping UIWindowScene.ActivationAction.ConfigurationProvider)
-
-    /// Returns a new @c UIWindowSceneActivationAction
-    ///
-    /// @param identifier The action's identifier. Pass nil to use an auto-generated identifier.
-    /// @param alternateAction If running on a platform that doesn't support multiple windows, the alternate action is used. Otherwise, the alternates handler is called if the scene activation request fails.
-    /// @param configurationProvider Called when the action has been triggered. It should return a @c UIWindowSceneActivationConfiguration whose user activity will be used to request scene activation.
-    @available(*, unavailable, renamed: "init(identifier:alternateAction:configurationProvider:)", message: "Not available in Swift")
-    @available(*, unavailable, message: "Use init(title:image:identifier:discoverabilityTitle:attributes:alternate:_:) instead.")
-    class func actionWithIdentifier(_ identifier: UIAction.Identifier?, alternateAction: UIAction?, configurationProvider: @escaping UIWindowScene.ActivationAction.ConfigurationProvider) -> Self
-    @available(*, unavailable)
-    convenience init(handler: @escaping UIActionHandler)
-    @available(*, unavailable, renamed: "init(handler:)", message: "Not available in Swift")
-    @available(*, unavailable)
-    class func actionWithHandler(_ handler: @escaping UIActionHandler) -> Self
-    @available(*, unavailable)
-    convenience init(title: String, image: UIImage?, identifier: UIAction.Identifier?, handler: @escaping UIActionHandler)
-    @available(*, unavailable, renamed: "init(title:image:identifier:handler:)", message: "Not available in Swift")
-    @available(*, unavailable)
-    class func actionWithTitle(_ title: String, image: UIImage?, identifier: UIAction.Identifier?, handler: @escaping UIActionHandler) -> Self
-
-    /**
-     * @abstract Creates a UIAction with an empty title, nil image, and automatically generated identifier
-     *
-     * @param handler  Handler block. Called when the user selects the action.
-     *
-     * @return A new UIAction.
-     */
-    @available(iOS 14.0, *)
-    @available(*, unavailable, message: "Use init(title:image:identifier:discoverabilityTitle:attributes:state:handler:) instead.")
-    convenience init(handler: @escaping UIActionHandler)
-
-    /**
-     * @abstract Creates a UIAction with the given arguments.
-     *
-     * @param title    The action's title.
-     * @param image    Image that can appear next to this action, if needed.
-     * @param identifier  The action's identifier. Pass nil to use an auto-generated identifier.
-     * @param handler  Handler block. Called when the user selects the action.
-     *
-     * @return A new UIAction.
-     */
-    @available(*, unavailable, message: "Use init(title:image:identifier:discoverabilityTitle:attributes:state:handler:) instead.")
-    convenience init(title: String, image: UIImage?, identifier: UIAction.Identifier?, handler: @escaping UIActionHandler)
-    @available(*, unavailable)
-    init()
-    init?(coder: NSCoder)
-  }
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIWindowSceneActivationAction'

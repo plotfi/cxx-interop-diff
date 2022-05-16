@@ -1,89 +1,62 @@
-@_exported import Foundation
-
-@available(swift, obsoleted: 4.2, renamed: "UIPrinterPickerController.CompletionHandler")
-typealias UIPrinterPickerCompletionHandler = UIPrinterPickerController.CompletionHandler
-extension UIPrinterPickerController {
-  typealias CompletionHandler = (UIPrinterPickerController, Bool, Error?) -> Void
-}
-@MainActor protocol UIPrinterPickerControllerDelegate : NSObjectProtocol {
-  @available(iOS 8.0, *)
-  optional func printerPickerControllerParentViewController(_ printerPickerController: UIPrinterPickerController) -> UIViewController?
-
-  /**
-   *  @method     printerPickerController:shouldShowPrinter:
-   *  @discussion	Use to filter out specific printers from the printer picker.
-   * 	        Evaluate the UIPrinter object and returns YES if the printer should
-   * 	        be shown, NO otherwise.
-   *		This delegate can assume that all UIPrinter properties are available
-   *		(the contactPrinter: method need not be called).
-   * 	        This method may be called from threads other than the main thread,
-   * 	        and may be called simultaneously from several different threads.
-   */
-  @available(iOS 8.0, *)
-  optional func printerPickerController(_ printerPickerController: UIPrinterPickerController, shouldShow printer: UIPrinter) -> Bool
-
-  /**
-   *  @method     printerPickerController:shouldShowPrinter:
-   *  @discussion	Use to filter out specific printers from the printer picker.
-   * 	        Evaluate the UIPrinter object and returns YES if the printer should
-   * 	        be shown, NO otherwise.
-   *		This delegate can assume that all UIPrinter properties are available
-   *		(the contactPrinter: method need not be called).
-   * 	        This method may be called from threads other than the main thread,
-   * 	        and may be called simultaneously from several different threads.
-   */
-  @available(swift, obsoleted: 3, renamed: "printerPickerController(_:shouldShow:)")
-  optional func printerPickerController(_ printerPickerController: UIPrinterPickerController, shouldShowPrinter printer: UIPrinter) -> Bool
-  @available(iOS 8.0, *)
-  optional func printerPickerControllerWillPresent(_ printerPickerController: UIPrinterPickerController)
-  @available(iOS 8.0, *)
-  optional func printerPickerControllerDidPresent(_ printerPickerController: UIPrinterPickerController)
-  @available(iOS 8.0, *)
-  optional func printerPickerControllerWillDismiss(_ printerPickerController: UIPrinterPickerController)
-  @available(iOS 8.0, *)
-  optional func printerPickerControllerDidDismiss(_ printerPickerController: UIPrinterPickerController)
-  @available(iOS 8.0, *)
-  optional func printerPickerControllerDidSelectPrinter(_ printerPickerController: UIPrinterPickerController)
-}
-@available(iOS 8.0, *)
-@MainActor class UIPrinterPickerController : NSObject {
-
-  /**
-   *  @method     printerPickerControllerWithInitiallySelectedPrinter:
-   *  @discussion This method returns a printer picker controller object for showing the
-   *              UI that allows the user to select a printer. This is only used with the
-   *              UIPrintInteractionController's printWithoutUIToPrinter: method.
-   *              If no printer should be preselected, use a value of nil for the parameter.
-   */
-  /*not inherited*/ init(initiallySelectedPrinter printer: UIPrinter?)
-
-  /**
-   *  @method     printerPickerControllerWithInitiallySelectedPrinter:
-   *  @discussion This method returns a printer picker controller object for showing the
-   *              UI that allows the user to select a printer. This is only used with the
-   *              UIPrintInteractionController's printWithoutUIToPrinter: method.
-   *              If no printer should be preselected, use a value of nil for the parameter.
-   */
-  @available(*, unavailable, renamed: "init(initiallySelectedPrinter:)", message: "Not available in Swift")
-  class func printerPickerControllerWithInitiallySelectedPrinter(_ printer: UIPrinter?) -> UIPrinterPickerController
-
-  /**
-   * @discussion	The selected printer. Set this before presenting the UI to show the currently
-   * 	        selected printer. Use this to determine which printer the user selected.
-   */
-  var selectedPrinter: UIPrinter? { get }
-  weak var delegate: @sil_weak UIPrinterPickerControllerDelegate?
-  func present(animated: Bool, completionHandler completion: UIPrinterPickerController.CompletionHandler? = nil) -> Bool
-  @available(swift, obsoleted: 3, renamed: "present(animated:completionHandler:)")
-  func presentAnimated(_ animated: Bool, completionHandler completion: UIPrinterPickerController.CompletionHandler? = nil) -> Bool
-  func present(from rect: CGRect, in view: UIView, animated: Bool, completionHandler completion: UIPrinterPickerController.CompletionHandler? = nil) -> Bool
-  @available(swift, obsoleted: 3, renamed: "present(from:in:animated:completionHandler:)")
-  func presentFromRect(_ rect: CGRect, inView view: UIView, animated: Bool, completionHandler completion: UIPrinterPickerController.CompletionHandler? = nil) -> Bool
-  func present(from item: UIBarButtonItem, animated: Bool, completionHandler completion: UIPrinterPickerController.CompletionHandler? = nil) -> Bool
-  @available(swift, obsoleted: 3, renamed: "present(from:animated:completionHandler:)")
-  func presentFromBarButtonItem(_ item: UIBarButtonItem, animated: Bool, completionHandler completion: UIPrinterPickerController.CompletionHandler? = nil) -> Bool
-  func dismiss(animated: Bool)
-  @available(swift, obsoleted: 3, renamed: "dismiss(animated:)")
-  func dismissAnimated(_ animated: Bool)
-  init()
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIPrinterPickerController'

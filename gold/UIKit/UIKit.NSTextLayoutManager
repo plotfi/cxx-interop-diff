@@ -1,155 +1,62 @@
-@_exported import Foundation
-
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextLayoutManager.SegmentType")
-typealias NSTextLayoutManagerSegmentType = NSTextLayoutManager.SegmentType
-extension NSTextLayoutManager {
-  @available(iOS 15.0, *)
-  enum SegmentType : Int, @unchecked Sendable {
-    init?(rawValue: Int)
-    var rawValue: Int { get }
-    typealias RawValue = Int
-    case standard
-    @available(swift, obsoleted: 3, renamed: "standard")
-    static var Standard: NSTextLayoutManager.SegmentType { get }
-    case selection
-    @available(swift, obsoleted: 3, renamed: "selection")
-    static var Selection: NSTextLayoutManager.SegmentType { get }
-    case highlight
-    @available(swift, obsoleted: 3, renamed: "highlight")
-    static var Highlight: NSTextLayoutManager.SegmentType { get }
-  }
-  @available(iOS 15.0, *)
-  struct SegmentOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSTextLayoutManager.SegmentOptions
-    typealias ArrayLiteralElement = NSTextLayoutManager.SegmentOptions
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var none: NSTextLayoutManager.SegmentOptions { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "none")
-    static var None: NSTextLayoutManager.SegmentOptions { get }
-    static var rangeNotRequired: NSTextLayoutManager.SegmentOptions { get }
-    @available(swift, obsoleted: 3, renamed: "rangeNotRequired")
-    static var RangeNotRequired: NSTextLayoutManager.SegmentOptions { get }
-    static var middleFragmentsExcluded: NSTextLayoutManager.SegmentOptions { get }
-    @available(swift, obsoleted: 3, renamed: "middleFragmentsExcluded")
-    static var MiddleFragmentsExcluded: NSTextLayoutManager.SegmentOptions { get }
-    static var headSegmentExtended: NSTextLayoutManager.SegmentOptions { get }
-    @available(swift, obsoleted: 3, renamed: "headSegmentExtended")
-    static var HeadSegmentExtended: NSTextLayoutManager.SegmentOptions { get }
-    static var tailSegmentExtended: NSTextLayoutManager.SegmentOptions { get }
-    @available(swift, obsoleted: 3, renamed: "tailSegmentExtended")
-    static var TailSegmentExtended: NSTextLayoutManager.SegmentOptions { get }
-    static var upstreamAffinity: NSTextLayoutManager.SegmentOptions { get }
-    @available(swift, obsoleted: 3, renamed: "upstreamAffinity")
-    static var UpstreamAffinity: NSTextLayoutManager.SegmentOptions { get }
-  }
-}
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextLayoutManager.SegmentOptions")
-typealias NSTextLayoutManagerSegmentOptions = NSTextLayoutManager.SegmentOptions
-@available(iOS 15.0, *)
-class NSTextLayoutManager : NSObject, NSSecureCoding, NSTextSelectionDataSource {
-  init()
-  init?(coder: NSCoder)
-  weak var delegate: @sil_weak NSTextLayoutManagerDelegate?
-  var usesFontLeading: Bool
-  var limitsLayoutForSuspiciousContents: Bool
-  var usesHyphenation: Bool
-  weak var textContentManager: @sil_weak NSTextContentManager? { get }
-  func replace(_ textContentManager: NSTextContentManager)
-  @available(swift, obsoleted: 3, renamed: "replace(_:)")
-  func replaceTextContentManager(_ textContentManager: NSTextContentManager)
-  var textContainer: NSTextContainer?
-  var usageBoundsForTextContainer: CGRect { get }
-  var textViewportLayoutController: NSTextViewportLayoutController { get }
-  var layoutQueue: OperationQueue?
-  func ensureLayout(for range: NSTextRange)
-  @available(swift, obsoleted: 3, renamed: "ensureLayout(for:)")
-  func ensureLayoutForRange(_ range: NSTextRange)
-  func ensureLayout(for bounds: CGRect)
-  @available(swift, obsoleted: 3, renamed: "ensureLayout(for:)")
-  func ensureLayoutForBounds(_ bounds: CGRect)
-  func invalidateLayout(for range: NSTextRange)
-  @available(swift, obsoleted: 3, renamed: "invalidateLayout(for:)")
-  func invalidateLayoutForRange(_ range: NSTextRange)
-  func textLayoutFragment(for position: CGPoint) -> NSTextLayoutFragment?
-  @available(swift, obsoleted: 3, renamed: "textLayoutFragment(for:)")
-  func textLayoutFragmentForPosition(_ position: CGPoint) -> NSTextLayoutFragment?
-  func textLayoutFragment(for location: NSTextLocation) -> NSTextLayoutFragment?
-  @available(swift, obsoleted: 3, renamed: "textLayoutFragment(for:)")
-  func textLayoutFragmentForLocation(_ location: NSTextLocation) -> NSTextLayoutFragment?
-  func enumerateTextLayoutFragments(from location: NSTextLocation?, options: NSTextLayoutFragment.EnumerationOptions = [], using block: (NSTextLayoutFragment) -> Bool) -> NSTextLocation?
-  @available(swift, obsoleted: 3, renamed: "enumerateTextLayoutFragments(from:options:using:)")
-  func enumerateTextLayoutFragmentsFromLocation(_ location: NSTextLocation?, options: NSTextLayoutFragment.EnumerationOptions = [], usingBlock block: (NSTextLayoutFragment) -> Bool) -> NSTextLocation?
-  var textSelections: [NSTextSelection]
-  var textSelectionNavigation: NSTextSelectionNavigation
-  func enumerateRenderingAttributes(from location: NSTextLocation, reverse: Bool, using block: (NSTextLayoutManager, [NSAttributedString.Key : Any], NSTextRange) -> Bool)
-  @available(swift, obsoleted: 3, renamed: "enumerateRenderingAttributes(from:reverse:using:)")
-  func enumerateRenderingAttributesFromLocation(_ location: NSTextLocation, reverse: Bool, usingBlock block: (NSTextLayoutManager, [NSAttributedString.Key : Any], NSTextRange) -> Bool)
-  func setRenderingAttributes(_ renderingAttributes: [NSAttributedString.Key : Any], for textRange: NSTextRange)
-  @available(swift, obsoleted: 3, renamed: "setRenderingAttributes(_:for:)")
-  func setRenderingAttributes(_ renderingAttributes: [NSAttributedString.Key : Any], forTextRange textRange: NSTextRange)
-  func addRenderingAttribute(_ renderingAttribute: NSAttributedString.Key, value: Any?, for textRange: NSTextRange)
-  @available(swift, obsoleted: 3, renamed: "addRenderingAttribute(_:value:for:)")
-  func addRenderingAttribute(_ renderingAttribute: NSAttributedString.Key, value: Any?, forTextRange textRange: NSTextRange)
-  func removeRenderingAttribute(_ renderingAttribute: NSAttributedString.Key, for textRange: NSTextRange)
-  @available(swift, obsoleted: 3, renamed: "removeRenderingAttribute(_:for:)")
-  func removeRenderingAttribute(_ renderingAttribute: NSAttributedString.Key, forTextRange textRange: NSTextRange)
-  func invalidateRenderingAttributes(for textRange: NSTextRange)
-  @available(swift, obsoleted: 3, renamed: "invalidateRenderingAttributes(for:)")
-  func invalidateRenderingAttributesForTextRange(_ textRange: NSTextRange)
-  var renderingAttributesValidator: ((NSTextLayoutManager, NSTextLayoutFragment) -> Void)?
-  class var linkRenderingAttributes: [NSAttributedString.Key : Any] { get }
-  func renderingAttributes(forLink link: Any, at location: NSTextLocation) -> [NSAttributedString.Key : Any]
-  @available(swift, obsoleted: 3, renamed: "renderingAttributes(forLink:at:)")
-  func renderingAttributesForLink(_ link: Any, atLocation location: NSTextLocation) -> [NSAttributedString.Key : Any]
-  func enumerateTextSegments(in textRange: NSTextRange, type: NSTextLayoutManager.SegmentType, options: NSTextLayoutManager.SegmentOptions = [], using block: (NSTextRange?, CGRect, CGFloat, NSTextContainer) -> Bool)
-  @available(swift, obsoleted: 3, renamed: "enumerateTextSegments(in:type:options:using:)")
-  func enumerateTextSegmentsInRange(_ textRange: NSTextRange, type: NSTextLayoutManager.SegmentType, options: NSTextLayoutManager.SegmentOptions = [], usingBlock block: (NSTextRange?, CGRect, CGFloat, NSTextContainer) -> Bool)
-  func replaceContents(in range: NSTextRange, with textElements: [NSTextElement])
-  @available(swift, obsoleted: 3, renamed: "replaceContents(in:with:)")
-  func replaceContentsInRange(_ range: NSTextRange, withTextElements textElements: [NSTextElement])
-  func replaceContents(in range: NSTextRange, with attributedString: NSAttributedString)
-  @available(swift, obsoleted: 3, renamed: "replaceContents(in:with:)")
-  func replaceContentsInRange(_ range: NSTextRange, withAttributedString attributedString: NSAttributedString)
-  @available(iOS 15.0, *)
-  class var supportsSecureCoding: Bool { get }
-  @available(iOS 15.0, *)
-  var documentRange: NSTextRange { get }
-  @available(iOS 15.0, *)
-  func encode(with coder: NSCoder)
-  @available(iOS 15.0, *)
-  func enumerateSubstrings(from location: NSTextLocation, options: NSString.EnumerationOptions = [], using block: (String?, NSTextRange, NSTextRange?, UnsafeMutablePointer<ObjCBool>) -> Void)
-  @available(iOS 15.0, *)
-  func textRange(for selectionGranularity: NSTextSelection.Granularity, enclosing location: NSTextLocation) -> NSTextRange?
-  @available(iOS 15.0, *)
-  func location(_ location: NSTextLocation, offsetBy offset: Int) -> NSTextLocation?
-  @available(iOS 15.0, *)
-  func offset(from: NSTextLocation, to: NSTextLocation) -> Int
-  @available(iOS 15.0, *)
-  func baseWritingDirection(at location: NSTextLocation) -> NSTextSelectionNavigation.WritingDirection
-  @available(iOS 15.0, *)
-  func enumerateCaretOffsetsInLineFragment(at location: NSTextLocation, using block: (CGFloat, NSTextLocation, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
-  @available(iOS 15.0, *)
-  func lineFragmentRange(for point: CGPoint, inContainerAt location: NSTextLocation) -> NSTextRange?
-  @available(iOS 15.0, *)
-  func enumerateContainerBoundaries(from location: NSTextLocation, reverse: Bool, using block: (NSTextLocation, UnsafeMutablePointer<ObjCBool>) -> Void)
-  @available(iOS 15.0, *)
-  func textLayoutOrientation(at location: NSTextLocation) -> NSTextSelectionNavigation.LayoutOrientation
-}
-@available(iOS 15.0, *)
-protocol NSTextLayoutManagerDelegate : NSObjectProtocol {
-  optional func textLayoutManager(_ textLayoutManager: NSTextLayoutManager, textLayoutFragmentFor location: NSTextLocation, in textElement: NSTextElement) -> NSTextLayoutFragment
-  @available(swift, obsoleted: 3, renamed: "textLayoutManager(_:textLayoutFragmentFor:in:)")
-  optional func textLayoutManager(_ textLayoutManager: NSTextLayoutManager, textLayoutFragmentForLocation location: NSTextLocation, inTextElement textElement: NSTextElement) -> NSTextLayoutFragment
-  optional func textLayoutManager(_ textLayoutManager: NSTextLayoutManager, shouldBreakLineBefore location: NSTextLocation, hyphenating: Bool) -> Bool
-  @available(swift, obsoleted: 3, renamed: "textLayoutManager(_:shouldBreakLineBefore:hyphenating:)")
-  optional func textLayoutManager(_ textLayoutManager: NSTextLayoutManager, shouldBreakLineBeforeLocation location: NSTextLocation, hyphenating: Bool) -> Bool
-  optional func textLayoutManager(_ textLayoutManager: NSTextLayoutManager, renderingAttributesForLink link: Any, at location: NSTextLocation, defaultAttributes renderingAttributes: [NSAttributedString.Key : Any] = [:]) -> [NSAttributedString.Key : Any]?
-  @available(swift, obsoleted: 3, renamed: "textLayoutManager(_:renderingAttributesForLink:at:defaultAttributes:)")
-  optional func textLayoutManager(_ textLayoutManager: NSTextLayoutManager, renderingAttributesForLink link: Any, atLocation location: NSTextLocation, defaultAttributes renderingAttributes: [NSAttributedString.Key : Any] = [:]) -> [NSAttributedString.Key : Any]?
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.NSTextLayoutManager'

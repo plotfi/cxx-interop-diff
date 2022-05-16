@@ -1,104 +1,62 @@
-@_exported import Foundation
-
-@available(iOS 15.0, *)
-typealias __UITableViewHeaderFooterViewConfigurationUpdateHandler = (UITableViewHeaderFooterView, __UIViewConfigurationState) -> Void
-@available(iOS 6.0, *)
-@MainActor class UITableViewHeaderFooterView : UIView {
-  init(reuseIdentifier: String?)
-  init?(coder: NSCoder)
-
-  /// Returns the current configuration state for the header/footer.
-  /// To add your own custom state(s), override the getter and call super to obtain an instance with the
-  /// system properties set, then set your own custom states as desired.
-  @available(iOS 14.0, *)
-  var __configurationState: __UIViewConfigurationState { get }
-
-  /// Requests the view update its configuration for its current state. This method is called automatically
-  /// when the view's `configurationState` may have changed, as well as in other circumstances where an
-  /// update may be required. Multiple requests may be coalesced into a single update at the appropriate time.
-  @available(iOS 14.0, *)
-  func setNeedsUpdateConfiguration()
-
-  /// Subclasses should override this method and update the view's configuration using the state provided.
-  /// This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
-  @available(iOS 14.0, *)
-  func __updateConfiguration(using state: __UIViewConfigurationState)
-
-  /// Subclasses should override this method and update the view's configuration using the state provided.
-  /// This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
-  @available(iOS 14.0, *)
-  @available(swift, obsoleted: 3, renamed: "__updateConfiguration(using:)")
-  func __updateConfigurationUsingState(_ state: __UIViewConfigurationState)
-
-  /// Optional block-based alternative to overriding `-updateConfigurationUsingState:` in a subclass. This handler
-  /// is called after `-updateConfigurationUsingState:`. Setting a new handler triggers `setNeedsUpdateConfiguration`.
-  @available(iOS 15.0, *)
-  var __configurationUpdateHandler: __UITableViewHeaderFooterViewConfigurationUpdateHandler?
-
-  /// Returns a default list content configuration for the header/footer view's style.
-  @available(iOS 14.0, *)
-  func __defaultContentConfiguration() -> __UIListContentConfiguration
-
-  /// Setting a content configuration replaces the existing contentView of the header/footer with a new content view instance from the configuration,
-  /// or directly applies the configuration to the existing content view if the configuration is compatible with the existing content view type.
-  /// The default value is nil. After a configuration has been set, setting this property to nil will replace the current content view with a new content view.
-  @available(iOS 14.0, *)
-  @NSCopying var __contentConfiguration: __UIContentConfiguration?
-
-  /// When YES, the header/footer will automatically call -updatedConfigurationForState: on its `contentConfiguration` when the header/footer's
-  /// configuration state changes, and apply the updated configuration back to the header/footer. The default value is YES.
-  @available(iOS 14.0, *)
-  var automaticallyUpdatesContentConfiguration: Bool
-  var contentView: UIView { get }
-  @available(iOS, introduced: 6.0, deprecated: 100000, message: "Use UIListContentConfiguration instead, this property will be deprecated in a future release.")
-  var textLabel: UILabel? { get }
-  @available(iOS, introduced: 6.0, deprecated: 100000, message: "Use UIListContentConfiguration instead, this property will be deprecated in a future release.")
-  var detailTextLabel: UILabel? { get }
-
-  /// Setting a background configuration supersedes the header/footer's backgroundView. The default value is nil.
-  @available(iOS 14.0, *)
-  @NSCopying var __backgroundConfiguration: __UIBackgroundConfiguration?
-
-  /// When YES, the header/footer will automatically call -updatedConfigurationForState: on its `backgroundConfiguration` when the header/footer's
-  /// configuration state changes, and apply the updated configuration back to the header/footer. The default value is YES.
-  @available(iOS 14.0, *)
-  var automaticallyUpdatesBackgroundConfiguration: Bool
-  var backgroundView: UIView?
-  var reuseIdentifier: String? { get }
-  func prepareForReuse()
-  convenience init(frame: CGRect)
-  convenience init()
-}
-
-@available(iOS 14.0, tvOS 14.0, *)
-extension UITableViewHeaderFooterView {
-  @available(iOS 14.0, tvOS 14.0, *)
-  @MainActor var contentConfiguration: UIContentConfiguration?
-  @available(iOS 14.0, tvOS 14.0, *)
-  @MainActor func defaultContentConfiguration() -> UIListContentConfiguration
-}
-
-@available(iOS 14.0, tvOS 14.0, *)
-extension UITableViewHeaderFooterView {
-  @available(iOS 14.0, tvOS 14.0, *)
-  @MainActor var backgroundConfiguration: UIBackgroundConfiguration?
-}
-
-@available(iOS 14.0, tvOS 14.0, *)
-extension UITableViewHeaderFooterView {
-  /// Returns the current configuration state for the header/footer.
-  /// To add your own custom state(s), override the getter and call super to obtain a struct with the
-  /// system properties set, then set your own custom states as desired.
-  @available(iOS 14.0, tvOS 14.0, *)
-  @objc(_bridgedConfigurationState) @MainActor dynamic var configurationState: UIViewConfigurationState { get }
-  /// Subclasses should override this method and update the view's configuration using the state provided.
-  /// This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
-  @available(iOS 14.0, tvOS 14.0, *)
-  @objc(_bridgedUpdateConfigurationUsingState:) @MainActor dynamic func updateConfiguration(using state: UIViewConfigurationState)
-  @available(iOS 15.0, tvOS 15.0, *)
-  typealias ConfigurationUpdateHandler = (_ headerFooterView: UITableViewHeaderFooterView, _ state: UIViewConfigurationState) -> Void
-  /// Optional closure-based alternative to overriding `updateConfiguration(using:)` in a subclass. This handler
-  /// is called after `updateConfiguration(using:)`. Setting a new handler triggers `setNeedsUpdateConfiguration`.
-  @available(iOS 15.0, tvOS 15.0, *)
-  @MainActor var configurationUpdateHandler: UITableViewHeaderFooterView.ConfigurationUpdateHandler?
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UITableViewHeaderFooterView'

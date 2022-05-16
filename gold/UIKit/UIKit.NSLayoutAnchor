@@ -1,142 +1,62 @@
-@_exported import Foundation
-
-var NSLAYOUTANCHOR_H: Int32 { get }
-@available(iOS 9.0, *)
-@MainActor class NSLayoutAnchor<AnchorType> : NSObject, NSCopying, NSCoding where AnchorType : AnyObject {
-  func constraint(equalTo anchor: NSLayoutAnchor<AnchorType>) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(equalTo:)")
-  func constraintEqualToAnchor(_ anchor: NSLayoutAnchor<AnchorType>) -> NSLayoutConstraint
-  func constraint(greaterThanOrEqualTo anchor: NSLayoutAnchor<AnchorType>) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(greaterThanOrEqualTo:)")
-  func constraintGreaterThanOrEqualToAnchor(_ anchor: NSLayoutAnchor<AnchorType>) -> NSLayoutConstraint
-  func constraint(lessThanOrEqualTo anchor: NSLayoutAnchor<AnchorType>) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(lessThanOrEqualTo:)")
-  func constraintLessThanOrEqualToAnchor(_ anchor: NSLayoutAnchor<AnchorType>) -> NSLayoutConstraint
-  func constraint(equalTo anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(equalTo:constant:)")
-  func constraintEqualToAnchor(_ anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat) -> NSLayoutConstraint
-  func constraint(greaterThanOrEqualTo anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(greaterThanOrEqualTo:constant:)")
-  func constraintGreaterThanOrEqualToAnchor(_ anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat) -> NSLayoutConstraint
-  func constraint(lessThanOrEqualTo anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(lessThanOrEqualTo:constant:)")
-  func constraintLessThanOrEqualToAnchor(_ anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat) -> NSLayoutConstraint
-  @available(iOS, unavailable)
-  var name: String { get }
-  @available(iOS, unavailable)
-  weak var item: @sil_weak AnyObject? { get }
-  @available(iOS, unavailable)
-  var hasAmbiguousLayout: Bool { get }
-  @available(iOS, unavailable)
-  var constraintsAffectingLayout: [NSLayoutConstraint] { get }
-  init()
-  @available(iOS 9.0, *)
-  func copy(with zone: NSZone? = nil) -> Any
-  @available(iOS 9.0, *)
-  func encode(with coder: NSCoder)
-  init?(coder: NSCoder)
-}
-@available(iOS 9.0, *)
-@MainActor class NSLayoutXAxisAnchor : NSLayoutAnchor<NSLayoutXAxisAnchor> {
-  @available(iOS 10.0, *)
-  func anchorWithOffset(to otherAnchor: NSLayoutXAxisAnchor) -> NSLayoutDimension
-  @available(iOS 10.0, *)
-  @available(swift, obsoleted: 3, renamed: "anchorWithOffset(to:)")
-  func anchorWithOffsetToAnchor(_ otherAnchor: NSLayoutXAxisAnchor) -> NSLayoutDimension
-  init()
-  init?(coder: NSCoder)
-}
-@available(iOS 9.0, *)
-@MainActor class NSLayoutYAxisAnchor : NSLayoutAnchor<NSLayoutYAxisAnchor> {
-  @available(iOS 10.0, *)
-  func anchorWithOffset(to otherAnchor: NSLayoutYAxisAnchor) -> NSLayoutDimension
-  @available(iOS 10.0, *)
-  @available(swift, obsoleted: 3, renamed: "anchorWithOffset(to:)")
-  func anchorWithOffsetToAnchor(_ otherAnchor: NSLayoutYAxisAnchor) -> NSLayoutDimension
-  init()
-  init?(coder: NSCoder)
-}
-@available(iOS 9.0, *)
-@MainActor class NSLayoutDimension : NSLayoutAnchor<NSLayoutDimension> {
-  func constraint(equalToConstant c: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(equalToConstant:)")
-  func constraintEqualToConstant(_ c: CGFloat) -> NSLayoutConstraint
-  func constraint(greaterThanOrEqualToConstant c: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(greaterThanOrEqualToConstant:)")
-  func constraintGreaterThanOrEqualToConstant(_ c: CGFloat) -> NSLayoutConstraint
-  func constraint(lessThanOrEqualToConstant c: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(lessThanOrEqualToConstant:)")
-  func constraintLessThanOrEqualToConstant(_ c: CGFloat) -> NSLayoutConstraint
-  func constraint(equalTo anchor: NSLayoutDimension, multiplier m: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(equalTo:multiplier:)")
-  func constraintEqualToAnchor(_ anchor: NSLayoutDimension, multiplier m: CGFloat) -> NSLayoutConstraint
-  func constraint(greaterThanOrEqualTo anchor: NSLayoutDimension, multiplier m: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(greaterThanOrEqualTo:multiplier:)")
-  func constraintGreaterThanOrEqualToAnchor(_ anchor: NSLayoutDimension, multiplier m: CGFloat) -> NSLayoutConstraint
-  func constraint(lessThanOrEqualTo anchor: NSLayoutDimension, multiplier m: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(lessThanOrEqualTo:multiplier:)")
-  func constraintLessThanOrEqualToAnchor(_ anchor: NSLayoutDimension, multiplier m: CGFloat) -> NSLayoutConstraint
-  func constraint(equalTo anchor: NSLayoutDimension, multiplier m: CGFloat, constant c: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(equalTo:multiplier:constant:)")
-  func constraintEqualToAnchor(_ anchor: NSLayoutDimension, multiplier m: CGFloat, constant c: CGFloat) -> NSLayoutConstraint
-  func constraint(greaterThanOrEqualTo anchor: NSLayoutDimension, multiplier m: CGFloat, constant c: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(greaterThanOrEqualTo:multiplier:constant:)")
-  func constraintGreaterThanOrEqualToAnchor(_ anchor: NSLayoutDimension, multiplier m: CGFloat, constant c: CGFloat) -> NSLayoutConstraint
-  func constraint(lessThanOrEqualTo anchor: NSLayoutDimension, multiplier m: CGFloat, constant c: CGFloat) -> NSLayoutConstraint
-  @available(swift, obsoleted: 3, renamed: "constraint(lessThanOrEqualTo:multiplier:constant:)")
-  func constraintLessThanOrEqualToAnchor(_ anchor: NSLayoutDimension, multiplier m: CGFloat, constant c: CGFloat) -> NSLayoutConstraint
-  init()
-  init?(coder: NSCoder)
-}
-extension NSLayoutXAxisAnchor {
-  @available(iOS 11.0, *)
-  func constraint(equalToSystemSpacingAfter anchor: NSLayoutXAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 4.2, renamed: "constraint(equalToSystemSpacingAfter:multiplier:)")
-  func constraintEqualToSystemSpacingAfter(_ anchor: NSLayoutXAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 3, renamed: "constraint(equalToSystemSpacingAfter:multiplier:)")
-  func constraintEqualToSystemSpacingAfterAnchor(_ anchor: NSLayoutXAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  func constraint(greaterThanOrEqualToSystemSpacingAfter anchor: NSLayoutXAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 4.2, renamed: "constraint(greaterThanOrEqualToSystemSpacingAfter:multiplier:)")
-  func constraintGreaterThanOrEqualToSystemSpacingAfter(_ anchor: NSLayoutXAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 3, renamed: "constraint(greaterThanOrEqualToSystemSpacingAfter:multiplier:)")
-  func constraintGreaterThanOrEqualToSystemSpacingAfterAnchor(_ anchor: NSLayoutXAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  func constraint(lessThanOrEqualToSystemSpacingAfter anchor: NSLayoutXAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 4.2, renamed: "constraint(lessThanOrEqualToSystemSpacingAfter:multiplier:)")
-  func constraintLessThanOrEqualToSystemSpacingAfter(_ anchor: NSLayoutXAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 3, renamed: "constraint(lessThanOrEqualToSystemSpacingAfter:multiplier:)")
-  func constraintLessThanOrEqualToSystemSpacingAfterAnchor(_ anchor: NSLayoutXAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-}
-extension NSLayoutYAxisAnchor {
-  @available(iOS 11.0, *)
-  func constraint(equalToSystemSpacingBelow anchor: NSLayoutYAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 4.2, renamed: "constraint(equalToSystemSpacingBelow:multiplier:)")
-  func constraintEqualToSystemSpacingBelow(_ anchor: NSLayoutYAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 3, renamed: "constraint(equalToSystemSpacingBelow:multiplier:)")
-  func constraintEqualToSystemSpacingBelowAnchor(_ anchor: NSLayoutYAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  func constraint(greaterThanOrEqualToSystemSpacingBelow anchor: NSLayoutYAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 4.2, renamed: "constraint(greaterThanOrEqualToSystemSpacingBelow:multiplier:)")
-  func constraintGreaterThanOrEqualToSystemSpacingBelow(_ anchor: NSLayoutYAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 3, renamed: "constraint(greaterThanOrEqualToSystemSpacingBelow:multiplier:)")
-  func constraintGreaterThanOrEqualToSystemSpacingBelowAnchor(_ anchor: NSLayoutYAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  func constraint(lessThanOrEqualToSystemSpacingBelow anchor: NSLayoutYAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 4.2, renamed: "constraint(lessThanOrEqualToSystemSpacingBelow:multiplier:)")
-  func constraintLessThanOrEqualToSystemSpacingBelow(_ anchor: NSLayoutYAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 3, renamed: "constraint(lessThanOrEqualToSystemSpacingBelow:multiplier:)")
-  func constraintLessThanOrEqualToSystemSpacingBelowAnchor(_ anchor: NSLayoutYAxisAnchor, multiplier: CGFloat) -> NSLayoutConstraint
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.NSLayoutAnchor'

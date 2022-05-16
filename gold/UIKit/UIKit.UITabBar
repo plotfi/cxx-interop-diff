@@ -1,106 +1,62 @@
-@_exported import Foundation
-
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 4.2, renamed: "UITabBar.ItemPositioning")
-typealias UITabBarItemPositioning = UITabBar.ItemPositioning
-extension UITabBar {
-  @available(iOS 7.0, *)
-  enum ItemPositioning : Int, @unchecked Sendable {
-    init?(rawValue: Int)
-    var rawValue: Int { get }
-    typealias RawValue = Int
-    case automatic
-    @available(swift, obsoleted: 3, renamed: "automatic")
-    static var Automatic: UITabBar.ItemPositioning { get }
-    case fill
-    @available(swift, obsoleted: 3, renamed: "fill")
-    static var Fill: UITabBar.ItemPositioning { get }
-    case centered
-    @available(swift, obsoleted: 3, renamed: "centered")
-    static var Centered: UITabBar.ItemPositioning { get }
-  }
-}
-@available(iOS 2.0, *)
-@MainActor class UITabBar : UIView {
-  weak var delegate: @sil_weak UITabBarDelegate?
-  var items: [UITabBarItem]?
-  weak var selectedItem: @sil_weak UITabBarItem?
-  func setItems(_ items: [UITabBarItem]?, animated: Bool)
-  func beginCustomizingItems(_ items: [UITabBarItem])
-  func endCustomizing(animated: Bool) -> Bool
-  @available(swift, obsoleted: 3, renamed: "endCustomizing(animated:)")
-  func endCustomizingAnimated(_ animated: Bool) -> Bool
-  var isCustomizing: Bool { get }
-  @available(swift, obsoleted: 3, renamed: "isCustomizing")
-  var customizing: Bool { get }
-  @available(iOS 5.0, *)
-  var tintColor: UIColor!
-  @available(iOS 7.0, *)
-  var barTintColor: UIColor?
-
-  /// Unselected items in this tab bar will be tinted with this color. Setting this value to nil indicates that UITabBar should use its default value instead.
-  @available(iOS 10.0, *)
-  @NSCopying var unselectedItemTintColor: UIColor?
-  @available(iOS, introduced: 5.0, deprecated: 8.0)
-  var selectedImageTintColor: UIColor?
-  @available(iOS 5.0, *)
-  var backgroundImage: UIImage?
-  @available(iOS 5.0, *)
-  var selectionIndicatorImage: UIImage?
-  @available(iOS 6.0, *)
-  var shadowImage: UIImage?
-  @available(iOS 7.0, *)
-  var itemPositioning: UITabBar.ItemPositioning
-  @available(iOS 7.0, *)
-  var itemWidth: CGFloat
-  @available(iOS 7.0, *)
-  var itemSpacing: CGFloat
-  @available(iOS 7.0, *)
-  var barStyle: UIBarStyle
-  @available(iOS 7.0, *)
-  var isTranslucent: Bool
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "isTranslucent")
-  var translucent: Bool
-
-  /// Describes the appearance attributes for the tab bar to use.
-  @available(iOS 13.0, *)
-  @NSCopying var standardAppearance: UITabBarAppearance
-
-  /// Describes the appearance attributes for the tabBar to use when an observable scroll view is scrolled to the bottom. If not set, standardAppearance will be used instead.
-  @available(iOS 15.0, *)
-  @NSCopying var scrollEdgeAppearance: UITabBarAppearance?
-  @available(iOS, unavailable)
-  var leadingAccessoryView: UIView { get }
-  @available(iOS, unavailable)
-  var trailingAccessoryView: UIView { get }
-  init(frame: CGRect)
-  init?(coder: NSCoder)
-  convenience init()
-}
-@MainActor protocol UITabBarDelegate : NSObjectProtocol {
-  @available(iOS 2.0, *)
-  optional func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem)
-  @available(swift, obsoleted: 3, renamed: "tabBar(_:didSelect:)")
-  optional func tabBar(_ tabBar: UITabBar, didSelectItem item: UITabBarItem)
-  @available(iOS 2.0, *)
-  optional func tabBar(_ tabBar: UITabBar, willBeginCustomizing items: [UITabBarItem])
-  @available(swift, obsoleted: 3, renamed: "tabBar(_:willBeginCustomizing:)")
-  optional func tabBar(_ tabBar: UITabBar, willBeginCustomizingItems items: [UITabBarItem])
-  @available(iOS 2.0, *)
-  optional func tabBar(_ tabBar: UITabBar, didBeginCustomizing items: [UITabBarItem])
-  @available(swift, obsoleted: 3, renamed: "tabBar(_:didBeginCustomizing:)")
-  optional func tabBar(_ tabBar: UITabBar, didBeginCustomizingItems items: [UITabBarItem])
-  @available(iOS 2.0, *)
-  optional func tabBar(_ tabBar: UITabBar, willEndCustomizing items: [UITabBarItem], changed: Bool)
-  @available(swift, obsoleted: 3, renamed: "tabBar(_:willEndCustomizing:changed:)")
-  optional func tabBar(_ tabBar: UITabBar, willEndCustomizingItems items: [UITabBarItem], changed: Bool)
-  @available(iOS 2.0, *)
-  optional func tabBar(_ tabBar: UITabBar, didEndCustomizing items: [UITabBarItem], changed: Bool)
-  @available(swift, obsoleted: 3, renamed: "tabBar(_:didEndCustomizing:changed:)")
-  optional func tabBar(_ tabBar: UITabBar, didEndCustomizingItems items: [UITabBarItem], changed: Bool)
-}
-extension UITabBar : UISpringLoadedInteractionSupporting {
-  @available(iOS 11.0, *)
-  var isSpringLoaded: Bool
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UITabBar'

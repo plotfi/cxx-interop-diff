@@ -1,100 +1,62 @@
-@_exported import Foundation
-
-@available(iOS 9.0, *)
-@available(swift, obsoleted: 4.2, renamed: "UIStackView.Distribution")
-typealias UIStackViewDistribution = UIStackView.Distribution
-extension UIStackView {
-  @available(iOS 9.0, *)
-  enum Distribution : Int, @unchecked Sendable {
-    init?(rawValue: Int)
-    var rawValue: Int { get }
-    typealias RawValue = Int
-    case fill
-    @available(swift, obsoleted: 3, renamed: "fill")
-    static var Fill: UIStackView.Distribution { get }
-    case fillEqually
-    @available(swift, obsoleted: 3, renamed: "fillEqually")
-    static var FillEqually: UIStackView.Distribution { get }
-    case fillProportionally
-    @available(swift, obsoleted: 3, renamed: "fillProportionally")
-    static var FillProportionally: UIStackView.Distribution { get }
-    case equalSpacing
-    @available(swift, obsoleted: 3, renamed: "equalSpacing")
-    static var EqualSpacing: UIStackView.Distribution { get }
-    case equalCentering
-    @available(swift, obsoleted: 3, renamed: "equalCentering")
-    static var EqualCentering: UIStackView.Distribution { get }
-  }
-  @available(iOS 9.0, *)
-  enum Alignment : Int, @unchecked Sendable {
-    init?(rawValue: Int)
-    var rawValue: Int { get }
-    typealias RawValue = Int
-    case fill
-    @available(swift, obsoleted: 3, renamed: "fill")
-    static var Fill: UIStackView.Alignment { get }
-    case leading
-    @available(swift, obsoleted: 3, renamed: "leading")
-    static var Leading: UIStackView.Alignment { get }
-    static var top: UIStackView.Alignment { get }
-    case firstBaseline
-    @available(swift, obsoleted: 3, renamed: "firstBaseline")
-    static var FirstBaseline: UIStackView.Alignment { get }
-    case center
-    @available(swift, obsoleted: 3, renamed: "center")
-    static var Center: UIStackView.Alignment { get }
-    case trailing
-    @available(swift, obsoleted: 3, renamed: "trailing")
-    static var Trailing: UIStackView.Alignment { get }
-    static var bottom: UIStackView.Alignment { get }
-    case lastBaseline
-    @available(swift, obsoleted: 3, renamed: "lastBaseline")
-    static var LastBaseline: UIStackView.Alignment { get }
-  }
-  @available(iOS 11.0, *)
-  class let spacingUseDefault: CGFloat
-  @available(iOS 11.0, *)
-  class let spacingUseSystem: CGFloat
-}
-@available(iOS 9.0, *)
-@available(swift, obsoleted: 4.2, renamed: "UIStackView.Alignment")
-typealias UIStackViewAlignment = UIStackView.Alignment
-@available(iOS 11.0, *)
-@available(swift, obsoleted: 3, renamed: "UIStackView.spacingUseDefault")
-let UIStackViewSpacingUseDefault: CGFloat
-@available(iOS 11.0, *)
-@available(swift, obsoleted: 3, renamed: "UIStackView.spacingUseSystem")
-let UIStackViewSpacingUseSystem: CGFloat
-@available(iOS 9.0, *)
-@MainActor class UIStackView : UIView {
-  init(frame: CGRect)
-  init(coder: NSCoder)
-  convenience init(arrangedSubviews views: [UIView])
-  var arrangedSubviews: [UIView] { get }
-  func addArrangedSubview(_ view: UIView)
-  func removeArrangedSubview(_ view: UIView)
-  func insertArrangedSubview(_ view: UIView, at stackIndex: Int)
-  @available(swift, obsoleted: 3, renamed: "insertArrangedSubview(_:at:)")
-  func insertArrangedSubview(_ view: UIView, atIndex stackIndex: Int)
-  var axis: NSLayoutConstraint.Axis
-  var distribution: UIStackView.Distribution
-  var alignment: UIStackView.Alignment
-  var spacing: CGFloat
-  @available(iOS 11.0, *)
-  func setCustomSpacing(_ spacing: CGFloat, after arrangedSubview: UIView)
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 3, renamed: "setCustomSpacing(_:after:)")
-  func setCustomSpacing(_ spacing: CGFloat, afterView arrangedSubview: UIView)
-  @available(iOS 11.0, *)
-  func customSpacing(after arrangedSubview: UIView) -> CGFloat
-  @available(iOS 11.0, *)
-  @available(swift, obsoleted: 3, renamed: "customSpacing(after:)")
-  func customSpacingAfterView(_ arrangedSubview: UIView) -> CGFloat
-  var isBaselineRelativeArrangement: Bool
-  @available(swift, obsoleted: 3, renamed: "isBaselineRelativeArrangement")
-  var baselineRelativeArrangement: Bool
-  var isLayoutMarginsRelativeArrangement: Bool
-  @available(swift, obsoleted: 3, renamed: "isLayoutMarginsRelativeArrangement")
-  var layoutMarginsRelativeArrangement: Bool
-  convenience init()
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIStackView'
