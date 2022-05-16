@@ -1,16 +1,90 @@
 @_exported import CoreFoundation
 
-@available(*, unavailable, message: "Not available in Swift")
-typealias NSRegularExpressionOptions = Int
+@available(swift, obsoleted: 3, renamed: "NSRegularExpression.Options")
+typealias NSRegularExpressionOptions = NSRegularExpression.Options
+extension NSRegularExpression {
+  struct Options : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = NSRegularExpression.Options
+    typealias ArrayLiteralElement = NSRegularExpression.Options
+    static var caseInsensitive: NSRegularExpression.Options { get }
+    @available(swift, obsoleted: 3, renamed: "caseInsensitive")
+    static var CaseInsensitive: NSRegularExpression.Options { get }
+    static var allowCommentsAndWhitespace: NSRegularExpression.Options { get }
+    @available(swift, obsoleted: 3, renamed: "allowCommentsAndWhitespace")
+    static var AllowCommentsAndWhitespace: NSRegularExpression.Options { get }
+    static var ignoreMetacharacters: NSRegularExpression.Options { get }
+    @available(swift, obsoleted: 3, renamed: "ignoreMetacharacters")
+    static var IgnoreMetacharacters: NSRegularExpression.Options { get }
+    static var dotMatchesLineSeparators: NSRegularExpression.Options { get }
+    @available(swift, obsoleted: 3, renamed: "dotMatchesLineSeparators")
+    static var DotMatchesLineSeparators: NSRegularExpression.Options { get }
+    static var anchorsMatchLines: NSRegularExpression.Options { get }
+    @available(swift, obsoleted: 3, renamed: "anchorsMatchLines")
+    static var AnchorsMatchLines: NSRegularExpression.Options { get }
+    static var useUnixLineSeparators: NSRegularExpression.Options { get }
+    @available(swift, obsoleted: 3, renamed: "useUnixLineSeparators")
+    static var UseUnixLineSeparators: NSRegularExpression.Options { get }
+    static var useUnicodeWordBoundaries: NSRegularExpression.Options { get }
+    @available(swift, obsoleted: 3, renamed: "useUnicodeWordBoundaries")
+    static var UseUnicodeWordBoundaries: NSRegularExpression.Options { get }
+  }
+  struct MatchingOptions : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = NSRegularExpression.MatchingOptions
+    typealias ArrayLiteralElement = NSRegularExpression.MatchingOptions
+    static var reportProgress: NSRegularExpression.MatchingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "reportProgress")
+    static var ReportProgress: NSRegularExpression.MatchingOptions { get }
+    static var reportCompletion: NSRegularExpression.MatchingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "reportCompletion")
+    static var ReportCompletion: NSRegularExpression.MatchingOptions { get }
+    static var anchored: NSRegularExpression.MatchingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "anchored")
+    static var Anchored: NSRegularExpression.MatchingOptions { get }
+    static var withTransparentBounds: NSRegularExpression.MatchingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "withTransparentBounds")
+    static var WithTransparentBounds: NSRegularExpression.MatchingOptions { get }
+    static var withoutAnchoringBounds: NSRegularExpression.MatchingOptions { get }
+    @available(swift, obsoleted: 3, renamed: "withoutAnchoringBounds")
+    static var WithoutAnchoringBounds: NSRegularExpression.MatchingOptions { get }
+  }
+  struct MatchingFlags : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = NSRegularExpression.MatchingFlags
+    typealias ArrayLiteralElement = NSRegularExpression.MatchingFlags
+    static var progress: NSRegularExpression.MatchingFlags { get }
+    @available(swift, obsoleted: 3, renamed: "progress")
+    static var Progress: NSRegularExpression.MatchingFlags { get }
+    static var completed: NSRegularExpression.MatchingFlags { get }
+    @available(swift, obsoleted: 3, renamed: "completed")
+    static var Completed: NSRegularExpression.MatchingFlags { get }
+    static var hitEnd: NSRegularExpression.MatchingFlags { get }
+    @available(swift, obsoleted: 3, renamed: "hitEnd")
+    static var HitEnd: NSRegularExpression.MatchingFlags { get }
+    static var requiredEnd: NSRegularExpression.MatchingFlags { get }
+    @available(swift, obsoleted: 3, renamed: "requiredEnd")
+    static var RequiredEnd: NSRegularExpression.MatchingFlags { get }
+    static var internalError: NSRegularExpression.MatchingFlags { get }
+    @available(swift, obsoleted: 3, renamed: "internalError")
+    static var InternalError: NSRegularExpression.MatchingFlags { get }
+  }
+}
 @available(iOS 4.0, *)
 class NSRegularExpression : NSObject, NSCopying, NSSecureCoding {
   @available(*, unavailable, message: "superseded by import of -[NSRegularExpression initWithPattern:options:error:]")
-  /*not inherited*/ init(pattern: String, options: Int = []) throws
+  /*not inherited*/ init(pattern: String, options: NSRegularExpression.Options = []) throws
   @available(*, unavailable, renamed: "init(pattern:options:)", message: "Not available in Swift")
-  class func regularExpressionWithPattern(_ pattern: String, options: Int = []) throws -> NSRegularExpression
-  init(pattern: String, options: Int = []) throws
+  class func regularExpressionWithPattern(_ pattern: String, options: NSRegularExpression.Options = []) throws -> NSRegularExpression
+  init(pattern: String, options: NSRegularExpression.Options = []) throws
   var pattern: String { get }
-  var options: Int { get }
+  var options: NSRegularExpression.Options { get }
   var numberOfCaptureGroups: Int { get }
   class func escapedPattern(for string: String) -> String
   @available(swift, obsoleted: 3, renamed: "escapedPattern(for:)")
@@ -24,34 +98,34 @@ class NSRegularExpression : NSObject, NSCopying, NSSecureCoding {
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
 }
-@available(*, unavailable, message: "Not available in Swift")
-typealias NSMatchingOptions = Int
-@available(*, unavailable, message: "Not available in Swift")
-typealias NSMatchingFlags = Int
+@available(swift, obsoleted: 3, renamed: "NSRegularExpression.MatchingOptions")
+typealias NSMatchingOptions = NSRegularExpression.MatchingOptions
+@available(swift, obsoleted: 3, renamed: "NSRegularExpression.MatchingFlags")
+typealias NSMatchingFlags = NSRegularExpression.MatchingFlags
 extension NSRegularExpression {
-  func enumerateMatches(in string: String, options: Int = [], range: NSRange, using block: (NSTextCheckingResult?, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange, using block: (NSTextCheckingResult?, NSRegularExpression.MatchingFlags, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(swift, obsoleted: 3, renamed: "enumerateMatches(in:options:range:using:)")
-  func enumerateMatchesInString(_ string: String, options: Int = [], range: NSRange, usingBlock block: (NSTextCheckingResult?, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
-  func matches(in string: String, options: Int = [], range: NSRange) -> [NSTextCheckingResult]
+  func enumerateMatchesInString(_ string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange, usingBlock block: (NSTextCheckingResult?, NSRegularExpression.MatchingFlags, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func matches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> [NSTextCheckingResult]
   @available(swift, obsoleted: 3, renamed: "matches(in:options:range:)")
-  func matchesInString(_ string: String, options: Int = [], range: NSRange) -> [NSTextCheckingResult]
-  func numberOfMatches(in string: String, options: Int = [], range: NSRange) -> Int
+  func matchesInString(_ string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> [NSTextCheckingResult]
+  func numberOfMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> Int
   @available(swift, obsoleted: 3, renamed: "numberOfMatches(in:options:range:)")
-  func numberOfMatchesInString(_ string: String, options: Int = [], range: NSRange) -> Int
-  func firstMatch(in string: String, options: Int = [], range: NSRange) -> NSTextCheckingResult?
+  func numberOfMatchesInString(_ string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> Int
+  func firstMatch(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> NSTextCheckingResult?
   @available(swift, obsoleted: 3, renamed: "firstMatch(in:options:range:)")
-  func firstMatchInString(_ string: String, options: Int = [], range: NSRange) -> NSTextCheckingResult?
-  func rangeOfFirstMatch(in string: String, options: Int = [], range: NSRange) -> NSRange
+  func firstMatchInString(_ string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> NSTextCheckingResult?
+  func rangeOfFirstMatch(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> NSRange
   @available(swift, obsoleted: 3, renamed: "rangeOfFirstMatch(in:options:range:)")
-  func rangeOfFirstMatchInString(_ string: String, options: Int = [], range: NSRange) -> NSRange
+  func rangeOfFirstMatchInString(_ string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> NSRange
 }
 extension NSRegularExpression {
-  func stringByReplacingMatches(in string: String, options: Int = [], range: NSRange, withTemplate templ: String) -> String
+  func stringByReplacingMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange, withTemplate templ: String) -> String
   @available(swift, obsoleted: 3, renamed: "stringByReplacingMatches(in:options:range:withTemplate:)")
-  func stringByReplacingMatchesInString(_ string: String, options: Int = [], range: NSRange, withTemplate templ: String) -> String
-  func replaceMatches(in string: NSMutableString, options: Int = [], range: NSRange, withTemplate templ: String) -> Int
+  func stringByReplacingMatchesInString(_ string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange, withTemplate templ: String) -> String
+  func replaceMatches(in string: NSMutableString, options: NSRegularExpression.MatchingOptions = [], range: NSRange, withTemplate templ: String) -> Int
   @available(swift, obsoleted: 3, renamed: "replaceMatches(in:options:range:withTemplate:)")
-  func replaceMatchesInString(_ string: NSMutableString, options: Int = [], range: NSRange, withTemplate templ: String) -> Int
+  func replaceMatchesInString(_ string: NSMutableString, options: NSRegularExpression.MatchingOptions = [], range: NSRange, withTemplate templ: String) -> Int
   func replacementString(for result: NSTextCheckingResult, in string: String, offset: Int, template templ: String) -> String
   @available(swift, obsoleted: 3, renamed: "replacementString(for:in:offset:template:)")
   func replacementStringForResult(_ result: NSTextCheckingResult, inString string: String, offset: Int, template templ: String) -> String
@@ -67,7 +141,7 @@ class NSDataDetector : NSRegularExpression {
   class func dataDetectorWithTypes(_ checkingTypes: NSTextCheckingTypes) throws -> NSDataDetector
   init(types checkingTypes: NSTextCheckingTypes) throws
   var checkingTypes: NSTextCheckingTypes { get }
-  convenience init(pattern: String, options: Int = []) throws
+  convenience init(pattern: String, options: NSRegularExpression.Options = []) throws
   convenience init()
   init?(coder: NSCoder)
 }

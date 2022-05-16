@@ -29,10 +29,40 @@ extension DateComponentsFormatter {
     @available(swift, obsoleted: 3, renamed: "brief")
     static var Brief: DateComponentsFormatter.UnitsStyle { get }
   }
+  @available(iOS 8.0, *)
+  struct ZeroFormattingBehavior : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = DateComponentsFormatter.ZeroFormattingBehavior
+    typealias ArrayLiteralElement = DateComponentsFormatter.ZeroFormattingBehavior
+    @available(*, unavailable, message: "use [] to construct an empty option set")
+    static var none: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(*, unavailable, message: "use [] to construct an empty option set")
+    @available(swift, obsoleted: 3, renamed: "none")
+    static var None: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var `default`: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "default")
+    static var Default: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var dropLeading: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "dropLeading")
+    static var DropLeading: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var dropMiddle: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "dropMiddle")
+    static var DropMiddle: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var dropTrailing: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "dropTrailing")
+    static var DropTrailing: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var dropAll: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "dropAll")
+    static var DropAll: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    static var pad: DateComponentsFormatter.ZeroFormattingBehavior { get }
+    @available(swift, obsoleted: 3, renamed: "pad")
+    static var Pad: DateComponentsFormatter.ZeroFormattingBehavior { get }
+  }
 }
-@available(iOS 8.0, *)
-@available(*, unavailable, message: "Not available in Swift")
-typealias NSDateComponentsFormatterZeroFormattingBehavior = Int
+@available(swift, obsoleted: 3, renamed: "DateComponentsFormatter.ZeroFormattingBehavior")
+typealias NSDateComponentsFormatterZeroFormattingBehavior = DateComponentsFormatter.ZeroFormattingBehavior
 @available(iOS 8.0, *)
 class DateComponentsFormatter : Formatter {
   func string(for obj: Any?) -> String?
@@ -51,8 +81,8 @@ class DateComponentsFormatter : Formatter {
   @available(swift, obsoleted: 3, renamed: "localizedString(from:unitsStyle:)")
   class func localizedStringFromDateComponents(_ components: DateComponents, unitsStyle: DateComponentsFormatter.UnitsStyle) -> String?
   var unitsStyle: DateComponentsFormatter.UnitsStyle
-  var allowedUnits: Int
-  var zeroFormattingBehavior: Int
+  var allowedUnits: NSCalendar.Unit
+  var zeroFormattingBehavior: DateComponentsFormatter.ZeroFormattingBehavior
   var calendar: Calendar?
   @available(iOS 11.0, *)
   var referenceDate: Date?

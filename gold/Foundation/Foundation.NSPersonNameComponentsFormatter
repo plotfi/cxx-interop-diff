@@ -25,9 +25,21 @@ extension PersonNameComponentsFormatter {
     @available(swift, obsoleted: 3, renamed: "abbreviated")
     static var Abbreviated: PersonNameComponentsFormatter.Style { get }
   }
+  @available(iOS 9.0, *)
+  struct Options : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = PersonNameComponentsFormatter.Options
+    typealias ArrayLiteralElement = PersonNameComponentsFormatter.Options
+    static var phonetic: PersonNameComponentsFormatter.Options { get }
+    @available(swift, obsoleted: 3, renamed: "phonetic")
+    static var Phonetic: PersonNameComponentsFormatter.Options { get }
+  }
 }
-@available(*, unavailable, message: "Not available in Swift")
-typealias NSPersonNameComponentsFormatterOptions = Int
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "PersonNameComponentsFormatter.Options")
+typealias NSPersonNameComponentsFormatterOptions = PersonNameComponentsFormatter.Options
 @available(iOS 9.0, *)
 @available(swift, obsoleted: 3, renamed: "PersonNameComponentsFormatter")
 typealias NSPersonNameComponentsFormatter = PersonNameComponentsFormatter
@@ -39,9 +51,9 @@ class PersonNameComponentsFormatter : Formatter {
   var phonetic: Bool
   @available(iOS 15.0, *)
   var locale: Locale!
-  class func localizedString(from components: PersonNameComponents, style nameFormatStyle: PersonNameComponentsFormatter.Style, options nameOptions: Int = []) -> String
+  class func localizedString(from components: PersonNameComponents, style nameFormatStyle: PersonNameComponentsFormatter.Style, options nameOptions: PersonNameComponentsFormatter.Options = []) -> String
   @available(swift, obsoleted: 3, renamed: "localizedString(from:style:options:)")
-  class func localizedStringFromPersonNameComponents(_ components: PersonNameComponents, style nameFormatStyle: PersonNameComponentsFormatter.Style, options nameOptions: Int = []) -> String
+  class func localizedStringFromPersonNameComponents(_ components: PersonNameComponents, style nameFormatStyle: PersonNameComponentsFormatter.Style, options nameOptions: PersonNameComponentsFormatter.Options = []) -> String
   func string(from components: PersonNameComponents) -> String
   @available(swift, obsoleted: 3, renamed: "string(from:)")
   func stringFromPersonNameComponents(_ components: PersonNameComponents) -> String

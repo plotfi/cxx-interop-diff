@@ -1,10 +1,50 @@
 @_exported import CoreFoundation
 
-@available(*, unavailable, message: "Not available in Swift")
-typealias NSByteCountFormatterUnits = Int
-@available(swift, obsoleted: 3, renamed: "ByteCountFormatter.CountStyle")
-typealias NSByteCountFormatterCountStyle = ByteCountFormatter.CountStyle
+@available(swift, obsoleted: 3, renamed: "ByteCountFormatter.Units")
+typealias NSByteCountFormatterUnits = ByteCountFormatter.Units
 extension ByteCountFormatter {
+  struct Units : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = ByteCountFormatter.Units
+    typealias ArrayLiteralElement = ByteCountFormatter.Units
+    @available(*, unavailable, message: "use [] to construct an empty option set")
+    static var useDefault: ByteCountFormatter.Units { get }
+    @available(*, unavailable, message: "use [] to construct an empty option set")
+    @available(swift, obsoleted: 3, renamed: "useDefault")
+    static var UseDefault: ByteCountFormatter.Units { get }
+    static var useBytes: ByteCountFormatter.Units { get }
+    @available(swift, obsoleted: 3, renamed: "useBytes")
+    static var UseBytes: ByteCountFormatter.Units { get }
+    static var useKB: ByteCountFormatter.Units { get }
+    @available(swift, obsoleted: 3, renamed: "useKB")
+    static var UseKB: ByteCountFormatter.Units { get }
+    static var useMB: ByteCountFormatter.Units { get }
+    @available(swift, obsoleted: 3, renamed: "useMB")
+    static var UseMB: ByteCountFormatter.Units { get }
+    static var useGB: ByteCountFormatter.Units { get }
+    @available(swift, obsoleted: 3, renamed: "useGB")
+    static var UseGB: ByteCountFormatter.Units { get }
+    static var useTB: ByteCountFormatter.Units { get }
+    @available(swift, obsoleted: 3, renamed: "useTB")
+    static var UseTB: ByteCountFormatter.Units { get }
+    static var usePB: ByteCountFormatter.Units { get }
+    @available(swift, obsoleted: 3, renamed: "usePB")
+    static var UsePB: ByteCountFormatter.Units { get }
+    static var useEB: ByteCountFormatter.Units { get }
+    @available(swift, obsoleted: 3, renamed: "useEB")
+    static var UseEB: ByteCountFormatter.Units { get }
+    static var useZB: ByteCountFormatter.Units { get }
+    @available(swift, obsoleted: 3, renamed: "useZB")
+    static var UseZB: ByteCountFormatter.Units { get }
+    static var useYBOrHigher: ByteCountFormatter.Units { get }
+    @available(swift, obsoleted: 3, renamed: "useYBOrHigher")
+    static var UseYBOrHigher: ByteCountFormatter.Units { get }
+    static var useAll: ByteCountFormatter.Units { get }
+    @available(swift, obsoleted: 3, renamed: "useAll")
+    static var UseAll: ByteCountFormatter.Units { get }
+  }
   enum CountStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
@@ -23,6 +63,8 @@ extension ByteCountFormatter {
     static var Binary: ByteCountFormatter.CountStyle { get }
   }
 }
+@available(swift, obsoleted: 3, renamed: "ByteCountFormatter.CountStyle")
+typealias NSByteCountFormatterCountStyle = ByteCountFormatter.CountStyle
 @available(iOS 6.0, *)
 class ByteCountFormatter : Formatter {
   class func string(fromByteCount byteCount: Int64, countStyle: ByteCountFormatter.CountStyle) -> String
@@ -44,7 +86,7 @@ class ByteCountFormatter : Formatter {
   func string(for obj: Any?) -> String?
   @available(swift, obsoleted: 3, renamed: "string(for:)")
   func stringForObjectValue(_ obj: Any?) -> String?
-  var allowedUnits: Int
+  var allowedUnits: ByteCountFormatter.Units
   var countStyle: ByteCountFormatter.CountStyle
   var allowsNonnumericFormatting: Bool
   var includesUnit: Bool

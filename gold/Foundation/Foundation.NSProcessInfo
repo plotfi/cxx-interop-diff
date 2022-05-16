@@ -58,37 +58,42 @@ class ProcessInfo : NSObject {
   var automaticTerminationSupportEnabled: Bool
   init()
 }
-@available(*, unavailable, message: "Not available in Swift")
-typealias NSActivityOptions = UInt64
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "ProcessInfo.ActivityOptions")
+typealias NSActivityOptions = ProcessInfo.ActivityOptions
 extension ProcessInfo {
   @available(iOS 7.0, *)
-  func beginActivity(options: UInt64 = [], reason: String) -> NSObjectProtocol
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "beginActivity(options:reason:)")
-  func beginActivityWithOptions(_ options: UInt64 = [], reason: String) -> NSObjectProtocol
-  @available(iOS 7.0, *)
-  func endActivity(_ activity: NSObjectProtocol)
-  @available(iOS 7.0, *)
-  func performActivity(options: UInt64 = [], reason: String, using block: @escaping () -> Void)
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "performActivity(options:reason:using:)")
-  func performActivityWithOptions(_ options: UInt64 = [], reason: String, usingBlock block: @escaping () -> Void)
-  @available(iOS 8.2, *)
-  func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void)
-  @available(iOS 8.2, *)
-  @available(swift, obsoleted: 3, renamed: "performExpiringActivity(withReason:using:)")
-  func performExpiringActivityWithReason(_ reason: String, usingBlock block: @escaping (Bool) -> Void)
-}
-extension ProcessInfo {
-  @available(iOS, unavailable)
-  var userName: String { get }
-  @available(iOS, unavailable)
-  var fullUserName: String { get }
-}
-@available(iOS 11.0, *)
-@available(swift, obsoleted: 3, renamed: "ProcessInfo.ThermalState")
-typealias NSProcessInfoThermalState = ProcessInfo.ThermalState
-extension ProcessInfo {
+  struct ActivityOptions : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt64)
+    let rawValue: UInt64
+    typealias RawValue = UInt64
+    typealias Element = ProcessInfo.ActivityOptions
+    typealias ArrayLiteralElement = ProcessInfo.ActivityOptions
+    static var idleDisplaySleepDisabled: ProcessInfo.ActivityOptions { get }
+    @available(swift, obsoleted: 3, renamed: "idleDisplaySleepDisabled")
+    static var IdleDisplaySleepDisabled: ProcessInfo.ActivityOptions { get }
+    static var idleSystemSleepDisabled: ProcessInfo.ActivityOptions { get }
+    @available(swift, obsoleted: 3, renamed: "idleSystemSleepDisabled")
+    static var IdleSystemSleepDisabled: ProcessInfo.ActivityOptions { get }
+    static var suddenTerminationDisabled: ProcessInfo.ActivityOptions { get }
+    @available(swift, obsoleted: 3, renamed: "suddenTerminationDisabled")
+    static var SuddenTerminationDisabled: ProcessInfo.ActivityOptions { get }
+    static var automaticTerminationDisabled: ProcessInfo.ActivityOptions { get }
+    @available(swift, obsoleted: 3, renamed: "automaticTerminationDisabled")
+    static var AutomaticTerminationDisabled: ProcessInfo.ActivityOptions { get }
+    static var userInitiated: ProcessInfo.ActivityOptions { get }
+    @available(swift, obsoleted: 3, renamed: "userInitiated")
+    static var UserInitiated: ProcessInfo.ActivityOptions { get }
+    static var userInitiatedAllowingIdleSystemSleep: ProcessInfo.ActivityOptions { get }
+    @available(swift, obsoleted: 3, renamed: "userInitiatedAllowingIdleSystemSleep")
+    static var UserInitiatedAllowingIdleSystemSleep: ProcessInfo.ActivityOptions { get }
+    static var background: ProcessInfo.ActivityOptions { get }
+    @available(swift, obsoleted: 3, renamed: "background")
+    static var Background: ProcessInfo.ActivityOptions { get }
+    static var latencyCritical: ProcessInfo.ActivityOptions { get }
+    @available(swift, obsoleted: 3, renamed: "latencyCritical")
+    static var LatencyCritical: ProcessInfo.ActivityOptions { get }
+  }
   @available(iOS 11.0, *)
   enum ThermalState : Int, @unchecked Sendable {
     init?(rawValue: Int)
@@ -110,6 +115,34 @@ extension ProcessInfo {
   @available(iOS 11.0, *)
   class let thermalStateDidChangeNotification: NSNotification.Name
 }
+extension ProcessInfo {
+  @available(iOS 7.0, *)
+  func beginActivity(options: ProcessInfo.ActivityOptions = [], reason: String) -> NSObjectProtocol
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "beginActivity(options:reason:)")
+  func beginActivityWithOptions(_ options: ProcessInfo.ActivityOptions = [], reason: String) -> NSObjectProtocol
+  @available(iOS 7.0, *)
+  func endActivity(_ activity: NSObjectProtocol)
+  @available(iOS 7.0, *)
+  func performActivity(options: ProcessInfo.ActivityOptions = [], reason: String, using block: @escaping () -> Void)
+  @available(iOS 7.0, *)
+  @available(swift, obsoleted: 3, renamed: "performActivity(options:reason:using:)")
+  func performActivityWithOptions(_ options: ProcessInfo.ActivityOptions = [], reason: String, usingBlock block: @escaping () -> Void)
+  @available(iOS 8.2, *)
+  func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void)
+  @available(iOS 8.2, *)
+  @available(swift, obsoleted: 3, renamed: "performExpiringActivity(withReason:using:)")
+  func performExpiringActivityWithReason(_ reason: String, usingBlock block: @escaping (Bool) -> Void)
+}
+extension ProcessInfo {
+  @available(iOS, unavailable)
+  var userName: String { get }
+  @available(iOS, unavailable)
+  var fullUserName: String { get }
+}
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "ProcessInfo.ThermalState")
+typealias NSProcessInfoThermalState = ProcessInfo.ThermalState
 extension ProcessInfo {
   @available(iOS 11.0, *)
   var thermalState: ProcessInfo.ThermalState { get }

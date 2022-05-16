@@ -2,23 +2,23 @@
 
 var __FOUNDATION_NSHASHTABLE__: Int32 { get }
 @available(iOS 6.0, *)
-let NSHashTableStrongMemory: Int
+let NSHashTableStrongMemory: NSPointerFunctions.Options
 @available(iOS, unavailable)
-let NSHashTableZeroingWeakMemory: Int
+let NSHashTableZeroingWeakMemory: NSPointerFunctions.Options
 @available(iOS 6.0, *)
-let NSHashTableCopyIn: Int
+let NSHashTableCopyIn: NSPointerFunctions.Options
 @available(iOS 6.0, *)
-let NSHashTableObjectPointerPersonality: Int
+let NSHashTableObjectPointerPersonality: NSPointerFunctions.Options
 @available(iOS 6.0, *)
-let NSHashTableWeakMemory: Int
+let NSHashTableWeakMemory: NSPointerFunctions.Options
 typealias NSHashTableOptions = Int
 @available(iOS 6.0, *)
 class NSHashTable<ObjectType> : NSObject, NSCopying, NSSecureCoding, NSFastEnumeration where ObjectType : AnyObject {
-  init(options: Int = [], capacity initialCapacity: Int)
+  init(options: NSPointerFunctions.Options = [], capacity initialCapacity: Int)
   init(pointerFunctions functions: NSPointerFunctions, capacity initialCapacity: Int)
-  /*not inherited*/ init(options: Int = [])
+  /*not inherited*/ init(options: NSPointerFunctions.Options = [])
   @available(*, unavailable, renamed: "init(options:)", message: "Not available in Swift")
-  class func hashTableWithOptions(_ options: Int = []) -> NSHashTable<ObjectType>
+  class func hashTableWithOptions(_ options: NSPointerFunctions.Options = []) -> NSHashTable<ObjectType>
   @available(iOS, unavailable)
   class func hashTableWithWeakObjects() -> Any
   @available(iOS 6.0, *)
