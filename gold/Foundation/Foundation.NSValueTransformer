@@ -18,9 +18,9 @@ extension NSValueTransformerName {
   static let isNilTransformerName: NSValueTransformerName
   @available(iOS 3.0, *)
   static let isNotNilTransformerName: NSValueTransformerName
-  @available(iOS, introduced: 3.0, deprecated: 12.0)
+  @available(iOS, introduced: 3.0, deprecated: 12.0, renamed: "NSValueTransformerName.secureUnarchiveFromDataTransformerName")
   static let unarchiveFromDataTransformerName: NSValueTransformerName
-  @available(iOS, introduced: 3.0, deprecated: 12.0)
+  @available(iOS, introduced: 3.0, deprecated: 12.0, renamed: "NSValueTransformerName.secureUnarchiveFromDataTransformerName")
   static let keyedUnarchiveFromDataTransformerName: NSValueTransformerName
   @available(iOS 12.0, *)
   static let secureUnarchiveFromDataTransformerName: NSValueTransformerName
@@ -32,10 +32,10 @@ let NSIsNilTransformerName: NSValueTransformerName
 @available(swift, obsoleted: 3, renamed: "NSValueTransformerName.isNotNilTransformerName")
 let NSIsNotNilTransformerName: NSValueTransformerName
 @available(swift, obsoleted: 3, renamed: "NSValueTransformerName.unarchiveFromDataTransformerName")
-@available(iOS, introduced: 3.0, deprecated: 12.0)
+@available(iOS, introduced: 3.0, deprecated: 12.0, renamed: "NSValueTransformerName.secureUnarchiveFromDataTransformerName")
 let NSUnarchiveFromDataTransformerName: NSValueTransformerName
 @available(swift, obsoleted: 3, renamed: "NSValueTransformerName.keyedUnarchiveFromDataTransformerName")
-@available(iOS, introduced: 3.0, deprecated: 12.0)
+@available(iOS, introduced: 3.0, deprecated: 12.0, renamed: "NSValueTransformerName.secureUnarchiveFromDataTransformerName")
 let NSKeyedUnarchiveFromDataTransformerName: NSValueTransformerName
 @available(iOS 12.0, *)
 @available(swift, obsoleted: 3, renamed: "NSValueTransformerName.secureUnarchiveFromDataTransformerName")

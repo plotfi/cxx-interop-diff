@@ -271,25 +271,25 @@ let NSLocaleAlternateQuotationBeginDelimiterKey: NSLocale.Key
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "NSLocale.Key.alternateQuotationEndDelimiterKey")
 let NSLocaleAlternateQuotationEndDelimiterKey: NSLocale.Key
-@available(iOS, introduced: 2.0, deprecated: 8.0)
+@available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Identifier.gregorian")
 let NSGregorianCalendar: String
-@available(iOS, introduced: 2.0, deprecated: 8.0)
+@available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Identifier.buddhist")
 let NSBuddhistCalendar: String
-@available(iOS, introduced: 2.0, deprecated: 8.0)
+@available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Identifier.chinese")
 let NSChineseCalendar: String
-@available(iOS, introduced: 2.0, deprecated: 8.0)
+@available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Identifier.hebrew")
 let NSHebrewCalendar: String
-@available(iOS, introduced: 2.0, deprecated: 8.0)
+@available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Identifier.islamic")
 let NSIslamicCalendar: String
-@available(iOS, introduced: 2.0, deprecated: 8.0)
+@available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Identifier.islamicCivil")
 let NSIslamicCivilCalendar: String
-@available(iOS, introduced: 2.0, deprecated: 8.0)
+@available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Identifier.japanese")
 let NSJapaneseCalendar: String
-@available(iOS, introduced: 4.0, deprecated: 8.0)
+@available(iOS, introduced: 4.0, deprecated: 8.0, renamed: "NSCalendar.Identifier.republicOfChina")
 let NSRepublicOfChinaCalendar: String
-@available(iOS, introduced: 4.0, deprecated: 8.0)
+@available(iOS, introduced: 4.0, deprecated: 8.0, renamed: "NSCalendar.Identifier.persian")
 let NSPersianCalendar: String
-@available(iOS, introduced: 4.0, deprecated: 8.0)
+@available(iOS, introduced: 4.0, deprecated: 8.0, renamed: "NSCalendar.Identifier.indian")
 let NSIndianCalendar: String
-@available(iOS, introduced: 4.0, deprecated: 8.0)
+@available(iOS, introduced: 4.0, deprecated: 8.0, renamed: "NSCalendar.Identifier.ISO8601")
 let NSISO8601Calendar: String

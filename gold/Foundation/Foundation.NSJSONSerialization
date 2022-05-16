@@ -30,9 +30,9 @@ extension JSONSerialization {
     @available(iOS 15.0, *)
     @available(swift, obsoleted: 3, renamed: "topLevelDictionaryAssumed")
     static var TopLevelDictionaryAssumed: JSONSerialization.ReadingOptions { get }
-    @available(iOS, introduced: 5.0, deprecated: 100000)
+    @available(iOS, introduced: 5.0, deprecated: 100000, renamed: "JSONSerialization.ReadingOptions.fragmentsAllowed")
     static var allowFragments: JSONSerialization.ReadingOptions { get }
-    @available(iOS, introduced: 5.0, deprecated: 100000)
+    @available(iOS, introduced: 5.0, deprecated: 100000, renamed: "JSONSerialization.ReadingOptions.fragmentsAllowed")
     @available(swift, obsoleted: 3, renamed: "allowFragments")
     static var AllowFragments: JSONSerialization.ReadingOptions { get }
   }

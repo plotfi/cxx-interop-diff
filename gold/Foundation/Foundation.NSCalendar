@@ -79,37 +79,37 @@ extension NSCalendar {
     @available(iOS 4.0, *)
     @available(swift, obsoleted: 3, renamed: "timeZone")
     static var TimeZone: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0)
+    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.era")
     static var NSEraCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0)
+    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.year")
     static var NSYearCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0)
+    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.month")
     static var NSMonthCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0)
+    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.day")
     static var NSDayCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0)
+    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.hour")
     static var NSHourCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0)
+    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.minute")
     static var NSMinuteCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0)
+    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.second")
     static var NSSecondCalendarUnit: NSCalendar.Unit { get }
     @available(iOS, introduced: 2.0, deprecated: 8.0, message: "NSCalendarUnitWeekOfMonth or NSCalendarUnitWeekOfYear, depending on which you mean")
     static var NSWeekCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0)
+    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.weekday")
     static var NSWeekdayCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0)
+    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.weekdayOrdinal")
     static var NSWeekdayOrdinalCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 4.0, deprecated: 8.0)
+    @available(iOS, introduced: 4.0, deprecated: 8.0, renamed: "NSCalendar.Unit.quarter")
     static var NSQuarterCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 5.0, deprecated: 8.0)
+    @available(iOS, introduced: 5.0, deprecated: 8.0, renamed: "NSCalendar.Unit.weekOfMonth")
     static var NSWeekOfMonthCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 5.0, deprecated: 8.0)
+    @available(iOS, introduced: 5.0, deprecated: 8.0, renamed: "NSCalendar.Unit.weekOfYear")
     static var NSWeekOfYearCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 5.0, deprecated: 8.0)
+    @available(iOS, introduced: 5.0, deprecated: 8.0, renamed: "NSCalendar.Unit.yearForWeekOfYear")
     static var NSYearForWeekOfYearCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 4.0, deprecated: 8.0)
+    @available(iOS, introduced: 4.0, deprecated: 8.0, renamed: "NSCalendar.Unit.calendar")
     static var NSCalendarCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 4.0, deprecated: 8.0)
+    @available(iOS, introduced: 4.0, deprecated: 8.0, renamed: "NSCalendar.Unit.timeZone")
     static var NSTimeZoneCalendarUnit: NSCalendar.Unit { get }
   }
   struct Options : OptionSet, @unchecked Sendable {
@@ -244,7 +244,7 @@ let NSCalendarIdentifierIslamicUmmAlQura: NSCalendar.Identifier
 typealias NSCalendarUnit = NSCalendar.Unit
 @available(swift, obsoleted: 3, renamed: "NSCalendar.Options")
 typealias NSCalendarOptions = NSCalendar.Options
-@available(iOS, introduced: 2.0, deprecated: 8.0)
+@available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Options.wrapComponents")
 var NSWrapCalendarComponents: Int { get }
 class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   class var current: Calendar { get }
@@ -475,7 +475,7 @@ extension NSNotification.Name {
   static let NSCalendarDayChanged: NSNotification.Name
 }
 var NSDateComponentUndefined: Int { get }
-@available(iOS, introduced: 2.0, deprecated: 8.0)
+@available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSDateComponentUndefined")
 var NSUndefinedDateComponent: Int { get }
 class NSDateComponents : NSObject, NSCopying, NSSecureCoding {
   @available(iOS 4.0, *)

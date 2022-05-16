@@ -24,19 +24,19 @@ extension NSData {
     @available(iOS 5.0, *)
     @available(swift, obsoleted: 3, renamed: "alwaysMapped")
     static var DataReadingMappedAlways: NSData.ReadingOptions { get }
-    @available(iOS, introduced: 2.0, deprecated: 100000)
+    @available(iOS, introduced: 2.0, deprecated: 100000, renamed: "NSData.ReadingOptions.mappedIfSafe")
     static var dataReadingMapped: NSData.ReadingOptions { get }
-    @available(iOS, introduced: 2.0, deprecated: 100000)
+    @available(iOS, introduced: 2.0, deprecated: 100000, renamed: "NSData.ReadingOptions.mappedIfSafe")
     @available(swift, obsoleted: 3, renamed: "dataReadingMapped")
     static var DataReadingMapped: NSData.ReadingOptions { get }
-    @available(iOS, introduced: 2.0, deprecated: 100000)
+    @available(iOS, introduced: 2.0, deprecated: 100000, renamed: "NSData.ReadingOptions.dataReadingMapped")
     static var mappedRead: NSData.ReadingOptions { get }
-    @available(iOS, introduced: 2.0, deprecated: 100000)
+    @available(iOS, introduced: 2.0, deprecated: 100000, renamed: "NSData.ReadingOptions.dataReadingMapped")
     @available(swift, obsoleted: 3, renamed: "mappedRead")
     static var MappedRead: NSData.ReadingOptions { get }
-    @available(iOS, introduced: 2.0, deprecated: 100000)
+    @available(iOS, introduced: 2.0, deprecated: 100000, renamed: "NSData.ReadingOptions.uncached")
     static var uncachedRead: NSData.ReadingOptions { get }
-    @available(iOS, introduced: 2.0, deprecated: 100000)
+    @available(iOS, introduced: 2.0, deprecated: 100000, renamed: "NSData.ReadingOptions.uncached")
     @available(swift, obsoleted: 3, renamed: "uncachedRead")
     static var UncachedRead: NSData.ReadingOptions { get }
   }
@@ -79,9 +79,9 @@ extension NSData {
     @available(iOS 4.0, *)
     @available(swift, obsoleted: 3, renamed: "fileProtectionMask")
     static var DataWritingFileProtectionMask: NSData.WritingOptions { get }
-    @available(iOS, introduced: 2.0, deprecated: 100000)
+    @available(iOS, introduced: 2.0, deprecated: 100000, renamed: "NSData.WritingOptions.atomic")
     static var atomicWrite: NSData.WritingOptions { get }
-    @available(iOS, introduced: 2.0, deprecated: 100000)
+    @available(iOS, introduced: 2.0, deprecated: 100000, renamed: "NSData.WritingOptions.atomic")
     @available(swift, obsoleted: 3, renamed: "atomicWrite")
     static var AtomicWrite: NSData.WritingOptions { get }
   }
