@@ -1,50 +1,50 @@
-@_exported import Foundation
-
-@available(iOS 14.0, *)
-@MainActor protocol UIColorPickerViewControllerDelegate : NSObjectProtocol {
-
-  /// Called when the `selectedColor` changes.
-  @available(iOS, introduced: 14.0, deprecated: 15.0)
-  optional func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController)
-
-  /// Called when the selected color changes.
-  ///
-  /// @param viewController This color picker.
-  /// @param color The new selected color
-  /// @param continuously YES, if this update is part of a continuous user interaction (e.g. dragging through the spectrum). It's recommended
-  ///                  to show these updates in your UI but to not include them in any undo operations.
-  @available(iOS 15.0, *)
-  optional func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool)
-
-  /// Called when the selected color changes.
-  ///
-  /// @param viewController This color picker.
-  /// @param color The new selected color
-  /// @param continuously YES, if this update is part of a continuous user interaction (e.g. dragging through the spectrum). It's recommended
-  ///                  to show these updates in your UI but to not include them in any undo operations.
-  @available(iOS 15.0, *)
-  @available(swift, obsoleted: 3, renamed: "colorPickerViewController(_:didSelect:continuously:)")
-  optional func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelectColor color: UIColor, continuously: Bool)
-
-  /// In presentations (except popovers) the color picker shows a close button. If the close button is tapped,
-  /// the view controller is dismissed and `colorPickerViewControllerDidFinish:` is called. Can be used to
-  /// animate alongside the dismissal.
-  optional func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController)
-}
-@available(iOS 14.0, *)
-@MainActor class UIColorPickerViewController : UIViewController {
-  weak var delegate: @sil_weak UIColorPickerViewControllerDelegate?
-
-  /// Sets the selected color on the color picker and is updated when the user changes the selection.
-  /// Does support KVO.
-  var selectedColor: UIColor
-
-  /// Controls whether the color picker shows an alpha slider or not.
-  ///
-  /// If set to `NO` users are only able to pick fully opaque colors.
-  var supportsAlpha: Bool
-  @available(*, unavailable)
-  convenience init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  init()
-  init?(coder: NSCoder)
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
+#import <FileProvider/NSFileProviderItem.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
+#import <UIKit/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIColorPickerViewController'

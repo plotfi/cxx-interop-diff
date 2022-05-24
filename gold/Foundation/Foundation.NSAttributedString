@@ -2,6 +2,16 @@
 
 @available(swift, obsoleted: 4.2, renamed: "NSAttributedString.Key")
 typealias NSAttributedStringKey = NSAttributedString.Key
+extension NSAttributedString {
+  struct Key : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+    init(_ rawValue: String)
+    init(rawValue: String)
+    var _rawValue: NSString
+    var rawValue: String { get }
+    typealias RawValue = String
+    typealias _ObjectiveCType = NSString
+  }
+}
 @available(iOS 3.2, *)
 class NSAttributedString : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   var string: String { get }
@@ -54,40 +64,30 @@ extension NSAttributedString {
   init(string str: String, attributes attrs: [NSAttributedString.Key : Any]? = nil)
   init(attributedString attrStr: NSAttributedString)
   @available(iOS 4.0, *)
-  func enumerateAttributes(in enumerationRange: NSRange, options opts: NSAttributedString.EnumerationOptions = [], using block: ([NSAttributedString.Key : Any], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateAttributes(in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions = [], using block: ([NSAttributedString.Key : Any], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateAttributes(in:options:using:)")
-  func enumerateAttributesInRange(_ enumerationRange: NSRange, options opts: NSAttributedString.EnumerationOptions = [], usingBlock block: ([NSAttributedString.Key : Any], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateAttributesInRange(_ enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions = [], usingBlock block: ([NSAttributedString.Key : Any], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
-  func enumerateAttribute(_ attrName: NSAttributedString.Key, in enumerationRange: NSRange, options opts: NSAttributedString.EnumerationOptions = [], using block: (Any?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateAttribute(_ attrName: NSAttributedString.Key, in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions = [], using block: (Any?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateAttribute(_:in:options:using:)")
-  func enumerateAttribute(_ attrName: NSAttributedString.Key, inRange enumerationRange: NSRange, options opts: NSAttributedString.EnumerationOptions = [], usingBlock block: (Any?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateAttribute(_ attrName: NSAttributedString.Key, inRange enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions = [], usingBlock block: (Any?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
 }
-@available(swift, obsoleted: 3, renamed: "NSAttributedString.EnumerationOptions")
-typealias NSAttributedStringEnumerationOptions = NSAttributedString.EnumerationOptions
-extension NSAttributedString {
-  struct EnumerationOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSAttributedString.EnumerationOptions
-    typealias ArrayLiteralElement = NSAttributedString.EnumerationOptions
-    static var reverse: NSAttributedString.EnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "reverse")
-    static var Reverse: NSAttributedString.EnumerationOptions { get }
-    static var longestEffectiveRangeNotRequired: NSAttributedString.EnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "longestEffectiveRangeNotRequired")
-    static var LongestEffectiveRangeNotRequired: NSAttributedString.EnumerationOptions { get }
-  }
-  struct Key : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
-    init(_ rawValue: String)
-    init(rawValue: String)
-    var _rawValue: NSString
-    var rawValue: String { get }
-    typealias RawValue = String
-    typealias _ObjectiveCType = NSString
-  }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSAttributedStringEnumerationOptions = Int
+struct NSAttributedStringEnumerationOptions : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt)
+  let rawValue: UInt
+  typealias RawValue = UInt
+  typealias Element = NSAttributedStringEnumerationOptions
+  typealias ArrayLiteralElement = NSAttributedStringEnumerationOptions
+  static var reverse: NSAttributedStringEnumerationOptions { get }
+  @available(swift, obsoleted: 3, renamed: "reverse")
+  static var Reverse: NSAttributedStringEnumerationOptions { get }
+  static var longestEffectiveRangeNotRequired: NSAttributedStringEnumerationOptions { get }
+  @available(swift, obsoleted: 3, renamed: "longestEffectiveRangeNotRequired")
+  static var LongestEffectiveRangeNotRequired: NSAttributedStringEnumerationOptions { get }
 }
 @available(iOS 3.2, *)
 class NSMutableAttributedString : NSAttributedString {
@@ -109,7 +109,7 @@ class NSMutableAttributedString : NSAttributedString {
 
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
+  init(__format format: NSAttributedString, options: NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
 }
 extension NSMutableAttributedString {
   var mutableString: NSMutableString { get }
@@ -132,6 +132,8 @@ extension NSMutableAttributedString {
   func beginEditing()
   func endEditing()
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSInlinePresentationIntent = Int
 @available(iOS 15.0, *)
 struct InlinePresentationIntent : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
@@ -251,28 +253,30 @@ extension NSAttributedString {
   @available(iOS 15.0, *)
   init(__markdownString markdownString: String, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
 }
-struct __NSAttributedStringFormattingOptions : OptionSet, @unchecked Sendable {
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSAttributedStringFormattingOptions = Int
+struct NSAttributedStringFormattingOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
-  typealias Element = __NSAttributedStringFormattingOptions
-  typealias ArrayLiteralElement = __NSAttributedStringFormattingOptions
+  typealias Element = NSAttributedStringFormattingOptions
+  typealias ArrayLiteralElement = NSAttributedStringFormattingOptions
   @available(iOS 15.0, *)
-  static var insertArgumentAttributesWithoutMerging: __NSAttributedStringFormattingOptions { get }
+  static var insertArgumentAttributesWithoutMerging: NSAttributedStringFormattingOptions { get }
   @available(iOS 15.0, *)
   @available(swift, obsoleted: 3, renamed: "insertArgumentAttributesWithoutMerging")
-  static var InsertArgumentAttributesWithoutMerging: __NSAttributedStringFormattingOptions { get }
+  static var InsertArgumentAttributesWithoutMerging: NSAttributedStringFormattingOptions { get }
   @available(iOS 15.0, *)
-  static var applyReplacementIndexAttribute: __NSAttributedStringFormattingOptions { get }
+  static var applyReplacementIndexAttribute: NSAttributedStringFormattingOptions { get }
   @available(iOS 15.0, *)
   @available(swift, obsoleted: 3, renamed: "applyReplacementIndexAttribute")
-  static var ApplyReplacementIndexAttribute: __NSAttributedStringFormattingOptions { get }
+  static var ApplyReplacementIndexAttribute: NSAttributedStringFormattingOptions { get }
 }
 extension NSAttributedString {
 
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
+  init(__format format: NSAttributedString, options: NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
 }
 extension NSMutableAttributedString {
 }

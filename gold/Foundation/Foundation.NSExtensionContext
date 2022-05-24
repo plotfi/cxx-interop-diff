@@ -18,24 +18,10 @@ class NSExtensionContext : NSObject {
 @available(iOS 8.0, *)
 let NSExtensionItemsAndErrorsKey: String
 @available(iOS 8.2, *)
-@available(swift, obsoleted: 3, renamed: "NSNotification.Name.NSExtensionHostWillEnterForeground")
-let NSExtensionHostWillEnterForegroundNotification: NSNotification.Name
-extension NSNotification.Name {
-  @available(iOS 8.2, *)
-  static let NSExtensionHostWillEnterForeground: NSNotification.Name
-  @available(iOS 8.2, *)
-  static let NSExtensionHostDidEnterBackground: NSNotification.Name
-  @available(iOS 8.2, *)
-  static let NSExtensionHostWillResignActive: NSNotification.Name
-  @available(iOS 8.2, *)
-  static let NSExtensionHostDidBecomeActive: NSNotification.Name
-}
+let NSExtensionHostWillEnterForegroundNotification: String
 @available(iOS 8.2, *)
-@available(swift, obsoleted: 3, renamed: "NSNotification.Name.NSExtensionHostDidEnterBackground")
-let NSExtensionHostDidEnterBackgroundNotification: NSNotification.Name
+let NSExtensionHostDidEnterBackgroundNotification: String
 @available(iOS 8.2, *)
-@available(swift, obsoleted: 3, renamed: "NSNotification.Name.NSExtensionHostWillResignActive")
-let NSExtensionHostWillResignActiveNotification: NSNotification.Name
+let NSExtensionHostWillResignActiveNotification: String
 @available(iOS 8.2, *)
-@available(swift, obsoleted: 3, renamed: "NSNotification.Name.NSExtensionHostDidBecomeActive")
-let NSExtensionHostDidBecomeActiveNotification: NSNotification.Name
+let NSExtensionHostDidBecomeActiveNotification: String

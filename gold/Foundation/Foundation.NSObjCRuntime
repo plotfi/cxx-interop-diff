@@ -164,6 +164,8 @@ typealias NSComparisonResult = ComparisonResult
 typealias Comparator = (Any, Any) -> ComparisonResult
 @available(swift, obsoleted: 3, renamed: "Comparator")
 typealias NSComparator = Comparator
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSEnumerationOptions = Int
 struct NSEnumerationOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
@@ -177,6 +179,8 @@ struct NSEnumerationOptions : OptionSet, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "reverse")
   static var Reverse: NSEnumerationOptions { get }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSSortOptions = Int
 struct NSSortOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt

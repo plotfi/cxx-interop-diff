@@ -1,78 +1,50 @@
-@_exported import Foundation
-
-@available(iOS 15.0, *)
-@available(swift, obsoleted: 3, renamed: "UIBandSelectionInteraction.State")
-typealias UIBandSelectionInteractionState = UIBandSelectionInteraction.State
-extension UIBandSelectionInteraction {
-  @available(iOS 15.0, *)
-  enum State : Int, @unchecked Sendable {
-    init?(rawValue: Int)
-    var rawValue: Int { get }
-    typealias RawValue = Int
-    case possible
-    @available(swift, obsoleted: 3, renamed: "possible")
-    static var Possible: UIBandSelectionInteraction.State { get }
-    case began
-    @available(swift, obsoleted: 3, renamed: "began")
-    static var Began: UIBandSelectionInteraction.State { get }
-    case selecting
-    @available(swift, obsoleted: 3, renamed: "selecting")
-    static var Selecting: UIBandSelectionInteraction.State { get }
-    case ended
-    @available(swift, obsoleted: 3, renamed: "ended")
-    static var Ended: UIBandSelectionInteraction.State { get }
-  }
-}
-@available(iOS 15.0, *)
-@MainActor class UIBandSelectionInteraction : NSObject, UIInteraction {
-
-  /// Indicates whether the interaction is enabled. Defaults to YES.
-  var isEnabled: Bool
-
-  /// Indicates whether the interaction is enabled. Defaults to YES.
-  @available(swift, obsoleted: 3, renamed: "isEnabled")
-  var enabled: Bool
-
-  /// The interaction's current state.
-  var state: UIBandSelectionInteraction.State { get }
-
-  /// The current selection rect. Returns CGRectNull when the interaction is inactive.
-  var __selectionRect: CGRect { get }
-
-  /// Modifier keys held at the beginning of the interaction.
-  var initialModifierFlags: UIKeyModifierFlags { get }
-
-  /// Called when the interaction is about to begin.
-  /// Return a boolean indicating whether the interaction should begin at the given location.
-  var shouldBeginHandler: ((UIBandSelectionInteraction, CGPoint) -> Bool)?
-
-  /**
-   * @abstract Creates a UIBandSelectionInteraction with the given selection handler.
-   *
-   * @param selectionHandler  Called when the interaction's state and/or selection rect change.
-   */
-  init(_ selectionHandler: @escaping (UIBandSelectionInteraction) -> Void)
-
-  /**
-   * @abstract Creates a UIBandSelectionInteraction with the given selection handler.
-   *
-   * @param selectionHandler  Called when the interaction's state and/or selection rect change.
-   */
-  @available(swift, obsoleted: 3, renamed: "init(_:)")
-  init(selectionHandler: @escaping (UIBandSelectionInteraction) -> Void)
-  @available(*, unavailable)
-  init()
-  @available(*, unavailable)
-  class func new() -> Self
-  @available(iOS 11.0, *)
-  weak var view: @sil_weak UIView? { get }
-  @available(iOS 11.0, *)
-  func willMove(to view: UIView?)
-  @available(iOS 11.0, *)
-  func didMove(to view: UIView?)
-}
-
-@available(iOS 15.0, *)
-extension UIBandSelectionInteraction {
-  @MainActor var selectionRect: CGRect? { get }
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:9:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderExtension.h:8:
+#import <FileProvider/NSFileProviderItem.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: error: 'NSFileProviderFileSystemFlags' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderItem.h:200:32: note: 'NSFileProviderFileSystemFlags' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderFileSystemFlags) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: note: while building module 'FileProvider' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/FileProvider.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/FileProvider.h:16:
+#import <FileProvider/NSFileProviderDomain.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: error: 'NSFileProviderDomainTestingModes' is unavailable: not available on iOS
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/FileProvider.framework/Headers/NSFileProviderDomain.h:48:32: note: 'NSFileProviderDomainTestingModes' has been explicitly marked unavailable here
+typedef NS_OPTIONS(NSUInteger, NSFileProviderDomainTestingModes) {
+                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:87:
+#import <UIKit/NSFileProviderExtension.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSFileProviderExtension.h:15:9: error: could not build module 'FileProvider'
+#import <FileProvider/NSFileProviderExtension.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIBandSelectionInteraction'

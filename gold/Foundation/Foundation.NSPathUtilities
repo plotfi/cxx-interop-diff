@@ -162,29 +162,29 @@ extension FileManager {
     @available(swift, obsoleted: 3, renamed: "trashDirectory")
     static var TrashDirectory: FileManager.SearchPathDirectory { get }
   }
-  struct SearchPathDomainMask : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = FileManager.SearchPathDomainMask
-    typealias ArrayLiteralElement = FileManager.SearchPathDomainMask
-    static var userDomainMask: FileManager.SearchPathDomainMask { get }
-    @available(swift, obsoleted: 3, renamed: "userDomainMask")
-    static var UserDomainMask: FileManager.SearchPathDomainMask { get }
-    static var localDomainMask: FileManager.SearchPathDomainMask { get }
-    @available(swift, obsoleted: 3, renamed: "localDomainMask")
-    static var LocalDomainMask: FileManager.SearchPathDomainMask { get }
-    static var networkDomainMask: FileManager.SearchPathDomainMask { get }
-    @available(swift, obsoleted: 3, renamed: "networkDomainMask")
-    static var NetworkDomainMask: FileManager.SearchPathDomainMask { get }
-    static var systemDomainMask: FileManager.SearchPathDomainMask { get }
-    @available(swift, obsoleted: 3, renamed: "systemDomainMask")
-    static var SystemDomainMask: FileManager.SearchPathDomainMask { get }
-    static var allDomainsMask: FileManager.SearchPathDomainMask { get }
-    @available(swift, obsoleted: 3, renamed: "allDomainsMask")
-    static var AllDomainsMask: FileManager.SearchPathDomainMask { get }
-  }
 }
-@available(swift, obsoleted: 3, renamed: "FileManager.SearchPathDomainMask")
-typealias NSSearchPathDomainMask = FileManager.SearchPathDomainMask
-func NSSearchPathForDirectoriesInDomains(_ directory: FileManager.SearchPathDirectory, _ domainMask: FileManager.SearchPathDomainMask, _ expandTilde: Bool) -> [String]
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSSearchPathDomainMask = Int
+struct NSSearchPathDomainMask : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt)
+  let rawValue: UInt
+  typealias RawValue = UInt
+  typealias Element = NSSearchPathDomainMask
+  typealias ArrayLiteralElement = NSSearchPathDomainMask
+  static var userDomainMask: NSSearchPathDomainMask { get }
+  @available(swift, obsoleted: 3, renamed: "userDomainMask")
+  static var UserDomainMask: NSSearchPathDomainMask { get }
+  static var localDomainMask: NSSearchPathDomainMask { get }
+  @available(swift, obsoleted: 3, renamed: "localDomainMask")
+  static var LocalDomainMask: NSSearchPathDomainMask { get }
+  static var networkDomainMask: NSSearchPathDomainMask { get }
+  @available(swift, obsoleted: 3, renamed: "networkDomainMask")
+  static var NetworkDomainMask: NSSearchPathDomainMask { get }
+  static var systemDomainMask: NSSearchPathDomainMask { get }
+  @available(swift, obsoleted: 3, renamed: "systemDomainMask")
+  static var SystemDomainMask: NSSearchPathDomainMask { get }
+  static var allDomainsMask: NSSearchPathDomainMask { get }
+  @available(swift, obsoleted: 3, renamed: "allDomainsMask")
+  static var AllDomainsMask: NSSearchPathDomainMask { get }
+}
+func NSSearchPathForDirectoriesInDomains(_ directory: FileManager.SearchPathDirectory, _ domainMask: NSSearchPathDomainMask, _ expandTilde: Bool) -> [String]

@@ -19,6 +19,8 @@ enum NSItemProviderRepresentationVisibility : Int, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "ownProcess")
   static var OwnProcess: NSItemProviderRepresentationVisibility { get }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSItemProviderFileOptions = Int
 @available(iOS 11.0, *)
 struct NSItemProviderFileOptions : OptionSet, @unchecked Sendable {
   init(rawValue: Int)

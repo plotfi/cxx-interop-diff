@@ -1,89 +1,87 @@
 @_exported import CoreFoundation
 
 var __FOUNDATION_NSPOINTERFUNCTIONS__: Int32 { get }
-@available(swift, obsoleted: 3, renamed: "NSPointerFunctions.Options")
-typealias NSPointerFunctionsOptions = NSPointerFunctions.Options
-extension NSPointerFunctions {
-  struct Options : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSPointerFunctions.Options
-    typealias ArrayLiteralElement = NSPointerFunctions.Options
-    @available(iOS 6.0, *)
-    static var strongMemory: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "strongMemory")
-    static var StrongMemory: NSPointerFunctions.Options { get }
-    @available(iOS, unavailable)
-    static var zeroingWeakMemory: NSPointerFunctions.Options { get }
-    @available(iOS, unavailable)
-    @available(swift, obsoleted: 3, renamed: "zeroingWeakMemory")
-    static var ZeroingWeakMemory: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    static var opaqueMemory: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(swift, obsoleted: 3, renamed: "opaqueMemory")
-    static var OpaqueMemory: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    static var mallocMemory: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(swift, obsoleted: 3, renamed: "mallocMemory")
-    static var MallocMemory: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    static var machVirtualMemory: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(swift, obsoleted: 3, renamed: "machVirtualMemory")
-    static var MachVirtualMemory: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    static var weakMemory: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(swift, obsoleted: 3, renamed: "weakMemory")
-    static var WeakMemory: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    static var objectPersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "objectPersonality")
-    static var ObjectPersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    static var opaquePersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(swift, obsoleted: 3, renamed: "opaquePersonality")
-    static var OpaquePersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    static var objectPointerPersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(swift, obsoleted: 3, renamed: "objectPointerPersonality")
-    static var ObjectPointerPersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    static var cStringPersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(swift, obsoleted: 3, renamed: "cStringPersonality")
-    static var CStringPersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    static var structPersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(swift, obsoleted: 3, renamed: "structPersonality")
-    static var StructPersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    static var integerPersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(swift, obsoleted: 3, renamed: "integerPersonality")
-    static var IntegerPersonality: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    static var copyIn: NSPointerFunctions.Options { get }
-    @available(iOS 6.0, *)
-    @available(swift, obsoleted: 3, renamed: "copyIn")
-    static var CopyIn: NSPointerFunctions.Options { get }
-  }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSPointerFunctionsOptions = Int
+struct NSPointerFunctionsOptions : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt)
+  let rawValue: UInt
+  typealias RawValue = UInt
+  typealias Element = NSPointerFunctionsOptions
+  typealias ArrayLiteralElement = NSPointerFunctionsOptions
+  @available(iOS 6.0, *)
+  static var strongMemory: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(*, unavailable, message: "use [] to construct an empty option set")
+  @available(swift, obsoleted: 3, renamed: "strongMemory")
+  static var StrongMemory: NSPointerFunctionsOptions { get }
+  @available(iOS, unavailable)
+  static var zeroingWeakMemory: NSPointerFunctionsOptions { get }
+  @available(iOS, unavailable)
+  @available(swift, obsoleted: 3, renamed: "zeroingWeakMemory")
+  static var ZeroingWeakMemory: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  static var opaqueMemory: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "opaqueMemory")
+  static var OpaqueMemory: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  static var mallocMemory: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "mallocMemory")
+  static var MallocMemory: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  static var machVirtualMemory: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "machVirtualMemory")
+  static var MachVirtualMemory: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  static var weakMemory: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "weakMemory")
+  static var WeakMemory: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  static var objectPersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(*, unavailable, message: "use [] to construct an empty option set")
+  @available(swift, obsoleted: 3, renamed: "objectPersonality")
+  static var ObjectPersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  static var opaquePersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "opaquePersonality")
+  static var OpaquePersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  static var objectPointerPersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "objectPointerPersonality")
+  static var ObjectPointerPersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  static var cStringPersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "cStringPersonality")
+  static var CStringPersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  static var structPersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "structPersonality")
+  static var StructPersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  static var integerPersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "integerPersonality")
+  static var IntegerPersonality: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  static var copyIn: NSPointerFunctionsOptions { get }
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "copyIn")
+  static var CopyIn: NSPointerFunctionsOptions { get }
 }
 @available(iOS 6.0, *)
 class NSPointerFunctions : NSObject, NSCopying {
-  init(options: NSPointerFunctions.Options = [])
+  init(options: NSPointerFunctionsOptions = [])
   @available(*, unavailable, renamed: "init(options:)", message: "Not available in Swift")
-  class func pointerFunctionsWithOptions(_ options: NSPointerFunctions.Options = []) -> NSPointerFunctions
+  class func pointerFunctionsWithOptions(_ options: NSPointerFunctionsOptions = []) -> NSPointerFunctions
   var hashFunction: (@convention(c) (UnsafeRawPointer, (@convention(c) (UnsafeRawPointer) -> Int)?) -> Int)?
   var isEqualFunction: (@convention(c) (UnsafeRawPointer, UnsafeRawPointer, (@convention(c) (UnsafeRawPointer) -> Int)?) -> ObjCBool)?
   var sizeFunction: (@convention(c) (UnsafeRawPointer) -> Int)?
