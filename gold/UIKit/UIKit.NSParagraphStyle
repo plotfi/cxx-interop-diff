@@ -25,6 +25,8 @@ enum NSLineBreakMode : Int, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "byTruncatingMiddle")
   static var ByTruncatingMiddle: NSLineBreakMode { get }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSLineBreakStrategy = Int
 @available(swift, obsoleted: 3, renamed: "NSParagraphStyle.LineBreakStrategy")
 typealias NSLineBreakStrategy = NSParagraphStyle.LineBreakStrategy
 extension NSParagraphStyle {
@@ -127,7 +129,7 @@ class NSParagraphStyle : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   @available(iOS 9.0, *)
   var allowsDefaultTighteningForTruncation: Bool { get }
   @available(iOS 9.0, *)
-  var lineBreakStrategy: NSParagraphStyle.LineBreakStrategy { get }
+  var lineBreakStrategy: Int { get }
   init()
   @available(iOS 6.0, *)
   class var supportsSecureCoding: Bool { get }
@@ -163,7 +165,7 @@ class NSMutableParagraphStyle : NSParagraphStyle {
   @available(iOS 9.0, *)
   var allowsDefaultTighteningForTruncation: Bool
   @available(iOS 9.0, *)
-  var lineBreakStrategy: NSParagraphStyle.LineBreakStrategy
+  var lineBreakStrategy: Int
   @available(iOS 9.0, *)
   func addTabStop(_ anObject: NSTextTab)
   @available(iOS 9.0, *)

@@ -152,6 +152,8 @@ typealias UITableViewCellFocusStyle = UITableViewCell.FocusStyle
 typealias UITableViewCellEditingStyle = UITableViewCell.EditingStyle
 @available(swift, obsoleted: 4.2, renamed: "UITableViewCell.AccessoryType")
 typealias UITableViewCellAccessoryType = UITableViewCell.AccessoryType
+@available(*, unavailable, message: "Not available in Swift")
+typealias UITableViewCellStateMask = Int
 @available(swift, obsoleted: 4.2, renamed: "UITableViewCell.StateMask")
 typealias UITableViewCellStateMask = UITableViewCell.StateMask
 @available(iOS 11.0, *)
@@ -257,14 +259,14 @@ typealias __UITableViewCellConfigurationUpdateHandler = (UITableViewCell, __UICe
   @available(iOS 9.0, *)
   var focusStyle: UITableViewCell.FocusStyle
   @available(iOS 3.0, *)
-  func willTransition(to state: UITableViewCell.StateMask)
+  func willTransition(toState state: UITableViewCell.StateMask)
   @available(iOS 3.0, *)
-  @available(swift, obsoleted: 3, renamed: "willTransition(to:)")
+  @available(swift, obsoleted: 3, renamed: "willTransition(toState:)")
   func willTransitionToState(_ state: UITableViewCell.StateMask)
   @available(iOS 3.0, *)
-  func didTransition(to state: UITableViewCell.StateMask)
+  func didTransition(toState state: UITableViewCell.StateMask)
   @available(iOS 3.0, *)
-  @available(swift, obsoleted: 3, renamed: "didTransition(to:)")
+  @available(swift, obsoleted: 3, renamed: "didTransition(toState:)")
   func didTransitionToState(_ state: UITableViewCell.StateMask)
   @available(iOS 11.0, *)
   func dragStateDidChange(_ dragState: UITableViewCell.DragState)

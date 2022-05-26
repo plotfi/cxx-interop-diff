@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIDataDetectorTypes = Int
 struct UIDataDetectorTypes : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt

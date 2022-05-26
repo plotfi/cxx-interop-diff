@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UISwipeGestureRecognizerDirection = Int
 @available(swift, obsoleted: 4.2, renamed: "UISwipeGestureRecognizer.Direction")
 typealias UISwipeGestureRecognizerDirection = UISwipeGestureRecognizer.Direction
 extension UISwipeGestureRecognizer {
@@ -26,7 +28,7 @@ extension UISwipeGestureRecognizer {
 @available(iOS 3.2, *)
 @MainActor class UISwipeGestureRecognizer : UIGestureRecognizer {
   var numberOfTouchesRequired: Int
-  var direction: UISwipeGestureRecognizer.Direction
+  var direction: Int
   init(target: Any?, action: Selector?)
   convenience init()
   convenience init?(coder: NSCoder)
