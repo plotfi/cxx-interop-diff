@@ -125,26 +125,57 @@ final class AnySubscriberBox<Base> : AnySubscriberBase<Base.Input, Base.Failure>
   @inlinable override final func receive(completion: Subscribers.Completion<AnySubscriberBox<Base>.Failure>)
 }
 
+/// A publisher that exposes its elements as an asynchronous sequence.
+///
+/// `AsyncPublisher` conforms to <doc://com.apple.documentation/documentation/Swift/AsyncSequence>, which allows callers to receive values with the `for`-`await`-`in` syntax, rather than attaching a ``Subscriber``.
+///
+/// Use the ``Combine/Publisher/values-1dm9r`` property of the ``Combine/Publisher`` protocol to wrap an existing publisher with an instance of this type.
 @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
 struct AsyncPublisher<P> : AsyncSequence where P : Publisher, P.Failure == Never {
+  /// The type of element produced by this asynchronous sequence.
   typealias Element = P.Output
+  /// The iterator that produces elements of the asynchronous publisher sequence.
   struct Iterator : AsyncIteratorProtocol {
+    /// Produces the next element in the prefix sequence.
+    ///
+    /// - Returns: The next published element, or nil if the publisher finishes normally.
     mutating func next() async -> P.Output?
     typealias Element = P.Output
   }
+  /// Creates a publisher that exposes elements received from an upstream publisher as an asynchronous sequence.
+  ///
+  /// - Parameter publisher: An upstream publisher. The asynchronous publisher converts elements received from this publisher into an asynchronous sequence.
   init(_ publisher: P)
+  /// Creates the asynchronous iterator that produces elements of this asynchronous sequence.
+  ///
+  /// - Returns: An instance of the `AsyncIterator` type used to produce elements of the asynchronous sequence.
   func makeAsyncIterator() -> AsyncPublisher<P>.Iterator
   typealias AsyncIterator = AsyncPublisher<P>.Iterator
 }
 
+/// A publisher that exposes its elements as a throwing asynchronous sequence.
+///
+/// `AsyncThrowingPublisher` conforms to <doc://com.apple.documentation/documentation/Swift/AsyncSequence>, which allows callers to receive values with the `for`-`await`-`in` syntax, rather than attaching a ``Subscriber``. If the upstream publisher terminates with an error, `AsyncThrowingPublisher` throws the error to the awaiting caller.
+///
+/// Use the ``Combine/Publisher/values-v7nz`` property of the ``Combine/Publisher`` protocol to wrap an existing publisher with an instance of this type.
 @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
 struct AsyncThrowingPublisher<P> : AsyncSequence where P : Publisher {
+  /// The type of element produced by this asynchronous sequence.
   typealias Element = P.Output
+  /// The iterator that produces elements of the asynchronous publisher sequence.
   struct Iterator : AsyncIteratorProtocol {
+    /// Produces the next element in the prefix sequence.
+    ///
+    /// - Returns: The next published element, or nil if the publisher finishes normally. If the publisher terminates with an error, the call point receives the error as a `throw`.
     mutating func next() async throws -> P.Output?
     typealias Element = P.Output
   }
+  /// Creates a publisher that exposes elements received from an upstream publisher as a throwing asynchronous sequence.
+  /// - Parameter publisher: An upstream publisher. The asynchronous publisher converts elements received from this publisher into an asynchronous sequence.
   init(_ publisher: P)
+  /// Creates the asynchronous iterator that produces elements of this asynchronous sequence.
+  ///
+  /// - Returns: An instance of the `AsyncIterator` type used to produce elements of the asynchronous sequence.
   func makeAsyncIterator() -> AsyncThrowingPublisher<P>.Iterator
   typealias AsyncIterator = AsyncThrowingPublisher<P>.Iterator
 }
@@ -369,6 +400,52 @@ extension Fail : Equatable where Failure : Equatable {
 }
 
 /// A publisher that eventually produces a single value and then finishes or fails.
+///
+/// Use a future to perform some work and then asynchronously publish a single element. You initialize the future with a closure that takes a ``Combine/Future/Promise``; the closure calls the promise with a <doc://com.apple.documentation/documentation/Swift/Result> that indicates either success or failure. In the success case, the future's downstream subscriber receives the element prior to the publishing stream finishing normally. If the result is an error, publishing terminates with that error.
+///
+/// The following example shows a method that uses a future to asynchronously publish a random number after a brief delay:
+///
+///     func generateAsyncRandomNumberFromFuture() -> Future <Int, Never> {
+///         return Future() { promise in
+///             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+///                 let number = Int.random(in: 1...10)
+///                 promise(Result.success(number))
+///             }
+///         }
+///     }
+///
+/// To receive the published value, you use any Combine subscriber, such as a ``Combine/Subscribers/Sink``, like this:
+///
+///     cancellable = generateAsyncRandomNumberFromFuture()
+///         .sink { number in print("Got random number \(number).") }
+///
+/// ### Integrating with Swift Concurrency
+///
+/// To integrate with the `async`-`await` syntax in Swift 5.5, `Future` can provide its value to an awaiting caller. This is particularly useful because unlike other types that conform to ``Publisher`` and potentially publish many elements, a `Future` only publishes one element (or fails). By using the ``Combine/Future/value-9iwjz`` property, the above call point looks like this:
+///
+///     let number = await generateAsyncRandomNumberFromFuture().value
+///     print("Got random number \(number).")
+///
+/// ### Alternatives to Futures
+///
+/// The `async`-`await` syntax in Swift can also replace the use of a future entirely, for the case where you want to perform some operation after an asynchronous task completes.
+///
+/// You do this with the function <doc://com.apple.documentation/documentation/Swift/3814988-withCheckedContinuation> and its throwing equivalent, <doc://com.apple.documentation/documentation/Swift/3814989-withCheckedThrowingContinuation>. The following example performs the same asynchronous random number generation as the `Future` example above, but as an `async` method:
+///
+///     func generateAsyncRandomNumberFromContinuation() async -> Int {
+///         return await withCheckedContinuation { continuation in
+///             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+///                 let number = Int.random(in: 1...10)
+///                 continuation.resume(returning: number)
+///             }
+///         }
+///     }
+///
+/// The call point for this method doesn't use a closure like the future's sink subscriber does; it simply awaits and assigns the result:
+///
+///     let asyncRandom = await generateAsyncRandomNumberFromContinuation()
+///
+/// For more information on continuations, see the <doc://com.apple.documentation/documentation/swift/swift_standard_library/concurrency> topic in the Swift standard library.
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 final class Future<Output, Failure> : Publisher where Failure : Error {
   /// A type that represents a closure to invoke in the future, when an element or error is available.
@@ -386,12 +463,18 @@ final class Future<Output, Failure> : Publisher where Failure : Error {
 
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Future where Failure == Never {
+  /// The published value of the future, delivered asynchronously.
+  ///
+  /// This property subscribes to the `Future` and delivers the value asynchronously when the `Future` publishes it. Use this property when you want to use the `async`-`await` syntax with a `Future`.
   @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
   final var value: Output { get async }
 }
 
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Future {
+  /// The published value of the future or an error, delivered asynchronously.
+  ///
+  /// This property subscribes to the `Future` and delivers the value asynchronously when the `Future` publishes it. If the `Future` terminates with an error, the awaiting caller receives the error instead. Use this property when you want to the `async`-`await` syntax with a `Future` whose ``Publisher/Failure`` type is not <doc://com.apple.documentation/documentation/Swift/Never>.
   @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
   final var value: Output { get async throws }
 }
@@ -703,16 +786,32 @@ final class PassthroughSubject<Output, Failure> : Subject where Failure : Error 
 /// - ``Subscriber/receive(_:)``: Delivers one element from the publisher to the subscriber.
 /// - ``Subscriber/receive(completion:)``: Informs the subscriber that publishing has ended, either normally or with an error.
 ///
-/// Every ``Publisher`` must adhere to this contract for downstream subscribers to function correctly.
+/// Every `Publisher` must adhere to this contract for downstream subscribers to function correctly.
 ///
-/// Extensions on ``Publisher`` define a wide variety of _operators_ that you compose to create sophisticated event-processing chains.
+/// Extensions on `Publisher` define a wide variety of _operators_ that you compose to create sophisticated event-processing chains.
 /// Each operator returns a type that implements the ``Publisher`` protocol
 /// Most of these types exist as extensions on the ``Publishers`` enumeration.
 /// For example, the ``Publisher/map(_:)-99evh`` operator returns an instance of ``Publishers/Map``.
 ///
+/// > Tip: A Combine publisher fills a role similar to, but distinct from, the
+/// <doc://com.apple.documentation/documentation/Swift/AsyncSequence> in the
+/// Swift standard library. A `Publisher` and an
+/// `AsyncSequence` both produce elements over time. However, the pull model in Combine
+/// uses a ``Combine/Subscriber`` to request elements from a publisher, while Swift
+/// concurrency uses the `for`-`await`-`in` syntax to iterate over elements
+/// published by an `AsyncSequence`. Both APIs offer methods to modify the sequence
+/// by mapping or filtering elements, while only Combine provides time-based
+/// operations like
+/// ``Publisher/debounce(for:scheduler:options:)`` and
+/// ``Publisher/throttle(for:scheduler:latest:)``, and combining operations like
+/// ``Publisher/merge(with:)-7fk3a`` and ``Publisher/combineLatest(_:_:)-1n30g``.
+/// To bridge the two approaches, the property ``Publisher/values-1dm9r`` exposes
+/// a publisher's elements as an `AsyncSequence`, allowing you to iterate over
+/// them with `for`-`await`-`in` rather than attaching a ``Subscriber``.
+///
 /// # Creating Your Own Publishers
 ///
-/// Rather than implementing the ``Publisher`` protocol yourself, you can create your own publisher by using one of several types provided by the Combine framework:
+/// Rather than implementing the `Publisher` protocol yourself, you can create your own publisher by using one of several types provided by the Combine framework:
 ///
 /// - Use a concrete subclass of ``Subject``, such as ``PassthroughSubject``, to publish values on-demand by calling its ``Subject/send(_:)`` method.
 /// - Use a ``CurrentValueSubject`` to publish whenever you update the subject’s underlying value.
@@ -931,15 +1030,15 @@ extension Publisher {
   ///
   /// Use ``Publisher/tryFilter(_:)`` to filter elements evaluated in an error-throwing closure. If the `isIncluded` closure throws an error, the publisher fails with that error.
   ///
-  /// In the example below, ``Publisher/tryFilter(_:)`` checks to see if the divisor provided by the publisher is zero, and throws a `DivisionByZeroError` and then terminates the publisher with the thrown error:
+  /// In the example below, ``Publisher/tryFilter(_:)`` checks to see if the element provided by the publisher is zero, and throws a `ZeroError` before terminating the publisher with the thrown error. Otherwise, it republishes the element only if it's even:
   ///
-  ///     struct DivisionByZeroError: Error {}
+  ///     struct ZeroError: Error {}
   ///
   ///     let numbers: [Int] = [1, 2, 3, 4, 0, 5]
   ///     cancellable = numbers.publisher
   ///         .tryFilter{
   ///             if $0 == 0 {
-  ///                 throw DivisionByZeroError()
+  ///                 throw ZeroError()
   ///             } else {
   ///                 return $0 % 2 == 0
   ///             }
@@ -1960,12 +2059,52 @@ extension Publisher {
 
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Publisher where Self.Failure == Never {
+  /// The elements produced by the publisher, as an asynchronous sequence.
+  ///
+  /// This property provides an ``AsyncPublisher``, which allows you to use the Swift `async`-`await` syntax to receive the publisher's elements. Because ``AsyncPublisher`` conforms to <doc://com.apple.documentation/documentation/Swift/AsyncSequence>, you iterate over its elements with a `for`-`await`-`in` loop, rather than attaching a subscriber.
+  ///
+  /// The following example shows how to use the `values` property to receive elements asynchronously. The example adapts a code snippet from the ``Publisher/filter(_:)`` operator's documentation, which filters a sequence to only emit even integers. This example replaces the ``Subscribers/Sink`` subscriber with a `for`-`await`-`in` loop that iterates over the ``AsyncPublisher`` provided by the `values` property.
+  ///
+  ///     let numbers: [Int] = [1, 2, 3, 4, 5]
+  ///     let filtered = numbers.publisher
+  ///         .filter { $0 % 2 == 0 }
+  ///
+  ///     for await number in filtered.values
+  ///     {
+  ///         print("\(number)", terminator: " ")
+  ///     }
+  ///
   @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
   var values: AsyncPublisher<Self> { get }
 }
 
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Publisher {
+  /// The elements produced by the publisher, as a throwing asynchronous sequence.
+  ///
+  /// This property provides an ``AsyncThrowingPublisher``, which allows you to use the Swift `async`-`await` syntax to receive the publisher's elements. Because ``AsyncPublisher`` conforms to <doc://com.apple.documentation/documentation/Swift/AsyncSequence>, you iterate over its elements with a `for`-`await`-`in` loop, rather than attaching a subscriber. If the publisher terminates with an error, the awaiting caller receives the error as a `throw`.
+  ///
+  /// The following example shows how to use the `values` property to receive elements asynchronously. The example adapts a code snippet from the ``Publisher/tryFilter(_:)`` operator's documentation, which filters a sequence to only emit even integers, and terminate with an error on a `0`. This example replaces the ``Subscribers/Sink`` subscriber with a `for`-`await`-`in` loop that iterates over the ``AsyncPublisher`` provided by the `values` property. With this approach, the error handling previously provided in the sink subscriber's ``Subscribers/Sink/receiveCompletion`` closure goes instead in a `catch` block.
+  ///
+  ///     let numbers: [Int] = [1, 2, 3, 4, 0, 5]
+  ///     let filterPublisher = numbers.publisher
+  ///         .tryFilter{
+  ///             if $0 == 0 {
+  ///                 throw ZeroError()
+  ///             } else {
+  ///                 return $0 % 2 == 0
+  ///             }
+  ///         }
+  ///
+  ///     do {
+  ///         for try await number in filterPublisher.values {
+  ///             print ("\(number)", terminator: " ")
+  ///         }
+  ///     } catch {
+  ///         print ("\(error)")
+  ///     }
+  ///
+  ///
   @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
   var values: AsyncThrowingPublisher<Self> { get }
 }
@@ -2991,7 +3130,7 @@ extension Publisher {
 extension Publisher {
   /// Raises a fatal error when its upstream publisher fails, and otherwise republishes all received input.
   ///
-  /// Use `assertNoFailure()` for internal sanity checks that are active during testing. However, it is important to note that, like its Swift counterpart `fatalError(_:)`, the `assertNoFailure()` operator asserts a fatal exception when triggered in both development/testing _and_ shipping versions of code.
+  /// Use `assertNoFailure()` for internal integrity checks that are active during testing. However, it is important to note that, like its Swift counterpart `fatalError(_:)`, the `assertNoFailure()` operator asserts a fatal exception when triggered during development and testing, _and_ in shipping versions of code.
   ///
   /// In the example below, a `CurrentValueSubject` publishes the initial and second values successfully. The third value, containing a `genericSubjectError`, causes the `assertNoFailure()` operator to assert a fatal exception stopping the process:
   ///
@@ -5452,7 +5591,7 @@ extension Publishers {
 extension Publishers {
   /// A publisher that raises a fatal error upon receiving any failure, and otherwise republishes all received input.
   ///
-  /// Use this function for internal sanity checks that are active during testing but do not impact performance of shipping code.
+  /// Use this function for internal integrity checks that are active during testing but don't effect performance of shipping code.
   struct AssertNoFailure<Upstream> : Publisher where Upstream : Publisher {
     /// The kind of values published by this publisher.
     ///

@@ -6,6 +6,8 @@ protocol NSXPCProxyCreating {
   @available(iOS 9.0, *)
   optional func synchronousRemoteObjectProxyWithErrorHandler(_ handler: @escaping (Error) -> Void) -> Any
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSXPCConnectionOptions = Int
 @available(iOS 6.0, *)
 @available(swift, obsoleted: 3, renamed: "NSXPCConnection.Options")
 typealias NSXPCConnectionOptions = NSXPCConnection.Options
