@@ -29,7 +29,6 @@ extension DateComponentsFormatter {
     @available(swift, obsoleted: 3, renamed: "brief")
     static var Brief: DateComponentsFormatter.UnitsStyle { get }
   }
-  @available(iOS 8.0, *)
   struct ZeroFormattingBehavior : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
@@ -61,6 +60,9 @@ extension DateComponentsFormatter {
     static var Pad: DateComponentsFormatter.ZeroFormattingBehavior { get }
   }
 }
+@available(iOS 8.0, *)
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSDateComponentsFormatterZeroFormattingBehavior = Int
 @available(swift, obsoleted: 3, renamed: "DateComponentsFormatter.ZeroFormattingBehavior")
 typealias NSDateComponentsFormatterZeroFormattingBehavior = DateComponentsFormatter.ZeroFormattingBehavior
 @available(iOS 8.0, *)
@@ -81,8 +83,8 @@ class DateComponentsFormatter : Formatter {
   @available(swift, obsoleted: 3, renamed: "localizedString(from:unitsStyle:)")
   class func localizedStringFromDateComponents(_ components: DateComponents, unitsStyle: DateComponentsFormatter.UnitsStyle) -> String?
   var unitsStyle: DateComponentsFormatter.UnitsStyle
-  var allowedUnits: NSCalendar.Unit
-  var zeroFormattingBehavior: DateComponentsFormatter.ZeroFormattingBehavior
+  var allowedUnits: Int
+  var zeroFormattingBehavior: Int
   var calendar: Calendar?
   @available(iOS 11.0, *)
   var referenceDate: Date?

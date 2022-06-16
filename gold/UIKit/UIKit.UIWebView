@@ -89,7 +89,7 @@ typealias UIWebPaginationBreakingMode = UIWebView.PaginationBreakingMode
   @available(iOS, unavailable, introduced: 2.0, deprecated: 3.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
   var detectsPhoneNumbers: Bool
   @available(iOS 3.0, *)
-  var dataDetectorTypes: UIDataDetectorTypes
+  var dataDetectorTypes: Int
   @available(iOS 4.0, *)
   var allowsInlineMediaPlayback: Bool
   @available(iOS 4.0, *)
