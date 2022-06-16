@@ -1,2 +1,218 @@
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLResource.h:174:5: warning: imported declaration 'MTLResourceStorageModeShared' could not be mapped to 'storageModeShared'
+    MTLResourceStorageModeShared API_AVAILABLE(macos(10.11), ios(9.0)) = MTLStorageModeShared << MTLResourceStorageModeShift,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLResource.h:174:5: note: please report this issue to the owners of 'Metal'
+    MTLResourceStorageModeShared API_AVAILABLE(macos(10.11), ios(9.0)) = MTLStorageModeShared << MTLResourceStorageModeShift,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLResource.h:174:5: warning: imported declaration 'MTLResourceStorageModeShared' could not be mapped to 'storageModeShared'
+    MTLResourceStorageModeShared API_AVAILABLE(macos(10.11), ios(9.0)) = MTLStorageModeShared << MTLResourceStorageModeShift,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLResource.h:174:5: note: please report this issue to the owners of 'Metal'
+    MTLResourceStorageModeShared API_AVAILABLE(macos(10.11), ios(9.0)) = MTLStorageModeShared << MTLResourceStorageModeShift,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLTexture.h:99:5: warning: imported declaration 'MTLTextureUsageUnknown' could not be mapped to 'unknown'
+    MTLTextureUsageUnknown         = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLTexture.h:99:5: note: please report this issue to the owners of 'Metal'
+    MTLTextureUsageUnknown         = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLTexture.h:99:5: warning: imported declaration 'MTLTextureUsageUnknown' could not be mapped to 'unknown'
+    MTLTextureUsageUnknown         = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers/MTLTexture.h:99:5: note: please report this issue to the owners of 'Metal'
+    MTLTextureUsageUnknown         = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTStringAttributes.h:332:5: warning: imported declaration 'kCTUnderlinePatternSolid' could not be mapped to 'patternSolid'
+    kCTUnderlinePatternSolid        = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTStringAttributes.h:332:5: note: please report this issue to the owners of 'CoreText'
+    kCTUnderlinePatternSolid        = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTStringAttributes.h:332:5: warning: imported declaration 'kCTUnderlinePatternSolid' could not be mapped to 'patternSolid'
+    kCTUnderlinePatternSolid        = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework/Headers/CTStringAttributes.h:332:5: note: please report this issue to the owners of 'CoreText'
+    kCTUnderlinePatternSolid        = 0x0000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:56:5: warning: imported declaration 'NSUnderlineStyleSingle' could not be mapped to 'single'
+    NSUnderlineStyleSingle                                  = 0x01,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:56:5: note: please report this issue to the owners of 'UIKit'
+    NSUnderlineStyleSingle                                  = 0x01,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:56:5: warning: imported declaration 'NSUnderlineStyleSingle' could not be mapped to 'single'
+    NSUnderlineStyleSingle                                  = 0x01,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:56:5: note: please report this issue to the owners of 'UIKit'
+    NSUnderlineStyleSingle                                  = 0x01,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:56:5: warning: imported declaration 'NSUnderlineStyleSingle' could not be mapped to 'single'
+    NSUnderlineStyleSingle                                  = 0x01,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:56:5: note: please report this issue to the owners of 'UIKit'
+    NSUnderlineStyleSingle                                  = 0x01,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:57:5: warning: imported declaration 'NSUnderlineStyleThick' could not be mapped to 'thick'
+    NSUnderlineStyleThick API_AVAILABLE(macos(10.0), ios(7.0))      = 0x02,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:57:5: note: please report this issue to the owners of 'UIKit'
+    NSUnderlineStyleThick API_AVAILABLE(macos(10.0), ios(7.0))      = 0x02,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:57:5: warning: imported declaration 'NSUnderlineStyleThick' could not be mapped to 'thick'
+    NSUnderlineStyleThick API_AVAILABLE(macos(10.0), ios(7.0))      = 0x02,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:57:5: note: please report this issue to the owners of 'UIKit'
+    NSUnderlineStyleThick API_AVAILABLE(macos(10.0), ios(7.0))      = 0x02,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:57:5: warning: imported declaration 'NSUnderlineStyleThick' could not be mapped to 'thick'
+    NSUnderlineStyleThick API_AVAILABLE(macos(10.0), ios(7.0))      = 0x02,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:57:5: note: please report this issue to the owners of 'UIKit'
+    NSUnderlineStyleThick API_AVAILABLE(macos(10.0), ios(7.0))      = 0x02,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:58:5: warning: imported declaration 'NSUnderlineStyleDouble' could not be mapped to 'double'
+    NSUnderlineStyleDouble API_AVAILABLE(macos(10.0), ios(7.0))     = 0x09,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:58:5: note: please report this issue to the owners of 'UIKit'
+    NSUnderlineStyleDouble API_AVAILABLE(macos(10.0), ios(7.0))     = 0x09,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:58:5: warning: imported declaration 'NSUnderlineStyleDouble' could not be mapped to 'double'
+    NSUnderlineStyleDouble API_AVAILABLE(macos(10.0), ios(7.0))     = 0x09,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:58:5: note: please report this issue to the owners of 'UIKit'
+    NSUnderlineStyleDouble API_AVAILABLE(macos(10.0), ios(7.0))     = 0x09,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:58:5: warning: imported declaration 'NSUnderlineStyleDouble' could not be mapped to 'double'
+    NSUnderlineStyleDouble API_AVAILABLE(macos(10.0), ios(7.0))     = 0x09,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSAttributedString.h:58:5: note: please report this issue to the owners of 'UIKit'
+    NSUnderlineStyleDouble API_AVAILABLE(macos(10.0), ios(7.0))     = 0x09,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSLayoutConstraint.h:101:5: warning: imported declaration 'NSLayoutFormatDirectionLeadingToTrailing' could not be mapped to 'directionLeadingToTrailing'
+    NSLayoutFormatDirectionLeadingToTrailing = 0 << 16, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSLayoutConstraint.h:101:5: note: please report this issue to the owners of 'UIKit'
+    NSLayoutFormatDirectionLeadingToTrailing = 0 << 16, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSLayoutConstraint.h:101:5: warning: imported declaration 'NSLayoutFormatDirectionLeadingToTrailing' could not be mapped to 'directionLeadingToTrailing'
+    NSLayoutFormatDirectionLeadingToTrailing = 0 << 16, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/NSLayoutConstraint.h:101:5: note: please report this issue to the owners of 'UIKit'
+    NSLayoutFormatDirectionLeadingToTrailing = 0 << 16, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h:75:5: warning: imported declaration 'UIViewAnimationOptionCurveEaseInOut' could not be mapped to 'curveEaseInOut'
+    UIViewAnimationOptionCurveEaseInOut            = 0 << 16, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h:75:5: note: please report this issue to the owners of 'UIKit'
+    UIViewAnimationOptionCurveEaseInOut            = 0 << 16, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h:75:5: warning: imported declaration 'UIViewAnimationOptionCurveEaseInOut' could not be mapped to 'curveEaseInOut'
+    UIViewAnimationOptionCurveEaseInOut            = 0 << 16, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h:75:5: note: please report this issue to the owners of 'UIKit'
+    UIViewAnimationOptionCurveEaseInOut            = 0 << 16, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h:104:5: warning: imported declaration 'UIViewKeyframeAnimationOptionCalculationModeLinear' could not be mapped to 'calculationModeLinear'
+    UIViewKeyframeAnimationOptionCalculationModeLinear     = 0 << 10, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h:104:5: note: please report this issue to the owners of 'UIKit'
+    UIViewKeyframeAnimationOptionCalculationModeLinear     = 0 << 10, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h:104:5: warning: imported declaration 'UIViewKeyframeAnimationOptionCalculationModeLinear' could not be mapped to 'calculationModeLinear'
+    UIViewKeyframeAnimationOptionCalculationModeLinear     = 0 << 10, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h:104:5: note: please report this issue to the owners of 'UIKit'
+    UIViewKeyframeAnimationOptionCalculationModeLinear     = 0 << 10, // default
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIControl.h:60:5: warning: imported declaration 'UIControlStateNormal' could not be mapped to 'normal'
+    UIControlStateNormal       = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIControl.h:60:5: note: please report this issue to the owners of 'UIKit'
+    UIControlStateNormal       = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIControl.h:60:5: warning: imported declaration 'UIControlStateNormal' could not be mapped to 'normal'
+    UIControlStateNormal       = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIControl.h:60:5: note: please report this issue to the owners of 'UIKit'
+    UIControlStateNormal       = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITextDragging.h:25:5: warning: imported declaration 'UITextDragOptionStripTextColorFromPreviews' could not be mapped to 'stripTextColorFromPreviews'
+    UITextDragOptionStripTextColorFromPreviews = (1 << 0)
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITextDragging.h:25:5: note: please report this issue to the owners of 'UIKit'
+    UITextDragOptionStripTextColorFromPreviews = (1 << 0)
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITextDragging.h:25:5: warning: imported declaration 'UITextDragOptionStripTextColorFromPreviews' could not be mapped to 'stripTextColorFromPreviews'
+    UITextDragOptionStripTextColorFromPreviews = (1 << 0)
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITextDragging.h:25:5: note: please report this issue to the owners of 'UIKit'
+    UITextDragOptionStripTextColorFromPreviews = (1 << 0)
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:66:5: warning: imported declaration 'UITableViewCellStateShowingEditControlMask' could not be mapped to 'showingEditControl'
+    UITableViewCellStateShowingEditControlMask          = 1 << 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:66:5: note: please report this issue to the owners of 'UIKit'
+    UITableViewCellStateShowingEditControlMask          = 1 << 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:66:5: warning: imported declaration 'UITableViewCellStateShowingEditControlMask' could not be mapped to 'showingEditControl'
+    UITableViewCellStateShowingEditControlMask          = 1 << 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:66:5: note: please report this issue to the owners of 'UIKit'
+    UITableViewCellStateShowingEditControlMask          = 1 << 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:66:5: warning: imported declaration 'UITableViewCellStateShowingEditControlMask' could not be mapped to 'showingEditControl'
+    UITableViewCellStateShowingEditControlMask          = 1 << 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:66:5: note: please report this issue to the owners of 'UIKit'
+    UITableViewCellStateShowingEditControlMask          = 1 << 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:67:5: warning: imported declaration 'UITableViewCellStateShowingDeleteConfirmationMask' could not be mapped to 'showingDeleteConfirmation'
+    UITableViewCellStateShowingDeleteConfirmationMask   = 1 << 1
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:67:5: note: please report this issue to the owners of 'UIKit'
+    UITableViewCellStateShowingDeleteConfirmationMask   = 1 << 1
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:67:5: warning: imported declaration 'UITableViewCellStateShowingDeleteConfirmationMask' could not be mapped to 'showingDeleteConfirmation'
+    UITableViewCellStateShowingDeleteConfirmationMask   = 1 << 1
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:67:5: note: please report this issue to the owners of 'UIKit'
+    UITableViewCellStateShowingDeleteConfirmationMask   = 1 << 1
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:67:5: warning: imported declaration 'UITableViewCellStateShowingDeleteConfirmationMask' could not be mapped to 'showingDeleteConfirmation'
+    UITableViewCellStateShowingDeleteConfirmationMask   = 1 << 1
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h:67:5: note: please report this issue to the owners of 'UIKit'
+    UITableViewCellStateShowingDeleteConfirmationMask   = 1 << 1
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDocument.h:28:5: warning: imported declaration 'UIDocumentStateNormal' could not be mapped to 'normal'
+    UIDocumentStateNormal            = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDocument.h:28:5: note: please report this issue to the owners of 'UIKit'
+    UIDocumentStateNormal            = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDocument.h:28:5: warning: imported declaration 'UIDocumentStateNormal' could not be mapped to 'normal'
+    UIDocumentStateNormal            = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDocument.h:28:5: note: please report this issue to the owners of 'UIKit'
+    UIDocumentStateNormal            = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIPrinter.h:32:9: warning: imported declaration '' could not be mapped to 'UIPrinter.JobTypes'
+typedef NS_OPTIONS(NSInteger, UIPrinterJobTypes) {
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIPrinter.h:32:9: note: please report this issue to the owners of 'UIKit'
+typedef NS_OPTIONS(NSInteger, UIPrinterJobTypes) {
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIPrinter.h:33:5: warning: imported declaration 'UIPrinterJobTypeUnknown' could not be mapped to 'unknown'
+    UIPrinterJobTypeUnknown = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIPrinter.h:33:5: note: please report this issue to the owners of 'UIKit'
+    UIPrinterJobTypeUnknown = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIPrinter.h:33:5: warning: imported declaration 'UIPrinterJobTypeUnknown' could not be mapped to 'unknown'
+    UIPrinterJobTypeUnknown = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIPrinter.h:33:5: note: please report this issue to the owners of 'UIKit'
+    UIPrinterJobTypeUnknown = 0,
+    ^
 @_exported import Foundation
 

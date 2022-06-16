@@ -64,6 +64,8 @@ extension NSAttributedString {
   @available(swift, obsoleted: 3, renamed: "enumerateAttribute(_:in:options:using:)")
   func enumerateAttribute(_ attrName: NSAttributedString.Key, inRange enumerationRange: NSRange, options opts: NSAttributedString.EnumerationOptions = [], usingBlock block: (Any?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSAttributedStringEnumerationOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSAttributedString.EnumerationOptions")
 typealias NSAttributedStringEnumerationOptions = NSAttributedString.EnumerationOptions
 extension NSAttributedString {
@@ -109,7 +111,7 @@ class NSMutableAttributedString : NSAttributedString {
 
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
+  init(__format format: NSAttributedString, options: NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
 }
 extension NSMutableAttributedString {
   var mutableString: NSMutableString { get }
@@ -132,6 +134,8 @@ extension NSMutableAttributedString {
   func beginEditing()
   func endEditing()
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSInlinePresentationIntent = Int
 @available(iOS 15.0, *)
 struct InlinePresentationIntent : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
@@ -251,28 +255,30 @@ extension NSAttributedString {
   @available(iOS 15.0, *)
   init(__markdownString markdownString: String, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
 }
-struct __NSAttributedStringFormattingOptions : OptionSet, @unchecked Sendable {
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSAttributedStringFormattingOptions = Int
+struct NSAttributedStringFormattingOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
-  typealias Element = __NSAttributedStringFormattingOptions
-  typealias ArrayLiteralElement = __NSAttributedStringFormattingOptions
+  typealias Element = NSAttributedStringFormattingOptions
+  typealias ArrayLiteralElement = NSAttributedStringFormattingOptions
   @available(iOS 15.0, *)
-  static var insertArgumentAttributesWithoutMerging: __NSAttributedStringFormattingOptions { get }
+  static var insertArgumentAttributesWithoutMerging: NSAttributedStringFormattingOptions { get }
   @available(iOS 15.0, *)
   @available(swift, obsoleted: 3, renamed: "insertArgumentAttributesWithoutMerging")
-  static var InsertArgumentAttributesWithoutMerging: __NSAttributedStringFormattingOptions { get }
+  static var InsertArgumentAttributesWithoutMerging: NSAttributedStringFormattingOptions { get }
   @available(iOS 15.0, *)
-  static var applyReplacementIndexAttribute: __NSAttributedStringFormattingOptions { get }
+  static var applyReplacementIndexAttribute: NSAttributedStringFormattingOptions { get }
   @available(iOS 15.0, *)
   @available(swift, obsoleted: 3, renamed: "applyReplacementIndexAttribute")
-  static var ApplyReplacementIndexAttribute: __NSAttributedStringFormattingOptions { get }
+  static var ApplyReplacementIndexAttribute: NSAttributedStringFormattingOptions { get }
 }
 extension NSAttributedString {
 
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
+  init(__format format: NSAttributedString, options: NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
 }
 extension NSMutableAttributedString {
 }
