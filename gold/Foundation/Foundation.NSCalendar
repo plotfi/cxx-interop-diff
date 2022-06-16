@@ -240,8 +240,12 @@ let NSCalendarIdentifierIslamicTabular: NSCalendar.Identifier
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 3, renamed: "NSCalendar.Identifier.islamicUmmAlQura")
 let NSCalendarIdentifierIslamicUmmAlQura: NSCalendar.Identifier
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSCalendarUnit = Int
 @available(swift, obsoleted: 3, renamed: "NSCalendar.Unit")
 typealias NSCalendarUnit = NSCalendar.Unit
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSCalendarOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSCalendar.Options")
 typealias NSCalendarOptions = NSCalendar.Options
 @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Options.wrapComponents")

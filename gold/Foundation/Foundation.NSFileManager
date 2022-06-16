@@ -37,18 +37,26 @@ struct NSFileProviderServiceName : _ObjectiveCBridgeable, Hashable, Equatable, _
   typealias _ObjectiveCType = NSString
 }
 var NSFoundationVersionWithFileManagerResourceForkSupport: Int32 { get }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSVolumeEnumerationOptions = Int
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "FileManager.VolumeEnumerationOptions")
 typealias NSVolumeEnumerationOptions = FileManager.VolumeEnumerationOptions
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSDirectoryEnumerationOptions = Int
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "FileManager.DirectoryEnumerationOptions")
 typealias NSDirectoryEnumerationOptions = FileManager.DirectoryEnumerationOptions
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileManagerItemReplacementOptions = Int
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "FileManager.ItemReplacementOptions")
 typealias NSFileManagerItemReplacementOptions = FileManager.ItemReplacementOptions
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 3, renamed: "FileManager.URLRelationship")
 typealias NSURLRelationship = FileManager.URLRelationship
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileManagerUnmountOptions = Int
 @available(swift, obsoleted: 3, renamed: "FileManager.UnmountOptions")
 @available(iOS, unavailable)
 typealias NSFileManagerUnmountOptions = FileManager.UnmountOptions

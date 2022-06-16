@@ -226,6 +226,8 @@ extension NSLayoutConstraint {
 }
 @available(swift, obsoleted: 4.2, renamed: "NSLayoutConstraint.Attribute")
 typealias NSLayoutAttribute = NSLayoutConstraint.Attribute
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSLayoutFormatOptions = Int
 @available(swift, obsoleted: 4.2, renamed: "NSLayoutConstraint.FormatOptions")
 typealias NSLayoutFormatOptions = NSLayoutConstraint.FormatOptions
 @available(iOS 6.0, *)

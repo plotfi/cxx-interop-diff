@@ -210,7 +210,7 @@ enum __UIButtonConfigurationMacIdiomStyle : Int, @unchecked Sendable {
   func setDefaultContentInsets()
 
   /// Defaults to Leading, only single edge values (top/leading/bottom/trailing) are supported.
-  var imagePlacement: NSDirectionalRectEdge
+  var imagePlacement: Int
 
   /// When a button has both image and text content, this value is the padding between the image and the text.
   var imagePadding: CGFloat
