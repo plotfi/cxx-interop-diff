@@ -1,6 +1,8 @@
 @_exported import CoreFoundation
 
 var __FOUNDATION_NSPOINTERFUNCTIONS__: Int32 { get }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSPointerFunctionsOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSPointerFunctions.Options")
 typealias NSPointerFunctionsOptions = NSPointerFunctions.Options
 extension NSPointerFunctions {

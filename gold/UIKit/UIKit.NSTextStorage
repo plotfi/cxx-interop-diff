@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSTextStorageEditActions = Int
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 4.2, renamed: "NSTextStorage.EditActions")
 typealias NSTextStorageEditActions = NSTextStorage.EditActions
@@ -34,7 +36,7 @@ class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
   func removeLayoutManager(_ aLayoutManager: NSLayoutManager)
 
   /**************************** Pending edit info ****************************/
-  var editedMask: NSTextStorage.EditActions { get }
+  var editedMask: Int { get }
   var editedRange: NSRange { get }
   var changeInLength: Int { get }
 
@@ -68,7 +70,7 @@ class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
 
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
+  init(__format format: NSAttributedString, options: NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
   @available(iOS 15.0, *)
   init(__contentsOfMarkdownFileAt markdownFile: URL, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
   @available(iOS 15.0, *)

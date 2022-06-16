@@ -28,7 +28,7 @@
   var minimumScaleFactor: CGFloat
   @available(iOS 9.0, *)
   var allowsDefaultTighteningForTruncation: Bool
-  var lineBreakStrategy: NSParagraphStyle.LineBreakStrategy
+  var lineBreakStrategy: Int
   func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect
   @available(swift, obsoleted: 3, renamed: "textRect(forBounds:limitedToNumberOfLines:)")
   func textRectForBounds(_ bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect
