@@ -362,9 +362,9 @@ protocol NSLayoutManagerDelegate : NSObjectProtocol {
   @available(swift, obsoleted: 3, renamed: "layoutManager(_:paragraphSpacingAfterGlyphAt:withProposedLineFragmentRect:)")
   optional func layoutManager(_ layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat
   @available(iOS 7.0, *)
-  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldUseAction action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction
+  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction
   @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "layoutManager(_:shouldUseAction:forControlCharacterAt:)")
+  @available(swift, obsoleted: 3, renamed: "layoutManager(_:shouldUse:forControlCharacterAt:)")
   optional func layoutManager(_ layoutManager: NSLayoutManager, shouldUseAction action: NSLayoutManager.ControlCharacterAction, forControlCharacterAtIndex charIndex: Int) -> NSLayoutManager.ControlCharacterAction
   @available(iOS 7.0, *)
   optional func layoutManager(_ layoutManager: NSLayoutManager, shouldBreakLineByWordBeforeCharacterAt charIndex: Int) -> Bool

@@ -106,9 +106,9 @@ class FileManager : NSObject {
   @available(swift, obsoleted: 3, renamed: "getRelationship(_:ofDirectoryAt:toItemAt:)")
   func getRelationship(_ outRelationship: UnsafeMutablePointer<FileManager.URLRelationship>, ofDirectoryAtURL directoryURL: URL, toItemAtURL otherURL: URL) throws
   @available(iOS 8.0, *)
-  func getRelationship(_ outRelationship: UnsafeMutablePointer<FileManager.URLRelationship>, of directory: FileManager.SearchPathDirectory, inDomain domainMask: FileManager.SearchPathDomainMask, toItemAt url: URL) throws
+  func getRelationship(_ outRelationship: UnsafeMutablePointer<FileManager.URLRelationship>, of directory: FileManager.SearchPathDirectory, in domainMask: FileManager.SearchPathDomainMask, toItemAt url: URL) throws
   @available(iOS 8.0, *)
-  @available(swift, obsoleted: 3, renamed: "getRelationship(_:of:inDomain:toItemAt:)")
+  @available(swift, obsoleted: 3, renamed: "getRelationship(_:of:in:toItemAt:)")
   func getRelationship(_ outRelationship: UnsafeMutablePointer<FileManager.URLRelationship>, ofDirectory directory: FileManager.SearchPathDirectory, inDomain domainMask: FileManager.SearchPathDomainMask, toItemAtURL url: URL) throws
   @available(iOS 5.0, *)
   func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool, attributes: [FileAttributeKey : Any]? = nil) throws

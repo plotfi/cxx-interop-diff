@@ -251,11 +251,11 @@ extension NSArray {
 @available(iOS 13.0, *)
 @available(*, unavailable, message: "NSArray diffing methods are not available in Swift, use Collection.difference(from:) instead")
 extension NSArray {
-  func difference(from other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions = [], usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
-  @available(swift, obsoleted: 3, renamed: "difference(from:withOptions:usingEquivalenceTest:)")
+  func difference(from other: [Any], with options: NSOrderedCollectionDifferenceCalculationOptions = [], usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
+  @available(swift, obsoleted: 3, renamed: "difference(from:with:usingEquivalenceTest:)")
   func differenceFromArray(_ other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions = [], usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
-  func difference(from other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions = []) -> CollectionDifference<Any>
-  @available(swift, obsoleted: 3, renamed: "difference(from:withOptions:)")
+  func difference(from other: [Any], with options: NSOrderedCollectionDifferenceCalculationOptions = []) -> CollectionDifference<Any>
+  @available(swift, obsoleted: 3, renamed: "difference(from:with:)")
   func differenceFromArray(_ other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions = []) -> CollectionDifference<Any>
   func difference(from other: [Any]) -> CollectionDifference<Any>
   @available(swift, obsoleted: 3, renamed: "difference(from:)")

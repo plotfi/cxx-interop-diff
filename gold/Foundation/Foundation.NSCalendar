@@ -318,22 +318,22 @@ class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   @available(iOS 5.0, *)
   @available(swift, obsoleted: 3, renamed: "pmSymbol")
   var PMSymbol: String { get }
-  func minimumRange(ofUnit unit: NSCalendar.Unit) -> NSRange
-  @available(swift, obsoleted: 3, renamed: "minimumRange(ofUnit:)")
+  func minimumRange(of unit: NSCalendar.Unit) -> NSRange
+  @available(swift, obsoleted: 3, renamed: "minimumRange(of:)")
   func minimumRangeOfUnit(_ unit: NSCalendar.Unit) -> NSRange
-  func maximumRange(ofUnit unit: NSCalendar.Unit) -> NSRange
-  @available(swift, obsoleted: 3, renamed: "maximumRange(ofUnit:)")
+  func maximumRange(of unit: NSCalendar.Unit) -> NSRange
+  @available(swift, obsoleted: 3, renamed: "maximumRange(of:)")
   func maximumRangeOfUnit(_ unit: NSCalendar.Unit) -> NSRange
-  func range(ofUnit smaller: NSCalendar.Unit, inUnit larger: NSCalendar.Unit, for date: Date) -> NSRange
-  @available(swift, obsoleted: 3, renamed: "range(ofUnit:inUnit:for:)")
+  func range(of smaller: NSCalendar.Unit, in larger: NSCalendar.Unit, for date: Date) -> NSRange
+  @available(swift, obsoleted: 3, renamed: "range(of:in:for:)")
   func rangeOfUnit(_ smaller: NSCalendar.Unit, inUnit larger: NSCalendar.Unit, forDate date: Date) -> NSRange
-  func ordinality(ofUnit smaller: NSCalendar.Unit, inUnit larger: NSCalendar.Unit, for date: Date) -> Int
-  @available(swift, obsoleted: 3, renamed: "ordinality(ofUnit:inUnit:for:)")
+  func ordinality(of smaller: NSCalendar.Unit, in larger: NSCalendar.Unit, for date: Date) -> Int
+  @available(swift, obsoleted: 3, renamed: "ordinality(of:in:for:)")
   func ordinalityOfUnit(_ smaller: NSCalendar.Unit, inUnit larger: NSCalendar.Unit, forDate date: Date) -> Int
   @available(iOS 2.0, *)
-  func range(ofUnit unit: NSCalendar.Unit, start datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, for date: Date) -> Bool
+  func range(of unit: NSCalendar.Unit, start datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, for date: Date) -> Bool
   @available(iOS 2.0, *)
-  @available(swift, obsoleted: 3, renamed: "range(ofUnit:start:interval:for:)")
+  @available(swift, obsoleted: 3, renamed: "range(of:start:interval:for:)")
   func rangeOfUnit(_ unit: NSCalendar.Unit, startDate datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, forDate date: Date) -> Bool
   func date(from comps: DateComponents) -> Date?
   @available(swift, obsoleted: 3, renamed: "date(from:)")
@@ -426,9 +426,9 @@ class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "components(_:from:to:options:)")
   func components(_ unitFlags: NSCalendar.Unit, fromDateComponents startingDateComp: DateComponents, toDateComponents resultDateComp: DateComponents, options: NSCalendar.Options = []) -> DateComponents
   @available(iOS 8.0, *)
-  func date(byAddingUnit unit: NSCalendar.Unit, value: Int, to date: Date, options: NSCalendar.Options = []) -> Date?
+  func date(byAdding unit: NSCalendar.Unit, value: Int, to date: Date, options: NSCalendar.Options = []) -> Date?
   @available(iOS 8.0, *)
-  @available(swift, obsoleted: 3, renamed: "date(byAddingUnit:value:to:options:)")
+  @available(swift, obsoleted: 3, renamed: "date(byAdding:value:to:options:)")
   func dateByAddingUnit(_ unit: NSCalendar.Unit, value: Int, toDate date: Date, options: NSCalendar.Options = []) -> Date?
   @available(iOS 8.0, *)
   func enumerateDates(startingAfter start: Date, matching comps: DateComponents, options opts: NSCalendar.Options = [], using block: (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
@@ -441,9 +441,9 @@ class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "nextDate(after:matching:options:)")
   func nextDateAfterDate(_ date: Date, matchingComponents comps: DateComponents, options: NSCalendar.Options = []) -> Date?
   @available(iOS 8.0, *)
-  func nextDate(after date: Date, matchingUnit unit: NSCalendar.Unit, value: Int, options: NSCalendar.Options = []) -> Date?
+  func nextDate(after date: Date, matching unit: NSCalendar.Unit, value: Int, options: NSCalendar.Options = []) -> Date?
   @available(iOS 8.0, *)
-  @available(swift, obsoleted: 3, renamed: "nextDate(after:matchingUnit:value:options:)")
+  @available(swift, obsoleted: 3, renamed: "nextDate(after:matching:value:options:)")
   func nextDateAfterDate(_ date: Date, matchingUnit unit: NSCalendar.Unit, value: Int, options: NSCalendar.Options = []) -> Date?
   @available(iOS 8.0, *)
   func nextDate(after date: Date, matchingHour hourValue: Int, minute minuteValue: Int, second secondValue: Int, options: NSCalendar.Options = []) -> Date?

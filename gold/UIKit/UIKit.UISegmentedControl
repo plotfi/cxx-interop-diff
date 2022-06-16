@@ -144,11 +144,14 @@ typealias UISegmentedControlSegment = UISegmentedControl.Segment
   @available(iOS 13.0, *)
   var selectedSegmentTintColor: UIColor?
   @available(iOS 5.0, *)
+  func setBackgroundImage(_ backgroundImage: UIImage?, for state: UIControl.State, barMetrics: UIBarMetrics)
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "setBackgroundImage(_:for:barMetrics:)")
   func setBackgroundImage(_ backgroundImage: UIImage?, forState state: UIControl.State, barMetrics: UIBarMetrics)
   @available(iOS 5.0, *)
-  func backgroundImage(forState state: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
+  func backgroundImage(for state: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "backgroundImage(forState:barMetrics:)")
+  @available(swift, obsoleted: 3, renamed: "backgroundImage(for:barMetrics:)")
   func backgroundImageForState(_ state: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
   func setDividerImage(_ dividerImage: UIImage?, forLeftSegmentState leftState: UIControl.State, rightSegmentState rightState: UIControl.State, barMetrics: UIBarMetrics)
@@ -158,11 +161,14 @@ typealias UISegmentedControlSegment = UISegmentedControl.Segment
   @available(swift, obsoleted: 3, renamed: "dividerImage(forLeftSegmentState:rightSegmentState:barMetrics:)")
   func dividerImageForLeftSegmentState(_ leftState: UIControl.State, rightSegmentState rightState: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
+  func setTitleTextAttributes(_ attributes: [NSAttributedString.Key : Any]?, for state: UIControl.State)
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "setTitleTextAttributes(_:for:)")
   func setTitleTextAttributes(_ attributes: [NSAttributedString.Key : Any]?, forState state: UIControl.State)
   @available(iOS 5.0, *)
-  func titleTextAttributes(forState state: UIControl.State) -> [NSAttributedString.Key : Any]?
+  func titleTextAttributes(for state: UIControl.State) -> [NSAttributedString.Key : Any]?
   @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "titleTextAttributes(forState:)")
+  @available(swift, obsoleted: 3, renamed: "titleTextAttributes(for:)")
   func titleTextAttributesForState(_ state: UIControl.State) -> [NSAttributedString.Key : Any]?
   @available(iOS 5.0, *)
   func setContentPositionAdjustment(_ adjustment: UIOffset, forSegmentType leftCenterRightOrAlone: UISegmentedControl.Segment, barMetrics: UIBarMetrics)
