@@ -17,23 +17,17 @@
   @available(iOS 5.0, *)
   var thumbTintColor: UIColor?
   func setValue(_ value: Float, animated: Bool)
-  func setThumbImage(_ image: UIImage?, for state: UIControl.State)
-  @available(swift, obsoleted: 3, renamed: "setThumbImage(_:for:)")
   func setThumbImage(_ image: UIImage?, forState state: UIControl.State)
-  func setMinimumTrackImage(_ image: UIImage?, for state: UIControl.State)
-  @available(swift, obsoleted: 3, renamed: "setMinimumTrackImage(_:for:)")
   func setMinimumTrackImage(_ image: UIImage?, forState state: UIControl.State)
-  func setMaximumTrackImage(_ image: UIImage?, for state: UIControl.State)
-  @available(swift, obsoleted: 3, renamed: "setMaximumTrackImage(_:for:)")
   func setMaximumTrackImage(_ image: UIImage?, forState state: UIControl.State)
-  func thumbImage(for state: UIControl.State) -> UIImage?
-  @available(swift, obsoleted: 3, renamed: "thumbImage(for:)")
+  func thumbImage(forState state: UIControl.State) -> UIImage?
+  @available(swift, obsoleted: 3, renamed: "thumbImage(forState:)")
   func thumbImageForState(_ state: UIControl.State) -> UIImage?
-  func minimumTrackImage(for state: UIControl.State) -> UIImage?
-  @available(swift, obsoleted: 3, renamed: "minimumTrackImage(for:)")
+  func minimumTrackImage(forState state: UIControl.State) -> UIImage?
+  @available(swift, obsoleted: 3, renamed: "minimumTrackImage(forState:)")
   func minimumTrackImageForState(_ state: UIControl.State) -> UIImage?
-  func maximumTrackImage(for state: UIControl.State) -> UIImage?
-  @available(swift, obsoleted: 3, renamed: "maximumTrackImage(for:)")
+  func maximumTrackImage(forState state: UIControl.State) -> UIImage?
+  @available(swift, obsoleted: 3, renamed: "maximumTrackImage(forState:)")
   func maximumTrackImageForState(_ state: UIControl.State) -> UIImage?
   var currentThumbImage: UIImage? { get }
   var currentMinimumTrackImage: UIImage? { get }

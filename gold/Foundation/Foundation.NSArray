@@ -201,6 +201,8 @@ extension NSArray {
   @available(swift, obsoleted: 3, renamed: "index(of:inSortedRange:options:usingComparator:)")
   func indexOfObject(_ obj: Any, inSortedRange r: NSRange, options opts: NSBinarySearchingOptions = [], usingComparator cmp: (Any, Any) -> ComparisonResult) -> Int
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSBinarySearchingOptions = Int
 struct NSBinarySearchingOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt

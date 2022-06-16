@@ -105,14 +105,11 @@ typealias UISearchBarStyle = UISearchBar.Style
   @available(swift, obsoleted: 3, renamed: "backgroundImage(for:barMetrics:)")
   func backgroundImageForBarPosition(_ barPosition: UIBarPosition, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
-  func setSearchFieldBackgroundImage(_ backgroundImage: UIImage?, for state: UIControl.State)
-  @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "setSearchFieldBackgroundImage(_:for:)")
   func setSearchFieldBackgroundImage(_ backgroundImage: UIImage?, forState state: UIControl.State)
   @available(iOS 5.0, *)
-  func searchFieldBackgroundImage(for state: UIControl.State) -> UIImage?
+  func searchFieldBackgroundImage(forState state: UIControl.State) -> UIImage?
   @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "searchFieldBackgroundImage(for:)")
+  @available(swift, obsoleted: 3, renamed: "searchFieldBackgroundImage(forState:)")
   func searchFieldBackgroundImageForState(_ state: UIControl.State) -> UIImage?
   @available(iOS 5.0, *)
   func setImage(_ iconImage: UIImage?, for icon: UISearchBar.Icon, state: UIControl.State)
@@ -125,14 +122,11 @@ typealias UISearchBarStyle = UISearchBar.Style
   @available(swift, obsoleted: 3, renamed: "image(for:state:)")
   func imageForSearchBarIcon(_ icon: UISearchBar.Icon, state: UIControl.State) -> UIImage?
   @available(iOS 5.0, *)
-  func setScopeBarButtonBackgroundImage(_ backgroundImage: UIImage?, for state: UIControl.State)
-  @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "setScopeBarButtonBackgroundImage(_:for:)")
   func setScopeBarButtonBackgroundImage(_ backgroundImage: UIImage?, forState state: UIControl.State)
   @available(iOS 5.0, *)
-  func scopeBarButtonBackgroundImage(for state: UIControl.State) -> UIImage?
+  func scopeBarButtonBackgroundImage(forState state: UIControl.State) -> UIImage?
   @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "scopeBarButtonBackgroundImage(for:)")
+  @available(swift, obsoleted: 3, renamed: "scopeBarButtonBackgroundImage(forState:)")
   func scopeBarButtonBackgroundImageForState(_ state: UIControl.State) -> UIImage?
   @available(iOS 5.0, *)
   func setScopeBarButtonDividerImage(_ dividerImage: UIImage?, forLeftSegmentState leftState: UIControl.State, rightSegmentState rightState: UIControl.State)
@@ -142,14 +136,11 @@ typealias UISearchBarStyle = UISearchBar.Style
   @available(swift, obsoleted: 3, renamed: "scopeBarButtonDividerImage(forLeftSegmentState:rightSegmentState:)")
   func scopeBarButtonDividerImageForLeftSegmentState(_ leftState: UIControl.State, rightSegmentState rightState: UIControl.State) -> UIImage?
   @available(iOS 5.0, *)
-  func setScopeBarButtonTitleTextAttributes(_ attributes: [NSAttributedString.Key : Any]?, for state: UIControl.State)
-  @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "setScopeBarButtonTitleTextAttributes(_:for:)")
   func setScopeBarButtonTitleTextAttributes(_ attributes: [NSAttributedString.Key : Any]?, forState state: UIControl.State)
   @available(iOS 5.0, *)
-  func scopeBarButtonTitleTextAttributes(for state: UIControl.State) -> [NSAttributedString.Key : Any]?
+  func scopeBarButtonTitleTextAttributes(forState state: UIControl.State) -> [NSAttributedString.Key : Any]?
   @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "scopeBarButtonTitleTextAttributes(for:)")
+  @available(swift, obsoleted: 3, renamed: "scopeBarButtonTitleTextAttributes(forState:)")
   func scopeBarButtonTitleTextAttributesForState(_ state: UIControl.State) -> [NSAttributedString.Key : Any]?
   @available(iOS 5.0, *)
   var searchFieldBackgroundPositionAdjustment: UIOffset

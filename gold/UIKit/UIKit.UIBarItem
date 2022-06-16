@@ -20,14 +20,11 @@
   var largeContentSizeImageInsets: UIEdgeInsets
   var tag: Int
   @available(iOS 5.0, *)
-  func setTitleTextAttributes(_ attributes: [NSAttributedString.Key : Any]?, for state: UIControl.State)
-  @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "setTitleTextAttributes(_:for:)")
   func setTitleTextAttributes(_ attributes: [NSAttributedString.Key : Any]?, forState state: UIControl.State)
   @available(iOS 5.0, *)
-  func titleTextAttributes(for state: UIControl.State) -> [NSAttributedString.Key : Any]?
+  func titleTextAttributes(forState state: UIControl.State) -> [NSAttributedString.Key : Any]?
   @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "titleTextAttributes(for:)")
+  @available(swift, obsoleted: 3, renamed: "titleTextAttributes(forState:)")
   func titleTextAttributesForState(_ state: UIControl.State) -> [NSAttributedString.Key : Any]?
   @available(iOS 2.0, *)
   func encode(with coder: NSCoder)

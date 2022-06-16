@@ -8,8 +8,8 @@ SDKDir=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/De
 IPHONE_FRAMEWORK_PATH=$SDKDir/System/Library/Frameworks
 OUTDIR=gold
 
-rm -rf ./$OUTDIR
-mkdir -p ./$OUTDIR
+# rm -rf ./$OUTDIR
+# mkdir -p ./$OUTDIR
 
 export TOPLEVEL_MODULES="Foundation UIKit"
 
