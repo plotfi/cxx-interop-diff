@@ -187,18 +187,24 @@ typealias UIBarButtonSystemItem = UIBarButtonItem.SystemItem
   @available(swift, obsoleted: 3, renamed: "isSelected")
   var selected: Bool
   @available(iOS 5.0, *)
+  func setBackgroundImage(_ backgroundImage: UIImage?, for state: UIControl.State, barMetrics: UIBarMetrics)
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "setBackgroundImage(_:for:barMetrics:)")
   func setBackgroundImage(_ backgroundImage: UIImage?, forState state: UIControl.State, barMetrics: UIBarMetrics)
   @available(iOS 5.0, *)
-  func backgroundImage(forState state: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
+  func backgroundImage(for state: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "backgroundImage(forState:barMetrics:)")
+  @available(swift, obsoleted: 3, renamed: "backgroundImage(for:barMetrics:)")
   func backgroundImageForState(_ state: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 6.0, *)
+  func setBackgroundImage(_ backgroundImage: UIImage?, for state: UIControl.State, style: UIBarButtonItem.Style, barMetrics: UIBarMetrics)
+  @available(iOS 6.0, *)
+  @available(swift, obsoleted: 3, renamed: "setBackgroundImage(_:for:style:barMetrics:)")
   func setBackgroundImage(_ backgroundImage: UIImage?, forState state: UIControl.State, style: UIBarButtonItem.Style, barMetrics: UIBarMetrics)
   @available(iOS 6.0, *)
-  func backgroundImage(forState state: UIControl.State, style: UIBarButtonItem.Style, barMetrics: UIBarMetrics) -> UIImage?
+  func backgroundImage(for state: UIControl.State, style: UIBarButtonItem.Style, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 6.0, *)
-  @available(swift, obsoleted: 3, renamed: "backgroundImage(forState:style:barMetrics:)")
+  @available(swift, obsoleted: 3, renamed: "backgroundImage(for:style:barMetrics:)")
   func backgroundImageForState(_ state: UIControl.State, style: UIBarButtonItem.Style, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
   var tintColor: UIColor?
@@ -223,11 +229,14 @@ typealias UIBarButtonSystemItem = UIBarButtonItem.SystemItem
   @available(swift, obsoleted: 3, renamed: "titlePositionAdjustment(for:)")
   func titlePositionAdjustmentForBarMetrics(_ barMetrics: UIBarMetrics) -> UIOffset
   @available(iOS 5.0, *)
+  func setBackButtonBackgroundImage(_ backgroundImage: UIImage?, for state: UIControl.State, barMetrics: UIBarMetrics)
+  @available(iOS 5.0, *)
+  @available(swift, obsoleted: 3, renamed: "setBackButtonBackgroundImage(_:for:barMetrics:)")
   func setBackButtonBackgroundImage(_ backgroundImage: UIImage?, forState state: UIControl.State, barMetrics: UIBarMetrics)
   @available(iOS 5.0, *)
-  func backButtonBackgroundImage(forState state: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
+  func backButtonBackgroundImage(for state: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
-  @available(swift, obsoleted: 3, renamed: "backButtonBackgroundImage(forState:barMetrics:)")
+  @available(swift, obsoleted: 3, renamed: "backButtonBackgroundImage(for:barMetrics:)")
   func backButtonBackgroundImageForState(_ state: UIControl.State, barMetrics: UIBarMetrics) -> UIImage?
   @available(iOS 5.0, *)
   func setBackButtonTitlePositionAdjustment(_ adjustment: UIOffset, for barMetrics: UIBarMetrics)
