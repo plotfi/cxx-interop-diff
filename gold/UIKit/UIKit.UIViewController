@@ -281,7 +281,7 @@ extension UIViewController {
   @available(iOS, unavailable, introduced: 3.0, deprecated: 7.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
   var wantsFullScreenLayout: Bool
   @available(iOS 7.0, *)
-  var edgesForExtendedLayout: UIRectEdge
+  var edgesForExtendedLayout: Int
   @available(iOS 7.0, *)
   var extendedLayoutIncludesOpaqueBars: Bool
   @available(iOS, introduced: 7.0, deprecated: 11.0, message: "Use UIScrollView's contentInsetAdjustmentBehavior instead")
@@ -410,7 +410,7 @@ extension UIViewController {
   @available(iOS 6.0, *)
   var shouldAutorotate: Bool { get }
   @available(iOS 6.0, *)
-  var supportedInterfaceOrientations: UIInterfaceOrientationMask { get }
+  var supportedInterfaceOrientations: Int { get }
   @available(iOS 6.0, *)
   var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation { get }
   @available(iOS, introduced: 2.0, deprecated: 8.0, message: "Header views are animated along with the rest of the view hierarchy")
@@ -655,7 +655,7 @@ extension UIViewController {
   @available(swift, obsoleted: 4.2, renamed: "childForScreenEdgesDeferringSystemGestures")
   var childViewControllerForScreenEdgesDeferringSystemGestures: UIViewController? { get }
   @available(iOS 11.0, *)
-  var preferredScreenEdgesDeferringSystemGestures: UIRectEdge { get }
+  var preferredScreenEdgesDeferringSystemGestures: Int { get }
   @available(iOS 11.0, *)
   func setNeedsUpdateOfScreenEdgesDeferringSystemGestures()
 }
