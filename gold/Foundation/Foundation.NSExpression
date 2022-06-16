@@ -190,7 +190,10 @@ extension NSExpression {
 }
 struct _expressionFlags {
   init()
-  init(_evaluationBlocked: UInt32, _reservedExpressionFlags: UInt32)
+  init(_evaluationBlocked: UInt32, _usesKVC: UInt32, _validatedExpression: UInt32, _validatedKeys: UInt32, _reservedExpressionFlags: UInt32)
   var _evaluationBlocked: UInt32
+  var _usesKVC: UInt32
+  var _validatedExpression: UInt32
+  var _validatedKeys: UInt32
   var _reservedExpressionFlags: UInt32
 }
