@@ -7,7 +7,7 @@
 
   /// Axes along which this region latches when the primary mouse button is pressed.
   /// When set, the UIPointerStyle associated with this region will "lock in" and allow free-form movement along the specified axes.
-  var latchingAxes: UIAxis
+  var latchingAxes: Int
 
   /**
    * @abstract Creates a UIPointerRegion with the supplied rect and optional identifier.

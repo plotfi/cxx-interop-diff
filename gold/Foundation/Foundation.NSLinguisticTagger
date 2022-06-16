@@ -227,6 +227,8 @@ enum NSLinguisticTaggerUnit : Int, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "document")
   static var Document: NSLinguisticTaggerUnit { get }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSLinguisticTaggerOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSLinguisticTagger.Options")
 typealias NSLinguisticTaggerOptions = NSLinguisticTagger.Options
 extension NSLinguisticTagger {

@@ -2,6 +2,8 @@
 
 
 /// Options supported by methods that produce difference objects.
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSOrderedCollectionDifferenceCalculationOptions = Int
 @available(iOS 13.0, *)
 struct NSOrderedCollectionDifferenceCalculationOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)

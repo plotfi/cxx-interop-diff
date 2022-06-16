@@ -1,5 +1,7 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSRegularExpressionOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSRegularExpression.Options")
 typealias NSRegularExpressionOptions = NSRegularExpression.Options
 extension NSRegularExpression {
@@ -84,7 +86,7 @@ class NSRegularExpression : NSObject, NSCopying, NSSecureCoding {
   class func regularExpressionWithPattern(_ pattern: String, options: NSRegularExpression.Options = []) throws -> NSRegularExpression
   init(pattern: String, options: NSRegularExpression.Options = []) throws
   var pattern: String { get }
-  var options: NSRegularExpression.Options { get }
+  var options: Int { get }
   var numberOfCaptureGroups: Int { get }
   class func escapedPattern(for string: String) -> String
   @available(swift, obsoleted: 3, renamed: "escapedPattern(for:)")
@@ -98,14 +100,18 @@ class NSRegularExpression : NSObject, NSCopying, NSSecureCoding {
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSMatchingOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSRegularExpression.MatchingOptions")
 typealias NSMatchingOptions = NSRegularExpression.MatchingOptions
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSMatchingFlags = Int
 @available(swift, obsoleted: 3, renamed: "NSRegularExpression.MatchingFlags")
 typealias NSMatchingFlags = NSRegularExpression.MatchingFlags
 extension NSRegularExpression {
-  func enumerateMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange, using block: (NSTextCheckingResult?, NSRegularExpression.MatchingFlags, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange, using block: (NSTextCheckingResult?, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(swift, obsoleted: 3, renamed: "enumerateMatches(in:options:range:using:)")
-  func enumerateMatchesInString(_ string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange, usingBlock block: (NSTextCheckingResult?, NSRegularExpression.MatchingFlags, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateMatchesInString(_ string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange, usingBlock block: (NSTextCheckingResult?, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
   func matches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> [NSTextCheckingResult]
   @available(swift, obsoleted: 3, renamed: "matches(in:options:range:)")
   func matchesInString(_ string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> [NSTextCheckingResult]

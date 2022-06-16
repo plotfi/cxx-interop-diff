@@ -100,6 +100,8 @@ extension NSTextSelectionNavigation {
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "NSTextSelectionNavigation.Destination")
 typealias NSTextSelectionNavigationDestination = NSTextSelectionNavigation.Destination
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSTextSelectionNavigationModifier = Int
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "NSTextSelectionNavigation.Modifier")
 typealias NSTextSelectionNavigationModifier = NSTextSelectionNavigation.Modifier

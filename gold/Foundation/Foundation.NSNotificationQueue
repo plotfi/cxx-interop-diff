@@ -35,6 +35,8 @@ extension NotificationQueue {
     static var NSNotificationCoalescingOnSender: NotificationQueue.NotificationCoalescing { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSNotificationCoalescing = Int
 @available(swift, obsoleted: 3, renamed: "NotificationQueue.NotificationCoalescing")
 typealias NSNotificationCoalescing = NotificationQueue.NotificationCoalescing
 @available(swift, obsoleted: 3, renamed: "NotificationQueue")

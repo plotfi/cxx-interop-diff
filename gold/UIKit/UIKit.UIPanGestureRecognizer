@@ -12,6 +12,8 @@ enum UIScrollType : UInt, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "continuous")
   static var Continuous: UIScrollType { get }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIScrollTypeMask = Int
 @available(iOS 13.4, *)
 struct UIScrollTypeMask : OptionSet, @unchecked Sendable {
   init(rawValue: Int)
@@ -43,7 +45,7 @@ struct UIScrollTypeMask : OptionSet, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "velocity(in:)")
   func velocityInView(_ view: UIView?) -> CGPoint
   @available(iOS 13.4, *)
-  var allowedScrollTypesMask: UIScrollTypeMask
+  var allowedScrollTypesMask: Int
   init(target: Any?, action: Selector?)
   convenience init()
   convenience init?(coder: NSCoder)

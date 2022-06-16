@@ -112,7 +112,7 @@
   var location: CGPoint { get }
 
   /// Key modifier flags representing keyboard keys pressed by the user at the time of this request.
-  var modifiers: UIKeyModifierFlags { get }
+  var modifiers: Int { get }
   init()
 }
 @available(iOS 13.4, *)

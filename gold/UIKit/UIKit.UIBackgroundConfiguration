@@ -83,7 +83,7 @@
 
   /// The edges on which the containing view's layout margins are added to the `backgroundInsets`, effectively making the `backgroundInsets` values relative
   /// to the containing view's layout margins for these edges. Default is NSDirectionalRectEdgeNone.
-  var edgesAddingLayoutMarginsToBackgroundInsets: NSDirectionalRectEdge
+  var edgesAddingLayoutMarginsToBackgroundInsets: Int
 
   /// Configures the color of the background. A nil value uses the view's tint color; use `clearColor` for no color (transparent).
   var backgroundColor: UIColor?

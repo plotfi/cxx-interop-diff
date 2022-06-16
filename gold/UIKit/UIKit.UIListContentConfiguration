@@ -134,7 +134,7 @@
   var secondaryTextProperties: __UIListContentTextProperties { get }
 
   /// Whether the content view will preserve inherited layout margins from its superview on the horizontal and/or vertical axes.
-  var axesPreservingSuperviewLayoutMargins: UIAxis
+  var axesPreservingSuperviewLayoutMargins: Int
 
   /// The margins for the content to the edges of the content view. (When preserving superview layout margins on one or both axes, these are just minimum margins, as inherited margins may be larger.)
   var directionalLayoutMargins: NSDirectionalEdgeInsets

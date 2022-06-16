@@ -17,9 +17,9 @@
   var isPopoverVisible: Bool { get }
   @available(swift, obsoleted: 3, renamed: "isPopoverVisible")
   var popoverVisible: Bool { get }
-  var arrowDirection: UIPopoverArrowDirection { get }
+  var arrowDirection: Int { get }
   @available(swift, obsoleted: 3, renamed: "arrowDirection")
-  var popoverArrowDirection: UIPopoverArrowDirection { get }
+  var popoverArrowDirection: Int { get }
   var passthroughViews: [UIView]?
   func present(from rect: CGRect, in view: UIView, permittedArrowDirections arrowDirections: UIPopoverArrowDirection, animated: Bool)
   @available(swift, obsoleted: 3, renamed: "present(from:in:permittedArrowDirections:animated:)")

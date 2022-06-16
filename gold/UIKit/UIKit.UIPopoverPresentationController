@@ -15,13 +15,13 @@
 @available(iOS 8.0, *)
 @MainActor class UIPopoverPresentationController : UIPresentationController {
   weak var delegate: @sil_weak UIPopoverPresentationControllerDelegate?
-  var permittedArrowDirections: UIPopoverArrowDirection
+  var permittedArrowDirections: Int
   var sourceView: UIView?
   var sourceRect: CGRect
   @available(iOS 9.0, *)
   var canOverlapSourceViewRect: Bool
   var barButtonItem: UIBarButtonItem?
-  var arrowDirection: UIPopoverArrowDirection { get }
+  var arrowDirection: Int { get }
   var passthroughViews: [UIView]?
   @NSCopying var backgroundColor: UIColor?
   var popoverLayoutMargins: UIEdgeInsets

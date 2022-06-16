@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIPopoverArrowDirection = Int
 struct UIPopoverArrowDirection : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt

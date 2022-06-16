@@ -976,6 +976,8 @@ extension URLUbiquitousSharedItemPermissions {
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "URLUbiquitousSharedItemPermissions.readWrite")
 let NSURLUbiquitousSharedItemPermissionsReadWrite: URLUbiquitousSharedItemPermissions
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSURLBookmarkCreationOptions = Int
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "NSURL.BookmarkCreationOptions")
 typealias NSURLBookmarkCreationOptions = NSURL.BookmarkCreationOptions
@@ -1040,6 +1042,8 @@ extension NSURL {
   }
   typealias BookmarkFileCreationOptions = Int
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSURLBookmarkResolutionOptions = Int
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "NSURL.BookmarkResolutionOptions")
 typealias NSURLBookmarkResolutionOptions = NSURL.BookmarkResolutionOptions

@@ -1,5 +1,7 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSJSONReadingOptions = Int
 @available(iOS 5.0, *)
 @available(swift, obsoleted: 3, renamed: "JSONSerialization.ReadingOptions")
 typealias NSJSONReadingOptions = JSONSerialization.ReadingOptions
@@ -61,6 +63,8 @@ extension JSONSerialization {
     static var WithoutEscapingSlashes: JSONSerialization.WritingOptions { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSJSONWritingOptions = Int
 @available(iOS 5.0, *)
 @available(swift, obsoleted: 3, renamed: "JSONSerialization.WritingOptions")
 typealias NSJSONWritingOptions = JSONSerialization.WritingOptions

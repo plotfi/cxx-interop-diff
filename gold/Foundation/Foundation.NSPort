@@ -67,6 +67,8 @@ class NSMachPort : Port {
   convenience init()
   init?(coder: NSCoder)
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSMachPortOptions = Int
 @available(iOS 2.0, *)
 @available(swift, obsoleted: 3, renamed: "NSMachPort.Options")
 typealias NSMachPortOptions = NSMachPort.Options

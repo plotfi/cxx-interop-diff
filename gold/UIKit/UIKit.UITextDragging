@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UITextDragOptions = Int
 @available(iOS 11.0, *)
 struct UITextDragOptions : OptionSet, @unchecked Sendable {
   init(rawValue: Int)
@@ -23,7 +25,7 @@ struct UITextDragOptions : OptionSet, @unchecked Sendable {
   var isTextDragActive: Bool { get }
   @available(swift, obsoleted: 3, renamed: "isTextDragActive")
   var textDragActive: Bool { get }
-  var textDragOptions: UITextDragOptions { get set }
+  var textDragOptions: Int { get set }
 }
 @available(iOS 11.0, *)
 @MainActor protocol UITextDragDelegate : NSObjectProtocol {

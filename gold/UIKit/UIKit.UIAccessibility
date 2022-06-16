@@ -195,7 +195,7 @@ extension UIAccessibility {
     static var Both: UIAccessibility.HearingDeviceEar { get }
   }
   @available(iOS 10.0, *)
-  static var hearingDevicePairedEar: UIAccessibility.HearingDeviceEar { get }
+  static var hearingDevicePairedEar: Int { get }
   @available(iOS 10.0, *)
   static let hearingDevicePairedEarDidChangeNotification: NSNotification.Name
 }
@@ -443,6 +443,8 @@ let UIAccessibilityOnOffSwitchLabelsDidChangeNotification: NSNotification.Name
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "UIAccessibility.requestGuidedAccessSession(enabled:completionHandler:)")
 func UIAccessibilityRequestGuidedAccessSession(_ enable: Bool, _ completionHandler: @escaping (Bool) -> Void)
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIAccessibilityHearingDeviceEar = Int
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UIAccessibility.HearingDeviceEar")
 typealias UIAccessibilityHearingDeviceEar = UIAccessibility.HearingDeviceEar

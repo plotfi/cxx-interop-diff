@@ -185,6 +185,8 @@ extension FileManager {
     static var AllDomainsMask: FileManager.SearchPathDomainMask { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSSearchPathDomainMask = Int
 @available(swift, obsoleted: 3, renamed: "FileManager.SearchPathDomainMask")
 typealias NSSearchPathDomainMask = FileManager.SearchPathDomainMask
 func NSSearchPathForDirectoriesInDomains(_ directory: FileManager.SearchPathDirectory, _ domainMask: FileManager.SearchPathDomainMask, _ expandTilde: Bool) -> [String]

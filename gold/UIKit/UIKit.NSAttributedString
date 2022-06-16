@@ -183,6 +183,8 @@ let NSWritingDirectionAttributeName: NSAttributedString.Key
 let NSVerticalGlyphFormAttributeName: NSAttributedString.Key
 
 /************************ Attribute values ************************/
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSUnderlineStyle = Int
 @available(iOS 6.0, *)
 struct NSUnderlineStyle : OptionSet, @unchecked Sendable {
   init(rawValue: Int)
@@ -599,17 +601,17 @@ extension NSAttributedString : NSItemProviderReading, NSItemProviderWriting {
 
 /************************ Deprecated ************************/
 @available(*, unavailable, message: "Not available in Swift")
-let NSUnderlinePatternSolid: NSUnderlineStyle
+let NSUnderlinePatternSolid: Int
 @available(*, unavailable, message: "Not available in Swift")
-let NSUnderlinePatternDot: NSUnderlineStyle
+let NSUnderlinePatternDot: Int
 @available(*, unavailable, message: "Not available in Swift")
-let NSUnderlinePatternDash: NSUnderlineStyle
+let NSUnderlinePatternDash: Int
 @available(*, unavailable, message: "Not available in Swift")
-let NSUnderlinePatternDashDot: NSUnderlineStyle
+let NSUnderlinePatternDashDot: Int
 @available(*, unavailable, message: "Not available in Swift")
-let NSUnderlinePatternDashDotDot: NSUnderlineStyle
+let NSUnderlinePatternDashDotDot: Int
 @available(*, unavailable, message: "Not available in Swift")
-let NSUnderlineByWord: NSUnderlineStyle
+let NSUnderlineByWord: Int
 @available(iOS, introduced: 7.0, deprecated: 9.0, renamed: "NSWritingDirectionFormatType")
 enum NSTextWritingDirection : Int, @unchecked Sendable {
   init?(rawValue: Int)

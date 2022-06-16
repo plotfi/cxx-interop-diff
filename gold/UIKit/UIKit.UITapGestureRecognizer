@@ -5,7 +5,7 @@
   var numberOfTapsRequired: Int
   var numberOfTouchesRequired: Int
   @available(iOS 13.4, *)
-  var buttonMaskRequired: UIEvent.ButtonMask
+  var buttonMaskRequired: Int
   init(target: Any?, action: Selector?)
   convenience init()
   convenience init?(coder: NSCoder)

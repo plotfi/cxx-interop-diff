@@ -1,5 +1,7 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileCoordinatorReadingOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSFileCoordinator.ReadingOptions")
 typealias NSFileCoordinatorReadingOptions = NSFileCoordinator.ReadingOptions
 extension NSFileCoordinator {
@@ -51,6 +53,8 @@ extension NSFileCoordinator {
     static var ContentIndependentMetadataOnly: NSFileCoordinator.WritingOptions { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileCoordinatorWritingOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSFileCoordinator.WritingOptions")
 typealias NSFileCoordinatorWritingOptions = NSFileCoordinator.WritingOptions
 @available(iOS 8.0, *)

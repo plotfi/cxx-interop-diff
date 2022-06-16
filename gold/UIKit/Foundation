@@ -2700,24 +2700,8 @@ extension CustomNSError where Self : RawRepresentable, Self.RawValue : FixedWidt
   /// - parameter count: The size of the bytes.
   /// - parameter deallocator: Specifies the mechanism to free the indicated buffer, or `.none`.
   @inlinable init(bytesNoCopy bytes: UnsafeMutableRawPointer, count: Int, deallocator: Data.Deallocator)
-  /// Initialize a `Data` with the contents of a `URL`.
-  ///
-  /// - parameter url: The `URL` to read.
-  /// - parameter options: Options for the read operation. Default value is `[]`.
-  /// - throws: An error in the Cocoa domain, if `url` cannot be read.
   @inlinable init(contentsOf url: __shared URL, options: Data.ReadingOptions = []) throws
-  /// Initialize a `Data` from a Base-64 encoded String using the given options.
-  ///
-  /// Returns nil when the input is not recognized as valid Base-64.
-  /// - parameter base64String: The string to parse.
-  /// - parameter options: Encoding options. Default value is `[]`.
   @inlinable init?(base64Encoded base64String: __shared String, options: Data.Base64DecodingOptions = [])
-  /// Initialize a `Data` from a Base-64, UTF-8 encoded `Data`.
-  ///
-  /// Returns nil when the input is not recognized as valid Base-64.
-  ///
-  /// - parameter base64Data: Base-64, UTF-8 encoded input data.
-  /// - parameter options: Decoding options. Default value is `[]`.
   @inlinable init?(base64Encoded base64Data: __shared Data, options: Data.Base64DecodingOptions = [])
   /// Initialize a `Data` by adopting a reference type.
   ///
@@ -2773,19 +2757,7 @@ extension CustomNSError where Self : RawRepresentable, Self.RawValue : FixedWidt
   /// - parameter range: A range in the data to copy into the buffer. If the range is empty, this function will return 0 without copying anything. If the range is nil, as much data as will fit into `buffer` is copied.
   /// - returns: Number of bytes copied into the destination buffer.
   @inlinable func copyBytes<DestinationType>(to buffer: UnsafeMutableBufferPointer<DestinationType>, from range: Range<Data.Index>? = nil) -> Int
-  /// Write the contents of the `Data` to a location.
-  ///
-  /// - parameter url: The location to write the data into.
-  /// - parameter options: Options for writing the data. Default value is `[]`.
-  /// - throws: An error in the Cocoa domain, if there is an error writing to the `URL`.
   func write(to url: URL, options: Data.WritingOptions = []) throws
-  /// Find the given `Data` in the content of this `Data`.
-  ///
-  /// - parameter dataToFind: The data to be searched for.
-  /// - parameter options: Options for the search. Default value is `[]`.
-  /// - parameter range: The range of this data in which to perform the search. Default value is `nil`, which means the entire content of this data.
-  /// - returns: A `Range` specifying the location of the found data, or nil if a match could not be found.
-  /// - precondition: `range` must be in the bounds of the Data.
   func range(of dataToFind: Data, options: Data.SearchOptions = [], in range: Range<Data.Index>? = nil) -> Range<Data.Index>?
   /// Enumerate the contents of the data.
   ///
@@ -2836,15 +2808,7 @@ extension CustomNSError where Self : RawRepresentable, Self.RawValue : FixedWidt
   ///
   /// - parameter range: The range to copy.
   func subdata(in range: Range<Data.Index>) -> Data
-  /// Returns a Base-64 encoded string.
-  ///
-  /// - parameter options: The options to use for the encoding. Default value is `[]`.
-  /// - returns: The Base-64 encoded string.
   @inlinable func base64EncodedString(options: Data.Base64EncodingOptions = []) -> String
-  /// Returns a Base-64 encoded `Data`.
-  ///
-  /// - parameter options: The options to use for the encoding. Default value is `[]`.
-  /// - returns: The Base-64 encoded data.
   @inlinable func base64EncodedData(options: Data.Base64EncodingOptions = []) -> Data
   /// The hash value for the data.
   @inline(never) func hash(into hasher: inout Hasher)
@@ -7976,13 +7940,10 @@ struct URL : ReferenceConvertible, Equatable {
   /// If the data representation is not a legal URL string as ASCII bytes, the URL object may not behave as expected. If the URL cannot be formed then this will return nil.
   @available(macOS 10.11, iOS 9.0, *)
   init?(dataRepresentation: __shared Data, relativeTo url: __shared URL?, isAbsolute: Bool = false)
-  /// Initializes a URL that refers to a location specified by resolving bookmark data.
   @available(swift, obsoleted: 4.2)
   init?(resolvingBookmarkData data: __shared Data, options: URL.BookmarkResolutionOptions = [], relativeTo url: __shared URL? = nil, bookmarkDataIsStale: inout Bool) throws
-  /// Initializes a URL that refers to a location specified by resolving bookmark data.
   @available(swift 4.2)
   init(resolvingBookmarkData data: __shared Data, options: URL.BookmarkResolutionOptions = [], relativeTo url: __shared URL? = nil, bookmarkDataIsStale: inout Bool) throws
-  /// Creates and initializes an NSURL that refers to the location specified by resolving the alias file at url. If the url argument does not refer to an alias file as defined by the NSURLIsAliasFileKey property, the NSURL returned is the same as url argument. This method fails and returns nil if the url argument is unreachable, or if the original file or directory could not be located or is not reachable, or if the original file or directory is on a volume that could not be located or mounted. The URLBookmarkResolutionWithSecurityScope option is not supported by this method.
   @available(macOS 10.10, iOS 8.0, *)
   init(resolvingAliasFileAt url: __shared URL, options: URL.BookmarkResolutionOptions = []) throws
   /// Initializes a newly created URL referencing the local file or directory at the file system representation of the path. File system representation is a null-terminated C string with canonical UTF-8 encoding.
@@ -8196,7 +8157,6 @@ struct URL : ReferenceConvertible, Equatable {
   func setResourceValues(_ keyedValues: [URLResourceKey : AnyObject]) throws
   @available(*, unavailable, message: "Use struct URLResourceValues and URL.setResourceValues(_:) instead")
   func getResourceValue(_ value: AutoreleasingUnsafeMutablePointer<AnyObject?>, forKey key: URLResourceKey) throws
-  /// Returns bookmark data for the URL, created with specified options and resource values.
   func bookmarkData(options: URL.BookmarkCreationOptions = [], includingResourceValuesForKeys keys: Set<URLResourceKey>? = nil, relativeTo url: URL? = nil) throws -> Data
   /// Returns the resource values for properties identified by a specified array of keys contained in specified bookmark data. If the result dictionary does not contain a resource value for one or more of the requested resource keys, it means those resource properties are not available in the bookmark data.
   static func resourceValues(forKeys keys: Set<URLResourceKey>, fromBookmarkData data: Data) -> URLResourceValues?
@@ -10669,20 +10629,11 @@ extension String {
   /// A `String` comparison performed using the given comparison options
   /// and locale.
   struct Comparator : SortComparator, Codable {
-    /// The options to use for comparison.
     let options: String.CompareOptions
     /// The locale to use for comparison if the comparator is localized,
     /// otherwise nil.
     let locale: Locale?
     var order: SortOrder
-    /// Creates a `String.Comparator` with the given `CompareOptions` and
-    /// `Locale`.
-    ///
-    /// - Parameters:
-    ///     - options: The options to use for comparison.
-    ///     - locale: The locale to use for comparison. If `nil`, the
-    ///       comparison is unlocalized.
-    ///     - order: The initial order to use for ordered comparison.
     init(options: String.CompareOptions, locale: Locale? = Locale.current, order: SortOrder = .forward)
     /// Creates a `String.Comparator` that represents the same comparison
     /// as the given `String.StandardComparator`.
@@ -11424,12 +11375,7 @@ extension StringProtocol {
   /// Returns the result of invoking `compare:options:` with
   /// `NSCaseInsensitiveSearch` as the only option.
   func caseInsensitiveCompare<T>(_ aString: T) -> ComparisonResult where T : StringProtocol
-  /// Returns a string containing characters this string and the
-  /// given string have in common, starting from the beginning of each
-  /// up to the first characters that aren't equivalent.
   func commonPrefix<T>(with aString: T, options: String.CompareOptions = []) -> String where T : StringProtocol
-  /// Compares the string using the specified options and
-  /// returns the lexical ordering for the range.
   func compare<T>(_ aString: T, options mask: String.CompareOptions = [], range: Range<Self.Index>? = nil, locale: Locale? = nil) -> ComparisonResult where T : StringProtocol
   /// Interprets the string as a path in the file system and
   /// attempts to perform filename completion, returning a numeric
@@ -11514,8 +11460,6 @@ extension StringProtocol {
   /// format string and the following arguments.
   func appendingFormat<T>(_ format: T, _ arguments: CVarArg...) -> String where T : StringProtocol
   func appending<T>(_ aString: T) -> String where T : StringProtocol
-  /// Returns a string with the given character folding options
-  /// applied.
   func folding(options: String.CompareOptions = [], locale: Locale?) -> String
   /// Returns a new string formed from the `String` by either
   /// removing characters from the end, or by appending as many
@@ -11527,9 +11471,6 @@ extension StringProtocol {
   /// Returns a new string in which the characters in a
   /// specified range of the `String` are replaced by a given string.
   func replacingCharacters<T, R>(in range: R, with replacement: T) -> String where T : StringProtocol, R : RangeExpression, R.Bound == String.Index
-  /// Returns a new string in which all occurrences of a target
-  /// string in a specified range of the string are replaced by
-  /// another given string.
   func replacingOccurrences<Target, Replacement>(of target: Target, with replacement: Replacement, options: String.CompareOptions = [], range searchRange: Range<Self.Index>? = nil) -> String where Target : StringProtocol, Replacement : StringProtocol
   /// Returns a new string made by replacing in the `String`
   /// all percent escapes with the matching characters as determined
@@ -11556,69 +11497,8 @@ extension StringProtocol {
   /// Perform string transliteration.
   @available(macOS 10.11, iOS 9.0, *)
   func applyingTransform(_ transform: StringTransform, reverse: Bool) -> String?
-  /// Performs linguistic analysis on the specified string by
-  /// enumerating the specific range of the string, providing the
-  /// Block with the located tags.
   func enumerateLinguisticTags<T, R>(in range: R, scheme tagScheme: T, options opts: NSLinguisticTagger.Options = [], orthography: NSOrthography? = nil, invoking body: (String, Range<Self.Index>, Range<Self.Index>, inout Bool) -> Void) where T : StringProtocol, R : RangeExpression, R.Bound == String.Index
-  /// Enumerates the substrings of the specified type in the specified range of
-  /// the string.
-  ///
-  /// Mutation of a string value while enumerating its substrings is not
-  /// supported. If you need to mutate a string from within `body`, convert
-  /// your string to an `NSMutableString` instance and then call the
-  /// `enumerateSubstrings(in:options:using:)` method.
-  ///
-  /// - Parameters:
-  ///   - range: The range within the string to enumerate substrings.
-  ///   - opts: Options specifying types of substrings and enumeration styles.
-  ///     If `opts` is omitted or empty, `body` is called a single time with
-  ///     the range of the string specified by `range`.
-  ///   - body: The closure executed for each substring in the enumeration. The
-  ///     closure takes four arguments:
-  ///     - The enumerated substring. If `substringNotRequired` is included in
-  ///       `opts`, this parameter is `nil` for every execution of the
-  ///       closure.
-  ///     - The range of the enumerated substring in the string that
-  ///       `enumerate(in:options:_:)` was called on.
-  ///     - The range that includes the substring as well as any separator or
-  ///       filler characters that follow. For instance, for lines,
-  ///       `enclosingRange` contains the line terminators. The enclosing
-  ///       range for the first string enumerated also contains any characters
-  ///       that occur before the string. Consecutive enclosing ranges are
-  ///       guaranteed not to overlap, and every single character in the
-  ///       enumerated range is included in one and only one enclosing range.
-  ///     - An `inout` Boolean value that the closure can use to stop the
-  ///       enumeration by setting `stop = true`.
   func enumerateSubstrings<R>(in range: R, options opts: String.EnumerationOptions = [], _ body: @escaping (_ substring: String?, _ substringRange: Range<Self.Index>, _ enclosingRange: Range<Self.Index>, inout Bool) -> Void) where R : RangeExpression, R.Bound == String.Index
-  /// Writes the given `range` of characters into `buffer` in a given
-  /// `encoding`, without any allocations.  Does not NULL-terminate.
-  ///
-  /// - Parameter buffer: A buffer into which to store the bytes from
-  ///   the receiver. The returned bytes are not NUL-terminated.
-  ///
-  /// - Parameter maxBufferCount: The maximum number of bytes to write
-  ///   to buffer.
-  ///
-  /// - Parameter usedBufferCount: The number of bytes used from
-  ///   buffer. Pass `nil` if you do not need this value.
-  ///
-  /// - Parameter encoding: The encoding to use for the returned bytes.
-  ///
-  /// - Parameter options: A mask to specify options to use for
-  ///   converting the receiver's contents to `encoding` (if conversion
-  ///   is necessary).
-  ///
-  /// - Parameter range: The range of characters in the receiver to get.
-  ///
-  /// - Parameter leftover: The remaining range. Pass `nil` If you do
-  ///   not need this value.
-  ///
-  /// - Returns: `true` if some characters were converted, `false` otherwise.
-  ///
-  /// - Note: Conversion stops when the buffer fills or when the
-  ///   conversion isn't possible due to the chosen encoding.
-  ///
-  /// - Note: will get a maximum of `min(buffer.count, maxLength)` bytes.
   func getBytes<R>(_ buffer: inout [UInt8], maxLength maxBufferCount: Int, usedLength usedBufferCount: UnsafeMutablePointer<Int>, encoding: String.Encoding, options: String.EncodingConversionOptions = [], range: R, remaining leftover: UnsafeMutablePointer<Range<Self.Index>>) -> Bool where R : RangeExpression, R.Bound == String.Index
   /// Returns by reference the beginning of the first line and
   /// the end of the last line touched by the given range.
@@ -11629,15 +11509,10 @@ extension StringProtocol {
   /// Returns the range of characters representing the line or lines
   /// containing a given range.
   func lineRange<R>(for aRange: R) -> Range<Self.Index> where R : RangeExpression, R.Bound == String.Index
-  /// Returns an array of linguistic tags for the specified
-  /// range and requested tags within the receiving string.
   func linguisticTags<T, R>(in range: R, scheme tagScheme: T, options opts: NSLinguisticTagger.Options = [], orthography: NSOrthography? = nil, tokenRanges: UnsafeMutablePointer<[Range<Self.Index>]>? = nil) -> [String] where T : StringProtocol, R : RangeExpression, R.Bound == String.Index
   /// Returns the range of characters representing the
   /// paragraph or paragraphs containing a given range.
   func paragraphRange<R>(for aRange: R) -> Range<Self.Index> where R : RangeExpression, R.Bound == String.Index
-  /// Finds and returns the range in the `String` of the first
-  /// character from a given character set found in a given range with
-  /// given options.
   func rangeOfCharacter(from aSet: CharacterSet, options mask: String.CompareOptions = [], range aRange: Range<Self.Index>? = nil) -> Range<Self.Index>?
   /// Returns the range in the `String` of the composed
   /// character sequence located at a given index.
@@ -11645,9 +11520,6 @@ extension StringProtocol {
   /// Returns the range in the string of the composed character
   /// sequences for a given range.
   func rangeOfComposedCharacterSequences<R>(for range: R) -> Range<Self.Index> where R : RangeExpression, R.Bound == String.Index
-  /// Finds and returns the range of the first occurrence of a
-  /// given string within a given range of the `String`, subject to
-  /// given options, using the specified locale, if any.
   func range<T>(of aString: T, options mask: String.CompareOptions = [], range searchRange: Range<Self.Index>? = nil, locale: Locale? = nil) -> Range<Self.Index>? where T : StringProtocol
   /// Finds and returns the range of the first occurrence of a given string,
   /// taking the current locale into account.  Returns `nil` if the string was

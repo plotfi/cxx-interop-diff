@@ -63,6 +63,8 @@ extension NetService {
 let NSNetServicesErrorDomain: String
 @available(swift, obsoleted: 3, renamed: "NSNetService.ErrorCode")
 typealias NSNetServicesError = NetService.ErrorCode
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSNetServiceOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSNetService.Options")
 typealias NSNetServiceOptions = NetService.Options
 @available(swift, obsoleted: 3, renamed: "NetService")

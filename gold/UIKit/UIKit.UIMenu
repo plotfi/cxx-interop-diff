@@ -45,6 +45,8 @@ extension UIMenu {
     static var SingleSelection: UIMenu.Options { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIMenuOptions = Int
 @available(iOS 13.0, *)
 @available(swift, obsoleted: 3, renamed: "UIMenu.Options")
 typealias UIMenuOptions = UIMenu.Options
@@ -55,7 +57,7 @@ typealias UIMenuOptions = UIMenu.Options
   var identifier: UIMenu.Identifier { get }
 
   /// Options.
-  var options: UIMenu.Options { get }
+  var options: Int { get }
 
   /// The menu's sub-elements and sub-menus. On iOS 14.0, elements of your own menus are mutable, -copying a menu will produce mutable elements, and UIKit will take immutable copies of menus it receives. Prior to iOS 14.0, menus are always fully immutable.
   var children: [UIMenuElement] { get }
@@ -166,14 +168,6 @@ typealias UIMenuOptions = UIMenu.Options
 
 @available(iOS 13.0, tvOS 14.0, *)
 extension UIMenu {
-  /// Creates a UIMenu with the given arguments.
-  ///
-  /// - Parameters:
-  ///   - title: The menu's title.
-  ///   - image: Image to be displayed alongside the menu's title.
-  ///   - identifier: The menu's unique identifier. Pass nil to use an auto-generated identifier.
-  ///   - options: The menu's options.
-  ///   - children: The menu's sub-elements and sub-menus.
   @_disfavoredOverload @MainActor convenience init(title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: UIMenu.Options = [], children: [UIMenuElement] = [])
   @available(iOS 15.0, tvOS 15.0, *)
   @MainActor convenience init(title: String = "", subtitle: String? = nil, image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: UIMenu.Options = [], children: [UIMenuElement] = [])

@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSTextContentManagerEnumerationOptions = Int
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "NSTextContentManager.EnumerationOptions")
 typealias NSTextContentManagerEnumerationOptions = NSTextContentManager.EnumerationOptions

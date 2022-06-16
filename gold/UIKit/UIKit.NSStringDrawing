@@ -41,6 +41,8 @@ extension NSAttributedString {
   @available(swift, obsoleted: 3, renamed: "draw(in:)")
   func drawInRect(_ rect: CGRect)
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSStringDrawingOptions = Int
 @available(iOS 6.0, *)
 struct NSStringDrawingOptions : OptionSet, @unchecked Sendable {
   init(rawValue: Int)
