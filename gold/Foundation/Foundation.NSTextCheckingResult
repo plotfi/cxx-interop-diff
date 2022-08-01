@@ -1,60 +1,58 @@
 @_exported import CoreFoundation
 
-@available(swift, obsoleted: 3, renamed: "NSTextCheckingResult.CheckingType")
-typealias NSTextCheckingType = NSTextCheckingResult.CheckingType
-extension NSTextCheckingResult {
-  struct CheckingType : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt64)
-    let rawValue: UInt64
-    typealias RawValue = UInt64
-    typealias Element = NSTextCheckingResult.CheckingType
-    typealias ArrayLiteralElement = NSTextCheckingResult.CheckingType
-    static var orthography: NSTextCheckingResult.CheckingType { get }
-    @available(swift, obsoleted: 3, renamed: "orthography")
-    static var Orthography: NSTextCheckingResult.CheckingType { get }
-    static var spelling: NSTextCheckingResult.CheckingType { get }
-    @available(swift, obsoleted: 3, renamed: "spelling")
-    static var Spelling: NSTextCheckingResult.CheckingType { get }
-    static var grammar: NSTextCheckingResult.CheckingType { get }
-    @available(swift, obsoleted: 3, renamed: "grammar")
-    static var Grammar: NSTextCheckingResult.CheckingType { get }
-    static var date: NSTextCheckingResult.CheckingType { get }
-    @available(swift, obsoleted: 3, renamed: "date")
-    static var Date: NSTextCheckingResult.CheckingType { get }
-    static var address: NSTextCheckingResult.CheckingType { get }
-    @available(swift, obsoleted: 3, renamed: "address")
-    static var Address: NSTextCheckingResult.CheckingType { get }
-    static var link: NSTextCheckingResult.CheckingType { get }
-    @available(swift, obsoleted: 3, renamed: "link")
-    static var Link: NSTextCheckingResult.CheckingType { get }
-    static var quote: NSTextCheckingResult.CheckingType { get }
-    @available(swift, obsoleted: 3, renamed: "quote")
-    static var Quote: NSTextCheckingResult.CheckingType { get }
-    static var dash: NSTextCheckingResult.CheckingType { get }
-    @available(swift, obsoleted: 3, renamed: "dash")
-    static var Dash: NSTextCheckingResult.CheckingType { get }
-    static var replacement: NSTextCheckingResult.CheckingType { get }
-    @available(swift, obsoleted: 3, renamed: "replacement")
-    static var Replacement: NSTextCheckingResult.CheckingType { get }
-    static var correction: NSTextCheckingResult.CheckingType { get }
-    @available(swift, obsoleted: 3, renamed: "correction")
-    static var Correction: NSTextCheckingResult.CheckingType { get }
-    @available(iOS 4.0, *)
-    static var regularExpression: NSTextCheckingResult.CheckingType { get }
-    @available(iOS 4.0, *)
-    @available(swift, obsoleted: 3, renamed: "regularExpression")
-    static var RegularExpression: NSTextCheckingResult.CheckingType { get }
-    @available(iOS 4.0, *)
-    static var phoneNumber: NSTextCheckingResult.CheckingType { get }
-    @available(iOS 4.0, *)
-    @available(swift, obsoleted: 3, renamed: "phoneNumber")
-    static var PhoneNumber: NSTextCheckingResult.CheckingType { get }
-    @available(iOS 4.0, *)
-    static var transitInformation: NSTextCheckingResult.CheckingType { get }
-    @available(iOS 4.0, *)
-    @available(swift, obsoleted: 3, renamed: "transitInformation")
-    static var TransitInformation: NSTextCheckingResult.CheckingType { get }
-  }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSTextCheckingType = UInt64
+struct NSTextCheckingType : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt64)
+  let rawValue: UInt64
+  typealias RawValue = UInt64
+  typealias Element = NSTextCheckingType
+  typealias ArrayLiteralElement = NSTextCheckingType
+  static var orthography: NSTextCheckingType { get }
+  @available(swift, obsoleted: 3, renamed: "orthography")
+  static var Orthography: NSTextCheckingType { get }
+  static var spelling: NSTextCheckingType { get }
+  @available(swift, obsoleted: 3, renamed: "spelling")
+  static var Spelling: NSTextCheckingType { get }
+  static var grammar: NSTextCheckingType { get }
+  @available(swift, obsoleted: 3, renamed: "grammar")
+  static var Grammar: NSTextCheckingType { get }
+  static var date: NSTextCheckingType { get }
+  @available(swift, obsoleted: 3, renamed: "date")
+  static var Date: NSTextCheckingType { get }
+  static var address: NSTextCheckingType { get }
+  @available(swift, obsoleted: 3, renamed: "address")
+  static var Address: NSTextCheckingType { get }
+  static var link: NSTextCheckingType { get }
+  @available(swift, obsoleted: 3, renamed: "link")
+  static var Link: NSTextCheckingType { get }
+  static var quote: NSTextCheckingType { get }
+  @available(swift, obsoleted: 3, renamed: "quote")
+  static var Quote: NSTextCheckingType { get }
+  static var dash: NSTextCheckingType { get }
+  @available(swift, obsoleted: 3, renamed: "dash")
+  static var Dash: NSTextCheckingType { get }
+  static var replacement: NSTextCheckingType { get }
+  @available(swift, obsoleted: 3, renamed: "replacement")
+  static var Replacement: NSTextCheckingType { get }
+  static var correction: NSTextCheckingType { get }
+  @available(swift, obsoleted: 3, renamed: "correction")
+  static var Correction: NSTextCheckingType { get }
+  @available(iOS 4.0, *)
+  static var regularExpression: NSTextCheckingType { get }
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "regularExpression")
+  static var RegularExpression: NSTextCheckingType { get }
+  @available(iOS 4.0, *)
+  static var phoneNumber: NSTextCheckingType { get }
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "phoneNumber")
+  static var PhoneNumber: NSTextCheckingType { get }
+  @available(iOS 4.0, *)
+  static var transitInformation: NSTextCheckingType { get }
+  @available(iOS 4.0, *)
+  @available(swift, obsoleted: 3, renamed: "transitInformation")
+  static var TransitInformation: NSTextCheckingType { get }
 }
 typealias NSTextCheckingTypes = UInt64
 var NSTextCheckingAllSystemTypes: NSTextCheckingTypes { get }
@@ -70,7 +68,7 @@ struct NSTextCheckingKey : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNew
 }
 @available(iOS 4.0, *)
 class NSTextCheckingResult : NSObject, NSCopying, NSSecureCoding {
-  var resultType: NSTextCheckingResult.CheckingType { get }
+  var resultType: UInt64 { get }
   var range: NSRange { get }
   init()
   @available(iOS 4.0, *)

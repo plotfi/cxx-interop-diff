@@ -1,3 +1,387 @@
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:48:5: warning: imported declaration 'NSCaseInsensitiveSearch' could not be mapped to 'caseInsensitive'
+    NSCaseInsensitiveSearch = 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:48:5: note: please report this issue to the owners of 'Foundation'
+    NSCaseInsensitiveSearch = 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:48:5: warning: imported declaration 'NSCaseInsensitiveSearch' could not be mapped to 'caseInsensitive'
+    NSCaseInsensitiveSearch = 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:48:5: note: please report this issue to the owners of 'Foundation'
+    NSCaseInsensitiveSearch = 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:49:5: warning: imported declaration 'NSLiteralSearch' could not be mapped to 'literal'
+    NSLiteralSearch = 2,                /* Exact character-by-character equivalence */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:49:5: note: please report this issue to the owners of 'Foundation'
+    NSLiteralSearch = 2,                /* Exact character-by-character equivalence */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:49:5: warning: imported declaration 'NSLiteralSearch' could not be mapped to 'literal'
+    NSLiteralSearch = 2,                /* Exact character-by-character equivalence */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:49:5: note: please report this issue to the owners of 'Foundation'
+    NSLiteralSearch = 2,                /* Exact character-by-character equivalence */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:50:5: warning: imported declaration 'NSBackwardsSearch' could not be mapped to 'backwards'
+    NSBackwardsSearch = 4,              /* Search from end of source string */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:50:5: note: please report this issue to the owners of 'Foundation'
+    NSBackwardsSearch = 4,              /* Search from end of source string */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:50:5: warning: imported declaration 'NSBackwardsSearch' could not be mapped to 'backwards'
+    NSBackwardsSearch = 4,              /* Search from end of source string */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:50:5: note: please report this issue to the owners of 'Foundation'
+    NSBackwardsSearch = 4,              /* Search from end of source string */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:51:5: warning: imported declaration 'NSAnchoredSearch' could not be mapped to 'anchored'
+    NSAnchoredSearch = 8,               /* Search is limited to start (or end, if NSBackwardsSearch) of source string */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:51:5: note: please report this issue to the owners of 'Foundation'
+    NSAnchoredSearch = 8,               /* Search is limited to start (or end, if NSBackwardsSearch) of source string */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:51:5: warning: imported declaration 'NSAnchoredSearch' could not be mapped to 'anchored'
+    NSAnchoredSearch = 8,               /* Search is limited to start (or end, if NSBackwardsSearch) of source string */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:51:5: note: please report this issue to the owners of 'Foundation'
+    NSAnchoredSearch = 8,               /* Search is limited to start (or end, if NSBackwardsSearch) of source string */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:52:5: warning: imported declaration 'NSNumericSearch' could not be mapped to 'numeric'
+    NSNumericSearch = 64,               /* Added in 10.2; Numbers within strings are compared using numeric value, that is, Foo2.txt < Foo7.txt < Foo25.txt; only applies to compare methods, not find */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:52:5: note: please report this issue to the owners of 'Foundation'
+    NSNumericSearch = 64,               /* Added in 10.2; Numbers within strings are compared using numeric value, that is, Foo2.txt < Foo7.txt < Foo25.txt; only applies to compare methods, not find */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:52:5: warning: imported declaration 'NSNumericSearch' could not be mapped to 'numeric'
+    NSNumericSearch = 64,               /* Added in 10.2; Numbers within strings are compared using numeric value, that is, Foo2.txt < Foo7.txt < Foo25.txt; only applies to compare methods, not find */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:52:5: note: please report this issue to the owners of 'Foundation'
+    NSNumericSearch = 64,               /* Added in 10.2; Numbers within strings are compared using numeric value, that is, Foo2.txt < Foo7.txt < Foo25.txt; only applies to compare methods, not find */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:53:5: warning: imported declaration 'NSDiacriticInsensitiveSearch' could not be mapped to 'diacriticInsensitive'
+    NSDiacriticInsensitiveSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 128, /* If specified, ignores diacritics (o-umlaut == o) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:53:5: note: please report this issue to the owners of 'Foundation'
+    NSDiacriticInsensitiveSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 128, /* If specified, ignores diacritics (o-umlaut == o) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:53:5: warning: imported declaration 'NSDiacriticInsensitiveSearch' could not be mapped to 'diacriticInsensitive'
+    NSDiacriticInsensitiveSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 128, /* If specified, ignores diacritics (o-umlaut == o) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:53:5: note: please report this issue to the owners of 'Foundation'
+    NSDiacriticInsensitiveSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 128, /* If specified, ignores diacritics (o-umlaut == o) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:54:5: warning: imported declaration 'NSWidthInsensitiveSearch' could not be mapped to 'widthInsensitive'
+    NSWidthInsensitiveSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 256, /* If specified, ignores width differences ('a' == UFF41) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:54:5: note: please report this issue to the owners of 'Foundation'
+    NSWidthInsensitiveSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 256, /* If specified, ignores width differences ('a' == UFF41) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:54:5: warning: imported declaration 'NSWidthInsensitiveSearch' could not be mapped to 'widthInsensitive'
+    NSWidthInsensitiveSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 256, /* If specified, ignores width differences ('a' == UFF41) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:54:5: note: please report this issue to the owners of 'Foundation'
+    NSWidthInsensitiveSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 256, /* If specified, ignores width differences ('a' == UFF41) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:55:5: warning: imported declaration 'NSForcedOrderingSearch' could not be mapped to 'forcedOrdering'
+    NSForcedOrderingSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 512, /* If specified, comparisons are forced to return either NSOrderedAscending or NSOrderedDescending if the strings are equivalent but not strictly equal, for stability when sorting (e.g. "aaa" > "AAA" with NSCaseInsensitiveSearch specified) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:55:5: note: please report this issue to the owners of 'Foundation'
+    NSForcedOrderingSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 512, /* If specified, comparisons are forced to return either NSOrderedAscending or NSOrderedDescending if the strings are equivalent but not strictly equal, for stability when sorting (e.g. "aaa" > "AAA" with NSCaseInsensitiveSearch specified) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:55:5: warning: imported declaration 'NSForcedOrderingSearch' could not be mapped to 'forcedOrdering'
+    NSForcedOrderingSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 512, /* If specified, comparisons are forced to return either NSOrderedAscending or NSOrderedDescending if the strings are equivalent but not strictly equal, for stability when sorting (e.g. "aaa" > "AAA" with NSCaseInsensitiveSearch specified) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:55:5: note: please report this issue to the owners of 'Foundation'
+    NSForcedOrderingSearch API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) = 512, /* If specified, comparisons are forced to return either NSOrderedAscending or NSOrderedDescending if the strings are equivalent but not strictly equal, for stability when sorting (e.g. "aaa" > "AAA" with NSCaseInsensitiveSearch specified) */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:56:5: warning: imported declaration 'NSRegularExpressionSearch' could not be mapped to 'regularExpression'
+    NSRegularExpressionSearch API_AVAILABLE(macos(10.7), ios(3.2), watchos(2.0), tvos(9.0)) = 1024    /* Applies to rangeOfString:..., stringByReplacingOccurrencesOfString:..., and replaceOccurrencesOfString:... methods only; the search string is treated as an ICU-compatible regular expression; if set, no other options can apply except NSCaseInsensitiveSearch and NSAnchoredSearch */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:56:5: note: please report this issue to the owners of 'Foundation'
+    NSRegularExpressionSearch API_AVAILABLE(macos(10.7), ios(3.2), watchos(2.0), tvos(9.0)) = 1024    /* Applies to rangeOfString:..., stringByReplacingOccurrencesOfString:..., and replaceOccurrencesOfString:... methods only; the search string is treated as an ICU-compatible regular expression; if set, no other options can apply except NSCaseInsensitiveSearch and NSAnchoredSearch */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:56:5: warning: imported declaration 'NSRegularExpressionSearch' could not be mapped to 'regularExpression'
+    NSRegularExpressionSearch API_AVAILABLE(macos(10.7), ios(3.2), watchos(2.0), tvos(9.0)) = 1024    /* Applies to rangeOfString:..., stringByReplacingOccurrencesOfString:..., and replaceOccurrencesOfString:... methods only; the search string is treated as an ICU-compatible regular expression; if set, no other options can apply except NSCaseInsensitiveSearch and NSAnchoredSearch */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:56:5: note: please report this issue to the owners of 'Foundation'
+    NSRegularExpressionSearch API_AVAILABLE(macos(10.7), ios(3.2), watchos(2.0), tvos(9.0)) = 1024    /* Applies to rangeOfString:..., stringByReplacingOccurrencesOfString:..., and replaceOccurrencesOfString:... methods only; the search string is treated as an ICU-compatible regular expression; if set, no other options can apply except NSCaseInsensitiveSearch and NSAnchoredSearch */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:238:5: warning: imported declaration 'NSStringEnumerationByLines' could not be mapped to 'byLines'
+    NSStringEnumerationByLines = 0,                       // Equivalent to lineRangeForRange:
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:238:5: note: please report this issue to the owners of 'Foundation'
+    NSStringEnumerationByLines = 0,                       // Equivalent to lineRangeForRange:
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:238:5: warning: imported declaration 'NSStringEnumerationByLines' could not be mapped to 'byLines'
+    NSStringEnumerationByLines = 0,                       // Equivalent to lineRangeForRange:
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h:238:5: note: please report this issue to the owners of 'Foundation'
+    NSStringEnumerationByLines = 0,                       // Equivalent to lineRangeForRange:
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:15:5: warning: imported declaration 'NSDataReadingMappedIfSafe' could not be mapped to 'mappedIfSafe'
+    NSDataReadingMappedIfSafe =   1UL << 0,     // Hint to map the file in if possible and safe
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:15:5: note: please report this issue to the owners of 'Foundation'
+    NSDataReadingMappedIfSafe =   1UL << 0,     // Hint to map the file in if possible and safe
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:15:5: warning: imported declaration 'NSDataReadingMappedIfSafe' could not be mapped to 'mappedIfSafe'
+    NSDataReadingMappedIfSafe =   1UL << 0,     // Hint to map the file in if possible and safe
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:15:5: note: please report this issue to the owners of 'Foundation'
+    NSDataReadingMappedIfSafe =   1UL << 0,     // Hint to map the file in if possible and safe
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:16:5: warning: imported declaration 'NSDataReadingUncached' could not be mapped to 'uncached'
+    NSDataReadingUncached = 1UL << 1,   // Hint to get the file not to be cached in the kernel
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:16:5: note: please report this issue to the owners of 'Foundation'
+    NSDataReadingUncached = 1UL << 1,   // Hint to get the file not to be cached in the kernel
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:16:5: warning: imported declaration 'NSDataReadingUncached' could not be mapped to 'uncached'
+    NSDataReadingUncached = 1UL << 1,   // Hint to get the file not to be cached in the kernel
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:16:5: note: please report this issue to the owners of 'Foundation'
+    NSDataReadingUncached = 1UL << 1,   // Hint to get the file not to be cached in the kernel
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:17:5: warning: imported declaration 'NSDataReadingMappedAlways' could not be mapped to 'alwaysMapped'
+    NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0)) = 1UL << 3, // Hint to map the file in if possible. This takes precedence over NSDataReadingMappedIfSafe if both are given.
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:17:5: note: please report this issue to the owners of 'Foundation'
+    NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0)) = 1UL << 3, // Hint to map the file in if possible. This takes precedence over NSDataReadingMappedIfSafe if both are given.
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:17:5: warning: imported declaration 'NSDataReadingMappedAlways' could not be mapped to 'alwaysMapped'
+    NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0)) = 1UL << 3, // Hint to map the file in if possible. This takes precedence over NSDataReadingMappedIfSafe if both are given.
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:17:5: note: please report this issue to the owners of 'Foundation'
+    NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0)) = 1UL << 3, // Hint to map the file in if possible. This takes precedence over NSDataReadingMappedIfSafe if both are given.
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:26:5: warning: imported declaration 'NSDataWritingAtomic' could not be mapped to 'atomic'
+    NSDataWritingAtomic = 1UL << 0,     // Hint to use auxiliary file when saving; equivalent to atomically:YES
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:26:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingAtomic = 1UL << 0,     // Hint to use auxiliary file when saving; equivalent to atomically:YES
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:26:5: warning: imported declaration 'NSDataWritingAtomic' could not be mapped to 'atomic'
+    NSDataWritingAtomic = 1UL << 0,     // Hint to use auxiliary file when saving; equivalent to atomically:YES
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:26:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingAtomic = 1UL << 0,     // Hint to use auxiliary file when saving; equivalent to atomically:YES
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:27:5: warning: imported declaration 'NSDataWritingWithoutOverwriting' could not be mapped to 'withoutOverwriting'
+    NSDataWritingWithoutOverwriting API_AVAILABLE(macos(10.8), ios(6.0), watchos(2.0), tvos(9.0)) = 1UL << 1, // Hint to  prevent overwriting an existing file. Cannot be combined with NSDataWritingAtomic.
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:27:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingWithoutOverwriting API_AVAILABLE(macos(10.8), ios(6.0), watchos(2.0), tvos(9.0)) = 1UL << 1, // Hint to  prevent overwriting an existing file. Cannot be combined with NSDataWritingAtomic.
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:27:5: warning: imported declaration 'NSDataWritingWithoutOverwriting' could not be mapped to 'withoutOverwriting'
+    NSDataWritingWithoutOverwriting API_AVAILABLE(macos(10.8), ios(6.0), watchos(2.0), tvos(9.0)) = 1UL << 1, // Hint to  prevent overwriting an existing file. Cannot be combined with NSDataWritingAtomic.
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:27:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingWithoutOverwriting API_AVAILABLE(macos(10.8), ios(6.0), watchos(2.0), tvos(9.0)) = 1UL << 1, // Hint to  prevent overwriting an existing file. Cannot be combined with NSDataWritingAtomic.
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:29:5: warning: imported declaration 'NSDataWritingFileProtectionNone' could not be mapped to 'noFileProtection'
+    NSDataWritingFileProtectionNone API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                                  = 0x10000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:29:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingFileProtectionNone API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                                  = 0x10000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:29:5: warning: imported declaration 'NSDataWritingFileProtectionNone' could not be mapped to 'noFileProtection'
+    NSDataWritingFileProtectionNone API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                                  = 0x10000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:29:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingFileProtectionNone API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                                  = 0x10000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:30:5: warning: imported declaration 'NSDataWritingFileProtectionComplete' could not be mapped to 'completeFileProtection'
+    NSDataWritingFileProtectionComplete API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                              = 0x20000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:30:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingFileProtectionComplete API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                              = 0x20000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:30:5: warning: imported declaration 'NSDataWritingFileProtectionComplete' could not be mapped to 'completeFileProtection'
+    NSDataWritingFileProtectionComplete API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                              = 0x20000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:30:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingFileProtectionComplete API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                              = 0x20000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:31:5: warning: imported declaration 'NSDataWritingFileProtectionCompleteUnlessOpen' could not be mapped to 'completeFileProtectionUnlessOpen'
+    NSDataWritingFileProtectionCompleteUnlessOpen API_AVAILABLE(macos(11.0), ios(5.0), watchos(2.0), tvos(9.0))                    = 0x30000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:31:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingFileProtectionCompleteUnlessOpen API_AVAILABLE(macos(11.0), ios(5.0), watchos(2.0), tvos(9.0))                    = 0x30000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:31:5: warning: imported declaration 'NSDataWritingFileProtectionCompleteUnlessOpen' could not be mapped to 'completeFileProtectionUnlessOpen'
+    NSDataWritingFileProtectionCompleteUnlessOpen API_AVAILABLE(macos(11.0), ios(5.0), watchos(2.0), tvos(9.0))                    = 0x30000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:31:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingFileProtectionCompleteUnlessOpen API_AVAILABLE(macos(11.0), ios(5.0), watchos(2.0), tvos(9.0))                    = 0x30000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:32:5: warning: imported declaration 'NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication' could not be mapped to 'completeFileProtectionUntilFirstUserAuthentication'
+    NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication API_AVAILABLE(macos(11.0), ios(5.0), watchos(2.0), tvos(9.0))  = 0x40000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:32:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication API_AVAILABLE(macos(11.0), ios(5.0), watchos(2.0), tvos(9.0))  = 0x40000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:32:5: warning: imported declaration 'NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication' could not be mapped to 'completeFileProtectionUntilFirstUserAuthentication'
+    NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication API_AVAILABLE(macos(11.0), ios(5.0), watchos(2.0), tvos(9.0))  = 0x40000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:32:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication API_AVAILABLE(macos(11.0), ios(5.0), watchos(2.0), tvos(9.0))  = 0x40000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:33:5: warning: imported declaration 'NSDataWritingFileProtectionMask' could not be mapped to 'fileProtectionMask'
+    NSDataWritingFileProtectionMask API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                                  = 0xf0000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:33:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingFileProtectionMask API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                                  = 0xf0000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:33:5: warning: imported declaration 'NSDataWritingFileProtectionMask' could not be mapped to 'fileProtectionMask'
+    NSDataWritingFileProtectionMask API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                                  = 0xf0000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:33:5: note: please report this issue to the owners of 'Foundation'
+    NSDataWritingFileProtectionMask API_AVAILABLE(macos(11.0), ios(4.0), watchos(2.0), tvos(9.0))                                  = 0xf0000000,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:52:5: warning: imported declaration 'NSDataBase64Encoding64CharacterLineLength' could not be mapped to 'lineLength64Characters'
+    NSDataBase64Encoding64CharacterLineLength = 1UL << 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:52:5: note: please report this issue to the owners of 'Foundation'
+    NSDataBase64Encoding64CharacterLineLength = 1UL << 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:52:5: warning: imported declaration 'NSDataBase64Encoding64CharacterLineLength' could not be mapped to 'lineLength64Characters'
+    NSDataBase64Encoding64CharacterLineLength = 1UL << 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:52:5: note: please report this issue to the owners of 'Foundation'
+    NSDataBase64Encoding64CharacterLineLength = 1UL << 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:53:5: warning: imported declaration 'NSDataBase64Encoding76CharacterLineLength' could not be mapped to 'lineLength76Characters'
+    NSDataBase64Encoding76CharacterLineLength = 1UL << 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:53:5: note: please report this issue to the owners of 'Foundation'
+    NSDataBase64Encoding76CharacterLineLength = 1UL << 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:53:5: warning: imported declaration 'NSDataBase64Encoding76CharacterLineLength' could not be mapped to 'lineLength76Characters'
+    NSDataBase64Encoding76CharacterLineLength = 1UL << 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:53:5: note: please report this issue to the owners of 'Foundation'
+    NSDataBase64Encoding76CharacterLineLength = 1UL << 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:56:5: warning: imported declaration 'NSDataBase64EncodingEndLineWithCarriageReturn' could not be mapped to 'endLineWithCarriageReturn'
+    NSDataBase64EncodingEndLineWithCarriageReturn = 1UL << 4,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:56:5: note: please report this issue to the owners of 'Foundation'
+    NSDataBase64EncodingEndLineWithCarriageReturn = 1UL << 4,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:56:5: warning: imported declaration 'NSDataBase64EncodingEndLineWithCarriageReturn' could not be mapped to 'endLineWithCarriageReturn'
+    NSDataBase64EncodingEndLineWithCarriageReturn = 1UL << 4,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:56:5: note: please report this issue to the owners of 'Foundation'
+    NSDataBase64EncodingEndLineWithCarriageReturn = 1UL << 4,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:57:5: warning: imported declaration 'NSDataBase64EncodingEndLineWithLineFeed' could not be mapped to 'endLineWithLineFeed'
+    NSDataBase64EncodingEndLineWithLineFeed = 1UL << 5,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:57:5: note: please report this issue to the owners of 'Foundation'
+    NSDataBase64EncodingEndLineWithLineFeed = 1UL << 5,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:57:5: warning: imported declaration 'NSDataBase64EncodingEndLineWithLineFeed' could not be mapped to 'endLineWithLineFeed'
+    NSDataBase64EncodingEndLineWithLineFeed = 1UL << 5,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSData.h:57:5: note: please report this issue to the owners of 'Foundation'
+    NSDataBase64EncodingEndLineWithLineFeed = 1UL << 5,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSPointerFunctions.h:35:5: warning: imported declaration 'NSPointerFunctionsStrongMemory' could not be mapped to 'strongMemory'
+    NSPointerFunctionsStrongMemory API_AVAILABLE(macos(10.5), ios(6.0), watchos(2.0), tvos(9.0)) = (0UL << 0),       // use strong write-barrier to backing store; use GC memory on copyIn
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSPointerFunctions.h:35:5: note: please report this issue to the owners of 'Foundation'
+    NSPointerFunctionsStrongMemory API_AVAILABLE(macos(10.5), ios(6.0), watchos(2.0), tvos(9.0)) = (0UL << 0),       // use strong write-barrier to backing store; use GC memory on copyIn
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSPointerFunctions.h:35:5: warning: imported declaration 'NSPointerFunctionsStrongMemory' could not be mapped to 'strongMemory'
+    NSPointerFunctionsStrongMemory API_AVAILABLE(macos(10.5), ios(6.0), watchos(2.0), tvos(9.0)) = (0UL << 0),       // use strong write-barrier to backing store; use GC memory on copyIn
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSPointerFunctions.h:35:5: note: please report this issue to the owners of 'Foundation'
+    NSPointerFunctionsStrongMemory API_AVAILABLE(macos(10.5), ios(6.0), watchos(2.0), tvos(9.0)) = (0UL << 0),       // use strong write-barrier to backing store; use GC memory on copyIn
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSPointerFunctions.h:44:5: warning: imported declaration 'NSPointerFunctionsObjectPersonality' could not be mapped to 'objectPersonality'
+    NSPointerFunctionsObjectPersonality API_AVAILABLE(macos(10.5), ios(6.0), watchos(2.0), tvos(9.0)) = (0UL << 8),         // use -hash and -isEqual, object description
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSPointerFunctions.h:44:5: note: please report this issue to the owners of 'Foundation'
+    NSPointerFunctionsObjectPersonality API_AVAILABLE(macos(10.5), ios(6.0), watchos(2.0), tvos(9.0)) = (0UL << 8),         // use -hash and -isEqual, object description
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSPointerFunctions.h:44:5: warning: imported declaration 'NSPointerFunctionsObjectPersonality' could not be mapped to 'objectPersonality'
+    NSPointerFunctionsObjectPersonality API_AVAILABLE(macos(10.5), ios(6.0), watchos(2.0), tvos(9.0)) = (0UL << 8),         // use -hash and -isEqual, object description
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSPointerFunctions.h:44:5: note: please report this issue to the owners of 'Foundation'
+    NSPointerFunctionsObjectPersonality API_AVAILABLE(macos(10.5), ios(6.0), watchos(2.0), tvos(9.0)) = (0UL << 8),         // use -hash and -isEqual, object description
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:19:5: warning: imported declaration 'NSNotificationNoCoalescing' could not be mapped to 'none'
+    NSNotificationNoCoalescing = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:19:5: note: please report this issue to the owners of 'Foundation'
+    NSNotificationNoCoalescing = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:19:5: warning: imported declaration 'NSNotificationNoCoalescing' could not be mapped to 'none'
+    NSNotificationNoCoalescing = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:19:5: note: please report this issue to the owners of 'Foundation'
+    NSNotificationNoCoalescing = 0,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:20:5: warning: imported declaration 'NSNotificationCoalescingOnName' could not be mapped to 'onName'
+    NSNotificationCoalescingOnName = 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:20:5: note: please report this issue to the owners of 'Foundation'
+    NSNotificationCoalescingOnName = 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:20:5: warning: imported declaration 'NSNotificationCoalescingOnName' could not be mapped to 'onName'
+    NSNotificationCoalescingOnName = 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:20:5: note: please report this issue to the owners of 'Foundation'
+    NSNotificationCoalescingOnName = 1,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:21:5: warning: imported declaration 'NSNotificationCoalescingOnSender' could not be mapped to 'onSender'
+    NSNotificationCoalescingOnSender = 2
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:21:5: note: please report this issue to the owners of 'Foundation'
+    NSNotificationCoalescingOnSender = 2
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:21:5: warning: imported declaration 'NSNotificationCoalescingOnSender' could not be mapped to 'onSender'
+    NSNotificationCoalescingOnSender = 2
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSNotificationQueue.h:21:5: note: please report this issue to the owners of 'Foundation'
+    NSNotificationCoalescingOnSender = 2
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:11:5: warning: imported declaration 'NSCaseInsensitivePredicateOption' could not be mapped to 'caseInsensitive'
+    NSCaseInsensitivePredicateOption = 0x01,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:11:5: note: please report this issue to the owners of 'Foundation'
+    NSCaseInsensitivePredicateOption = 0x01,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:11:5: warning: imported declaration 'NSCaseInsensitivePredicateOption' could not be mapped to 'caseInsensitive'
+    NSCaseInsensitivePredicateOption = 0x01,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:11:5: note: please report this issue to the owners of 'Foundation'
+    NSCaseInsensitivePredicateOption = 0x01,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:12:5: warning: imported declaration 'NSDiacriticInsensitivePredicateOption' could not be mapped to 'diacriticInsensitive'
+    NSDiacriticInsensitivePredicateOption = 0x02,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:12:5: note: please report this issue to the owners of 'Foundation'
+    NSDiacriticInsensitivePredicateOption = 0x02,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:12:5: warning: imported declaration 'NSDiacriticInsensitivePredicateOption' could not be mapped to 'diacriticInsensitive'
+    NSDiacriticInsensitivePredicateOption = 0x02,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:12:5: note: please report this issue to the owners of 'Foundation'
+    NSDiacriticInsensitivePredicateOption = 0x02,
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:13:5: warning: imported declaration 'NSNormalizedPredicateOption' could not be mapped to 'normalized'
+    NSNormalizedPredicateOption API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0)) = 0x04, /* Indicate that the strings to be compared have been preprocessed; this supersedes other options and is intended as a performance optimization option */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:13:5: note: please report this issue to the owners of 'Foundation'
+    NSNormalizedPredicateOption API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0)) = 0x04, /* Indicate that the strings to be compared have been preprocessed; this supersedes other options and is intended as a performance optimization option */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:13:5: warning: imported declaration 'NSNormalizedPredicateOption' could not be mapped to 'normalized'
+    NSNormalizedPredicateOption API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0)) = 0x04, /* Indicate that the strings to be compared have been preprocessed; this supersedes other options and is intended as a performance optimization option */
+    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSComparisonPredicate.h:13:5: note: please report this issue to the owners of 'Foundation'
+    NSNormalizedPredicateOption API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0)) = 0x04, /* Indicate that the strings to be compared have been preprocessed; this supersedes other options and is intended as a performance optimization option */
+    ^
 @_exported import CoreFoundation
 
 var NSFileNoSuchFileError: Int { get }

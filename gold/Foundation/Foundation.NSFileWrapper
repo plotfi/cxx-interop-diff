@@ -1,48 +1,44 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileWrapperReadingOptions = Int
 @available(iOS 4.0, *)
-@available(swift, obsoleted: 3, renamed: "FileWrapper.ReadingOptions")
-typealias NSFileWrapperReadingOptions = FileWrapper.ReadingOptions
-extension FileWrapper {
-  @available(iOS 4.0, *)
-  struct ReadingOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = FileWrapper.ReadingOptions
-    typealias ArrayLiteralElement = FileWrapper.ReadingOptions
-    static var immediate: FileWrapper.ReadingOptions { get }
-    @available(swift, obsoleted: 3, renamed: "immediate")
-    static var Immediate: FileWrapper.ReadingOptions { get }
-    static var withoutMapping: FileWrapper.ReadingOptions { get }
-    @available(swift, obsoleted: 3, renamed: "withoutMapping")
-    static var WithoutMapping: FileWrapper.ReadingOptions { get }
-  }
-  @available(iOS 4.0, *)
-  struct WritingOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = FileWrapper.WritingOptions
-    typealias ArrayLiteralElement = FileWrapper.WritingOptions
-    static var atomic: FileWrapper.WritingOptions { get }
-    @available(swift, obsoleted: 3, renamed: "atomic")
-    static var Atomic: FileWrapper.WritingOptions { get }
-    static var withNameUpdating: FileWrapper.WritingOptions { get }
-    @available(swift, obsoleted: 3, renamed: "withNameUpdating")
-    static var WithNameUpdating: FileWrapper.WritingOptions { get }
-  }
+struct NSFileWrapperReadingOptions : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt)
+  let rawValue: UInt
+  typealias RawValue = UInt
+  typealias Element = NSFileWrapperReadingOptions
+  typealias ArrayLiteralElement = NSFileWrapperReadingOptions
+  static var immediate: NSFileWrapperReadingOptions { get }
+  @available(swift, obsoleted: 3, renamed: "immediate")
+  static var Immediate: NSFileWrapperReadingOptions { get }
+  static var withoutMapping: NSFileWrapperReadingOptions { get }
+  @available(swift, obsoleted: 3, renamed: "withoutMapping")
+  static var WithoutMapping: NSFileWrapperReadingOptions { get }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileWrapperWritingOptions = Int
 @available(iOS 4.0, *)
-@available(swift, obsoleted: 3, renamed: "FileWrapper.WritingOptions")
-typealias NSFileWrapperWritingOptions = FileWrapper.WritingOptions
+struct NSFileWrapperWritingOptions : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt)
+  let rawValue: UInt
+  typealias RawValue = UInt
+  typealias Element = NSFileWrapperWritingOptions
+  typealias ArrayLiteralElement = NSFileWrapperWritingOptions
+  static var atomic: NSFileWrapperWritingOptions { get }
+  @available(swift, obsoleted: 3, renamed: "atomic")
+  static var Atomic: NSFileWrapperWritingOptions { get }
+  static var withNameUpdating: NSFileWrapperWritingOptions { get }
+  @available(swift, obsoleted: 3, renamed: "withNameUpdating")
+  static var WithNameUpdating: NSFileWrapperWritingOptions { get }
+}
 @available(iOS 4.0, *)
 class FileWrapper : NSObject, NSSecureCoding {
   @available(iOS 4.0, *)
-  init(url: URL, options: FileWrapper.ReadingOptions = []) throws
+  init(url: URL, options: NSFileWrapperReadingOptions = []) throws
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "init(url:options:)")
-  init(URL url: URL, options: FileWrapper.ReadingOptions = []) throws
+  init(URL url: URL, options: NSFileWrapperReadingOptions = []) throws
   init(directoryWithFileWrappers childrenByPreferredName: [String : FileWrapper])
   init(regularFileWithContents contents: Data)
   @available(iOS 4.0, *)
@@ -67,15 +63,15 @@ class FileWrapper : NSObject, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "matchesContents(of:)")
   func matchesContentsOfURL(_ url: URL) -> Bool
   @available(iOS 4.0, *)
-  func read(from url: URL, options: FileWrapper.ReadingOptions = []) throws
+  func read(from url: URL, options: NSFileWrapperReadingOptions = []) throws
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "read(from:options:)")
-  func readFromURL(_ url: URL, options: FileWrapper.ReadingOptions = []) throws
+  func readFromURL(_ url: URL, options: NSFileWrapperReadingOptions = []) throws
   @available(iOS 4.0, *)
-  func write(to url: URL, options: FileWrapper.WritingOptions = [], originalContentsURL: URL?) throws
+  func write(to url: URL, options: NSFileWrapperWritingOptions = [], originalContentsURL: URL?) throws
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "write(to:options:originalContentsURL:)")
-  func writeToURL(_ url: URL, options: FileWrapper.WritingOptions = [], originalContentsURL: URL?) throws
+  func writeToURL(_ url: URL, options: NSFileWrapperWritingOptions = [], originalContentsURL: URL?) throws
   var serializedRepresentation: Data? { get }
   func addFileWrapper(_ child: FileWrapper) -> String
   func addRegularFile(withContents data: Data, preferredFilename fileName: String) -> String

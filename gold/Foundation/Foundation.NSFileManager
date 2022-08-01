@@ -37,21 +37,86 @@ struct NSFileProviderServiceName : _ObjectiveCBridgeable, Hashable, Equatable, _
   typealias _ObjectiveCType = NSString
 }
 var NSFoundationVersionWithFileManagerResourceForkSupport: Int32 { get }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSVolumeEnumerationOptions = Int
 @available(iOS 4.0, *)
-@available(swift, obsoleted: 3, renamed: "FileManager.VolumeEnumerationOptions")
-typealias NSVolumeEnumerationOptions = FileManager.VolumeEnumerationOptions
+struct NSVolumeEnumerationOptions : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt)
+  let rawValue: UInt
+  typealias RawValue = UInt
+  typealias Element = NSVolumeEnumerationOptions
+  typealias ArrayLiteralElement = NSVolumeEnumerationOptions
+  static var skipHiddenVolumes: NSVolumeEnumerationOptions { get }
+  @available(swift, obsoleted: 3, renamed: "skipHiddenVolumes")
+  static var SkipHiddenVolumes: NSVolumeEnumerationOptions { get }
+  static var produceFileReferenceURLs: NSVolumeEnumerationOptions { get }
+  @available(swift, obsoleted: 3, renamed: "produceFileReferenceURLs")
+  static var ProduceFileReferenceURLs: NSVolumeEnumerationOptions { get }
+}
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSDirectoryEnumerationOptions = Int
 @available(iOS 4.0, *)
-@available(swift, obsoleted: 3, renamed: "FileManager.DirectoryEnumerationOptions")
-typealias NSDirectoryEnumerationOptions = FileManager.DirectoryEnumerationOptions
+struct NSDirectoryEnumerationOptions : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt)
+  let rawValue: UInt
+  typealias RawValue = UInt
+  typealias Element = NSDirectoryEnumerationOptions
+  typealias ArrayLiteralElement = NSDirectoryEnumerationOptions
+  static var skipsSubdirectoryDescendants: NSDirectoryEnumerationOptions { get }
+  @available(swift, obsoleted: 3, renamed: "skipsSubdirectoryDescendants")
+  static var SkipsSubdirectoryDescendants: NSDirectoryEnumerationOptions { get }
+  static var skipsPackageDescendants: NSDirectoryEnumerationOptions { get }
+  @available(swift, obsoleted: 3, renamed: "skipsPackageDescendants")
+  static var SkipsPackageDescendants: NSDirectoryEnumerationOptions { get }
+  static var skipsHiddenFiles: NSDirectoryEnumerationOptions { get }
+  @available(swift, obsoleted: 3, renamed: "skipsHiddenFiles")
+  static var SkipsHiddenFiles: NSDirectoryEnumerationOptions { get }
+  @available(iOS 13.0, *)
+  static var includesDirectoriesPostOrder: NSDirectoryEnumerationOptions { get }
+  @available(iOS 13.0, *)
+  @available(swift, obsoleted: 3, renamed: "includesDirectoriesPostOrder")
+  static var IncludesDirectoriesPostOrder: NSDirectoryEnumerationOptions { get }
+  @available(iOS 13.0, *)
+  static var producesRelativePathURLs: NSDirectoryEnumerationOptions { get }
+  @available(iOS 13.0, *)
+  @available(swift, obsoleted: 3, renamed: "producesRelativePathURLs")
+  static var ProducesRelativePathURLs: NSDirectoryEnumerationOptions { get }
+}
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileManagerItemReplacementOptions = Int
 @available(iOS 4.0, *)
-@available(swift, obsoleted: 3, renamed: "FileManager.ItemReplacementOptions")
-typealias NSFileManagerItemReplacementOptions = FileManager.ItemReplacementOptions
+struct NSFileManagerItemReplacementOptions : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt)
+  let rawValue: UInt
+  typealias RawValue = UInt
+  typealias Element = NSFileManagerItemReplacementOptions
+  typealias ArrayLiteralElement = NSFileManagerItemReplacementOptions
+  static var usingNewMetadataOnly: NSFileManagerItemReplacementOptions { get }
+  @available(swift, obsoleted: 3, renamed: "usingNewMetadataOnly")
+  static var UsingNewMetadataOnly: NSFileManagerItemReplacementOptions { get }
+  static var withoutDeletingBackupItem: NSFileManagerItemReplacementOptions { get }
+  @available(swift, obsoleted: 3, renamed: "withoutDeletingBackupItem")
+  static var WithoutDeletingBackupItem: NSFileManagerItemReplacementOptions { get }
+}
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 3, renamed: "FileManager.URLRelationship")
 typealias NSURLRelationship = FileManager.URLRelationship
-@available(swift, obsoleted: 3, renamed: "FileManager.UnmountOptions")
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileManagerUnmountOptions = Int
 @available(iOS, unavailable)
-typealias NSFileManagerUnmountOptions = FileManager.UnmountOptions
+struct NSFileManagerUnmountOptions : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt)
+  let rawValue: UInt
+  typealias RawValue = UInt
+  typealias Element = NSFileManagerUnmountOptions
+  typealias ArrayLiteralElement = NSFileManagerUnmountOptions
+  static var allPartitionsAndEjectDisk: NSFileManagerUnmountOptions { get }
+  @available(swift, obsoleted: 3, renamed: "allPartitionsAndEjectDisk")
+  static var AllPartitionsAndEjectDisk: NSFileManagerUnmountOptions { get }
+  static var withoutUI: NSFileManagerUnmountOptions { get }
+  @available(swift, obsoleted: 3, renamed: "withoutUI")
+  static var WithoutUI: NSFileManagerUnmountOptions { get }
+}
 @available(iOS, unavailable)
 let NSFileManagerUnmountDissentingProcessIdentifierErrorKey: String
 @available(iOS 6.0, *)
@@ -66,42 +131,42 @@ class FileManager : NSObject {
   @available(swift, obsoleted: 3, renamed: "default")
   class var defaultManager: FileManager { get }
   @available(iOS 4.0, *)
-  func mountedVolumeURLs(includingResourceValuesForKeys propertyKeys: [URLResourceKey]?, options: FileManager.VolumeEnumerationOptions = []) -> [URL]?
+  func mountedVolumeURLs(includingResourceValuesForKeys propertyKeys: [URLResourceKey]?, options: NSVolumeEnumerationOptions = []) -> [URL]?
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "mountedVolumeURLs(includingResourceValuesForKeys:options:)")
-  func mountedVolumeURLsIncludingResourceValuesForKeys(_ propertyKeys: [URLResourceKey]?, options: FileManager.VolumeEnumerationOptions = []) -> [URL]?
+  func mountedVolumeURLsIncludingResourceValuesForKeys(_ propertyKeys: [URLResourceKey]?, options: NSVolumeEnumerationOptions = []) -> [URL]?
   @available(iOS, unavailable)
-  func unmountVolume(at url: URL, options mask: FileManager.UnmountOptions = [], completionHandler: @escaping @Sendable (Error?) -> Void)
+  func unmountVolume(at url: URL, options mask: NSFileManagerUnmountOptions = [], completionHandler: @escaping @Sendable (Error?) -> Void)
   @available(iOS, unavailable)
-  func unmountVolume(at url: URL, options mask: FileManager.UnmountOptions = []) async throws
+  func unmountVolume(at url: URL, options mask: NSFileManagerUnmountOptions = []) async throws
   @available(swift, obsoleted: 3, renamed: "unmountVolume(at:options:completionHandler:)")
   @available(iOS, unavailable)
-  func unmountVolumeAtURL(_ url: URL, options mask: FileManager.UnmountOptions = [], completionHandler: @escaping @Sendable (Error?) -> Void)
+  func unmountVolumeAtURL(_ url: URL, options mask: NSFileManagerUnmountOptions = [], completionHandler: @escaping @Sendable (Error?) -> Void)
   @available(iOS 4.0, *)
-  func contentsOfDirectory(at url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: FileManager.DirectoryEnumerationOptions = []) throws -> [URL]
+  func contentsOfDirectory(at url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: NSDirectoryEnumerationOptions = []) throws -> [URL]
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "contentsOfDirectory(at:includingPropertiesForKeys:options:)")
-  func contentsOfDirectoryAtURL(_ url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: FileManager.DirectoryEnumerationOptions = []) throws -> [URL]
+  func contentsOfDirectoryAtURL(_ url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: NSDirectoryEnumerationOptions = []) throws -> [URL]
   @available(iOS 4.0, *)
-  func urls(for directory: FileManager.SearchPathDirectory, in domainMask: FileManager.SearchPathDomainMask) -> [URL]
+  func urls(for directory: FileManager.SearchPathDirectory, in domainMask: NSSearchPathDomainMask) -> [URL]
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "urls(for:in:)")
-  func URLsForDirectory(_ directory: FileManager.SearchPathDirectory, inDomains domainMask: FileManager.SearchPathDomainMask) -> [URL]
+  func URLsForDirectory(_ directory: FileManager.SearchPathDirectory, inDomains domainMask: NSSearchPathDomainMask) -> [URL]
   @available(iOS 4.0, *)
-  func url(for directory: FileManager.SearchPathDirectory, in domain: FileManager.SearchPathDomainMask, appropriateFor url: URL?, create shouldCreate: Bool) throws -> URL
+  func url(for directory: FileManager.SearchPathDirectory, in domain: NSSearchPathDomainMask, appropriateFor url: URL?, create shouldCreate: Bool) throws -> URL
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "url(for:in:appropriateFor:create:)")
-  func URLForDirectory(_ directory: FileManager.SearchPathDirectory, inDomain domain: FileManager.SearchPathDomainMask, appropriateForURL url: URL?, create shouldCreate: Bool) throws -> URL
+  func URLForDirectory(_ directory: FileManager.SearchPathDirectory, inDomain domain: NSSearchPathDomainMask, appropriateForURL url: URL?, create shouldCreate: Bool) throws -> URL
   @available(iOS 8.0, *)
   func getRelationship(_ outRelationship: UnsafeMutablePointer<FileManager.URLRelationship>, ofDirectoryAt directoryURL: URL, toItemAt otherURL: URL) throws
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "getRelationship(_:ofDirectoryAt:toItemAt:)")
   func getRelationship(_ outRelationship: UnsafeMutablePointer<FileManager.URLRelationship>, ofDirectoryAtURL directoryURL: URL, toItemAtURL otherURL: URL) throws
   @available(iOS 8.0, *)
-  func getRelationship(_ outRelationship: UnsafeMutablePointer<FileManager.URLRelationship>, of directory: FileManager.SearchPathDirectory, in domainMask: FileManager.SearchPathDomainMask, toItemAt url: URL) throws
+  func getRelationship(_ outRelationship: UnsafeMutablePointer<FileManager.URLRelationship>, of directory: FileManager.SearchPathDirectory, inDomain domainMask: NSSearchPathDomainMask, toItemAt url: URL) throws
   @available(iOS 8.0, *)
-  @available(swift, obsoleted: 3, renamed: "getRelationship(_:of:in:toItemAt:)")
-  func getRelationship(_ outRelationship: UnsafeMutablePointer<FileManager.URLRelationship>, ofDirectory directory: FileManager.SearchPathDirectory, inDomain domainMask: FileManager.SearchPathDomainMask, toItemAtURL url: URL) throws
+  @available(swift, obsoleted: 3, renamed: "getRelationship(_:of:inDomain:toItemAt:)")
+  func getRelationship(_ outRelationship: UnsafeMutablePointer<FileManager.URLRelationship>, ofDirectory directory: FileManager.SearchPathDirectory, inDomain domainMask: NSSearchPathDomainMask, toItemAtURL url: URL) throws
   @available(iOS 5.0, *)
   func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool, attributes: [FileAttributeKey : Any]? = nil) throws
   @available(iOS 5.0, *)
@@ -261,10 +326,10 @@ class FileManager : NSObject {
   @available(swift, obsoleted: 3, renamed: "enumerator(atPath:)")
   func enumeratorAtPath(_ path: String) -> FileManager.DirectoryEnumerator?
   @available(iOS 4.0, *)
-  func __enumerator(at url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: FileManager.DirectoryEnumerationOptions = [], errorHandler handler: ((URL, Error) -> Bool)? = nil) -> FileManager.DirectoryEnumerator?
+  func __enumerator(at url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: NSDirectoryEnumerationOptions = [], errorHandler handler: ((URL, Error) -> Bool)? = nil) -> FileManager.DirectoryEnumerator?
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "__enumerator(at:includingPropertiesForKeys:options:errorHandler:)")
-  func __enumeratorAtURL(_ url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: FileManager.DirectoryEnumerationOptions = [], errorHandler handler: ((URL, Error) -> Bool)? = nil) -> FileManager.DirectoryEnumerator?
+  func __enumeratorAtURL(_ url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: NSDirectoryEnumerationOptions = [], errorHandler handler: ((URL, Error) -> Bool)? = nil) -> FileManager.DirectoryEnumerator?
   func subpaths(atPath path: String) -> [String]?
   @available(swift, obsoleted: 3, renamed: "subpaths(atPath:)")
   func subpathsAtPath(_ path: String) -> [String]?
@@ -281,10 +346,10 @@ class FileManager : NSObject {
   @available(swift, obsoleted: 3, renamed: "string(withFileSystemRepresentation:length:)")
   func stringWithFileSystemRepresentation(_ str: UnsafePointer<CChar>, length len: Int) -> String
   @available(iOS 4.0, *)
-  func replaceItem(at originalItemURL: URL, withItemAt newItemURL: URL, backupItemName: String?, options: FileManager.ItemReplacementOptions = [], resultingItemURL resultingURL: AutoreleasingUnsafeMutablePointer<NSURL?>?) throws
+  func replaceItem(at originalItemURL: URL, withItemAt newItemURL: URL, backupItemName: String?, options: NSFileManagerItemReplacementOptions = [], resultingItemURL resultingURL: AutoreleasingUnsafeMutablePointer<NSURL?>?) throws
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "replaceItem(at:withItemAt:backupItemName:options:resultingItemURL:)")
-  func replaceItemAtURL(_ originalItemURL: URL, withItemAtURL newItemURL: URL, backupItemName: String?, options: FileManager.ItemReplacementOptions = [], resultingItemURL resultingURL: AutoreleasingUnsafeMutablePointer<NSURL?>?) throws
+  func replaceItemAtURL(_ originalItemURL: URL, withItemAtURL newItemURL: URL, backupItemName: String?, options: NSFileManagerItemReplacementOptions = [], resultingItemURL resultingURL: AutoreleasingUnsafeMutablePointer<NSURL?>?) throws
   @available(iOS 5.0, *)
   func setUbiquitous(_ flag: Bool, itemAt url: URL, destinationURL: URL) throws
   @available(iOS 5.0, *)
@@ -333,16 +398,6 @@ class FileManager : NSObject {
 }
 
 extension FileManager {
-  @available(*, deprecated, renamed: "replaceItemAt(_:withItemAt:backupItemName:options:)")
-  func replaceItemAtURL(originalItemURL: NSURL, withItemAtURL newItemURL: NSURL, backupItemName: String? = nil, options: FileManager.ItemReplacementOptions = []) throws -> NSURL?
-  @available(macOS 10.6, iOS 4.0, *)
-  @available(swift, obsoleted: 4)
-  func replaceItemAt(_ originalItemURL: URL, withItemAt newItemURL: URL, backupItemName: String? = nil, options: FileManager.ItemReplacementOptions = []) throws -> NSURL?
-  @available(swift 4)
-  @available(macOS 10.6, iOS 4.0, *)
-  func replaceItemAt(_ originalItemURL: URL, withItemAt newItemURL: URL, backupItemName: String? = nil, options: FileManager.ItemReplacementOptions = []) throws -> URL?
-  @available(macOS 10.6, iOS 4.0, *)
-  @nonobjc func enumerator(at url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: FileManager.DirectoryEnumerationOptions = [], errorHandler handler: ((URL, Error) -> Bool)? = nil) -> FileManager.DirectoryEnumerator?
 }
 @available(swift, obsoleted: 3, renamed: "FileManager")
 typealias NSFileManager = FileManager
@@ -434,61 +489,6 @@ extension FileManager {
     func skipDescendants()
     init()
   }
-  @available(iOS 4.0, *)
-  struct VolumeEnumerationOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = FileManager.VolumeEnumerationOptions
-    typealias ArrayLiteralElement = FileManager.VolumeEnumerationOptions
-    static var skipHiddenVolumes: FileManager.VolumeEnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "skipHiddenVolumes")
-    static var SkipHiddenVolumes: FileManager.VolumeEnumerationOptions { get }
-    static var produceFileReferenceURLs: FileManager.VolumeEnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "produceFileReferenceURLs")
-    static var ProduceFileReferenceURLs: FileManager.VolumeEnumerationOptions { get }
-  }
-  @available(iOS 4.0, *)
-  struct DirectoryEnumerationOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = FileManager.DirectoryEnumerationOptions
-    typealias ArrayLiteralElement = FileManager.DirectoryEnumerationOptions
-    static var skipsSubdirectoryDescendants: FileManager.DirectoryEnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "skipsSubdirectoryDescendants")
-    static var SkipsSubdirectoryDescendants: FileManager.DirectoryEnumerationOptions { get }
-    static var skipsPackageDescendants: FileManager.DirectoryEnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "skipsPackageDescendants")
-    static var SkipsPackageDescendants: FileManager.DirectoryEnumerationOptions { get }
-    static var skipsHiddenFiles: FileManager.DirectoryEnumerationOptions { get }
-    @available(swift, obsoleted: 3, renamed: "skipsHiddenFiles")
-    static var SkipsHiddenFiles: FileManager.DirectoryEnumerationOptions { get }
-    @available(iOS 13.0, *)
-    static var includesDirectoriesPostOrder: FileManager.DirectoryEnumerationOptions { get }
-    @available(iOS 13.0, *)
-    @available(swift, obsoleted: 3, renamed: "includesDirectoriesPostOrder")
-    static var IncludesDirectoriesPostOrder: FileManager.DirectoryEnumerationOptions { get }
-    @available(iOS 13.0, *)
-    static var producesRelativePathURLs: FileManager.DirectoryEnumerationOptions { get }
-    @available(iOS 13.0, *)
-    @available(swift, obsoleted: 3, renamed: "producesRelativePathURLs")
-    static var ProducesRelativePathURLs: FileManager.DirectoryEnumerationOptions { get }
-  }
-  @available(iOS 4.0, *)
-  struct ItemReplacementOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = FileManager.ItemReplacementOptions
-    typealias ArrayLiteralElement = FileManager.ItemReplacementOptions
-    static var usingNewMetadataOnly: FileManager.ItemReplacementOptions { get }
-    @available(swift, obsoleted: 3, renamed: "usingNewMetadataOnly")
-    static var UsingNewMetadataOnly: FileManager.ItemReplacementOptions { get }
-    static var withoutDeletingBackupItem: FileManager.ItemReplacementOptions { get }
-    @available(swift, obsoleted: 3, renamed: "withoutDeletingBackupItem")
-    static var WithoutDeletingBackupItem: FileManager.ItemReplacementOptions { get }
-  }
   @available(iOS 8.0, *)
   enum URLRelationship : Int, @unchecked Sendable {
     init?(rawValue: Int)
@@ -503,20 +503,6 @@ extension FileManager {
     case other
     @available(swift, obsoleted: 3, renamed: "other")
     static var Other: FileManager.URLRelationship { get }
-  }
-  @available(iOS, unavailable)
-  struct UnmountOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = FileManager.UnmountOptions
-    typealias ArrayLiteralElement = FileManager.UnmountOptions
-    static var allPartitionsAndEjectDisk: FileManager.UnmountOptions { get }
-    @available(swift, obsoleted: 3, renamed: "allPartitionsAndEjectDisk")
-    static var AllPartitionsAndEjectDisk: FileManager.UnmountOptions { get }
-    static var withoutUI: FileManager.UnmountOptions { get }
-    @available(swift, obsoleted: 3, renamed: "withoutUI")
-    static var WithoutUI: FileManager.UnmountOptions { get }
   }
 }
 @available(iOS 11.0, *)

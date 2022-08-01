@@ -993,7 +993,6 @@ extension AttributedStringProtocol {
 
 @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
 extension AttributedStringProtocol {
-  func range<T>(of stringToFind: T, options: String.CompareOptions = [], locale: Locale? = nil) -> Range<AttributedString.Index>? where T : StringProtocol
 }
 
 @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
@@ -1306,8 +1305,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// - parameter component: A component to calculate a range for.
   /// - returns: The range, or nil if it could not be calculated.
   func maximumRange(of component: Calendar.Component) -> Range<Int>?
-  @available(*, unavailable, message: "use range(of:in:for:) instead")
-  func range(of smaller: NSCalendar.Unit, in larger: NSCalendar.Unit, for date: Date) -> NSRange
   /// Returns the range of absolute time values that a smaller calendar component (such as a day) can take on in a larger calendar component (such as a month) that includes a specified absolute time.
   ///
   /// You can use this method to calculate, for example, the range the `day` component can take on in the `month` in which `date` lies.
@@ -1316,8 +1313,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// - parameter date: The absolute time for which the calculation is performed.
   /// - returns: The range of absolute time values smaller can take on in larger at the time specified by date. Returns `nil` if larger is not logically bigger than smaller in the calendar, or the given combination of components does not make sense (or is a computation which is undefined).
   func range(of smaller: Calendar.Component, in larger: Calendar.Component, for date: Date) -> Range<Int>?
-  @available(*, unavailable, message: "use range(of:in:for:) instead")
-  func range(of unit: NSCalendar.Unit, start datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, for date: Date) -> Bool
   /// Returns, via two inout parameters, the starting time and duration of a given calendar component that contains a given date.
   ///
   /// - seealso: `range(of:for:)`
@@ -1351,8 +1346,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   func getEra(_ eraValuePointer: UnsafeMutablePointer<Int>?, yearForWeekOfYear yearValuePointer: UnsafeMutablePointer<Int>?, weekOfYear weekValuePointer: UnsafeMutablePointer<Int>?, weekday weekdayValuePointer: UnsafeMutablePointer<Int>?, from date: Date)
   @available(*, unavailable, message: "use dateComponents(_:from:) instead")
   func getHour(_ hourValuePointer: UnsafeMutablePointer<Int>?, minute minuteValuePointer: UnsafeMutablePointer<Int>?, second secondValuePointer: UnsafeMutablePointer<Int>?, nanosecond nanosecondValuePointer: UnsafeMutablePointer<Int>?, from date: Date)
-  @available(*, unavailable, message: "use date(byAdding:to:wrappingComponents:) instead")
-  func date(byAdding unit: NSCalendar.Unit, value: Int, to date: Date, options: NSCalendar.Options = []) -> Date?
   /// Returns a new `Date` representing the date calculated by adding components to a given date.
   ///
   /// - parameter components: A set of values to add to the date.
@@ -1360,8 +1353,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// - parameter wrappingComponents: If `true`, the component should be incremented and wrap around to zero/one on overflow, and should not cause higher components to be incremented. The default value is `false`.
   /// - returns: A new date, or nil if a date could not be calculated with the given input.
   func date(byAdding components: DateComponents, to date: Date, wrappingComponents: Bool = false) -> Date?
-  @available(*, unavailable, message: "use date(byAdding:to:wrappingComponents:) instead")
-  func date(byAdding comps: DateComponents, to date: Date, options opts: NSCalendar.Options = []) -> Date?
   /// Returns a new `Date` representing the date calculated by adding an amount of a specific component to a given date.
   ///
   /// - parameter component: A single component to add.
@@ -1376,8 +1367,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// - parameter components: Used as input to the search algorithm for finding a corresponding date.
   /// - returns: A new `Date`, or nil if a date could not be found which matches the components.
   func date(from components: DateComponents) -> Date?
-  @available(*, unavailable, renamed: "dateComponents(_:from:)")
-  func components(_ unitFlags: NSCalendar.Unit, from date: Date) -> DateComponents
   /// Returns all the date components of a date, using the calendar time zone.
   ///
   /// - note: If you want "date information in a given time zone" in order to display it, you should use `DateFormatter` to format the date.
@@ -1395,8 +1384,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// - returns: All components, calculated using the `Calendar` and `TimeZone`.
   @available(iOS 8.0, *)
   func dateComponents(in timeZone: TimeZone, from date: Date) -> DateComponents
-  @available(*, unavailable, renamed: "dateComponents(_:from:to:)")
-  func components(_ unitFlags: NSCalendar.Unit, from startingDate: Date, to resultDate: Date, options opts: NSCalendar.Options = []) -> DateComponents
   /// Returns the difference between two dates.
   ///
   /// - parameter components: Which components to compare.
@@ -1404,8 +1391,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// - parameter end: The ending date.
   /// - returns: The result of calculating the difference from start to end.
   func dateComponents(_ components: Set<Calendar.Component>, from start: Date, to end: Date) -> DateComponents
-  @available(*, unavailable, renamed: "dateComponents(_:from:to:)")
-  func components(_ unitFlags: NSCalendar.Unit, from startingDateComp: DateComponents, to resultDateComp: DateComponents, options: NSCalendar.Options = []) -> DateComponents
   /// Returns the difference between two dates specified as `DateComponents`.
   ///
   /// For components which are not specified in each `DateComponents`, but required to specify an absolute date, the base value of the component is assumed.  For example, for an `DateComponents` with just a `year` and a `month` specified, a `day` of 1, and an `hour`, `minute`, `second`, and `nanosecond` of 0 are assumed.
@@ -1437,8 +1422,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// - returns: The first moment of the given date.
   @available(iOS 8.0, *)
   func startOfDay(for date: Date) -> Date
-  @available(*, unavailable, renamed: "compare(_:to:toGranularity:)")
-  func compare(_ date1: Date, to date2: Date, toUnitGranularity unit: NSCalendar.Unit) -> ComparisonResult
   /// Compares the given dates down to the given component, reporting them `orderedSame` if they are the same in the given component and all larger components, otherwise either `orderedAscending` or `orderedDescending`.
   ///
   /// - parameter date1: A date to compare.
@@ -1446,8 +1429,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// - parameter: component: A granularity to compare. For example, pass `.hour` to check if two dates are in the same hour.
   @available(iOS 8.0, *)
   func compare(_ date1: Date, to date2: Date, toGranularity component: Calendar.Component) -> ComparisonResult
-  @available(*, unavailable, renamed: "isDate(_:equalTo:toGranularity:)")
-  func isDate(_ date1: Date, equalTo date2: Date, toUnitGranularity unit: NSCalendar.Unit) -> Bool
   /// Compares the given dates down to the given component, reporting them equal if they are the same in the given component and all larger components.
   ///
   /// - parameter date1: A date to compare.
@@ -1504,8 +1485,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// - returns: A `DateInterval`, or nil if the date is not in a weekend.
   @available(macOS 10.12, iOS 10.0, tvOS 10.0, watchOS 3.0, *)
   func dateIntervalOfWeekend(containing date: Date) -> DateInterval?
-  @available(*, unavailable, message: "use nextWeekend(startingAfter:start:interval:direction:) instead")
-  func nextWeekendStart(_ datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, options: NSCalendar.Options = [], after date: Date) -> Bool
   /// Returns the range of the next weekend via two inout parameters. The weekend starts strictly after the given date.
   ///
   /// If `direction` is `.backward`, then finds the previous weekend range strictly before the given date.
@@ -1567,8 +1546,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
     func hash(into hasher: inout Hasher)
     var hashValue: Int { get }
   }
-  @available(*, unavailable, message: "use nextWeekend(startingAfter:matching:matchingPolicy:repeatedTimePolicy:direction:using:) instead")
-  func enumerateDates(startingAfter start: Date, matching comps: DateComponents, options opts: NSCalendar.Options = [], using block: (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
   /// Computes the dates which match (or most closely match) a given set of components, and calls the closure once for each of them, until the enumeration is stopped.
   ///
   /// There will be at least one intervening date which does not match all the components (or the given date itself must not match) between the given date and any result.
@@ -1588,8 +1565,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// - parameter block: A closure that is called with search results.
   @available(iOS 8.0, *)
   func enumerateDates(startingAfter start: Date, matching components: DateComponents, matchingPolicy: Calendar.MatchingPolicy, repeatedTimePolicy: Calendar.RepeatedTimePolicy = .first, direction: Calendar.SearchDirection = .forward, using block: (_ result: Date?, _ exactMatch: Bool, _ stop: inout Bool) -> Void)
-  @available(*, unavailable, message: "use nextDate(after:matching:matchingPolicy:repeatedTimePolicy:direction:) instead")
-  func nextDate(after date: Date, matching comps: DateComponents, options: NSCalendar.Options = []) -> Date?
   /// Computes the next date which matches (or most closely matches) a given set of components.
   ///
   /// The general semantics follow those of the `enumerateDates` function.
@@ -1602,10 +1577,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// - returns: A `Date` representing the result of the search, or `nil` if a result could not be found.
   @available(iOS 8.0, *)
   func nextDate(after date: Date, matching components: DateComponents, matchingPolicy: Calendar.MatchingPolicy, repeatedTimePolicy: Calendar.RepeatedTimePolicy = .first, direction: Calendar.SearchDirection = .forward) -> Date?
-  @available(*, unavailable, message: "use nextDate(after:matching:matchingPolicy:repeatedTimePolicy:direction:) instead")
-  func nextDate(after date: Date, matchingHour hourValue: Int, minute minuteValue: Int, second secondValue: Int, options: NSCalendar.Options = []) -> Date?
-  @available(*, unavailable, renamed: "date(bySetting:value:of:)")
-  func date(bySettingUnit unit: NSCalendar.Unit, value v: Int, of date: Date, options opts: NSCalendar.Options = []) -> Date?
   /// Returns a new `Date` representing the date calculated by setting a specific component to a given time, and trying to keep lower components the same.  If the component already has that value, this may result in a date which is the same as the given date.
   ///
   /// Changing a component's value often will require higher or coupled components to change as well.  For example, setting the Weekday to Thursday usually will require the Day component to change its value, and possibly the Month and Year as well.
@@ -1613,8 +1584,6 @@ struct Calendar : Hashable, Equatable, ReferenceConvertible {
   /// The exact behavior of this method is implementation-defined. For example, if changing the weekday to Thursday, does that move forward to the next, backward to the previous, or to the nearest Thursday? The algorithm will try to produce a result which is in the next-larger component to the one given (there's a table of this mapping at the top of this document).  So for the "set to Thursday" example, find the Thursday in the Week in which the given date resides (which could be a forwards or backwards move, and not necessarily the nearest Thursday). For more control over the exact behavior, use `nextDate(after:matching:matchingPolicy:behavior:direction:)`.
   @available(iOS 8.0, *)
   func date(bySetting component: Calendar.Component, value: Int, of date: Date) -> Date?
-  @available(*, unavailable, message: "use date(bySettingHour:minute:second:of:matchingPolicy:repeatedTimePolicy:direction:) instead")
-  func date(bySettingHour h: Int, minute m: Int, second s: Int, of date: Date, options opts: NSCalendar.Options = []) -> Date?
   /// Returns a new `Date` representing the date calculated by setting hour, minute, and second to a given time on a specified `Date`.
   ///
   /// If no such time exists, the next available time is returned (which could, for example, be in a different day than the nominal target date).
@@ -2507,11 +2476,6 @@ extension CustomNSError where Self : RawRepresentable, Self.RawValue : FixedWidt
 
 @frozen struct Data : ReferenceConvertible, Equatable, Hashable, RandomAccessCollection, MutableCollection, RangeReplaceableCollection, MutableDataProtocol, ContiguousBytes {
   typealias ReferenceType = NSData
-  typealias ReadingOptions = NSData.ReadingOptions
-  typealias WritingOptions = NSData.WritingOptions
-  typealias SearchOptions = NSData.SearchOptions
-  typealias Base64EncodingOptions = NSData.Base64EncodingOptions
-  typealias Base64DecodingOptions = NSData.Base64DecodingOptions
   typealias Index = Int
   typealias Indices = Range<Int>
   @usableFromInline
@@ -2700,25 +2664,6 @@ extension CustomNSError where Self : RawRepresentable, Self.RawValue : FixedWidt
   /// - parameter count: The size of the bytes.
   /// - parameter deallocator: Specifies the mechanism to free the indicated buffer, or `.none`.
   @inlinable init(bytesNoCopy bytes: UnsafeMutableRawPointer, count: Int, deallocator: Data.Deallocator)
-  /// Initialize a `Data` with the contents of a `URL`.
-  ///
-  /// - parameter url: The `URL` to read.
-  /// - parameter options: Options for the read operation. Default value is `[]`.
-  /// - throws: An error in the Cocoa domain, if `url` cannot be read.
-  @inlinable init(contentsOf url: __shared URL, options: Data.ReadingOptions = []) throws
-  /// Initialize a `Data` from a Base-64 encoded String using the given options.
-  ///
-  /// Returns nil when the input is not recognized as valid Base-64.
-  /// - parameter base64String: The string to parse.
-  /// - parameter options: Encoding options. Default value is `[]`.
-  @inlinable init?(base64Encoded base64String: __shared String, options: Data.Base64DecodingOptions = [])
-  /// Initialize a `Data` from a Base-64, UTF-8 encoded `Data`.
-  ///
-  /// Returns nil when the input is not recognized as valid Base-64.
-  ///
-  /// - parameter base64Data: Base-64, UTF-8 encoded input data.
-  /// - parameter options: Decoding options. Default value is `[]`.
-  @inlinable init?(base64Encoded base64Data: __shared Data, options: Data.Base64DecodingOptions = [])
   /// Initialize a `Data` by adopting a reference type.
   ///
   /// You can use this initializer to create a `struct Data` that wraps a `class NSData`. `struct Data` will use the `class NSData` for all operations. Other initializers (including casting using `as Data`) may choose to hold a reference or not, based on a what is the most efficient representation.
@@ -2773,20 +2718,6 @@ extension CustomNSError where Self : RawRepresentable, Self.RawValue : FixedWidt
   /// - parameter range: A range in the data to copy into the buffer. If the range is empty, this function will return 0 without copying anything. If the range is nil, as much data as will fit into `buffer` is copied.
   /// - returns: Number of bytes copied into the destination buffer.
   @inlinable func copyBytes<DestinationType>(to buffer: UnsafeMutableBufferPointer<DestinationType>, from range: Range<Data.Index>? = nil) -> Int
-  /// Write the contents of the `Data` to a location.
-  ///
-  /// - parameter url: The location to write the data into.
-  /// - parameter options: Options for writing the data. Default value is `[]`.
-  /// - throws: An error in the Cocoa domain, if there is an error writing to the `URL`.
-  func write(to url: URL, options: Data.WritingOptions = []) throws
-  /// Find the given `Data` in the content of this `Data`.
-  ///
-  /// - parameter dataToFind: The data to be searched for.
-  /// - parameter options: Options for the search. Default value is `[]`.
-  /// - parameter range: The range of this data in which to perform the search. Default value is `nil`, which means the entire content of this data.
-  /// - returns: A `Range` specifying the location of the found data, or nil if a match could not be found.
-  /// - precondition: `range` must be in the bounds of the Data.
-  func range(of dataToFind: Data, options: Data.SearchOptions = [], in range: Range<Data.Index>? = nil) -> Range<Data.Index>?
   /// Enumerate the contents of the data.
   ///
   /// In some cases, (for example, a `Data` backed by a `dispatch_data_t`, the bytes may be stored discontiguously. In those cases, this function invokes the closure for each contiguous region of bytes.
@@ -2836,16 +2767,6 @@ extension CustomNSError where Self : RawRepresentable, Self.RawValue : FixedWidt
   ///
   /// - parameter range: The range to copy.
   func subdata(in range: Range<Data.Index>) -> Data
-  /// Returns a Base-64 encoded string.
-  ///
-  /// - parameter options: The options to use for the encoding. Default value is `[]`.
-  /// - returns: The Base-64 encoded string.
-  @inlinable func base64EncodedString(options: Data.Base64EncodingOptions = []) -> String
-  /// Returns a Base-64 encoded `Data`.
-  ///
-  /// - parameter options: The options to use for the encoding. Default value is `[]`.
-  /// - returns: The Base-64 encoded data.
-  @inlinable func base64EncodedData(options: Data.Base64EncodingOptions = []) -> Data
   /// The hash value for the data.
   @inline(never) func hash(into hasher: inout Hasher)
   func advanced(by amount: Int) -> Data
@@ -7941,8 +7862,6 @@ extension TimeZone : Codable {
 */
 struct URL : ReferenceConvertible, Equatable {
   typealias ReferenceType = NSURL
-  typealias BookmarkResolutionOptions = NSURL.BookmarkResolutionOptions
-  typealias BookmarkCreationOptions = NSURL.BookmarkCreationOptions
   /// Initialize with string.
   ///
   /// Returns `nil` if a `URL` cannot be formed with the string (for example, if the string contains characters that are illegal in a URL, or is an empty string).
@@ -7976,15 +7895,6 @@ struct URL : ReferenceConvertible, Equatable {
   /// If the data representation is not a legal URL string as ASCII bytes, the URL object may not behave as expected. If the URL cannot be formed then this will return nil.
   @available(macOS 10.11, iOS 9.0, *)
   init?(dataRepresentation: __shared Data, relativeTo url: __shared URL?, isAbsolute: Bool = false)
-  /// Initializes a URL that refers to a location specified by resolving bookmark data.
-  @available(swift, obsoleted: 4.2)
-  init?(resolvingBookmarkData data: __shared Data, options: URL.BookmarkResolutionOptions = [], relativeTo url: __shared URL? = nil, bookmarkDataIsStale: inout Bool) throws
-  /// Initializes a URL that refers to a location specified by resolving bookmark data.
-  @available(swift 4.2)
-  init(resolvingBookmarkData data: __shared Data, options: URL.BookmarkResolutionOptions = [], relativeTo url: __shared URL? = nil, bookmarkDataIsStale: inout Bool) throws
-  /// Creates and initializes an NSURL that refers to the location specified by resolving the alias file at url. If the url argument does not refer to an alias file as defined by the NSURLIsAliasFileKey property, the NSURL returned is the same as url argument. This method fails and returns nil if the url argument is unreachable, or if the original file or directory could not be located or is not reachable, or if the original file or directory is on a volume that could not be located or mounted. The URLBookmarkResolutionWithSecurityScope option is not supported by this method.
-  @available(macOS 10.10, iOS 8.0, *)
-  init(resolvingAliasFileAt url: __shared URL, options: URL.BookmarkResolutionOptions = []) throws
   /// Initializes a newly created URL referencing the local file or directory at the file system representation of the path. File system representation is a null-terminated C string with canonical UTF-8 encoding.
   init(fileURLWithFileSystemRepresentation path: UnsafePointer<Int8>, isDirectory: Bool, relativeTo baseURL: __shared URL?)
   func hash(into hasher: inout Hasher)
@@ -8196,8 +8106,6 @@ struct URL : ReferenceConvertible, Equatable {
   func setResourceValues(_ keyedValues: [URLResourceKey : AnyObject]) throws
   @available(*, unavailable, message: "Use struct URLResourceValues and URL.setResourceValues(_:) instead")
   func getResourceValue(_ value: AutoreleasingUnsafeMutablePointer<AnyObject?>, forKey key: URLResourceKey) throws
-  /// Returns bookmark data for the URL, created with specified options and resource values.
-  func bookmarkData(options: URL.BookmarkCreationOptions = [], includingResourceValuesForKeys keys: Set<URLResourceKey>? = nil, relativeTo url: URL? = nil) throws -> Data
   /// Returns the resource values for properties identified by a specified array of keys contained in specified bookmark data. If the result dictionary does not contain a resource value for one or more of the requested resource keys, it means those resource properties are not available in the bookmark data.
   static func resourceValues(forKeys keys: Set<URLResourceKey>, fromBookmarkData data: Data) -> URLResourceValues?
   /// Creates an alias file on disk at a specified location with specified bookmark data. bookmarkData must have been created with the URLBookmarkCreationSuitableForBookmarkFile option. bookmarkFileURL must either refer to an existing file (which will be overwritten), or to location in an existing directory.
@@ -9791,12 +9699,6 @@ extension NSEnumerator : Sequence {
   typealias Iterator = NSFastEnumerationIterator
 }
 
-extension NSTextCheckingResult.CheckingType {
-  static var allSystemTypes: NSTextCheckingResult.CheckingType { get }
-  static var allCustomTypes: NSTextCheckingResult.CheckingType { get }
-  static var allTypes: NSTextCheckingResult.CheckingType { get }
-}
-
 extension NSDictionary : ExpressibleByDictionaryLiteral {
   required convenience init(dictionaryLiteral elements: (Any, Any)...)
   typealias Key = Any
@@ -10348,16 +10250,6 @@ extension NSDate : _CustomPlaygroundQuickLookable {
 }
 
 extension FileManager {
-  @available(*, deprecated, renamed: "replaceItemAt(_:withItemAt:backupItemName:options:)")
-  func replaceItemAtURL(originalItemURL: NSURL, withItemAtURL newItemURL: NSURL, backupItemName: String? = nil, options: FileManager.ItemReplacementOptions = []) throws -> NSURL?
-  @available(macOS 10.6, iOS 4.0, *)
-  @available(swift, obsoleted: 4)
-  func replaceItemAt(_ originalItemURL: URL, withItemAt newItemURL: URL, backupItemName: String? = nil, options: FileManager.ItemReplacementOptions = []) throws -> NSURL?
-  @available(swift 4)
-  @available(macOS 10.6, iOS 4.0, *)
-  func replaceItemAt(_ originalItemURL: URL, withItemAt newItemURL: URL, backupItemName: String? = nil, options: FileManager.ItemReplacementOptions = []) throws -> URL?
-  @available(macOS 10.6, iOS 4.0, *)
-  @nonobjc func enumerator(at url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: FileManager.DirectoryEnumerationOptions = [], errorHandler handler: ((URL, Error) -> Bool)? = nil) -> FileManager.DirectoryEnumerator?
 }
 
 extension NSExpression {
@@ -10669,21 +10561,10 @@ extension String {
   /// A `String` comparison performed using the given comparison options
   /// and locale.
   struct Comparator : SortComparator, Codable {
-    /// The options to use for comparison.
-    let options: String.CompareOptions
     /// The locale to use for comparison if the comparator is localized,
     /// otherwise nil.
     let locale: Locale?
     var order: SortOrder
-    /// Creates a `String.Comparator` with the given `CompareOptions` and
-    /// `Locale`.
-    ///
-    /// - Parameters:
-    ///     - options: The options to use for comparison.
-    ///     - locale: The locale to use for comparison. If `nil`, the
-    ///       comparison is unlocalized.
-    ///     - order: The initial order to use for ordered comparison.
-    init(options: String.CompareOptions, locale: Locale? = Locale.current, order: SortOrder = .forward)
     /// Creates a `String.Comparator` that represents the same comparison
     /// as the given `String.StandardComparator`.
     ///
@@ -11105,9 +10986,6 @@ extension String {
     static let utf32LittleEndian: String.Encoding
     typealias RawValue = UInt
   }
-  typealias EncodingConversionOptions = NSString.EncodingConversionOptions
-  typealias EnumerationOptions = NSString.EnumerationOptions
-  typealias CompareOptions = NSString.CompareOptions
 }
 
 @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
@@ -11290,10 +11168,6 @@ extension FileHandle {
   var bytes: FileHandle.AsyncBytes { get }
 }
 
-@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-extension ISO8601DateFormatter.Options : Hashable {
-}
-
 extension NSNotification : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
 }
@@ -11424,13 +11298,6 @@ extension StringProtocol {
   /// Returns the result of invoking `compare:options:` with
   /// `NSCaseInsensitiveSearch` as the only option.
   func caseInsensitiveCompare<T>(_ aString: T) -> ComparisonResult where T : StringProtocol
-  /// Returns a string containing characters this string and the
-  /// given string have in common, starting from the beginning of each
-  /// up to the first characters that aren't equivalent.
-  func commonPrefix<T>(with aString: T, options: String.CompareOptions = []) -> String where T : StringProtocol
-  /// Compares the string using the specified options and
-  /// returns the lexical ordering for the range.
-  func compare<T>(_ aString: T, options mask: String.CompareOptions = [], range: Range<Self.Index>? = nil, locale: Locale? = nil) -> ComparisonResult where T : StringProtocol
   /// Interprets the string as a path in the file system and
   /// attempts to perform filename completion, returning a numeric
   /// value that indicates whether a match was possible, and by
@@ -11514,9 +11381,6 @@ extension StringProtocol {
   /// format string and the following arguments.
   func appendingFormat<T>(_ format: T, _ arguments: CVarArg...) -> String where T : StringProtocol
   func appending<T>(_ aString: T) -> String where T : StringProtocol
-  /// Returns a string with the given character folding options
-  /// applied.
-  func folding(options: String.CompareOptions = [], locale: Locale?) -> String
   /// Returns a new string formed from the `String` by either
   /// removing characters from the end, or by appending as many
   /// occurrences as necessary of a given pad string.
@@ -11527,10 +11391,6 @@ extension StringProtocol {
   /// Returns a new string in which the characters in a
   /// specified range of the `String` are replaced by a given string.
   func replacingCharacters<T, R>(in range: R, with replacement: T) -> String where T : StringProtocol, R : RangeExpression, R.Bound == String.Index
-  /// Returns a new string in which all occurrences of a target
-  /// string in a specified range of the string are replaced by
-  /// another given string.
-  func replacingOccurrences<Target, Replacement>(of target: Target, with replacement: Replacement, options: String.CompareOptions = [], range searchRange: Range<Self.Index>? = nil) -> String where Target : StringProtocol, Replacement : StringProtocol
   /// Returns a new string made by replacing in the `String`
   /// all percent escapes with the matching characters as determined
   /// by a given encoding.
@@ -11556,70 +11416,6 @@ extension StringProtocol {
   /// Perform string transliteration.
   @available(macOS 10.11, iOS 9.0, *)
   func applyingTransform(_ transform: StringTransform, reverse: Bool) -> String?
-  /// Performs linguistic analysis on the specified string by
-  /// enumerating the specific range of the string, providing the
-  /// Block with the located tags.
-  func enumerateLinguisticTags<T, R>(in range: R, scheme tagScheme: T, options opts: NSLinguisticTagger.Options = [], orthography: NSOrthography? = nil, invoking body: (String, Range<Self.Index>, Range<Self.Index>, inout Bool) -> Void) where T : StringProtocol, R : RangeExpression, R.Bound == String.Index
-  /// Enumerates the substrings of the specified type in the specified range of
-  /// the string.
-  ///
-  /// Mutation of a string value while enumerating its substrings is not
-  /// supported. If you need to mutate a string from within `body`, convert
-  /// your string to an `NSMutableString` instance and then call the
-  /// `enumerateSubstrings(in:options:using:)` method.
-  ///
-  /// - Parameters:
-  ///   - range: The range within the string to enumerate substrings.
-  ///   - opts: Options specifying types of substrings and enumeration styles.
-  ///     If `opts` is omitted or empty, `body` is called a single time with
-  ///     the range of the string specified by `range`.
-  ///   - body: The closure executed for each substring in the enumeration. The
-  ///     closure takes four arguments:
-  ///     - The enumerated substring. If `substringNotRequired` is included in
-  ///       `opts`, this parameter is `nil` for every execution of the
-  ///       closure.
-  ///     - The range of the enumerated substring in the string that
-  ///       `enumerate(in:options:_:)` was called on.
-  ///     - The range that includes the substring as well as any separator or
-  ///       filler characters that follow. For instance, for lines,
-  ///       `enclosingRange` contains the line terminators. The enclosing
-  ///       range for the first string enumerated also contains any characters
-  ///       that occur before the string. Consecutive enclosing ranges are
-  ///       guaranteed not to overlap, and every single character in the
-  ///       enumerated range is included in one and only one enclosing range.
-  ///     - An `inout` Boolean value that the closure can use to stop the
-  ///       enumeration by setting `stop = true`.
-  func enumerateSubstrings<R>(in range: R, options opts: String.EnumerationOptions = [], _ body: @escaping (_ substring: String?, _ substringRange: Range<Self.Index>, _ enclosingRange: Range<Self.Index>, inout Bool) -> Void) where R : RangeExpression, R.Bound == String.Index
-  /// Writes the given `range` of characters into `buffer` in a given
-  /// `encoding`, without any allocations.  Does not NULL-terminate.
-  ///
-  /// - Parameter buffer: A buffer into which to store the bytes from
-  ///   the receiver. The returned bytes are not NUL-terminated.
-  ///
-  /// - Parameter maxBufferCount: The maximum number of bytes to write
-  ///   to buffer.
-  ///
-  /// - Parameter usedBufferCount: The number of bytes used from
-  ///   buffer. Pass `nil` if you do not need this value.
-  ///
-  /// - Parameter encoding: The encoding to use for the returned bytes.
-  ///
-  /// - Parameter options: A mask to specify options to use for
-  ///   converting the receiver's contents to `encoding` (if conversion
-  ///   is necessary).
-  ///
-  /// - Parameter range: The range of characters in the receiver to get.
-  ///
-  /// - Parameter leftover: The remaining range. Pass `nil` If you do
-  ///   not need this value.
-  ///
-  /// - Returns: `true` if some characters were converted, `false` otherwise.
-  ///
-  /// - Note: Conversion stops when the buffer fills or when the
-  ///   conversion isn't possible due to the chosen encoding.
-  ///
-  /// - Note: will get a maximum of `min(buffer.count, maxLength)` bytes.
-  func getBytes<R>(_ buffer: inout [UInt8], maxLength maxBufferCount: Int, usedLength usedBufferCount: UnsafeMutablePointer<Int>, encoding: String.Encoding, options: String.EncodingConversionOptions = [], range: R, remaining leftover: UnsafeMutablePointer<Range<Self.Index>>) -> Bool where R : RangeExpression, R.Bound == String.Index
   /// Returns by reference the beginning of the first line and
   /// the end of the last line touched by the given range.
   func getLineStart<R>(_ start: UnsafeMutablePointer<Self.Index>, end: UnsafeMutablePointer<Self.Index>, contentsEnd: UnsafeMutablePointer<Self.Index>, for range: R) where R : RangeExpression, R.Bound == String.Index
@@ -11629,26 +11425,15 @@ extension StringProtocol {
   /// Returns the range of characters representing the line or lines
   /// containing a given range.
   func lineRange<R>(for aRange: R) -> Range<Self.Index> where R : RangeExpression, R.Bound == String.Index
-  /// Returns an array of linguistic tags for the specified
-  /// range and requested tags within the receiving string.
-  func linguisticTags<T, R>(in range: R, scheme tagScheme: T, options opts: NSLinguisticTagger.Options = [], orthography: NSOrthography? = nil, tokenRanges: UnsafeMutablePointer<[Range<Self.Index>]>? = nil) -> [String] where T : StringProtocol, R : RangeExpression, R.Bound == String.Index
   /// Returns the range of characters representing the
   /// paragraph or paragraphs containing a given range.
   func paragraphRange<R>(for aRange: R) -> Range<Self.Index> where R : RangeExpression, R.Bound == String.Index
-  /// Finds and returns the range in the `String` of the first
-  /// character from a given character set found in a given range with
-  /// given options.
-  func rangeOfCharacter(from aSet: CharacterSet, options mask: String.CompareOptions = [], range aRange: Range<Self.Index>? = nil) -> Range<Self.Index>?
   /// Returns the range in the `String` of the composed
   /// character sequence located at a given index.
   func rangeOfComposedCharacterSequence(at anIndex: Self.Index) -> Range<Self.Index>
   /// Returns the range in the string of the composed character
   /// sequences for a given range.
   func rangeOfComposedCharacterSequences<R>(for range: R) -> Range<Self.Index> where R : RangeExpression, R.Bound == String.Index
-  /// Finds and returns the range of the first occurrence of a
-  /// given string within a given range of the `String`, subject to
-  /// given options, using the specified locale, if any.
-  func range<T>(of aString: T, options mask: String.CompareOptions = [], range searchRange: Range<Self.Index>? = nil, locale: Locale? = nil) -> Range<Self.Index>? where T : StringProtocol
   /// Finds and returns the range of the first occurrence of a given string,
   /// taking the current locale into account.  Returns `nil` if the string was
   /// not found.
@@ -11747,8 +11532,6 @@ extension StringProtocol {
   /// component of the `String` to its full path value.
   @available(*, unavailable, message: "Use expandingTildeInPath on NSString instead.")
   var expandingTildeInPath: String { get }
-  @available(*, unavailable, renamed: "folding(options:locale:)")
-  func folding(_ options: String.CompareOptions = [], locale: Locale?) -> String
   /// Returns a new string made from the `String` by resolving
   /// all symbolic links and standardizing path.
   @available(*, unavailable, message: "Use resolvingSymlinksInPath on URL instead.")
@@ -11779,8 +11562,6 @@ extension StringProtocol {
   func canBeConvertedToEncoding(_ encoding: String.Encoding) -> Bool
   @available(*, unavailable, renamed: "capitalizedString(with:)")
   func capitalizedStringWith(_ locale: Locale?) -> String
-  @available(*, unavailable, renamed: "commonPrefix(with:options:)")
-  func commonPrefixWith(_ aString: String, options: String.CompareOptions) -> String
   @available(*, unavailable, renamed: "completePath(into:outputName:caseSensitive:matchesInto:filterTypes:)")
   func completePathInto(_ outputName: UnsafeMutablePointer<String>? = nil, caseSensitive: Bool, matchesInto matchesIntoArray: UnsafeMutablePointer<[String]>? = nil, filterTypes: [String]? = nil) -> Int
   @available(*, unavailable, renamed: "components(separatedBy:)")
@@ -11791,12 +11572,6 @@ extension StringProtocol {
   func cStringUsingEncoding(_ encoding: String.Encoding) -> [CChar]?
   @available(*, unavailable, renamed: "data(usingEncoding:allowLossyConversion:)")
   func dataUsingEncoding(_ encoding: String.Encoding, allowLossyConversion: Bool = false) -> Data?
-  @available(*, unavailable, renamed: "enumerateLinguisticTags(in:scheme:options:orthography:_:)")
-  func enumerateLinguisticTagsIn(_ range: Range<Self.Index>, scheme tagScheme: String, options opts: NSLinguisticTagger.Options, orthography: NSOrthography?, _ body: (String, Range<Self.Index>, Range<Self.Index>, inout Bool) -> Void)
-  @available(*, unavailable, renamed: "enumerateSubstrings(in:options:_:)")
-  func enumerateSubstringsIn(_ range: Range<Self.Index>, options opts: String.EnumerationOptions = [], _ body: (_ substring: String?, _ substringRange: Range<Self.Index>, _ enclosingRange: Range<Self.Index>, inout Bool) -> Void)
-  @available(*, unavailable, renamed: "getBytes(_:maxLength:usedLength:encoding:options:range:remaining:)")
-  func getBytes(_ buffer: inout [UInt8], maxLength maxBufferCount: Int, usedLength usedBufferCount: UnsafeMutablePointer<Int>, encoding: String.Encoding, options: String.EncodingConversionOptions = [], range: Range<Self.Index>, remainingRange leftover: UnsafeMutablePointer<Range<Self.Index>>) -> Bool
   @available(*, unavailable, renamed: "getLineStart(_:end:contentsEnd:for:)")
   func getLineStart(_ start: UnsafeMutablePointer<Self.Index>, end: UnsafeMutablePointer<Self.Index>, contentsEnd: UnsafeMutablePointer<Self.Index>, forRange: Range<Self.Index>)
   @available(*, unavailable, renamed: "getParagraphStart(_:end:contentsEnd:for:)")
@@ -11805,22 +11580,16 @@ extension StringProtocol {
   func lengthOfBytesUsingEncoding(_ encoding: String.Encoding) -> Int
   @available(*, unavailable, renamed: "lineRange(for:)")
   func lineRangeFor(_ aRange: Range<Self.Index>) -> Range<Self.Index>
-  @available(*, unavailable, renamed: "linguisticTags(in:scheme:options:orthography:tokenRanges:)")
-  func linguisticTagsIn(_ range: Range<Self.Index>, scheme tagScheme: String, options opts: NSLinguisticTagger.Options = [], orthography: NSOrthography? = nil, tokenRanges: UnsafeMutablePointer<[Range<Self.Index>]>? = nil) -> [String]
   @available(*, unavailable, renamed: "lowercased(with:)")
   func lowercaseStringWith(_ locale: Locale?) -> String
   @available(*, unavailable, renamed: "maximumLengthOfBytes(using:)")
   func maximumLengthOfBytesUsingEncoding(_ encoding: String.Encoding) -> Int
   @available(*, unavailable, renamed: "paragraphRange(for:)")
   func paragraphRangeFor(_ aRange: Range<Self.Index>) -> Range<Self.Index>
-  @available(*, unavailable, renamed: "rangeOfCharacter(from:options:range:)")
-  func rangeOfCharacterFrom(_ aSet: CharacterSet, options mask: String.CompareOptions = [], range aRange: Range<Self.Index>? = nil) -> Range<Self.Index>?
   @available(*, unavailable, renamed: "rangeOfComposedCharacterSequence(at:)")
   func rangeOfComposedCharacterSequenceAt(_ anIndex: Self.Index) -> Range<Self.Index>
   @available(*, unavailable, renamed: "rangeOfComposedCharacterSequences(for:)")
   func rangeOfComposedCharacterSequencesFor(_ range: Range<Self.Index>) -> Range<Self.Index>
-  @available(*, unavailable, renamed: "range(of:options:range:locale:)")
-  func rangeOf(_ aString: String, options mask: String.CompareOptions = [], range searchRange: Range<Self.Index>? = nil, locale: Locale? = nil) -> Range<Self.Index>?
   @available(*, unavailable, renamed: "localizedStandardRange(of:)")
   func localizedStandardRangeOf(_ string: String) -> Range<Self.Index>?
   @available(*, unavailable, renamed: "addingPercentEncoding(withAllowedCharacters:)")
@@ -11833,8 +11602,6 @@ extension StringProtocol {
   func byPaddingToLength(_ newLength: Int, withString padString: String, startingAt padIndex: Int) -> String
   @available(*, unavailable, renamed: "replacingCharacters(in:with:)")
   func replacingCharactersIn(_ range: Range<Self.Index>, withString replacement: String) -> String
-  @available(*, unavailable, renamed: "replacingOccurrences(of:with:options:range:)")
-  func replacingOccurrencesOf(_ target: String, withString replacement: String, options: String.CompareOptions = [], range searchRange: Range<Self.Index>? = nil) -> String
   @available(*, unavailable, renamed: "replacingPercentEscapes(usingEncoding:)")
   func replacingPercentEscapesUsingEncoding(_ encoding: String.Encoding) -> String?
   @available(*, unavailable, renamed: "trimmingCharacters(in:)")
