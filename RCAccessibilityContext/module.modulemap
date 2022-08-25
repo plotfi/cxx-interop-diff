@@ -1,0 +1,10 @@
+
+
+// module.modulemap
+
+module test {
+  header "test.h"
+}
+
+
+

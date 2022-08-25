@@ -1,0 +1,770 @@
+sil_stage canonical
+
+import Builtin
+import Swift
+import SwiftShims
+
+import test
+
+import Foundation
+
+extension RCAccessibilityContext : CustomStringConvertible {
+  public var description: String { get }
+}
+
+@_hasStorage @_hasInitialValue var cxxContext: RCAccessibilityContext { get set }
+
+@_hasStorage @_hasInitialValue var objcContext: AccessibilityContextSwiftBridge { get set }
+
+// cxxContext
+sil_global hidden @$s7main_1410cxxContextSo015RCAccessibilityC0Vvp : $RCAccessibilityContext
+
+// objcContext
+sil_global hidden @$s7main_1411objcContextSo015RCAccessibilityC12_SwiftBridgeCvp : $AccessibilityContextSwiftBridge
+
+// main
+sil @main : $@convention(c) (Int32, UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>) -> Int32 {
+bb0(%0 : $Int32, %1 : $UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>):
+  alloc_global @$s7main_1410cxxContextSo015RCAccessibilityC0Vvp // id: %2
+  %3 = global_addr @$s7main_1410cxxContextSo015RCAccessibilityC0Vvp : $*RCAccessibilityContext // users: %131, %95, %54, %26
+  %4 = metatype $@thin RCAccessibilityContext.Type
+  %5 = enum $Optional<String>, #Optional.none!enumelt
+  %6 = enum $Optional<NSString>, #Optional.none!enumelt // user: %26
+  %7 = enum $Optional<NSNumber>, #Optional.none!enumelt // user: %26
+  %8 = string_literal utf8 "Cancel"               // user: %13
+  %9 = integer_literal $Builtin.Word, 6           // user: %13
+  %10 = integer_literal $Builtin.Int1, -1         // user: %13
+  %11 = metatype $@thin String.Type               // user: %13
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %12 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %13
+  %13 = apply %12(%8, %9, %10, %11) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %17, %15
+  // function_ref String._bridgeToObjectiveC()
+  %14 = function_ref @$sSS10FoundationE19_bridgeToObjectiveCSo8NSStringCyF : $@convention(method) (@guaranteed String) -> @owned NSString // user: %15
+  %15 = apply %14(%13) : $@convention(method) (@guaranteed String) -> @owned NSString // user: %16
+  %16 = enum $Optional<NSString>, #Optional.some!enumelt, %15 : $NSString // users: %27, %26
+  release_value %13 : $String                     // id: %17
+  %18 = enum $Optional<String>, #Optional.none!enumelt
+  %19 = enum $Optional<NSString>, #Optional.none!enumelt // user: %26
+  %20 = enum $Optional<String>, #Optional.none!enumelt
+  %21 = enum $Optional<NSString>, #Optional.none!enumelt // user: %26
+  %22 = enum $Optional<NSNumber>, #Optional.none!enumelt // user: %26
+  %23 = enum $Optional<Dictionary<String, Any>>, #Optional.none!enumelt
+  %24 = enum $Optional<NSDictionary>, #Optional.none!enumelt // user: %26
+  // function_ref _ZN22RCAccessibilityContext5buildEP8NSStringP8NSNumberS1_S1_S1_S3_P12NSDictionaryIS1_P11objc_objectE
+  %25 = function_ref @_ZN22RCAccessibilityContext5buildEP8NSStringP8NSNumberS1_S1_S1_S3_P12NSDictionaryIS1_P11objc_objectE : $@convention(c) (Optional<NSString>, Optional<NSNumber>, Optional<NSString>, Optional<NSString>, Optional<NSString>, Optional<NSNumber>, Optional<NSDictionary>) -> @out RCAccessibilityContext // user: %26
+  %26 = apply %25(%3, %6, %7, %16, %19, %21, %22, %24) : $@convention(c) (Optional<NSString>, Optional<NSNumber>, Optional<NSString>, Optional<NSString>, Optional<NSString>, Optional<NSNumber>, Optional<NSDictionary>) -> @out RCAccessibilityContext
+  release_value %16 : $Optional<NSString>         // id: %27
+  %28 = integer_literal $Builtin.Word, 1          // user: %30
+  // function_ref specialized _allocateUninitializedArray<A>(_:)
+  %29 = function_ref @$ss27_allocateUninitializedArrayySayxG_BptBwlFyp_Tg5 : $@convention(thin) (Builtin.Word) -> (@owned Array<Any>, Builtin.RawPointer) // user: %30
+  %30 = apply %29(%28) : $@convention(thin) (Builtin.Word) -> (@owned Array<Any>, Builtin.RawPointer) // users: %31, %32
+  %31 = tuple_extract %30 : $(Array<Any>, Builtin.RawPointer), 0 // user: %85
+  %32 = tuple_extract %30 : $(Array<Any>, Builtin.RawPointer), 1 // user: %33
+  %33 = pointer_to_address %32 : $Builtin.RawPointer to [strict] $*Any // user: %82
+  %34 = alloc_stack [lexical] $DefaultStringInterpolation, var, name "$interpolation", implicit // users: %75, %42, %78, %77, %49, %58, %70
+  %35 = integer_literal $Builtin.Int64, 12        // user: %36
+  %36 = struct $Int (%35 : $Builtin.Int64)        // user: %41
+  %37 = integer_literal $Builtin.Int64, 1         // user: %38
+  %38 = struct $Int (%37 : $Builtin.Int64)        // user: %41
+  %39 = metatype $@thin DefaultStringInterpolation.Type // user: %41
+  // function_ref DefaultStringInterpolation.init(literalCapacity:interpolationCount:)
+  %40 = function_ref @$ss26DefaultStringInterpolationV15literalCapacity18interpolationCountABSi_SitcfC : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %41
+  %41 = apply %40(%36, %38, %39) : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %42
+  store %41 to %34 : $*DefaultStringInterpolation // id: %42
+  %43 = string_literal utf8 "cxxContext: "        // user: %48
+  %44 = integer_literal $Builtin.Word, 12         // user: %48
+  %45 = integer_literal $Builtin.Int1, -1         // user: %48
+  %46 = metatype $@thin String.Type               // user: %48
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %47 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %48
+  %48 = apply %47(%43, %44, %45, %46) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %53, %51
+  %49 = begin_access [modify] [static] %34 : $*DefaultStringInterpolation // users: %52, %51
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %50 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %51
+  %51 = apply %50(%48, %49) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %49 : $*DefaultStringInterpolation   // id: %52
+  release_value %48 : $String                     // id: %53
+  %54 = begin_access [read] [dynamic] %3 : $*RCAccessibilityContext // users: %57, %56
+  %55 = alloc_stack $RCAccessibilityContext       // users: %63, %62, %60, %56
+  copy_addr %54 to [initialization] %55 : $*RCAccessibilityContext // id: %56
+  end_access %54 : $*RCAccessibilityContext       // id: %57
+  %58 = begin_access [modify] [static] %34 : $*DefaultStringInterpolation // users: %61, %60
+  // function_ref DefaultStringInterpolation.appendInterpolation<A>(_:)
+  %59 = function_ref @$ss26DefaultStringInterpolationV06appendC0yyxs06CustomB11ConvertibleRzlF : $@convention(method) <τ_0_0 where τ_0_0 : CustomStringConvertible> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> () // user: %60
+  %60 = apply %59<RCAccessibilityContext>(%55, %58) : $@convention(method) <τ_0_0 where τ_0_0 : CustomStringConvertible> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> ()
+  end_access %58 : $*DefaultStringInterpolation   // id: %61
+  destroy_addr %55 : $*RCAccessibilityContext     // id: %62
+  dealloc_stack %55 : $*RCAccessibilityContext    // id: %63
+  %64 = string_literal utf8 ""                    // user: %69
+  %65 = integer_literal $Builtin.Word, 0          // user: %69
+  %66 = integer_literal $Builtin.Int1, -1         // user: %69
+  %67 = metatype $@thin String.Type               // user: %69
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %68 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %69
+  %69 = apply %68(%64, %65, %66, %67) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %74, %72
+  %70 = begin_access [modify] [static] %34 : $*DefaultStringInterpolation // users: %73, %72
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %71 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %72
+  %72 = apply %71(%69, %70) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %70 : $*DefaultStringInterpolation   // id: %73
+  release_value %69 : $String                     // id: %74
+  %75 = load %34 : $*DefaultStringInterpolation   // users: %81, %76
+  retain_value %75 : $DefaultStringInterpolation  // id: %76
+  destroy_addr %34 : $*DefaultStringInterpolation // id: %77
+  dealloc_stack %34 : $*DefaultStringInterpolation // id: %78
+  %79 = metatype $@thin String.Type               // user: %81
+  // function_ref String.init(stringInterpolation:)
+  %80 = function_ref @$sSS19stringInterpolationSSs013DefaultStringB0V_tcfC : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // user: %81
+  %81 = apply %80(%75, %79) : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // user: %83
+  %82 = init_existential_addr %33 : $*Any, $String // user: %83
+  store %81 to %82 : $*String                     // id: %83
+  // function_ref _finalizeUninitializedArray<A>(_:)
+  %84 = function_ref @$ss27_finalizeUninitializedArrayySayxGABnlF : $@convention(thin) <τ_0_0> (@owned Array<τ_0_0>) -> @owned Array<τ_0_0> // user: %85
+  %85 = apply %84<Any>(%31) : $@convention(thin) <τ_0_0> (@owned Array<τ_0_0>) -> @owned Array<τ_0_0> // users: %94, %91
+  // function_ref default argument 1 of print(_:separator:terminator:)
+  %86 = function_ref @$ss5print_9separator10terminatoryypd_S2StFfA0_ : $@convention(thin) () -> @owned String // user: %87
+  %87 = apply %86() : $@convention(thin) () -> @owned String // users: %93, %91
+  // function_ref default argument 2 of print(_:separator:terminator:)
+  %88 = function_ref @$ss5print_9separator10terminatoryypd_S2StFfA1_ : $@convention(thin) () -> @owned String // user: %89
+  %89 = apply %88() : $@convention(thin) () -> @owned String // users: %92, %91
+  // function_ref print(_:separator:terminator:)
+  %90 = function_ref @$ss5print_9separator10terminatoryypd_S2StF : $@convention(thin) (@guaranteed Array<Any>, @guaranteed String, @guaranteed String) -> () // user: %91
+  %91 = apply %90(%85, %87, %89) : $@convention(thin) (@guaranteed Array<Any>, @guaranteed String, @guaranteed String) -> ()
+  release_value %89 : $String                     // id: %92
+  release_value %87 : $String                     // id: %93
+  release_value %85 : $Array<Any>                 // id: %94
+  %95 = begin_access [read] [dynamic] %3 : $*RCAccessibilityContext // users: %98, %97
+  %96 = alloc_stack $RCAccessibilityContext       // users: %102, %101, %100, %97
+  copy_addr %95 to [initialization] %96 : $*RCAccessibilityContext // id: %97
+  end_access %95 : $*RCAccessibilityContext       // id: %98
+  // function_ref _ZNK22RCAccessibilityContext4dumpEv
+  %99 = function_ref @_ZNK22RCAccessibilityContext4dumpEv : $@convention(cxx_method) (@in_guaranteed RCAccessibilityContext) -> () // user: %100
+  %100 = apply %99(%96) : $@convention(cxx_method) (@in_guaranteed RCAccessibilityContext) -> ()
+  destroy_addr %96 : $*RCAccessibilityContext     // id: %101
+  dealloc_stack %96 : $*RCAccessibilityContext    // id: %102
+  %103 = integer_literal $Builtin.Word, 1         // user: %105
+  // function_ref specialized _allocateUninitializedArray<A>(_:)
+  %104 = function_ref @$ss27_allocateUninitializedArrayySayxG_BptBwlFyp_Tg5 : $@convention(thin) (Builtin.Word) -> (@owned Array<Any>, Builtin.RawPointer) // user: %105
+  %105 = apply %104(%103) : $@convention(thin) (Builtin.Word) -> (@owned Array<Any>, Builtin.RawPointer) // users: %106, %107
+  %106 = tuple_extract %105 : $(Array<Any>, Builtin.RawPointer), 0 // user: %118
+  %107 = tuple_extract %105 : $(Array<Any>, Builtin.RawPointer), 1 // user: %108
+  %108 = pointer_to_address %107 : $Builtin.RawPointer to [strict] $*Any // user: %115
+  %109 = string_literal utf8 "Initialize AccessibilityContextSwiftBridge\n" // user: %114
+  %110 = integer_literal $Builtin.Word, 43        // user: %114
+  %111 = integer_literal $Builtin.Int1, -1        // user: %114
+  %112 = metatype $@thin String.Type              // user: %114
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %113 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %114
+  %114 = apply %113(%109, %110, %111, %112) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %116
+  %115 = init_existential_addr %108 : $*Any, $String // user: %116
+  store %114 to %115 : $*String                   // id: %116
+  // function_ref _finalizeUninitializedArray<A>(_:)
+  %117 = function_ref @$ss27_finalizeUninitializedArrayySayxGABnlF : $@convention(thin) <τ_0_0> (@owned Array<τ_0_0>) -> @owned Array<τ_0_0> // user: %118
+  %118 = apply %117<Any>(%106) : $@convention(thin) <τ_0_0> (@owned Array<τ_0_0>) -> @owned Array<τ_0_0> // users: %127, %124
+  // function_ref default argument 1 of print(_:separator:terminator:)
+  %119 = function_ref @$ss5print_9separator10terminatoryypd_S2StFfA0_ : $@convention(thin) () -> @owned String // user: %120
+  %120 = apply %119() : $@convention(thin) () -> @owned String // users: %126, %124
+  // function_ref default argument 2 of print(_:separator:terminator:)
+  %121 = function_ref @$ss5print_9separator10terminatoryypd_S2StFfA1_ : $@convention(thin) () -> @owned String // user: %122
+  %122 = apply %121() : $@convention(thin) () -> @owned String // users: %125, %124
+  // function_ref print(_:separator:terminator:)
+  %123 = function_ref @$ss5print_9separator10terminatoryypd_S2StF : $@convention(thin) (@guaranteed Array<Any>, @guaranteed String, @guaranteed String) -> () // user: %124
+  %124 = apply %123(%118, %120, %122) : $@convention(thin) (@guaranteed Array<Any>, @guaranteed String, @guaranteed String) -> ()
+  release_value %122 : $String                    // id: %125
+  release_value %120 : $String                    // id: %126
+  release_value %118 : $Array<Any>                // id: %127
+  alloc_global @$s7main_1411objcContextSo015RCAccessibilityC12_SwiftBridgeCvp // id: %128
+  %129 = global_addr @$s7main_1411objcContextSo015RCAccessibilityC12_SwiftBridgeCvp : $*AccessibilityContextSwiftBridge // users: %139, %197, %165
+  %130 = metatype $@thick AccessibilityContextSwiftBridge.Type // user: %137
+  %131 = begin_access [read] [dynamic] %3 : $*RCAccessibilityContext // users: %138, %132
+  %132 = address_to_pointer %131 : $*RCAccessibilityContext to $Builtin.RawPointer // user: %133
+  %133 = struct $UnsafePointer<RCAccessibilityContext> (%132 : $Builtin.RawPointer) // user: %137
+  %134 = tuple ()
+  %135 = tuple ()
+  // function_ref RCAccessibilityContext_SwiftBridge.__allocating_init(accessibilityContext:)
+  %136 = function_ref @$sSo34RCAccessibilityContext_SwiftBridgeC013accessibilityB0ABSPySo0aB0VG_tcfC : $@convention(method) (UnsafePointer<RCAccessibilityContext>, @thick AccessibilityContextSwiftBridge.Type) -> @owned AccessibilityContextSwiftBridge // user: %137
+  %137 = apply %136(%133, %130) : $@convention(method) (UnsafePointer<RCAccessibilityContext>, @thick AccessibilityContextSwiftBridge.Type) -> @owned AccessibilityContextSwiftBridge // user: %139
+  end_access %131 : $*RCAccessibilityContext      // id: %138
+  store %137 to %129 : $*AccessibilityContextSwiftBridge // id: %139
+  %140 = integer_literal $Builtin.Word, 1         // user: %142
+  // function_ref specialized _allocateUninitializedArray<A>(_:)
+  %141 = function_ref @$ss27_allocateUninitializedArrayySayxG_BptBwlFyp_Tg5 : $@convention(thin) (Builtin.Word) -> (@owned Array<Any>, Builtin.RawPointer) // user: %142
+  %142 = apply %141(%140) : $@convention(thin) (Builtin.Word) -> (@owned Array<Any>, Builtin.RawPointer) // users: %143, %144
+  %143 = tuple_extract %142 : $(Array<Any>, Builtin.RawPointer), 0 // user: %155
+  %144 = tuple_extract %142 : $(Array<Any>, Builtin.RawPointer), 1 // user: %145
+  %145 = pointer_to_address %144 : $Builtin.RawPointer to [strict] $*Any // user: %152
+  %146 = string_literal utf8 "Dumping objcContext\n" // user: %151
+  %147 = integer_literal $Builtin.Word, 20        // user: %151
+  %148 = integer_literal $Builtin.Int1, -1        // user: %151
+  %149 = metatype $@thin String.Type              // user: %151
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %150 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %151
+  %151 = apply %150(%146, %147, %148, %149) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %153
+  %152 = init_existential_addr %145 : $*Any, $String // user: %153
+  store %151 to %152 : $*String                   // id: %153
+  // function_ref _finalizeUninitializedArray<A>(_:)
+  %154 = function_ref @$ss27_finalizeUninitializedArrayySayxGABnlF : $@convention(thin) <τ_0_0> (@owned Array<τ_0_0>) -> @owned Array<τ_0_0> // user: %155
+  %155 = apply %154<Any>(%143) : $@convention(thin) <τ_0_0> (@owned Array<τ_0_0>) -> @owned Array<τ_0_0> // users: %164, %161
+  // function_ref default argument 1 of print(_:separator:terminator:)
+  %156 = function_ref @$ss5print_9separator10terminatoryypd_S2StFfA0_ : $@convention(thin) () -> @owned String // user: %157
+  %157 = apply %156() : $@convention(thin) () -> @owned String // users: %163, %161
+  // function_ref default argument 2 of print(_:separator:terminator:)
+  %158 = function_ref @$ss5print_9separator10terminatoryypd_S2StFfA1_ : $@convention(thin) () -> @owned String // user: %159
+  %159 = apply %158() : $@convention(thin) () -> @owned String // users: %162, %161
+  // function_ref print(_:separator:terminator:)
+  %160 = function_ref @$ss5print_9separator10terminatoryypd_S2StF : $@convention(thin) (@guaranteed Array<Any>, @guaranteed String, @guaranteed String) -> () // user: %161
+  %161 = apply %160(%155, %157, %159) : $@convention(thin) (@guaranteed Array<Any>, @guaranteed String, @guaranteed String) -> ()
+  release_value %159 : $String                    // id: %162
+  release_value %157 : $String                    // id: %163
+  release_value %155 : $Array<Any>                // id: %164
+  %165 = begin_access [read] [dynamic] %129 : $*AccessibilityContextSwiftBridge // users: %166, %168
+  %166 = load %165 : $*AccessibilityContextSwiftBridge // users: %171, %169, %170, %167
+  strong_retain %166 : $AccessibilityContextSwiftBridge // id: %167
+  end_access %165 : $*AccessibilityContextSwiftBridge // id: %168
+  %169 = objc_method %166 : $AccessibilityContextSwiftBridge, #AccessibilityContextSwiftBridge.dump!foreign : (AccessibilityContextSwiftBridge) -> () -> (), $@convention(objc_method) (AccessibilityContextSwiftBridge) -> () // user: %170
+  %170 = apply %169(%166) : $@convention(objc_method) (AccessibilityContextSwiftBridge) -> ()
+  strong_release %166 : $AccessibilityContextSwiftBridge // id: %171
+  %172 = integer_literal $Builtin.Word, 1         // user: %174
+  // function_ref specialized _allocateUninitializedArray<A>(_:)
+  %173 = function_ref @$ss27_allocateUninitializedArrayySayxG_BptBwlFyp_Tg5 : $@convention(thin) (Builtin.Word) -> (@owned Array<Any>, Builtin.RawPointer) // user: %174
+  %174 = apply %173(%172) : $@convention(thin) (Builtin.Word) -> (@owned Array<Any>, Builtin.RawPointer) // users: %175, %176
+  %175 = tuple_extract %174 : $(Array<Any>, Builtin.RawPointer), 0 // user: %187
+  %176 = tuple_extract %174 : $(Array<Any>, Builtin.RawPointer), 1 // user: %177
+  %177 = pointer_to_address %176 : $Builtin.RawPointer to [strict] $*Any // user: %184
+  %178 = string_literal utf8 "calling .a_XXX_accessibilityContext" // user: %183
+  %179 = integer_literal $Builtin.Word, 35        // user: %183
+  %180 = integer_literal $Builtin.Int1, -1        // user: %183
+  %181 = metatype $@thin String.Type              // user: %183
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %182 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %183
+  %183 = apply %182(%178, %179, %180, %181) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %185
+  %184 = init_existential_addr %177 : $*Any, $String // user: %185
+  store %183 to %184 : $*String                   // id: %185
+  // function_ref _finalizeUninitializedArray<A>(_:)
+  %186 = function_ref @$ss27_finalizeUninitializedArrayySayxGABnlF : $@convention(thin) <τ_0_0> (@owned Array<τ_0_0>) -> @owned Array<τ_0_0> // user: %187
+  %187 = apply %186<Any>(%175) : $@convention(thin) <τ_0_0> (@owned Array<τ_0_0>) -> @owned Array<τ_0_0> // users: %196, %193
+  // function_ref default argument 1 of print(_:separator:terminator:)
+  %188 = function_ref @$ss5print_9separator10terminatoryypd_S2StFfA0_ : $@convention(thin) () -> @owned String // user: %189
+  %189 = apply %188() : $@convention(thin) () -> @owned String // users: %195, %193
+  // function_ref default argument 2 of print(_:separator:terminator:)
+  %190 = function_ref @$ss5print_9separator10terminatoryypd_S2StFfA1_ : $@convention(thin) () -> @owned String // user: %191
+  %191 = apply %190() : $@convention(thin) () -> @owned String // users: %194, %193
+  // function_ref print(_:separator:terminator:)
+  %192 = function_ref @$ss5print_9separator10terminatoryypd_S2StF : $@convention(thin) (@guaranteed Array<Any>, @guaranteed String, @guaranteed String) -> () // user: %193
+  %193 = apply %192(%187, %189, %191) : $@convention(thin) (@guaranteed Array<Any>, @guaranteed String, @guaranteed String) -> ()
+  release_value %191 : $String                    // id: %194
+  release_value %189 : $String                    // id: %195
+  release_value %187 : $Array<Any>                // id: %196
+  %197 = begin_access [read] [dynamic] %129 : $*AccessibilityContextSwiftBridge // users: %198, %200
+  %198 = load %197 : $*AccessibilityContextSwiftBridge // users: %203, %201, %202, %199
+  strong_retain %198 : $AccessibilityContextSwiftBridge // id: %199
+  end_access %197 : $*AccessibilityContextSwiftBridge // id: %200
+  %201 = objc_method %198 : $AccessibilityContextSwiftBridge, #AccessibilityContextSwiftBridge.a_XXX_accessibilityContext!foreign : (AccessibilityContextSwiftBridge) -> () -> UnsafePointer<RCAccessibilityContext>, $@convention(objc_method) (AccessibilityContextSwiftBridge) -> UnsafePointer<RCAccessibilityContext> // user: %202
+  %202 = apply %201(%198) : $@convention(objc_method) (AccessibilityContextSwiftBridge) -> UnsafePointer<RCAccessibilityContext>
+  strong_release %198 : $AccessibilityContextSwiftBridge // id: %203
+  %204 = integer_literal $Builtin.Int32, 0        // user: %205
+  %205 = struct $Int32 (%204 : $Builtin.Int32)    // user: %206
+  return %205 : $Int32                            // id: %206
+} // end sil function 'main'
+
+// RCAccessibilityContext.description.getter
+sil @$sSo22RCAccessibilityContextV7main_14E11descriptionSSvg : $@convention(method) (@in_guaranteed RCAccessibilityContext) -> @owned String {
+// %0 "self"                                      // users: %226, %175, %124, %73, %26, %1
+bb0(%0 : $*RCAccessibilityContext):
+  debug_value %0 : $*RCAccessibilityContext, let, name "self", argno 1, implicit, expr op_deref // id: %1
+  %2 = metatype $@thin String.Type                // user: %254
+  %3 = metatype $@thin String.Type                // user: %203
+  %4 = metatype $@thin String.Type                // user: %152
+  %5 = metatype $@thin String.Type                // user: %101
+  %6 = alloc_stack [lexical] $DefaultStringInterpolation, var, name "$interpolation", implicit // users: %46, %14, %49, %48, %21, %30, %41
+  %7 = integer_literal $Builtin.Int64, 29         // user: %8
+  %8 = struct $Int (%7 : $Builtin.Int64)          // user: %13
+  %9 = integer_literal $Builtin.Int64, 1          // user: %10
+  %10 = struct $Int (%9 : $Builtin.Int64)         // user: %13
+  %11 = metatype $@thin DefaultStringInterpolation.Type // user: %13
+  // function_ref DefaultStringInterpolation.init(literalCapacity:interpolationCount:)
+  %12 = function_ref @$ss26DefaultStringInterpolationV15literalCapacity18interpolationCountABSi_SitcfC : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %13
+  %13 = apply %12(%8, %10, %11) : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %14
+  store %13 to %6 : $*DefaultStringInterpolation  // id: %14
+  %15 = string_literal utf8 "\n  .accessibilityIdentifier: " // user: %20
+  %16 = integer_literal $Builtin.Word, 29         // user: %20
+  %17 = integer_literal $Builtin.Int1, -1         // user: %20
+  %18 = metatype $@thin String.Type               // user: %20
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %19 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %20
+  %20 = apply %19(%15, %16, %17, %18) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %25, %23
+  %21 = begin_access [modify] [static] %6 : $*DefaultStringInterpolation // users: %24, %23
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %22 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %23
+  %23 = apply %22(%20, %21) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %21 : $*DefaultStringInterpolation   // id: %24
+  release_value %20 : $String                     // id: %25
+  %26 = struct_element_addr %0 : $*RCAccessibilityContext, #RCAccessibilityContext.accessibilityIdentifier // user: %27
+  %27 = load %26 : $*Optional<Unmanaged<NSString>> // user: %29
+  %28 = alloc_stack $Optional<Unmanaged<NSString>> // users: %29, %34, %32
+  store %27 to %28 : $*Optional<Unmanaged<NSString>> // id: %29
+  %30 = begin_access [modify] [static] %6 : $*DefaultStringInterpolation // users: %33, %32
+  // function_ref DefaultStringInterpolation.appendInterpolation<A>(_:)
+  %31 = function_ref @$ss26DefaultStringInterpolationV06appendC0yyxlF : $@convention(method) <τ_0_0> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> () // user: %32
+  %32 = apply %31<Unmanaged<NSString>?>(%28, %30) : $@convention(method) <τ_0_0> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> ()
+  end_access %30 : $*DefaultStringInterpolation   // id: %33
+  dealloc_stack %28 : $*Optional<Unmanaged<NSString>> // id: %34
+  %35 = string_literal utf8 ""                    // user: %40
+  %36 = integer_literal $Builtin.Word, 0          // user: %40
+  %37 = integer_literal $Builtin.Int1, -1         // user: %40
+  %38 = metatype $@thin String.Type               // user: %40
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %39 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %40
+  %40 = apply %39(%35, %36, %37, %38) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %45, %43
+  %41 = begin_access [modify] [static] %6 : $*DefaultStringInterpolation // users: %44, %43
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %42 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %43
+  %43 = apply %42(%40, %41) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %41 : $*DefaultStringInterpolation   // id: %44
+  release_value %40 : $String                     // id: %45
+  %46 = load %6 : $*DefaultStringInterpolation    // users: %52, %47
+  retain_value %46 : $DefaultStringInterpolation  // id: %47
+  destroy_addr %6 : $*DefaultStringInterpolation  // id: %48
+  dealloc_stack %6 : $*DefaultStringInterpolation // id: %49
+  %50 = metatype $@thin String.Type               // user: %52
+  // function_ref String.init(stringInterpolation:)
+  %51 = function_ref @$sSS19stringInterpolationSSs013DefaultStringB0V_tcfC : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // user: %52
+  %52 = apply %51(%46, %50) : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // users: %103, %101
+  %53 = alloc_stack [lexical] $DefaultStringInterpolation, var, name "$interpolation", implicit // users: %93, %61, %96, %95, %68, %77, %88
+  %54 = integer_literal $Builtin.Int64, 28        // user: %55
+  %55 = struct $Int (%54 : $Builtin.Int64)        // user: %60
+  %56 = integer_literal $Builtin.Int64, 1         // user: %57
+  %57 = struct $Int (%56 : $Builtin.Int64)        // user: %60
+  %58 = metatype $@thin DefaultStringInterpolation.Type // user: %60
+  // function_ref DefaultStringInterpolation.init(literalCapacity:interpolationCount:)
+  %59 = function_ref @$ss26DefaultStringInterpolationV15literalCapacity18interpolationCountABSi_SitcfC : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %60
+  %60 = apply %59(%55, %57, %58) : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %61
+  store %60 to %53 : $*DefaultStringInterpolation // id: %61
+  %62 = string_literal utf8 "\n  .isAccessibilityElement: " // user: %67
+  %63 = integer_literal $Builtin.Word, 28         // user: %67
+  %64 = integer_literal $Builtin.Int1, -1         // user: %67
+  %65 = metatype $@thin String.Type               // user: %67
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %66 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %67
+  %67 = apply %66(%62, %63, %64, %65) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %72, %70
+  %68 = begin_access [modify] [static] %53 : $*DefaultStringInterpolation // users: %71, %70
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %69 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %70
+  %70 = apply %69(%67, %68) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %68 : $*DefaultStringInterpolation   // id: %71
+  release_value %67 : $String                     // id: %72
+  %73 = struct_element_addr %0 : $*RCAccessibilityContext, #RCAccessibilityContext.isAccessibilityElement // user: %74
+  %74 = load %73 : $*Optional<Unmanaged<NSNumber>> // user: %76
+  %75 = alloc_stack $Optional<Unmanaged<NSNumber>> // users: %76, %81, %79
+  store %74 to %75 : $*Optional<Unmanaged<NSNumber>> // id: %76
+  %77 = begin_access [modify] [static] %53 : $*DefaultStringInterpolation // users: %80, %79
+  // function_ref DefaultStringInterpolation.appendInterpolation<A>(_:)
+  %78 = function_ref @$ss26DefaultStringInterpolationV06appendC0yyxlF : $@convention(method) <τ_0_0> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> () // user: %79
+  %79 = apply %78<Unmanaged<NSNumber>?>(%75, %77) : $@convention(method) <τ_0_0> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> ()
+  end_access %77 : $*DefaultStringInterpolation   // id: %80
+  dealloc_stack %75 : $*Optional<Unmanaged<NSNumber>> // id: %81
+  %82 = string_literal utf8 ""                    // user: %87
+  %83 = integer_literal $Builtin.Word, 0          // user: %87
+  %84 = integer_literal $Builtin.Int1, -1         // user: %87
+  %85 = metatype $@thin String.Type               // user: %87
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %86 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %87
+  %87 = apply %86(%82, %83, %84, %85) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %92, %90
+  %88 = begin_access [modify] [static] %53 : $*DefaultStringInterpolation // users: %91, %90
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %89 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %90
+  %90 = apply %89(%87, %88) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %88 : $*DefaultStringInterpolation   // id: %91
+  release_value %87 : $String                     // id: %92
+  %93 = load %53 : $*DefaultStringInterpolation   // users: %99, %94
+  retain_value %93 : $DefaultStringInterpolation  // id: %94
+  destroy_addr %53 : $*DefaultStringInterpolation // id: %95
+  dealloc_stack %53 : $*DefaultStringInterpolation // id: %96
+  %97 = metatype $@thin String.Type               // user: %99
+  // function_ref String.init(stringInterpolation:)
+  %98 = function_ref @$sSS19stringInterpolationSSs013DefaultStringB0V_tcfC : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // user: %99
+  %99 = apply %98(%93, %97) : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // users: %102, %101
+  // function_ref static String.+ infix(_:_:)
+  %100 = function_ref @$sSS1poiyS2S_SStFZ : $@convention(method) (@guaranteed String, @guaranteed String, @thin String.Type) -> @owned String // user: %101
+  %101 = apply %100(%52, %99, %5) : $@convention(method) (@guaranteed String, @guaranteed String, @thin String.Type) -> @owned String // users: %154, %152
+  release_value %99 : $String                     // id: %102
+  release_value %52 : $String                     // id: %103
+  %104 = alloc_stack [lexical] $DefaultStringInterpolation, var, name "$interpolation", implicit // users: %144, %112, %147, %146, %119, %128, %139
+  %105 = integer_literal $Builtin.Int64, 24       // user: %106
+  %106 = struct $Int (%105 : $Builtin.Int64)      // user: %111
+  %107 = integer_literal $Builtin.Int64, 1        // user: %108
+  %108 = struct $Int (%107 : $Builtin.Int64)      // user: %111
+  %109 = metatype $@thin DefaultStringInterpolation.Type // user: %111
+  // function_ref DefaultStringInterpolation.init(literalCapacity:interpolationCount:)
+  %110 = function_ref @$ss26DefaultStringInterpolationV15literalCapacity18interpolationCountABSi_SitcfC : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %111
+  %111 = apply %110(%106, %108, %109) : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %112
+  store %111 to %104 : $*DefaultStringInterpolation // id: %112
+  %113 = string_literal utf8 "\n  .accessibilityLabel: " // user: %118
+  %114 = integer_literal $Builtin.Word, 24        // user: %118
+  %115 = integer_literal $Builtin.Int1, -1        // user: %118
+  %116 = metatype $@thin String.Type              // user: %118
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %117 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %118
+  %118 = apply %117(%113, %114, %115, %116) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %123, %121
+  %119 = begin_access [modify] [static] %104 : $*DefaultStringInterpolation // users: %122, %121
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %120 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %121
+  %121 = apply %120(%118, %119) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %119 : $*DefaultStringInterpolation  // id: %122
+  release_value %118 : $String                    // id: %123
+  %124 = struct_element_addr %0 : $*RCAccessibilityContext, #RCAccessibilityContext.accessibilityLabel // user: %125
+  %125 = load %124 : $*Optional<Unmanaged<NSString>> // user: %127
+  %126 = alloc_stack $Optional<Unmanaged<NSString>> // users: %127, %132, %130
+  store %125 to %126 : $*Optional<Unmanaged<NSString>> // id: %127
+  %128 = begin_access [modify] [static] %104 : $*DefaultStringInterpolation // users: %131, %130
+  // function_ref DefaultStringInterpolation.appendInterpolation<A>(_:)
+  %129 = function_ref @$ss26DefaultStringInterpolationV06appendC0yyxlF : $@convention(method) <τ_0_0> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> () // user: %130
+  %130 = apply %129<Unmanaged<NSString>?>(%126, %128) : $@convention(method) <τ_0_0> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> ()
+  end_access %128 : $*DefaultStringInterpolation  // id: %131
+  dealloc_stack %126 : $*Optional<Unmanaged<NSString>> // id: %132
+  %133 = string_literal utf8 ""                   // user: %138
+  %134 = integer_literal $Builtin.Word, 0         // user: %138
+  %135 = integer_literal $Builtin.Int1, -1        // user: %138
+  %136 = metatype $@thin String.Type              // user: %138
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %137 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %138
+  %138 = apply %137(%133, %134, %135, %136) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %143, %141
+  %139 = begin_access [modify] [static] %104 : $*DefaultStringInterpolation // users: %142, %141
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %140 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %141
+  %141 = apply %140(%138, %139) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %139 : $*DefaultStringInterpolation  // id: %142
+  release_value %138 : $String                    // id: %143
+  %144 = load %104 : $*DefaultStringInterpolation // users: %150, %145
+  retain_value %144 : $DefaultStringInterpolation // id: %145
+  destroy_addr %104 : $*DefaultStringInterpolation // id: %146
+  dealloc_stack %104 : $*DefaultStringInterpolation // id: %147
+  %148 = metatype $@thin String.Type              // user: %150
+  // function_ref String.init(stringInterpolation:)
+  %149 = function_ref @$sSS19stringInterpolationSSs013DefaultStringB0V_tcfC : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // user: %150
+  %150 = apply %149(%144, %148) : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // users: %153, %152
+  // function_ref static String.+ infix(_:_:)
+  %151 = function_ref @$sSS1poiyS2S_SStFZ : $@convention(method) (@guaranteed String, @guaranteed String, @thin String.Type) -> @owned String // user: %152
+  %152 = apply %151(%101, %150, %4) : $@convention(method) (@guaranteed String, @guaranteed String, @thin String.Type) -> @owned String // users: %205, %203
+  release_value %150 : $String                    // id: %153
+  release_value %101 : $String                    // id: %154
+  %155 = alloc_stack [lexical] $DefaultStringInterpolation, var, name "$interpolation", implicit // users: %195, %163, %198, %197, %170, %179, %190
+  %156 = integer_literal $Builtin.Int64, 23       // user: %157
+  %157 = struct $Int (%156 : $Builtin.Int64)      // user: %162
+  %158 = integer_literal $Builtin.Int64, 1        // user: %159
+  %159 = struct $Int (%158 : $Builtin.Int64)      // user: %162
+  %160 = metatype $@thin DefaultStringInterpolation.Type // user: %162
+  // function_ref DefaultStringInterpolation.init(literalCapacity:interpolationCount:)
+  %161 = function_ref @$ss26DefaultStringInterpolationV15literalCapacity18interpolationCountABSi_SitcfC : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %162
+  %162 = apply %161(%157, %159, %160) : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %163
+  store %162 to %155 : $*DefaultStringInterpolation // id: %163
+  %164 = string_literal utf8 "\n  .accessibilityHint: " // user: %169
+  %165 = integer_literal $Builtin.Word, 23        // user: %169
+  %166 = integer_literal $Builtin.Int1, -1        // user: %169
+  %167 = metatype $@thin String.Type              // user: %169
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %168 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %169
+  %169 = apply %168(%164, %165, %166, %167) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %174, %172
+  %170 = begin_access [modify] [static] %155 : $*DefaultStringInterpolation // users: %173, %172
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %171 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %172
+  %172 = apply %171(%169, %170) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %170 : $*DefaultStringInterpolation  // id: %173
+  release_value %169 : $String                    // id: %174
+  %175 = struct_element_addr %0 : $*RCAccessibilityContext, #RCAccessibilityContext.accessibilityHint // user: %176
+  %176 = load %175 : $*Optional<Unmanaged<NSString>> // user: %178
+  %177 = alloc_stack $Optional<Unmanaged<NSString>> // users: %178, %183, %181
+  store %176 to %177 : $*Optional<Unmanaged<NSString>> // id: %178
+  %179 = begin_access [modify] [static] %155 : $*DefaultStringInterpolation // users: %182, %181
+  // function_ref DefaultStringInterpolation.appendInterpolation<A>(_:)
+  %180 = function_ref @$ss26DefaultStringInterpolationV06appendC0yyxlF : $@convention(method) <τ_0_0> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> () // user: %181
+  %181 = apply %180<Unmanaged<NSString>?>(%177, %179) : $@convention(method) <τ_0_0> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> ()
+  end_access %179 : $*DefaultStringInterpolation  // id: %182
+  dealloc_stack %177 : $*Optional<Unmanaged<NSString>> // id: %183
+  %184 = string_literal utf8 ""                   // user: %189
+  %185 = integer_literal $Builtin.Word, 0         // user: %189
+  %186 = integer_literal $Builtin.Int1, -1        // user: %189
+  %187 = metatype $@thin String.Type              // user: %189
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %188 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %189
+  %189 = apply %188(%184, %185, %186, %187) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %194, %192
+  %190 = begin_access [modify] [static] %155 : $*DefaultStringInterpolation // users: %193, %192
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %191 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %192
+  %192 = apply %191(%189, %190) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %190 : $*DefaultStringInterpolation  // id: %193
+  release_value %189 : $String                    // id: %194
+  %195 = load %155 : $*DefaultStringInterpolation // users: %201, %196
+  retain_value %195 : $DefaultStringInterpolation // id: %196
+  destroy_addr %155 : $*DefaultStringInterpolation // id: %197
+  dealloc_stack %155 : $*DefaultStringInterpolation // id: %198
+  %199 = metatype $@thin String.Type              // user: %201
+  // function_ref String.init(stringInterpolation:)
+  %200 = function_ref @$sSS19stringInterpolationSSs013DefaultStringB0V_tcfC : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // user: %201
+  %201 = apply %200(%195, %199) : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // users: %204, %203
+  // function_ref static String.+ infix(_:_:)
+  %202 = function_ref @$sSS1poiyS2S_SStFZ : $@convention(method) (@guaranteed String, @guaranteed String, @thin String.Type) -> @owned String // user: %203
+  %203 = apply %202(%152, %201, %3) : $@convention(method) (@guaranteed String, @guaranteed String, @thin String.Type) -> @owned String // users: %256, %254
+  release_value %201 : $String                    // id: %204
+  release_value %152 : $String                    // id: %205
+  %206 = alloc_stack [lexical] $DefaultStringInterpolation, var, name "$interpolation", implicit // users: %246, %214, %249, %248, %221, %230, %241
+  %207 = integer_literal $Builtin.Int64, 24       // user: %208
+  %208 = struct $Int (%207 : $Builtin.Int64)      // user: %213
+  %209 = integer_literal $Builtin.Int64, 1        // user: %210
+  %210 = struct $Int (%209 : $Builtin.Int64)      // user: %213
+  %211 = metatype $@thin DefaultStringInterpolation.Type // user: %213
+  // function_ref DefaultStringInterpolation.init(literalCapacity:interpolationCount:)
+  %212 = function_ref @$ss26DefaultStringInterpolationV15literalCapacity18interpolationCountABSi_SitcfC : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %213
+  %213 = apply %212(%208, %210, %211) : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation // user: %214
+  store %213 to %206 : $*DefaultStringInterpolation // id: %214
+  %215 = string_literal utf8 "\n  .accessibilityValue: " // user: %220
+  %216 = integer_literal $Builtin.Word, 24        // user: %220
+  %217 = integer_literal $Builtin.Int1, -1        // user: %220
+  %218 = metatype $@thin String.Type              // user: %220
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %219 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %220
+  %220 = apply %219(%215, %216, %217, %218) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %225, %223
+  %221 = begin_access [modify] [static] %206 : $*DefaultStringInterpolation // users: %224, %223
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %222 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %223
+  %223 = apply %222(%220, %221) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %221 : $*DefaultStringInterpolation  // id: %224
+  release_value %220 : $String                    // id: %225
+  %226 = struct_element_addr %0 : $*RCAccessibilityContext, #RCAccessibilityContext.accessibilityValue // user: %227
+  %227 = load %226 : $*Optional<Unmanaged<NSString>> // user: %229
+  %228 = alloc_stack $Optional<Unmanaged<NSString>> // users: %229, %234, %232
+  store %227 to %228 : $*Optional<Unmanaged<NSString>> // id: %229
+  %230 = begin_access [modify] [static] %206 : $*DefaultStringInterpolation // users: %233, %232
+  // function_ref DefaultStringInterpolation.appendInterpolation<A>(_:)
+  %231 = function_ref @$ss26DefaultStringInterpolationV06appendC0yyxlF : $@convention(method) <τ_0_0> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> () // user: %232
+  %232 = apply %231<Unmanaged<NSString>?>(%228, %230) : $@convention(method) <τ_0_0> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> ()
+  end_access %230 : $*DefaultStringInterpolation  // id: %233
+  dealloc_stack %228 : $*Optional<Unmanaged<NSString>> // id: %234
+  %235 = string_literal utf8 ""                   // user: %240
+  %236 = integer_literal $Builtin.Word, 0         // user: %240
+  %237 = integer_literal $Builtin.Int1, -1        // user: %240
+  %238 = metatype $@thin String.Type              // user: %240
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %239 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %240
+  %240 = apply %239(%235, %236, %237, %238) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // users: %245, %243
+  %241 = begin_access [modify] [static] %206 : $*DefaultStringInterpolation // users: %244, %243
+  // function_ref DefaultStringInterpolation.appendLiteral(_:)
+  %242 = function_ref @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> () // user: %243
+  %243 = apply %242(%240, %241) : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+  end_access %241 : $*DefaultStringInterpolation  // id: %244
+  release_value %240 : $String                    // id: %245
+  %246 = load %206 : $*DefaultStringInterpolation // users: %252, %247
+  retain_value %246 : $DefaultStringInterpolation // id: %247
+  destroy_addr %206 : $*DefaultStringInterpolation // id: %248
+  dealloc_stack %206 : $*DefaultStringInterpolation // id: %249
+  %250 = metatype $@thin String.Type              // user: %252
+  // function_ref String.init(stringInterpolation:)
+  %251 = function_ref @$sSS19stringInterpolationSSs013DefaultStringB0V_tcfC : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // user: %252
+  %252 = apply %251(%246, %250) : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String // users: %255, %254
+  // function_ref static String.+ infix(_:_:)
+  %253 = function_ref @$sSS1poiyS2S_SStFZ : $@convention(method) (@guaranteed String, @guaranteed String, @thin String.Type) -> @owned String // user: %254
+  %254 = apply %253(%203, %252, %2) : $@convention(method) (@guaranteed String, @guaranteed String, @thin String.Type) -> @owned String // user: %257
+  release_value %252 : $String                    // id: %255
+  release_value %203 : $String                    // id: %256
+  return %254 : $String                           // id: %257
+} // end sil function '$sSo22RCAccessibilityContextV7main_14E11descriptionSSvg'
+
+// Int.init(_builtinIntegerLiteral:)
+sil public_external [transparent] @$sSi22_builtinIntegerLiteralSiBI_tcfC : $@convention(method) (Builtin.IntLiteral, @thin Int.Type) -> Int {
+// %0                                             // user: %2
+bb0(%0 : $Builtin.IntLiteral, %1 : $@thin Int.Type):
+  %2 = builtin "s_to_s_checked_trunc_IntLiteral_Int64"(%0 : $Builtin.IntLiteral) : $(Builtin.Int64, Builtin.Int1) // user: %3
+  %3 = tuple_extract %2 : $(Builtin.Int64, Builtin.Int1), 0 // user: %4
+  %4 = struct $Int (%3 : $Builtin.Int64)          // user: %5
+  return %4 : $Int                                // id: %5
+} // end sil function '$sSi22_builtinIntegerLiteralSiBI_tcfC'
+
+// DefaultStringInterpolation.init(literalCapacity:interpolationCount:)
+sil @$ss26DefaultStringInterpolationV15literalCapacity18interpolationCountABSi_SitcfC : $@convention(method) (Int, Int, @thin DefaultStringInterpolation.Type) -> @owned DefaultStringInterpolation
+
+// String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+sil [always_inline] [readonly] [_semantics "string.makeUTF8"] @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String
+
+// DefaultStringInterpolation.appendLiteral(_:)
+sil @$ss26DefaultStringInterpolationV13appendLiteralyySSF : $@convention(method) (@guaranteed String, @inout DefaultStringInterpolation) -> ()
+
+// DefaultStringInterpolation.appendInterpolation<A>(_:)
+sil @$ss26DefaultStringInterpolationV06appendC0yyxlF : $@convention(method) <τ_0_0> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> ()
+
+// String.init(stringInterpolation:)
+sil [readonly] @$sSS19stringInterpolationSSs013DefaultStringB0V_tcfC : $@convention(method) (@owned DefaultStringInterpolation, @thin String.Type) -> @owned String
+
+// static String.+ infix(_:_:)
+sil [readonly] [_semantics "string.concat"] @$sSS1poiyS2S_SStFZ : $@convention(method) (@guaranteed String, @guaranteed String, @thin String.Type) -> @owned String
+
+// protocol witness for CustomStringConvertible.description.getter in conformance RCAccessibilityContext
+sil shared [transparent] [thunk] @$sSo22RCAccessibilityContextVs23CustomStringConvertible7main_14sACP11descriptionSSvgTW : $@convention(witness_method: CustomStringConvertible) (@in_guaranteed RCAccessibilityContext) -> @owned String {
+// %0                                             // user: %2
+bb0(%0 : $*RCAccessibilityContext):
+  // function_ref RCAccessibilityContext.description.getter
+  %1 = function_ref @$sSo22RCAccessibilityContextV7main_14E11descriptionSSvg : $@convention(method) (@in_guaranteed RCAccessibilityContext) -> @owned String // user: %2
+  %2 = apply %1(%0) : $@convention(method) (@in_guaranteed RCAccessibilityContext) -> @owned String // user: %3
+  return %2 : $String                             // id: %3
+} // end sil function '$sSo22RCAccessibilityContextVs23CustomStringConvertible7main_14sACP11descriptionSSvgTW'
+
+// String._bridgeToObjectiveC()
+sil [_semantics "convertToObjectiveC"] @$sSS10FoundationE19_bridgeToObjectiveCSo8NSStringCyF : $@convention(method) (@guaranteed String) -> @owned NSString
+
+// _ZN22RCAccessibilityContext5buildEP8NSStringP8NSNumberS1_S1_S1_S3_P12NSDictionaryIS1_P11objc_objectE
+// clang name: RCAccessibilityContext::build
+sil [clang RCAccessibilityContext.build] @_ZN22RCAccessibilityContext5buildEP8NSStringP8NSNumberS1_S1_S1_S3_P12NSDictionaryIS1_P11objc_objectE : $@convention(c) (Optional<NSString>, Optional<NSNumber>, Optional<NSString>, Optional<NSString>, Optional<NSString>, Optional<NSNumber>, Optional<NSDictionary>) -> @out RCAccessibilityContext
+
+// _allocateUninitializedArray<A>(_:)
+sil [always_inline] [_semantics "array.uninitialized_intrinsic"] @$ss27_allocateUninitializedArrayySayxG_BptBwlF : $@convention(thin) <τ_0_0> (Builtin.Word) -> (@owned Array<τ_0_0>, Builtin.RawPointer)
+
+// DefaultStringInterpolation.appendInterpolation<A>(_:)
+sil @$ss26DefaultStringInterpolationV06appendC0yyxs06CustomB11ConvertibleRzlF : $@convention(method) <τ_0_0 where τ_0_0 : CustomStringConvertible> (@in_guaranteed τ_0_0, @inout DefaultStringInterpolation) -> ()
+
+// _finalizeUninitializedArray<A>(_:)
+sil shared [readnone] [_semantics "array.finalize_intrinsic"] @$ss27_finalizeUninitializedArrayySayxGABnlF : $@convention(thin) <Element> (@owned Array<Element>) -> @owned Array<Element> {
+// %0                                             // users: %6, %3, %2
+bb0(%0 : $Array<Element>):
+  %1 = alloc_stack $Array<Element>                // users: %7, %3, %8, %5
+  retain_value %0 : $Array<Element>               // id: %2
+  store %0 to %1 : $*Array<Element>               // id: %3
+  // function_ref Array._endMutation()
+  %4 = function_ref @$sSa12_endMutationyyF : $@convention(method) <τ_0_0> (@inout Array<τ_0_0>) -> () // user: %5
+  %5 = apply %4<Element>(%1) : $@convention(method) <τ_0_0> (@inout Array<τ_0_0>) -> ()
+  release_value %0 : $Array<Element>              // id: %6
+  %7 = load %1 : $*Array<Element>                 // user: %9
+  dealloc_stack %1 : $*Array<Element>             // id: %8
+  return %7 : $Array<Element>                     // id: %9
+} // end sil function '$ss27_finalizeUninitializedArrayySayxGABnlF'
+
+// default argument 1 of print(_:separator:terminator:)
+sil shared @$ss5print_9separator10terminatoryypd_S2StFfA0_ : $@convention(thin) () -> @owned String {
+bb0:
+  %0 = string_literal utf8 " "                    // user: %5
+  %1 = integer_literal $Builtin.Word, 1           // user: %5
+  %2 = integer_literal $Builtin.Int1, -1          // user: %5
+  %3 = metatype $@thin String.Type                // user: %5
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %4 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %5
+  %5 = apply %4(%0, %1, %2, %3) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %6
+  return %5 : $String                             // id: %6
+} // end sil function '$ss5print_9separator10terminatoryypd_S2StFfA0_'
+
+// default argument 2 of print(_:separator:terminator:)
+sil shared @$ss5print_9separator10terminatoryypd_S2StFfA1_ : $@convention(thin) () -> @owned String {
+bb0:
+  %0 = string_literal utf8 "\n"                   // user: %5
+  %1 = integer_literal $Builtin.Word, 1           // user: %5
+  %2 = integer_literal $Builtin.Int1, -1          // user: %5
+  %3 = metatype $@thin String.Type                // user: %5
+  // function_ref String.init(_builtinStringLiteral:utf8CodeUnitCount:isASCII:)
+  %4 = function_ref @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %5
+  %5 = apply %4(%0, %1, %2, %3) : $@convention(method) (Builtin.RawPointer, Builtin.Word, Builtin.Int1, @thin String.Type) -> @owned String // user: %6
+  return %5 : $String                             // id: %6
+} // end sil function '$ss5print_9separator10terminatoryypd_S2StFfA1_'
+
+// print(_:separator:terminator:)
+sil @$ss5print_9separator10terminatoryypd_S2StF : $@convention(thin) (@guaranteed Array<Any>, @guaranteed String, @guaranteed String) -> ()
+
+// _ZNK22RCAccessibilityContext4dumpEv
+// clang name: RCAccessibilityContext::dump
+sil [clang RCAccessibilityContext.dump] @_ZNK22RCAccessibilityContext4dumpEv : $@convention(cxx_method) (@in_guaranteed RCAccessibilityContext) -> ()
+
+// _convertInOutToPointerArgument<A>(_:)
+sil public_external [transparent] @$ss30_convertInOutToPointerArgumentyxBps01_E0RzlF : $@convention(thin) <ToPointer where ToPointer : _Pointer> (Builtin.RawPointer) -> @out ToPointer {
+// %0                                             // user: %4
+// %1                                             // user: %4
+bb0(%0 : $*ToPointer, %1 : $Builtin.RawPointer):
+  %2 = metatype $@thick ToPointer.Type            // user: %4
+  %3 = witness_method $ToPointer, #_Pointer.init!allocator : <Self where Self : _Pointer> (Self.Type) -> (Builtin.RawPointer) -> Self : $@convention(witness_method: _Pointer) <τ_0_0 where τ_0_0 : _Pointer> (Builtin.RawPointer, @thick τ_0_0.Type) -> @out τ_0_0 // user: %4
+  %4 = apply %3<ToPointer>(%0, %1, %2) : $@convention(witness_method: _Pointer) <τ_0_0 where τ_0_0 : _Pointer> (Builtin.RawPointer, @thick τ_0_0.Type) -> @out τ_0_0
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$ss30_convertInOutToPointerArgumentyxBps01_E0RzlF'
+
+// RCAccessibilityContext_SwiftBridge.__allocating_init(accessibilityContext:)
+sil shared @$sSo34RCAccessibilityContext_SwiftBridgeC013accessibilityB0ABSPySo0aB0VG_tcfC : $@convention(method) (UnsafePointer<RCAccessibilityContext>, @thick AccessibilityContextSwiftBridge.Type) -> @owned AccessibilityContextSwiftBridge {
+// %0 "accessibilityContext"                      // user: %5
+// %1 "$metatype"                                 // user: %2
+bb0(%0 : $UnsafePointer<RCAccessibilityContext>, %1 : $@thick AccessibilityContextSwiftBridge.Type):
+  %2 = thick_to_objc_metatype %1 : $@thick AccessibilityContextSwiftBridge.Type to $@objc_metatype AccessibilityContextSwiftBridge.Type // user: %3
+  %3 = alloc_ref_dynamic [objc] %2 : $@objc_metatype AccessibilityContextSwiftBridge.Type, $AccessibilityContextSwiftBridge // user: %5
+  // function_ref @nonobjc RCAccessibilityContext_SwiftBridge.init(accessibilityContext:)
+  %4 = function_ref @$sSo34RCAccessibilityContext_SwiftBridgeC013accessibilityB0ABSPySo0aB0VG_tcfcTO : $@convention(method) (UnsafePointer<RCAccessibilityContext>, @owned AccessibilityContextSwiftBridge) -> @owned AccessibilityContextSwiftBridge // user: %5
+  %5 = apply %4(%0, %3) : $@convention(method) (UnsafePointer<RCAccessibilityContext>, @owned AccessibilityContextSwiftBridge) -> @owned AccessibilityContextSwiftBridge // user: %6
+  return %5 : $AccessibilityContextSwiftBridge    // id: %6
+} // end sil function '$sSo34RCAccessibilityContext_SwiftBridgeC013accessibilityB0ABSPySo0aB0VG_tcfC'
+
+// @nonobjc RCAccessibilityContext_SwiftBridge.init(accessibilityContext:)
+sil shared [thunk] @$sSo34RCAccessibilityContext_SwiftBridgeC013accessibilityB0ABSPySo0aB0VG_tcfcTO : $@convention(method) (UnsafePointer<RCAccessibilityContext>, @owned AccessibilityContextSwiftBridge) -> @owned AccessibilityContextSwiftBridge {
+// %0 "accessibilityContext"                      // user: %3
+// %1 "self"                                      // users: %5, %4
+bb0(%0 : $UnsafePointer<RCAccessibilityContext>, %1 : $AccessibilityContextSwiftBridge):
+  %2 = alloc_stack $UnsafePointer<RCAccessibilityContext> // users: %3, %6, %5
+  store %0 to %2 : $*UnsafePointer<RCAccessibilityContext> // id: %3
+  %4 = objc_method %1 : $AccessibilityContextSwiftBridge, #AccessibilityContextSwiftBridge.init!initializer.foreign : (AccessibilityContextSwiftBridge.Type) -> (UnsafePointer<RCAccessibilityContext>) -> AccessibilityContextSwiftBridge, $@convention(objc_method) (@in UnsafePointer<RCAccessibilityContext>, @owned AccessibilityContextSwiftBridge) -> @owned AccessibilityContextSwiftBridge // user: %5
+  %5 = apply %4(%2, %1) : $@convention(objc_method) (@in UnsafePointer<RCAccessibilityContext>, @owned AccessibilityContextSwiftBridge) -> @owned AccessibilityContextSwiftBridge // user: %7
+  dealloc_stack %2 : $*UnsafePointer<RCAccessibilityContext> // id: %6
+  return %5 : $AccessibilityContextSwiftBridge    // id: %7
+} // end sil function '$sSo34RCAccessibilityContext_SwiftBridgeC013accessibilityB0ABSPySo0aB0VG_tcfcTO'
+
+// protocol witness for _Pointer._rawValue.getter in conformance UnsafePointer<A>
+sil shared [transparent] [thunk] @$sSPyxGs8_PointerssABP9_rawValueBpvgTW : $@convention(witness_method: _Pointer) <τ_0_0> (@in_guaranteed UnsafePointer<τ_0_0>) -> Builtin.RawPointer {
+// %0                                             // user: %1
+bb0(%0 : $*UnsafePointer<τ_0_0>):
+  %1 = struct_element_addr %0 : $*UnsafePointer<τ_0_0>, #UnsafePointer._rawValue // user: %2
+  %2 = load %1 : $*Builtin.RawPointer             // user: %3
+  return %2 : $Builtin.RawPointer                 // id: %3
+} // end sil function '$sSPyxGs8_PointerssABP9_rawValueBpvgTW'
+
+// protocol witness for _Pointer.init(_:) in conformance UnsafePointer<A>
+sil shared [transparent] [thunk] @$sSPyxGs8_PointerssABPyxBpcfCTW : $@convention(witness_method: _Pointer) <τ_0_0> (Builtin.RawPointer, @thick UnsafePointer<τ_0_0>.Type) -> @out UnsafePointer<τ_0_0> {
+// %0                                             // user: %4
+// %1                                             // user: %3
+bb0(%0 : $*UnsafePointer<τ_0_0>, %1 : $Builtin.RawPointer, %2 : $@thick UnsafePointer<τ_0_0>.Type):
+  %3 = struct $UnsafePointer<τ_0_0> (%1 : $Builtin.RawPointer) // user: %4
+  store %3 to %0 : $*UnsafePointer<τ_0_0>         // id: %4
+  %5 = tuple ()                                   // user: %6
+  return %5 : $()                                 // id: %6
+} // end sil function '$sSPyxGs8_PointerssABPyxBpcfCTW'
+
+// Array._endMutation()
+sil shared [_semantics "array.end_mutation"] @$sSa12_endMutationyyF : $@convention(method) <Element> (@inout Array<Element>) -> () {
+// %0                                             // users: %9, %1
+bb0(%0 : $*Array<Element>):
+  %1 = struct_element_addr %0 : $*Array<Element>, #Array._buffer // user: %2
+  %2 = struct_element_addr %1 : $*_ArrayBuffer<Element>, #_ArrayBuffer._storage // user: %3
+  %3 = struct_element_addr %2 : $*_BridgeStorage<__ContiguousArrayStorageBase>, #_BridgeStorage.rawValue // user: %4
+  %4 = load %3 : $*Builtin.BridgeObject           // user: %5
+  %5 = end_cow_mutation %4 : $Builtin.BridgeObject // user: %6
+  %6 = struct $_BridgeStorage<__ContiguousArrayStorageBase> (%5 : $Builtin.BridgeObject) // user: %7
+  %7 = struct $_ArrayBuffer<Element> (%6 : $_BridgeStorage<__ContiguousArrayStorageBase>) // user: %8
+  %8 = struct $Array<Element> (%7 : $_ArrayBuffer<Element>) // user: %9
+  store %8 to %0 : $*Array<Element>               // id: %9
+  %10 = tuple ()                                  // user: %11
+  return %10 : $()                                // id: %11
+} // end sil function '$sSa12_endMutationyyF'
+
+// specialized _allocateUninitializedArray<A>(_:)
+sil [always_inline] [_semantics "array.uninitialized_intrinsic"] @$ss27_allocateUninitializedArrayySayxG_BptBwlFyp_Tg5 : $@convention(thin) (Builtin.Word) -> (@owned Array<Any>, Builtin.RawPointer)
+
+sil_witness_table RCAccessibilityContext: CustomStringConvertible module main_14 {
+  method #CustomStringConvertible.description!getter: <Self where Self : CustomStringConvertible> (Self) -> () -> String : @$sSo22RCAccessibilityContextVs23CustomStringConvertible7main_14sACP11descriptionSSvgTW	// protocol witness for CustomStringConvertible.description.getter in conformance RCAccessibilityContext
+}
+
+sil_witness_table public_external <Pointee> UnsafePointer<Pointee>: _Pointer module Swift {
+  base_protocol CustomDebugStringConvertible: <Pointee> UnsafePointer<Pointee>: CustomDebugStringConvertible module Swift
+  base_protocol CustomReflectable: <Pointee> UnsafePointer<Pointee>: CustomReflectable module Swift
+  base_protocol Hashable: <Pointee> UnsafePointer<Pointee>: Hashable module Swift
+  base_protocol Strideable: <Pointee> UnsafePointer<Pointee>: Strideable module Swift
+  associated_type Pointee: Pointee
+  method #_Pointer._rawValue!getter: <Self where Self : _Pointer> (Self) -> () -> Builtin.RawPointer : @$sSPyxGs8_PointerssABP9_rawValueBpvgTW	// protocol witness for _Pointer._rawValue.getter in conformance UnsafePointer<A>
+  method #_Pointer.init!allocator: <Self where Self : _Pointer> (Self.Type) -> (Builtin.RawPointer) -> Self : @$sSPyxGs8_PointerssABPyxBpcfCTW	// protocol witness for _Pointer.init(_:) in conformance UnsafePointer<A>
+}
+
+sil_property #RCAccessibilityContext.description ()
+
+
+// Mappings from '#fileID' to '#filePath':
+//   'main_14/main.swift' => 'main.swift'
+
+
