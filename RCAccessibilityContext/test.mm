@@ -1,6 +1,6 @@
 
 
-// (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+// The following code was taken from ComponentKit https://github.com/facebook/componentkit
 
 #import <Foundation/Foundation.h>
 #import "test.h"
