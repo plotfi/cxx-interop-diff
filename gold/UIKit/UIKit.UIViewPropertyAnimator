@@ -1,131 +1,62 @@
-@_exported import Foundation
-
-@available(iOS 10.0, *)
-@MainActor class UIViewPropertyAnimator : NSObject, UIViewImplicitlyAnimating, NSCopying {
-  @NSCopying var timingParameters: UITimingCurveProvider? { get }
-  var duration: TimeInterval { get }
-
-  /// Defaults to 0. This property is set when calling -[UIView startAnimationAfterDelay:].
-  var delay: TimeInterval { get }
-
-  /// Defaults to YES. Raises if set on an active animator.
-  var isUserInteractionEnabled: Bool
-
-  /// Defaults to YES. Raises if set on an active animator.
-  @available(swift, obsoleted: 3, renamed: "isUserInteractionEnabled")
-  var userInteractionEnabled: Bool
-
-  /// Defaults to NO. Set if you need to manage the the hit-testing of animating view hierarchies
-  var isManualHitTestingEnabled: Bool
-
-  /// Defaults to NO. Set if you need to manage the the hit-testing of animating view hierarchies
-  @available(swift, obsoleted: 3, renamed: "isManualHitTestingEnabled")
-  var manualHitTestingEnabled: Bool
-
-  /// Defaults to YES. Raises if set on an active animator.
-  var isInterruptible: Bool
-
-  /// Defaults to YES. Raises if set on an active animator.
-  @available(swift, obsoleted: 3, renamed: "isInterruptible")
-  var interruptible: Bool
-
-  /// Defaults to YES. Provides the ability for an animator to pause and scrub either linearly or using the animator’s current timing.
-  @available(iOS 11.0, *)
-  var scrubsLinearly: Bool
-
-  /// Defaults to NO. Provides the ability for an animator to pause on completion instead of transitioning to the .inactive state.
-  @available(iOS 11.0, *)
-  var pausesOnCompletion: Bool
-  init(duration: TimeInterval, timingParameters parameters: UITimingCurveProvider)
-
-  /// All convenience initializers return an animator which is not running.
-  convenience init(duration: TimeInterval, curve: UIView.AnimationCurve, animations: (() -> Void)? = nil)
-  convenience init(duration: TimeInterval, controlPoint1 point1: CGPoint, controlPoint2 point2: CGPoint, animations: (() -> Void)? = nil)
-  convenience init(duration: TimeInterval, dampingRatio ratio: CGFloat, animations: (() -> Void)? = nil)
-
-  /// @abstract This method provides compatibility with the old style [UIView
-  /// animationWithDuration:...]  method. It is also useful for controlling
-  /// how animations options are inherited.
-  /// @discussion Creates a UIViewPropertyAnimator, sets the duration, options, etc. And starts the
-  /// animation with the associated animation and completion blocks. The animator
-  /// returned is interruptible only if it is not called from within the execution
-  /// block of another animation (animator or legacy). Note that if it is called
-  /// within the execution block of another animation it will inherit the duration
-  /// and other characteristics of that animation UNLESS the appropriate override
-  /// options have been specified. Also note that if is called within the execution
-  /// block of another propertyAnimator that is interruptible, the implicit
-  /// animations defined by this call will be tracked by the outer
-  /// propertyAnimator.
-  class func runningPropertyAnimator(withDuration duration: TimeInterval, delay: TimeInterval, options: UIView.AnimationOptions = [], animations: @escaping () -> Void, completion: ((UIViewAnimatingPosition) -> Void)? = nil) -> Self
-
-  /// @abstract This method provides compatibility with the old style [UIView
-  /// animationWithDuration:...]  method. It is also useful for controlling
-  /// how animations options are inherited.
-  /// @discussion Creates a UIViewPropertyAnimator, sets the duration, options, etc. And starts the
-  /// animation with the associated animation and completion blocks. The animator
-  /// returned is interruptible only if it is not called from within the execution
-  /// block of another animation (animator or legacy). Note that if it is called
-  /// within the execution block of another animation it will inherit the duration
-  /// and other characteristics of that animation UNLESS the appropriate override
-  /// options have been specified. Also note that if is called within the execution
-  /// block of another propertyAnimator that is interruptible, the implicit
-  /// animations defined by this call will be tracked by the outer
-  /// propertyAnimator.
-  @available(swift, obsoleted: 3, renamed: "runningPropertyAnimator(withDuration:delay:options:animations:completion:)")
-  class func runningPropertyAnimatorWithDuration(_ duration: TimeInterval, delay: TimeInterval, options: UIView.AnimationOptions = [], animations: @escaping () -> Void, completion: ((UIViewAnimatingPosition) -> Void)? = nil) -> Self
-
-  /// Animatable view properties that are set by the animation block will be
-  /// animated to their new values. The animations will commence at delayFactor *
-  /// animator.duration seconds into the animation. The duration of the animation
-  /// will be (1 - delayFactor) * animator.duration seconds.
-  func addAnimations(_ animation: @escaping () -> Void, delayFactor: CGFloat)
-
-  /// Animatable view properties that are set by the animation block will be
-  /// animated to their new values. Starting an animator that does not contain any animation blocks
-  /// will start the animator in a transient paused state. While in this state, submitting an animation
-  /// block will automatically start animating any animatable view properties set therein. When the
-  /// animator is stopped, either naturally completing or explicitly, any animation blocks and completion
-  /// handlers are invalidated. Immediately calling `startAnimation` again on the animator, since there
-  /// are no animation blocks, will start the animator in a transient paused state.
-  func addAnimations(_ animation: @escaping () -> Void)
-  func addCompletion(_ completion: @escaping @Sendable (UIViewAnimatingPosition) -> Void)
-  func addCompletion() async -> UIViewAnimatingPosition
-
-  /// Provides a means to continue an animation in either the forward or reversed
-  /// directions with new timing parameters and duration.  The durationFactor is in
-  /// terms of a unit duration defined by the originally specified duration of the
-  /// animator. It is used to specify the remaining time for the animation. When
-  /// called, it behaves as if the animation was started from its current position
-  /// with a new duration and timing parameters.
-  func continueAnimation(withTimingParameters parameters: UITimingCurveProvider?, durationFactor: CGFloat)
-
-  /// Provides a means to continue an animation in either the forward or reversed
-  /// directions with new timing parameters and duration.  The durationFactor is in
-  /// terms of a unit duration defined by the originally specified duration of the
-  /// animator. It is used to specify the remaining time for the animation. When
-  /// called, it behaves as if the animation was started from its current position
-  /// with a new duration and timing parameters.
-  @available(swift, obsoleted: 3, renamed: "continueAnimation(withTimingParameters:durationFactor:)")
-  func continueAnimationWithTimingParameters(_ parameters: UITimingCurveProvider?, durationFactor: CGFloat)
-  convenience init()
-  @available(iOS 10.0, *)
-  var state: UIViewAnimatingState { get }
-  @available(iOS 10.0, *)
-  var isRunning: Bool { get }
-  @available(iOS 10.0, *)
-  var isReversed: Bool
-  @available(iOS 10.0, *)
-  var fractionComplete: CGFloat
-  @available(iOS 10.0, *)
-  func startAnimation()
-  @available(iOS 10.0, *)
-  func startAnimation(afterDelay delay: TimeInterval)
-  @available(iOS 10.0, *)
-  func pauseAnimation()
-  @available(iOS 10.0, *)
-  func stopAnimation(_ withoutFinishing: Bool)
-  @available(iOS 10.0, *)
-  func finishAnimation(at finalPosition: UIViewAnimatingPosition)
-  @available(iOS 10.0, *)
-  func copy(with zone: NSZone? = nil) -> Any
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIViewPropertyAnimator'

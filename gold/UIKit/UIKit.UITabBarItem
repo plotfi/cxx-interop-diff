@@ -1,101 +1,62 @@
-@_exported import Foundation
-
-@available(swift, obsoleted: 4.2, renamed: "UITabBarItem.SystemItem")
-typealias UITabBarSystemItem = UITabBarItem.SystemItem
-extension UITabBarItem {
-  enum SystemItem : Int, @unchecked Sendable {
-    init?(rawValue: Int)
-    var rawValue: Int { get }
-    typealias RawValue = Int
-    case more
-    @available(swift, obsoleted: 3, renamed: "more")
-    static var More: UITabBarItem.SystemItem { get }
-    case favorites
-    @available(swift, obsoleted: 3, renamed: "favorites")
-    static var Favorites: UITabBarItem.SystemItem { get }
-    case featured
-    @available(swift, obsoleted: 3, renamed: "featured")
-    static var Featured: UITabBarItem.SystemItem { get }
-    case topRated
-    @available(swift, obsoleted: 3, renamed: "topRated")
-    static var TopRated: UITabBarItem.SystemItem { get }
-    case recents
-    @available(swift, obsoleted: 3, renamed: "recents")
-    static var Recents: UITabBarItem.SystemItem { get }
-    case contacts
-    @available(swift, obsoleted: 3, renamed: "contacts")
-    static var Contacts: UITabBarItem.SystemItem { get }
-    case history
-    @available(swift, obsoleted: 3, renamed: "history")
-    static var History: UITabBarItem.SystemItem { get }
-    case bookmarks
-    @available(swift, obsoleted: 3, renamed: "bookmarks")
-    static var Bookmarks: UITabBarItem.SystemItem { get }
-    case search
-    @available(swift, obsoleted: 3, renamed: "search")
-    static var Search: UITabBarItem.SystemItem { get }
-    case downloads
-    @available(swift, obsoleted: 3, renamed: "downloads")
-    static var Downloads: UITabBarItem.SystemItem { get }
-    case mostRecent
-    @available(swift, obsoleted: 3, renamed: "mostRecent")
-    static var MostRecent: UITabBarItem.SystemItem { get }
-    case mostViewed
-    @available(swift, obsoleted: 3, renamed: "mostViewed")
-    static var MostViewed: UITabBarItem.SystemItem { get }
-  }
-}
-@available(iOS 2.0, *)
-@MainActor class UITabBarItem : UIBarItem {
-  init()
-  init?(coder: NSCoder)
-  convenience init(title: String?, image: UIImage?, tag: Int)
-  @available(iOS 7.0, *)
-  convenience init(title: String?, image: UIImage?, selectedImage: UIImage?)
-  convenience init(tabBarSystemItem systemItem: UITabBarItem.SystemItem, tag: Int)
-  @available(iOS 7.0, *)
-  var selectedImage: UIImage?
-  var badgeValue: String?
-  @available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, message: "Use initWithTitle:image:selectedImage: or the image and selectedImage properties along with UIImageRenderingModeAlwaysOriginal")
-  func setFinishedSelectedImage(_ selectedImage: UIImage?, withFinishedUnselectedImage unselectedImage: UIImage?)
-  @available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
-  func finishedSelectedImage() -> UIImage?
-  @available(iOS, unavailable, introduced: 5.0, deprecated: 7.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
-  func finishedUnselectedImage() -> UIImage?
-  @available(iOS 5.0, *)
-  var titlePositionAdjustment: UIOffset
-
-  /// If this item displays a badge, this color will be used for the badge's background. If set to nil, the default background color will be used instead.
-  @available(iOS 10.0, *)
-  @NSCopying var badgeColor: UIColor?
-
-  /// Provide text attributes to use to draw the badge text for the given singular control state (Normal, Disabled, Focused, Selected, or Highlighted). Default values will be supplied for keys that are not provided by this dictionary. See NSAttributedString.h for details on what keys are available.
-  @available(iOS 10.0, *)
-  func setBadgeTextAttributes(_ textAttributes: [NSAttributedString.Key : Any]?, for state: UIControl.State)
-
-  /// Provide text attributes to use to draw the badge text for the given singular control state (Normal, Disabled, Focused, Selected, or Highlighted). Default values will be supplied for keys that are not provided by this dictionary. See NSAttributedString.h for details on what keys are available.
-  @available(iOS 10.0, *)
-  @available(swift, obsoleted: 3, renamed: "setBadgeTextAttributes(_:for:)")
-  func setBadgeTextAttributes(_ textAttributes: [NSAttributedString.Key : Any]?, forState state: UIControl.State)
-
-  /// Returns attributes previously set via -setBadgeTextAttributes:forState:.
-  @available(iOS 10.0, *)
-  func badgeTextAttributes(for state: UIControl.State) -> [NSAttributedString.Key : Any]?
-
-  /// Returns attributes previously set via -setBadgeTextAttributes:forState:.
-  @available(iOS 10.0, *)
-  @available(swift, obsoleted: 3, renamed: "badgeTextAttributes(for:)")
-  func badgeTextAttributesForState(_ state: UIControl.State) -> [NSAttributedString.Key : Any]?
-
-  ///  When set and this item is selected, overrides the hosting tab bar's standardAppearance.
-  @available(iOS 13.0, *)
-  @NSCopying var standardAppearance: UITabBarAppearance?
-
-  ///  When set and this item is selected, overrides the hosting tab bar's scrollEdgeAppearance.
-  @available(iOS 15.0, *)
-  @NSCopying var scrollEdgeAppearance: UITabBarAppearance?
-}
-extension UITabBarItem : UISpringLoadedInteractionSupporting {
-  @available(iOS 11.0, *)
-  var isSpringLoaded: Bool
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UITabBarItem'

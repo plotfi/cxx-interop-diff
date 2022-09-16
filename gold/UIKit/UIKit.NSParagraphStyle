@@ -1,175 +1,62 @@
-@_exported import Foundation
-
-var __NSPARAGRAPH_STYLE_SHARED_SECTION__: Int32 { get }
-@available(iOS 6.0, *)
-enum NSLineBreakMode : Int, @unchecked Sendable {
-  init?(rawValue: Int)
-  var rawValue: Int { get }
-  typealias RawValue = Int
-  case byWordWrapping
-  @available(swift, obsoleted: 3, renamed: "byWordWrapping")
-  static var ByWordWrapping: NSLineBreakMode { get }
-  case byCharWrapping
-  @available(swift, obsoleted: 3, renamed: "byCharWrapping")
-  static var ByCharWrapping: NSLineBreakMode { get }
-  case byClipping
-  @available(swift, obsoleted: 3, renamed: "byClipping")
-  static var ByClipping: NSLineBreakMode { get }
-  case byTruncatingHead
-  @available(swift, obsoleted: 3, renamed: "byTruncatingHead")
-  static var ByTruncatingHead: NSLineBreakMode { get }
-  case byTruncatingTail
-  @available(swift, obsoleted: 3, renamed: "byTruncatingTail")
-  static var ByTruncatingTail: NSLineBreakMode { get }
-  case byTruncatingMiddle
-  @available(swift, obsoleted: 3, renamed: "byTruncatingMiddle")
-  static var ByTruncatingMiddle: NSLineBreakMode { get }
-}
-@available(swift, obsoleted: 3, renamed: "NSParagraphStyle.LineBreakStrategy")
-typealias NSLineBreakStrategy = NSParagraphStyle.LineBreakStrategy
-extension NSParagraphStyle {
-  struct LineBreakStrategy : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSParagraphStyle.LineBreakStrategy
-    typealias ArrayLiteralElement = NSParagraphStyle.LineBreakStrategy
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var none: NSParagraphStyle.LineBreakStrategy { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "none")
-    static var None: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 9.0, *)
-    static var pushOut: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 9.0, *)
-    @available(swift, obsoleted: 3, renamed: "pushOut")
-    static var PushOut: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 14.0, *)
-    static var hangulWordPriority: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 14.0, *)
-    @available(swift, obsoleted: 3, renamed: "hangulWordPriority")
-    static var HangulWordPriority: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 14.0, *)
-    static var standard: NSParagraphStyle.LineBreakStrategy { get }
-    @available(iOS 14.0, *)
-    @available(swift, obsoleted: 3, renamed: "standard")
-    static var Standard: NSParagraphStyle.LineBreakStrategy { get }
-  }
-}
-@available(swift, obsoleted: 3, renamed: "NSTextTab.OptionKey")
-typealias NSTextTabOptionKey = NSTextTab.OptionKey
-extension NSTextTab {
-  struct OptionKey : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
-    init(rawValue: String)
-    var _rawValue: NSString
-    var rawValue: String { get }
-    typealias RawValue = String
-    typealias _ObjectiveCType = NSString
-  }
-}
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextTab.OptionKey.columnTerminators")
-let NSTabColumnTerminatorsAttributeName: NSTextTab.OptionKey
-extension NSTextTab.OptionKey {
-  @available(iOS 7.0, *)
-  static let columnTerminators: NSTextTab.OptionKey
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 4, renamed: "NSTextTab.OptionKey.columnTerminators")
-  static let NSTabColumnTerminatorsAttributeName: NSTextTab.OptionKey
-}
-@available(iOS 7.0, *)
-class NSTextTab : NSObject, NSCopying, NSCoding, NSSecureCoding {
-  @available(iOS 7.0, *)
-  class func columnTerminators(for aLocale: Locale?) -> CharacterSet
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "columnTerminators(for:)")
-  class func columnTerminatorsForLocale(_ aLocale: Locale?) -> CharacterSet
-  init(textAlignment alignment: NSTextAlignment, location loc: CGFloat, options: [NSTextTab.OptionKey : Any] = [:])
-  var alignment: NSTextAlignment { get }
-  var location: CGFloat { get }
-  var options: [NSTextTab.OptionKey : Any] { get }
-  convenience init()
-  @available(iOS 7.0, *)
-  class var supportsSecureCoding: Bool { get }
-  @available(iOS 7.0, *)
-  func copy(with zone: NSZone? = nil) -> Any
-  @available(iOS 7.0, *)
-  func encode(with coder: NSCoder)
-  init?(coder: NSCoder)
-}
-@available(iOS 6.0, *)
-class NSParagraphStyle : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
-  @NSCopying class var `default`: NSParagraphStyle { get }
-  @available(swift, obsoleted: 3, renamed: "default")
-  @NSCopying class var defaultParagraphStyle: NSParagraphStyle { get }
-  class func defaultWritingDirection(forLanguage languageName: String?) -> NSWritingDirection
-  @available(swift, obsoleted: 3, renamed: "defaultWritingDirection(forLanguage:)")
-  class func defaultWritingDirectionForLanguage(_ languageName: String?) -> NSWritingDirection
-  var lineSpacing: CGFloat { get }
-  var paragraphSpacing: CGFloat { get }
-  var alignment: NSTextAlignment { get }
-  var headIndent: CGFloat { get }
-  var tailIndent: CGFloat { get }
-  var firstLineHeadIndent: CGFloat { get }
-  var minimumLineHeight: CGFloat { get }
-  var maximumLineHeight: CGFloat { get }
-  var lineBreakMode: NSLineBreakMode { get }
-  var baseWritingDirection: NSWritingDirection { get }
-  var lineHeightMultiple: CGFloat { get }
-  var paragraphSpacingBefore: CGFloat { get }
-  var hyphenationFactor: Float { get }
-  @available(iOS 15.0, *)
-  var usesDefaultHyphenation: Bool { get }
-  @available(iOS 7.0, *)
-  var tabStops: [NSTextTab] { get }
-  @available(iOS 7.0, *)
-  var defaultTabInterval: CGFloat { get }
-  @available(iOS 9.0, *)
-  var allowsDefaultTighteningForTruncation: Bool { get }
-  @available(iOS 9.0, *)
-  var lineBreakStrategy: NSParagraphStyle.LineBreakStrategy { get }
-  init()
-  @available(iOS 6.0, *)
-  class var supportsSecureCoding: Bool { get }
-  @available(iOS 6.0, *)
-  func copy(with zone: NSZone? = nil) -> Any
-  @available(iOS 6.0, *)
-  func mutableCopy(with zone: NSZone? = nil) -> Any
-  @available(iOS 6.0, *)
-  func encode(with coder: NSCoder)
-  init?(coder: NSCoder)
-}
-@available(iOS 6.0, *)
-class NSMutableParagraphStyle : NSParagraphStyle {
-  var lineSpacing: CGFloat
-  var paragraphSpacing: CGFloat
-  var alignment: NSTextAlignment
-  var firstLineHeadIndent: CGFloat
-  var headIndent: CGFloat
-  var tailIndent: CGFloat
-  var lineBreakMode: NSLineBreakMode
-  var minimumLineHeight: CGFloat
-  var maximumLineHeight: CGFloat
-  var baseWritingDirection: NSWritingDirection
-  var lineHeightMultiple: CGFloat
-  var paragraphSpacingBefore: CGFloat
-  var hyphenationFactor: Float
-  @available(iOS 15.0, *)
-  var usesDefaultHyphenation: Bool
-  @available(iOS 7.0, *)
-  var tabStops: [NSTextTab]!
-  @available(iOS 7.0, *)
-  var defaultTabInterval: CGFloat
-  @available(iOS 9.0, *)
-  var allowsDefaultTighteningForTruncation: Bool
-  @available(iOS 9.0, *)
-  var lineBreakStrategy: NSParagraphStyle.LineBreakStrategy
-  @available(iOS 9.0, *)
-  func addTabStop(_ anObject: NSTextTab)
-  @available(iOS 9.0, *)
-  func removeTabStop(_ anObject: NSTextTab)
-  @available(iOS 9.0, *)
-  func setParagraphStyle(_ obj: NSParagraphStyle)
-  init()
-  init?(coder: NSCoder)
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.NSParagraphStyle'

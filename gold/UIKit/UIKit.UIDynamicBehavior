@@ -1,74 +1,62 @@
-@_exported import Foundation
-
-@available(iOS 9.0, *)
-enum UIDynamicItemCollisionBoundsType : UInt, @unchecked Sendable {
-  init?(rawValue: UInt)
-  var rawValue: UInt { get }
-  typealias RawValue = UInt
-  case rectangle
-  @available(swift, obsoleted: 3, renamed: "rectangle")
-  static var Rectangle: UIDynamicItemCollisionBoundsType { get }
-  case ellipse
-  @available(swift, obsoleted: 3, renamed: "ellipse")
-  static var Ellipse: UIDynamicItemCollisionBoundsType { get }
-  case path
-  @available(swift, obsoleted: 3, renamed: "path")
-  static var Path: UIDynamicItemCollisionBoundsType { get }
-}
-@MainActor protocol UIDynamicItem : NSObjectProtocol {
-  var center: CGPoint { get set }
-  var bounds: CGRect { get }
-  var transform: CGAffineTransform { get set }
-
-  /**
-   The collision type represents how the dynamics system will evaluate collisions with 
-   respect to the dynamic item. defaults to UIDynamicItemCollisionBoundsTypeRectangle
-   */
-  @available(iOS 9.0, *)
-  optional var collisionBoundsType: UIDynamicItemCollisionBoundsType { get }
-
-  /**
-   The path must represent a convex polygon with counter clockwise winding and no self intersection. 
-   The point (0,0) in the path corresponds to the dynamic item's center.
-   */
-  @available(iOS 9.0, *)
-  optional var collisionBoundingPath: UIBezierPath { get }
-}
-@available(iOS 9.0, *)
-@MainActor class UIDynamicItemGroup : NSObject, UIDynamicItem {
-  init(items: [UIDynamicItem])
-  var items: [UIDynamicItem] { get }
-  init()
-  @available(iOS 9.0, *)
-  var center: CGPoint
-  @available(iOS 9.0, *)
-  var bounds: CGRect { get }
-  @available(iOS 9.0, *)
-  var transform: CGAffineTransform
-
-  /**
-   The collision type represents how the dynamics system will evaluate collisions with 
-   respect to the dynamic item. defaults to UIDynamicItemCollisionBoundsTypeRectangle
-   */
-  @available(iOS 9.0, *)
-  var collisionBoundsType: UIDynamicItemCollisionBoundsType { get }
-
-  /**
-   The path must represent a convex polygon with counter clockwise winding and no self intersection. 
-   The point (0,0) in the path corresponds to the dynamic item's center.
-   */
-  @available(iOS 9.0, *)
-  var collisionBoundingPath: UIBezierPath { get }
-}
-@available(iOS 7.0, *)
-@MainActor class UIDynamicBehavior : NSObject {
-  func addChildBehavior(_ behavior: UIDynamicBehavior)
-  func removeChildBehavior(_ behavior: UIDynamicBehavior)
-  var childBehaviors: [UIDynamicBehavior] { get }
-  var action: (() -> Void)?
-  func willMove(to dynamicAnimator: UIDynamicAnimator?)
-  @available(swift, obsoleted: 3, renamed: "willMove(to:)")
-  func willMoveToAnimator(_ dynamicAnimator: UIDynamicAnimator?)
-  var dynamicAnimator: UIDynamicAnimator? { get }
-  init()
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIDynamicBehavior'

@@ -1,79 +1,62 @@
-@_exported import Foundation
-
-@available(iOS 13.0, *)
-@MainActor class UIScene : UIResponder {
-  @available(*, unavailable)
-  class func new() -> Self
-  @available(*, unavailable)
-  convenience init()
-  init(session: UISceneSession, connectionOptions: UIScene.ConnectionOptions)
-  var session: UISceneSession { get }
-  var delegate: UISceneDelegate?
-  var activationState: UIScene.ActivationState { get }
-  func open(_ url: URL, options: UIScene.OpenExternalURLOptions?, completionHandler completion: (@Sendable (Bool) -> Void)? = nil)
-  func open(_ url: URL, options: UIScene.OpenExternalURLOptions?) async -> Bool
-  @available(swift, obsoleted: 3, renamed: "open(_:options:completionHandler:)")
-  func openURL(_ url: URL, options: UIScene.OpenExternalURLOptions?, completionHandler completion: (@Sendable (Bool) -> Void)? = nil)
-  var title: String!
-  @available(iOS 15.0, *)
-  var subtitle: String
-  var activationConditions: UISceneActivationConditions
-}
-@available(iOS 13.0, *)
-@MainActor protocol UISceneDelegate : NSObjectProtocol {
-  optional func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
-  @available(swift, obsoleted: 3, renamed: "scene(_:willConnectTo:options:)")
-  optional func scene(_ scene: UIScene, willConnectToSession session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
-  optional func sceneDidDisconnect(_ scene: UIScene)
-  optional func sceneDidBecomeActive(_ scene: UIScene)
-  optional func sceneWillResignActive(_ scene: UIScene)
-  optional func sceneWillEnterForeground(_ scene: UIScene)
-  optional func sceneDidEnterBackground(_ scene: UIScene)
-  optional func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
-  optional func stateRestorationActivity(for scene: UIScene) -> NSUserActivity?
-  @available(swift, obsoleted: 3, renamed: "stateRestorationActivity(for:)")
-  optional func stateRestorationActivityForScene(_ scene: UIScene) -> NSUserActivity?
-  optional func scene(_ scene: UIScene, restoreInteractionStateWith stateRestorationActivity: NSUserActivity)
-  @available(swift, obsoleted: 3, renamed: "scene(_:restoreInteractionStateWith:)")
-  optional func scene(_ scene: UIScene, restoreInteractionStateWithUserActivity stateRestorationActivity: NSUserActivity)
-  optional func scene(_ scene: UIScene, willContinueUserActivityWithType userActivityType: String)
-  optional func scene(_ scene: UIScene, continue userActivity: NSUserActivity)
-  @available(swift, obsoleted: 3, renamed: "scene(_:continue:)")
-  optional func scene(_ scene: UIScene, continueUserActivity userActivity: NSUserActivity)
-  optional func scene(_ scene: UIScene, didFailToContinueUserActivityWithType userActivityType: String, error: Error)
-  optional func scene(_ scene: UIScene, didUpdate userActivity: NSUserActivity)
-  @available(swift, obsoleted: 3, renamed: "scene(_:didUpdate:)")
-  optional func scene(_ scene: UIScene, didUpdateUserActivity userActivity: NSUserActivity)
-}
-@available(iOS 13.0, *)
-@available(swift, obsoleted: 3, renamed: "UIScene.willConnectNotification")
-let UISceneWillConnectNotification: NSNotification.Name
-extension UIScene {
-  @available(iOS 13.0, *)
-  class let willConnectNotification: NSNotification.Name
-  @available(iOS 13.0, *)
-  class let didDisconnectNotification: NSNotification.Name
-  @available(iOS 13.0, *)
-  class let didActivateNotification: NSNotification.Name
-  @available(iOS 13.0, *)
-  class let willDeactivateNotification: NSNotification.Name
-  @available(iOS 13.0, *)
-  class let willEnterForegroundNotification: NSNotification.Name
-  @available(iOS 13.0, *)
-  class let didEnterBackgroundNotification: NSNotification.Name
-}
-@available(iOS 13.0, *)
-@available(swift, obsoleted: 3, renamed: "UIScene.didDisconnectNotification")
-let UISceneDidDisconnectNotification: NSNotification.Name
-@available(iOS 13.0, *)
-@available(swift, obsoleted: 3, renamed: "UIScene.didActivateNotification")
-let UISceneDidActivateNotification: NSNotification.Name
-@available(iOS 13.0, *)
-@available(swift, obsoleted: 3, renamed: "UIScene.willDeactivateNotification")
-let UISceneWillDeactivateNotification: NSNotification.Name
-@available(iOS 13.0, *)
-@available(swift, obsoleted: 3, renamed: "UIScene.willEnterForegroundNotification")
-let UISceneWillEnterForegroundNotification: NSNotification.Name
-@available(iOS 13.0, *)
-@available(swift, obsoleted: 3, renamed: "UIScene.didEnterBackgroundNotification")
-let UISceneDidEnterBackgroundNotification: NSNotification.Name
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIScene'

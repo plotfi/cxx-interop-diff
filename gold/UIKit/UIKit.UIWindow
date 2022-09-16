@@ -1,137 +1,62 @@
-@_exported import Foundation
-
-@available(swift, obsoleted: 4.2, renamed: "UIWindow.Level")
-typealias UIWindowLevel = UIWindow.Level
-extension UIWindow {
-  struct Level : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
-    init(_ rawValue: CGFloat)
-    init(rawValue: CGFloat)
-    let rawValue: CGFloat
-    typealias RawValue = CGFloat
-  }
-  class let didBecomeVisibleNotification: NSNotification.Name
-  class let didBecomeHiddenNotification: NSNotification.Name
-  class let didBecomeKeyNotification: NSNotification.Name
-  class let didResignKeyNotification: NSNotification.Name
-}
-@available(iOS 2.0, *)
-@MainActor class UIWindow : UIView {
-  @available(iOS 13.0, *)
-  init(windowScene: UIWindowScene)
-  @available(iOS 13.0, *)
-  weak var windowScene: @sil_weak UIWindowScene?
-  var canResizeToFitContent: Bool
-  @available(iOS 3.2, *)
-  var screen: UIScreen
-  var windowLevel: UIWindow.Level
-  var isKeyWindow: Bool { get }
-  @available(swift, obsoleted: 3, renamed: "isKeyWindow")
-  var keyWindow: Bool { get }
-  @available(iOS 15.0, *)
-  var canBecomeKey: Bool { get }
-  @available(iOS 15.0, *)
-  @available(swift, obsoleted: 3, renamed: "canBecomeKey")
-  var canBecomeKeyWindow: Bool { get }
-  func becomeKey()
-  @available(swift, obsoleted: 3, renamed: "becomeKey()")
-  func becomeKeyWindow()
-  func resignKey()
-  @available(swift, obsoleted: 3, renamed: "resignKey()")
-  func resignKeyWindow()
-  func makeKey()
-  @available(swift, obsoleted: 3, renamed: "makeKey()")
-  func makeKeyWindow()
-  func makeKeyAndVisible()
-  @available(iOS 4.0, *)
-  var rootViewController: UIViewController?
-  func sendEvent(_ event: UIEvent)
-  func convert(_ point: CGPoint, to window: UIWindow?) -> CGPoint
-  @available(swift, obsoleted: 3, renamed: "convert(_:to:)")
-  func convertPoint(_ point: CGPoint, toWindow window: UIWindow?) -> CGPoint
-  func convert(_ point: CGPoint, from window: UIWindow?) -> CGPoint
-  @available(swift, obsoleted: 3, renamed: "convert(_:from:)")
-  func convertPoint(_ point: CGPoint, fromWindow window: UIWindow?) -> CGPoint
-  func convert(_ rect: CGRect, to window: UIWindow?) -> CGRect
-  @available(swift, obsoleted: 3, renamed: "convert(_:to:)")
-  func convertRect(_ rect: CGRect, toWindow window: UIWindow?) -> CGRect
-  func convert(_ rect: CGRect, from window: UIWindow?) -> CGRect
-  @available(swift, obsoleted: 3, renamed: "convert(_:from:)")
-  func convertRect(_ rect: CGRect, fromWindow window: UIWindow?) -> CGRect
-  init(frame: CGRect)
-  init?(coder: NSCoder)
-  convenience init()
-}
-@available(swift, obsoleted: 3, renamed: "UIWindow.Level.normal")
-let UIWindowLevelNormal: UIWindow.Level
-extension UIWindow.Level {
-  static let normal: UIWindow.Level
-  static let alert: UIWindow.Level
-  static let statusBar: UIWindow.Level
-}
-@available(swift, obsoleted: 3, renamed: "UIWindow.Level.alert")
-let UIWindowLevelAlert: UIWindow.Level
-@available(swift, obsoleted: 3, renamed: "UIWindow.Level.statusBar")
-let UIWindowLevelStatusBar: UIWindow.Level
-@available(swift, obsoleted: 3, renamed: "UIWindow.didBecomeVisibleNotification")
-let UIWindowDidBecomeVisibleNotification: NSNotification.Name
-@available(swift, obsoleted: 3, renamed: "UIWindow.didBecomeHiddenNotification")
-let UIWindowDidBecomeHiddenNotification: NSNotification.Name
-@available(swift, obsoleted: 3, renamed: "UIWindow.didBecomeKeyNotification")
-let UIWindowDidBecomeKeyNotification: NSNotification.Name
-@available(swift, obsoleted: 3, renamed: "UIWindow.didResignKeyNotification")
-let UIWindowDidResignKeyNotification: NSNotification.Name
-@available(swift, obsoleted: 3, renamed: "UIResponder.keyboardWillShowNotification")
-let UIKeyboardWillShowNotification: NSNotification.Name
-extension UIResponder {
-  class let keyboardWillShowNotification: NSNotification.Name
-  class let keyboardDidShowNotification: NSNotification.Name
-  class let keyboardWillHideNotification: NSNotification.Name
-  class let keyboardDidHideNotification: NSNotification.Name
-  @available(iOS 3.2, *)
-  class let keyboardFrameBeginUserInfoKey: String
-  @available(iOS 3.2, *)
-  class let keyboardFrameEndUserInfoKey: String
-  @available(iOS 3.0, *)
-  class let keyboardAnimationDurationUserInfoKey: String
-  @available(iOS 3.0, *)
-  class let keyboardAnimationCurveUserInfoKey: String
-  @available(iOS 9.0, *)
-  class let keyboardIsLocalUserInfoKey: String
-  @available(iOS 5.0, *)
-  class let keyboardWillChangeFrameNotification: NSNotification.Name
-  @available(iOS 5.0, *)
-  class let keyboardDidChangeFrameNotification: NSNotification.Name
-}
-@available(swift, obsoleted: 3, renamed: "UIResponder.keyboardDidShowNotification")
-let UIKeyboardDidShowNotification: NSNotification.Name
-@available(swift, obsoleted: 3, renamed: "UIResponder.keyboardWillHideNotification")
-let UIKeyboardWillHideNotification: NSNotification.Name
-@available(swift, obsoleted: 3, renamed: "UIResponder.keyboardDidHideNotification")
-let UIKeyboardDidHideNotification: NSNotification.Name
-@available(iOS 3.2, *)
-@available(swift, obsoleted: 4.2, renamed: "UIResponder.keyboardFrameBeginUserInfoKey")
-let UIKeyboardFrameBeginUserInfoKey: String
-@available(iOS 3.2, *)
-@available(swift, obsoleted: 4.2, renamed: "UIResponder.keyboardFrameEndUserInfoKey")
-let UIKeyboardFrameEndUserInfoKey: String
-@available(iOS 3.0, *)
-@available(swift, obsoleted: 4.2, renamed: "UIResponder.keyboardAnimationDurationUserInfoKey")
-let UIKeyboardAnimationDurationUserInfoKey: String
-@available(iOS 3.0, *)
-@available(swift, obsoleted: 4.2, renamed: "UIResponder.keyboardAnimationCurveUserInfoKey")
-let UIKeyboardAnimationCurveUserInfoKey: String
-@available(iOS 9.0, *)
-@available(swift, obsoleted: 4.2, renamed: "UIResponder.keyboardIsLocalUserInfoKey")
-let UIKeyboardIsLocalUserInfoKey: String
-@available(iOS 5.0, *)
-@available(swift, obsoleted: 3, renamed: "UIResponder.keyboardWillChangeFrameNotification")
-let UIKeyboardWillChangeFrameNotification: NSNotification.Name
-@available(iOS 5.0, *)
-@available(swift, obsoleted: 3, renamed: "UIResponder.keyboardDidChangeFrameNotification")
-let UIKeyboardDidChangeFrameNotification: NSNotification.Name
-@available(iOS, unavailable, introduced: 2.0, deprecated: 3.2, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
-let UIKeyboardCenterBeginUserInfoKey: String
-@available(iOS, unavailable, introduced: 2.0, deprecated: 3.2, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
-let UIKeyboardCenterEndUserInfoKey: String
-@available(iOS, unavailable, introduced: 2.0, deprecated: 3.2, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
-let UIKeyboardBoundsUserInfoKey: String
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIWindow'

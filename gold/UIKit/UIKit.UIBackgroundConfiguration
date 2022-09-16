@@ -1,138 +1,62 @@
-@_exported import Foundation
-
-@available(iOS 14.0, *)
-@MainActor class __UIBackgroundConfiguration : NSObject, NSCopying, NSSecureCoding {
-
-  /// Returns a clear configuration, with no default styling.
-  class func clear() -> Self
-
-  /// Returns a clear configuration, with no default styling.
-  @available(swift, obsoleted: 3, renamed: "clear()")
-  class func clearConfiguration() -> Self
-
-  /// Returns the default configuration for a plain list cell.
-  class func listPlainCell() -> Self
-
-  /// Returns the default configuration for a plain list cell.
-  @available(swift, obsoleted: 3, renamed: "listPlainCell()")
-  class func listPlainCellConfiguration() -> Self
-
-  /// Returns the default configuration for a plain list header or footer.
-  class func listPlainHeaderFooter() -> Self
-
-  /// Returns the default configuration for a plain list header or footer.
-  @available(swift, obsoleted: 3, renamed: "listPlainHeaderFooter()")
-  class func listPlainHeaderFooterConfiguration() -> Self
-
-  /// Returns the default configuration for a grouped list cell.
-  class func listGroupedCell() -> Self
-
-  /// Returns the default configuration for a grouped list cell.
-  @available(swift, obsoleted: 3, renamed: "listGroupedCell()")
-  class func listGroupedCellConfiguration() -> Self
-
-  /// Returns the default configuration for a grouped list header or footer.
-  class func listGroupedHeaderFooter() -> Self
-
-  /// Returns the default configuration for a grouped list header or footer.
-  @available(swift, obsoleted: 3, renamed: "listGroupedHeaderFooter()")
-  class func listGroupedHeaderFooterConfiguration() -> Self
-
-  /// Returns the default configuration for a sidebar list header.
-  class func listSidebarHeader() -> Self
-
-  /// Returns the default configuration for a sidebar list header.
-  @available(swift, obsoleted: 3, renamed: "listSidebarHeader()")
-  class func listSidebarHeaderConfiguration() -> Self
-
-  /// Returns the default configuration for a sidebar list cell.
-  class func listSidebarCell() -> Self
-
-  /// Returns the default configuration for a sidebar list cell.
-  @available(swift, obsoleted: 3, renamed: "listSidebarCell()")
-  class func listSidebarCellConfiguration() -> Self
-
-  /// Returns the default configuration for an accompanied sidebar list cell.
-  class func listAccompaniedSidebarCell() -> Self
-
-  /// Returns the default configuration for an accompanied sidebar list cell.
-  @available(swift, obsoleted: 3, renamed: "listAccompaniedSidebarCell()")
-  class func listAccompaniedSidebarCellConfiguration() -> Self
-  @available(*, unavailable)
-  class func new() -> Self
-  @available(*, unavailable)
-  init()
-
-  /// Returns a copy of the configuration updated for the specified state, by applying the configuration's default values for that state to any properties that have not been customized.
-  func updatedConfiguration(for state: __UIConfigurationState) -> Self
-
-  /// Returns a copy of the configuration updated for the specified state, by applying the configuration's default values for that state to any properties that have not been customized.
-  @available(swift, obsoleted: 3, renamed: "updatedConfiguration(for:)")
-  func updatedConfigurationForState(_ state: __UIConfigurationState) -> Self
-
-  /// A custom view for the background. The custom view must have translatesAutoresizingMaskIntoConstraints
-  /// enabled, but may use auto layout constraints internally for layout of subviews.
-  var customView: UIView?
-
-  /// The preferred corner radius (using a continuous corner curve) for the background and stroke. This is also applied to the custom view. Default is 0.
-  /// If the view is too small to fit the requested radius, the corner curve and radius will be adjusted to fit.
-  var cornerRadius: CGFloat
-
-  /// Insets (or outsets, if negative) for the background and stroke, relative to the edges of the containing view. These also apply to the custom view. Default is NSDirectionalEdgeInsetsZero.
-  var backgroundInsets: NSDirectionalEdgeInsets
-
-  /// The edges on which the containing view's layout margins are added to the `backgroundInsets`, effectively making the `backgroundInsets` values relative
-  /// to the containing view's layout margins for these edges. Default is NSDirectionalRectEdgeNone.
-  var edgesAddingLayoutMarginsToBackgroundInsets: NSDirectionalRectEdge
-
-  /// Configures the color of the background. A nil value uses the view's tint color; use `clearColor` for no color (transparent).
-  var backgroundColor: UIColor?
-
-  /// Optional color transformer that is used to resolve the background color. A nil value means the `backgroundColor` is used as-is.
-  var backgroundColorTransformer: __UIConfigurationColorTransformer?
-
-  /// Returns the resolved background color for the specified tint color, based on the `backgroundColor` and `backgroundColorTransformer`.
-  func resolvedBackgroundColor(forTintColor tintColor: UIColor) -> UIColor
-
-  /// Returns the resolved background color for the specified tint color, based on the `backgroundColor` and `backgroundColorTransformer`.
-  @available(swift, obsoleted: 3, renamed: "resolvedBackgroundColor(forTintColor:)")
-  func resolvedBackgroundColorForTintColor(_ tintColor: UIColor) -> UIColor
-
-  /// The visual effect to apply to the background. Default is nil.
-  @NSCopying var visualEffect: UIVisualEffect?
-
-  /// The image to use. Default is nil.
-  @available(iOS 15.0, *)
-  var image: UIImage?
-
-  /// The content mode to use when rendering the image. Default is UIViewContentModeScaleToFill.
-  @available(iOS 15.0, *)
-  var imageContentMode: UIView.ContentMode
-
-  /// Configures the color of the stroke. A nil value uses the view's tint color; use `clearColor` for no color (transparent).
-  var strokeColor: UIColor?
-
-  /// Optional color transformer that is used to resolve the stroke color. A nil value means the `strokeColor` is used as-is.
-  var strokeColorTransformer: __UIConfigurationColorTransformer?
-
-  /// Returns the resolved stroke color for the specified tint color, based on the `strokeColor` and `strokeColorTransformer`.
-  func resolvedStrokeColor(forTintColor tintColor: UIColor) -> UIColor
-
-  /// Returns the resolved stroke color for the specified tint color, based on the `strokeColor` and `strokeColorTransformer`.
-  @available(swift, obsoleted: 3, renamed: "resolvedStrokeColor(forTintColor:)")
-  func resolvedStrokeColorForTintColor(_ tintColor: UIColor) -> UIColor
-
-  /// The width of the stroke. Default is 0.
-  var strokeWidth: CGFloat
-
-  /// Outset (or inset, if negative) for the stroke, relative to the background (including any backgroundInsets). Default is 0.
-  /// The corner radius of the stroke is adjusted for any outset to remain concentric with the background.
-  var strokeOutset: CGFloat
-  @available(iOS 14.0, *)
-  class var supportsSecureCoding: Bool { get }
-  @available(iOS 14.0, *)
-  func copy(with zone: NSZone? = nil) -> Any
-  @available(iOS 14.0, *)
-  func encode(with coder: NSCoder)
-  init?(coder: NSCoder)
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIBackgroundConfiguration'

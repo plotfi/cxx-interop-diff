@@ -1,73 +1,62 @@
-@_exported import Foundation
-
-@available(iOS 3.2, *)
-class UIDocumentInteractionController : NSObject, UIActionSheetDelegate {
-  /*not inherited*/ init(url: URL)
-  @available(swift, obsoleted: 3, renamed: "init(url:)")
-  /*not inherited*/ init(URL url: URL)
-  @available(*, unavailable, renamed: "init(url:)", message: "Not available in Swift")
-  class func interactionControllerWithURL(_ url: URL) -> UIDocumentInteractionController
-  weak var delegate: @sil_weak UIDocumentInteractionControllerDelegate?
-  var url: URL?
-  @available(swift, obsoleted: 3, renamed: "url")
-  var URL: URL?
-  var uti: String?
-  @available(swift, obsoleted: 3, renamed: "uti")
-  var UTI: String?
-  var name: String?
-  var icons: [UIImage] { get }
-  var annotation: Any?
-  func presentOptionsMenu(from rect: CGRect, in view: UIView, animated: Bool) -> Bool
-  @available(swift, obsoleted: 3, renamed: "presentOptionsMenu(from:in:animated:)")
-  func presentOptionsMenuFromRect(_ rect: CGRect, inView view: UIView, animated: Bool) -> Bool
-  func presentOptionsMenu(from item: UIBarButtonItem, animated: Bool) -> Bool
-  @available(swift, obsoleted: 3, renamed: "presentOptionsMenu(from:animated:)")
-  func presentOptionsMenuFromBarButtonItem(_ item: UIBarButtonItem, animated: Bool) -> Bool
-  func presentPreview(animated: Bool) -> Bool
-  @available(swift, obsoleted: 3, renamed: "presentPreview(animated:)")
-  func presentPreviewAnimated(_ animated: Bool) -> Bool
-  func presentOpenInMenu(from rect: CGRect, in view: UIView, animated: Bool) -> Bool
-  @available(swift, obsoleted: 3, renamed: "presentOpenInMenu(from:in:animated:)")
-  func presentOpenInMenuFromRect(_ rect: CGRect, inView view: UIView, animated: Bool) -> Bool
-  func presentOpenInMenu(from item: UIBarButtonItem, animated: Bool) -> Bool
-  @available(swift, obsoleted: 3, renamed: "presentOpenInMenu(from:animated:)")
-  func presentOpenInMenuFromBarButtonItem(_ item: UIBarButtonItem, animated: Bool) -> Bool
-  func dismissPreview(animated: Bool)
-  @available(swift, obsoleted: 3, renamed: "dismissPreview(animated:)")
-  func dismissPreviewAnimated(_ animated: Bool)
-  func dismissMenu(animated: Bool)
-  @available(swift, obsoleted: 3, renamed: "dismissMenu(animated:)")
-  func dismissMenuAnimated(_ animated: Bool)
-  var gestureRecognizers: [UIGestureRecognizer] { get }
-  init()
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int)
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  func actionSheetCancel(_ actionSheet: UIActionSheet)
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  func willPresent(_ actionSheet: UIActionSheet)
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  func didPresent(_ actionSheet: UIActionSheet)
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  func actionSheet(_ actionSheet: UIActionSheet, willDismissWithButtonIndex buttonIndex: Int)
-  @available(iOS, introduced: 2.0, deprecated: 8.3, message: "Use UIAlertController instead.")
-  func actionSheet(_ actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int)
-}
-@available(iOS 3.2, *)
-protocol UIDocumentInteractionControllerDelegate : NSObjectProtocol {
-  optional func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController
-  optional func documentInteractionControllerRectForPreview(_ controller: UIDocumentInteractionController) -> CGRect
-  optional func documentInteractionControllerViewForPreview(_ controller: UIDocumentInteractionController) -> UIView?
-  optional func documentInteractionControllerWillBeginPreview(_ controller: UIDocumentInteractionController)
-  optional func documentInteractionControllerDidEndPreview(_ controller: UIDocumentInteractionController)
-  optional func documentInteractionControllerWillPresentOptionsMenu(_ controller: UIDocumentInteractionController)
-  optional func documentInteractionControllerDidDismissOptionsMenu(_ controller: UIDocumentInteractionController)
-  optional func documentInteractionControllerWillPresentOpenInMenu(_ controller: UIDocumentInteractionController)
-  optional func documentInteractionControllerDidDismissOpenInMenu(_ controller: UIDocumentInteractionController)
-  optional func documentInteractionController(_ controller: UIDocumentInteractionController, willBeginSendingToApplication application: String?)
-  optional func documentInteractionController(_ controller: UIDocumentInteractionController, didEndSendingToApplication application: String?)
-  @available(iOS, unavailable, introduced: 3.2, deprecated: 6.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
-  optional func documentInteractionController(_ controller: UIDocumentInteractionController, canPerformAction action: Selector?) -> Bool
-  @available(iOS, unavailable, introduced: 3.2, deprecated: 6.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
-  optional func documentInteractionController(_ controller: UIDocumentInteractionController, performAction action: Selector?) -> Bool
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.UIDocumentInteractionController'

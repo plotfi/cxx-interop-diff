@@ -1,107 +1,62 @@
-@_exported import Foundation
-
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 4.2, renamed: "NSTextStorage.EditActions")
-typealias NSTextStorageEditActions = NSTextStorage.EditActions
-extension NSTextStorage {
-  @available(iOS 7.0, *)
-  struct EditActions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSTextStorage.EditActions
-    typealias ArrayLiteralElement = NSTextStorage.EditActions
-    static var editedAttributes: NSTextStorage.EditActions { get }
-    @available(swift, obsoleted: 3, renamed: "editedAttributes")
-    static var EditedAttributes: NSTextStorage.EditActions { get }
-    static var editedCharacters: NSTextStorage.EditActions { get }
-    @available(swift, obsoleted: 3, renamed: "editedCharacters")
-    static var EditedCharacters: NSTextStorage.EditActions { get }
-  }
-
-  /**** Notifications ****/
-  @available(iOS 7.0, *)
-  class let willProcessEditingNotification: NSNotification.Name
-  @available(iOS 7.0, *)
-  class let didProcessEditingNotification: NSNotification.Name
-}
-@available(iOS 7.0, *)
-class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
-
-  /**************************** Layout manager ****************************/
-  var layoutManagers: [NSLayoutManager] { get }
-  func addLayoutManager(_ aLayoutManager: NSLayoutManager)
-  func removeLayoutManager(_ aLayoutManager: NSLayoutManager)
-
-  /**************************** Pending edit info ****************************/
-  var editedMask: NSTextStorage.EditActions { get }
-  var editedRange: NSRange { get }
-  var changeInLength: Int { get }
-
-  /**************************** Delegate ****************************/
-  weak var delegate: @sil_weak NSTextStorageDelegate?
-
-  /**************************** Edit management ****************************/
-  func edited(_ editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int)
-  func processEditing()
-
-  /**************************** Attribute fixing ****************************/
-  var fixesAttributesLazily: Bool { get }
-  func invalidateAttributes(in range: NSRange)
-  @available(swift, obsoleted: 3, renamed: "invalidateAttributes(in:)")
-  func invalidateAttributesInRange(_ range: NSRange)
-  func ensureAttributesAreFixed(in range: NSRange)
-  @available(swift, obsoleted: 3, renamed: "ensureAttributesAreFixed(in:)")
-  func ensureAttributesAreFixedInRange(_ range: NSRange)
-
-  /**************************** NSTextStorageObserving ****************************/
-  @available(iOS 15.0, *)
-  weak var textStorageObserver: @sil_weak NSTextStorageObserving?
-  init()
-  init?(coder: NSCoder)
-  @available(iOS 9.0, *)
-  init(url: URL, options: [NSAttributedString.DocumentReadingOptionKey : Any] = [:], documentAttributes dict: AutoreleasingUnsafeMutablePointer<NSDictionary?>?) throws
-  @available(iOS 7.0, *)
-  init(data: Data, options: [NSAttributedString.DocumentReadingOptionKey : Any] = [:], documentAttributes dict: AutoreleasingUnsafeMutablePointer<NSDictionary?>?) throws
-  @available(iOS, introduced: 7.0, deprecated: 9.0)
-  init(fileURL url: URL, options: [AnyHashable : Any] = [:], documentAttributes dict: AutoreleasingUnsafeMutablePointer<NSDictionary?>?) throws
-
-  /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
-  @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
-  @available(iOS 15.0, *)
-  init(__contentsOfMarkdownFileAt markdownFile: URL, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
-  @available(iOS 15.0, *)
-  init(__markdown markdown: Data, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
-  @available(iOS 15.0, *)
-  init(__markdownString markdownString: String, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
-  init(string str: String)
-  init(string str: String, attributes attrs: [NSAttributedString.Key : Any]? = nil)
-  init(attributedString attrStr: NSAttributedString)
-}
-
-/****  NSTextStorage delegate methods ****/
-protocol NSTextStorageDelegate : NSObjectProtocol {
-  @available(iOS 7.0, *)
-  optional func textStorage(_ textStorage: NSTextStorage, willProcessEditing editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int)
-  @available(iOS 7.0, *)
-  optional func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int)
-}
-
-/**** Notifications ****/
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextStorage.willProcessEditingNotification")
-let NSTextStorageWillProcessEditingNotification: NSNotification.Name
-@available(iOS 7.0, *)
-@available(swift, obsoleted: 3, renamed: "NSTextStorage.didProcessEditingNotification")
-let NSTextStorageDidProcessEditingNotification: NSNotification.Name
-@available(iOS 15.0, *)
-protocol NSTextStorageObserving : NSObjectProtocol {
-  var textStorage: NSTextStorage? { get set }
-  func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
-  @available(swift, obsoleted: 3, renamed: "processEditing(for:edited:range:changeInLength:invalidatedRange:)")
-  func processEditingForTextStorage(_ textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
-  func performEditingTransaction(for textStorage: NSTextStorage, using transaction: () -> Void)
-  @available(swift, obsoleted: 3, renamed: "performEditingTransaction(for:using:)")
-  func performEditingTransactionForTextStorage(_ textStorage: NSTextStorage, usingBlock transaction: () -> Void)
-}
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:11:
+#import <UserNotifications/UNNotificationAction.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationAction.h:26:42: error: cannot initialize a variable of type 'const UNNotificationActionOptions' with an rvalue of type 'int'
+static const UNNotificationActionOptions UNNotificationActionOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                         ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:14:
+#import <UserNotifications/UNNotificationCategory.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNNotificationCategory.h:33:44: error: cannot initialize a variable of type 'const UNNotificationCategoryOptions' with an rvalue of type 'int'
+static const UNNotificationCategoryOptions UNNotificationCategoryOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0)) API_UNAVAILABLE(tvos) = 0;
+                                           ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:34:37: error: cannot initialize a variable of type 'const UNAuthorizationOptions' with an rvalue of type 'int'
+static const UNAuthorizationOptions UNAuthorizationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                    ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: note: while building module 'UserNotifications' imported from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<module-includes>:1:9: note: in file included from <module-includes>:1:
+#import "Headers/UserNotifications.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UserNotifications.h:21:
+#import <UserNotifications/UNUserNotificationCenter.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UserNotifications.framework/Headers/UNUserNotificationCenter.h:87:48: error: cannot initialize a variable of type 'const UNNotificationPresentationOptions' with an rvalue of type 'int'
+static const UNNotificationPresentationOptions UNNotificationPresentationOptionNone NS_SWIFT_UNAVAILABLE("Use [] instead.") API_AVAILABLE(macos(10.14), ios(10.0), watchos(3.0), tvos(10.0)) = 0;
+                                               ^
+<module-includes>:2:9: note: in file included from <module-includes>:2:
+#import "Headers/UIKit.h"
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h:9:
+#import <UIKit/UIKitCore.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:9: note: in file included from /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKitCore.h:295:
+#import <UIKit/UNNotificationResponse+UIKitAdditions.h>
+        ^
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers/UNNotificationResponse+UIKitAdditions.h:10:9: error: could not build module 'UserNotifications'
+#import <UserNotifications/UNNotificationResponse.h>
+        ^
+<unknown>:0: error: could not build Objective-C module 'UIKit'
+error: could not find module 'UIKit.NSTextStorage'
