@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 8.0, *)
-@MainActor class UIVibrancyEffect : UIVisualEffect {
+@MainActor @_nonSendable(_assumed) class UIVibrancyEffect : UIVisualEffect {
   /*not inherited*/ init(blurEffect: UIBlurEffect)
   @available(swift, obsoleted: 3, renamed: "init(blurEffect:)")
   /*not inherited*/ init(forBlurEffect blurEffect: UIBlurEffect)
@@ -11,7 +11,7 @@
   init?(coder: NSCoder)
 }
 @available(iOS 13.0, *)
-enum UIVibrancyEffectStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIVibrancyEffectStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int

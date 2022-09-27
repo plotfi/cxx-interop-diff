@@ -5,7 +5,7 @@
 typealias NSMassFormatterUnit = MassFormatter.Unit
 extension MassFormatter {
   @available(iOS 8.0, *)
-  enum Unit : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Unit : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -27,7 +27,7 @@ extension MassFormatter {
   }
 }
 @available(iOS 8.0, *)
-class MassFormatter : Formatter {
+@_nonSendable(_assumed) class MassFormatter : Formatter {
   @NSCopying var numberFormatter: NumberFormatter!
   var unitStyle: Formatter.UnitStyle
   var isForPersonMassUse: Bool
@@ -50,6 +50,10 @@ class MassFormatter : Formatter {
   func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, forString string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
   init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension MassFormatter : @unchecked Sendable {
 }
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 3, renamed: "MassFormatter")

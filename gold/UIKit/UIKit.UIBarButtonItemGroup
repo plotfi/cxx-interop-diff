@@ -1,11 +1,38 @@
 @_exported import Foundation
 
 @available(iOS 9.0, *)
-@MainActor class UIBarButtonItemGroup : NSObject, NSCoding {
+@MainActor @_nonSendable(_assumed) class UIBarButtonItemGroup : NSObject, NSCoding {
 
   /// Create a new bar button item group with the given items. When bar button item layout is done, either the group's barButtonItems or its representativeItem is displayed (if it exists).
   init(barButtonItems: [UIBarButtonItem], representativeItem: UIBarButtonItem?)
   init?(coder: NSCoder)
+
+  /// Construct a UIBarButtonItemGroup that cannot be moved or removed under UINavigationBar customization.
+  @available(iOS 16.0, *)
+  class func __fixedGroup(withRepresentativeItem representativeItem: UIBarButtonItem?, items: [UIBarButtonItem]) -> UIBarButtonItemGroup
+
+  /// Construct a UIBarButtonItemGroup that cannot be moved or removed under UINavigationBar customization.
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "__fixedGroup(withRepresentativeItem:items:)")
+  class func __fixedGroupWithRepresentativeItem(_ representativeItem: UIBarButtonItem?, items: [UIBarButtonItem]) -> UIBarButtonItemGroup
+
+  /// Construct a UIBarButtonItemGroup that can be moved but cannot be removed under UINavigationBar customization.
+  @available(iOS 16.0, *)
+  class func __movableGroup(withCustomizationIdentifier customizationIdentifier: String, representativeItem: UIBarButtonItem?, items: [UIBarButtonItem]) -> UIBarButtonItemGroup
+
+  /// Construct a UIBarButtonItemGroup that can be moved but cannot be removed under UINavigationBar customization.
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "__movableGroup(withCustomizationIdentifier:representativeItem:items:)")
+  class func __movableGroupWithCustomizationIdentifier(_ customizationIdentifier: String, representativeItem: UIBarButtonItem?, items: [UIBarButtonItem]) -> UIBarButtonItemGroup
+
+  /// Construct a UIBarButtonItemGroup that can be moved or added/removed under UINavigationBar customization.
+  @available(iOS 16.0, *)
+  class func __optionalGroup(withCustomizationIdentifier customizationIdentifier: String, inDefaultCustomization: Bool, representativeItem: UIBarButtonItem?, items: [UIBarButtonItem]) -> UIBarButtonItemGroup
+
+  /// Construct a UIBarButtonItemGroup that can be moved or added/removed under UINavigationBar customization.
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "__optionalGroup(withCustomizationIdentifier:inDefaultCustomization:representativeItem:items:)")
+  class func __optionalGroupWithCustomizationIdentifier(_ customizationIdentifier: String, inDefaultCustomization: Bool, representativeItem: UIBarButtonItem?, items: [UIBarButtonItem]) -> UIBarButtonItemGroup
 
   /// The bar button items associated with this group. Changing these items will affect the bar displaying these items without needing to re-set the groups that are in that bar. Any UIBarButtonItems that are already in group will be removed from that group.
   var barButtonItems: [UIBarButtonItem]
@@ -22,9 +49,44 @@
   /// Returns YES if the representativeItem of this group is currently being displayed, rather than its barButtonItems.
   @available(swift, obsoleted: 3, renamed: "isDisplayingRepresentativeItem")
   var displayingRepresentativeItem: Bool { get }
+
+  /// Instructs UIKit to ensure that the functionality in this group is made available to the user regardless of customization status. On iPhone and iPad idioms, UIKit currently places these items in the overflow menu; this property has no effect on macOS idiom.
+  @available(iOS 16.0, *)
+  var alwaysAvailable: Bool
+
+  /// A UIMenuElement that should substitute for the UIBarButtonItemGroup when displayed in a menu.
+  @available(iOS 16.0, *)
+  @NSCopying var menuRepresentation: UIMenuElement?
+
+  /// If the group should be hidden from display.
+  @available(iOS 16.0, *)
+  var isHidden: Bool
+
+  /// If the group should be hidden from display.
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "isHidden")
+  var hidden: Bool
   convenience init()
   @available(iOS 9.0, *)
   func encode(with coder: NSCoder)
+}
+
+extension UIBarButtonItemGroup {
+  /// Construct a UIBarButtonItemGroup that cannot be moved or removed under UINavigationBar customization.
+  @available(iOS 16.0, *)
+  @available(tvOS, unavailable)
+  @available(watchOS, unavailable)
+  @MainActor class func fixedGroup(representativeItem: UIBarButtonItem? = nil, items: [UIBarButtonItem]) -> UIBarButtonItemGroup
+  /// Construct a UIBarButtonItemGroup that can be moved but cannot be removed under UINavigationBar customization.
+  @available(iOS 16.0, *)
+  @available(tvOS, unavailable)
+  @available(watchOS, unavailable)
+  @MainActor class func movableGroup(customizationIdentifier: String, representativeItem: UIBarButtonItem? = nil, items: [UIBarButtonItem]) -> UIBarButtonItemGroup
+  /// Construct a UIBarButtonItemGroup that can be moved or added/removed under UINavigationBar customization.
+  @available(iOS 16.0, *)
+  @available(tvOS, unavailable)
+  @available(watchOS, unavailable)
+  @MainActor class func optionalGroup(customizationIdentifier: String, isInDefaultCustomization: Bool = true, representativeItem: UIBarButtonItem? = nil, items: [UIBarButtonItem]) -> UIBarButtonItemGroup
 }
 extension UIBarButtonItem {
 

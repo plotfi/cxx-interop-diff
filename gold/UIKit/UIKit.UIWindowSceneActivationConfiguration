@@ -5,7 +5,7 @@
 typealias UIWindowSceneActivationConfiguration = UIWindowScene.ActivationConfiguration
 extension UIWindowScene {
   @available(iOS 15.0, *)
-  class ActivationConfiguration : NSObject {
+  @_nonSendable(_assumed) class ActivationConfiguration : NSObject {
 
     /// The user activity that will be used to request a scene
     var userActivity: NSUserActivity { get }

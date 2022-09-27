@@ -12,7 +12,7 @@ protocol NSTextViewportLayoutControllerDelegate : NSObjectProtocol {
   optional func textViewportLayoutControllerDidLayout(_ textViewportLayoutController: NSTextViewportLayoutController)
 }
 @available(iOS 15.0, *)
-class NSTextViewportLayoutController : NSObject {
+@_nonSendable(_assumed) class NSTextViewportLayoutController : NSObject {
   init(textLayoutManager: NSTextLayoutManager)
   @available(*, unavailable)
   class func new() -> Self
@@ -29,4 +29,8 @@ class NSTextViewportLayoutController : NSObject {
   func adjustViewport(byVerticalOffset verticalOffset: CGFloat)
   @available(swift, obsoleted: 3, renamed: "adjustViewport(byVerticalOffset:)")
   func adjustViewportByVerticalOffset(_ verticalOffset: CGFloat)
+}
+
+@available(*, unavailable)
+extension NSTextViewportLayoutController : @unchecked Sendable {
 }

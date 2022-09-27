@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "NSAttributedString.Key")
 typealias NSAttributedStringKey = NSAttributedString.Key
 @available(iOS 3.2, *)
-class NSAttributedString : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSAttributedString : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   var string: String { get }
   func attributes(at location: Int, effectiveRange range: NSRangePointer?) -> [NSAttributedString.Key : Any]
   @available(swift, obsoleted: 3, renamed: "attributes(at:effectiveRange:)")
@@ -32,6 +32,10 @@ extension NSAttributedString {
   convenience init(_ attrStr: AttributedString)
   convenience init<S>(_ attrStr: AttributedString, including scope: KeyPath<AttributeScopes, S.Type>) throws where S : AttributeScope
   convenience init<S>(_ attrStr: AttributedString, including scope: S.Type) throws where S : AttributeScope
+}
+
+@available(*, unavailable)
+extension NSAttributedString : @unchecked Sendable {
 }
 extension NSAttributedString {
   var length: Int { get }
@@ -67,7 +71,7 @@ extension NSAttributedString {
 @available(swift, obsoleted: 3, renamed: "NSAttributedString.EnumerationOptions")
 typealias NSAttributedStringEnumerationOptions = NSAttributedString.EnumerationOptions
 extension NSAttributedString {
-  struct EnumerationOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct EnumerationOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -90,7 +94,7 @@ extension NSAttributedString {
   }
 }
 @available(iOS 3.2, *)
-class NSMutableAttributedString : NSAttributedString {
+@_nonSendable(_assumed) class NSMutableAttributedString : NSAttributedString {
   func replaceCharacters(in range: NSRange, with str: String)
   @available(swift, obsoleted: 3, renamed: "replaceCharacters(in:with:)")
   func replaceCharactersInRange(_ range: NSRange, withString str: String)
@@ -110,6 +114,10 @@ class NSMutableAttributedString : NSAttributedString {
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
   init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
+}
+
+@available(*, unavailable)
+extension NSMutableAttributedString : @unchecked Sendable {
 }
 extension NSMutableAttributedString {
   var mutableString: NSMutableString { get }
@@ -133,7 +141,7 @@ extension NSMutableAttributedString {
   func endEditing()
 }
 @available(iOS 15.0, *)
-struct InlinePresentationIntent : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct InlinePresentationIntent : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
@@ -183,6 +191,8 @@ extension NSAttributedString.Key {
   static let imageURL: NSAttributedString.Key
   @available(iOS 15.0, *)
   static let languageIdentifier: NSAttributedString.Key
+  @available(iOS 16.0, *)
+  static let markdownSourcePosition: NSAttributedString.Key
   @available(iOS 15.0, *)
   static let replacementIndex: NSAttributedString.Key
   @available(iOS 15.0, *)
@@ -203,8 +213,11 @@ let NSImageURLAttributeName: NSAttributedString.Key
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "NSAttributedString.Key.languageIdentifier")
 let NSLanguageIdentifierAttributeName: NSAttributedString.Key
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "NSAttributedString.Key.markdownSourcePosition")
+let NSMarkdownSourcePositionAttributeName: NSAttributedString.Key
 @available(iOS 15.0, *)
-enum __NSAttributedStringMarkdownParsingFailurePolicy : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __NSAttributedStringMarkdownParsingFailurePolicy : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -216,7 +229,7 @@ enum __NSAttributedStringMarkdownParsingFailurePolicy : Int, @unchecked Sendable
   static var ReturnPartiallyParsedIfPossible: __NSAttributedStringMarkdownParsingFailurePolicy { get }
 }
 @available(iOS 15.0, *)
-enum __NSAttributedStringMarkdownInterpretedSyntax : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __NSAttributedStringMarkdownInterpretedSyntax : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -230,15 +243,44 @@ enum __NSAttributedStringMarkdownInterpretedSyntax : Int, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "inlineOnlyPreservingWhitespace")
   static var InlineOnlyPreservingWhitespace: __NSAttributedStringMarkdownInterpretedSyntax { get }
 }
+@available(iOS 16.0, *)
+@_nonSendable(_assumed) class __NSAttributedStringMarkdownSourcePosition : NSObject, NSCopying, NSSecureCoding {
+  var startLine: Int { get }
+  var startColumn: Int { get }
+  var endLine: Int { get }
+  var endColumn: Int { get }
+  init(startLine: Int, startColumn: Int, endLine: Int, endColumn: Int)
+  func range(in string: String) -> NSRange
+  @available(swift, obsoleted: 3, renamed: "range(in:)")
+  func rangeInString(_ string: String) -> NSRange
+  init()
+  @available(iOS 16.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 16.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+  @available(iOS 16.0, *)
+  func encode(with coder: NSCoder)
+  init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension __NSAttributedStringMarkdownSourcePosition : @unchecked Sendable {
+}
 @available(iOS 15.0, *)
-class __NSAttributedStringMarkdownParsingOptions : NSObject, NSCopying {
+@_nonSendable(_assumed) class __NSAttributedStringMarkdownParsingOptions : NSObject, NSCopying {
   init()
   var allowsExtendedAttributes: Bool
   var interpretedSyntax: __NSAttributedStringMarkdownInterpretedSyntax
   var failurePolicy: __NSAttributedStringMarkdownParsingFailurePolicy
   var languageCode: String?
+  @available(iOS 16.0, *)
+  var appliesSourcePositionAttributes: Bool
   @available(iOS 15.0, *)
   func copy(with zone: NSZone? = nil) -> Any
+}
+
+@available(*, unavailable)
+extension __NSAttributedStringMarkdownParsingOptions : @unchecked Sendable {
 }
 extension NSAttributedString {
   @available(iOS 15.0, *)
@@ -251,7 +293,7 @@ extension NSAttributedString {
   @available(iOS 15.0, *)
   init(__markdownString markdownString: String, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
 }
-struct __NSAttributedStringFormattingOptions : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct __NSAttributedStringFormattingOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
@@ -307,7 +349,7 @@ let NSInflectionAlternativeAttributeName: NSAttributedString.Key
 @available(swift, obsoleted: 3, renamed: "NSAttributedString.Key.presentationIntentAttributeName")
 let NSPresentationIntentAttributeName: NSAttributedString.Key
 @available(iOS 15.0, *)
-enum __NSPresentationIntentKind : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __NSPresentationIntentKind : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -349,7 +391,7 @@ enum __NSPresentationIntentKind : Int, @unchecked Sendable {
   static var TableCell: __NSPresentationIntentKind { get }
 }
 @available(iOS 15.0, *)
-enum __NSPresentationIntentTableColumnAlignment : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __NSPresentationIntentTableColumnAlignment : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -364,7 +406,7 @@ enum __NSPresentationIntentTableColumnAlignment : Int, @unchecked Sendable {
   static var Right: __NSPresentationIntentTableColumnAlignment { get }
 }
 @available(iOS 15.0, *)
-class __NSPresentationIntent : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class __NSPresentationIntent : NSObject, NSCopying, NSSecureCoding {
   var intentKind: __NSPresentationIntentKind { get }
   @available(*, unavailable)
   init()
@@ -449,4 +491,8 @@ class __NSPresentationIntent : NSObject, NSCopying, NSSecureCoding {
   @available(iOS 15.0, *)
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension __NSPresentationIntent : @unchecked Sendable {
 }

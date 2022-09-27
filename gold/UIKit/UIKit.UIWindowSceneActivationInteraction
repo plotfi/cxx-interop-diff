@@ -26,7 +26,7 @@ extension UIWindowScene {
 
   /// An interaction that facilitates activating a @c UIWindowScene when the user pinches out on the interaction's view.
   @available(iOS 15.0, *)
-  class ActivationInteraction : NSObject, UIInteraction {
+  @_nonSendable(_assumed) class ActivationInteraction : NSObject, UIInteraction {
 
     /// Returns a new @c UIWindowSceneActivationInteraction
     ///

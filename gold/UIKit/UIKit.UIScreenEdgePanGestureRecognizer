@@ -4,7 +4,7 @@
 /** This subclass of UIPanGestureRecognizer only recognizes if the user slides their finger
     in from the bezel on the specified edge. */
 @available(iOS 7.0, *)
-@MainActor class UIScreenEdgePanGestureRecognizer : UIPanGestureRecognizer {
+@MainActor @_nonSendable(_assumed) class UIScreenEdgePanGestureRecognizer : UIPanGestureRecognizer {
   var edges: UIRectEdge
   init(target: Any?, action: Selector?)
   convenience init()

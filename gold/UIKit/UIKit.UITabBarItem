@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UITabBarItem.SystemItem")
 typealias UITabBarSystemItem = UITabBarItem.SystemItem
 extension UITabBarItem {
-  enum SystemItem : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SystemItem : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -46,7 +46,7 @@ extension UITabBarItem {
   }
 }
 @available(iOS 2.0, *)
-@MainActor class UITabBarItem : UIBarItem {
+@MainActor @_nonSendable(_assumed) class UITabBarItem : UIBarItem {
   init()
   init?(coder: NSCoder)
   convenience init(title: String?, image: UIImage?, tag: Int)

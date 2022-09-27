@@ -29,7 +29,7 @@
   optional func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController)
 }
 @available(iOS 8.0, *)
-@MainActor class UIPresentationController : NSObject, UIAppearanceContainer, UITraitEnvironment, UIContentContainer, UIFocusEnvironment {
+@MainActor @_nonSendable(_assumed) class UIPresentationController : NSObject, UIAppearanceContainer, UITraitEnvironment, UIContentContainer, UIFocusEnvironment {
   var presentingViewController: UIViewController { get }
   var presentedViewController: UIViewController { get }
   var presentationStyle: UIModalPresentationStyle { get }

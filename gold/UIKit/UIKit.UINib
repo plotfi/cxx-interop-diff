@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 4.0, *)
-@MainActor class UINib : NSObject {
+@MainActor @_nonSendable(_assumed) class UINib : NSObject {
   /*not inherited*/ init(nibName name: String, bundle bundleOrNil: Bundle?)
   @available(*, unavailable, renamed: "init(nibName:bundle:)", message: "Not available in Swift")
   class func nibWithNibName(_ name: String, bundle bundleOrNil: Bundle?) -> UINib

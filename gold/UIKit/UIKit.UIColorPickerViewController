@@ -32,7 +32,7 @@
   optional func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController)
 }
 @available(iOS 14.0, *)
-@MainActor class UIColorPickerViewController : UIViewController {
+@MainActor @_nonSendable(_assumed) class UIColorPickerViewController : UIViewController {
   weak var delegate: @sil_weak UIColorPickerViewControllerDelegate?
 
   /// Sets the selected color on the color picker and is updated when the user changes the selection.

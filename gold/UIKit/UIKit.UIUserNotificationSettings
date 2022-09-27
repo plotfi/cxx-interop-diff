@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNAuthorizationOptions")
-struct UIUserNotificationType : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct UIUserNotificationType : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
@@ -23,7 +23,7 @@ struct UIUserNotificationType : OptionSet, @unchecked Sendable {
   static var Alert: UIUserNotificationType { get }
 }
 @available(iOS, introduced: 9.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction")
-enum UIUserNotificationActionBehavior : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIUserNotificationActionBehavior : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt
@@ -35,7 +35,7 @@ enum UIUserNotificationActionBehavior : UInt, @unchecked Sendable {
   static var TextInput: UIUserNotificationActionBehavior { get }
 }
 @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationActionOptions")
-enum UIUserNotificationActivationMode : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIUserNotificationActivationMode : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt
@@ -47,7 +47,7 @@ enum UIUserNotificationActivationMode : UInt, @unchecked Sendable {
   static var Background: UIUserNotificationActivationMode { get }
 }
 @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]")
-enum UIUserNotificationActionContext : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIUserNotificationActionContext : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt
@@ -63,7 +63,7 @@ let UIUserNotificationTextInputActionButtonTitleKey: String
 @available(iOS, introduced: 9.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNTextInputNotificationResponse userText]")
 let UIUserNotificationActionResponseTypedTextKey: String
 @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationSettings")
-@MainActor class UIUserNotificationSettings : NSObject {
+@MainActor @_nonSendable(_assumed) class UIUserNotificationSettings : NSObject {
   convenience init(types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?)
   @available(swift, obsoleted: 3, renamed: "init(types:categories:)")
   convenience init(forTypes types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?)
@@ -74,7 +74,7 @@ let UIUserNotificationActionResponseTypedTextKey: String
   init()
 }
 @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationCategory")
-@MainActor class UIUserNotificationCategory : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UIUserNotificationCategory : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   init()
   init?(coder: NSCoder)
   var identifier: String? { get }
@@ -91,7 +91,7 @@ let UIUserNotificationActionResponseTypedTextKey: String
   func encode(with coder: NSCoder)
 }
 @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationCategory")
-@MainActor class UIMutableUserNotificationCategory : UIUserNotificationCategory {
+@MainActor @_nonSendable(_assumed) class UIMutableUserNotificationCategory : UIUserNotificationCategory {
   var identifier: String?
   func setActions(_ actions: [UIUserNotificationAction]?, for context: UIUserNotificationActionContext)
   @available(swift, obsoleted: 3, renamed: "setActions(_:for:)")
@@ -100,7 +100,7 @@ let UIUserNotificationActionResponseTypedTextKey: String
   init?(coder: NSCoder)
 }
 @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationAction")
-@MainActor class UIUserNotificationAction : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UIUserNotificationAction : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   init()
   init?(coder: NSCoder)
   var identifier: String? { get }
@@ -126,7 +126,7 @@ let UIUserNotificationActionResponseTypedTextKey: String
   func encode(with coder: NSCoder)
 }
 @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationAction")
-@MainActor class UIMutableUserNotificationAction : UIUserNotificationAction {
+@MainActor @_nonSendable(_assumed) class UIMutableUserNotificationAction : UIUserNotificationAction {
   var identifier: String?
   var title: String?
   @available(iOS 9.0, *)

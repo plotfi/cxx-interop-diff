@@ -2,29 +2,29 @@
 
 @available(swift, obsoleted: 3, renamed: "Thread")
 typealias NSThread = Thread
-class Thread : NSObject {
+@_nonSendable(_assumed) class Thread : NSObject {
   class var current: Thread { get }
   @available(swift, obsoleted: 3, renamed: "current")
   class var currentThread: Thread { get }
   @available(iOS 10.0, *)
-  class func detachNewThread(_ block: @escaping () -> Void)
+  class func detachNewThread(_ block: @escaping @Sendable () -> Void)
   @available(iOS 10.0, *)
   @available(swift, obsoleted: 3, renamed: "detachNewThread(_:)")
-  class func detachNewThreadWithBlock(_ block: @escaping () -> Void)
+  class func detachNewThreadWithBlock(_ block: @escaping @Sendable () -> Void)
   class func detachNewThreadSelector(_ selector: Selector, toTarget target: Any, with argument: Any?)
   @available(swift, obsoleted: 3, renamed: "detachNewThreadSelector(_:toTarget:with:)")
   class func detachNewThreadSelector(_ selector: Selector, toTarget target: Any, withObject argument: Any?)
   class func isMultiThreaded() -> Bool
   var threadDictionary: NSMutableDictionary { get }
-  class func sleep(until date: Date)
+  @_unavailableFromAsync(message: "Use Task.sleep(until:clock:) instead.") class func sleep(until date: Date)
   @available(swift, obsoleted: 3, renamed: "sleep(until:)")
-  class func sleepUntilDate(_ date: Date)
-  class func sleep(forTimeInterval ti: TimeInterval)
+  @_unavailableFromAsync(message: "Use Task.sleep(until:clock:) instead.") class func sleepUntilDate(_ date: Date)
+  @_unavailableFromAsync(message: "Use Task.sleep(until:clock:) instead.") class func sleep(forTimeInterval ti: TimeInterval)
   @available(swift, obsoleted: 3, renamed: "sleep(forTimeInterval:)")
-  class func sleepForTimeInterval(_ ti: TimeInterval)
-  class func exit()
-  class func threadPriority() -> Double
-  class func setThreadPriority(_ p: Double) -> Bool
+  @_unavailableFromAsync(message: "Use Task.sleep(until:clock:) instead.") class func sleepForTimeInterval(_ ti: TimeInterval)
+  @_unavailableFromAsync(message: "Threads used in asynchronous contexts cannot be explicitly exited.") class func exit()
+  @_unavailableFromAsync(message: "Threads used in asynchronous context cannot get priorities.") class func threadPriority() -> Double
+  @_unavailableFromAsync(message: "Threads used in asynchronous context cannot set priorities.") class func setThreadPriority(_ p: Double) -> Bool
   @available(iOS 4.0, *)
   var threadPriority: Double
   @available(iOS 8.0, *)
@@ -51,7 +51,7 @@ class Thread : NSObject {
   @available(iOS 2.0, *)
   convenience init(target: Any, selector: Selector, object argument: Any?)
   @available(iOS 10.0, *)
-  convenience init(block: @escaping () -> Void)
+  convenience init(block: @escaping @Sendable () -> Void)
   @available(iOS 2.0, *)
   var isExecuting: Bool { get }
   @available(iOS 2.0, *)
@@ -74,6 +74,10 @@ class Thread : NSObject {
   @available(iOS 2.0, *)
   func main()
 }
+
+@available(*, unavailable)
+extension Thread : @unchecked Sendable {
+}
 @available(swift, obsoleted: 3, renamed: "NSNotification.Name.NSWillBecomeMultiThreaded")
 let NSWillBecomeMultiThreadedNotification: NSNotification.Name
 extension NSNotification.Name {
@@ -86,38 +90,38 @@ let NSDidBecomeSingleThreadedNotification: NSNotification.Name
 @available(swift, obsoleted: 3, renamed: "NSNotification.Name.NSThreadWillExit")
 let NSThreadWillExitNotification: NSNotification.Name
 extension NSObject {
-  class func performSelector(onMainThread aSelector: Selector, with arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
-  func performSelector(onMainThread aSelector: Selector, with arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
+  @_unavailableFromAsync(message: "Work intended for the main actor should be marked with @MainActor") class func performSelector(onMainThread aSelector: Selector, with arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
+  @_unavailableFromAsync(message: "Work intended for the main actor should be marked with @MainActor") func performSelector(onMainThread aSelector: Selector, with arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
   @available(swift, obsoleted: 3, renamed: "performSelector(onMainThread:with:waitUntilDone:modes:)")
-  class func performSelectorOnMainThread(_ aSelector: Selector, withObject arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
+  @_unavailableFromAsync(message: "Work intended for the main actor should be marked with @MainActor") class func performSelectorOnMainThread(_ aSelector: Selector, withObject arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
   @available(swift, obsoleted: 3, renamed: "performSelector(onMainThread:with:waitUntilDone:modes:)")
-  func performSelectorOnMainThread(_ aSelector: Selector, withObject arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
-  class func performSelector(onMainThread aSelector: Selector, with arg: Any?, waitUntilDone wait: Bool)
-  func performSelector(onMainThread aSelector: Selector, with arg: Any?, waitUntilDone wait: Bool)
+  @_unavailableFromAsync(message: "Work intended for the main actor should be marked with @MainActor") func performSelectorOnMainThread(_ aSelector: Selector, withObject arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
+  @_unavailableFromAsync(message: "Work intended for the main actor should be marked with @MainActor") class func performSelector(onMainThread aSelector: Selector, with arg: Any?, waitUntilDone wait: Bool)
+  @_unavailableFromAsync(message: "Work intended for the main actor should be marked with @MainActor") func performSelector(onMainThread aSelector: Selector, with arg: Any?, waitUntilDone wait: Bool)
   @available(swift, obsoleted: 3, renamed: "performSelector(onMainThread:with:waitUntilDone:)")
-  class func performSelectorOnMainThread(_ aSelector: Selector, withObject arg: Any?, waitUntilDone wait: Bool)
+  @_unavailableFromAsync(message: "Work intended for the main actor should be marked with @MainActor") class func performSelectorOnMainThread(_ aSelector: Selector, withObject arg: Any?, waitUntilDone wait: Bool)
   @available(swift, obsoleted: 3, renamed: "performSelector(onMainThread:with:waitUntilDone:)")
-  func performSelectorOnMainThread(_ aSelector: Selector, withObject arg: Any?, waitUntilDone wait: Bool)
+  @_unavailableFromAsync(message: "Work intended for the main actor should be marked with @MainActor") func performSelectorOnMainThread(_ aSelector: Selector, withObject arg: Any?, waitUntilDone wait: Bool)
   @available(iOS 2.0, *)
-  class func perform(_ aSelector: Selector, on thr: Thread, with arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
+  @_unavailableFromAsync(message: "Asynchronous work should be called from isolation from an actor") class func perform(_ aSelector: Selector, on thr: Thread, with arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
   @available(iOS 2.0, *)
-  func perform(_ aSelector: Selector, on thr: Thread, with arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
+  @_unavailableFromAsync(message: "Asynchronous work should be called from isolation from an actor") func perform(_ aSelector: Selector, on thr: Thread, with arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
   @available(iOS 2.0, *)
   @available(swift, obsoleted: 3, renamed: "perform(_:on:with:waitUntilDone:modes:)")
-  class func performSelector(_ aSelector: Selector, onThread thr: Thread, withObject arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
+  @_unavailableFromAsync(message: "Asynchronous work should be called from isolation from an actor") class func performSelector(_ aSelector: Selector, onThread thr: Thread, withObject arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
   @available(iOS 2.0, *)
   @available(swift, obsoleted: 3, renamed: "perform(_:on:with:waitUntilDone:modes:)")
-  func performSelector(_ aSelector: Selector, onThread thr: Thread, withObject arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
+  @_unavailableFromAsync(message: "Asynchronous work should be called from isolation from an actor") func performSelector(_ aSelector: Selector, onThread thr: Thread, withObject arg: Any?, waitUntilDone wait: Bool, modes array: [String]?)
   @available(iOS 2.0, *)
-  class func perform(_ aSelector: Selector, on thr: Thread, with arg: Any?, waitUntilDone wait: Bool)
+  @_unavailableFromAsync(message: "Asynchronous work should be called from isolation from an actor") class func perform(_ aSelector: Selector, on thr: Thread, with arg: Any?, waitUntilDone wait: Bool)
   @available(iOS 2.0, *)
-  func perform(_ aSelector: Selector, on thr: Thread, with arg: Any?, waitUntilDone wait: Bool)
-  @available(iOS 2.0, *)
-  @available(swift, obsoleted: 3, renamed: "perform(_:on:with:waitUntilDone:)")
-  class func performSelector(_ aSelector: Selector, onThread thr: Thread, withObject arg: Any?, waitUntilDone wait: Bool)
+  @_unavailableFromAsync(message: "Asynchronous work should be called from isolation from an actor") func perform(_ aSelector: Selector, on thr: Thread, with arg: Any?, waitUntilDone wait: Bool)
   @available(iOS 2.0, *)
   @available(swift, obsoleted: 3, renamed: "perform(_:on:with:waitUntilDone:)")
-  func performSelector(_ aSelector: Selector, onThread thr: Thread, withObject arg: Any?, waitUntilDone wait: Bool)
+  @_unavailableFromAsync(message: "Asynchronous work should be called from isolation from an actor") class func performSelector(_ aSelector: Selector, onThread thr: Thread, withObject arg: Any?, waitUntilDone wait: Bool)
+  @available(iOS 2.0, *)
+  @available(swift, obsoleted: 3, renamed: "perform(_:on:with:waitUntilDone:)")
+  @_unavailableFromAsync(message: "Asynchronous work should be called from isolation from an actor") func performSelector(_ aSelector: Selector, onThread thr: Thread, withObject arg: Any?, waitUntilDone wait: Bool)
   @available(iOS 2.0, *)
   class func performSelector(inBackground aSelector: Selector, with arg: Any?)
   @available(iOS 2.0, *)

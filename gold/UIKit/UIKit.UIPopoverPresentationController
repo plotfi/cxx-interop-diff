@@ -13,13 +13,16 @@
   optional func popoverPresentationController(_ popoverPresentationController: UIPopoverPresentationController, willRepositionPopoverToRect rect: UnsafeMutablePointer<CGRect>, inView view: AutoreleasingUnsafeMutablePointer<UIView>)
 }
 @available(iOS 8.0, *)
-@MainActor class UIPopoverPresentationController : UIPresentationController {
+@MainActor @_nonSendable(_assumed) class UIPopoverPresentationController : UIPresentationController {
   weak var delegate: @sil_weak UIPopoverPresentationControllerDelegate?
   var permittedArrowDirections: UIPopoverArrowDirection
   var sourceView: UIView?
   var sourceRect: CGRect
   @available(iOS 9.0, *)
   var canOverlapSourceViewRect: Bool
+  @available(iOS 16.0, *)
+  var sourceItem: UIPopoverPresentationControllerSourceItem?
+  @available(iOS, introduced: 8.0, deprecated: 100000)
   var barButtonItem: UIBarButtonItem?
   var arrowDirection: UIPopoverArrowDirection { get }
   var passthroughViews: [UIView]?

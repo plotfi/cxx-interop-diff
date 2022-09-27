@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 14.0, *)
-@MainActor class UICollectionViewListCell : UICollectionViewCell {
+@MainActor @_nonSendable(_assumed) class UICollectionViewListCell : UICollectionViewCell {
 
   /// Returns a default list content configuration for the cell's style.
   func __defaultContentConfiguration() -> __UIListContentConfiguration

@@ -25,7 +25,7 @@ protocol NSDecimalNumberBehaviors {
 }
 
 /***************	NSDecimalNumber: the class		***********/
-class NSDecimalNumber : NSNumber {
+@_nonSendable(_assumed) class NSDecimalNumber : NSNumber, @unchecked Sendable {
   convenience init(mantissa: UInt64, exponent: Int16, isNegative flag: Bool)
   init(decimal dcm: Decimal)
   convenience init(string numberValue: String?)
@@ -119,7 +119,7 @@ class NSDecimalNumber : NSNumber {
 }
 
 /***********	A class for defining common behaviors		*******/
-class NSDecimalNumberHandler : NSObject, NSDecimalNumberBehaviors, NSCoding {
+@_nonSendable(_assumed) class NSDecimalNumberHandler : NSObject, NSDecimalNumberBehaviors, NSCoding, @unchecked Sendable {
   class var `default`: NSDecimalNumberHandler { get }
   @available(swift, obsoleted: 3, renamed: "default")
   class var defaultDecimalNumberHandler: NSDecimalNumberHandler { get }

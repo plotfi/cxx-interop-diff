@@ -3,7 +3,7 @@
 
 /// UIFocusSystem instances manage focus state within a part of the user interface. They are in charge of tracking the current focused item, as well as processing focus updates.
 @available(iOS 11.0, *)
-@MainActor class UIFocusSystem : NSObject {
+@MainActor @_nonSendable(_assumed) class UIFocusSystem : NSObject {
 
   /// The currently focused item in this focus system.
   @available(iOS 12.0, *)

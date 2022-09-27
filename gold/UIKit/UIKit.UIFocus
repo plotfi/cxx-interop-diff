@@ -200,9 +200,11 @@ extension UIFocusItem {
   var coordinateSpace: UICoordinateSpace { get }
 
   /// Returns an array of all focus items within this container that intersect with the provided rect. `rect` is expressed in `coordinateSpace`.
+  /// Note: starting in iOS & tvOS 16.0, UIView will return its subviews from this method. If you override this method in a UIView subclass, it will be your responsibility to call super and merge your array of custom focus items with UIView's default focus items.
   func focusItems(in rect: CGRect) -> [UIFocusItem]
 
   /// Returns an array of all focus items within this container that intersect with the provided rect. `rect` is expressed in `coordinateSpace`.
+  /// Note: starting in iOS & tvOS 16.0, UIView will return its subviews from this method. If you override this method in a UIView subclass, it will be your responsibility to call super and merge your array of custom focus items with UIView's default focus items.
   @available(swift, obsoleted: 3, renamed: "focusItems(in:)")
   func focusItemsInRect(_ rect: CGRect) -> [UIFocusItem]
 }
@@ -225,7 +227,7 @@ extension UIFocusItem {
 
 /// UIFocusUpdateContexts provide information relevant to a specific focus update from one view to another. They are ephemeral objects that are usually discarded after the update is finished.
 @available(iOS 9.0, *)
-@MainActor class UIFocusUpdateContext : NSObject {
+@MainActor @_nonSendable(_assumed) class UIFocusUpdateContext : NSObject {
 
   /// The item that was focused before the update, i.e. where focus is updating from. May be nil if no item was focused, such as when focus is initially set.
   @available(iOS 10.0, *)

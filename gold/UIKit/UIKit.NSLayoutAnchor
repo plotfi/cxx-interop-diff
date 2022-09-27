@@ -2,7 +2,7 @@
 
 var NSLAYOUTANCHOR_H: Int32 { get }
 @available(iOS 9.0, *)
-@MainActor class NSLayoutAnchor<AnchorType> : NSObject, NSCopying, NSCoding where AnchorType : AnyObject {
+@MainActor @_nonSendable(_assumed) class NSLayoutAnchor<AnchorType> : NSObject, NSCopying, NSCoding where AnchorType : AnyObject {
   func constraint(equalTo anchor: NSLayoutAnchor<AnchorType>) -> NSLayoutConstraint
   @available(swift, obsoleted: 3, renamed: "constraint(equalTo:)")
   func constraintEqualToAnchor(_ anchor: NSLayoutAnchor<AnchorType>) -> NSLayoutConstraint
@@ -37,7 +37,7 @@ var NSLAYOUTANCHOR_H: Int32 { get }
   init?(coder: NSCoder)
 }
 @available(iOS 9.0, *)
-@MainActor class NSLayoutXAxisAnchor : NSLayoutAnchor<NSLayoutXAxisAnchor> {
+@MainActor @_nonSendable(_assumed) class NSLayoutXAxisAnchor : NSLayoutAnchor<NSLayoutXAxisAnchor> {
   @available(iOS 10.0, *)
   func anchorWithOffset(to otherAnchor: NSLayoutXAxisAnchor) -> NSLayoutDimension
   @available(iOS 10.0, *)
@@ -47,7 +47,7 @@ var NSLAYOUTANCHOR_H: Int32 { get }
   init?(coder: NSCoder)
 }
 @available(iOS 9.0, *)
-@MainActor class NSLayoutYAxisAnchor : NSLayoutAnchor<NSLayoutYAxisAnchor> {
+@MainActor @_nonSendable(_assumed) class NSLayoutYAxisAnchor : NSLayoutAnchor<NSLayoutYAxisAnchor> {
   @available(iOS 10.0, *)
   func anchorWithOffset(to otherAnchor: NSLayoutYAxisAnchor) -> NSLayoutDimension
   @available(iOS 10.0, *)
@@ -57,7 +57,7 @@ var NSLAYOUTANCHOR_H: Int32 { get }
   init?(coder: NSCoder)
 }
 @available(iOS 9.0, *)
-@MainActor class NSLayoutDimension : NSLayoutAnchor<NSLayoutDimension> {
+@MainActor @_nonSendable(_assumed) class NSLayoutDimension : NSLayoutAnchor<NSLayoutDimension> {
   func constraint(equalToConstant c: CGFloat) -> NSLayoutConstraint
   @available(swift, obsoleted: 3, renamed: "constraint(equalToConstant:)")
   func constraintEqualToConstant(_ c: CGFloat) -> NSLayoutConstraint

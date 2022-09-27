@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 12.1, *)
-enum UIPencilPreferredAction : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIPencilPreferredAction : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -17,9 +17,14 @@ enum UIPencilPreferredAction : Int, @unchecked Sendable {
   case showColorPalette
   @available(swift, obsoleted: 3, renamed: "showColorPalette")
   static var ShowColorPalette: UIPencilPreferredAction { get }
+  @available(iOS 16.0, *)
+  case showInkAttributes
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "showInkAttributes")
+  static var ShowInkAttributes: UIPencilPreferredAction { get }
 }
 @available(iOS 12.1, *)
-@MainActor class UIPencilInteraction : NSObject, UIInteraction {
+@MainActor @_nonSendable(_assumed) class UIPencilInteraction : NSObject, UIInteraction {
   class var preferredTapAction: UIPencilPreferredAction { get }
   class var prefersPencilOnlyDrawing: Bool { get }
   weak var delegate: @sil_weak UIPencilInteractionDelegate?

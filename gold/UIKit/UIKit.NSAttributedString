@@ -184,7 +184,7 @@ let NSVerticalGlyphFormAttributeName: NSAttributedString.Key
 
 /************************ Attribute values ************************/
 @available(iOS 6.0, *)
-struct NSUnderlineStyle : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct NSUnderlineStyle : OptionSet, @unchecked Sendable {
   init(rawValue: Int)
   let rawValue: Int
   typealias RawValue = Int
@@ -256,7 +256,7 @@ struct NSUnderlineStyle : OptionSet, @unchecked Sendable {
 extension NSUnderlineStyle : Hashable {
 }
 @available(iOS 9.0, *)
-enum NSWritingDirectionFormatType : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum NSWritingDirectionFormatType : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -383,7 +383,7 @@ extension NSAttributedString.TextLayoutSectionKey {
 @available(swift, obsoleted: 3, renamed: "NSAttributedString.TextLayoutSectionKey.range")
 let NSTextLayoutSectionRange: NSAttributedString.TextLayoutSectionKey
 @available(iOS 13.0, *)
-enum NSTextScalingType : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum NSTextScalingType : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -594,7 +594,7 @@ extension NSAttributedString : NSItemProviderReading, NSItemProviderWriting {
   @available(iOS 11.0, *)
   func itemProviderVisibilityForRepresentation(withTypeIdentifier typeIdentifier: String) -> NSItemProviderRepresentationVisibility
   @available(iOS 11.0, *)
-  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress?
+  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping @Sendable (Data?, Error?) -> Void) -> Progress?
 }
 
 /************************ Deprecated ************************/
@@ -611,7 +611,7 @@ let NSUnderlinePatternDashDotDot: NSUnderlineStyle
 @available(*, unavailable, message: "Not available in Swift")
 let NSUnderlineByWord: NSUnderlineStyle
 @available(iOS, introduced: 7.0, deprecated: 9.0, renamed: "NSWritingDirectionFormatType")
-enum NSTextWritingDirection : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum NSTextWritingDirection : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int

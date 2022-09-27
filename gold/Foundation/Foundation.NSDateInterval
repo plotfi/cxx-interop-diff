@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 10.0, *)
-class NSDateInterval : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSDateInterval : NSObject, NSCopying, NSSecureCoding, @unchecked Sendable {
   var startDate: Date { get }
   var endDate: Date { get }
   var duration: TimeInterval { get }

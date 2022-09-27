@@ -55,7 +55,21 @@ struct UISceneError : _BridgedStoredNSError {
     case requestDenied
     @available(swift, obsoleted: 3, renamed: "requestDenied")
     static var RequestDenied: UISceneError.Code { get }
+    @available(iOS 16.0, *)
+    case geometryRequestUnsupported
+    @available(iOS 16.0, *)
+    @available(swift, obsoleted: 3, renamed: "geometryRequestUnsupported")
+    static var GeometryRequestUnsupported: UISceneError.Code { get }
+    @available(iOS 16.0, *)
+    case geometryRequestDenied
+    @available(iOS 16.0, *)
+    @available(swift, obsoleted: 3, renamed: "geometryRequestDenied")
+    static var GeometryRequestDenied: UISceneError.Code { get }
   }
   static var multipleScenesNotSupported: UISceneError.Code { get }
   static var requestDenied: UISceneError.Code { get }
+  @available(iOS 16.0, *)
+  static var geometryRequestUnsupported: UISceneError.Code { get }
+  @available(iOS 16.0, *)
+  static var geometryRequestDenied: UISceneError.Code { get }
 }

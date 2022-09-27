@@ -2,7 +2,7 @@
 
 typealias __UIStoryboardViewControllerCreator = (NSCoder) -> UIViewController?
 @available(iOS 5.0, *)
-@MainActor class UIStoryboard : NSObject {
+@MainActor @_nonSendable(_assumed) class UIStoryboard : NSObject {
   /*not inherited*/ init(name: String, bundle storyboardBundleOrNil: Bundle?)
   @available(*, unavailable, renamed: "init(name:bundle:)", message: "Not available in Swift")
   class func storyboardWithName(_ name: String, bundle storyboardBundleOrNil: Bundle?) -> UIStoryboard

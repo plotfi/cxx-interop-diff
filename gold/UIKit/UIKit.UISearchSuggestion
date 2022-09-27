@@ -1,6 +1,6 @@
 @_exported import Foundation
 
-@available(iOS, unavailable)
+@available(iOS 16.0, *)
 @MainActor protocol UISearchSuggestion : NSObjectProtocol {
 
   /// The localized suggestion that will be displayed as the search string
@@ -11,11 +11,19 @@
 
   /// Icon that represents this search suggestion item
   optional var iconImage: UIImage? { get }
+
+  /// If non-null, will be displayed as the search string instead of localizedSuggestion
+  @available(iOS 16.0, *)
+  var localizedAttributedSuggestion: NSAttributedString? { get }
+
+  /// User information
+  @available(iOS 16.0, *)
+  var representedObject: Any? { get set }
 }
 
 /// A concrete container for search suggestion string and optional image and associated information for providing shortcuts in search experience on tvOS.
-@available(iOS, unavailable)
-@MainActor class UISearchSuggestionItem : NSObject, UISearchSuggestion {
+@available(iOS 16.0, *)
+@MainActor @_nonSendable(_assumed) class UISearchSuggestionItem : NSObject, UISearchSuggestion {
 
   /// Returns a new search suggestion object with a specified suggestion string.
   @available(*, unavailable, message: "Use init(string suggestionString: String) instead.")
@@ -44,6 +52,31 @@
   @available(*, unavailable, message: "Use init(string suggestionString: String, descriptionString: String?, iconImage: UIImage?) instead.")
   class func suggestionWithLocalizedSuggestion(_ suggestion: String, descriptionString description: String?, iconImage: UIImage?) -> Self
 
+  /// Factory methods taking NSAttributedString instead of NSString for the suggestion
+  @available(iOS 16.0, *)
+  @available(*, unavailable, message: "Use init(localizedAttributedSuggestion: NSAttributedString) instead.")
+  class func suggestion(withLocalizedAttributedSuggestion suggestion: NSAttributedString) -> Self
+
+  /// Factory methods taking NSAttributedString instead of NSString for the suggestion
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "suggestion(withLocalizedAttributedSuggestion:)")
+  @available(*, unavailable, message: "Use init(localizedAttributedSuggestion: NSAttributedString) instead.")
+  class func suggestionWithLocalizedAttributedSuggestion(_ suggestion: NSAttributedString) -> Self
+  @available(iOS 16.0, *)
+  @available(*, unavailable, message: "Use init(localizedAttributedSuggestion: NSAttributedString, localizedDescription: String?) instead.")
+  class func suggestion(withLocalizedAttributedSuggestion suggestion: NSAttributedString, descriptionString description: String?) -> Self
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "suggestion(withLocalizedAttributedSuggestion:descriptionString:)")
+  @available(*, unavailable, message: "Use init(localizedAttributedSuggestion: NSAttributedString, localizedDescription: String?) instead.")
+  class func suggestionWithLocalizedAttributedSuggestion(_ suggestion: NSAttributedString, descriptionString description: String?) -> Self
+  @available(iOS 16.0, *)
+  @available(*, unavailable, message: "Use init(localizedAttributedSuggestion: NSAttributedString, localizedDescription: String?, iconImage: UIImage?) instead.")
+  class func suggestion(withLocalizedAttributedSuggestion suggestion: NSAttributedString, descriptionString description: String?, iconImage: UIImage?) -> Self
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "suggestion(withLocalizedAttributedSuggestion:descriptionString:iconImage:)")
+  @available(*, unavailable, message: "Use init(localizedAttributedSuggestion: NSAttributedString, localizedDescription: String?, iconImage: UIImage?) instead.")
+  class func suggestionWithLocalizedAttributedSuggestion(_ suggestion: NSAttributedString, descriptionString description: String?, iconImage: UIImage?) -> Self
+
   /// Initializes a search suggestion object with a specified search suggestion string.
   init(localizedSuggestion suggestion: String)
 
@@ -53,6 +86,18 @@
   /// Initializes a search suggestion object with a specified search suggestion string, a description string, and a search icon image.
   init(localizedSuggestion suggestion: String, localizedDescription description: String?, iconImage: UIImage?)
 
+  /// Initializers taking NSAttributedString instead of NSString for the suggestion
+  @available(iOS 16.0, *)
+  init(localizedAttributedSuggestion suggestion: NSAttributedString)
+  @available(iOS 16.0, *)
+  init(localizedAttributedSuggestion suggestion: NSAttributedString, localizedDescription description: String?)
+  @available(iOS 16.0, *)
+  init(localizedAttributedSuggestion suggestion: NSAttributedString, localizedDescription description: String?, iconImage: UIImage?)
+
+  /// If non-null, will be displayed as the search string instead of localizedSuggestion
+  @available(iOS 16.0, *)
+  var localizedAttributedSuggestion: NSAttributedString? { get }
+
   /// The localized suggestion that will be displayed as the search string
   var localizedSuggestion: String? { get }
 
@@ -61,5 +106,9 @@
 
   /// Icon that represents this search suggestion item
   var iconImage: UIImage? { get }
+
+  /// User information
+  @available(iOS 16.0, *)
+  var representedObject: Any?
   init()
 }

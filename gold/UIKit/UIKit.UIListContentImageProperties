@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 14.0, *)
-@MainActor class __UIListContentImageProperties : NSObject, NSCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class __UIListContentImageProperties : NSObject, NSCopying, NSSecureCoding {
 
   /// The symbol configuration to use.
   @NSCopying var preferredSymbolConfiguration: UIImage.SymbolConfiguration?

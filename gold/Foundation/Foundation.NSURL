@@ -10,7 +10,7 @@ struct URLResourceKey : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtyp
   typealias RawValue = String
   typealias _ObjectiveCType = NSString
 }
-class NSURL : NSObject, NSSecureCoding, NSCopying {
+@_nonSendable(_assumed) class NSURL : NSObject, NSSecureCoding, NSCopying, @unchecked Sendable {
   @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use NSURLComponents instead, which lets you create a valid URL with any valid combination of URL components and subcomponents (not just scheme, host and path), and lets you set components and subcomponents with either percent-encoded or un-percent-encoded strings.")
   convenience init?(scheme: String, host: String?, path: String)
   @available(iOS 9.0, *)
@@ -198,13 +198,13 @@ class NSURL : NSObject, NSSecureCoding, NSCopying {
   func copy(with zone: NSZone? = nil) -> Any
 }
 
+extension NSURL : _HasCustomAnyHashableRepresentation {
+  @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}
+
 extension NSURL : _CustomPlaygroundQuickLookable {
   @available(*, deprecated, message: "NSURL.customPlaygroundQuickLook will be removed in a future Swift version")
   var customPlaygroundQuickLook: PlaygroundQuickLook { get }
-}
-
-extension NSURL : _HasCustomAnyHashableRepresentation {
-  @nonobjc func _toCustomAnyHashable() -> AnyHashable?
 }
 let NSURLFileScheme: String
 @available(iOS 5.0, *)
@@ -981,7 +981,7 @@ let NSURLUbiquitousSharedItemPermissionsReadWrite: URLUbiquitousSharedItemPermis
 typealias NSURLBookmarkCreationOptions = NSURL.BookmarkCreationOptions
 extension NSURL {
   @available(iOS 4.0, *)
-  struct BookmarkCreationOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct BookmarkCreationOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -1015,7 +1015,7 @@ extension NSURL {
     static var WithoutImplicitSecurityScope: NSURL.BookmarkCreationOptions { get }
   }
   @available(iOS 4.0, *)
-  struct BookmarkResolutionOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct BookmarkResolutionOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -1070,10 +1070,10 @@ extension NSURL : NSItemProviderReading, NSItemProviderWriting {
   @available(iOS 11.0, *)
   func itemProviderVisibilityForRepresentation(withTypeIdentifier typeIdentifier: String) -> NSItemProviderRepresentationVisibility
   @available(iOS 11.0, *)
-  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress?
+  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping @Sendable (Data?, Error?) -> Void) -> Progress?
 }
 @available(iOS 8.0, *)
-class NSURLQueryItem : NSObject, NSSecureCoding, NSCopying {
+@_nonSendable(_assumed) class NSURLQueryItem : NSObject, NSSecureCoding, NSCopying, @unchecked Sendable {
   init(name: String, value: String?)
   @available(*, unavailable, renamed: "init(name:value:)", message: "Not available in Swift")
   class func queryItemWithName(_ name: String, value: String?) -> Self
@@ -1094,7 +1094,7 @@ extension NSURLQueryItem : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
 }
 @available(iOS 7.0, *)
-class NSURLComponents : NSObject, NSCopying {
+@_nonSendable(_assumed) class NSURLComponents : NSObject, NSCopying {
   init()
   init?(url: URL, resolvingAgainstBaseURL resolve: Bool)
   @available(swift, obsoleted: 3, renamed: "init(url:resolvingAgainstBaseURL:)")
@@ -1124,10 +1124,13 @@ class NSURLComponents : NSObject, NSCopying {
   var fragment: String?
   var percentEncodedUser: String?
   var percentEncodedPassword: String?
+  @available(iOS, introduced: 7.0, deprecated: 100000, message: "Use encodedHost instead")
   var percentEncodedHost: String?
   var percentEncodedPath: String?
   var percentEncodedQuery: String?
   var percentEncodedFragment: String?
+  @available(iOS 16.0, *)
+  var encodedHost: String?
   @available(iOS 9.0, *)
   var rangeOfScheme: NSRange { get }
   @available(iOS 9.0, *)
@@ -1154,6 +1157,10 @@ class NSURLComponents : NSObject, NSCopying {
 
 extension NSURLComponents : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}
+
+@available(*, unavailable)
+extension NSURLComponents : @unchecked Sendable {
 }
 extension NSCharacterSet {
   @available(iOS 7.0, *)
@@ -1258,7 +1265,7 @@ extension NSURL {
   var URLByResolvingSymlinksInPath: URL? { get }
 }
 @available(iOS 5.0, *)
-class NSFileSecurity : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSFileSecurity : NSObject, NSCopying, NSSecureCoding {
   init?(coder: NSCoder)
   convenience init()
   @available(iOS 5.0, *)
@@ -1267,4 +1274,8 @@ class NSFileSecurity : NSObject, NSCopying, NSSecureCoding {
   func copy(with zone: NSZone? = nil) -> Any
   @available(iOS 5.0, *)
   func encode(with coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSFileSecurity : @unchecked Sendable {
 }

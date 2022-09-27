@@ -10,7 +10,7 @@
 ///
 /// Tokens can be programmatically selected by including their position in a range assigned to the `selectedTextRange` property. UISearchTextField does not support placing an insertion point before a token; attempting to do so will select the token instead.
 @available(iOS 13.0, *)
-@MainActor class UISearchTextField : UITextField {
+@MainActor @_nonSendable(_assumed) class UISearchTextField : UITextField {
 
   /// Simple access to the collection of tokens.
   var tokens: [UISearchToken]
@@ -73,6 +73,13 @@
   ///
   /// To support copying tokens, this property must be true and the delegate must provide an item provider for the tokens to be copied. UISearchTextField always enables the Copy command if any plain text is selected, even if the selection also includes tokens and this property is false. Defaults to true.
   var allowsCopyingTokens: Bool
+
+  /// An array of suggestions that will be presented as a menu beneath the search field when nonempty.
+  /// Set to nil or @[] to dismiss the menu.
+  /// The menu will also dismiss and the property will be set to nil when a suggestion is selected.
+  /// The delegate is expected to execute any necessary updating when a suggestion is selected.
+  @available(iOS 16.0, *)
+  var searchSuggestions: [UISearchSuggestion]?
   init(frame: CGRect)
   init?(coder: NSCoder)
 
@@ -84,7 +91,7 @@
 
 /// An individual token in a UISearchTextField.
 @available(iOS 13.0, *)
-@MainActor class UISearchToken : NSObject {
+@MainActor @_nonSendable(_assumed) class UISearchToken : NSObject {
   @available(*, unavailable)
   init()
   @available(*, unavailable)
@@ -118,6 +125,15 @@
   /// This method will only be called if either of the field’s allowsCopyingTokens or allowsDeletingTokens properties is true.
   @available(swift, obsoleted: 3, renamed: "searchTextField(_:itemProviderForCopying:)")
   optional func searchTextField(_ searchTextField: UISearchTextField, itemProviderForCopyingToken token: UISearchToken) -> NSItemProvider
+
+  /// searchSuggestions property will be set to nil after sending this message
+  @available(iOS 16.0, *)
+  optional func searchTextField(_ searchTextField: UISearchTextField, didSelect suggestion: UISearchSuggestion)
+
+  /// searchSuggestions property will be set to nil after sending this message
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "searchTextField(_:didSelect:)")
+  optional func searchTextField(_ searchTextField: UISearchTextField, didSelectSuggestion suggestion: UISearchSuggestion)
 }
 
 /// A protocol that refines UITextPasteItem to support pasting of tokens.

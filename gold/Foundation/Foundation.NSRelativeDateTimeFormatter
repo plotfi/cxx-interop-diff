@@ -5,7 +5,7 @@
 typealias NSRelativeDateTimeFormatterStyle = RelativeDateTimeFormatter.DateTimeStyle
 extension RelativeDateTimeFormatter {
   @available(iOS 13.0, *)
-  enum DateTimeStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum DateTimeStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -17,7 +17,7 @@ extension RelativeDateTimeFormatter {
     static var Named: RelativeDateTimeFormatter.DateTimeStyle { get }
   }
   @available(iOS 13.0, *)
-  enum UnitsStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum UnitsStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -42,7 +42,7 @@ typealias NSRelativeDateTimeFormatterUnitsStyle = RelativeDateTimeFormatter.Unit
 @available(swift, obsoleted: 3, renamed: "RelativeDateTimeFormatter")
 typealias NSRelativeDateTimeFormatter = RelativeDateTimeFormatter
 @available(iOS 13.0, *)
-class RelativeDateTimeFormatter : Formatter {
+@_nonSendable(_assumed) class RelativeDateTimeFormatter : Formatter {
   var dateTimeStyle: RelativeDateTimeFormatter.DateTimeStyle
   var unitsStyle: RelativeDateTimeFormatter.UnitsStyle
   var formattingContext: Formatter.Context
@@ -62,4 +62,8 @@ class RelativeDateTimeFormatter : Formatter {
   func stringForObjectValue(_ obj: Any?) -> String?
   init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension RelativeDateTimeFormatter : @unchecked Sendable {
 }

@@ -61,7 +61,7 @@ extension NSNotification.Name {
   @available(iOS 6.0, *)
   static let NSUbiquityIdentityDidChange: NSNotification.Name
 }
-class FileManager : NSObject {
+@_nonSendable(_assumed) class FileManager : NSObject {
   class var `default`: FileManager { get }
   @available(swift, obsoleted: 3, renamed: "default")
   class var defaultManager: FileManager { get }
@@ -344,6 +344,10 @@ extension FileManager {
   @available(macOS 10.6, iOS 4.0, *)
   @nonobjc func enumerator(at url: URL, includingPropertiesForKeys keys: [URLResourceKey]?, options mask: FileManager.DirectoryEnumerationOptions = [], errorHandler handler: ((URL, Error) -> Bool)? = nil) -> FileManager.DirectoryEnumerator?
 }
+
+@available(*, unavailable)
+extension FileManager : @unchecked Sendable {
+}
 @available(swift, obsoleted: 3, renamed: "FileManager")
 typealias NSFileManager = FileManager
 extension FileManager {
@@ -422,7 +426,7 @@ typealias NSFileManagerDelegate = FileManagerDelegate
 @available(swift, obsoleted: 3, renamed: "FileManager.DirectoryEnumerator")
 typealias NSDirectoryEnumerator = FileManager.DirectoryEnumerator
 extension FileManager {
-  class DirectoryEnumerator : NSEnumerator {
+  @_nonSendable(_assumed) class DirectoryEnumerator : NSEnumerator {
     var fileAttributes: [FileAttributeKey : Any]? { get }
     var directoryAttributes: [FileAttributeKey : Any]? { get }
     @available(iOS 13.0, *)
@@ -435,7 +439,7 @@ extension FileManager {
     init()
   }
   @available(iOS 4.0, *)
-  struct VolumeEnumerationOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct VolumeEnumerationOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -449,7 +453,7 @@ extension FileManager {
     static var ProduceFileReferenceURLs: FileManager.VolumeEnumerationOptions { get }
   }
   @available(iOS 4.0, *)
-  struct DirectoryEnumerationOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct DirectoryEnumerationOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -476,7 +480,7 @@ extension FileManager {
     static var ProducesRelativePathURLs: FileManager.DirectoryEnumerationOptions { get }
   }
   @available(iOS 4.0, *)
-  struct ItemReplacementOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct ItemReplacementOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -490,7 +494,7 @@ extension FileManager {
     static var WithoutDeletingBackupItem: FileManager.ItemReplacementOptions { get }
   }
   @available(iOS 8.0, *)
-  enum URLRelationship : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum URLRelationship : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -505,7 +509,7 @@ extension FileManager {
     static var Other: FileManager.URLRelationship { get }
   }
   @available(iOS, unavailable)
-  struct UnmountOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct UnmountOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -520,13 +524,17 @@ extension FileManager {
   }
 }
 @available(iOS 11.0, *)
-class NSFileProviderService : NSObject {
+@_nonSendable(_assumed) class NSFileProviderService : NSObject {
   func getFileProviderConnection(completionHandler: @escaping @Sendable (NSXPCConnection?, Error?) -> Void)
   func fileProviderConnection() async throws -> NSXPCConnection
   @available(swift, obsoleted: 3, renamed: "getFileProviderConnection(completionHandler:)")
   func getFileProviderConnectionWithCompletionHandler(_ completionHandler: @escaping @Sendable (NSXPCConnection?, Error?) -> Void)
   var name: NSFileProviderServiceName { get }
   init()
+}
+
+@available(*, unavailable)
+extension NSFileProviderService : @unchecked Sendable {
 }
 @available(swift, obsoleted: 3, renamed: "FileAttributeKey.type")
 let NSFileType: FileAttributeKey

@@ -8,12 +8,16 @@ extension UIGraphicsPDFRenderer {
   typealias DrawingActions = (UIGraphicsPDFRendererContext) -> Void
 }
 @available(iOS 10.0, *)
-class UIGraphicsPDFRendererFormat : UIGraphicsRendererFormat {
+@_nonSendable(_assumed) class UIGraphicsPDFRendererFormat : UIGraphicsRendererFormat {
   var documentInfo: [String : Any]
   init()
 }
+
+@available(*, unavailable)
+extension UIGraphicsPDFRendererFormat : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
-class UIGraphicsPDFRendererContext : UIGraphicsRendererContext {
+@_nonSendable(_assumed) class UIGraphicsPDFRendererContext : UIGraphicsRendererContext {
   var pdfContextBounds: CGRect { get }
   func beginPage()
   func beginPage(withBounds bounds: CGRect, pageInfo: [String : Any])
@@ -30,8 +34,12 @@ class UIGraphicsPDFRendererContext : UIGraphicsRendererContext {
   func setDestinationWithName(_ name: String, forRect rect: CGRect)
   init()
 }
+
+@available(*, unavailable)
+extension UIGraphicsPDFRendererContext : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
-class UIGraphicsPDFRenderer : UIGraphicsRenderer {
+@_nonSendable(_assumed) class UIGraphicsPDFRenderer : UIGraphicsRenderer {
   init(bounds: CGRect, format: UIGraphicsPDFRendererFormat)
   func writePDF(to url: URL, withActions actions: (UIGraphicsPDFRendererContext) -> Void) throws
   @available(swift, obsoleted: 3, renamed: "writePDF(to:withActions:)")
@@ -41,4 +49,8 @@ class UIGraphicsPDFRenderer : UIGraphicsRenderer {
   func PDFDataWithActions(_ actions: (UIGraphicsPDFRendererContext) -> Void) -> Data
   convenience init(bounds: CGRect)
   convenience init()
+}
+
+@available(*, unavailable)
+extension UIGraphicsPDFRenderer : @unchecked Sendable {
 }

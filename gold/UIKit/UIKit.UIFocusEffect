@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 15.0, *)
-class UIFocusEffect : NSObject, NSCopying {
+@_nonSendable(_assumed) class UIFocusEffect : NSObject, NSCopying {
 
   /// Creates a default system effect using metrics inferred from the focus item.
   @available(*, unavailable, message: "superseded by import of -[NSObject init]")
@@ -16,12 +16,16 @@ class UIFocusEffect : NSObject, NSCopying {
   @available(iOS 15.0, *)
   func copy(with zone: NSZone? = nil) -> Any
 }
+
+@available(*, unavailable)
+extension UIFocusEffect : @unchecked Sendable {
+}
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "UIFocusHaloEffect.Position")
 typealias UIFocusHaloEffectPosition = UIFocusHaloEffect.Position
 extension UIFocusHaloEffect {
   @available(iOS 15.0, *)
-  enum Position : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Position : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -49,7 +53,7 @@ extension UIFocusHaloEffect {
   }
 }
 @available(iOS 15.0, *)
-class UIFocusHaloEffect : UIFocusEffect {
+@_nonSendable(_assumed) class UIFocusHaloEffect : UIFocusEffect {
 
   /// Creates a rectangular halo.
   convenience init(rect: CGRect)
@@ -87,4 +91,8 @@ class UIFocusHaloEffect : UIFocusEffect {
   @available(*, unavailable, message: "superseded by import of -[NSObject init]")
   convenience init()
   init()
+}
+
+@available(*, unavailable)
+extension UIFocusHaloEffect : @unchecked Sendable {
 }

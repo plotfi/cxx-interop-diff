@@ -2,7 +2,7 @@
 
 
 /****************	Immutable Array		****************/
-class NSArray : NSObject, NSCopying, NSMutableCopying, NSSecureCoding, NSFastEnumeration {
+@_nonSendable(_assumed) class NSArray : NSObject, NSCopying, NSMutableCopying, NSSecureCoding, NSFastEnumeration {
   var count: Int { get }
   func object(at index: Int) -> Any
   @available(swift, obsoleted: 3, renamed: "object(at:)")
@@ -59,6 +59,10 @@ extension NSArray {
 
 extension NSArray : CustomReflectable {
   var customMirror: Mirror { get }
+}
+
+@available(*, unavailable)
+extension NSArray : @unchecked Sendable {
 }
 extension NSArray {
   func adding(_ anObject: Any) -> [Any]
@@ -201,7 +205,7 @@ extension NSArray {
   @available(swift, obsoleted: 3, renamed: "index(of:inSortedRange:options:usingComparator:)")
   func indexOfObject(_ obj: Any, inSortedRange r: NSRange, options opts: NSBinarySearchingOptions = [], usingComparator cmp: (Any, Any) -> ComparisonResult) -> Int
 }
-struct NSBinarySearchingOptions : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct NSBinarySearchingOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
@@ -301,7 +305,7 @@ extension NSArray {
 }
 
 /****************	Mutable Array		****************/
-class NSMutableArray : NSArray {
+@_nonSendable(_assumed) class NSMutableArray : NSArray {
   func add(_ anObject: Any)
   @available(swift, obsoleted: 3, renamed: "add(_:)")
   func addObject(_ anObject: Any)
@@ -331,6 +335,10 @@ class NSMutableArray : NSArray {
   convenience init?(contentsOfFile path: String)
   @available(iOS, introduced: 2.0, deprecated: 100000)
   convenience init?(contentsOf url: URL)
+}
+
+@available(*, unavailable)
+extension NSMutableArray : @unchecked Sendable {
 }
 extension NSMutableArray {
   func addObjects(from otherArray: [Any])

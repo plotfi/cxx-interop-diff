@@ -44,7 +44,7 @@ var NSLAYOUTCONSTRAINT_H: Int32 { get }
 @available(swift, obsoleted: 4.2, renamed: "NSLayoutConstraint.Relation")
 typealias NSLayoutRelation = NSLayoutConstraint.Relation
 extension NSLayoutConstraint {
-  enum Relation : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Relation : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -58,7 +58,7 @@ extension NSLayoutConstraint {
     @available(swift, obsoleted: 3, renamed: "greaterThanOrEqual")
     static var GreaterThanOrEqual: NSLayoutConstraint.Relation { get }
   }
-  enum Attribute : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Attribute : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -146,7 +146,7 @@ extension NSLayoutConstraint {
     @available(swift, obsoleted: 3, renamed: "notAnAttribute")
     static var NotAnAttribute: NSLayoutConstraint.Attribute { get }
   }
-  struct FormatOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct FormatOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -229,7 +229,7 @@ typealias NSLayoutAttribute = NSLayoutConstraint.Attribute
 @available(swift, obsoleted: 4.2, renamed: "NSLayoutConstraint.FormatOptions")
 typealias NSLayoutFormatOptions = NSLayoutConstraint.FormatOptions
 @available(iOS 6.0, *)
-@MainActor class NSLayoutConstraint : NSObject {
+@MainActor @_nonSendable(_assumed) class NSLayoutConstraint : NSObject {
   @available(iOS 6.0, *)
   class func constraints(withVisualFormat format: String, options opts: NSLayoutConstraint.FormatOptions = [], metrics: [String : Any]?, views: [String : Any]) -> [NSLayoutConstraint]
   @available(iOS 6.0, *)
@@ -278,6 +278,7 @@ extension NSLayoutConstraint {
   var identifier: String?
 }
 @MainActor protocol UILayoutSupport : NSObjectProtocol {
+  @available(iOS 2.0, *)
   var length: CGFloat { get }
   @available(iOS 9.0, *)
   var topAnchor: NSLayoutYAxisAnchor { get }

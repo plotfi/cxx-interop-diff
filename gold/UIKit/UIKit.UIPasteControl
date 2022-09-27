@@ -1,0 +1,52 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIPasteControl.DisplayMode")
+typealias UIPasteControlDisplayMode = UIPasteControl.DisplayMode
+extension UIPasteControl {
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) enum DisplayMode : UInt, @unchecked Sendable {
+    init?(rawValue: UInt)
+    var rawValue: UInt { get }
+    typealias RawValue = UInt
+    case iconAndLabel
+    @available(swift, obsoleted: 3, renamed: "iconAndLabel")
+    static var IconAndLabel: UIPasteControl.DisplayMode { get }
+    case iconOnly
+    @available(swift, obsoleted: 3, renamed: "iconOnly")
+    static var IconOnly: UIPasteControl.DisplayMode { get }
+    case labelOnly
+    @available(swift, obsoleted: 3, renamed: "labelOnly")
+    static var LabelOnly: UIPasteControl.DisplayMode { get }
+  }
+  @available(iOS 16.0, *)
+  @MainActor @_nonSendable(_assumed) class Configuration : NSObject, NSSecureCoding {
+    var displayMode: UIPasteControl.DisplayMode
+    var __cornerStyle: __UIButtonConfigurationCornerStyle
+    var cornerRadius: CGFloat
+    var baseForegroundColor: UIColor?
+    var baseBackgroundColor: UIColor?
+    init()
+    @available(iOS 16.0, *)
+    class var supportsSecureCoding: Bool { get }
+    @available(iOS 16.0, *)
+    func encode(with coder: NSCoder)
+    init?(coder: NSCoder)
+  }
+}
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIPasteControl.Configuration")
+@MainActor typealias UIPasteControlConfiguration = UIPasteControl.Configuration
+@available(iOS 16.0, *)
+@MainActor @_nonSendable(_assumed) class UIPasteControl : UIControl {
+  var configuration: UIPasteControl.Configuration { get }
+  weak var target: @sil_weak UIPasteConfigurationSupporting?
+  init(configuration: UIPasteControl.Configuration)
+  init?(coder: NSCoder)
+  init(frame: CGRect)
+
+  /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
+  @available(iOS 14.0, *)
+  convenience init(frame: CGRect, primaryAction: UIAction?)
+  convenience init()
+}

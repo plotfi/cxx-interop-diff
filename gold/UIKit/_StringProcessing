@@ -1,0 +1,730 @@
+
+/// A type-erased regex output.
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+struct AnyRegexOutput {
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension AnyRegexOutput {
+  /// Creates a type-erased regex output from an existing match.
+  ///
+  /// Use this initializer to fit a strongly-typed regex match into the
+  /// use site of a type-erased regex output.
+  init<Output>(_ match: Regex<Output>.Match)
+  /// Returns a strongly-typed output by converting type-erased values to the specified type.
+  ///
+  /// - Parameter type: The expected output type.
+  /// - Returns: The output, if the underlying value can be converted to the
+  ///   output type; otherwise `nil`.
+  func extractValues<Output>(as type: Output.Type = Output.self) -> Output?
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension AnyRegexOutput : RandomAccessCollection {
+  /// An individual type-erased output value.
+  struct Element {
+    /// The range over which a value was captured. `nil` for no-capture.
+    var range: Range<String.Index>? { get }
+    /// The slice of the input over which a value was captured. `nil` for no-capture.
+    var substring: Substring? { get }
+    /// The captured value, `nil` for no-capture.
+    var value: Any? { get }
+    var type: Any.Type { get }
+    /// The name of this capture, if it has one, otherwise `nil`.
+    var name: String? { get }
+  }
+  var startIndex: Int { get }
+  var endIndex: Int { get }
+  var count: Int { get }
+  func index(after i: Int) -> Int
+  func index(before i: Int) -> Int
+  subscript(position: Int) -> AnyRegexOutput.Element { get }
+  typealias Index = Int
+  typealias Indices = Range<Int>
+  typealias Iterator = IndexingIterator<AnyRegexOutput>
+  typealias SubSequence = Slice<AnyRegexOutput>
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension AnyRegexOutput {
+  /// Access a capture by name. Returns `nil` if no capture with that name was present in the Regex.
+  subscript(name: String) -> AnyRegexOutput.Element? { get }
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+protocol CustomConsumingRegexComponent : RegexComponent {
+  /// Process the input string within the specified bounds, beginning at the given index, and return
+  /// the end position (upper bound) of the match and the produced output.
+  /// - Parameters:
+  ///   - input: The string in which the match is performed.
+  ///   - index: An index of `input` at which to begin matching.
+  ///   - bounds: The bounds in `input` in which the match is performed.
+  /// - Returns: The upper bound where the match terminates and a matched instance, or `nil` if
+  ///   there isn't a match.
+  func consuming(_ input: String, startingAt index: String.Index, in bounds: Range<String.Index>) throws -> (upperBound: String.Index, output: Self.RegexOutput)?
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension CustomConsumingRegexComponent {
+  var regex: Regex<Self.RegexOutput> { get }
+}
+
+/// A regular expression.
+///
+///     let regex = try Regex("a(.*)b")
+///     let match = "cbaxb".firstMatch(of: regex)
+///     print(match.0) // "axb"
+///     print(match.1) // "x"
+///
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+struct Regex<Output> : RegexComponent {
+  @usableFromInline
+  init(_regexString pattern: String)
+  @usableFromInline
+  init(_regexString pattern: String, version: Int)
+  var regex: Regex<Output> { get }
+  typealias RegexOutput = Output
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Regex {
+  /// The result of matching a regex against a string.
+  ///
+  /// A `Match` forwards API to the `Output` generic parameter,
+  /// providing direct access to captures.
+  @dynamicMemberLookup struct Match {
+    /// The range of the overall match.
+    let range: Range<String.Index>
+  }
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Regex where Output == AnyRegexOutput {
+  /// Parses and compiles a regular expression, resulting in a type-erased capture list.
+  ///
+  /// - Parameter pattern: The regular expression.
+  init(_ pattern: String) throws
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Regex {
+  /// Parses and compiles a regular expression.
+  ///
+  /// - Parameter pattern: The regular expression.
+  /// - Parameter as: The desired type for the output.
+  init(_ pattern: String, as: Output.Type = Output.self) throws
+  /// Produces a regex that matches `verbatim` exactly, as though every
+  /// metacharacter in it was escaped.
+  init(verbatim: String)
+  /// Returns whether a named-capture with `name` exists
+  func contains(captureNamed name: String) -> Bool
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Regex where Output == AnyRegexOutput {
+  /// Creates a type-erased regex from an existing regex.
+  ///
+  /// Use this initializer to fit a regex with strongly-typed captures into the
+  /// use site of a type-erased regex, i.e. one that was created from a string.
+  init<Output>(_ regex: Regex<Output>)
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Regex {
+  /// Creates a strongly-typed regex from a type-erased regex.
+  ///
+  /// Use this initializer to create a strongly-typed regex from
+  /// one that was created from a string. Returns `nil` if the types
+  /// don't match.
+  init?(_ erased: Regex<AnyRegexOutput>, as: Output.Type = Output.self)
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Regex {
+  init(quoting string: String)
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Regex {
+  /// Matches a string in its entirety.
+  ///
+  /// - Parameter s: The string to match this regular expression against.
+  /// - Returns: The match, or `nil` if no match was found.
+  func wholeMatch(in s: String) throws -> Regex<Output>.Match?
+  /// Matches part of a string, starting at its beginning.
+  ///
+  /// - Parameter s: The string to match this regular expression against.
+  /// - Returns: The match, or `nil` if no match was found.
+  func prefixMatch(in s: String) throws -> Regex<Output>.Match?
+  /// Finds the first match in a string.
+  ///
+  /// - Parameter s: The string to match this regular expression against.
+  /// - Returns: The match, or `nil` if no match was found.
+  func firstMatch(in s: String) throws -> Regex<Output>.Match?
+  /// Matches a substring in its entirety.
+  ///
+  /// - Parameter s: The substring to match this regular expression against.
+  /// - Returns: The match, or `nil` if no match was found.
+  func wholeMatch(in s: Substring) throws -> Regex<Output>.Match?
+  /// Matches part of a substring, starting at its beginning.
+  ///
+  /// - Parameter s: The substring to match this regular expression against.
+  /// - Returns: The match, or `nil` if no match was found.
+  func prefixMatch(in s: Substring) throws -> Regex<Output>.Match?
+  /// Finds the first match in a substring.
+  ///
+  /// - Parameter s: The substring to match this regular expression against.
+  /// - Returns: The match, or `nil` if no match was found.
+  func firstMatch(in s: Substring) throws -> Regex<Output>.Match?
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Regex {
+  /// Returns a regular expression that ignores case when matching.
+  ///
+  /// - Parameter ignoresCase: A Boolean value indicating whether to ignore case.
+  /// - Returns: The modified regular expression.
+  func ignoresCase(_ ignoresCase: Bool = true) -> Regex<Regex<Output>.RegexOutput>
+  /// Returns a regular expression that matches only ASCII characters as word
+  /// characters.
+  ///
+  /// - Parameter useASCII: A Boolean value indicating whether to match only
+  ///   ASCII characters as word characters.
+  /// - Returns: The modified regular expression.
+  func asciiOnlyWordCharacters(_ useASCII: Bool = true) -> Regex<Regex<Output>.RegexOutput>
+  /// Returns a regular expression that matches only ASCII characters as digits.
+  ///
+  /// - Parameter useasciiOnlyDigits: A Boolean value indicating whether to
+  ///   match only ASCII characters as digits.
+  /// - Returns: The modified regular expression.
+  func asciiOnlyDigits(_ useASCII: Bool = true) -> Regex<Regex<Output>.RegexOutput>
+  /// Returns a regular expression that matches only ASCII characters as space
+  /// characters.
+  ///
+  /// - Parameter asciiOnlyWhitespace: A Boolean value indicating whether to
+  /// match only ASCII characters as space characters.
+  /// - Returns: The modified regular expression.
+  func asciiOnlyWhitespace(_ useASCII: Bool = true) -> Regex<Regex<Output>.RegexOutput>
+  /// Returns a regular expression that matches only ASCII characters when
+  /// matching character classes.
+  ///
+  /// - Parameter useASCII: A Boolean value indicating whether to match only
+  ///   ASCII characters when matching character classes.
+  /// - Returns: The modified regular expression.
+  func asciiOnlyCharacterClasses(_ useASCII: Bool = true) -> Regex<Regex<Output>.RegexOutput>
+  /// Returns a regular expression that uses the specified word boundary algorithm.
+  ///
+  /// - Parameter wordBoundaryKind: The algorithm to use for determining word boundaries.
+  /// - Returns: The modified regular expression.
+  func wordBoundaryKind(_ wordBoundaryKind: RegexWordBoundaryKind) -> Regex<Regex<Output>.RegexOutput>
+  /// Returns a regular expression where the start and end of input
+  /// anchors (`^` and `$`) also match against the start and end of a line.
+  ///
+  /// - Parameter dotMatchesNewlines: A Boolean value indicating whether `.`
+  ///   should match a newline character.
+  /// - Returns: The modified regular expression.
+  func dotMatchesNewlines(_ dotMatchesNewlines: Bool = true) -> Regex<Regex<Output>.RegexOutput>
+  /// Returns a regular expression where the start and end of input
+  /// anchors (`^` and `$`) also match against the start and end of a line.
+  ///
+  /// This method corresponds to applying the `m` option in regex syntax. For
+  /// this behavior in the `RegexBuilder` syntax, see
+  /// ``Anchor.startOfLine``, ``Anchor.endOfLine``, ``Anchor.startOfSubject``,
+  /// and ``Anchor.endOfSubject``.
+  ///
+  /// - Parameter matchLineEndings: A Boolean value indicating whether `^` and
+  ///   `$` should match the start and end of lines, respectively.
+  /// - Returns: The modified regular expression.
+  func anchorsMatchLineEndings(_ matchLineEndings: Bool = true) -> Regex<Regex<Output>.RegexOutput>
+  /// Returns a regular expression where quantifiers use the specified behavior
+  /// by default.
+  ///
+  /// This setting does not affect calls to quantifier methods, such as
+  /// `OneOrMore`, that include an explicit `behavior` parameter.
+  ///
+  /// Passing `.eager` or `.reluctant` to this method corresponds to applying
+  /// the `(?-U)` or `(?U)` option in regex syntax, respectively.
+  ///
+  /// - Parameter behavior: The default behavior to use for quantifiers.
+  func repetitionBehavior(_ behavior: RegexRepetitionBehavior) -> Regex<Regex<Output>.RegexOutput>
+  /// Returns a regular expression that matches with the specified semantic
+  /// level.
+  ///
+  /// When matching with grapheme cluster semantics (the default),
+  /// metacharacters like `.` and `\w`, custom character classes, and character
+  /// class instances like `.any` match a grapheme cluster when possible,
+  /// corresponding with the default string representation. In addition,
+  /// matching with grapheme cluster semantics compares characters using their
+  /// canonical representation, corresponding with how strings comparison works.
+  ///
+  /// When matching with Unicode scalar semantics, metacharacters and character
+  /// classes always match a single Unicode scalar value, even if that scalar
+  /// comprises part of a grapheme cluster.
+  ///
+  /// These semantic levels can lead to different results, especially when
+  /// working with strings that have decomposed characters. In the following
+  /// example, `queRegex` matches any 3-character string that begins with `"q"`.
+  ///
+  ///     let composed = "qué"
+  ///     let decomposed = "que\u{301}"
+  ///
+  ///     let queRegex = /^q..$/
+  ///
+  ///     print(composed.contains(queRegex))
+  ///     // Prints "true"
+  ///     print(decomposed.contains(queRegex))
+  ///     // Prints "true"
+  ///
+  /// When using Unicode scalar semantics, however, the regular expression only
+  /// matches the composed version of the string, because each `.` matches a
+  /// single Unicode scalar value.
+  ///
+  ///     let queRegexScalar = queRegex.matchingSemantics(.unicodeScalar)
+  ///     print(composed.contains(queRegexScalar))
+  ///     // Prints "true"
+  ///     print(decomposed.contains(queRegexScalar))
+  ///     // Prints "false"
+  ///
+  /// - Parameter semanticLevel: The semantics to use during matching.
+  /// - Returns: The modified regular expression.
+  func matchingSemantics(_ semanticLevel: RegexSemanticLevel) -> Regex<Regex<Output>.RegexOutput>
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Regex.Match where Output == AnyRegexOutput {
+  /// Accesses the whole match using the `.0` syntax.
+  subscript(dynamicMember keyPath: KeyPath<(Substring, _doNotUse: ()), Substring>) -> Substring { get }
+  /// Access a capture by name. Returns `nil` if there's no capture with that name.
+  subscript(name: String) -> AnyRegexOutput.Element? { get }
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Regex.Match where Output == AnyRegexOutput {
+  /// Creates a type-erased regex match from an existing match.
+  ///
+  /// Use this initializer to fit a regex match with strongly-typed captures into the
+  /// use site of a type-erased regex match.
+  init<Output>(_ match: Regex<Output>.Match)
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Regex.Match {
+  /// The output produced from the match operation.
+  var output: Output { get }
+  /// Accesses a capture by its name or number.
+  subscript<T>(dynamicMember keyPath: KeyPath<Output, T>) -> T { get }
+  /// Accesses a capture using the `.0` syntax, even when the match isn't a tuple.
+  @_disfavoredOverload subscript(dynamicMember keyPath: KeyPath<(Output, _doNotUse: ()), Output>) -> Output { get }
+}
+
+/// A type that represents a regular expression.
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+protocol RegexComponent<RegexOutput> {
+  associatedtype RegexOutput
+  var regex: Regex<Self.RegexOutput> { get }
+}
+
+/// Specifies how much to attempt to match when using a quantifier.
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+struct RegexRepetitionBehavior : Hashable {
+  func hash(into hasher: inout Hasher)
+  static func == (a: RegexRepetitionBehavior, b: RegexRepetitionBehavior) -> Bool
+  var hashValue: Int { get }
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension RegexRepetitionBehavior {
+  /// Match as much of the input string as possible, backtracking when
+  /// necessary.
+  static var eager: RegexRepetitionBehavior { get }
+  /// Match as little of the input string as possible, expanding the matched
+  /// region as necessary to complete a match.
+  static var reluctant: RegexRepetitionBehavior { get }
+  /// Match as much of the input string as possible, performing no backtracking.
+  static var possessive: RegexRepetitionBehavior { get }
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+struct RegexSemanticLevel : Hashable {
+  /// Match at the character level.
+  ///
+  /// At this semantic level, each matched element is a `Character` value.
+  /// This is the default semantic level.
+  static var graphemeCluster: RegexSemanticLevel { get }
+  /// Match at the Unicode scalar level.
+  ///
+  /// At this semantic level, the string's `UnicodeScalarView` is used for matching,
+  /// and each matched element is a `UnicodeScalar` value.
+  static var unicodeScalar: RegexSemanticLevel { get }
+  func hash(into hasher: inout Hasher)
+  static func == (a: RegexSemanticLevel, b: RegexSemanticLevel) -> Bool
+  var hashValue: Int { get }
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+struct RegexWordBoundaryKind : Hashable {
+  /// A word boundary algorithm that implements the "simple word boundary"
+  /// Unicode recommendation.
+  ///
+  /// A simple word boundary is a position in the input between two characters
+  /// that match `/\w\W/` or `/\W\w/`, or between the start or end of the input
+  /// and a `\w` character. Word boundaries therefore depend on the option-
+  /// defined behavior of `\w`.
+  static var simple: RegexWordBoundaryKind { get }
+  /// A word boundary algorithm that implements the "default word boundary"
+  /// Unicode recommendation.
+  ///
+  /// Default word boundaries use a Unicode algorithm that handles some cases
+  /// better than simple word boundaries, such as words with internal
+  /// punctuation, changes in script, and Emoji.
+  static var `default`: RegexWordBoundaryKind { get }
+  func hash(into hasher: inout Hasher)
+  static func == (a: RegexWordBoundaryKind, b: RegexWordBoundaryKind) -> Bool
+  var hashValue: Int { get }
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+struct _RegexFactory {
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func accumulate<Output>(_ left: some RegexComponent, _ right: some RegexComponent) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func accumulateAlternation<Output>(_ left: some RegexComponent, _ right: some RegexComponent) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func zeroOrOne<Output>(_ component: some RegexComponent, _ behavior: RegexRepetitionBehavior? = nil) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func zeroOrMore<Output>(_ component: some RegexComponent, _ behavior: RegexRepetitionBehavior? = nil) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func oneOrMore<Output>(_ component: some RegexComponent, _ behavior: RegexRepetitionBehavior? = nil) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func exactly<Output>(_ count: Int, _ component: some RegexComponent) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func repeating<Output>(_ range: Range<Int>, _ behavior: RegexRepetitionBehavior?, _ component: some RegexComponent) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func atomicNonCapturing<Output>(_ component: some RegexComponent) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func orderedChoice<Output>(_ component: some RegexComponent) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func capture<Output>(_ r: some RegexComponent) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func capture<Output>(_ component: some RegexComponent, _ reference: Int) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func capture<Output, W, NewCapture>(_ component: some RegexComponent, _ reference: Int? = nil, _ transform: @escaping (W) throws -> NewCapture) -> Regex<Output>
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func captureOptional<Output, W, NewCapture>(_ component: some RegexComponent, _ reference: Int? = nil, _ transform: @escaping (W) throws -> NewCapture?) -> Regex<Output>
+}
+
+extension Collection where Self.Element : Equatable {
+  /// Returns a Boolean value indicating whether the collection contains the
+  /// given sequence.
+  /// - Parameter other: A sequence to search for within this collection.
+  /// - Returns: `true` if the collection contains the specified sequence,
+  /// otherwise `false`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_disfavoredOverload func contains<C>(_ other: C) -> Bool where C : Collection, Self.Element == C.Element
+}
+
+extension StringProtocol {
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_disfavoredOverload func contains(_ other: String) -> Bool
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_disfavoredOverload func contains(_ other: Substring) -> Bool
+}
+
+extension BidirectionalCollection where Self.SubSequence == Substring {
+  /// Returns a Boolean value indicating whether the collection contains the
+  /// given regex.
+  /// - Parameter regex: A regex to search for within this collection.
+  /// - Returns: `true` if the regex was found in the collection, otherwise
+  /// `false`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_disfavoredOverload func contains(_ regex: some RegexComponent) -> Bool
+}
+
+extension Collection where Self.Element : Equatable {
+  /// Finds and returns the range of the first occurrence of a given collection
+  /// within this collection.
+  ///
+  /// - Parameter other: The collection to search for.
+  /// - Returns: A range in the collection of the first occurrence of `sequence`.
+  /// Returns nil if `sequence` is not found.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func firstRange<C>(of other: C) -> Range<Self.Index>? where C : Collection, Self.Element == C.Element
+}
+
+extension BidirectionalCollection where Self.Element : Comparable {
+  /// Finds and returns the range of the first occurrence of a given collection
+  /// within this collection.
+  ///
+  /// - Parameter other: The collection to search for.
+  /// - Returns: A range in the collection of the first occurrence of `sequence`.
+  /// Returns `nil` if `sequence` is not found.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func firstRange<C>(of other: C) -> Range<Self.Index>? where C : Collection, Self.Element == C.Element
+}
+
+extension BidirectionalCollection where Self.SubSequence == Substring {
+  /// Finds and returns the range of the first occurrence of a given regex
+  /// within the collection.
+  /// - Parameter regex: The regex to search for.
+  /// - Returns: A range in the collection of the first occurrence of `regex`.
+  /// Returns `nil` if `regex` is not found.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_disfavoredOverload func firstRange(of regex: some RegexComponent) -> Range<Self.Index>?
+}
+
+extension Collection where Self.Element : Equatable {
+  /// Finds and returns the ranges of the all occurrences of a given sequence
+  /// within the collection.
+  /// - Parameter other: The sequence to search for.
+  /// - Returns: A collection of ranges of all occurrences of `other`. Returns
+  ///  an empty collection if `other` is not found.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func ranges<C>(of other: C) -> [Range<Self.Index>] where C : Collection, Self.Element == C.Element
+}
+
+extension BidirectionalCollection where Self.SubSequence == Substring {
+  /// Finds and returns the ranges of the all occurrences of a given sequence
+  /// within the collection.
+  /// 
+  /// - Parameter regex: The regex to search for.
+  /// - Returns: A collection or ranges in the receiver of all occurrences of
+  /// `regex`. Returns an empty collection if `regex` is not found.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_disfavoredOverload func ranges(of regex: some RegexComponent) -> [Range<Self.Index>]
+}
+
+extension RangeReplaceableCollection where Self.Element : Equatable {
+  /// Returns a new collection in which all occurrences of a target sequence
+  /// are replaced by another collection.
+  /// - Parameters:
+  ///   - other: The sequence to replace.
+  ///   - replacement: The new elements to add to the collection.
+  ///   - subrange: The range in the collection in which to search for `other`.
+  ///   - maxReplacements: A number specifying how many occurrences of `other`
+  ///   to replace. Default is `Int.max`.
+  /// - Returns: A new collection in which all occurrences of `other` in
+  /// `subrange` of the collection are replaced by `replacement`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func replacing<C, Replacement>(_ other: C, with replacement: Replacement, subrange: Range<Self.Index>, maxReplacements: Int = .max) -> Self where C : Collection, Replacement : Collection, Self.Element == C.Element, C.Element == Replacement.Element
+  /// Returns a new collection in which all occurrences of a target sequence
+  /// are replaced by another collection.
+  /// - Parameters:
+  ///   - other: The sequence to replace.
+  ///   - replacement: The new elements to add to the collection.
+  ///   - maxReplacements: A number specifying how many occurrences of `other`
+  ///   to replace. Default is `Int.max`.
+  /// - Returns: A new collection in which all occurrences of `other` in
+  /// `subrange` of the collection are replaced by `replacement`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func replacing<C, Replacement>(_ other: C, with replacement: Replacement, maxReplacements: Int = .max) -> Self where C : Collection, Replacement : Collection, Self.Element == C.Element, C.Element == Replacement.Element
+  /// Replaces all occurrences of a target sequence with a given collection
+  /// - Parameters:
+  ///   - other: The sequence to replace.
+  ///   - replacement: The new elements to add to the collection.
+  ///   - maxReplacements: A number specifying how many occurrences of `other`
+  ///   to replace. Default is `Int.max`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  mutating func replace<C, Replacement>(_ other: C, with replacement: Replacement, maxReplacements: Int = .max) where C : Collection, Replacement : Collection, Self.Element == C.Element, C.Element == Replacement.Element
+}
+
+extension RangeReplaceableCollection where Self.SubSequence == Substring {
+  /// Returns a new collection in which all occurrences of a sequence matching
+  /// the given regex are replaced by another collection.
+  /// - Parameters:
+  ///   - regex: A regex describing the sequence to replace.
+  ///   - replacement: The new elements to add to the collection.
+  ///   - subrange: The range in the collection in which to search for `regex`.
+  ///   - maxReplacements: A number specifying how many occurrences of the
+  ///   sequence matching `regex` to replace. Default is `Int.max`.
+  /// - Returns: A new collection in which all occurrences of subsequence
+  /// matching `regex` in `subrange` are replaced by `replacement`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func replacing<Replacement>(_ regex: some RegexComponent, with replacement: Replacement, subrange: Range<Self.Index>, maxReplacements: Int = .max) -> Self where Replacement : Collection, Replacement.Element == Character
+  /// Returns a new collection in which all occurrences of a sequence matching
+  /// the given regex are replaced by another collection.
+  /// - Parameters:
+  ///   - regex: A regex describing the sequence to replace.
+  ///   - replacement: The new elements to add to the collection.
+  ///   - maxReplacements: A number specifying how many occurrences of the
+  ///   sequence matching `regex` to replace. Default is `Int.max`.
+  /// - Returns: A new collection in which all occurrences of subsequence
+  /// matching `regex` are replaced by `replacement`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_disfavoredOverload func replacing<Replacement>(_ regex: some RegexComponent, with replacement: Replacement, maxReplacements: Int = .max) -> Self where Replacement : Collection, Replacement.Element == Character
+  /// Replaces all occurrences of the sequence matching the given regex with
+  /// a given collection.
+  /// - Parameters:
+  ///   - regex: A regex describing the sequence to replace.
+  ///   - replacement: The new elements to add to the collection.
+  ///   - maxReplacements: A number specifying how many occurrences of the
+  ///   sequence matching `regex` to replace. Default is `Int.max`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  mutating func replace<Replacement>(_ regex: some RegexComponent, with replacement: Replacement, maxReplacements: Int = .max) where Replacement : Collection, Replacement.Element == Character
+}
+
+extension Collection where Self.Element : Equatable {
+  /// Returns the longest possible subsequences of the collection, in order,
+  /// around elements equal to the given separator.
+  ///
+  /// - Parameter separator: The element to be split upon.
+  /// - Returns: A collection of subsequences, split from this collection's
+  ///   elements.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_disfavoredOverload func split<C>(separator: C, maxSplits: Int = .max, omittingEmptySubsequences: Bool = true) -> [Self.SubSequence] where C : Collection, Self.Element == C.Element
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension BidirectionalCollection where Self.SubSequence == Substring {
+  /// Returns the longest possible subsequences of the collection, in order,
+  /// around elements equal to the given separator.
+  ///
+  /// - Parameter separator: A regex describing elements to be split upon.
+  /// - Returns: A collection of substrings, split from this collection's
+  ///   elements.
+  @_disfavoredOverload func split(separator: some RegexComponent, maxSplits: Int = .max, omittingEmptySubsequences: Bool = true) -> [Self.SubSequence]
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension BidirectionalCollection where Self.SubSequence == Substring {
+  /// Returns a Boolean value indicating whether the initial elements of the
+  /// sequence are the same as the elements in the specified regex.
+  ///
+  /// - Parameter regex: A regex to compare to this sequence.
+  /// - Returns: `true` if the initial elements of the sequence matches the
+  ///   beginning of `regex`; otherwise, `false`.
+  func starts(with regex: some RegexComponent) -> Bool
+}
+
+extension Collection {
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func trimmingPrefix(while predicate: (Self.Element) throws -> Bool) rethrows -> Self.SubSequence
+}
+
+extension Collection where Self == Self.SubSequence {
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  mutating func trimPrefix(while predicate: (Self.Element) throws -> Bool) throws
+}
+
+extension RangeReplaceableCollection {
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_disfavoredOverload mutating func trimPrefix(while predicate: (Self.Element) throws -> Bool) rethrows
+}
+
+extension Collection where Self.Element : Equatable {
+  /// Returns a new collection of the same type by removing initial elements
+  /// that satisfy the given predicate from the start.
+  /// - Parameter predicate: A closure that takes an element of the sequence
+  /// as its argument and returns a Boolean value indicating whether the
+  /// element should be removed from the collection.
+  /// - Returns: A collection containing the elements of the collection that are
+  ///  not removed by `predicate`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func trimmingPrefix<Prefix>(_ prefix: Prefix) -> Self.SubSequence where Prefix : Sequence, Self.Element == Prefix.Element
+}
+
+extension Collection where Self == Self.SubSequence, Self.Element : Equatable {
+  /// Removes the initial elements that satisfy the given predicate from the
+  /// start of the sequence.
+  /// - Parameter predicate: A closure that takes an element of the sequence
+  /// as its argument and returns a Boolean value indicating whether the
+  /// element should be removed from the collection.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  mutating func trimPrefix<Prefix>(_ prefix: Prefix) where Prefix : Sequence, Self.Element == Prefix.Element
+}
+
+extension RangeReplaceableCollection where Self.Element : Equatable {
+  /// Removes the initial elements that satisfy the given predicate from the
+  /// start of the sequence.
+  /// - Parameter predicate: A closure that takes an element of the sequence
+  /// as its argument and returns a Boolean value indicating whether the
+  /// element should be removed from the collection.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  mutating func trimPrefix<Prefix>(_ prefix: Prefix) where Prefix : Sequence, Self.Element == Prefix.Element
+}
+
+extension BidirectionalCollection where Self.SubSequence == Substring {
+  /// Returns a new collection of the same type by removing `prefix` from the
+  /// start.
+  /// - Parameter prefix: The collection to remove from this collection.
+  /// - Returns: A collection containing the elements that does not match
+  /// `prefix` from the start.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_disfavoredOverload func trimmingPrefix(_ regex: some RegexComponent) -> Self.SubSequence
+}
+
+extension RangeReplaceableCollection where Self : BidirectionalCollection, Self.SubSequence == Substring {
+  /// Removes the initial elements that matches the given regex.
+  /// - Parameter regex: The regex to remove from this collection.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_disfavoredOverload mutating func trimPrefix(_ regex: some RegexComponent)
+}
+
+extension BidirectionalCollection where Self.SubSequence == Substring {
+  /// Returns the first match of the specified regex within the collection.
+  /// - Parameter regex: The regex to search for.
+  /// - Returns: The first match of `regex` in the collection, or `nil` if
+  /// there isn't a match.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func firstMatch<Output>(of r: some RegexComponent) -> Regex<Output>.Match?
+}
+
+extension RangeReplaceableCollection where Self.SubSequence == Substring {
+  /// Returns a new collection in which all occurrences of a sequence matching
+  /// the given regex are replaced by another regex match.
+  /// - Parameters:
+  ///   - regex: A regex describing the sequence to replace.
+  ///   - subrange: The range in the collection in which to search for `regex`.
+  ///   - maxReplacements: A number specifying how many occurrences of the
+  ///   sequence matching `regex` to replace. Default is `Int.max`.
+  ///   - replacement: A closure that receives the full match information,
+  ///   including captures, and returns a replacement collection.
+  /// - Returns: A new collection in which all occurrences of subsequence
+  /// matching `regex` are replaced by `replacement`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func replacing<Output, Replacement>(_ regex: some RegexComponent, subrange: Range<Self.Index>, maxReplacements: Int = .max, with replacement: (Regex<Output>.Match) throws -> Replacement) rethrows -> Self where Replacement : Collection, Replacement.Element == Character
+  /// Returns a new collection in which all occurrences of a sequence matching
+  /// the given regex are replaced by another collection.
+  /// - Parameters:
+  ///   - regex: A regex describing the sequence to replace.
+  ///   - maxReplacements: A number specifying how many occurrences of the
+  ///   sequence matching `regex` to replace. Default is `Int.max`.
+  ///   - replacement: A closure that receives the full match information,
+  ///   including captures, and returns a replacement collection.
+  /// - Returns: A new collection in which all occurrences of subsequence
+  /// matching `regex` are replaced by `replacement`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func replacing<Output, Replacement>(_ regex: some RegexComponent, maxReplacements: Int = .max, with replacement: (Regex<Output>.Match) throws -> Replacement) rethrows -> Self where Replacement : Collection, Replacement.Element == Character
+  /// Replaces all occurrences of the sequence matching the given regex with
+  /// a given collection.
+  /// - Parameters:
+  ///   - regex: A regex describing the sequence to replace.
+  ///   - maxReplacements: A number specifying how many occurrences of the
+  ///   sequence matching `regex` to replace. Default is `Int.max`.
+  ///   - replacement: A closure that receives the full match information,
+  ///   including captures, and returns a replacement collection.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  mutating func replace<Output, Replacement>(_ regex: some RegexComponent, maxReplacements: Int = .max, with replacement: (Regex<Output>.Match) throws -> Replacement) rethrows where Replacement : Collection, Replacement.Element == Character
+}
+
+extension BidirectionalCollection where Self.SubSequence == Substring {
+  /// Returns a collection containing all matches of the specified regex.
+  /// - Parameter regex: The regex to search for.
+  /// - Returns: A collection of matches of `regex`.
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  func matches<Output>(of r: some RegexComponent) -> [Regex<Output>.Match]
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension BidirectionalCollection where Self.SubSequence == Substring {
+  /// Checks for a match against the string in its entirety.
+  ///
+  /// - Parameter r: The regular expression being matched.
+  /// - Returns: The match, or `nil` if no match was found.
+  func wholeMatch<R>(of r: R) -> Regex<R.RegexOutput>.Match? where R : RegexComponent
+  /// Checks for a match against the string, starting at its beginning.
+  ///
+  /// - Parameter r: The regular expression being matched.
+  /// - Returns: The match, or `nil` if no match was found.
+  func prefixMatch<R>(of r: R) -> Regex<R.RegexOutput>.Match? where R : RegexComponent
+}
+

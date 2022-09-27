@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIDatePicker.Mode")
 typealias UIDatePickerMode = UIDatePicker.Mode
 extension UIDatePicker {
-  enum Mode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Mode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -22,7 +22,7 @@ extension UIDatePicker {
   }
 }
 @available(iOS 13.4, *)
-enum UIDatePickerStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIDatePickerStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -58,7 +58,7 @@ enum UIDatePickerStyle : Int, @unchecked Sendable {
   static var Inline: UIDatePickerStyle { get }
 }
 @available(iOS 2.0, *)
-@MainActor class UIDatePicker : UIControl, NSCoding {
+@MainActor @_nonSendable(_assumed) class UIDatePicker : UIControl, NSCoding {
   var datePickerMode: UIDatePicker.Mode
   var locale: Locale?
   var calendar: Calendar!

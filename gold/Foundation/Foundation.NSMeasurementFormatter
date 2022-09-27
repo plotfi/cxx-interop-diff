@@ -5,7 +5,7 @@
 typealias NSMeasurementFormatterUnitOptions = MeasurementFormatter.UnitOptions
 extension MeasurementFormatter {
   @available(iOS 10.0, *)
-  struct UnitOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct UnitOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -23,7 +23,7 @@ extension MeasurementFormatter {
   }
 }
 @available(iOS 10.0, *)
-class MeasurementFormatter : Formatter, NSSecureCoding {
+@_nonSendable(_assumed) class MeasurementFormatter : Formatter, NSSecureCoding {
   var unitOptions: MeasurementFormatter.UnitOptions
   var unitStyle: Formatter.UnitStyle
   var locale: Locale!
@@ -43,6 +43,10 @@ class MeasurementFormatter : Formatter, NSSecureCoding {
 @available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
 extension MeasurementFormatter {
   func string<UnitType>(from measurement: Measurement<UnitType>) -> String where UnitType : Unit
+}
+
+@available(*, unavailable)
+extension MeasurementFormatter : @unchecked Sendable {
 }
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "MeasurementFormatter")

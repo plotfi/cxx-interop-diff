@@ -3,7 +3,7 @@
 @available(iOS 15.0, *)
 typealias __UIConfigurationTextAttributesTransformer = ([NSAttributedString.Key : Any]) -> [NSAttributedString.Key : Any]
 @available(iOS 15.0, *)
-enum __UIButtonConfigurationSize : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UIButtonConfigurationSize : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -21,7 +21,7 @@ enum __UIButtonConfigurationSize : Int, @unchecked Sendable {
   static var Large: __UIButtonConfigurationSize { get }
 }
 @available(iOS 15.0, *)
-enum __UIButtonConfigurationTitleAlignment : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UIButtonConfigurationTitleAlignment : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -55,7 +55,7 @@ enum __UIButtonConfigurationTitleAlignment : Int, @unchecked Sendable {
   static var Trailing: __UIButtonConfigurationTitleAlignment { get }
 }
 @available(iOS 15.0, *)
-enum __UIButtonConfigurationCornerStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UIButtonConfigurationCornerStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -103,7 +103,7 @@ enum __UIButtonConfigurationCornerStyle : Int, @unchecked Sendable {
   static var Capsule: __UIButtonConfigurationCornerStyle { get }
 }
 @available(iOS 15.0, *)
-enum __UIButtonConfigurationMacIdiomStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UIButtonConfigurationMacIdiomStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -136,8 +136,35 @@ enum __UIButtonConfigurationMacIdiomStyle : Int, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "borderlessTinted")
   static var BorderlessTinted: __UIButtonConfigurationMacIdiomStyle { get }
 }
+@available(iOS 16.0, *)
+@_nonSendable(_assumed) enum __UIButtonConfigurationIndicator : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+
+  /// Automatically determine an indicator based on the button's properties.
+  case automatic
+
+  /// Automatically determine an indicator based on the button's properties.
+  @available(swift, obsoleted: 3, renamed: "automatic")
+  static var Automatic: __UIButtonConfigurationIndicator { get }
+
+  /// Don't show any indicator
+  case none
+
+  /// Don't show any indicator
+  @available(swift, obsoleted: 3, renamed: "none")
+  static var None: __UIButtonConfigurationIndicator { get }
+
+  /// Show an indicator appropriate for a popup-style button
+  case popup
+
+  /// Show an indicator appropriate for a popup-style button
+  @available(swift, obsoleted: 3, renamed: "popup")
+  static var Popup: __UIButtonConfigurationIndicator { get }
+}
 @available(iOS 15.0, *)
-@MainActor class __UIButtonConfiguration : NSObject, NSCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class __UIButtonConfiguration : NSObject, NSCopying, NSSecureCoding {
   class func plain() -> Self
   @available(swift, obsoleted: 3, renamed: "plain()")
   class func plainButtonConfiguration() -> Self
@@ -202,6 +229,12 @@ enum __UIButtonConfigurationMacIdiomStyle : Int, @unchecked Sendable {
   var subtitle: String?
   @NSCopying var attributedSubtitle: NSAttributedString?
   var subtitleTextAttributesTransformer: __UIConfigurationTextAttributesTransformer?
+
+  /// What kind of indicator should the button show. Default value is .automatic.
+  @available(iOS 16.0, *)
+  var indicator: __UIButtonConfigurationIndicator
+  @available(iOS 16.0, *)
+  var indicatorColorTransformer: __UIConfigurationColorTransformer?
 
   /// Insets from the bounds of the button to create the content region. Defaults styles provide insets based on the button size.
   var contentInsets: NSDirectionalEdgeInsets

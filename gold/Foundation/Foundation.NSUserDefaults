@@ -76,7 +76,7 @@ typealias NSUserDefaults = UserDefaults
  
  NSUserDefaults can be observed using Key-Value Observing for any key stored in it. Using NSKeyValueObservingOptionPrior to observe changes from other processes or devices will behave as though NSKeyValueObservingOptionPrior was not specified.
  */
-class UserDefaults : NSObject {
+@_nonSendable(_assumed) class UserDefaults : NSObject {
 
   /**
    +standardUserDefaults returns a global instance of NSUserDefaults configured to search the current application's search list.
@@ -342,6 +342,10 @@ class UserDefaults : NSObject {
   func objectIsForced(forKey key: String, inDomain domain: String) -> Bool
   @available(swift, obsoleted: 3, renamed: "objectIsForced(forKey:inDomain:)")
   func objectIsForcedForKey(_ key: String, inDomain domain: String) -> Bool
+}
+
+@available(*, unavailable)
+extension UserDefaults : @unchecked Sendable {
 }
 
 /**

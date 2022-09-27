@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIImpactFeedbackGenerator.FeedbackStyle")
 typealias UIImpactFeedbackStyle = UIImpactFeedbackGenerator.FeedbackStyle
 extension UIImpactFeedbackGenerator {
-  enum FeedbackStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum FeedbackStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -29,7 +29,7 @@ extension UIImpactFeedbackGenerator {
   }
 }
 @available(iOS 10.0, *)
-@MainActor class UIImpactFeedbackGenerator : UIFeedbackGenerator {
+@MainActor @_nonSendable(_assumed) class UIImpactFeedbackGenerator : UIFeedbackGenerator {
   init(style: UIImpactFeedbackGenerator.FeedbackStyle)
 
   /// call when your UI element impacts something else

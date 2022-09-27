@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIControl.Event")
 typealias UIControlEvents = UIControl.Event
 extension UIControl {
-  struct Event : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Event : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -77,7 +77,7 @@ extension UIControl {
     @available(swift, obsoleted: 3, renamed: "allEvents")
     static var AllEvents: UIControl.Event { get }
   }
-  enum ContentVerticalAlignment : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ContentVerticalAlignment : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -94,7 +94,7 @@ extension UIControl {
     @available(swift, obsoleted: 3, renamed: "fill")
     static var Fill: UIControl.ContentVerticalAlignment { get }
   }
-  enum ContentHorizontalAlignment : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ContentHorizontalAlignment : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -121,7 +121,7 @@ extension UIControl {
     @available(swift, obsoleted: 3, renamed: "trailing")
     static var Trailing: UIControl.ContentHorizontalAlignment { get }
   }
-  struct State : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct State : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -160,7 +160,7 @@ typealias UIControlContentHorizontalAlignment = UIControl.ContentHorizontalAlign
 @available(swift, obsoleted: 4.2, renamed: "UIControl.State")
 typealias UIControlState = UIControl.State
 @available(iOS 2.0, *)
-@MainActor class UIControl : UIView {
+@MainActor @_nonSendable(_assumed) class UIControl : UIView {
   init(frame: CGRect)
   init?(coder: NSCoder)
 
@@ -296,7 +296,7 @@ typealias UIControlState = UIControl.State
 }
 
 extension UIControl {
-  @available(iOS 14.0, *)
+  @available(iOS 14.0, tvOS 14.0, *)
   @MainActor func enumerateEventHandlers(_ iterator: (UIAction?, (Any?, Selector)?, UIControl.Event, inout Bool) -> Void)
 }
 
@@ -342,4 +342,24 @@ extension UIControl : UIContextMenuInteractionDelegate {
   @available(swift, obsoleted: 3, renamed: "contextMenuInteraction(_:willPerformPreviewActionForMenuWith:animator:)")
   @available(*, unavailable)
   func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWithConfiguration configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating)
+
+  /**
+   * @abstract Called when a context menu interaction begins. Return a UITargetedPreview corresponding to the item with the given identifier.
+   *
+   * @param interaction    The UIContextMenuInteraction.
+   * @param configuration  Configuration of the menu that will be presented if the interaction proceeds.
+   * @param identifier     Identifier for the item whose preview is being requested.
+   */
+  @available(iOS 16.0, *)
+  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configuration: UIContextMenuConfiguration, highlightPreviewForItemWithIdentifier identifier: NSCopying) -> UITargetedPreview?
+
+  /**
+   * @abstract Called when a context menu is dismissed. Return a UITargetedPreview corresponding to the item with the given identifier.
+   *
+   * @param interaction    The UIContextMenuInteraction.
+   * @param configuration  Configuration of the menu being dismissed.
+   * @param identifier     Identifier for the item whose preview is being requested.
+   */
+  @available(iOS 16.0, *)
+  func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configuration: UIContextMenuConfiguration, dismissalPreviewForItemWithIdentifier identifier: NSCopying) -> UITargetedPreview?
 }

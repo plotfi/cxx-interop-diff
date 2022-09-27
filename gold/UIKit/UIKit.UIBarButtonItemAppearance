@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-@MainActor class UIBarButtonItemStateAppearance : NSObject {
+@MainActor @_nonSendable(_assumed) class UIBarButtonItemStateAppearance : NSObject {
   @available(*, unavailable)
   init()
   @available(*, unavailable)
@@ -20,7 +20,7 @@
   var backgroundImagePositionAdjustment: UIOffset
 }
 @available(iOS 13.0, *)
-@MainActor class UIBarButtonItemAppearance : NSObject, NSCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UIBarButtonItemAppearance : NSObject, NSCopying, NSSecureCoding {
 
   /// Construct an appearance for the UIBarButtonItemStylePlain style.
   convenience init()

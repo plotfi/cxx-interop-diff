@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIGestureRecognizer.State")
 typealias UIGestureRecognizerState = UIGestureRecognizer.State
 extension UIGestureRecognizer {
-  enum State : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum State : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -29,7 +29,7 @@ extension UIGestureRecognizer {
   }
 }
 @available(iOS 3.2, *)
-@MainActor class UIGestureRecognizer : NSObject {
+@MainActor @_nonSendable(_assumed) class UIGestureRecognizer : NSObject {
   init(target: Any?, action: Selector?)
   convenience init()
   convenience init?(coder: NSCoder)

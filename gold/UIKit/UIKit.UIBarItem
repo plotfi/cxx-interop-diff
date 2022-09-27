@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 2.0, *)
-@MainActor class UIBarItem : NSObject, NSCoding, UIAppearance {
+@MainActor @_nonSendable(_assumed) class UIBarItem : NSObject, NSCoding, UIAppearance {
   init()
   init?(coder: NSCoder)
   var isEnabled: Bool

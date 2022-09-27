@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 14.0, *)
-@MainActor class UIDeferredMenuElement : UIMenuElement {
+@MainActor @_nonSendable(_assumed) class UIDeferredMenuElement : UIMenuElement {
 
   /**
    * @abstract Returns a placeholder menu element that is replaced with the result of the block's

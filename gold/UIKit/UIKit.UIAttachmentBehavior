@@ -5,7 +5,7 @@
 typealias UIAttachmentBehaviorType = UIAttachmentBehavior.AttachmentType
 extension UIAttachmentBehavior {
   @available(iOS 7.0, *)
-  enum AttachmentType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum AttachmentType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -17,7 +17,7 @@ extension UIAttachmentBehavior {
     static var Anchor: UIAttachmentBehavior.AttachmentType { get }
   }
 }
-struct UIFloatRange {
+@_nonSendable(_assumed) struct UIFloatRange : @unchecked Sendable {
   init()
   init(minimum: CGFloat, maximum: CGFloat)
   var minimum: CGFloat
@@ -54,7 +54,7 @@ func UIFloatRangeIsInfinite(_ range: UIFloatRange) -> Bool
 func UIFloatRangeMake(_ minimum: CGFloat, _ maximum: CGFloat) -> UIFloatRange
 func __UIFloatRangeIsEqualToRange(_ range: UIFloatRange, _ otherRange: UIFloatRange) -> Bool
 @available(iOS 7.0, *)
-@MainActor class UIAttachmentBehavior : UIDynamicBehavior {
+@MainActor @_nonSendable(_assumed) class UIAttachmentBehavior : UIDynamicBehavior {
   convenience init(item: UIDynamicItem, attachedToAnchor point: CGPoint)
   init(item: UIDynamicItem, offsetFromCenter offset: UIOffset, attachedToAnchor point: CGPoint)
   convenience init(item item1: UIDynamicItem, attachedTo item2: UIDynamicItem)

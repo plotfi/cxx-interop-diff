@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 14.0, *)
-enum UIContentInsetsReference : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIContentInsetsReference : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -22,7 +22,7 @@ enum UIContentInsetsReference : Int, @unchecked Sendable {
   static var ReadableContent: UIContentInsetsReference { get }
 }
 @available(iOS 13.0, *)
-@MainActor class UICollectionViewCompositionalLayoutConfiguration : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class UICollectionViewCompositionalLayoutConfiguration : NSObject, NSCopying {
   var scrollDirection: UICollectionView.ScrollDirection
   var interSectionSpacing: CGFloat
   var boundarySupplementaryItems: [NSCollectionLayoutBoundarySupplementaryItem]
@@ -34,7 +34,7 @@ enum UIContentInsetsReference : Int, @unchecked Sendable {
 }
 typealias UICollectionViewCompositionalLayoutSectionProvider = (Int, NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection?
 @available(iOS 13.0, *)
-@MainActor class UICollectionViewCompositionalLayout : UICollectionViewLayout {
+@MainActor @_nonSendable(_assumed) class UICollectionViewCompositionalLayout : UICollectionViewLayout {
   init(section: NSCollectionLayoutSection)
   init(section: NSCollectionLayoutSection, configuration: UICollectionViewCompositionalLayoutConfiguration)
   init(sectionProvider: @escaping UICollectionViewCompositionalLayoutSectionProvider)
@@ -52,7 +52,7 @@ extension UICollectionViewCompositionalLayout {
   @MainActor static func list(using configuration: UICollectionLayoutListConfiguration) -> UICollectionViewCompositionalLayout
 }
 @available(iOS 13.0, *)
-enum UICollectionLayoutSectionOrthogonalScrollingBehavior : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UICollectionLayoutSectionOrthogonalScrollingBehavior : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -77,7 +77,7 @@ enum UICollectionLayoutSectionOrthogonalScrollingBehavior : Int, @unchecked Send
 }
 typealias NSCollectionLayoutSectionVisibleItemsInvalidationHandler = ([NSCollectionLayoutVisibleItem], CGPoint, NSCollectionLayoutEnvironment) -> Void
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutSection : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutSection : NSObject, NSCopying {
   convenience init(group: NSCollectionLayoutGroup)
   @available(*, unavailable, renamed: "init(group:)", message: "Not available in Swift")
   class func sectionWithGroup(_ group: NSCollectionLayoutGroup) -> Self
@@ -89,9 +89,14 @@ typealias NSCollectionLayoutSectionVisibleItemsInvalidationHandler = ([NSCollect
   var interGroupSpacing: CGFloat
   @available(iOS 14.0, *)
   var contentInsetsReference: UIContentInsetsReference
+
+  /// Specifies the content insets reference for boundary supplementaries in this section.
+  /// The default value of this property is UIContentInsetsReference.automatic, which means that any insets specified on a @c NSCollectionLayoutBoundarySupplementaryItem
+  /// will follow the layout configuration's @c contentInsetsReference.
+  @available(iOS 16.0, *)
+  var supplementaryContentInsetsReference: UIContentInsetsReference
   var orthogonalScrollingBehavior: UICollectionLayoutSectionOrthogonalScrollingBehavior
   var boundarySupplementaryItems: [NSCollectionLayoutBoundarySupplementaryItem]
-  var supplementariesFollowContentInsets: Bool
   var visibleItemsInvalidationHandler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler?
   var decorationItems: [NSCollectionLayoutDecorationItem]
   @available(iOS 13.0, *)
@@ -103,7 +108,7 @@ extension NSCollectionLayoutSection {
   @MainActor static func list(using configuration: UICollectionLayoutListConfiguration, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection
 }
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutItem : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutItem : NSObject, NSCopying {
   convenience init(layoutSize: NSCollectionLayoutSize)
   @available(*, unavailable, renamed: "init(layoutSize:)", message: "Not available in Swift")
   class func itemWithLayoutSize(_ layoutSize: NSCollectionLayoutSize) -> Self
@@ -122,7 +127,7 @@ extension NSCollectionLayoutSection {
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutGroupCustomItem : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutGroupCustomItem : NSObject, NSCopying {
   convenience init(frame: CGRect)
   @available(*, unavailable, renamed: "init(frame:)", message: "Not available in Swift")
   class func customItemWithFrame(_ frame: CGRect) -> Self
@@ -140,16 +145,40 @@ extension NSCollectionLayoutSection {
 }
 typealias NSCollectionLayoutGroupCustomItemProvider = (NSCollectionLayoutEnvironment) -> [NSCollectionLayoutGroupCustomItem]
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutGroup : NSCollectionLayoutItem, NSCopying {
-  class func horizontal(layoutSize: NSCollectionLayoutSize, subitem: NSCollectionLayoutItem, count: Int) -> Self
-  @available(swift, obsoleted: 3, renamed: "horizontal(layoutSize:subitem:count:)")
-  class func horizontalGroupWithLayoutSize(_ layoutSize: NSCollectionLayoutSize, subitem: NSCollectionLayoutItem, count: Int) -> Self
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutGroup : NSCollectionLayoutItem, NSCopying {
+
+  /// Specifies a group that will horizontally repeat its subitem a fixed number of times.
+  /// @param layoutSize The group's size.
+  /// @param subitem The subitem to repeat. It is the caller's responsibility to ensure that the group's @c layoutSize can fit @c count repetitions of this item.
+  /// @param count The number of times to repeat the passed in subitem.
+  @available(iOS 16.0, *)
+  class func horizontal(layoutSize: NSCollectionLayoutSize, repeatingSubitem subitem: NSCollectionLayoutItem, count: Int) -> Self
+
+  /// Specifies a group that will horizontally repeat its subitem a fixed number of times.
+  /// @param layoutSize The group's size.
+  /// @param subitem The subitem to repeat. It is the caller's responsibility to ensure that the group's @c layoutSize can fit @c count repetitions of this item.
+  /// @param count The number of times to repeat the passed in subitem.
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "horizontal(layoutSize:repeatingSubitem:count:)")
+  class func horizontalGroupWithLayoutSize(_ layoutSize: NSCollectionLayoutSize, repeatingSubitem subitem: NSCollectionLayoutItem, count: Int) -> Self
   class func horizontal(layoutSize: NSCollectionLayoutSize, subitems: [NSCollectionLayoutItem]) -> Self
   @available(swift, obsoleted: 3, renamed: "horizontal(layoutSize:subitems:)")
   class func horizontalGroupWithLayoutSize(_ layoutSize: NSCollectionLayoutSize, subitems: [NSCollectionLayoutItem]) -> Self
-  class func vertical(layoutSize: NSCollectionLayoutSize, subitem: NSCollectionLayoutItem, count: Int) -> Self
-  @available(swift, obsoleted: 3, renamed: "vertical(layoutSize:subitem:count:)")
-  class func verticalGroupWithLayoutSize(_ layoutSize: NSCollectionLayoutSize, subitem: NSCollectionLayoutItem, count: Int) -> Self
+
+  /// Specifies a group that will vertically repeat its subitem a fixed number of times.
+  /// @param layoutSize The group's size.
+  /// @param subitem The subitem to repeat. It is the caller's responsibility to ensure that the group's @c layoutSize can fit @c count repetitions of this item.
+  /// @param count The number of times to repeat the passed in subitem.
+  @available(iOS 16.0, *)
+  class func vertical(layoutSize: NSCollectionLayoutSize, repeatingSubitem subitem: NSCollectionLayoutItem, count: Int) -> Self
+
+  /// Specifies a group that will vertically repeat its subitem a fixed number of times.
+  /// @param layoutSize The group's size.
+  /// @param subitem The subitem to repeat. It is the caller's responsibility to ensure that the group's @c layoutSize can fit @c count repetitions of this item.
+  /// @param count The number of times to repeat the passed in subitem.
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "vertical(layoutSize:repeatingSubitem:count:)")
+  class func verticalGroupWithLayoutSize(_ layoutSize: NSCollectionLayoutSize, repeatingSubitem subitem: NSCollectionLayoutItem, count: Int) -> Self
   class func vertical(layoutSize: NSCollectionLayoutSize, subitems: [NSCollectionLayoutItem]) -> Self
   @available(swift, obsoleted: 3, renamed: "vertical(layoutSize:subitems:)")
   class func verticalGroupWithLayoutSize(_ layoutSize: NSCollectionLayoutSize, subitems: [NSCollectionLayoutItem]) -> Self
@@ -167,8 +196,15 @@ typealias NSCollectionLayoutGroupCustomItemProvider = (NSCollectionLayoutEnviron
   convenience init(layoutSize: NSCollectionLayoutSize)
   convenience init(layoutSize: NSCollectionLayoutSize, supplementaryItems: [NSCollectionLayoutSupplementaryItem])
 }
+
+extension NSCollectionLayoutGroup {
+  @available(iOS, introduced: 16.0, deprecated: 16.0, renamed: "horizontal(layoutSize:repeatingSubitem:count:)")
+  @MainActor class func horizontalGroup(with size: NSCollectionLayoutSize, repeatingSubitem subitem: NSCollectionLayoutItem, count: Int) -> NSCollectionLayoutGroup
+  @available(iOS, introduced: 16.0, deprecated: 16.0, renamed: "vertical(layoutSize:repeatingSubitem:count:)")
+  @MainActor class func verticalGroup(with size: NSCollectionLayoutSize, repeatingSubitem subitem: NSCollectionLayoutItem, count: Int) -> NSCollectionLayoutGroup
+}
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutDimension : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutDimension : NSObject, NSCopying {
   class func fractionalWidth(_ fractionalWidth: CGFloat) -> Self
   @available(swift, obsoleted: 3, renamed: "fractionalWidth(_:)")
   class func fractionalWidthDimension(_ fractionalWidth: CGFloat) -> Self
@@ -194,7 +230,7 @@ typealias NSCollectionLayoutGroupCustomItemProvider = (NSCollectionLayoutEnviron
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutSize : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutSize : NSObject, NSCopying {
   convenience init(widthDimension width: NSCollectionLayoutDimension, heightDimension height: NSCollectionLayoutDimension)
   @available(*, unavailable, renamed: "init(widthDimension:heightDimension:)", message: "Not available in Swift")
   class func sizeWithWidthDimension(_ width: NSCollectionLayoutDimension, heightDimension height: NSCollectionLayoutDimension) -> Self
@@ -208,7 +244,7 @@ typealias NSCollectionLayoutGroupCustomItemProvider = (NSCollectionLayoutEnviron
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutSpacing : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutSpacing : NSObject, NSCopying {
   class func flexible(_ flexibleSpacing: CGFloat) -> Self
   @available(swift, obsoleted: 3, renamed: "flexible(_:)")
   class func flexibleSpacing(_ flexibleSpacing: CGFloat) -> Self
@@ -230,7 +266,7 @@ typealias NSCollectionLayoutGroupCustomItemProvider = (NSCollectionLayoutEnviron
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutEdgeSpacing : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutEdgeSpacing : NSObject, NSCopying {
   convenience init(leading: NSCollectionLayoutSpacing?, top: NSCollectionLayoutSpacing?, trailing: NSCollectionLayoutSpacing?, bottom: NSCollectionLayoutSpacing?)
   @available(swift, obsoleted: 3, renamed: "init(leading:top:trailing:bottom:)")
   convenience init(forLeading leading: NSCollectionLayoutSpacing?, top: NSCollectionLayoutSpacing?, trailing: NSCollectionLayoutSpacing?, bottom: NSCollectionLayoutSpacing?)
@@ -248,7 +284,7 @@ typealias NSCollectionLayoutGroupCustomItemProvider = (NSCollectionLayoutEnviron
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutSupplementaryItem : NSCollectionLayoutItem, NSCopying {
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutSupplementaryItem : NSCollectionLayoutItem, NSCopying {
   convenience init(layoutSize: NSCollectionLayoutSize, elementKind: String, containerAnchor: NSCollectionLayoutAnchor)
   @available(*, unavailable, renamed: "init(layoutSize:elementKind:containerAnchor:)", message: "Not available in Swift")
   class func supplementaryItemWithLayoutSize(_ layoutSize: NSCollectionLayoutSize, elementKind: String, containerAnchor: NSCollectionLayoutAnchor) -> Self
@@ -267,7 +303,7 @@ typealias NSCollectionLayoutGroupCustomItemProvider = (NSCollectionLayoutEnviron
   convenience init(layoutSize: NSCollectionLayoutSize, supplementaryItems: [NSCollectionLayoutSupplementaryItem])
 }
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutBoundarySupplementaryItem : NSCollectionLayoutSupplementaryItem, NSCopying {
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutBoundarySupplementaryItem : NSCollectionLayoutSupplementaryItem, NSCopying {
   convenience init(layoutSize: NSCollectionLayoutSize, elementKind: String, alignment: NSRectAlignment)
   @available(*, unavailable, renamed: "init(layoutSize:elementKind:alignment:)", message: "Not available in Swift")
   class func boundarySupplementaryItemWithLayoutSize(_ layoutSize: NSCollectionLayoutSize, elementKind: String, alignment: NSRectAlignment) -> Self
@@ -288,7 +324,7 @@ typealias NSCollectionLayoutGroupCustomItemProvider = (NSCollectionLayoutEnviron
   convenience init(layoutSize: NSCollectionLayoutSize, supplementaryItems: [NSCollectionLayoutSupplementaryItem])
 }
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutDecorationItem : NSCollectionLayoutItem, NSCopying {
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutDecorationItem : NSCollectionLayoutItem, NSCopying {
   class func background(elementKind: String) -> Self
   @available(swift, obsoleted: 3, renamed: "background(elementKind:)")
   class func backgroundDecorationItemWithElementKind(_ elementKind: String) -> Self
@@ -302,7 +338,7 @@ typealias NSCollectionLayoutGroupCustomItemProvider = (NSCollectionLayoutEnviron
   convenience init(layoutSize: NSCollectionLayoutSize, supplementaryItems: [NSCollectionLayoutSupplementaryItem])
 }
 @available(iOS 13.0, *)
-@MainActor class NSCollectionLayoutAnchor : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class NSCollectionLayoutAnchor : NSObject, NSCopying {
   convenience init(edges: NSDirectionalRectEdge)
   @available(*, unavailable, renamed: "init(edges:)", message: "Not available in Swift")
   class func layoutAnchorWithEdges(_ edges: NSDirectionalRectEdge) -> Self
@@ -351,4 +387,20 @@ typealias NSCollectionLayoutGroupCustomItemProvider = (NSCollectionLayoutEnviron
   var bounds: CGRect { get }
   var representedElementCategory: UICollectionView.ElementCategory { get }
   var representedElementKind: String? { get }
+}
+extension NSCollectionLayoutSection {
+  @available(iOS, introduced: 13.0, deprecated: 16.0)
+  var supplementariesFollowContentInsets: Bool
+}
+extension NSCollectionLayoutGroup {
+  @available(iOS, introduced: 13.0, deprecated: 16.0)
+  class func horizontal(layoutSize: NSCollectionLayoutSize, subitem: NSCollectionLayoutItem, count: Int) -> Self
+  @available(swift, obsoleted: 3, renamed: "horizontal(layoutSize:subitem:count:)")
+  @available(iOS, introduced: 13.0, deprecated: 16.0)
+  class func horizontalGroupWithLayoutSize(_ layoutSize: NSCollectionLayoutSize, subitem: NSCollectionLayoutItem, count: Int) -> Self
+  @available(iOS, introduced: 13.0, deprecated: 16.0)
+  class func vertical(layoutSize: NSCollectionLayoutSize, subitem: NSCollectionLayoutItem, count: Int) -> Self
+  @available(swift, obsoleted: 3, renamed: "vertical(layoutSize:subitem:count:)")
+  @available(iOS, introduced: 13.0, deprecated: 16.0)
+  class func verticalGroupWithLayoutSize(_ layoutSize: NSCollectionLayoutSize, subitem: NSCollectionLayoutItem, count: Int) -> Self
 }

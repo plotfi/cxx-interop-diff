@@ -1,7 +1,30 @@
 @_exported import Foundation
 
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UINavigationBar.NSToolbarSection")
+typealias UINavigationBarNSToolbarSection = UINavigationBar.NSToolbarSection
+extension UINavigationBar {
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) enum NSToolbarSection : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case none
+    @available(swift, obsoleted: 3, renamed: "none")
+    static var None: UINavigationBar.NSToolbarSection { get }
+    case sidebar
+    @available(swift, obsoleted: 3, renamed: "sidebar")
+    static var Sidebar: UINavigationBar.NSToolbarSection { get }
+    case supplementary
+    @available(swift, obsoleted: 3, renamed: "supplementary")
+    static var Supplementary: UINavigationBar.NSToolbarSection { get }
+    case content
+    @available(swift, obsoleted: 3, renamed: "content")
+    static var Content: UINavigationBar.NSToolbarSection { get }
+  }
+}
 @available(iOS 2.0, *)
-@MainActor class UINavigationBar : UIView, NSCoding, UIBarPositioning {
+@MainActor @_nonSendable(_assumed) class UINavigationBar : UIView, NSCoding, UIBarPositioning {
   var barStyle: UIBarStyle
   weak var delegate: @sil_weak UINavigationBarDelegate?
   @available(iOS 3.0, *)
@@ -23,6 +46,18 @@
   /// When set to YES, the navigation bar will use a larger out-of-line title view when requested by the current navigation item. To specify when the large out-of-line title view appears, see UINavigationItem.largeTitleDisplayMode. Defaults to NO.
   @available(iOS 11.0, *)
   var prefersLargeTitles: Bool
+
+  /// The toolbar section that this navigation bar is currently using.
+  @available(iOS 16.0, *)
+  var currentNSToolbarSection: UINavigationBar.NSToolbarSection { get }
+
+  /// The concrete behavioral style chosen for the navigation bar. When this resolves to .mac, the navigation bar's contents are placed in the NSToolbar.
+  @available(iOS 16.0, *)
+  var behavioralStyle: UIBehavioralStyle { get }
+
+  /// The requested behavioral style for the navigation bar.
+  @available(iOS 16.0, *)
+  var preferredBehavioralStyle: UIBehavioralStyle
   var tintColor: UIColor!
   @available(iOS 7.0, *)
   var barTintColor: UIColor?
@@ -105,4 +140,8 @@
   optional func navigationBar(_ navigationBar: UINavigationBar, didPop item: UINavigationItem)
   @available(swift, obsoleted: 3, renamed: "navigationBar(_:didPop:)")
   optional func navigationBar(_ navigationBar: UINavigationBar, didPopItem item: UINavigationItem)
+
+  /// Which section of the NSToolbar this navigation bar should use when attempting to host in an NSToolbar. Returning 'None' will disable NSToolbar hosting as if preferredBehavioralStyle were set to 'Pad' The specific section returned will also affect how the navigation bar presents in that section.
+  @available(iOS 16.0, *)
+  optional func navigationBarNSToolbarSection(_ navigationBar: UINavigationBar) -> UINavigationBar.NSToolbarSection
 }

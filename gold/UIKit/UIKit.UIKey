@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.4, *)
-@MainActor class UIKey : NSObject, NSCopying, NSCoding {
+@MainActor @_nonSendable(_assumed) class UIKey : NSObject, NSCopying, NSCoding {
 
   /// @returns a string representing what would be inserted into a text field when this key is pressed.
   /// @discussion if a modifier key is held, this property will contain the modified characters according

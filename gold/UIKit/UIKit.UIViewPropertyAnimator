@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 10.0, *)
-@MainActor class UIViewPropertyAnimator : NSObject, UIViewImplicitlyAnimating, NSCopying {
+@MainActor @_nonSendable(_assumed) class UIViewPropertyAnimator : NSObject, UIViewImplicitlyAnimating, NSCopying {
   @NSCopying var timingParameters: UITimingCurveProvider? { get }
   var duration: TimeInterval { get }
 
@@ -88,7 +88,7 @@
   /// handlers are invalidated. Immediately calling `startAnimation` again on the animator, since there
   /// are no animation blocks, will start the animator in a transient paused state.
   func addAnimations(_ animation: @escaping () -> Void)
-  func addCompletion(_ completion: @escaping @Sendable (UIViewAnimatingPosition) -> Void)
+  func addCompletion(_ completion: @escaping (UIViewAnimatingPosition) -> Void)
   func addCompletion() async -> UIViewAnimatingPosition
 
   /// Provides a means to continue an animation in either the forward or reversed

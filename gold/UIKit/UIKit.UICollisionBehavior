@@ -5,7 +5,7 @@
 typealias UICollisionBehaviorMode = UICollisionBehavior.Mode
 extension UICollisionBehavior {
   @available(iOS 7.0, *)
-  struct Mode : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Mode : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -41,7 +41,7 @@ extension UICollisionBehavior {
   optional func collisionBehavior(_ behavior: UICollisionBehavior, endedContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?)
 }
 @available(iOS 7.0, *)
-@MainActor class UICollisionBehavior : UIDynamicBehavior {
+@MainActor @_nonSendable(_assumed) class UICollisionBehavior : UIDynamicBehavior {
   init(items: [UIDynamicItem])
   func addItem(_ item: UIDynamicItem)
   func removeItem(_ item: UIDynamicItem)

@@ -1,0 +1,46 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+@MainActor @_nonSendable(_assumed) class UICalendarSelectionSingleDate : UICalendarSelection {
+
+  /// The object that acts as the delegate of the calendar view selection
+  weak var delegate: @sil_weak UICalendarSelectionSingleDateDelegate? { get }
+
+  /// The currently selected dates in the Calendar view. If this property is @c nil then nothing in the calendar
+  /// view is currently selected. The default value is @c nil.
+  var selectedDate: DateComponents?
+
+  /// Sets the selected date to be displayed in the calendar, with an option to animate the setting.
+  func setSelected(_ selectedDate: DateComponents?, animated: Bool)
+
+  /// Sets the selected date to be displayed in the calendar, with an option to animate the setting.
+  @available(swift, obsoleted: 3, renamed: "setSelected(_:animated:)")
+  func setSelectedDate(_ selectedDate: DateComponents?, animated: Bool)
+
+  /// Creates a new single selection with the specified delegate.
+  init(delegate: UICalendarSelectionSingleDateDelegate?)
+  @available(*, unavailable)
+  init()
+}
+@available(iOS 16.0, *)
+protocol UICalendarSelectionSingleDateDelegate : NSObjectProtocol {
+
+  /**
+   *  @abstract Called after the user selects a date in the calendar view.
+   *
+   *  @param selection The @c UICalendarSelectionMultiDate
+   *  @param dateComponents The date that was selected by the user. @c dateComponents can be @c nil when the selected date is deselected by the user.
+   */
+  func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?)
+
+  /**
+   *  @abstract Determines if a date is selectable. Dates that are not selectable will be disabled in the calendar view.
+   *            By default, @c dateSelection:canSelectDate: returns YES if dateComponents is non-nil.
+   *
+   *  @param selection The @c UICalendarSelectionMultiDate
+   *  @param dateComponents The date to be checked by selection; a @c nil date represents a deselected date.
+   *
+   *  @return YES if the date can be selected, NO otherwise.
+   */
+  optional func dateSelection(_ selection: UICalendarSelectionSingleDate, canSelectDate dateComponents: DateComponents?) -> Bool
+}

@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIScrollView.IndicatorStyle")
 typealias UIScrollViewIndicatorStyle = UIScrollView.IndicatorStyle
 extension UIScrollView {
-  enum IndicatorStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum IndicatorStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -18,7 +18,7 @@ extension UIScrollView {
     static var White: UIScrollView.IndicatorStyle { get }
   }
   @available(iOS 7.0, *)
-  enum KeyboardDismissMode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum KeyboardDismissMode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -31,8 +31,14 @@ extension UIScrollView {
     case interactive
     @available(swift, obsoleted: 3, renamed: "interactive")
     static var Interactive: UIScrollView.KeyboardDismissMode { get }
+    case onDragWithAccessory
+    @available(swift, obsoleted: 3, renamed: "onDragWithAccessory")
+    static var OnDragWithAccessory: UIScrollView.KeyboardDismissMode { get }
+    case interactiveWithAccessory
+    @available(swift, obsoleted: 3, renamed: "interactiveWithAccessory")
+    static var InteractiveWithAccessory: UIScrollView.KeyboardDismissMode { get }
   }
-  enum IndexDisplayMode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum IndexDisplayMode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -44,7 +50,7 @@ extension UIScrollView {
     static var AlwaysHidden: UIScrollView.IndexDisplayMode { get }
   }
   @available(iOS 11.0, *)
-  enum ContentInsetAdjustmentBehavior : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ContentInsetAdjustmentBehavior : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -90,7 +96,7 @@ extension UIScrollView.DecelerationRate {
 @available(swift, obsoleted: 3, renamed: "UIScrollView.DecelerationRate.fast")
 let UIScrollViewDecelerationRateFast: UIScrollView.DecelerationRate
 @available(iOS 2.0, *)
-@MainActor class UIScrollView : UIView, NSCoding, UIFocusItemScrollableContainer {
+@MainActor @_nonSendable(_assumed) class UIScrollView : UIView, NSCoding, UIFocusItemScrollableContainer {
   var contentOffset: CGPoint
   var contentSize: CGSize
   var contentInset: UIEdgeInsets

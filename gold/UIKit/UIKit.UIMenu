@@ -44,18 +44,40 @@ extension UIMenu {
     @available(swift, obsoleted: 3, renamed: "singleSelection")
     static var SingleSelection: UIMenu.Options { get }
   }
+  @available(iOS 16.0, *)
+  enum ElementSize : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case small
+    @available(swift, obsoleted: 3, renamed: "small")
+    static var Small: UIMenu.ElementSize { get }
+    case medium
+    @available(swift, obsoleted: 3, renamed: "medium")
+    static var Medium: UIMenu.ElementSize { get }
+    case large
+    @available(swift, obsoleted: 3, renamed: "large")
+    static var Large: UIMenu.ElementSize { get }
+  }
 }
 @available(iOS 13.0, *)
 @available(swift, obsoleted: 3, renamed: "UIMenu.Options")
 typealias UIMenuOptions = UIMenu.Options
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIMenu.ElementSize")
+typealias UIMenuElementSize = UIMenu.ElementSize
 @available(iOS 13.0, *)
-@MainActor class UIMenu : UIMenuElement {
+@MainActor @_nonSendable(_assumed) class UIMenu : UIMenuElement {
 
   /// Unique identifier.
   var identifier: UIMenu.Identifier { get }
 
   /// Options.
   var options: UIMenu.Options { get }
+
+  /// Size of this menu's child elements. This property has no effect on Mac Catalyst.
+  @available(iOS 16.0, *)
+  var preferredElementSize: UIMenu.ElementSize
 
   /// The menu's sub-elements and sub-menus. On iOS 14.0, elements of your own menus are mutable, -copying a menu will produce mutable elements, and UIKit will take immutable copies of menus it receives. Prior to iOS 14.0, menus are always fully immutable.
   var children: [UIMenuElement] { get }
@@ -176,7 +198,9 @@ extension UIMenu {
   ///   - children: The menu's sub-elements and sub-menus.
   @_disfavoredOverload @MainActor convenience init(title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: UIMenu.Options = [], children: [UIMenuElement] = [])
   @available(iOS 15.0, tvOS 15.0, *)
-  @MainActor convenience init(title: String = "", subtitle: String? = nil, image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: UIMenu.Options = [], children: [UIMenuElement] = [])
+  @_disfavoredOverload @MainActor convenience init(title: String = "", subtitle: String? = nil, image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: UIMenu.Options = [], children: [UIMenuElement] = [])
+  @available(iOS 16.0, tvOS 16.0, *)
+  @MainActor convenience init(title: String = "", subtitle: String? = nil, image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: UIMenu.Options = [], preferredElementSize: UIMenu.ElementSize = UIMenu.ElementSize.large, children: [UIMenuElement] = [])
 }
 
 /// Application menu top-level menu
@@ -244,6 +268,10 @@ extension UIMenu.Identifier {
   /// Print menu
   @available(iOS 13.0, *)
   static let print: UIMenu.Identifier
+
+  /// Document-related menu items: Duplicate, Move, Rename, Export. The `.document` menu is added to Mac Catalyst applications by default. iOS Apps on the Mac will have the `.document` menu inserted when and if `UINavigationItem.titleMenuProvider` is set to a nonnull value, and from launch on subsequent executions.
+  @available(iOS 16.0, *)
+  static let document: UIMenu.Identifier
 
   /// Undo, Redo menu
   @available(iOS 13.0, *)
@@ -433,6 +461,11 @@ let UIMenuClose: UIMenu.Identifier
 @available(iOS 13.0, *)
 @available(swift, obsoleted: 3, renamed: "UIMenu.Identifier.print")
 let UIMenuPrint: UIMenu.Identifier
+
+/// Document-related menu items: Duplicate, Move, Rename, Export. The `.document` menu is added to Mac Catalyst applications by default. iOS Apps on the Mac will have the `.document` menu inserted when and if `UINavigationItem.titleMenuProvider` is set to a nonnull value, and from launch on subsequent executions.
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIMenu.Identifier.document")
+let UIMenuDocument: UIMenu.Identifier
 
 /// Undo, Redo menu
 @available(iOS 13.0, *)

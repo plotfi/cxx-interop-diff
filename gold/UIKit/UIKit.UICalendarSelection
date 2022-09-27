@@ -1,0 +1,12 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+@MainActor @_nonSendable(_assumed) class UICalendarSelection : NSObject {
+
+  /// Called to refresh the selectable dates in the calendar view.
+  func updateSelectableDates()
+  @available(*, unavailable)
+  init()
+  @available(*, unavailable)
+  class func new() -> Self
+}

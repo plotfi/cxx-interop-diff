@@ -5,7 +5,7 @@
 typealias NSTextSelectionGranularity = NSTextSelection.Granularity
 extension NSTextSelection {
   @available(iOS 15.0, *)
-  enum Granularity : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Granularity : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -26,7 +26,7 @@ extension NSTextSelection {
     static var Sentence: NSTextSelection.Granularity { get }
   }
   @available(iOS 15.0, *)
-  enum Affinity : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Affinity : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -42,7 +42,7 @@ extension NSTextSelection {
 @available(swift, obsoleted: 3, renamed: "NSTextSelection.Affinity")
 typealias NSTextSelectionAffinity = NSTextSelection.Affinity
 @available(iOS 15.0, *)
-class NSTextSelection : NSObject, NSSecureCoding {
+@_nonSendable(_assumed) class NSTextSelection : NSObject, NSSecureCoding {
   init(_ textRanges: [NSTextRange], affinity: NSTextSelection.Affinity, granularity: NSTextSelection.Granularity)
   @available(swift, obsoleted: 3, renamed: "init(_:affinity:granularity:)")
   init(ranges textRanges: [NSTextRange], affinity: NSTextSelection.Affinity, granularity: NSTextSelection.Granularity)
@@ -72,4 +72,8 @@ class NSTextSelection : NSObject, NSSecureCoding {
   class var supportsSecureCoding: Bool { get }
   @available(iOS 15.0, *)
   func encode(with coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSTextSelection : @unchecked Sendable {
 }

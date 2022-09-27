@@ -6,7 +6,7 @@ let NSURLSessionTransferSizeUnknown: Int64
 @available(swift, obsoleted: 3, renamed: "URLSession")
 typealias NSURLSession = URLSession
 @available(iOS 7.0, *)
-class URLSession : NSObject {
+@_nonSendable(_assumed) class URLSession : NSObject, @unchecked Sendable {
   class var shared: URLSession { get }
   @available(swift, obsoleted: 3, renamed: "shared")
   class var sharedSession: URLSession { get }
@@ -94,6 +94,31 @@ class URLSession : NSObject {
   class func new() -> Self
 }
 
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension URLSession {
+  /// Returns a publisher that wraps a URL session data task for a given URL.
+  ///
+  /// The publisher publishes data when the task completes, or terminates if the task fails with an error.
+  /// - Parameter url: The URL for which to create a data task.
+  /// - Returns: A publisher that wraps a data task for the URL.
+  func dataTaskPublisher(for url: URL) -> URLSession.DataTaskPublisher
+  /// Returns a publisher that wraps a URL session data task for a given URL request.
+  ///
+  /// The publisher publishes data when the task completes, or terminates if the task fails with an error.
+  /// - Parameter request: The URL request for which to create a data task.
+  /// - Returns: A publisher that wraps a data task for the URL request.
+  func dataTaskPublisher(for request: URLRequest) -> URLSession.DataTaskPublisher
+  struct DataTaskPublisher : Publisher, Sendable {
+    typealias Output = (data: Data, response: URLResponse)
+    typealias Failure = URLError
+    let request: URLRequest
+    let session: URLSession
+    init(request: URLRequest, session: URLSession)
+    func receive<S>(subscriber: S) where S : Subscriber, S.Failure == URLError, S.Input == (data: Data, response: URLResponse)
+  }
+}
+
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 extension URLSession {
   @_alwaysEmitIntoClient func makeState() -> ManagedBuffer<(isCancelled: Bool, task: URLSessionTask?), os_unfair_lock>
   @_alwaysEmitIntoClient func cancel(state: ManagedBuffer<(isCancelled: Bool, task: URLSessionTask?), os_unfair_lock>)
@@ -147,12 +172,12 @@ extension URLSession {
   /// - Returns: Downloaded file URL and response. The file will not be removed automatically.
   func download(resumeFrom resumeData: Data, delegate: URLSessionTaskDelegate? = nil) async throws -> (URL, URLResponse)
   /// AsyncBytes conforms to AsyncSequence for data delivery. The sequence is single pass. Delegate will not be called for response and data delivery.
-  struct AsyncBytes : AsyncSequence {
+  struct AsyncBytes : AsyncSequence, Sendable {
     /// Underlying data task providing the bytes.
     var task: URLSessionDataTask { get }
     typealias Element = UInt8
     typealias AsyncIterator = URLSession.AsyncBytes.Iterator
-    @frozen struct Iterator : AsyncIteratorProtocol {
+    @frozen struct Iterator : AsyncIteratorProtocol, Sendable {
       typealias Element = UInt8
       @usableFromInline
       var buffer: _AsyncBytesBuffer
@@ -174,58 +199,60 @@ extension URLSession {
   func bytes(from url: URL, delegate: URLSessionTaskDelegate? = nil) async throws -> (URLSession.AsyncBytes, URLResponse)
 }
 
-@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 extension URLSession {
-  /// Returns a publisher that wraps a URL session data task for a given URL.
+  /// Convenience method to load data using an URLRequest, creates and resumes an URLSessionDataTask internally.
   ///
-  /// The publisher publishes data when the task completes, or terminates if the task fails with an error.
-  /// - Parameter url: The URL for which to create a data task.
-  /// - Returns: A publisher that wraps a data task for the URL.
-  func dataTaskPublisher(for url: URL) -> URLSession.DataTaskPublisher
-  /// Returns a publisher that wraps a URL session data task for a given URL request.
+  /// - Parameter request: The URLRequest for which to load data.
+  /// - Returns: Data and response.
+  @_alwaysEmitIntoClient @_disfavoredOverload func data(for request: URLRequest) async throws -> (Data, URLResponse)
+  /// Convenience method to load data using an URL, creates and resumes an URLSessionDataTask internally.
   ///
-  /// The publisher publishes data when the task completes, or terminates if the task fails with an error.
-  /// - Parameter request: The URL request for which to create a data task.
-  /// - Returns: A publisher that wraps a data task for the URL request.
-  func dataTaskPublisher(for request: URLRequest) -> URLSession.DataTaskPublisher
-  struct DataTaskPublisher : Publisher {
-    typealias Output = (data: Data, response: URLResponse)
-    typealias Failure = URLError
-    let request: URLRequest
-    let session: URLSession
-    init(request: URLRequest, session: URLSession)
-    func receive<S>(subscriber: S) where S : Subscriber, S.Failure == URLError, S.Input == (data: Data, response: URLResponse)
-  }
+  /// - Parameter url: The URL for which to load data.
+  /// - Returns: Data and response.
+  @_alwaysEmitIntoClient @_disfavoredOverload func data(from url: URL) async throws -> (Data, URLResponse)
+  /// Convenience method to upload data using an URLRequest, creates and resumes an URLSessionUploadTask internally.
+  ///
+  /// - Parameter request: The URLRequest for which to upload data.
+  /// - Parameter fileURL: File to upload.
+  /// - Returns: Data and response.
+  @_alwaysEmitIntoClient @_disfavoredOverload func upload(for request: URLRequest, fromFile fileURL: URL) async throws -> (Data, URLResponse)
+  /// Convenience method to upload data using an URLRequest, creates and resumes an URLSessionUploadTask internally.
+  ///
+  /// - Parameter request: The URLRequest for which to upload data.
+  /// - Parameter bodyData: Data to upload.
+  /// - Returns: Data and response.
+  @_alwaysEmitIntoClient @_disfavoredOverload func upload(for request: URLRequest, from bodyData: Data) async throws -> (Data, URLResponse)
 }
 extension URLSession {
-  func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+  func dataTask(with request: URLRequest, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
   @available(swift, obsoleted: 3, renamed: "dataTask(with:completionHandler:)")
-  func dataTaskWithRequest(_ request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
-  func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+  func dataTaskWithRequest(_ request: URLRequest, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+  func dataTask(with url: URL, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
   @available(swift, obsoleted: 3, renamed: "dataTask(with:completionHandler:)")
-  func dataTaskWithURL(_ url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
-  func uploadTask(with request: URLRequest, fromFile fileURL: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask
+  func dataTaskWithURL(_ url: URL, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask
+  func uploadTask(with request: URLRequest, fromFile fileURL: URL, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask
   @available(swift, obsoleted: 3, renamed: "uploadTask(with:fromFile:completionHandler:)")
-  func uploadTaskWithRequest(_ request: URLRequest, fromFile fileURL: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask
-  func uploadTask(with request: URLRequest, from bodyData: Data?, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask
+  func uploadTaskWithRequest(_ request: URLRequest, fromFile fileURL: URL, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask
+  func uploadTask(with request: URLRequest, from bodyData: Data?, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask
   @available(swift, obsoleted: 3, renamed: "uploadTask(with:from:completionHandler:)")
-  func uploadTaskWithRequest(_ request: URLRequest, fromData bodyData: Data?, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask
-  func downloadTask(with request: URLRequest, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
+  func uploadTaskWithRequest(_ request: URLRequest, fromData bodyData: Data?, completionHandler: @escaping @Sendable (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask
+  func downloadTask(with request: URLRequest, completionHandler: @escaping @Sendable (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
   @available(swift, obsoleted: 3, renamed: "downloadTask(with:completionHandler:)")
-  func downloadTaskWithRequest(_ request: URLRequest, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
-  func downloadTask(with url: URL, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
+  func downloadTaskWithRequest(_ request: URLRequest, completionHandler: @escaping @Sendable (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
+  func downloadTask(with url: URL, completionHandler: @escaping @Sendable (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
   @available(swift, obsoleted: 3, renamed: "downloadTask(with:completionHandler:)")
-  func downloadTaskWithURL(_ url: URL, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
-  func downloadTask(withResumeData resumeData: Data, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
+  func downloadTaskWithURL(_ url: URL, completionHandler: @escaping @Sendable (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
+  func downloadTask(withResumeData resumeData: Data, completionHandler: @escaping @Sendable (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
   @available(swift, obsoleted: 3, renamed: "downloadTask(withResumeData:completionHandler:)")
-  func downloadTaskWithResumeData(_ resumeData: Data, completionHandler: @escaping (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
+  func downloadTaskWithResumeData(_ resumeData: Data, completionHandler: @escaping @Sendable (URL?, URLResponse?, Error?) -> Void) -> URLSessionDownloadTask
 }
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "URLSessionTask.State")
 typealias NSURLSessionTaskState = URLSessionTask.State
 extension URLSessionTask {
   @available(iOS 7.0, *)
-  enum State : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum State : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -253,7 +280,7 @@ extension URLSessionTask {
 @available(swift, obsoleted: 3, renamed: "URLSessionTask")
 typealias NSURLSessionTask = URLSessionTask
 @available(iOS 7.0, *)
-class URLSessionTask : NSObject, NSCopying, ProgressReporting {
+@_nonSendable(_assumed) class URLSessionTask : NSObject, NSCopying, ProgressReporting, @unchecked Sendable {
   var taskIdentifier: Int { get }
   var originalRequest: URLRequest? { get }
   var currentRequest: URLRequest? { get }
@@ -302,7 +329,7 @@ let NSURLSessionTaskPriorityHigh: Float
 @available(swift, obsoleted: 3, renamed: "URLSessionDataTask")
 typealias NSURLSessionDataTask = URLSessionDataTask
 @available(iOS 7.0, *)
-class URLSessionDataTask : URLSessionTask {
+@_nonSendable(_assumed) class URLSessionDataTask : URLSessionTask, @unchecked Sendable {
   @available(iOS, introduced: 7.0, deprecated: 13.0, message: "Please use -[NSURLSession dataTaskWithRequest:] or other NSURLSession methods to create instances")
   init()
   @available(iOS, introduced: 7.0, deprecated: 13.0, message: "Please use -[NSURLSession dataTaskWithRequest:] or other NSURLSession methods to create instances")
@@ -312,7 +339,7 @@ class URLSessionDataTask : URLSessionTask {
 @available(swift, obsoleted: 3, renamed: "URLSessionUploadTask")
 typealias NSURLSessionUploadTask = URLSessionUploadTask
 @available(iOS 7.0, *)
-class URLSessionUploadTask : URLSessionDataTask {
+@_nonSendable(_assumed) class URLSessionUploadTask : URLSessionDataTask, @unchecked Sendable {
   @available(iOS, introduced: 7.0, deprecated: 13.0, message: "Please use -[NSURLSession uploadTaskWithStreamedRequest:] or other NSURLSession methods to create instances")
   init()
   @available(iOS, introduced: 7.0, deprecated: 13.0, message: "Please use -[NSURLSession uploadTaskWithStreamedRequest:] or other NSURLSession methods to create instances")
@@ -322,7 +349,7 @@ class URLSessionUploadTask : URLSessionDataTask {
 @available(swift, obsoleted: 3, renamed: "URLSessionDownloadTask")
 typealias NSURLSessionDownloadTask = URLSessionDownloadTask
 @available(iOS 7.0, *)
-class URLSessionDownloadTask : URLSessionTask {
+@_nonSendable(_assumed) class URLSessionDownloadTask : URLSessionTask, @unchecked Sendable {
   func cancel(byProducingResumeData completionHandler: @escaping @Sendable (Data?) -> Void)
   func cancelByProducingResumeData() async -> Data?
   @available(swift, obsoleted: 3, renamed: "cancel(byProducingResumeData:)")
@@ -336,7 +363,7 @@ class URLSessionDownloadTask : URLSessionTask {
 @available(swift, obsoleted: 3, renamed: "URLSessionStreamTask")
 typealias NSURLSessionStreamTask = URLSessionStreamTask
 @available(iOS 9.0, *)
-class URLSessionStreamTask : URLSessionTask {
+@_nonSendable(_assumed) class URLSessionStreamTask : URLSessionTask, @unchecked Sendable {
   func readData(ofMinLength minBytes: Int, maxLength maxBytes: Int, timeout: TimeInterval, completionHandler: @escaping @Sendable (Data?, Bool, Error?) -> Void)
   func readData(ofMinLength minBytes: Int, maxLength maxBytes: Int, timeout: TimeInterval) async throws -> (Data?, Bool)
   @available(swift, obsoleted: 3, renamed: "readData(ofMinLength:maxLength:timeout:completionHandler:)")
@@ -357,7 +384,7 @@ class URLSessionStreamTask : URLSessionTask {
   class func new() -> Self
 }
 @available(iOS 13.0, *)
-enum __NSURLSessionWebSocketMessageType : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __NSURLSessionWebSocketMessageType : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -369,7 +396,7 @@ enum __NSURLSessionWebSocketMessageType : Int, @unchecked Sendable {
   static var String: __NSURLSessionWebSocketMessageType { get }
 }
 @available(iOS 13.0, *)
-class __NSURLSessionWebSocketMessage : NSObject {
+@_nonSendable(_assumed) class __NSURLSessionWebSocketMessage : NSObject, @unchecked Sendable {
   init(data: Data)
   init(string: String)
   var type: __NSURLSessionWebSocketMessageType { get }
@@ -385,7 +412,7 @@ class __NSURLSessionWebSocketMessage : NSObject {
 typealias NSURLSessionWebSocketCloseCode = URLSessionWebSocketTask.CloseCode
 extension URLSessionWebSocketTask {
   @available(iOS 13.0, *)
-  enum CloseCode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum CloseCode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -434,7 +461,7 @@ extension URLSessionWebSocketTask {
 @available(swift, obsoleted: 3, renamed: "URLSessionWebSocketTask")
 typealias NSURLSessionWebSocketTask = URLSessionWebSocketTask
 @available(iOS 13.0, *)
-class URLSessionWebSocketTask : URLSessionTask {
+@_nonSendable(_assumed) class URLSessionWebSocketTask : URLSessionTask, @unchecked Sendable {
   func __send(_ message: __NSURLSessionWebSocketMessage, completionHandler: @escaping @Sendable (Error?) -> Void)
   func __send(_ message: __NSURLSessionWebSocketMessage) async throws
   @available(swift, obsoleted: 3, renamed: "__send(_:completionHandler:)")
@@ -443,9 +470,9 @@ class URLSessionWebSocketTask : URLSessionTask {
   func __receiveMessage() async throws -> __NSURLSessionWebSocketMessage
   @available(swift, obsoleted: 3, renamed: "__receiveMessage(completionHandler:)")
   func __receiveMessageWithCompletionHandler(_ completionHandler: @escaping @Sendable (__NSURLSessionWebSocketMessage?, Error?) -> Void)
-  func sendPing(pongReceiveHandler: @escaping (Error?) -> Void)
+  func sendPing(pongReceiveHandler: @escaping @Sendable (Error?) -> Void)
   @available(swift, obsoleted: 3, renamed: "sendPing(pongReceiveHandler:)")
-  func sendPingWithPongReceiveHandler(_ pongReceiveHandler: @escaping (Error?) -> Void)
+  func sendPingWithPongReceiveHandler(_ pongReceiveHandler: @escaping @Sendable (Error?) -> Void)
   func cancel(with closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?)
   @available(swift, obsoleted: 3, renamed: "cancel(with:reason:)")
   func cancelWithCloseCode(_ closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?)
@@ -460,7 +487,7 @@ class URLSessionWebSocketTask : URLSessionTask {
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 extension URLSessionWebSocketTask {
-  enum Message {
+  enum Message : Sendable {
     case data(Data)
     case string(String)
   }
@@ -485,9 +512,9 @@ extension URLSessionWebSocketTask {
  This is the default value.  No entitlement is required to set this value.
  
  @constant NSURLSessionMultipathServiceTypeHandover Specifies that a secondary subflow should only be used
- when the primary subflow is not performing adequately.   Requires the com.apple.developer.networking.multipath entilement.
+ when the primary subflow is not performing adequately.   Requires the com.apple.developer.networking.multipath entitlement.
  
- @constant NSURLSessionMultipathServiceTypeInteractive Specifies that a secodary subflow should be used if the
+ @constant NSURLSessionMultipathServiceTypeInteractive Specifies that a secondary subflow should be used if the
  primary subflow is not performing adequately (packet loss, high round trip times, bandwidth issues).  The secondary
  subflow will be created more aggressively than with NSURLSessionMultipathServiceTypeHandover.  Requires the com.apple.developer.networking.multipath entitlement.
  
@@ -514,9 +541,9 @@ extension URLSessionConfiguration {
    This is the default value.  No entitlement is required to set this value.
    
    @constant NSURLSessionMultipathServiceTypeHandover Specifies that a secondary subflow should only be used
-   when the primary subflow is not performing adequately.   Requires the com.apple.developer.networking.multipath entilement.
+   when the primary subflow is not performing adequately.   Requires the com.apple.developer.networking.multipath entitlement.
    
-   @constant NSURLSessionMultipathServiceTypeInteractive Specifies that a secodary subflow should be used if the
+   @constant NSURLSessionMultipathServiceTypeInteractive Specifies that a secondary subflow should be used if the
    primary subflow is not performing adequately (packet loss, high round trip times, bandwidth issues).  The secondary
    subflow will be created more aggressively than with NSURLSessionMultipathServiceTypeHandover.  Requires the com.apple.developer.networking.multipath entitlement.
    
@@ -526,7 +553,7 @@ extension URLSessionConfiguration {
    
    */
   @available(iOS 11.0, *)
-  enum MultipathServiceType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum MultipathServiceType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -548,7 +575,7 @@ extension URLSessionConfiguration {
 @available(swift, obsoleted: 3, renamed: "URLSessionConfiguration")
 typealias NSURLSessionConfiguration = URLSessionConfiguration
 @available(iOS 7.0, *)
-class URLSessionConfiguration : NSObject, NSCopying {
+@_nonSendable(_assumed) class URLSessionConfiguration : NSObject, NSCopying, @unchecked Sendable {
   class var `default`: URLSessionConfiguration { get }
   @available(swift, obsoleted: 3, renamed: "default")
   class var defaultSessionConfiguration: URLSessionConfiguration { get }
@@ -570,6 +597,8 @@ class URLSessionConfiguration : NSObject, NSCopying {
   var allowsExpensiveNetworkAccess: Bool
   @available(iOS 13.0, *)
   var allowsConstrainedNetworkAccess: Bool
+  @available(iOS 16.0, *)
+  var requiresDNSSECValidation: Bool
   @available(iOS 11.0, *)
   var waitsForConnectivity: Bool
   @available(iOS 7.0, *)
@@ -643,7 +672,7 @@ class URLSessionConfiguration : NSObject, NSCopying {
 typealias NSURLSessionDelayedRequestDisposition = URLSession.DelayedRequestDisposition
 extension URLSession {
   @available(iOS 11.0, *)
-  enum DelayedRequestDisposition : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum DelayedRequestDisposition : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -658,7 +687,7 @@ extension URLSession {
     static var Cancel: URLSession.DelayedRequestDisposition { get }
   }
   @available(iOS 7.0, *)
-  enum AuthChallengeDisposition : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum AuthChallengeDisposition : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -676,7 +705,7 @@ extension URLSession {
     static var RejectProtectionSpace: URLSession.AuthChallengeDisposition { get }
   }
   @available(iOS 7.0, *)
-  enum ResponseDisposition : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ResponseDisposition : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -725,6 +754,11 @@ protocol URLSessionDelegate : NSObjectProtocol {
 typealias NSURLSessionTaskDelegate = URLSessionTaskDelegate
 @available(iOS 7.0, *)
 protocol URLSessionTaskDelegate : URLSessionDelegate {
+  @available(iOS 16.0, *)
+  optional func urlSession(_ session: URLSession, didCreateTask task: URLSessionTask)
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "urlSession(_:didCreateTask:)")
+  optional func URLSession(_ session: URLSession, didCreateTask task: URLSessionTask)
   @available(iOS 11.0, *)
   optional func urlSession(_ session: URLSession, task: URLSessionTask, willBeginDelayedRequest request: URLRequest, completionHandler: @escaping @Sendable (URLSession.DelayedRequestDisposition, URLRequest?) -> Void)
   @available(iOS 11.0, *)
@@ -842,7 +876,7 @@ extension URLSessionConfiguration {
 typealias NSURLSessionTaskMetricsResourceFetchType = URLSessionTaskMetrics.ResourceFetchType
 extension URLSessionTaskMetrics {
   @available(iOS 10.0, *)
-  enum ResourceFetchType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ResourceFetchType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -860,7 +894,7 @@ extension URLSessionTaskMetrics {
     static var LocalCache: URLSessionTaskMetrics.ResourceFetchType { get }
   }
   @available(iOS 14.0, *)
-  enum DomainResolutionProtocol : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum DomainResolutionProtocol : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -888,7 +922,7 @@ typealias NSURLSessionTaskMetricsDomainResolutionProtocol = URLSessionTaskMetric
 @available(swift, obsoleted: 3, renamed: "URLSessionTaskTransactionMetrics")
 typealias NSURLSessionTaskTransactionMetrics = URLSessionTaskTransactionMetrics
 @available(iOS 10.0, *)
-class URLSessionTaskTransactionMetrics : NSObject {
+@_nonSendable(_assumed) class URLSessionTaskTransactionMetrics : NSObject, @unchecked Sendable {
   var request: URLRequest { get }
   @NSCopying var response: URLResponse? { get }
   var fetchStartDate: Date? { get }
@@ -973,7 +1007,7 @@ extension URLSessionTaskTransactionMetrics {
 @available(swift, obsoleted: 3, renamed: "URLSessionTaskMetrics")
 typealias NSURLSessionTaskMetrics = URLSessionTaskMetrics
 @available(iOS 10.0, *)
-class URLSessionTaskMetrics : NSObject {
+@_nonSendable(_assumed) class URLSessionTaskMetrics : NSObject, @unchecked Sendable {
   var transactionMetrics: [URLSessionTaskTransactionMetrics] { get }
   var taskInterval: DateInterval { get }
   var redirectCount: Int { get }

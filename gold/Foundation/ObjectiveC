@@ -8,6 +8,7 @@ import ObjectiveC.objc_exception
 import ObjectiveC.objc_sync
 import ObjectiveC.runtime
 import _Concurrency
+import _StringProcessing
 
 @available(*, unavailable, message: "Use 'Bool' value 'false' instead")
 var NO: ObjCBool { get }
@@ -46,6 +47,26 @@ extension ObjCBool : CustomStringConvertible {
 }
 
 extension ObjCBool : Sendable {
+}
+
+/// A Sequence of AnyClass
+@available(macOS 13.0, iOS 16.0, tvOS 16.0, watchOS 9.0, *)
+struct ObjCClassList : Sequence {
+  typealias Element = AnyClass
+  class Iterator : IteratorProtocol {
+    func next() -> AnyClass?
+    typealias Element = AnyClass
+  }
+  func makeIterator() -> ObjCClassList.Iterator
+}
+
+/// Tells `objc_enumerateClasses` which images to search.
+enum ObjCEnumerationImage {
+  case dynamicClasses
+  /// Search dynamically registered classes
+  case image(UnsafeRawPointer)
+  /// Search the specified image (given a handle from dlopen(3))
+  case machHeader(UnsafeRawPointer)
 }
 
 /// The Objective-C SEL type.
@@ -88,11 +109,30 @@ extension Selector : Sendable {
 @available(*, unavailable, message: "Use 'Bool' value 'true' instead")
 var YES: ObjCBool { get }
 
+@_silgen_name("_objc_autoreleasePoolPop")
+func _autoreleasePoolPop(_: UnsafeMutableRawPointer)
+
+@_silgen_name("_objc_autoreleasePoolPush")
+func _autoreleasePoolPush() -> UnsafeMutableRawPointer
+
 @_transparent func _convertBoolToObjCBool(_ x: Bool) -> ObjCBool
 
 @_transparent func _convertObjCBoolToBool(_ x: ObjCBool) -> Bool
 
-func autoreleasepool<Result>(invoking body: () throws -> Result) rethrows -> Result
+@inlinable @inline(__always) func autoreleasepool<Result>(invoking body: () throws -> Result) rethrows -> Result
+
+/**
+ * Enumerates classes, filtering by image, name, protocol conformance and superclass.
+ *
+ * - Parameter fromImage: The image to search; defaults to the caller's image.
+ * - Parameter matchingNamePrefix: If specified, a required prefix for the class name.
+ * - Parameter conformingTo: If specified, a protocol to which the enumerated classes must conform.
+ * - Parameter subclassing: If specified, a class which the enumerated classes must subclass.
+ *
+ * - Returns: A `Sequence` of classes that match the search criteria.
+ */
+@available(macOS 13.0, iOS 16.0, tvOS 16.0, watchOS 9.0, *)
+func objc_enumerateClasses(fromImage: ObjCEnumerationImage = .machHeader(#dsohandle), matchingNamePrefix: String? = nil, conformingTo: Protocol? = nil, subclassing: AnyClass? = nil) -> ObjCClassList
 
 extension String {
   /// Construct the C string representation of an Objective-C selector.

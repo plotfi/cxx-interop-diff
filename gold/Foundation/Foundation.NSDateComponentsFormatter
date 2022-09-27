@@ -4,7 +4,7 @@
 typealias NSDateComponentsFormatterUnitsStyle = DateComponentsFormatter.UnitsStyle
 extension DateComponentsFormatter {
   @available(iOS 8.0, *)
-  enum UnitsStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum UnitsStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -30,7 +30,7 @@ extension DateComponentsFormatter {
     static var Brief: DateComponentsFormatter.UnitsStyle { get }
   }
   @available(iOS 8.0, *)
-  struct ZeroFormattingBehavior : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct ZeroFormattingBehavior : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -64,7 +64,7 @@ extension DateComponentsFormatter {
 @available(swift, obsoleted: 3, renamed: "DateComponentsFormatter.ZeroFormattingBehavior")
 typealias NSDateComponentsFormatterZeroFormattingBehavior = DateComponentsFormatter.ZeroFormattingBehavior
 @available(iOS 8.0, *)
-class DateComponentsFormatter : Formatter {
+@_nonSendable(_assumed) class DateComponentsFormatter : Formatter, @unchecked Sendable {
   func string(for obj: Any?) -> String?
   @available(swift, obsoleted: 3, renamed: "string(for:)")
   func stringForObjectValue(_ obj: Any?) -> String?

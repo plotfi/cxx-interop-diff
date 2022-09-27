@@ -3,7 +3,7 @@
 @available(iOS 15.0, *)
 typealias __UITableViewHeaderFooterViewConfigurationUpdateHandler = (UITableViewHeaderFooterView, __UIViewConfigurationState) -> Void
 @available(iOS 6.0, *)
-@MainActor class UITableViewHeaderFooterView : UIView {
+@MainActor @_nonSendable(_assumed) class UITableViewHeaderFooterView : UIView {
   init(reuseIdentifier: String?)
   init?(coder: NSCoder)
 
@@ -55,6 +55,11 @@ typealias __UITableViewHeaderFooterViewConfigurationUpdateHandler = (UITableView
   @available(iOS, introduced: 6.0, deprecated: 100000, message: "Use UIListContentConfiguration instead, this property will be deprecated in a future release.")
   var detailTextLabel: UILabel? { get }
 
+  /// Returns a default background configuration for the header/footer's style.
+  /// This background configuration represents the default appearance that the header/footer will use.
+  @available(iOS 16.0, *)
+  func __defaultBackgroundConfiguration() -> __UIBackgroundConfiguration
+
   /// Setting a background configuration supersedes the header/footer's backgroundView. The default value is nil.
   @available(iOS 14.0, *)
   @NSCopying var __backgroundConfiguration: __UIBackgroundConfiguration?
@@ -82,6 +87,8 @@ extension UITableViewHeaderFooterView {
 extension UITableViewHeaderFooterView {
   @available(iOS 14.0, tvOS 14.0, *)
   @MainActor var backgroundConfiguration: UIBackgroundConfiguration?
+  @available(iOS 16.0, tvOS 16.0, *)
+  @MainActor func defaultBackgroundConfiguration() -> UIBackgroundConfiguration
 }
 
 @available(iOS 14.0, tvOS 14.0, *)

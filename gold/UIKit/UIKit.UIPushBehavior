@@ -5,7 +5,7 @@
 typealias UIPushBehaviorMode = UIPushBehavior.Mode
 extension UIPushBehavior {
   @available(iOS 7.0, *)
-  enum Mode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Mode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -18,7 +18,7 @@ extension UIPushBehavior {
   }
 }
 @available(iOS 7.0, *)
-@MainActor class UIPushBehavior : UIDynamicBehavior {
+@MainActor @_nonSendable(_assumed) class UIPushBehavior : UIDynamicBehavior {
   init(items: [UIDynamicItem], mode: UIPushBehavior.Mode)
   func addItem(_ item: UIDynamicItem)
   func removeItem(_ item: UIDynamicItem)

@@ -4,7 +4,7 @@
 @available(swift, obsoleted: 3, renamed: "NSDiffableDataSourceSnapshotReference")
 typealias NSDiffableDataSourceSnapshot = NSDiffableDataSourceSnapshotReference
 @available(iOS 13.0, *)
-class NSDiffableDataSourceSnapshotReference : NSObject, NSCopying {
+@_nonSendable(_assumed) class NSDiffableDataSourceSnapshotReference : NSObject, NSCopying {
   var numberOfItems: Int { get }
   var numberOfSections: Int { get }
   var sectionIdentifiers: [Any] { get }
@@ -85,6 +85,10 @@ class NSDiffableDataSourceSnapshotReference : NSObject, NSCopying {
   @available(iOS 13.0, *)
   func copy(with zone: NSZone? = nil) -> Any
 }
+
+@available(*, unavailable)
+extension NSDiffableDataSourceSnapshotReference : @unchecked Sendable {
+}
 @available(swift, obsoleted: 3, renamed: "UICollectionViewDiffableDataSourceReferenceCellProvider")
 typealias UICollectionViewDiffableDataSourceCellProvider = UICollectionViewDiffableDataSourceReferenceCellProvider
 typealias UICollectionViewDiffableDataSourceReferenceCellProvider = (UICollectionView, IndexPath, Any) -> UICollectionViewCell?
@@ -92,7 +96,7 @@ typealias UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider =
 @available(swift, obsoleted: 3, renamed: "UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider")
 typealias UICollectionViewDiffableDataSourceSupplementaryViewProvider = UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider
 @available(iOS 14.0, *)
-class __NSDiffableDataSourceSectionTransaction : NSObject {
+@_nonSendable(_assumed) class __NSDiffableDataSourceSectionTransaction : NSObject, @unchecked Sendable {
   var sectionIdentifier: Any { get }
   var initialSnapshot: NSDiffableDataSourceSectionSnapshotReference { get }
   var finalSnapshot: NSDiffableDataSourceSectionSnapshotReference { get }
@@ -100,7 +104,7 @@ class __NSDiffableDataSourceSectionTransaction : NSObject {
   init()
 }
 @available(iOS 14.0, *)
-class __NSDiffableDataSourceTransaction : NSObject {
+@_nonSendable(_assumed) class __NSDiffableDataSourceTransaction : NSObject, @unchecked Sendable {
   var initialSnapshot: NSDiffableDataSourceSnapshotReference { get }
   var finalSnapshot: NSDiffableDataSourceSnapshotReference { get }
   var difference: CollectionDifference<Any> { get }
@@ -108,7 +112,7 @@ class __NSDiffableDataSourceTransaction : NSObject {
   init()
 }
 @available(iOS 14.0, *)
-@MainActor class __UICollectionViewDiffableDataSourceReorderingHandlers : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class __UICollectionViewDiffableDataSourceReorderingHandlers : NSObject, NSCopying {
   var canReorderItemHandler: ((Any) -> Bool)?
   var willReorderHandler: ((__NSDiffableDataSourceTransaction) -> Void)?
   var didReorderHandler: ((__NSDiffableDataSourceTransaction) -> Void)?
@@ -117,52 +121,8 @@ class __NSDiffableDataSourceTransaction : NSObject {
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 14.0, *)
-@MainActor class __UICollectionViewDiffableDataSourceSectionSnapshotHandlers : NSObject, NSCopying {
-  var shouldExpandItemHandler: ((Any) -> Bool)?warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-
+@MainActor @_nonSendable(_assumed) class __UICollectionViewDiffableDataSourceSectionSnapshotHandlers : NSObject, NSCopying {
+  var shouldExpandItemHandler: ((Any) -> Bool)?
   var willExpandItemHandler: ((Any) -> Void)?
   var shouldCollapseItemHandler: ((Any) -> Bool)?
   var willCollapseItemHandler: ((Any) -> Void)?
@@ -175,7 +135,7 @@ nonisolated
 @available(swift, obsoleted: 3, renamed: "UICollectionViewDiffableDataSourceReference")
 @MainActor typealias UICollectionViewDiffableDataSource = UICollectionViewDiffableDataSourceReference
 @available(iOS 13.0, *)
-@MainActor class UICollectionViewDiffableDataSourceReference : NSObject, UICollectionViewDataSource {
+@MainActor @_nonSendable(_assumed) class UICollectionViewDiffableDataSourceReference : NSObject, UICollectionViewDataSource {
   init(collectionView: UICollectionView, cellProvider: @escaping UICollectionViewDiffableDataSourceReferenceCellProvider)
   @available(*, unavailable)
   init()
@@ -227,35 +187,7 @@ nonisolated
   @available(iOS 13.0, *)
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
   @available(iOS 13.0, *)
-  func collectionViewwarning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-warning: '@actorIndependent' has been renamed to 'nonisolated'
-@actorIndependent(unsafe)
-~^~~~~~~~~~~~~~~~
-nonisolated
-(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
   @available(iOS 13.0, *)
   func numberOfSections(in collectionView: UICollectionView) -> Int
   @available(iOS 13.0, *)
@@ -281,7 +213,7 @@ typealias UITableViewDiffableDataSourceReferenceCellProvider = (UITableView, Ind
 @available(swift, obsoleted: 3, renamed: "UITableViewDiffableDataSourceReference")
 @MainActor typealias UITableViewDiffableDataSource = UITableViewDiffableDataSourceReference
 @available(iOS 13.0, *)
-@MainActor class UITableViewDiffableDataSourceReference : NSObject, UITableViewDataSource {
+@MainActor @_nonSendable(_assumed) class UITableViewDiffableDataSourceReference : NSObject, UITableViewDataSource {
   init(tableView: UITableView, cellProvider: @escaping UITableViewDiffableDataSourceReferenceCellProvider)
   @available(*, unavailable)
   init()

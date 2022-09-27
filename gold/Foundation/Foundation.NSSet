@@ -2,7 +2,7 @@
 
 
 /****************	Immutable Set	****************/
-class NSSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding, NSFastEnumeration {
+@_nonSendable(_assumed) class NSSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding, NSFastEnumeration {
   var count: Int { get }
   func member(_ object: Any) -> Any?
   func objectEnumerator() -> NSEnumerator
@@ -54,6 +54,10 @@ extension NSSet {
 
 extension NSSet : CustomReflectable {
   var customMirror: Mirror { get }
+}
+
+@available(*, unavailable)
+extension NSSet : @unchecked Sendable {
 }
 extension NSSet {
   var allObjects: [Any] { get }
@@ -143,7 +147,7 @@ extension NSSet {
 }
 
 /****************	Mutable Set	****************/
-class NSMutableSet : NSSet {
+@_nonSendable(_assumed) class NSMutableSet : NSSet {
   func add(_ object: Any)
   @available(swift, obsoleted: 3, renamed: "add(_:)")
   func addObject(_ object: Any)
@@ -163,6 +167,10 @@ class NSMutableSet : NSSet {
   convenience init(set: Set<AnyHashable>)
   convenience init(set: Set<AnyHashable>, copyItems flag: Bool)
   convenience init(array: [Any])
+}
+
+@available(*, unavailable)
+extension NSMutableSet : @unchecked Sendable {
 }
 extension NSMutableSet {
   func addObjects(from array: [Any])
@@ -186,7 +194,7 @@ extension NSMutableSet {
 }
 
 /****************	Counted Set	****************/
-class NSCountedSet : NSMutableSet {
+@_nonSendable(_assumed) class NSCountedSet : NSMutableSet {
   init(capacity numItems: Int)
   convenience init(array: [Any])
   convenience init(set: Set<AnyHashable>)
@@ -206,4 +214,8 @@ class NSCountedSet : NSMutableSet {
   convenience init(object: Any)
   convenience init(objects: UnsafePointer<AnyObject>, count cnt: Int)
   convenience init(set: Set<AnyHashable>, copyItems flag: Bool)
+}
+
+@available(*, unavailable)
+extension NSCountedSet : @unchecked Sendable {
 }

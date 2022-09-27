@@ -8,7 +8,7 @@ extension NetService {
   class let errorCode: String
   @available(iOS 2.0, *)
   class let errorDomain: String
-  enum ErrorCode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ErrorCode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -42,7 +42,7 @@ extension NetService {
     @available(swift, obsoleted: 3, renamed: "missingRequiredConfigurationError")
     static var MissingRequiredConfigurationError: NetService.ErrorCode { get }
   }
-  struct Options : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Options : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -69,7 +69,7 @@ typealias NSNetServiceOptions = NetService.Options
 @available(iOS, introduced: 2.0, deprecated: 100000, message: "Use nw_connection_t or nw_listener_t in Network framework instead")
 typealias NSNetService = NetService
 @available(iOS, introduced: 2.0, deprecated: 100000, message: "Use nw_connection_t or nw_listener_t in Network framework instead")
-class NetService : NSObject {
+@_nonSendable(_assumed) class NetService : NSObject {
   init(domain: String, type: String, name: String, port: Int32)
   convenience init(domain: String, type: String, name: String)
   func schedule(in aRunLoop: RunLoop, forMode mode: RunLoop.Mode)
@@ -117,11 +117,15 @@ class NetService : NSObject {
   func stopMonitoring()
   convenience init()
 }
+
+@available(*, unavailable)
+extension NetService : @unchecked Sendable {
+}
 @available(swift, obsoleted: 3, renamed: "NetServiceBrowser")
 @available(iOS, introduced: 2.0, deprecated: 100000, message: "Use nw_browser_t in Network framework instead")
 typealias NSNetServiceBrowser = NetServiceBrowser
 @available(iOS, introduced: 2.0, deprecated: 100000, message: "Use nw_browser_t in Network framework instead")
-class NetServiceBrowser : NSObject {
+@_nonSendable(_assumed) class NetServiceBrowser : NSObject {
   init()
   unowned(unsafe) var delegate: @sil_unmanaged NetServiceBrowserDelegate?
   @available(iOS 7.0, *)
@@ -138,6 +142,10 @@ class NetServiceBrowser : NSObject {
   @available(swift, obsoleted: 3, renamed: "searchForServices(ofType:inDomain:)")
   func searchForServicesOfType(_ type: String, inDomain domainString: String)
   func stop()
+}
+
+@available(*, unavailable)
+extension NetServiceBrowser : @unchecked Sendable {
 }
 @available(iOS 2.0, *)
 @available(swift, obsoleted: 3, renamed: "NetServiceDelegate")

@@ -1,6 +1,6 @@
 @_exported import CoreFoundation
 
-struct NSKeyValueObservingOptions : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct NSKeyValueObservingOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
@@ -23,7 +23,7 @@ struct NSKeyValueObservingOptions : OptionSet, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "prior")
   static var Prior: NSKeyValueObservingOptions { get }
 }
-enum NSKeyValueChange : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum NSKeyValueChange : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt
@@ -40,7 +40,7 @@ enum NSKeyValueChange : UInt, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "replacement")
   static var Replacement: NSKeyValueChange { get }
 }
-enum NSKeyValueSetMutationKind : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum NSKeyValueSetMutationKind : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt
@@ -131,42 +131,42 @@ extension NSSet {
   func removeObserver(_ observer: NSObject, forKeyPath keyPath: String)
 }
 extension NSObject {
-  class func willChangeValue(forKey key: String)
-  func willChangeValue(forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func willChangeValue(forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func willChangeValue(forKey key: String)
   @available(swift, obsoleted: 3, renamed: "willChangeValue(forKey:)")
-  class func willChangeValueForKey(_ key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func willChangeValueForKey(_ key: String)
   @available(swift, obsoleted: 3, renamed: "willChangeValue(forKey:)")
-  func willChangeValueForKey(_ key: String)
-  class func didChangeValue(forKey key: String)
-  func didChangeValue(forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func willChangeValueForKey(_ key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func didChangeValue(forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func didChangeValue(forKey key: String)
   @available(swift, obsoleted: 3, renamed: "didChangeValue(forKey:)")
-  class func didChangeValueForKey(_ key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func didChangeValueForKey(_ key: String)
   @available(swift, obsoleted: 3, renamed: "didChangeValue(forKey:)")
-  func didChangeValueForKey(_ key: String)
-  class func willChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
-  func willChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func didChangeValueForKey(_ key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func willChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func willChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
   @available(swift, obsoleted: 3, renamed: "willChange(_:valuesAt:forKey:)")
-  class func willChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func willChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
   @available(swift, obsoleted: 3, renamed: "willChange(_:valuesAt:forKey:)")
-  func willChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
-  class func didChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
-  func didChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func willChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func didChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func didChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String)
   @available(swift, obsoleted: 3, renamed: "didChange(_:valuesAt:forKey:)")
-  class func didChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func didChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
   @available(swift, obsoleted: 3, renamed: "didChange(_:valuesAt:forKey:)")
-  func didChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
-  class func willChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
-  func willChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func didChange(_ changeKind: NSKeyValueChange, valuesAtIndexes indexes: IndexSet, forKey key: String)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func willChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func willChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
   @available(swift, obsoleted: 3, renamed: "willChangeValue(forKey:withSetMutation:using:)")
-  class func willChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func willChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
   @available(swift, obsoleted: 3, renamed: "willChangeValue(forKey:withSetMutation:using:)")
-  func willChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
-  class func didChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
-  func didChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func willChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func didChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func didChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>)
   @available(swift, obsoleted: 3, renamed: "didChangeValue(forKey:withSetMutation:using:)")
-  class func didChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") class func didChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
   @available(swift, obsoleted: 3, renamed: "didChangeValue(forKey:withSetMutation:using:)")
-  func didChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
+  @_unavailableFromAsync(message: "Only notify of changes to a key in a synchronous context. Notifying changes across suspension points has undefined behavior.") func didChangeValueForKey(_ key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, usingObjects objects: Set<AnyHashable>)
 }
 extension NSObject {
   @available(iOS 2.0, *)

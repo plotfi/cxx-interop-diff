@@ -173,7 +173,7 @@ extension UIAccessibility {
   @available(iOS 7.0, *)
   static func requestGuidedAccessSession(enabled enable: Bool, completionHandler: @escaping (Bool) -> Void)
   @available(iOS 10.0, *)
-  struct HearingDeviceEar : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct HearingDeviceEar : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -253,7 +253,7 @@ extension NSObject {
   class func accessibilityCustomActions() -> [UIAccessibilityCustomAction]?
   class func setAccessibilityCustomActions(_ accessibilityCustomActions: [UIAccessibilityCustomAction]?)
 }
-enum UIAccessibilityScrollDirection : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIAccessibilityScrollDirection : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int

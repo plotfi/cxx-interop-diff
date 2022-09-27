@@ -5,7 +5,7 @@
 typealias UICollectionViewCellDragState = UICollectionViewCell.DragState
 extension UICollectionViewCell {
   @available(iOS 11.0, *)
-  enum DragState : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum DragState : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -21,7 +21,7 @@ extension UICollectionViewCell {
   }
 }
 @available(iOS 6.0, *)
-@MainActor class UICollectionReusableView : UIView {
+@MainActor @_nonSendable(_assumed) class UICollectionReusableView : UIView {
   var reuseIdentifier: String? { get }
   func prepareForReuse()
   func apply(_ layoutAttributes: UICollectionViewLayoutAttributes)
@@ -45,7 +45,7 @@ extension UICollectionViewCell {
 @available(iOS 15.0, *)
 typealias __UICollectionViewCellConfigurationUpdateHandler = (UICollectionViewCell, __UICellConfigurationState) -> Void
 @available(iOS 6.0, *)
-@MainActor class UICollectionViewCell : UICollectionReusableView {
+@MainActor @_nonSendable(_assumed) class UICollectionViewCell : UICollectionReusableView {
 
   /// Returns the current configuration state for the cell.
   /// To add your own custom state(s), override the getter and call super to obtain an instance with the
@@ -95,6 +95,11 @@ typealias __UICollectionViewCellConfigurationUpdateHandler = (UICollectionViewCe
   @available(iOS 11.0, *)
   func dragStateDidChange(_ dragState: UICollectionViewCell.DragState)
 
+  /// Returns a default background configuration for the cell's style.
+  /// This background configuration represents the default appearance that the cell will use.
+  @available(iOS 16.0, *)
+  func __defaultBackgroundConfiguration() -> __UIBackgroundConfiguration
+
   /// Setting a background configuration supersedes the cell's backgroundView and selectedBackgroundView. The default value is nil.
   @available(iOS 14.0, *)
   @NSCopying var __backgroundConfiguration: __UIBackgroundConfiguration?
@@ -120,6 +125,8 @@ extension UICollectionViewCell {
 extension UICollectionViewCell {
   @available(iOS 14.0, tvOS 14.0, *)
   @MainActor var backgroundConfiguration: UIBackgroundConfiguration?
+  @available(iOS 16.0, tvOS 16.0, *)
+  @MainActor func defaultBackgroundConfiguration() -> UIBackgroundConfiguration
 }
 
 @available(iOS 14.0, tvOS 14.0, *)

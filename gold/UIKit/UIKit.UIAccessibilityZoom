@@ -5,7 +5,7 @@
 typealias UIAccessibilityZoomType = UIAccessibility.ZoomType
 extension UIAccessibility {
   @available(iOS 5.0, *)
-  enum ZoomType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ZoomType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int

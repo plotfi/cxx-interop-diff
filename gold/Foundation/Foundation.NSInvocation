@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(*, unavailable, message: "NSInvocation and related APIs not available")
-class NSInvocation : NSObject {
+@_nonSendable(_assumed) class NSInvocation : NSObject {
   /*not inherited*/ init(methodSignature sig: NSMethodSignature)
   @available(*, unavailable, renamed: "init(methodSignature:)", message: "Not available in Swift")
   class func invocationWithMethodSignature(_ sig: NSMethodSignature) -> NSInvocation
@@ -22,5 +22,12 @@ class NSInvocation : NSObject {
   func invoke(withTarget target: Any)
   @available(swift, obsoleted: 3, renamed: "invoke(withTarget:)")
   func invokeWithTarget(_ target: Any)
+  func invoke(imp: IMP)
+  @available(swift, obsoleted: 3, renamed: "invoke(imp:)")
+  func invokeUsingIMP(_ imp: IMP)
   init()
+}
+
+@available(*, unavailable)
+extension NSInvocation : @unchecked Sendable {
 }

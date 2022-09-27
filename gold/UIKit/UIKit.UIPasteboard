@@ -114,7 +114,7 @@ let __UIPasteboardDetectionPatternFlightNumber: UIPasteboard.DetectionPattern
 @available(swift, obsoleted: 3, renamed: "UIPasteboard.DetectionPattern.__moneyAmount")
 let __UIPasteboardDetectionPatternMoneyAmount: UIPasteboard.DetectionPattern
 @available(iOS 3.0, *)
-class UIPasteboard : NSObject {
+@_nonSendable(_assumed) class UIPasteboard : NSObject, @unchecked Sendable {
   class var general: UIPasteboard { get }
   @available(swift, obsoleted: 3, renamed: "general")
   class var generalPasteboard: UIPasteboard { get }
@@ -202,7 +202,7 @@ class UIPasteboard : NSObject {
   /// @param patterns Detect only these patterns.
   /// @param completionHandler Receives which patterns were detected, or an error.
   @available(iOS 14.0, *)
-  func __detectPatterns(forPatterns patterns: Set<UIPasteboard.DetectionPattern>, completionHandler: @escaping @Sendable (Set<UIPasteboard.DetectionPattern>?, Error?) -> Void)
+  func __detectPatterns(forPatterns patterns: Set<UIPasteboard.DetectionPattern>, completionHandler: @escaping (Set<UIPasteboard.DetectionPattern>?, Error?) -> Void)
 
   /// Detects patterns in the first pasteboard item.
   ///
@@ -217,7 +217,7 @@ class UIPasteboard : NSObject {
   /// @param completionHandler Receives which patterns were detected, or an error.
   @available(iOS 14.0, *)
   @available(swift, obsoleted: 3, renamed: "__detectPatterns(forPatterns:completionHandler:)")
-  func __detectPatternsForPatterns(_ patterns: Set<UIPasteboard.DetectionPattern>, completionHandler: @escaping @Sendable (Set<UIPasteboard.DetectionPattern>?, Error?) -> Void)
+  func __detectPatternsForPatterns(_ patterns: Set<UIPasteboard.DetectionPattern>, completionHandler: @escaping (Set<UIPasteboard.DetectionPattern>?, Error?) -> Void)
 
   /// Detects patterns in the specified pasteboard items.
   ///
@@ -226,7 +226,7 @@ class UIPasteboard : NSObject {
   /// @param completionHandler Receives which patterns were detected per item specified,
   ///                          or an error.
   @available(iOS 14.0, *)
-  func __detectPatterns(forPatterns patterns: Set<UIPasteboard.DetectionPattern>, inItemSet itemSet: IndexSet?, completionHandler: @escaping @Sendable ([Set<UIPasteboard.DetectionPattern>]?, Error?) -> Void)
+  func __detectPatterns(forPatterns patterns: Set<UIPasteboard.DetectionPattern>, inItemSet itemSet: IndexSet?, completionHandler: @escaping ([Set<UIPasteboard.DetectionPattern>]?, Error?) -> Void)
 
   /// Detects patterns in the specified pasteboard items.
   ///
@@ -245,14 +245,14 @@ class UIPasteboard : NSObject {
   ///                          or an error.
   @available(iOS 14.0, *)
   @available(swift, obsoleted: 3, renamed: "__detectPatterns(forPatterns:inItemSet:completionHandler:)")
-  func __detectPatternsForPatterns(_ patterns: Set<UIPasteboard.DetectionPattern>, inItemSet itemSet: IndexSet?, completionHandler: @escaping @Sendable ([Set<UIPasteboard.DetectionPattern>]?, Error?) -> Void)
+  func __detectPatternsForPatterns(_ patterns: Set<UIPasteboard.DetectionPattern>, inItemSet itemSet: IndexSet?, completionHandler: @escaping ([Set<UIPasteboard.DetectionPattern>]?, Error?) -> Void)
 
   /// Detects patterns and corresponding values in the first pasteboard item.
   ///
   /// @param patterns Detect only these patterns.
   /// @param completionHandler Receives which patterns and values were detected, or an error.
   @available(iOS 14.0, *)
-  func __detectValues(forPatterns patterns: Set<UIPasteboard.DetectionPattern>, completionHandler: @escaping @Sendable ([UIPasteboard.DetectionPattern : Any]?, Error?) -> Void)
+  func __detectValues(forPatterns patterns: Set<UIPasteboard.DetectionPattern>, completionHandler: @escaping ([UIPasteboard.DetectionPattern : Any]?, Error?) -> Void)
 
   /// Detects patterns and corresponding values in the first pasteboard item.
   ///
@@ -267,7 +267,7 @@ class UIPasteboard : NSObject {
   /// @param completionHandler Receives which patterns and values were detected, or an error.
   @available(iOS 14.0, *)
   @available(swift, obsoleted: 3, renamed: "__detectValues(forPatterns:completionHandler:)")
-  func __detectValuesForPatterns(_ patterns: Set<UIPasteboard.DetectionPattern>, completionHandler: @escaping @Sendable ([UIPasteboard.DetectionPattern : Any]?, Error?) -> Void)
+  func __detectValuesForPatterns(_ patterns: Set<UIPasteboard.DetectionPattern>, completionHandler: @escaping ([UIPasteboard.DetectionPattern : Any]?, Error?) -> Void)
 
   /// Detects patterns and corresponding values in the specified pasteboard items.
   ///
@@ -276,7 +276,7 @@ class UIPasteboard : NSObject {
   /// @param completionHandler Receives which patterns and values were detected per item specified,
   ///                          or an error.
   @available(iOS 14.0, *)
-  func __detectValues(forPatterns patterns: Set<UIPasteboard.DetectionPattern>, inItemSet itemSet: IndexSet?, completionHandler: @escaping @Sendable ([[UIPasteboard.DetectionPattern : Any]]?, Error?) -> Void)
+  func __detectValues(forPatterns patterns: Set<UIPasteboard.DetectionPattern>, inItemSet itemSet: IndexSet?, completionHandler: @escaping ([[UIPasteboard.DetectionPattern : Any]]?, Error?) -> Void)
 
   /// Detects patterns and corresponding values in the specified pasteboard items.
   ///
@@ -295,7 +295,7 @@ class UIPasteboard : NSObject {
   ///                          or an error.
   @available(iOS 14.0, *)
   @available(swift, obsoleted: 3, renamed: "__detectValues(forPatterns:inItemSet:completionHandler:)")
-  func __detectValuesForPatterns(_ patterns: Set<UIPasteboard.DetectionPattern>, inItemSet itemSet: IndexSet?, completionHandler: @escaping @Sendable ([[UIPasteboard.DetectionPattern : Any]]?, Error?) -> Void)
+  func __detectValuesForPatterns(_ patterns: Set<UIPasteboard.DetectionPattern>, inItemSet itemSet: IndexSet?, completionHandler: @escaping ([[UIPasteboard.DetectionPattern : Any]]?, Error?) -> Void)
   init()
 }
 

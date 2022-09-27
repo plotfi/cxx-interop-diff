@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "NSComparisonPredicate.Options")
 typealias NSComparisonPredicateOptions = NSComparisonPredicate.Options
 extension NSComparisonPredicate {
-  struct Options : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Options : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -21,7 +21,7 @@ extension NSComparisonPredicate {
     @available(swift, obsoleted: 3, renamed: "normalized")
     static var NSNormalizedPredicateOption: NSComparisonPredicate.Options { get }
   }
-  enum Modifier : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Modifier : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -35,7 +35,7 @@ extension NSComparisonPredicate {
     @available(swift, obsoleted: 3, renamed: "any")
     static var NSAnyPredicateModifier: NSComparisonPredicate.Modifier { get }
   }
-  enum Operator : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Operator : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -92,7 +92,7 @@ typealias NSComparisonPredicateModifier = NSComparisonPredicate.Modifier
 @available(swift, obsoleted: 3, renamed: "NSComparisonPredicate.Operator")
 typealias NSPredicateOperatorType = NSComparisonPredicate.Operator
 @available(iOS 3.0, *)
-class NSComparisonPredicate : NSPredicate {
+@_nonSendable(_assumed) class NSComparisonPredicate : NSPredicate {
   @available(*, unavailable, message: "superseded by import of -[NSComparisonPredicate initWithLeftExpression:rightExpression:modifier:type:options:]")
   /*not inherited*/ init(leftExpression lhs: NSExpression, rightExpression rhs: NSExpression, modifier: NSComparisonPredicate.Modifier, type: NSComparisonPredicate.Operator, options: NSComparisonPredicate.Options = [])
   @available(*, unavailable, renamed: "init(leftExpression:rightExpression:modifier:type:options:)", message: "Not available in Swift")
@@ -111,4 +111,8 @@ class NSComparisonPredicate : NSPredicate {
   var customSelector: Selector? { get }
   var options: NSComparisonPredicate.Options { get }
   convenience init()
+}
+
+@available(*, unavailable)
+extension NSComparisonPredicate : @unchecked Sendable {
 }

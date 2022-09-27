@@ -10,7 +10,7 @@ extension NSExceptionName {
 let NSInvalidUnarchiveOperationException: NSExceptionName
 @available(iOS 7.0, *)
 let NSKeyedArchiveRootObjectKey: String
-class NSKeyedArchiver : NSCoder {
+@_nonSendable(_assumed) class NSKeyedArchiver : NSCoder {
 
   /**
    Initializes the receiver for encoding an archive, optionally disabling secure coding.
@@ -110,7 +110,11 @@ extension NSKeyedArchiver {
   @available(macOS 10.11, iOS 9.0, *)
   @nonobjc func encodeEncodable<T>(_ value: T, forKey key: String) throws where T : Encodable
 }
-class NSKeyedUnarchiver : NSCoder {
+
+@available(*, unavailable)
+extension NSKeyedArchiver : @unchecked Sendable {
+}
+@_nonSendable(_assumed) class NSKeyedUnarchiver : NSCoder {
 
   /**
    Initializes the receiver for decoding an archive previously encoded by \c NSKeyedUnarchiver.
@@ -362,6 +366,10 @@ extension NSKeyedUnarchiver {
   @nonobjc static func unarchivedDictionary<DecodedKey, DecodedObject>(ofKeyClass keyClass: DecodedKey.Type, objectClass: DecodedObject.Type, from data: Data) throws -> [DecodedKey : DecodedObject]? where DecodedKey : NSObject, DecodedKey : NSCopying, DecodedKey : NSSecureCoding, DecodedObject : NSObject, DecodedObject : NSSecureCoding
   @available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
   @nonobjc static func unarchivedDictionary(keysOfClasses keyClasses: [AnyClass], objectsOfClasses objectClasses: [AnyClass], from data: Data) throws -> [AnyHashable : Any]?
+}
+
+@available(*, unavailable)
+extension NSKeyedUnarchiver : @unchecked Sendable {
 }
 protocol NSKeyedArchiverDelegate : NSObjectProtocol {
   optional func archiver(_ archiver: NSKeyedArchiver, willEncode object: Any) -> Any?

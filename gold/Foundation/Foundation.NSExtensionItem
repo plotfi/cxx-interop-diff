@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 8.0, *)
-class NSExtensionItem : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSExtensionItem : NSObject, NSCopying, NSSecureCoding {
   @NSCopying var attributedTitle: NSAttributedString?
   @NSCopying var attributedContentText: NSAttributedString?
   var attachments: [NSItemProvider]?
@@ -14,6 +14,10 @@ class NSExtensionItem : NSObject, NSCopying, NSSecureCoding {
   @available(iOS 8.0, *)
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSExtensionItem : @unchecked Sendable {
 }
 @available(iOS 8.0, *)
 let NSExtensionItemAttributedTitleKey: String

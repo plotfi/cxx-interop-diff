@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 4.0, *)
-class NSOrthography : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSOrthography : NSObject, NSCopying, NSSecureCoding {
   var dominantScript: String { get }
   var languageMap: [String : [String]] { get }
   @available(iOS 4.0, *)
@@ -14,6 +14,10 @@ class NSOrthography : NSObject, NSCopying, NSSecureCoding {
   func copy(with zone: NSZone? = nil) -> Any
   @available(iOS 4.0, *)
   func encode(with coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSOrthography : @unchecked Sendable {
 }
 extension NSOrthography {
   @available(iOS 4.0, *)

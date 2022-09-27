@@ -5,7 +5,7 @@
 typealias UIBandSelectionInteractionState = UIBandSelectionInteraction.State
 extension UIBandSelectionInteraction {
   @available(iOS 15.0, *)
-  enum State : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum State : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -24,7 +24,7 @@ extension UIBandSelectionInteraction {
   }
 }
 @available(iOS 15.0, *)
-@MainActor class UIBandSelectionInteraction : NSObject, UIInteraction {
+@MainActor @_nonSendable(_assumed) class UIBandSelectionInteraction : NSObject, UIInteraction {
 
   /// Indicates whether the interaction is enabled. Defaults to YES.
   var isEnabled: Bool

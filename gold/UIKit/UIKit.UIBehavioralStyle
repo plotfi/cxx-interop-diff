@@ -3,7 +3,7 @@
 
 /// Behavioral Styles are values that determine how a class — such as a view or control — behaves. This includes how the control is drawn, and what behaviors it supports. For example, handling certain customizations in one style, but not another.
 @available(iOS 15.0, *)
-enum UIBehavioralStyle : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIBehavioralStyle : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt

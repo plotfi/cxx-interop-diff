@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 2.0, *)
-@MainActor class UITableViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
+@MainActor @_nonSendable(_assumed) class UITableViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
   init(style: UITableView.Style)
   init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
   init?(coder: NSCoder)
@@ -57,6 +57,36 @@
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
   @available(iOS 3.0, *)
   func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
+
+  /**
+   * @abstract Called to determine if a primary action can be performed for the row at the given indexPath.
+   * See @c tableView:performPrimaryActionForRowAtIndexPath: for more details about primary actions.
+   *
+   * @param tableView This UITableView
+   * @param indexPath NSIndexPath of the row
+   *
+   * @return `YES` if the primary action can be performed; otherwise `NO`. If not implemented defaults to `YES` when not editing
+   * and `NO` when editing.
+   */
+  @available(iOS 16.0, *)
+  func tableView(_ tableView: UITableView, canPerformPrimaryActionForRowAt indexPath: IndexPath) -> Bool
+
+  /**
+   * @abstract Called when the primary action should be performed for the row at the given indexPath.
+   *
+   * @discussion Primary actions allow you to distinguish between a change of selection (which can be based on focus changes or
+   * other indirect selection changes) and distinct user actions. Primary actions are performed when the user selects a cell without extending
+   * an existing selection. This is called after @c willSelectRow and @c didSelectRow , regardless of whether the cell's selection
+   * state was allowed to change.
+   *
+   * As an example, use @c didSelectRowAtIndexPath for updating state in the current view controller (i.e. buttons, title, etc) and
+   * use the primary action for navigation or showing another split view column.
+   *
+   * @param tableView This UITableView
+   * @param indexPath NSIndexPath of the row to perform the action on
+   */
+  @available(iOS 16.0, *)
+  func tableView(_ tableView: UITableView, performPrimaryActionForRowAt indexPath: IndexPath)
   @available(iOS 2.0, *)
   func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle
   @available(iOS 3.0, *)

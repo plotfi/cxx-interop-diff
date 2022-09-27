@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 15.0, *)
-class NSTextLineFragment : NSObject, NSSecureCoding {
+@_nonSendable(_assumed) class NSTextLineFragment : NSObject, NSSecureCoding {
   init(attributedString: NSAttributedString, range: NSRange)
   init?(coder aDecoder: NSCoder)
   convenience init(string: String, attributes: [NSAttributedString.Key : Any] = [:], range: NSRange)
@@ -27,4 +27,8 @@ class NSTextLineFragment : NSObject, NSSecureCoding {
   class var supportsSecureCoding: Bool { get }
   @available(iOS 15.0, *)
   func encode(with coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSTextLineFragment : @unchecked Sendable {
 }

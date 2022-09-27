@@ -25,7 +25,7 @@ extension UIFont.Weight {
 typealias UIImageSymbolConfiguration = UIImage.SymbolConfiguration
 extension UIImage {
   @available(iOS 13.0, *)
-  class SymbolConfiguration : UIImage.Configuration {
+  @_nonSendable(_assumed) class SymbolConfiguration : UIImage.Configuration, @unchecked Sendable {
     class var unspecified: UIImage.SymbolConfiguration { get }
     @available(swift, obsoleted: 3, renamed: "unspecified")
     class var unspecifiedConfiguration: UIImage.SymbolConfiguration { get }
@@ -71,11 +71,11 @@ extension UIImage {
     @available(iOS 15.0, *)
     @available(swift, obsoleted: 3, renamed: "preferringMulticolor()")
     class func configurationPreferringMulticolor() -> Self
-    @available(iOS, unavailable)
-    class func configurationPreferringMulticolor() -> Self
-    @available(swift, obsoleted: 3, renamed: "configurationPreferringMulticolor()")
-    @available(iOS, unavailable)
-    class func _configurationPreferringMulticolor() -> Self
+    @available(iOS 16.0, *)
+    class func preferringMonochrome() -> Self
+    @available(iOS 16.0, *)
+    @available(swift, obsoleted: 3, renamed: "preferringMonochrome()")
+    class func configurationPreferringMonochrome() -> Self
     func configurationWithoutTextStyle() -> Self
     func configurationWithoutScale() -> Self
     func configurationWithoutWeight() -> Self
@@ -88,7 +88,7 @@ extension UIImage {
     init?(coder: NSCoder)
   }
   @available(iOS 13.0, *)
-  enum SymbolScale : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SymbolScale : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -109,7 +109,7 @@ extension UIImage {
     static var UIImageSymbolScaleLarge: UIImage.SymbolScale { get }
   }
   @available(iOS 13.0, *)
-  enum SymbolWeight : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SymbolWeight : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int

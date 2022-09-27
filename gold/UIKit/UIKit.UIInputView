@@ -5,7 +5,7 @@
 typealias UIInputViewStyle = UIInputView.Style
 extension UIInputView {
   @available(iOS 7.0, *)
-  enum Style : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -18,7 +18,7 @@ extension UIInputView {
   }
 }
 @available(iOS 7.0, *)
-@MainActor class UIInputView : UIView {
+@MainActor @_nonSendable(_assumed) class UIInputView : UIView {
   var inputViewStyle: UIInputView.Style { get }
   @available(iOS 9.0, *)
   var allowsSelfSizing: Bool

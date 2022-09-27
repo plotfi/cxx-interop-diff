@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "NSItemProvider.PreferredPresentationStyle")
 typealias UIPreferredPresentationStyle = NSItemProvider.PreferredPresentationStyle
 extension NSItemProvider {
-  enum PreferredPresentationStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum PreferredPresentationStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int

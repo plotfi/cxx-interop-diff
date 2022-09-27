@@ -18,4 +18,11 @@
 
   /// Returns the current configuration of the view. Setting this property applies the new configuration to the view.
   @NSCopying var __configuration: __UIContentConfiguration { get set }
+
+  /// Whether this view is compatible with the provided configuration, meaning the view supports
+  /// it being set to the `configuration` property and is capable of updating itself for the
+  /// configuration. If not implemented, the view is assumed to be compatible with configuration
+  /// classes that match the class of the view's existing configuration.
+  @available(iOS 16.0, *)
+  optional func __supportsConfiguration(_ configuration: __UIContentConfiguration) -> Bool
 }

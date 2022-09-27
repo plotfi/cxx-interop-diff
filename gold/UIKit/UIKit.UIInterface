@@ -1,6 +1,6 @@
 @_exported import Foundation
 
-enum UIBarStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIBarStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -19,7 +19,7 @@ enum UIBarStyle : Int, @unchecked Sendable {
   static var BlackTranslucent: UIBarStyle { get }
 }
 @available(iOS 8.0, *)
-enum UIUserInterfaceSizeClass : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIUserInterfaceSizeClass : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -34,7 +34,7 @@ enum UIUserInterfaceSizeClass : Int, @unchecked Sendable {
   static var Regular: UIUserInterfaceSizeClass { get }
 }
 @available(iOS 12.0, *)
-enum UIUserInterfaceStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIUserInterfaceStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -49,7 +49,7 @@ enum UIUserInterfaceStyle : Int, @unchecked Sendable {
   static var Dark: UIUserInterfaceStyle { get }
 }
 @available(iOS 5.0, *)
-enum UIUserInterfaceLayoutDirection : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIUserInterfaceLayoutDirection : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -61,7 +61,7 @@ enum UIUserInterfaceLayoutDirection : Int, @unchecked Sendable {
   static var RightToLeft: UIUserInterfaceLayoutDirection { get }
 }
 @available(iOS 10.0, *)
-enum UITraitEnvironmentLayoutDirection : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UITraitEnvironmentLayoutDirection : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -76,7 +76,7 @@ enum UITraitEnvironmentLayoutDirection : Int, @unchecked Sendable {
   static var RightToLeft: UITraitEnvironmentLayoutDirection { get }
 }
 @available(iOS 10.0, *)
-enum UIDisplayGamut : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIDisplayGamut : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -87,7 +87,7 @@ enum UIDisplayGamut : Int, @unchecked Sendable {
   case P3
 }
 @available(iOS 13.0, *)
-enum UIAccessibilityContrast : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIAccessibilityContrast : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -102,7 +102,7 @@ enum UIAccessibilityContrast : Int, @unchecked Sendable {
   static var High: UIAccessibilityContrast { get }
 }
 @available(iOS 13.0, *)
-enum UILegibilityWeight : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UILegibilityWeight : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -117,7 +117,7 @@ enum UILegibilityWeight : Int, @unchecked Sendable {
   static var Bold: UILegibilityWeight { get }
 }
 @available(iOS 13.0, *)
-enum UIUserInterfaceLevel : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIUserInterfaceLevel : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -132,7 +132,7 @@ enum UIUserInterfaceLevel : Int, @unchecked Sendable {
   static var Elevated: UIUserInterfaceLevel { get }
 }
 @available(iOS 14.0, *)
-enum UIUserInterfaceActiveAppearance : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIUserInterfaceActiveAppearance : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -145,6 +145,23 @@ enum UIUserInterfaceActiveAppearance : Int, @unchecked Sendable {
   case active
   @available(swift, obsoleted: 3, renamed: "active")
   static var Active: UIUserInterfaceActiveAppearance { get }
+}
+@_nonSendable(_assumed) enum UINSToolbarItemPresentationSize : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+  case unspecified
+  @available(swift, obsoleted: 3, renamed: "unspecified")
+  static var Unspecified: UINSToolbarItemPresentationSize { get }
+  case regular
+  @available(swift, obsoleted: 3, renamed: "regular")
+  static var Regular: UINSToolbarItemPresentationSize { get }
+  case small
+  @available(swift, obsoleted: 3, renamed: "small")
+  static var Small: UINSToolbarItemPresentationSize { get }
+  case large
+  @available(swift, obsoleted: 3, renamed: "large")
+  static var Large: UINSToolbarItemPresentationSize { get }
 }
 extension UIColor {
   @available(iOS 7.0, *)

@@ -18,7 +18,7 @@
   func unmarkText()
 }
 @available(iOS 8.0, *)
-@MainActor class UIInputViewController : UIViewController, UITextInputDelegate {
+@MainActor @_nonSendable(_assumed) class UIInputViewController : UIViewController, UITextInputDelegate {
   var inputView: UIInputView?
   var textDocumentProxy: UITextDocumentProxy { get }
   var primaryLanguage: String?
@@ -34,10 +34,10 @@
   @available(iOS 10.0, *)
   @available(swift, obsoleted: 3, renamed: "handleInputModeList(from:with:)")
   func handleInputModeListFromView(_ view: UIView, withEvent event: UIEvent)
-  func requestSupplementaryLexicon(completion completionHandler: @escaping @Sendable (UILexicon) -> Void)
+  func requestSupplementaryLexicon(completion completionHandler: @escaping (UILexicon) -> Void)
   func requestSupplementaryLexicon() async -> UILexicon
   @available(swift, obsoleted: 3, renamed: "requestSupplementaryLexicon(completion:)")
-  func requestSupplementaryLexiconWithCompletion(_ completionHandler: @escaping @Sendable (UILexicon) -> Void)
+  func requestSupplementaryLexiconWithCompletion(_ completionHandler: @escaping (UILexicon) -> Void)
   init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
   init?(coder: NSCoder)
   convenience init()

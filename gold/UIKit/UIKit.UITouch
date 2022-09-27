@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UITouch.Phase")
 typealias UITouchPhase = UITouch.Phase
 extension UITouch {
-  enum Phase : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Phase : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -39,7 +39,7 @@ extension UITouch {
     static var RegionExited: UITouch.Phase { get }
   }
   @available(iOS 9.0, *)
-  enum TouchType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum TouchType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -63,7 +63,7 @@ extension UITouch {
     static var IndirectPointer: UITouch.TouchType { get }
   }
   @available(iOS 9.1, *)
-  struct Properties : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Properties : OptionSet, @unchecked Sendable {
     init(rawValue: Int)
     let rawValue: Int
     typealias RawValue = Int
@@ -83,7 +83,7 @@ extension UITouch {
     static var Location: UITouch.Properties { get }
   }
 }
-enum UIForceTouchCapability : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIForceTouchCapability : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -104,7 +104,7 @@ typealias UITouchType = UITouch.TouchType
 @available(swift, obsoleted: 4.2, renamed: "UITouch.Properties")
 typealias UITouchProperties = UITouch.Properties
 @available(iOS 2.0, *)
-@MainActor class UITouch : NSObject {
+@MainActor @_nonSendable(_assumed) class UITouch : NSObject {
   var timestamp: TimeInterval { get }
   var phase: UITouch.Phase { get }
   var tapCount: Int { get }

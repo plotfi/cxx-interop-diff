@@ -5,7 +5,7 @@
 typealias UIApplicationShortcutIconType = UIApplicationShortcutIcon.IconType
 extension UIApplicationShortcutIcon {
   @available(iOS 9.0, *)
-  enum IconType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum IconType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -143,7 +143,7 @@ extension UIApplicationShortcutIcon {
   }
 }
 @available(iOS 9.0, *)
-class UIApplicationShortcutIcon : NSObject, NSCopying {
+@_nonSendable(_assumed) class UIApplicationShortcutIcon : NSObject, NSCopying {
   convenience init(type: UIApplicationShortcutIcon.IconType)
   @available(*, unavailable, renamed: "init(type:)", message: "Not available in Swift")
   class func iconWithType(_ type: UIApplicationShortcutIcon.IconType) -> Self
@@ -157,8 +157,12 @@ class UIApplicationShortcutIcon : NSObject, NSCopying {
   @available(iOS 9.0, *)
   func copy(with zone: NSZone? = nil) -> Any
 }
+
+@available(*, unavailable)
+extension UIApplicationShortcutIcon : @unchecked Sendable {
+}
 @available(iOS 9.0, *)
-class UIApplicationShortcutItem : NSObject, NSCopying, NSMutableCopying {
+@_nonSendable(_assumed) class UIApplicationShortcutItem : NSObject, NSCopying, NSMutableCopying {
   @available(*, unavailable)
   convenience init()
   init(type: String, localizedTitle: String, localizedSubtitle: String?, icon: UIApplicationShortcutIcon?, userInfo: [String : NSSecureCoding]? = nil)
@@ -174,8 +178,12 @@ class UIApplicationShortcutItem : NSObject, NSCopying, NSMutableCopying {
   @available(iOS 9.0, *)
   func mutableCopy(with zone: NSZone? = nil) -> Any
 }
+
+@available(*, unavailable)
+extension UIApplicationShortcutItem : @unchecked Sendable {
+}
 @available(iOS 9.0, *)
-class UIMutableApplicationShortcutItem : UIApplicationShortcutItem {
+@_nonSendable(_assumed) class UIMutableApplicationShortcutItem : UIApplicationShortcutItem {
   var type: String
   var localizedTitle: String
   var localizedSubtitle: String?
@@ -186,4 +194,8 @@ class UIMutableApplicationShortcutItem : UIApplicationShortcutItem {
   convenience init()
   init(type: String, localizedTitle: String, localizedSubtitle: String?, icon: UIApplicationShortcutIcon?, userInfo: [String : NSSecureCoding]? = nil)
   convenience init(type: String, localizedTitle: String)
+}
+
+@available(*, unavailable)
+extension UIMutableApplicationShortcutItem : @unchecked Sendable {
 }

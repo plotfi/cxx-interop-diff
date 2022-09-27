@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-@MainActor class UIBarAppearance : NSObject, NSCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UIBarAppearance : NSObject, NSCopying, NSSecureCoding {
 
   /// Constructs a new bar appearance, configured with default values and targeting the device idiom.
   convenience init()

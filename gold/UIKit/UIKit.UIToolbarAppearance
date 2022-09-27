@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-@MainActor class UIToolbarAppearance : UIBarAppearance {
+@MainActor @_nonSendable(_assumed) class UIToolbarAppearance : UIBarAppearance {
 
   /// The appearance for plain-style bar button items
   @NSCopying var buttonAppearance: UIBarButtonItemAppearance

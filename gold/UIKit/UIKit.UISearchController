@@ -1,5 +1,44 @@
 @_exported import Foundation
 
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UISearchController.ScopeBarActivation")
+typealias UISearchControllerScopeBarActivation = UISearchController.ScopeBarActivation
+extension UISearchController {
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) enum ScopeBarActivation : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+
+    /// System-defined automatic showing and hiding of the scope bar
+    case automatic
+
+    /// System-defined automatic showing and hiding of the scope bar
+    @available(swift, obsoleted: 3, renamed: "automatic")
+    static var Automatic: UISearchController.ScopeBarActivation { get }
+
+    /// Showing and hiding the scope bar will be controlled by client code through the `showsScopeBar` API on the UISearchController's `searchBar`
+    case manual
+
+    /// Showing and hiding the scope bar will be controlled by client code through the `showsScopeBar` API on the UISearchController's `searchBar`
+    @available(swift, obsoleted: 3, renamed: "manual")
+    static var Manual: UISearchController.ScopeBarActivation { get }
+
+    /// The search controller shows the scope bar when typing begins in the search field, and hides it when search is cancelled
+    case onTextEntry
+
+    /// The search controller shows the scope bar when typing begins in the search field, and hides it when search is cancelled
+    @available(swift, obsoleted: 3, renamed: "onTextEntry")
+    static var OnTextEntry: UISearchController.ScopeBarActivation { get }
+
+    /// The search controller shows the scope bar when search becomes active, and hides it when search is cancelled
+    case onSearchActivation
+
+    /// The search controller shows the scope bar when search becomes active, and hides it when search is cancelled
+    @available(swift, obsoleted: 3, renamed: "onSearchActivation")
+    static var OnSearchActivation: UISearchController.ScopeBarActivation { get }
+  }
+}
 @MainActor protocol UISearchControllerDelegate : NSObjectProtocol {
   @available(iOS 8.0, *)
   optional func willPresentSearchController(_ searchController: UISearchController)
@@ -11,20 +50,30 @@
   optional func didDismissSearchController(_ searchController: UISearchController)
   @available(iOS 8.0, *)
   optional func presentSearchController(_ searchController: UISearchController)
+  @available(iOS 16.0, *)
+  optional func searchController(_ searchController: UISearchController, willChangeTo newPlacement: UINavigationItem.SearchBarPlacement)
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "searchController(_:willChangeTo:)")
+  optional func searchController(_ searchController: UISearchController, willChangeToSearchBarPlacement newPlacement: UINavigationItem.SearchBarPlacement)
+  @available(iOS 16.0, *)
+  optional func searchController(_ searchController: UISearchController, didChangeFrom previousPlacement: UINavigationItem.SearchBarPlacement)
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "searchController(_:didChangeFrom:)")
+  optional func searchController(_ searchController: UISearchController, didChangeFromSearchBarPlacement previousPlacement: UINavigationItem.SearchBarPlacement)
 }
 @MainActor protocol UISearchResultsUpdating : NSObjectProtocol {
   @available(iOS 8.0, *)
   func updateSearchResults(for searchController: UISearchController)
   @available(swift, obsoleted: 3, renamed: "updateSearchResults(for:)")
   func updateSearchResultsForSearchController(_ searchController: UISearchController)
-  @available(iOS, unavailable)
+  @available(iOS 16.0, *)
   optional func updateSearchResults(for searchController: UISearchController, selecting searchSuggestion: UISearchSuggestion)
+  @available(iOS 16.0, *)
   @available(swift, obsoleted: 3, renamed: "updateSearchResults(for:selecting:)")
-  @available(iOS, unavailable)
   optional func updateSearchResultsForSearchController(_ searchController: UISearchController, selectingSearchSuggestion searchSuggestion: UISearchSuggestion)
 }
 @available(iOS 8.0, *)
-@MainActor class UISearchController : UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
+@MainActor @_nonSendable(_assumed) class UISearchController : UIViewController, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
   init(searchResultsController: UIViewController?)
   init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
   init?(coder: NSCoder)
@@ -40,16 +89,43 @@
   var hidesNavigationBarDuringPresentation: Bool
   var searchResultsController: UIViewController? { get }
   var searchBar: UISearchBar { get }
+  @available(iOS 16.0, *)
+  var searchBarPlacement: UINavigationItem.SearchBarPlacement { get }
   @available(iOS 13.0, *)
   var automaticallyShowsSearchResultsController: Bool
   @available(iOS 13.0, *)
   var showsSearchResultsController: Bool
   @available(iOS 13.0, *)
   var automaticallyShowsCancelButton: Bool
-  @available(iOS 13.0, *)
+  @available(iOS, introduced: 13.0, deprecated: 100000, message: "Use scopeBarActivation instead")
   var automaticallyShowsScopeBar: Bool
-  @available(iOS, unavailable)
+
+  /// Controls if and when the UISearchController shows and hides the scope bar
+  /// However, UISearchBar will not show the scope bar if `scopeButtonTitles` contains fewer than two titles
+  /// Defaults to `UISearchControllerScopeBarActivationAutomatic`
+  /// `UISearchControllerScopeBarActivationAutomatic` is equivalent to earlier `automaticallyShowsScopeBar == YES`
+  /// `UISearchControllerScopeBarActivationManual` is equivalent to earlier `automaticallyShowsScopeBar == NO`
+  /// Similar to the behavior of `automaticallyShowsScopeBar`, setting the `showsScopeBar` property on the `searchController`'s `searchBar`
+  /// will change `scopeBarActivation` to `UISearchControllerScopeBarActivationManual`
+  @available(iOS 16.0, *)
+  var scopeBarActivation: UISearchController.ScopeBarActivation
+
+  /// List of search hint objects to be displayed under keyboard on tvOS,
+  /// as a menu under the search field when the search bar is placed inline on iOS 16,
+  /// or as a list in front of the searchResultsController when the search bar is stacked.
+  /// Assigning with new array immediately updates the list on screen.
+  /// searchSuggestions is set to nil when user interaction selects a suggestion,
+  /// or when the user otherwise interacts with search (e.g., typing in the search field, choosing a different search scope, canceling search)
+  /// after dismissing the menu by tapping outside
+  @available(iOS 16.0, *)
   var searchSuggestions: [UISearchSuggestion]?
+
+  /// Default NO. When YES, the UISearchController will not create its internal child view controller
+  /// for presenting the list of search suggestions when the searchBarPlacement is stacked.
+  /// This property is intended to be set at the time that the search controller is initialized.
+  /// If set after that point, the internal view controller will not be destroyed, but its view will be hidden and remain so.
+  @available(iOS 16.0, *)
+  var ignoresSearchSuggestionsForSearchBarPlacementStacked: Bool
   @available(iOS, unavailable)
   var searchControllerObservedScrollView: UIScrollView?
   convenience init()

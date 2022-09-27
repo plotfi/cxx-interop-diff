@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 2.0, *)
-@MainActor class UIPickerView : UIView, NSCoding {
+@MainActor @_nonSendable(_assumed) class UIPickerView : UIView, NSCoding {
   weak var dataSource: @sil_weak UIPickerViewDataSource?
   weak var delegate: @sil_weak UIPickerViewDelegate?
   @available(iOS, introduced: 2.0, deprecated: 13.0, message: "This property has no effect on iOS 7 and later.")

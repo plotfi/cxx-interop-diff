@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-@MainActor class UISceneConfiguration : NSObject, NSCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UISceneConfiguration : NSObject, NSCopying, NSSecureCoding {
   @available(*, unavailable, message: "superseded by import of -[UISceneConfiguration initWithName:sessionRole:]")
   convenience init(name: String?, sessionRole: UISceneSession.Role)
   @available(*, unavailable, renamed: "init(name:sessionRole:)", message: "Not available in Swift")
@@ -22,7 +22,7 @@
   init?(coder: NSCoder)
 }
 @available(iOS 13.0, *)
-@MainActor class UISceneSession : NSObject, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UISceneSession : NSObject, NSSecureCoding {
   @available(*, unavailable)
   class func new() -> Self
   @available(*, unavailable)

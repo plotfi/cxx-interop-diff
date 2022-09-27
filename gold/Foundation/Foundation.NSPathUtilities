@@ -55,7 +55,7 @@ func NSOpenStepRootDirectory() -> String
 @available(swift, obsoleted: 3, renamed: "FileManager.SearchPathDirectory")
 typealias NSSearchPathDirectory = FileManager.SearchPathDirectory
 extension FileManager {
-  enum SearchPathDirectory : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SearchPathDirectory : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -162,7 +162,7 @@ extension FileManager {
     @available(swift, obsoleted: 3, renamed: "trashDirectory")
     static var TrashDirectory: FileManager.SearchPathDirectory { get }
   }
-  struct SearchPathDomainMask : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct SearchPathDomainMask : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt

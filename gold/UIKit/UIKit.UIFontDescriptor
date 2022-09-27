@@ -5,7 +5,7 @@
 typealias UIFontDescriptorSymbolicTraits = UIFontDescriptor.SymbolicTraits
 extension UIFontDescriptor {
   @available(iOS 7.0, *)
-  struct SymbolicTraits : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct SymbolicTraits : OptionSet, @unchecked Sendable {
     init(rawValue: UInt32)
     let rawValue: UInt32
     typealias RawValue = UInt32
@@ -126,6 +126,12 @@ extension UIFont {
     let rawValue: CGFloat
     typealias RawValue = CGFloat
   }
+  struct Width : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+    init(_ rawValue: CGFloat)
+    init(rawValue: CGFloat)
+    let rawValue: CGFloat
+    typealias RawValue = CGFloat
+  }
 }
 @available(swift, obsoleted: 3, renamed: "UIFontDescriptor.AttributeName")
 typealias UIFontDescriptorAttributeName = UIFontDescriptor.AttributeName
@@ -135,6 +141,8 @@ typealias UIFontDescriptorTraitKey = UIFontDescriptor.TraitKey
 typealias UIFontDescriptorFeatureKey = UIFontDescriptor.FeatureKey
 @available(swift, obsoleted: 3, renamed: "UIFont.Weight")
 typealias UIFontWeight = UIFont.Weight
+@available(swift, obsoleted: 3, renamed: "UIFont.Width")
+typealias UIFontWidth = UIFont.Width
 @available(swift, obsoleted: 3, renamed: "UIFontDescriptor.SystemDesign")
 typealias UIFontDescriptorSystemDesign = UIFontDescriptor.SystemDesign
 @available(iOS 13.0, *)
@@ -160,7 +168,7 @@ let UIFontDescriptorSystemDesignSerif: UIFontDescriptor.SystemDesign
 @available(swift, obsoleted: 3, renamed: "UIFontDescriptor.SystemDesign.monospaced")
 let UIFontDescriptorSystemDesignMonospaced: UIFontDescriptor.SystemDesign
 @available(iOS 7.0, *)
-class UIFontDescriptor : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class UIFontDescriptor : NSObject, NSCopying, NSSecureCoding, @unchecked Sendable {
   convenience init()
   init?(coder: NSCoder)
   var postscriptName: String { get }
@@ -429,6 +437,28 @@ let UIFontWeightHeavy: UIFont.Weight
 @available(iOS 8.2, *)
 @available(swift, obsoleted: 3, renamed: "UIFont.Weight.black")
 let UIFontWeightBlack: UIFont.Weight
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIFont.Width.condensed")
+let UIFontWidthCondensed: UIFont.Width
+extension UIFont.Width {
+  @available(iOS 16.0, *)
+  static let condensed: UIFont.Width
+  @available(iOS 16.0, *)
+  static let standard: UIFont.Width
+  @available(iOS 16.0, *)
+  static let expanded: UIFont.Width
+  @available(iOS 16.0, *)
+  static let compressed: UIFont.Width
+}
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIFont.Width.standard")
+let UIFontWidthStandard: UIFont.Width
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIFont.Width.expanded")
+let UIFontWidthExpanded: UIFont.Width
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIFont.Width.compressed")
+let UIFontWidthCompressed: UIFont.Width
 @available(swift, obsoleted: 3, renamed: "UIFontDescriptor.FeatureKey.featureIdentifier")
 @available(iOS, introduced: 7.0, deprecated: 15.0)
 let UIFontFeatureTypeIdentifierKey: UIFontDescriptor.FeatureKey

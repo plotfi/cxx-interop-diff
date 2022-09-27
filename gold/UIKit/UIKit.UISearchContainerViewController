@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 9.1, *)
-@MainActor class UISearchContainerViewController : UIViewController {
+@MainActor @_nonSendable(_assumed) class UISearchContainerViewController : UIViewController {
   var searchController: UISearchController { get }
   init(searchController: UISearchController)
   init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)

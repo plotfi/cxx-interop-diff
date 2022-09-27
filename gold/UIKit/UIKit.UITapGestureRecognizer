@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 3.2, *)
-@MainActor class UITapGestureRecognizer : UIGestureRecognizer {
+@MainActor @_nonSendable(_assumed) class UITapGestureRecognizer : UIGestureRecognizer {
   var numberOfTapsRequired: Int
   var numberOfTouchesRequired: Int
   @available(iOS 13.4, *)

@@ -31,17 +31,17 @@ extension Progress {
     typealias RawValue = String
     typealias _ObjectiveCType = NSString
   }
-  typealias UnpublishingHandler = () -> Void
-  typealias PublishingHandler = (Progress) -> Progress.UnpublishingHandler?
+  typealias UnpublishingHandler = @Sendable () -> Void
+  typealias PublishingHandler = @Sendable (Progress) -> Progress.UnpublishingHandler?
 }
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "Progress")
 typealias NSProgress = Progress
 @available(iOS 7.0, *)
-class Progress : NSObject {
-  class func current() -> Progress?
+@_nonSendable(_assumed) class Progress : NSObject, @unchecked Sendable {
+  @_unavailableFromAsync(message: "Progress for the current thread cannot be used in async contexts.") class func current() -> Progress?
   @available(swift, obsoleted: 3, renamed: "current()")
-  class func currentProgress() -> Progress?
+  @_unavailableFromAsync(message: "Progress for the current thread cannot be used in async contexts.") class func currentProgress() -> Progress?
   /*not inherited*/ init(totalUnitCount unitCount: Int64)
   @available(*, unavailable, renamed: "init(totalUnitCount:)", message: "Not available in Swift")
   class func progressWithTotalUnitCount(_ unitCount: Int64) -> Progress
@@ -56,15 +56,15 @@ class Progress : NSObject {
   @available(*, unavailable, renamed: "init(totalUnitCount:parent:pendingUnitCount:)", message: "Not available in Swift")
   class func progressWithTotalUnitCount(_ unitCount: Int64, parent: Progress, pendingUnitCount portionOfParentTotalUnitCount: Int64) -> Progress
   init(parent parentProgressOrNil: Progress?, userInfo userInfoOrNil: [ProgressUserInfoKey : Any]? = nil)
-  func becomeCurrent(withPendingUnitCount unitCount: Int64)
+  @_unavailableFromAsync(message: "Progress for the current thread cannot be used in async contexts.") func becomeCurrent(withPendingUnitCount unitCount: Int64)
   @available(swift, obsoleted: 3, renamed: "becomeCurrent(withPendingUnitCount:)")
-  func becomeCurrentWithPendingUnitCount(_ unitCount: Int64)
+  @_unavailableFromAsync(message: "Progress for the current thread cannot be used in async contexts.") func becomeCurrentWithPendingUnitCount(_ unitCount: Int64)
   @available(iOS 11.0, *)
   func __performAsCurrent(withPendingUnitCount unitCount: Int64, using work: () -> Void)
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "__performAsCurrent(withPendingUnitCount:using:)")
   func __performAsCurrentWithPendingUnitCount(_ unitCount: Int64, usingBlock work: () -> Void)
-  func resignCurrent()
+  @_unavailableFromAsync(message: "Progress for the current thread cannot be used in async contexts.") func resignCurrent()
   @available(iOS 9.0, *)
   func addChild(_ child: Progress, withPendingUnitCount inUnitCount: Int64)
   var totalUnitCount: Int64
@@ -83,10 +83,10 @@ class Progress : NSObject {
   var isPaused: Bool { get }
   @available(swift, obsoleted: 3, renamed: "isPaused")
   var paused: Bool { get }
-  var cancellationHandler: (() -> Void)?
-  var pausingHandler: (() -> Void)?
+  var cancellationHandler: (@Sendable () -> Void)?
+  var pausingHandler: (@Sendable () -> Void)?
   @available(iOS 9.0, *)
-  var resumingHandler: (() -> Void)?
+  var resumingHandler: (@Sendable () -> Void)?
   func setUserInfoObject(_ objectOrNil: Any?, forKey key: ProgressUserInfoKey)
   var isIndeterminate: Bool { get }
   @available(swift, obsoleted: 3, renamed: "isIndeterminate")

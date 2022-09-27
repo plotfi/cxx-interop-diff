@@ -1,3 +1,4 @@
+@_exported import CoreFoundation
 @_exported import CoreGraphics.CGAffineTransform
 @_exported import CoreGraphics.CGBase
 @_exported import CoreGraphics.CGBitmapContext
@@ -31,6 +32,7 @@
 @_exported import CoreGraphics.CGShading
 import Darwin
 import _Concurrency
+import _StringProcessing
 
 @available(*, unavailable, message: "Use truncatingRemainder instead")
 @_transparent func % (lhs: CGFloat, rhs: CGFloat) -> CGFloat
@@ -130,159 +132,6 @@ var CGFLOAT_MAX: CGFloat { get }
 
 @available(*, unavailable, renamed: "CGFloat.leastNormalMagnitude")
 var CGFLOAT_MIN: CGFloat { get }
-
-@frozen struct CGFloat {
-  /// The native type used to store the CGFloat, which is Float on
-  /// 32-bit architectures and Double on 64-bit architectures.
-  typealias NativeType = Double
-  @_transparent init()
-  @_transparent init(_ value: Float)
-  @_transparent init(_ value: Double)
-  @_transparent init(_ value: CGFloat)
-  /// The native value.
-  var native: CGFloat.NativeType
-}
-
-extension CGFloat : SignedNumeric {
-  @_alwaysEmitIntoClient init<T>(_ source: T) where T : BinaryInteger
-  @_transparent init?<T>(exactly source: T) where T : BinaryInteger
-  @_transparent var magnitude: CGFloat { get }
-  typealias IntegerLiteralType = Int
-  typealias Magnitude = CGFloat
-}
-
-extension CGFloat : BinaryFloatingPoint {
-  typealias RawSignificand = UInt
-  typealias Exponent = Int
-  @_transparent static var exponentBitCount: Int { get }
-  @_transparent static var significandBitCount: Int { get }
-  @_transparent var bitPattern: UInt { get }
-  @_transparent init(bitPattern: UInt)
-  @_transparent var sign: FloatingPointSign { get }
-  @_transparent var exponentBitPattern: UInt { get }
-  @_transparent var significandBitPattern: UInt { get }
-  @_transparent init(sign: FloatingPointSign, exponentBitPattern: UInt, significandBitPattern: UInt)
-  @_transparent init(nan payload: CGFloat.RawSignificand, signaling: Bool)
-  @_transparent static var infinity: CGFloat { get }
-  @_transparent static var nan: CGFloat { get }
-  @_transparent static var signalingNaN: CGFloat { get }
-  @available(*, unavailable, renamed: "nan")
-  static var quietNaN: CGFloat { get }
-  @_transparent static var greatestFiniteMagnitude: CGFloat { get }
-  @_transparent static var pi: CGFloat { get }
-  @_transparent var ulp: CGFloat { get }
-  @_transparent static var leastNormalMagnitude: CGFloat { get }
-  @_transparent static var leastNonzeroMagnitude: CGFloat { get }
-  @_transparent var exponent: Int { get }
-  @_transparent var significand: CGFloat { get }
-  @_transparent init(sign: FloatingPointSign, exponent: Int, significand: CGFloat)
-  @_transparent mutating func round(_ rule: FloatingPointRoundingRule)
-  @_transparent var nextUp: CGFloat { get }
-  @_transparent mutating func negate()
-  @_transparent static func += (lhs: inout CGFloat, rhs: CGFloat)
-  @_transparent static func -= (lhs: inout CGFloat, rhs: CGFloat)
-  @_transparent static func *= (lhs: inout CGFloat, rhs: CGFloat)
-  @_transparent static func /= (lhs: inout CGFloat, rhs: CGFloat)
-  @_transparent mutating func formTruncatingRemainder(dividingBy other: CGFloat)
-  @_transparent mutating func formRemainder(dividingBy other: CGFloat)
-  @_transparent mutating func formSquareRoot()
-  @_transparent mutating func addProduct(_ lhs: CGFloat, _ rhs: CGFloat)
-  @_transparent func isEqual(to other: CGFloat) -> Bool
-  @_transparent func isLess(than other: CGFloat) -> Bool
-  @_transparent func isLessThanOrEqualTo(_ other: CGFloat) -> Bool
-  @_transparent var isNormal: Bool { get }
-  @_transparent var isFinite: Bool { get }
-  @_transparent var isZero: Bool { get }
-  @_transparent var isSubnormal: Bool { get }
-  @_transparent var isInfinite: Bool { get }
-  @_transparent var isNaN: Bool { get }
-  @_transparent var isSignalingNaN: Bool { get }
-  @available(*, unavailable, renamed: "isSignalingNaN")
-  var isSignaling: Bool { get }
-  @_transparent var isCanonical: Bool { get }
-  @_transparent var floatingPointClass: FloatingPointClassification { get }
-  @_transparent var binade: CGFloat { get }
-  @_transparent var significandWidth: Int { get }
-  /// Create an instance initialized to `value`.
-  @_transparent init(floatLiteral value: CGFloat.NativeType)
-  /// Create an instance initialized to `value`.
-  @_transparent init(integerLiteral value: Int)
-  typealias FloatLiteralType = CGFloat.NativeType
-  typealias RawExponent = UInt
-}
-
-extension CGFloat {
-  @available(*, unavailable, renamed: "leastNormalMagnitude")
-  static var min: CGFloat { get }
-  @available(*, unavailable, renamed: "greatestFiniteMagnitude")
-  static var max: CGFloat { get }
-}
-
-extension CGFloat : CustomReflectable {
-  /// Returns a mirror that reflects `self`.
-  var customMirror: Mirror { get }
-}
-
-extension CGFloat : CustomStringConvertible {
-  /// A textual representation of `self`.
-  @_transparent var description: String { get }
-}
-
-extension CGFloat : Hashable {
-  /// The hash value.
-  ///
-  /// **Axiom:** `x == y` implies `x.hashValue == y.hashValue`
-  ///
-  /// - Note: the hash value is not guaranteed to be stable across
-  ///   different invocations of the same program.  Do not persist the
-  ///   hash value across program runs.
-  @_transparent var hashValue: Int { get }
-  /// Hashes the essential components of this value by feeding them into the
-  /// given hasher.
-  ///
-  /// - Parameter hasher: The hasher to use when combining the components
-  ///   of this instance.
-  @inlinable @_transparent func hash(into hasher: inout Hasher)
-  @_alwaysEmitIntoClient @inlinable func _rawHashValue(seed: Int) -> Int
-}
-
-extension CGFloat {
-  @_transparent static func + (lhs: CGFloat, rhs: CGFloat) -> CGFloat
-  @_transparent static func - (lhs: CGFloat, rhs: CGFloat) -> CGFloat
-  @_transparent static func * (lhs: CGFloat, rhs: CGFloat) -> CGFloat
-  @_transparent static func / (lhs: CGFloat, rhs: CGFloat) -> CGFloat
-}
-
-extension CGFloat : Strideable {
-  /// Returns a stride `x` such that `self.advanced(by: x)` approximates
-  /// `other`.
-  ///
-  /// - Complexity: O(1).
-  @_transparent func distance(to other: CGFloat) -> CGFloat
-  /// Returns a `Self` `x` such that `self.distance(to: x)` approximates
-  /// `n`.
-  ///
-  /// - Complexity: O(1).
-  @_transparent func advanced(by amount: CGFloat) -> CGFloat
-  typealias Stride = CGFloat
-}
-
-extension CGFloat : _CVarArgPassedAsDouble, _CVarArgAligned {
-  /// Transform `self` into a series of machine words that can be
-  /// appropriately interpreted by C varargs
-  @_transparent var _cVarArgEncoding: [Int] { get }
-  /// Return the required alignment in bytes of
-  /// the value returned by `_cVarArgEncoding`.
-  @_transparent var _cVarArgAlignment: Int { get }
-}
-
-extension CGFloat : Codable {
-  @_transparent init(from decoder: Decoder) throws
-  @_transparent func encode(to encoder: Encoder) throws
-}
-
-extension CGFloat : Sendable {
-}
 
 @available(*, unavailable, renamed: "CGGetLastMouseDelta")
 func CGGetLastMouseDelta(_ deltaX: UnsafeMutablePointer<Int32>?, _ deltaY: UnsafeMutablePointer<Int32>?)
@@ -385,6 +234,12 @@ protocol _CGColorInitTrampoline {
 extension _CGColorInitTrampoline {
   init(_colorLiteralRed red: Float, green: Float, blue: Float, alpha: Float)
 }
+
+@_alwaysEmitIntoClient func __CGAffineTransformMake(_ a: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat, _ tx: CGFloat, _ ty: CGFloat) -> CGAffineTransform
+
+@_alwaysEmitIntoClient func __CGPointApplyAffineTransform(_ point: CGPoint, _ t: CGAffineTransform) -> CGPoint
+
+@_alwaysEmitIntoClient func __CGSizeApplyAffineTransform(_ size: CGSize, _ t: CGAffineTransform) -> CGSize
 
 @_transparent func acos(_ x: CGFloat) -> CGFloat
 
@@ -506,52 +361,11 @@ func signbit(_ value: CGFloat) -> Int
 
 @_transparent func yn(_ n: Int, _ x: CGFloat) -> CGFloat
 
-extension UInt8 {
-  @_transparent init(_ value: CGFloat)
-}
-
-extension Int8 {
-  @_transparent init(_ value: CGFloat)
-}
-
-extension UInt16 {
-  @_transparent init(_ value: CGFloat)
-}
-
-extension Int16 {
-  @_transparent init(_ value: CGFloat)
-}
-
-extension UInt32 {
-  @_transparent init(_ value: CGFloat)
-}
-
-extension Int32 {
-  @_transparent init(_ value: CGFloat)
-}
-
-extension UInt64 {
-  @_transparent init(_ value: CGFloat)
-}
-
-extension Int64 {
-  @_transparent init(_ value: CGFloat)
-}
-
-extension UInt {
-  @_transparent init(_ value: CGFloat)
-}
-
-extension Int {
-  @_transparent init(_ value: CGFloat)
-}
-
-extension Double {
-  @_transparent init(_ value: CGFloat)
-}
-
-extension Float {
-  @_transparent init(_ value: CGFloat)
+extension CGFloat {
+  @available(*, unavailable, renamed: "leastNormalMagnitude")
+  static var min: CGFloat { get }
+  @available(*, unavailable, renamed: "greatestFiniteMagnitude")
+  static var max: CGFloat { get }
 }
 
 extension CGAffineTransform : Equatable {
@@ -566,8 +380,14 @@ extension CGColor {
 extension CGColor : _CGColorInitTrampoline, _ExpressibleByColorLiteral {
 }
 
+extension CGColor : @unchecked Sendable {
+}
+
 extension CGColorSpace {
   var colorTable: [UInt8]? { get }
+}
+
+extension CGColorSpace : @unchecked Sendable {
 }
 
 extension CGContext {
@@ -724,6 +544,9 @@ extension CGImage {
   func copy(maskingColorComponents components: [CGFloat]) -> CGImage?
 }
 
+extension CGImage : @unchecked Sendable {
+}
+
 extension CGContext {
   func draw(_ layer: CGLayer, in rect: CGRect)
   func draw(_ layer: CGLayer, at point: CGPoint)
@@ -749,6 +572,199 @@ extension CGMutablePath {
   func addArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool, transform: CGAffineTransform = .identity)
   func addArc(tangent1End: CGPoint, tangent2End: CGPoint, radius: CGFloat, transform: CGAffineTransform = .identity)
   func addPath(_ path: CGPath, transform: CGAffineTransform = .identity)
+}
+
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+extension CGPath {
+  /// Returns a new path with filled regions in either this path or the given path.
+  /// - Parameters:
+  ///   - other: The path to union.
+  ///   - rule: The rule for determining which areas to treat as the interior of the paths.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The filled region of resulting path is the combination of the filled region of both paths added together.
+  ///
+  /// Any unclosed subpaths in either path are assumed to be closed. The result of filling this
+  /// path using either even-odd or non-zero fill rules is identical.
+  func union(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new path with filled regions common to both paths.
+  /// - Parameters:
+  ///   - other: The path to intersect.
+  ///   - rule: The rule for determining which areas to treat as the interior of the paths.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The filled region of the resulting path is the overlapping area of the filled region of both paths.
+  /// This can be used to clip the fill of a path to a mask.
+  ///
+  /// Any unclosed subpaths in either path are assumed to be closed. The result of filling this
+  /// path using either even-odd or non-zero fill rules is identical.
+  func intersection(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new path with filled regions from this path that are not in the given path.
+  /// - Parameters:
+  ///   - other: The path to subtract.
+  ///   - rule: The rule for determining which areas to treat as the interior of the paths.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The filled region of the resulting path is the filled region of this path with the filled
+  /// region `other` removed from it.
+  ///
+  /// Any unclosed subpaths in either path are assumed to be closed. The result of filling this
+  /// path using either even-odd or non-zero fill rules is identical.
+  func subtracting(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new path with filled regions either from this path or the given path, but not in both.
+  /// - Parameters:
+  ///   - other: The path to difference.
+  ///   - rule: The rule for determining which areas to treat as the interior of the paths.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The filled region of the resulting path is the filled region contained in either this path
+  /// or `other`, but not both.
+  ///
+  /// Any unclosed subpaths in either path are assumed to be closed. The result of filling this
+  /// path using either even-odd or non-zero fill rules is identical.
+  func symmetricDifference(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new path with a line from this path that does not overlap the filled region of the given path.
+  /// - Parameters:
+  ///   - other: The path to subtract.
+  ///   - rule: The rule for determining which areas to treat as the interior of `other`.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The line of the resulting path is the line of this path that does not overlap the filled region of `other`.
+  ///
+  /// Intersected subpaths that are clipped create open subpaths. Closed subpaths that do not
+  /// intersect `other` remain closed.
+  func lineSubtracting(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new path with a line from this path that overlaps the filled regions of the given path.
+  /// - Parameters:
+  ///   - other: The path to intersect.
+  ///   - rule: The rule for determining which areas to treat as the interior of `other`.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The line of the resulting path is the line of this path that overlaps the filled region of `other`.
+  ///
+  /// Intersected subpaths that are clipped create open subpaths. Closed subpaths that do not
+  /// intersect `other` remain closed.
+  func lineIntersection(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new weakly-simple copy of this path.
+  /// - Parameter rule: The rule for determining which areas to treat as the interior of the path.
+  ///   Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The returned path is weakly-simple path, has no self-intersections, and has a normalized
+  /// orientation. The result of filling this path using either even-odd or non-zero fill rules
+  /// is identical.
+  func normalized(using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a flattened copy of this path.
+  /// - Parameter threshold: The maximum error tolerance.
+  /// - Returns: A new path.
+  ///
+  /// The granularity of the approximation is controlled by `threshold` the maximum error
+  /// tolerance (measured in points) for curves.
+  func flattened(threshold: CGFloat) -> CGPath
+  /// Returns whether paths overlap.
+  /// - Parameters:
+  ///   - other: The path to check for intersection.
+  ///   - rule: The rule for determining which areas to treat as the interior of the paths.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: `true` if the paths intersect.
+  ///
+  /// This is the same as testing if the intersection of two paths is not empty. That is, the
+  /// filled areas of the paths overlap. Open subpaths are treated as closed subpaths, the same
+  /// as when filling a path in a `CGContext`.
+  func intersects(_ other: CGPath, using rule: CGPathFillRule = .winding) -> Bool
+  /// Return an array of the visually separated components of a path.
+  /// - Parameter rule: The rule for determining which areas to treat as the interior of the path.
+  ///   Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: The visually separate components.
+  ///
+  /// Separating components of a path returns the components from splitting the path into multiple
+  /// distinct paths. Rendered individually the components look the same as the original path.
+  /// This can be used to break a single path (eg. a symbol) into its component pieces so that each
+  /// component can be colored separately.
+  func componentsSeparated(using rule: CGPathFillRule = .winding) -> [CGPath]
+}
+
+extension CGAffineTransform {
+  @_alwaysEmitIntoClient init(translationX tx: CGFloat, y ty: CGFloat)
+  @_alwaysEmitIntoClient init(scaleX sx: CGFloat, y sy: CGFloat)
+  @_alwaysEmitIntoClient init(rotationAngle angle: CGFloat)
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_alwaysEmitIntoClient init(_ components: CGAffineTransformComponents)
+  @_alwaysEmitIntoClient var isIdentity: Bool { get }
+  @_alwaysEmitIntoClient func translatedBy(x tx: CGFloat, y ty: CGFloat) -> CGAffineTransform
+  @_alwaysEmitIntoClient func scaledBy(x sx: CGFloat, y sy: CGFloat) -> CGAffineTransform
+  @_alwaysEmitIntoClient func rotated(by angle: CGFloat) -> CGAffineTransform
+  @_alwaysEmitIntoClient func inverted() -> CGAffineTransform
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_alwaysEmitIntoClient func decomposed() -> CGAffineTransformComponents
+  @_alwaysEmitIntoClient func concatenating(_ t2: CGAffineTransform) -> CGAffineTransform
+}
+
+extension CGAffineTransformComponents {
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  @_alwaysEmitIntoClient init(scale: CGSize = .init(width: 1, height: 1), horizontalShear: CGFloat = 0, rotation: CGFloat = 0, translation: CGVector = .zero)
+}
+
+extension CGPoint {
+  @_alwaysEmitIntoClient func applying(_ t: CGAffineTransform) -> CGPoint
+}
+
+extension CGSize {
+  @_alwaysEmitIntoClient func applying(_ t: CGAffineTransform) -> CGSize
+}
+
+extension CGRect {
+  @_alwaysEmitIntoClient func applying(_ t: CGAffineTransform) -> CGRect
+}
+
+/*** Definitions of inline functions. ***/
+extension CGAffineTransform {
+  @_alwaysEmitIntoClient init(_ a: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat, _ tx: CGFloat, _ ty: CGFloat)
+}
+
+extension CGPoint {
+  @_alwaysEmitIntoClient func equalTo(_ point2: CGPoint) -> Bool
+  /*** Persistent representations. ***/
+  @_alwaysEmitIntoClient var dictionaryRepresentation: CFDictionary { get }
+}
+
+extension CGSize {
+  @_alwaysEmitIntoClient func equalTo(_ size2: CGSize) -> Bool
+  @_alwaysEmitIntoClient var dictionaryRepresentation: CFDictionary { get }
+}
+
+extension CGRect {
+  @_transparent func __divided(slice: UnsafeMutablePointer<CGRect>, remainder: UnsafeMutablePointer<CGRect>, atDistance: CGFloat, from: CGRectEdge)
+  @_alwaysEmitIntoClient static var null: CGRect { get }
+  @_alwaysEmitIntoClient static var infinite: CGRect { get }
+  @_alwaysEmitIntoClient var minX: CGFloat { get }
+  @_alwaysEmitIntoClient var midX: CGFloat { get }
+  @_alwaysEmitIntoClient var maxX: CGFloat { get }
+  @_alwaysEmitIntoClient var minY: CGFloat { get }
+  @_alwaysEmitIntoClient var midY: CGFloat { get }
+  @_alwaysEmitIntoClient var maxY: CGFloat { get }
+  @_alwaysEmitIntoClient var width: CGFloat { get }
+  @_alwaysEmitIntoClient var height: CGFloat { get }
+  @_alwaysEmitIntoClient func equalTo(_ rect2: CGRect) -> Bool
+  @_alwaysEmitIntoClient var standardized: CGRect { get }
+  @_alwaysEmitIntoClient var isEmpty: Bool { get }
+  @_alwaysEmitIntoClient var isNull: Bool { get }
+  @_alwaysEmitIntoClient var isInfinite: Bool { get }
+  @_alwaysEmitIntoClient func insetBy(dx: CGFloat, dy: CGFloat) -> CGRect
+  @_alwaysEmitIntoClient var integral: CGRect { get }
+  @_alwaysEmitIntoClient func union(_ r2: CGRect) -> CGRect
+  @_alwaysEmitIntoClient func intersection(_ r2: CGRect) -> CGRect
+  @_alwaysEmitIntoClient func offsetBy(dx: CGFloat, dy: CGFloat) -> CGRect
+  @_alwaysEmitIntoClient func contains(_ point: CGPoint) -> Bool
+  @_alwaysEmitIntoClient func contains(_ rect2: CGRect) -> Bool
+  @_alwaysEmitIntoClient func intersects(_ rect2: CGRect) -> Bool
+  @_alwaysEmitIntoClient var dictionaryRepresentation: CFDictionary { get }
 }
 
 @available(*, unavailable, renamed: "CGFloat.leastNormalMagnitude")

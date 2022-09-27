@@ -13,7 +13,7 @@ let NSHashTableObjectPointerPersonality: NSPointerFunctions.Options
 let NSHashTableWeakMemory: NSPointerFunctions.Options
 typealias NSHashTableOptions = Int
 @available(iOS 6.0, *)
-class NSHashTable<ObjectType> : NSObject, NSCopying, NSSecureCoding, NSFastEnumeration where ObjectType : AnyObject {
+@_nonSendable(_assumed) class NSHashTable<ObjectType> : NSObject, NSCopying, NSSecureCoding, NSFastEnumeration where ObjectType : AnyObject {
   init(options: NSPointerFunctions.Options = [], capacity initialCapacity: Int)
   init(pointerFunctions functions: NSPointerFunctions, capacity initialCapacity: Int)
   /*not inherited*/ init(options: NSPointerFunctions.Options = [])
@@ -73,13 +73,21 @@ class NSHashTable<ObjectType> : NSObject, NSCopying, NSSecureCoding, NSFastEnume
   func countByEnumerating(with state: UnsafeMutablePointer<NSFastEnumerationState>, objects buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>, count len: Int) -> Int
 }
 
+@available(*, unavailable)
+extension NSHashTable : @unchecked Sendable {
+}
+
 /****************	(void *) Hash table operations	****************/
-struct NSHashEnumerator {
+@_nonSendable(_assumed) struct NSHashEnumerator {
   init()
   init(_pi: Int, _si: Int, _bs: UnsafeMutableRawPointer?)
   var _pi: Int
   var _si: Int
   var _bs: UnsafeMutableRawPointer?
+}
+
+@available(*, unavailable)
+extension NSHashEnumerator : @unchecked Sendable {
 }
 func NSFreeHashTable(_ table: NSHashTable<AnyObject>)
 func NSResetHashTable(_ table: NSHashTable<AnyObject>)
@@ -98,7 +106,7 @@ func NSStringFromHashTable(_ table: NSHashTable<AnyObject>) -> String
 func NSAllHashTableObjects(_ table: NSHashTable<AnyObject>) -> [Any]
 
 /****************	Legacy	****************/
-struct NSHashTableCallBacks {
+@_nonSendable(_assumed) struct NSHashTableCallBacks {
   init()
   init(hash: (@convention(c) (NSHashTable<AnyObject>, UnsafeRawPointer) -> Int)?, isEqual: (@convention(c) (NSHashTable<AnyObject>, UnsafeRawPointer, UnsafeRawPointer) -> ObjCBool)?, retain: (@convention(c) (NSHashTable<AnyObject>, UnsafeRawPointer) -> Void)?, release: (@convention(c) (NSHashTable<AnyObject>, UnsafeMutableRawPointer) -> Void)?, describe: (@convention(c) (NSHashTable<AnyObject>, UnsafeRawPointer) -> String?)?)
   var hash: (@convention(c) (NSHashTable<AnyObject>, UnsafeRawPointer) -> Int)?
@@ -106,6 +114,10 @@ struct NSHashTableCallBacks {
   var retain: (@convention(c) (NSHashTable<AnyObject>, UnsafeRawPointer) -> Void)?
   var release: (@convention(c) (NSHashTable<AnyObject>, UnsafeMutableRawPointer) -> Void)?
   var describe: (@convention(c) (NSHashTable<AnyObject>, UnsafeRawPointer) -> String?)?
+}
+
+@available(*, unavailable)
+extension NSHashTableCallBacks : @unchecked Sendable {
 }
 func NSCreateHashTableWithZone(_ callBacks: NSHashTableCallBacks, _ capacity: Int, _ zone: NSZone?) -> NSHashTable<AnyObject>
 func NSCreateHashTable(_ callBacks: NSHashTableCallBacks, _ capacity: Int) -> NSHashTable<AnyObject>

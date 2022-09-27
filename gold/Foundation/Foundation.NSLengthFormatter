@@ -5,7 +5,7 @@
 typealias NSLengthFormatterUnit = LengthFormatter.Unit
 extension LengthFormatter {
   @available(iOS 8.0, *)
-  enum Unit : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Unit : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -36,7 +36,7 @@ extension LengthFormatter {
   }
 }
 @available(iOS 8.0, *)
-class LengthFormatter : Formatter {
+@_nonSendable(_assumed) class LengthFormatter : Formatter {
   @NSCopying var numberFormatter: NumberFormatter!
   var unitStyle: Formatter.UnitStyle
   var isForPersonHeightUse: Bool
@@ -59,6 +59,10 @@ class LengthFormatter : Formatter {
   func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, forString string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
   init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension LengthFormatter : @unchecked Sendable {
 }
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 3, renamed: "LengthFormatter")

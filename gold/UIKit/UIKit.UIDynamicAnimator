@@ -7,7 +7,7 @@
   optional func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator)
 }
 @available(iOS 7.0, *)
-class UIDynamicAnimator : NSObject {
+@_nonSendable(_assumed) class UIDynamicAnimator : NSObject {
   init(referenceView view: UIView)
   func addBehavior(_ behavior: UIDynamicBehavior)
   func removeBehavior(_ behavior: UIDynamicBehavior)
@@ -26,6 +26,10 @@ class UIDynamicAnimator : NSObject {
   var elapsedTime: TimeInterval { get }
   weak var delegate: @sil_weak UIDynamicAnimatorDelegate?
   convenience init()
+}
+
+@available(*, unavailable)
+extension UIDynamicAnimator : @unchecked Sendable {
 }
 extension UIDynamicAnimator {
   convenience init(collectionViewLayout layout: UICollectionViewLayout)

@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS, introduced: 3.2, deprecated: 9.0, message: "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController.")
-@MainActor class UIPopoverController : NSObject, UIAppearanceContainer {
+@MainActor @_nonSendable(_assumed) class UIPopoverController : NSObject, UIAppearanceContainer {
   init(contentViewController viewController: UIViewController)
   weak var delegate: @sil_weak UIPopoverControllerDelegate?
   var contentViewController: UIViewController

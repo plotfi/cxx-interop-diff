@@ -4,7 +4,7 @@
 typealias NSXMLParserExternalEntityResolvingPolicy = XMLParser.ExternalEntityResolvingPolicy
 @available(swift, obsoleted: 3, renamed: "XMLParser")
 typealias NSXMLParser = XMLParser
-class XMLParser : NSObject {
+@_nonSendable(_assumed) class XMLParser : NSObject {
   convenience init?(contentsOf url: URL)
   @available(swift, obsoleted: 3, renamed: "init(contentsOf:)")
   convenience init?(contentsOfURL url: URL)
@@ -23,6 +23,10 @@ class XMLParser : NSObject {
   var parserError: Error? { get }
   var shouldResolveExternalEntities: Bool
   convenience init()
+}
+
+@available(*, unavailable)
+extension XMLParser : @unchecked Sendable {
 }
 extension XMLParser {
   var publicID: String? { get }
@@ -60,7 +64,7 @@ let NSXMLParserErrorDomain: String
 extension XMLParser {
   @available(iOS 2.0, *)
   class let errorDomain: String
-  enum ErrorCode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ErrorCode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -345,7 +349,7 @@ extension XMLParser {
     static var DelegateAbortedParseError: XMLParser.ErrorCode { get }
   }
   @available(iOS 8.0, *)
-  enum ExternalEntityResolvingPolicy : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ExternalEntityResolvingPolicy : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt

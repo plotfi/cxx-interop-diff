@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.4, *)
-@MainActor class UIPointerStyle : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class UIPointerStyle : NSObject, NSCopying {
 
   /// Accessories to display alongside this UIPointerStyle. Supports up to 4 accessories.
   /// The system will attempt to animate between neighboring or similar accessories.
@@ -79,7 +79,7 @@ extension UIPointerStyle {
   @MainActor convenience init(shape: UIPointerShape, constrainedAxes: UIAxis = [])
 }
 @available(iOS 13.4, *)
-@MainActor class __UIPointerEffect : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class __UIPointerEffect : NSObject, NSCopying {
   @NSCopying var preview: UITargetedPreview { get }
 
   /**
@@ -112,7 +112,7 @@ extension UIPointerStyle {
 
 /// Pointer slides under the given view and morphs into the view's shape
 @available(iOS 13.4, *)
-@MainActor class __UIPointerHighlightEffect : __UIPointerEffect {
+@MainActor @_nonSendable(_assumed) class __UIPointerHighlightEffect : __UIPointerEffect {
 
   /**
    * @abstract Creates a pointer content effect with the given preview's view.
@@ -129,7 +129,7 @@ extension UIPointerStyle {
 
 /// Pointer slides under the given view and disappears as the view scales up and gains a shadow.
 @available(iOS 13.4, *)
-@MainActor class __UIPointerLiftEffect : __UIPointerEffect {
+@MainActor @_nonSendable(_assumed) class __UIPointerLiftEffect : __UIPointerEffect {
 
   /**
    * @abstract Creates a pointer content effect with the given preview's view.
@@ -144,7 +144,7 @@ extension UIPointerStyle {
   init()
 }
 @available(iOS 13.4, *)
-enum __UIPointerEffectTintMode : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UIPointerEffectTintMode : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -161,7 +161,7 @@ enum __UIPointerEffectTintMode : Int, @unchecked Sendable {
 
 /// Pointer retains the system shape while over the given view. Visual changes applied to the view are dictated by the effect's properties.
 @available(iOS 13.4, *)
-@MainActor class __UIPointerHoverEffect : __UIPointerEffect {
+@MainActor @_nonSendable(_assumed) class __UIPointerHoverEffect : __UIPointerEffect {
   var preferredTintMode: __UIPointerEffectTintMode
   var prefersShadow: Bool
   var prefersScaledContent: Bool
@@ -179,7 +179,7 @@ enum __UIPointerEffectTintMode : Int, @unchecked Sendable {
   init()
 }
 @available(iOS 13.4, *)
-@MainActor class __UIPointerShape : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class __UIPointerShape : NSObject, NSCopying {
 
   /**
    * @abstract UIBezierPath describing the pointer's shape. If used alongside a content effect, the shape must be

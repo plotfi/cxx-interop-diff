@@ -6,12 +6,12 @@ protocol NSFilePresenter : NSObjectProtocol {
   var presentedItemOperationQueue: OperationQueue { get }
   @available(iOS, unavailable)
   optional var primaryPresentedItemURL: URL? { get }
-  optional func relinquishPresentedItem(toReader reader: @escaping ((() -> Void)?) -> Void)
+  optional func relinquishPresentedItem(toReader reader: @escaping @Sendable ((() -> Void)?) -> Void)
   @available(swift, obsoleted: 3, renamed: "relinquishPresentedItem(toReader:)")
-  optional func relinquishPresentedItemToReader(_ reader: @escaping ((() -> Void)?) -> Void)
-  optional func relinquishPresentedItem(toWriter writer: @escaping ((() -> Void)?) -> Void)
+  optional func relinquishPresentedItemToReader(_ reader: @escaping @Sendable ((() -> Void)?) -> Void)
+  optional func relinquishPresentedItem(toWriter writer: @escaping @Sendable ((() -> Void)?) -> Void)
   @available(swift, obsoleted: 3, renamed: "relinquishPresentedItem(toWriter:)")
-  optional func relinquishPresentedItemToWriter(_ writer: @escaping ((() -> Void)?) -> Void)
+  optional func relinquishPresentedItemToWriter(_ writer: @escaping @Sendable ((() -> Void)?) -> Void)
   optional func savePresentedItemChanges(completionHandler: @escaping @Sendable (Error?) -> Void)
   optional func savePresentedItemChanges() async throws
   @available(swift, obsoleted: 3, renamed: "savePresentedItemChanges(completionHandler:)")

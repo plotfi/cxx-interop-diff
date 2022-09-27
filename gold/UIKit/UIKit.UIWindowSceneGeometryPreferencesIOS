@@ -1,0 +1,20 @@
+@_exported import Foundation
+
+
+/// Use this class to express iOS-specific geometry preferences when calling `-[UIWindowScene requestGeometryUpdateWithPreferences:errorHandler:]`
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIWindowSceneGeometryPreferences.iOS")
+typealias UIWindowSceneGeometryPreferencesIOS = UIWindowScene.GeometryPreferences.iOS
+extension UIWindowScene.GeometryPreferences {
+
+  /// Use this class to express iOS-specific geometry preferences when calling `-[UIWindowScene requestGeometryUpdateWithPreferences:errorHandler:]`
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) class iOS : UIWindowScene.GeometryPreferences {
+    init()
+    convenience init(interfaceOrientations: UIInterfaceOrientationMask)
+
+    /// The preferred interface orientations. The system will choose the best orientation from the intersection of these
+    /// orientations and the current supported orientations. Defaults to an empty mask to indicate no preference.
+    var __interfaceOrientations: UIInterfaceOrientationMask
+  }
+}

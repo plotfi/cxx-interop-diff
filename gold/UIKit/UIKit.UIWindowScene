@@ -1,11 +1,18 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-@MainActor class UIWindowScene : UIScene {
+@MainActor @_nonSendable(_assumed) class UIWindowScene : UIScene {
   var screen: UIScreen { get }
   var interfaceOrientation: UIInterfaceOrientation { get }
   var coordinateSpace: UICoordinateSpace { get }
   var traitCollection: UITraitCollection { get }
+  @available(iOS 16.0, *)
+  func requestGeometryUpdate(_ geometryPreferences: UIWindowScene.GeometryPreferences, errorHandler: ((Error) -> Void)? = nil)
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "requestGeometryUpdate(_:errorHandler:)")
+  func requestGeometryUpdateWithPreferences(_ geometryPreferences: UIWindowScene.GeometryPreferences, errorHandler: ((Error) -> Void)? = nil)
+  @available(iOS 16.0, *)
+  var effectiveGeometry: UIWindowScene.Geometry { get }
   @available(iOS 13.0, *)
   var sizeRestrictions: UISceneSizeRestrictions? { get }
   var windows: [UIWindow] { get }
@@ -18,6 +25,13 @@
   /// of the scene's key window will be used for scene-level sharing and activities.
   @available(iOS 15.0, *)
   weak var activityItemsConfigurationSource: @sil_weak UIActivityItemsConfigurationProviding?
+
+  /// Additional window behaviors which may be platform specific. This property will be nil on unsupported platforms, otherwise will provide a mutable object for window behavior customization.
+  @available(iOS 16.0, *)
+  var windowingBehaviors: UISceneWindowingBehaviors? { get }
+  var isFullScreen: Bool { get }
+  @available(swift, obsoleted: 3, renamed: "isFullScreen")
+  var fullScreen: Bool { get }
   @available(*, unavailable)
   convenience init()
   init(session: UISceneSession, connectionOptions: UIScene.ConnectionOptions)
@@ -28,10 +42,10 @@
   optional func windowScene(_ windowScene: UIWindowScene, didUpdate previousCoordinateSpace: UICoordinateSpace, interfaceOrientation previousInterfaceOrientation: UIInterfaceOrientation, traitCollection previousTraitCollection: UITraitCollection)
   @available(swift, obsoleted: 3, renamed: "windowScene(_:didUpdate:interfaceOrientation:traitCollection:)")
   optional func windowScene(_ windowScene: UIWindowScene, didUpdateCoordinateSpace previousCoordinateSpace: UICoordinateSpace, interfaceOrientation previousInterfaceOrientation: UIInterfaceOrientation, traitCollection previousTraitCollection: UITraitCollection)
-  optional func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping @Sendable (Bool) -> Void)
+  optional func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void)
   optional func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem) async -> Bool
   @available(swift, obsoleted: 3, renamed: "windowScene(_:performActionFor:completionHandler:)")
-  optional func windowScene(_ windowScene: UIWindowScene, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping @Sendable (Bool) -> Void)
+  optional func windowScene(_ windowScene: UIWindowScene, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void)
 }
 @available(iOS 13.0, *)
 @available(swift, obsoleted: 3, renamed: "UISceneSession.Role.windowApplication")
@@ -39,18 +53,23 @@ let UIWindowSceneSessionRoleApplication: UISceneSession.Role
 extension UISceneSession.Role {
   @available(iOS 13.0, *)
   static let windowApplication: UISceneSession.Role
-  @available(iOS 13.0, *)
+  @available(iOS 16.0, *)
+  static let windowExternalDisplayNonInteractive: UISceneSession.Role
+  @available(iOS, introduced: 13.0, deprecated: 16.0, renamed: "UISceneSession.Role.windowExternalDisplayNonInteractive")
   static let windowExternalDisplay: UISceneSession.Role
 }
-@available(iOS 13.0, *)
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UISceneSession.Role.windowExternalDisplayNonInteractive")
+let UIWindowSceneSessionRoleExternalDisplayNonInteractive: UISceneSession.Role
 @available(swift, obsoleted: 3, renamed: "UISceneSession.Role.windowExternalDisplay")
+@available(iOS, introduced: 13.0, deprecated: 16.0, renamed: "UISceneSession.Role.windowExternalDisplayNonInteractive")
 let UIWindowSceneSessionRoleExternalDisplay: UISceneSession.Role
 @available(iOS 13.0, *)
 @available(swift, obsoleted: 3, renamed: "UIWindowScene.DismissalAnimation")
 typealias UIWindowSceneDismissalAnimation = UIWindowScene.DismissalAnimation
 extension UIWindowScene {
   @available(iOS 13.0, *)
-  enum DismissalAnimation : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum DismissalAnimation : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -66,16 +85,17 @@ extension UIWindowScene {
   }
 }
 @available(iOS 13.0, *)
-@MainActor class UIWindowSceneDestructionRequestOptions : UISceneDestructionRequestOptions {
+@MainActor @_nonSendable(_assumed) class UIWindowSceneDestructionRequestOptions : UISceneDestructionRequestOptions {
   var windowDismissalAnimation: UIWindowScene.DismissalAnimation
   init()
 }
 @available(iOS 13.0, *)
-@MainActor class UISceneSizeRestrictions : NSObject {
+@MainActor @_nonSendable(_assumed) class UISceneSizeRestrictions : NSObject {
   @available(*, unavailable)
   init()
   @available(*, unavailable)
   class func new() -> Self
   var minimumSize: CGSize
   var maximumSize: CGSize
+  var allowsFullScreen: Bool
 }

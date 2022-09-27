@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 7.0, *)
-class NSTextContainer : NSObject, NSSecureCoding, NSTextLayoutOrientationProvider {
+@_nonSendable(_assumed) class NSTextContainer : NSObject, NSSecureCoding, NSTextLayoutOrientationProvider {
 
   /**************************** Initialization ****************************/
   @available(iOS 7.0, *)
@@ -52,4 +52,8 @@ class NSTextContainer : NSObject, NSSecureCoding, NSTextLayoutOrientationProvide
   var layoutOrientation: NSLayoutManager.TextLayoutOrientation { get }
   @available(iOS 7.0, *)
   func encode(with coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSTextContainer : @unchecked Sendable {
 }

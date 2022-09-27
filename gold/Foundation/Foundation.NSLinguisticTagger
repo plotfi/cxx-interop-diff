@@ -210,7 +210,7 @@ let NSLinguisticTagPlaceName: NSLinguisticTag
 @available(swift, obsoleted: 3, renamed: "NSLinguisticTag.organizationName")
 @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
 let NSLinguisticTagOrganizationName: NSLinguisticTag
-enum NSLinguisticTaggerUnit : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum NSLinguisticTaggerUnit : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -230,7 +230,7 @@ enum NSLinguisticTaggerUnit : Int, @unchecked Sendable {
 @available(swift, obsoleted: 3, renamed: "NSLinguisticTagger.Options")
 typealias NSLinguisticTaggerOptions = NSLinguisticTagger.Options
 extension NSLinguisticTagger {
-  struct Options : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Options : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -254,7 +254,7 @@ extension NSLinguisticTagger {
   }
 }
 @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-class NSLinguisticTagger : NSObject {
+@_nonSendable(_assumed) class NSLinguisticTagger : NSObject {
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
   init(tagSchemes: [NSLinguisticTagScheme], options opts: Int)
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
@@ -351,6 +351,10 @@ class NSLinguisticTagger : NSObject {
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
   func possibleTagsAtIndex(_ charIndex: Int, scheme tagScheme: String, tokenRange: NSRangePointer?, sentenceRange: NSRangePointer?, scores: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [String]?
   convenience init()
+}
+
+@available(*, unavailable)
+extension NSLinguisticTagger : @unchecked Sendable {
 }
 extension NSString {
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")

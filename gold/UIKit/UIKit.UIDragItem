@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 11.0, *)
-@MainActor class UIDragItem : NSObject {
+@MainActor @_nonSendable(_assumed) class UIDragItem : NSObject {
   init(itemProvider: NSItemProvider)
   @available(*, unavailable)
   convenience init()

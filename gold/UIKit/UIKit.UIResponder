@@ -2,7 +2,7 @@
 
 typealias UITextAttributesConversionHandler = ([NSAttributedString.Key : Any]) -> [NSAttributedString.Key : Any]
 @available(iOS 13.0, *)
-enum UIEditingInteractionConfiguration : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIEditingInteractionConfiguration : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -46,6 +46,16 @@ enum UIEditingInteractionConfiguration : Int, @unchecked Sendable {
   optional func increaseSize(_ sender: Any?)
   @available(iOS 7.0, *)
   optional func decreaseSize(_ sender: Any?)
+  @available(iOS 16.0, *)
+  optional func find(_ sender: Any?)
+  @available(iOS 16.0, *)
+  optional func findAndReplace(_ sender: Any?)
+  @available(iOS 16.0, *)
+  optional func findNext(_ sender: Any?)
+  @available(iOS 16.0, *)
+  optional func findPrevious(_ sender: Any?)
+  @available(iOS 16.0, *)
+  optional func useSelectionForFind(_ sender: Any?)
   @available(iOS 13.0, *)
   optional func updateTextAttributes(conversionHandler: ([NSAttributedString.Key : Any]) -> [NSAttributedString.Key : Any])
   @available(iOS 13.0, *)
@@ -53,9 +63,17 @@ enum UIEditingInteractionConfiguration : Int, @unchecked Sendable {
   optional func updateTextAttributesWithConversionHandler(_ conversionHandler: ([NSAttributedString.Key : Any]) -> [NSAttributedString.Key : Any])
   @available(iOS 15.0, *)
   optional func printContent(_ sender: Any?)
+  @available(iOS 16.0, *)
+  optional func rename(_ sender: Any?)
+  @available(iOS 16.0, *)
+  optional func duplicate(_ sender: Any?)
+  @available(iOS 16.0, *)
+  optional func move(_ sender: Any?)
+  @available(iOS 16.0, *)
+  optional func export(_ sender: Any?)
 }
 @available(iOS 2.0, *)
-@MainActor class UIResponder : NSObject, UIResponderStandardEditActions {
+@MainActor @_nonSendable(_assumed) class UIResponder : NSObject, UIResponderStandardEditActions {
   var next: UIResponder? { get }
   @available(swift, obsoleted: 3, renamed: "next")
   var nextResponder: UIResponder? { get }
@@ -172,10 +190,28 @@ enum UIEditingInteractionConfiguration : Int, @unchecked Sendable {
   func increaseSize(_ sender: Any?)
   @available(iOS 7.0, *)
   func decreaseSize(_ sender: Any?)
+  @available(iOS 16.0, *)
+  func find(_ sender: Any?)
+  @available(iOS 16.0, *)
+  func findAndReplace(_ sender: Any?)
+  @available(iOS 16.0, *)
+  func findNext(_ sender: Any?)
+  @available(iOS 16.0, *)
+  func findPrevious(_ sender: Any?)
+  @available(iOS 16.0, *)
+  func useSelectionForFind(_ sender: Any?)
   @available(iOS 13.0, *)
   func updateTextAttributes(conversionHandler: ([NSAttributedString.Key : Any]) -> [NSAttributedString.Key : Any])
   @available(iOS 15.0, *)
   func printContent(_ sender: Any?)
+  @available(iOS 16.0, *)
+  func rename(_ sender: Any?)
+  @available(iOS 16.0, *)
+  func duplicate(_ sender: Any?)
+  @available(iOS 16.0, *)
+  func move(_ sender: Any?)
+  @available(iOS 16.0, *)
+  func export(_ sender: Any?)
 }
 extension UIResponder {
   @available(iOS 7.0, *)

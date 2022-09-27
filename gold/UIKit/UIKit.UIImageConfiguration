@@ -5,7 +5,7 @@
 typealias UIImageConfiguration = UIImage.Configuration
 extension UIImage {
   @available(iOS 13.0, *)
-  class Configuration : NSObject, NSCopying, NSSecureCoding {
+  @_nonSendable(_assumed) class Configuration : NSObject, NSCopying, NSSecureCoding, @unchecked Sendable {
     @available(*, unavailable)
     class func new() -> Self
     @available(*, unavailable)

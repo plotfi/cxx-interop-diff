@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 2.0, *)
-@MainActor class UIImageView : UIView {
+@MainActor @_nonSendable(_assumed) class UIImageView : UIView {
   init(image: UIImage?)
   @available(iOS 3.0, *)
   init(image: UIImage?, highlightedImage: UIImage?)

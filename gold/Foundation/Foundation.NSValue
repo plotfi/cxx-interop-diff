@@ -1,6 +1,6 @@
 @_exported import CoreFoundation
 
-class NSValue : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSValue : NSObject, NSCopying, NSSecureCoding {
   @available(iOS 11.0, *)
   func getValue(_ value: UnsafeMutableRawPointer, size: Int)
   var objCType: UnsafePointer<CChar> { get }
@@ -15,6 +15,10 @@ class NSValue : NSObject, NSCopying, NSSecureCoding {
 extension NSValue {
   @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
   func value<StoredType>(of type: StoredType.Type) -> StoredType?
+}
+
+@available(*, unavailable)
+extension NSValue : @unchecked Sendable {
 }
 extension NSValue {
   @available(*, unavailable, renamed: "init(bytes:objCType:)", message: "Not available in Swift")
@@ -36,7 +40,7 @@ extension NSValue {
   @available(swift, obsoleted: 3, renamed: "isEqual(to:)")
   func isEqualToValue(_ value: NSValue) -> Bool
 }
-class NSNumber : NSValue {
+@_nonSendable(_assumed) class NSNumber : NSValue, @unchecked Sendable {
   init?(coder: NSCoder)
   init(value: CChar)
   @available(swift, obsoleted: 3, renamed: "init(value:)")

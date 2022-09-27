@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 11.0, *)
-@MainActor class UIDropInteraction : NSObject, UIInteraction {
+@MainActor @_nonSendable(_assumed) class UIDropInteraction : NSObject, UIInteraction {
   init(delegate: UIDropInteractionDelegate)
   @available(*, unavailable)
   convenience init()
@@ -17,7 +17,7 @@
   func didMove(to view: UIView?)
 }
 @available(iOS 11.0, *)
-enum UIDropOperation : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIDropOperation : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt
@@ -35,7 +35,7 @@ enum UIDropOperation : UInt, @unchecked Sendable {
   static var Move: UIDropOperation { get }
 }
 @available(iOS 11.0, *)
-@MainActor class UIDropProposal : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class UIDropProposal : NSObject, NSCopying {
   init(operation: UIDropOperation)
   @available(swift, obsoleted: 3, renamed: "init(operation:)")
   init(dropOperation operation: UIDropOperation)

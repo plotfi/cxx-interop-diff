@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 14.0, *)
-enum __UIListContentTextAlignment : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UIListContentTextAlignment : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -16,7 +16,7 @@ enum __UIListContentTextAlignment : Int, @unchecked Sendable {
   static var Justified: __UIListContentTextAlignment { get }
 }
 @available(iOS 14.0, *)
-enum __UIListContentTextTransform : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UIListContentTextTransform : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -34,7 +34,7 @@ enum __UIListContentTextTransform : Int, @unchecked Sendable {
   static var Capitalized: __UIListContentTextTransform { get }
 }
 @available(iOS 14.0, *)
-@MainActor class __UIListContentTextProperties : NSObject, NSCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class __UIListContentTextProperties : NSObject, NSCopying, NSSecureCoding {
 
   /// The font used for the text.
   var font: UIFont
@@ -68,6 +68,9 @@ enum __UIListContentTextTransform : Int, @unchecked Sendable {
 
   /// Whether the font is automatically updated when the content size category changes.
   var adjustsFontForContentSizeCategory: Bool
+
+  /// Whether the full text will be shown when a pointer hovers over truncated text.
+  var showsExpansionTextWhenTruncated: Bool
 
   /// A transform that is applied to the text before it is displayed.
   var transform: __UIListContentTextTransform

@@ -38,7 +38,7 @@ extension UIView : UILargeContentViewerItem {
 /// UILargeContentViewerInteraction enables a gesture to present and dismiss the large content viewer on a device with relevant settings.
 /// Use methods in <UIKit/UIInteraction.h> to add the interaction to an appropriate view, such as a custom tab bar.
 @available(iOS 13.0, *)
-@MainActor class UILargeContentViewerInteraction : NSObject, UIInteraction {
+@MainActor @_nonSendable(_assumed) class UILargeContentViewerInteraction : NSObject, UIInteraction {
   init(delegate: UILargeContentViewerInteractionDelegate?)
   weak var delegate: @sil_weak UILargeContentViewerInteractionDelegate? { get }
 

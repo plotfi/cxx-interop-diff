@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-@MainActor class UITabBarItemStateAppearance : NSObject {
+@MainActor @_nonSendable(_assumed) class UITabBarItemStateAppearance : NSObject {
   @available(*, unavailable)
   init()
   @available(*, unavailable)
@@ -31,7 +31,7 @@
 @available(swift, obsoleted: 3, renamed: "UITabBarItemAppearance.Style")
 typealias UITabBarItemAppearanceStyle = UITabBarItemAppearance.Style
 extension UITabBarItemAppearance {
-  enum Style : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -47,7 +47,7 @@ extension UITabBarItemAppearance {
   }
 }
 @available(iOS 13.0, *)
-@MainActor class UITabBarItemAppearance : NSObject, NSCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UITabBarItemAppearance : NSObject, NSCopying, NSSecureCoding {
 
   /// Construct an appearance with default values for the stacked layout.
   convenience init()
@@ -83,7 +83,7 @@ extension UITabBarItemAppearance {
   func encode(with coder: NSCoder)
 }
 @available(iOS 13.0, *)
-@MainActor class UITabBarAppearance : UIBarAppearance {
+@MainActor @_nonSendable(_assumed) class UITabBarAppearance : UIBarAppearance {
 
   /// The appearance for the stacked tab bar item layout
   @NSCopying var stackedLayoutAppearance: UITabBarItemAppearance

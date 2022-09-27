@@ -1,8 +1,10 @@
 @_exported import Foundation
 
 protocol UIPopoverBackgroundViewMethods {
+  @available(iOS 2.0, *)
   static func arrowBase() -> CGFloat
   static func contentViewInsets() -> UIEdgeInsets
+  @available(iOS 2.0, *)
   static func arrowHeight() -> CGFloat
 }
 @available(iOS 5.0, *)

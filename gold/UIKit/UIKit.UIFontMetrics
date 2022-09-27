@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 11.0, *)
-class UIFontMetrics : NSObject {
+@_nonSendable(_assumed) class UIFontMetrics : NSObject, @unchecked Sendable {
   class var `default`: UIFontMetrics { get }
   @available(swift, obsoleted: 3, renamed: "default")
   class var defaultMetrics: UIFontMetrics { get }

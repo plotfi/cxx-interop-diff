@@ -2,7 +2,7 @@
 
 protocol NSXPCProxyCreating {
   func remoteObjectProxy() -> Any
-  func remoteObjectProxyWithErrorHandler(_ handler: @escaping (Error) -> Void) -> Any
+  func remoteObjectProxyWithErrorHandler(_ handler: @escaping @Sendable (Error) -> Void) -> Any
   @available(iOS 9.0, *)
   optional func synchronousRemoteObjectProxyWithErrorHandler(_ handler: @escaping (Error) -> Void) -> Any
 }
@@ -11,7 +11,7 @@ protocol NSXPCProxyCreating {
 typealias NSXPCConnectionOptions = NSXPCConnection.Options
 extension NSXPCConnection {
   @available(iOS 6.0, *)
-  struct Options : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Options : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -23,7 +23,7 @@ extension NSXPCConnection {
   }
 }
 @available(iOS 6.0, *)
-class NSXPCConnection : NSObject, NSXPCProxyCreating {
+@_nonSendable(_assumed) class NSXPCConnection : NSObject, NSXPCProxyCreating {
   @available(iOS, unavailable)
   init(serviceName: String)
   var serviceName: String? { get }
@@ -42,24 +42,35 @@ class NSXPCConnection : NSObject, NSXPCProxyCreating {
   var invalidationHandler: (() -> Void)?
   func resume()
   func suspend()
+  @available(iOS 14.0, *)
+  func activate()
   func invalidate()
   var auditSessionIdentifier: au_asid_t { get }
   var processIdentifier: pid_t { get }
   var effectiveUserIdentifier: uid_t { get }
   var effectiveGroupIdentifier: gid_t { get }
   @available(iOS 6.0, *)
-  class func current() -> NSXPCConnection?
+  @_unavailableFromAsync(message: "currentConnection cannot be used from async contexts.") class func current() -> NSXPCConnection?
   @available(iOS 6.0, *)
   @available(swift, obsoleted: 3, renamed: "current()")
-  class func currentConnection() -> NSXPCConnection?
+  @_unavailableFromAsync(message: "currentConnection cannot be used from async contexts.") class func currentConnection() -> NSXPCConnection?
   @available(iOS 13.0, *)
   func scheduleSendBarrierBlock(_ block: @escaping () -> Void)
+
+  /// Sets the code signing requirement for this connection. If the requirement is malformed, an exception is thrown. If new messages do not match the requirement, the connection is invalidated. It is recommended to set this before calling `resume`, as it is an XPC error to call it more than once.
+  /// See https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html for more information on the format.
+  @available(iOS, unavailable)
+  func setCodeSigningRequirement(_ requirement: String)
   init()
   @available(iOS 6.0, *)
   func remoteObjectProxy() -> Any
 }
+
+@available(*, unavailable)
+extension NSXPCConnection : @unchecked Sendable {
+}
 @available(iOS 6.0, *)
-class NSXPCListener : NSObject {
+@_nonSendable(_assumed) class NSXPCListener : NSObject {
   class func service() -> NSXPCListener
   @available(swift, obsoleted: 3, renamed: "service()")
   class func serviceListener() -> NSXPCListener
@@ -72,15 +83,27 @@ class NSXPCListener : NSObject {
   var endpoint: NSXPCListenerEndpoint { get }
   func resume()
   func suspend()
+  @available(iOS 14.0, *)
+  func activate()
   func invalidate()
+
+  /// Sets the code signing requirement for new connections. If the requirement is malformed, an exception is thrown. If new peer connections do not match the requirement, the incoming connection is automatically rejected before consulting the delegate.
+  /// This method will only work on `anonymousListener` or `initWithMachServiceName` listener instances. Use on other types of listeners will result in an assertion failure.
+  /// See https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/RequirementLang/RequirementLang.html for more information on the format.
+  @available(iOS, unavailable)
+  func setConnectionCodeSigningRequirement(_ requirement: String)
   convenience init()
+}
+
+@available(*, unavailable)
+extension NSXPCListener : @unchecked Sendable {
 }
 protocol NSXPCListenerDelegate : NSObjectProtocol {
   @available(iOS 6.0, *)
   optional func listener(_ listener: NSXPCListener, shouldAcceptNewConnection newConnection: NSXPCConnection) -> Bool
 }
 @available(iOS 6.0, *)
-class NSXPCInterface : NSObject {
+@_nonSendable(_assumed) class NSXPCInterface : NSObject {
   /*not inherited*/ init(with protocol: Protocol)
   @available(swift, obsoleted: 3, renamed: "init(with:)")
   /*not inherited*/ init(withProtocol protocol: Protocol)
@@ -101,8 +124,12 @@ class NSXPCInterface : NSObject {
   func interfaceForSelector(_ sel: Selector, argumentIndex arg: Int, ofReply: Bool) -> NSXPCInterface?
   init()
 }
+
+@available(*, unavailable)
+extension NSXPCInterface : @unchecked Sendable {
+}
 @available(iOS 6.0, *)
-class NSXPCListenerEndpoint : NSObject, NSSecureCoding {
+@_nonSendable(_assumed) class NSXPCListenerEndpoint : NSObject, NSSecureCoding {
   init()
   @available(iOS 6.0, *)
   class var supportsSecureCoding: Bool { get }
@@ -110,10 +137,18 @@ class NSXPCListenerEndpoint : NSObject, NSSecureCoding {
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension NSXPCListenerEndpoint : @unchecked Sendable {
+}
 @available(iOS 6.0, *)
-class NSXPCCoder : NSCoder {
+@_nonSendable(_assumed) class NSXPCCoder : NSCoder {
   var userInfo: NSObjectProtocol?
   @available(iOS 10.0, *)
   var connection: NSXPCConnection? { get }
   init()
+}
+
+@available(*, unavailable)
+extension NSXPCCoder : @unchecked Sendable {
 }

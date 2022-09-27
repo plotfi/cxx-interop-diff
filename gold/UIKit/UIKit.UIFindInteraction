@@ -1,0 +1,100 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+@MainActor protocol UIFindInteractionDelegate : NSObjectProtocol {
+
+  /// Called when a find session is requested to begin by the user. Return an instance of a UIFindSession implementation to allow the
+  /// find session to begin, otherwise return nil to prevent the system find panel from appearing.
+  func findInteraction(_ interaction: UIFindInteraction, sessionFor view: UIView) -> UIFindSession?
+
+  /// Called when a find session is requested to begin by the user. Return an instance of a UIFindSession implementation to allow the
+  /// find session to begin, otherwise return nil to prevent the system find panel from appearing.
+  @available(swift, obsoleted: 3, renamed: "findInteraction(_:sessionFor:)")
+  func findInteraction(_ interaction: UIFindInteraction, sessionForView view: UIView) -> UIFindSession?
+
+  /// Called when the search operation begins (and the system search UI appears).
+  /// This would be a good time to decorate your view to indicate that a search operation is about to occur.
+  /// System text elements will apply a dimming view around all non-highlighted search results, for instance.
+  optional func findInteraction(_ interaction: UIFindInteraction, didBegin session: UIFindSession)
+
+  /// Called when the search operation begins (and the system search UI appears).
+  /// This would be a good time to decorate your view to indicate that a search operation is about to occur.
+  /// System text elements will apply a dimming view around all non-highlighted search results, for instance.
+  @available(swift, obsoleted: 3, renamed: "findInteraction(_:didBegin:)")
+  optional func findInteraction(_ interaction: UIFindInteraction, didBeginFindSession session: UIFindSession)
+
+  /// Called when the current search session has changed or ended. This would be a good time to remove all
+  /// decorations applied to found search results, and any decorations added when the search operation began
+  /// (such as a dimming view).
+  optional func findInteraction(_ interaction: UIFindInteraction, didEnd session: UIFindSession)
+
+  /// Called when the current search session has changed or ended. This would be a good time to remove all
+  /// decorations applied to found search results, and any decorations added when the search operation began
+  /// (such as a dimming view).
+  @available(swift, obsoleted: 3, renamed: "findInteraction(_:didEnd:)")
+  optional func findInteraction(_ interaction: UIFindInteraction, didEndFindSession session: UIFindSession)
+}
+@available(iOS 16.0, *)
+@MainActor @_nonSendable(_assumed) class UIFindInteraction : NSObject, UIInteraction {
+
+  /// Returns YES if the find navigator panel is currently visible.
+  var isFindNavigatorVisible: Bool { get }
+
+  /// Returns YES if the find navigator panel is currently visible.
+  @available(swift, obsoleted: 3, renamed: "isFindNavigatorVisible")
+  var findNavigatorVisible: Bool { get }
+
+  /// If there's a currently active find session (implying isFindNavigatorVisible is true), returns the active find session.
+  var activeFindSession: UIFindSession? { get }
+
+  /// Assign this property to pre-populate the system find panel's search text field with a search query.
+  var searchText: String?
+
+  /// If replacement is supported, assign this property to pre-populate the system find panel's replace text field with a replacement string.
+  var replacementText: String?
+
+  /// This provider is consulted when the search options menu is being populated. A default set of search options is provided, representing the options
+  /// available in @c UITextSearchOptions, which can be either modified, augmented, or omitted.
+  var optionsMenuProvider: (([UIMenuElement]) -> UIMenu?)?
+
+  /// See UIFindInteractionDelegate above.
+  weak var delegate: @sil_weak UIFindInteractionDelegate? { get }
+
+  /// Creates a find interaction object with the specified delegate.
+  init(sessionDelegate: UIFindInteractionDelegate)
+
+  /// Shows the find navigator panel, if not already visible.
+  ///
+  /// @param replaceVisible If the delegate supports text replacement, will make the replace text field
+  ///                       visible on first appearance.
+  func presentFindNavigator(showingReplace: Bool)
+
+  /// Shows the find navigator panel, if not already visible.
+  ///
+  /// @param replaceVisible If the delegate supports text replacement, will make the replace text field
+  ///                       visible on first appearance.
+  @available(swift, obsoleted: 3, renamed: "presentFindNavigator(showingReplace:)")
+  func presentFindNavigatorShowingReplace(_ showingReplace: Bool)
+
+  /// Dismisses the find navigator panel.
+  func dismissFindNavigator()
+
+  /// Jump to the next found result in the document, relative to the currently highlighted result.
+  func findNext()
+
+  /// Jump to the previous found result in the document, relative to the currently highlighted result.
+  func findPrevious()
+
+  /// Calling this triggers an update of the UI to reflect changes to the currently shown result count or result index, as defined by UIFindSession. 
+  func updateResultCount()
+  @available(*, unavailable)
+  class func new() -> Self
+  @available(*, unavailable)
+  convenience init()
+  @available(iOS 11.0, *)
+  weak var view: @sil_weak UIView? { get }
+  @available(iOS 11.0, *)
+  func willMove(to view: UIView?)
+  @available(iOS 11.0, *)
+  func didMove(to view: UIView?)
+}

@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-@MainActor class UIStatusBarManager : NSObject {
+@MainActor @_nonSendable(_assumed) class UIStatusBarManager : NSObject {
   @available(*, unavailable)
   init()
   @available(*, unavailable)

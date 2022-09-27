@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIEvent.EventType")
 typealias UIEventType = UIEvent.EventType
 extension UIEvent {
-  enum EventType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum EventType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -37,7 +37,7 @@ extension UIEvent {
     @available(swift, obsoleted: 3, renamed: "transform")
     static var Transform: UIEvent.EventType { get }
   }
-  enum EventSubtype : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum EventSubtype : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -83,7 +83,7 @@ extension UIEvent {
   /// Raw format of: 1 << (buttonNumber - 1)
   /// UIEventButtonMaskPrimary = 1 << 0
   @available(iOS 13.4, *)
-  struct ButtonMask : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct ButtonMask : OptionSet, @unchecked Sendable {
     init(rawValue: Int)
     let rawValue: Int
     typealias RawValue = Int
@@ -122,7 +122,7 @@ extension UIEvent.ButtonMask {
   static func button(_ buttonNumber: Int) -> UIEvent.ButtonMask
 }
 @available(iOS 2.0, *)
-@MainActor class UIEvent : NSObject {
+@MainActor @_nonSendable(_assumed) class UIEvent : NSObject {
   @available(iOS 3.0, *)
   var type: UIEvent.EventType { get }
   @available(iOS 3.0, *)

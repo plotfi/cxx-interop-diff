@@ -6,7 +6,7 @@
   func addCompletion(_ completion: @escaping (UIViewAnimatingPosition) -> Void)
 }
 @available(iOS 11.0, *)
-@MainActor class UIDragInteraction : NSObject, UIInteraction {
+@MainActor @_nonSendable(_assumed) class UIDragInteraction : NSObject, UIInteraction {
   init(delegate: UIDragInteractionDelegate)
   @available(*, unavailable)
   convenience init()

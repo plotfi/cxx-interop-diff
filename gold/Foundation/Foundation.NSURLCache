@@ -41,7 +41,7 @@ extension URLCache {
       NSURLCache is not allowed in any fashion, either in memory or on
       disk.
   */
-  enum StoragePolicy : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum StoragePolicy : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -65,7 +65,7 @@ extension URLCache {
     object. 
 */
 @available(iOS 2.0, *)
-class CachedURLResponse : NSObject, NSSecureCoding, NSCopying {
+@_nonSendable(_assumed) class CachedURLResponse : NSObject, NSSecureCoding, NSCopying, @unchecked Sendable {
 
   /** 
       @method initWithResponse:data
@@ -142,7 +142,7 @@ typealias NSCachedURLResponse = CachedURLResponse
 @available(swift, obsoleted: 3, renamed: "URLCache")
 typealias NSURLCache = URLCache
 @available(iOS 2.0, *)
-class URLCache : NSObject {
+@_nonSendable(_assumed) class URLCache : NSObject, @unchecked Sendable {
 
   /** 
       @property sharedURLCache

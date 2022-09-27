@@ -11,7 +11,7 @@ extension Stream {
     typealias RawValue = String
     typealias _ObjectiveCType = NSString
   }
-  enum Status : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Status : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -40,7 +40,7 @@ extension Stream {
     @available(swift, obsoleted: 3, renamed: "error")
     static var Error: Stream.Status { get }
   }
-  struct Event : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Event : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -74,7 +74,7 @@ typealias NSStreamStatus = Stream.Status
 typealias NSStreamEvent = Stream.Event
 @available(swift, obsoleted: 3, renamed: "Stream")
 typealias NSStream = Stream
-class Stream : NSObject {
+@_nonSendable(_assumed) class Stream : NSObject {
   func open()
   func close()
   unowned(unsafe) var delegate: @sil_unmanaged StreamDelegate?
@@ -92,7 +92,11 @@ class Stream : NSObject {
   var streamError: Error? { get }
   init()
 }
-class InputStream : Stream {
+
+@available(*, unavailable)
+extension Stream : @unchecked Sendable {
+}
+@_nonSendable(_assumed) class InputStream : Stream {
   func read(_ buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int
   func getBuffer(_ buffer: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>, length len: UnsafeMutablePointer<Int>) -> Bool
   var hasBytesAvailable: Bool { get }
@@ -104,11 +108,15 @@ class InputStream : Stream {
   init?(URL url: URL)
   convenience init()
 }
+
+@available(*, unavailable)
+extension InputStream : @unchecked Sendable {
+}
 @available(swift, obsoleted: 3, renamed: "InputStream")
 typealias NSInputStream = InputStream
 @available(swift, obsoleted: 3, renamed: "OutputStream")
 typealias NSOutputStream = OutputStream
-class OutputStream : Stream {
+@_nonSendable(_assumed) class OutputStream : Stream {
   func write(_ buffer: UnsafePointer<UInt8>, maxLength len: Int) -> Int
   var hasSpaceAvailable: Bool { get }
   init(toMemory: ())
@@ -119,6 +127,10 @@ class OutputStream : Stream {
   @available(swift, obsoleted: 3, renamed: "init(url:append:)")
   init?(URL url: URL, append shouldAppend: Bool)
   convenience init()
+}
+
+@available(*, unavailable)
+extension OutputStream : @unchecked Sendable {
 }
 extension Stream {
   @available(iOS, introduced: 8.0, deprecated: 100000, message: "Use nw_connection_t in Network framework instead")

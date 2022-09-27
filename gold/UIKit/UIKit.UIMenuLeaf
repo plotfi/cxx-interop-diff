@@ -1,0 +1,34 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+@MainActor protocol UIMenuLeaf : NSObjectProtocol {
+
+  /// Short display title.
+  var title: String { get set }
+
+  /// Image that can appear next to this element.
+  @NSCopying var image: UIImage? { get set }
+
+  /// Elaborated title used in keyboard shortcut overlay.
+  var discoverabilityTitle: String? { get set }
+
+  /// The element's attributes.
+  var attributes: UIMenuElement.Attributes { get set }
+
+  /// The element's selection state.
+  var state: UIMenuElement.State { get set }
+
+  /// The object on behalf of which the element's primary action is being performed.
+  /// This property is only populated during the execution of the element's
+  /// primary action (i.e. its handler or selector) if available.
+  var sender: Any? { get }
+
+  /// Source item for subsequent presentations. For example, an element displayed in a menu attached to a
+  /// @c UIButton may return the button so that a popover may be presented from it when the element is tapped.
+  /// If available, this property is only populated during the execution of the element's action (i.e. its handler or selector).
+  @available(iOS 16.0, *)
+  var presentationSourceItem: UIPopoverPresentationControllerSourceItem? { get }
+
+  /// Performs the element’s primary action (i.e. it's handler or selector).
+  func performWithSender(_ sender: Any?, target: Any?)
+}

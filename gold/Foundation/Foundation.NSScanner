@@ -2,7 +2,7 @@
 
 @available(swift, obsoleted: 3, renamed: "Scanner")
 typealias NSScanner = Scanner
-class Scanner : NSObject, NSCopying {
+@_nonSendable(_assumed) class Scanner : NSObject, NSCopying {
   var string: String { get }
   @available(iOS, introduced: 2.0, deprecated: 13.0)
   var scanLocation: Int
@@ -16,7 +16,7 @@ class Scanner : NSObject, NSCopying {
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 extension Scanner {
-  enum NumberRepresentation {
+  enum NumberRepresentation : Sendable {
     case decimal
     case hexadecimal
     static func == (a: Scanner.NumberRepresentation, b: Scanner.NumberRepresentation) -> Bool
@@ -36,6 +36,10 @@ extension Scanner {
   func scanUpToString(_ substring: String) -> String?
   func scanUpToCharacters(from set: CharacterSet) -> String?
   func scanCharacter() -> Character?
+}
+
+@available(*, unavailable)
+extension Scanner : @unchecked Sendable {
 }
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)

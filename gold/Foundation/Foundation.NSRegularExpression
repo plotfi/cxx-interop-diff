@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "NSRegularExpression.Options")
 typealias NSRegularExpressionOptions = NSRegularExpression.Options
 extension NSRegularExpression {
-  struct Options : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Options : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -31,7 +31,7 @@ extension NSRegularExpression {
     @available(swift, obsoleted: 3, renamed: "useUnicodeWordBoundaries")
     static var UseUnicodeWordBoundaries: NSRegularExpression.Options { get }
   }
-  struct MatchingOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct MatchingOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -53,7 +53,7 @@ extension NSRegularExpression {
     @available(swift, obsoleted: 3, renamed: "withoutAnchoringBounds")
     static var WithoutAnchoringBounds: NSRegularExpression.MatchingOptions { get }
   }
-  struct MatchingFlags : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct MatchingFlags : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -77,7 +77,7 @@ extension NSRegularExpression {
   }
 }
 @available(iOS 4.0, *)
-class NSRegularExpression : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSRegularExpression : NSObject, NSCopying, NSSecureCoding, @unchecked Sendable {
   @available(*, unavailable, message: "superseded by import of -[NSRegularExpression initWithPattern:options:error:]")
   /*not inherited*/ init(pattern: String, options: NSRegularExpression.Options = []) throws
   @available(*, unavailable, renamed: "init(pattern:options:)", message: "Not available in Swift")
@@ -134,7 +134,7 @@ extension NSRegularExpression {
   class func escapedTemplateForString(_ string: String) -> String
 }
 @available(iOS 4.0, *)
-class NSDataDetector : NSRegularExpression {
+@_nonSendable(_assumed) class NSDataDetector : NSRegularExpression {
   @available(*, unavailable, message: "superseded by import of -[NSDataDetector initWithTypes:error:]")
   /*not inherited*/ init(types checkingTypes: NSTextCheckingTypes) throws
   @available(*, unavailable, renamed: "init(types:)", message: "Not available in Swift")

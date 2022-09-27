@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 14.0, *)
-enum __UICellAccessoryDisplayedState : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UICellAccessoryDisplayedState : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -35,7 +35,7 @@ let __UICellAccessoryStandardDimension: CGFloat
 
 /// Abstract base class. Do not instantiate directly.
 @available(iOS 14.0, *)
-@MainActor class __UICellAccessory : NSObject, NSCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class __UICellAccessory : NSObject, NSCopying, NSSecureCoding {
 
   /// The state(s) for which the accessory should be displayed.
   var displayedState: __UICellAccessoryDisplayedState
@@ -69,14 +69,14 @@ let __UICellAccessoryStandardDimension: CGFloat
 
 /// A disclosure chevron that points in the trailing direction.
 @available(iOS 14.0, *)
-@MainActor class __UICellAccessoryDisclosureIndicator : __UICellAccessory {
+@MainActor @_nonSendable(_assumed) class __UICellAccessoryDisclosureIndicator : __UICellAccessory {
   init?(coder: NSCoder)
   init()
 }
 
 /// A detail (info) button.
 @available(iOS 15.4, *)
-@MainActor class __UICellAccessoryDetail : __UICellAccessory {
+@MainActor @_nonSendable(_assumed) class __UICellAccessoryDetail : __UICellAccessory {
 
   /// An optional handler to call when the detail accessory is tapped. If nil, taps on the accessory are ignored.
   var actionHandler: (() -> Void)?
@@ -86,14 +86,14 @@ let __UICellAccessoryStandardDimension: CGFloat
 
 /// A checkmark with default green color.
 @available(iOS 14.0, *)
-@MainActor class __UICellAccessoryCheckmark : __UICellAccessory {
+@MainActor @_nonSendable(_assumed) class __UICellAccessoryCheckmark : __UICellAccessory {
   init?(coder: NSCoder)
   init()
 }
 
 /// A delete control (minus sign inside a circle) with default red color.
 @available(iOS 14.0, *)
-@MainActor class __UICellAccessoryDelete : __UICellAccessory {
+@MainActor @_nonSendable(_assumed) class __UICellAccessoryDelete : __UICellAccessory {
 
   /// The background color to apply to the accessory. Default value is nil, which uses the system default.
   var backgroundColor: UIColor?
@@ -106,7 +106,7 @@ let __UICellAccessoryStandardDimension: CGFloat
 
 /// An insert control (plus sign inside a circle) with default green color.
 @available(iOS 14.0, *)
-@MainActor class __UICellAccessoryInsert : __UICellAccessory {
+@MainActor @_nonSendable(_assumed) class __UICellAccessoryInsert : __UICellAccessory {
 
   /// The background color to apply to the accessory. Default value is nil, which uses the system default.
   var backgroundColor: UIColor?
@@ -120,7 +120,7 @@ let __UICellAccessoryStandardDimension: CGFloat
 /// A reorder control (three horizontal lines) with default gray color that automatically initiates interactive
 /// reordering on the collection view when dragged (if supported).
 @available(iOS 14.0, *)
-@MainActor class __UICellAccessoryReorder : __UICellAccessory {
+@MainActor @_nonSendable(_assumed) class __UICellAccessoryReorder : __UICellAccessory {
 
   /// Whether a vertical separator is displayed before the accessory when it is placed after another accessory. Default is YES.
   var showsVerticalSeparator: Bool
@@ -131,7 +131,7 @@ let __UICellAccessoryStandardDimension: CGFloat
 /// A two-state control whose appearance follows the selection state of the cell (empty circle when deselected,
 /// filled circle with checkmark when selected).
 @available(iOS 14.0, *)
-@MainActor class __UICellAccessoryMultiselect : __UICellAccessory {
+@MainActor @_nonSendable(_assumed) class __UICellAccessoryMultiselect : __UICellAccessory {
 
   /// The background color to apply to the accessory. Default value is nil, which uses the system default.
   var backgroundColor: UIColor?
@@ -139,7 +139,7 @@ let __UICellAccessoryStandardDimension: CGFloat
   init()
 }
 @available(iOS 14.0, *)
-enum __UICellAccessoryOutlineDisclosureStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UICellAccessoryOutlineDisclosureStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -172,7 +172,7 @@ enum __UICellAccessoryOutlineDisclosureStyle : Int, @unchecked Sendable {
 
 /// A rotating disclosure chevron for use with outlines, used to indicate and toggle the expanded/collapsed state of the item.
 @available(iOS 14.0, *)
-@MainActor class __UICellAccessoryOutlineDisclosure : __UICellAccessory {
+@MainActor @_nonSendable(_assumed) class __UICellAccessoryOutlineDisclosure : __UICellAccessory {
 
   /// The style of the outline disclosure accessory. Default is automatic.
   var style: __UICellAccessoryOutlineDisclosureStyle
@@ -184,9 +184,26 @@ enum __UICellAccessoryOutlineDisclosureStyle : Int, @unchecked Sendable {
   init()
 }
 
+/// Up/down chevrons that indicate a tap anywhere in the cell presents a pop-up menu.
+@available(iOS 16.0, *)
+@MainActor @_nonSendable(_assumed) class __UICellAccessoryPopUpMenu : __UICellAccessory {
+
+  /// Creates a new pop-up menu accessory using the provided menu.
+  init(menu: UIMenu)
+  @NSCopying var menu: UIMenu { get }
+
+  /// An optional handler to call when the selected element in the menu changes.
+  var selectedElementDidChangeHandler: ((UIMenu) -> Void)?
+  init?(coder: NSCoder)
+  @available(*, unavailable)
+  convenience init()
+  @available(*, unavailable)
+  class func new() -> Self
+}
+
 /// A label displaying a short string of text, typically a small number such as a count for the associated item.
 @available(iOS 14.0, *)
-@MainActor class __UICellAccessoryLabel : __UICellAccessory {
+@MainActor @_nonSendable(_assumed) class __UICellAccessoryLabel : __UICellAccessory {
 
   /// Creates a new label accessory using the provided text.
   init(text: String)
@@ -204,7 +221,7 @@ enum __UICellAccessoryOutlineDisclosureStyle : Int, @unchecked Sendable {
   class func new() -> Self
 }
 @available(iOS 14.0, *)
-enum __UICellAccessoryPlacement : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UICellAccessoryPlacement : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -238,7 +255,7 @@ func __UICellAccessoryPositionAfterAccessoryOfClass(_ accessoryClass: AnyClass) 
 
 /// An accessory using a custom view.
 @available(iOS 14.0, *)
-@MainActor class __UICellAccessoryCustomView : __UICellAccessory {
+@MainActor @_nonSendable(_assumed) class __UICellAccessoryCustomView : __UICellAccessory {
 
   /// Creates a new custom view accessory using the provided view and specified placement. The custom view must have translatesAutoresizingMaskIntoConstraints
   /// enabled, but may use auto layout constraints internally for layout of subviews and/or to indicate its preferred size.

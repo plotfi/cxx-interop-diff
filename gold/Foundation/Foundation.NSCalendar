@@ -11,7 +11,7 @@ extension NSCalendar {
     typealias RawValue = String
     typealias _ObjectiveCType = NSString
   }
-  struct Unit : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Unit : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -112,7 +112,7 @@ extension NSCalendar {
     @available(iOS, introduced: 4.0, deprecated: 8.0, renamed: "NSCalendar.Unit.timeZone")
     static var NSTimeZoneCalendarUnit: NSCalendar.Unit { get }
   }
-  struct Options : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Options : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -246,7 +246,7 @@ typealias NSCalendarUnit = NSCalendar.Unit
 typealias NSCalendarOptions = NSCalendar.Options
 @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Options.wrapComponents")
 var NSWrapCalendarComponents: Int { get }
-class NSCalendar : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   class var current: Calendar { get }
   @available(swift, obsoleted: 3, renamed: "current")
   class var currentCalendar: Calendar { get }
@@ -467,6 +467,10 @@ class NSCalendar : NSObject, NSCopying, NSSecureCoding {
 extension NSCalendar : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
 }
+
+@available(*, unavailable)
+extension NSCalendar : @unchecked Sendable {
+}
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 3, renamed: "NSNotification.Name.NSCalendarDayChanged")
 let NSCalendarDayChangedNotification: NSNotification.Name
@@ -477,7 +481,7 @@ extension NSNotification.Name {
 var NSDateComponentUndefined: Int { get }
 @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSDateComponentUndefined")
 var NSUndefinedDateComponent: Int { get }
-class NSDateComponents : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSDateComponents : NSObject, NSCopying, NSSecureCoding {
   @available(iOS 4.0, *)
   var calendar: Calendar?
   @available(iOS 4.0, *)
@@ -538,4 +542,8 @@ class NSDateComponents : NSObject, NSCopying, NSSecureCoding {
 
 extension NSDateComponents : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}
+
+@available(*, unavailable)
+extension NSDateComponents : @unchecked Sendable {
 }

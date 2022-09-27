@@ -3,7 +3,7 @@
 @available(iOS, introduced: 2.0, deprecated: 13.0, message: "UIAcceleration has been replaced by the CoreMotion framework")
 typealias UIAccelerationValue = Double
 @available(iOS, unavailable, introduced: 2.0, deprecated: 5.0, message: "UIAcceleration has been replaced by the CoreMotion framework")
-@MainActor class UIAcceleration : NSObject {
+@MainActor @_nonSendable(_assumed) class UIAcceleration : NSObject {
   var timestamp: TimeInterval { get }
   var x: UIAccelerationValue { get }
   var y: UIAccelerationValue { get }
@@ -11,7 +11,7 @@ typealias UIAccelerationValue = Double
   init()
 }
 @available(iOS, unavailable, introduced: 2.0, deprecated: 5.0, message: "UIAccelerometer has been replaced by the CoreMotion framework")
-@MainActor class UIAccelerometer : NSObject {
+@MainActor @_nonSendable(_assumed) class UIAccelerometer : NSObject {
   class func shared() -> UIAccelerometer
   @available(swift, obsoleted: 3, renamed: "shared()")
   class func sharedAccelerometer() -> UIAccelerometer

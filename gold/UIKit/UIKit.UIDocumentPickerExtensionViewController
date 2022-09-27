@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS, introduced: 8.0, deprecated: 14.0, message: "Use enumeration based NSFileProviderExtension instead")
-@MainActor class UIDocumentPickerExtensionViewController : UIViewController {
+@MainActor @_nonSendable(_assumed) class UIDocumentPickerExtensionViewController : UIViewController {
   func dismissGrantingAccess(to url: URL?)
   @available(swift, obsoleted: 3, renamed: "dismissGrantingAccess(to:)")
   func dismissGrantingAccessToURL(_ url: URL?)

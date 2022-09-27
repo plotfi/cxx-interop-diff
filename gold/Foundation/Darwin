@@ -16,6 +16,7 @@ import Darwin.bank
 import Darwin.block
 import Darwin.bsm
 import Darwin.cdefs
+import Darwin.crt_externs
 import Darwin.device
 import Darwin.gethostuuid
 import Darwin.getopt
@@ -976,6 +977,30 @@ var stdout: UnsafeMutablePointer<FILE>
 func vfork() -> Int32
 
 @_transparent func yn(_ n: Int, _ x: Double) -> Double
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension timespec {
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  init(_ duration: Duration)
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Duration {
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  init(_ ts: timespec)
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension timeval {
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  init(_ duration: Duration)
+}
+
+@available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+extension Duration {
+  @available(macOS 13.0, iOS 16.0, watchOS 9.0, tvOS 16.0, *)
+  init(_ tv: timeval)
+}
 
 extension extern_proc {
   @_transparent var p_starttime: timeval

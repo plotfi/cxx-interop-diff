@@ -1,6 +1,6 @@
 @_exported import CoreFoundation
 
-class NSNull : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSNull : NSObject, NSCopying, NSSecureCoding, @unchecked Sendable {
   @available(*, unavailable, message: "superseded by import of -[NSObject init]")
   /*not inherited*/ init()
   @available(*, unavailable, renamed: "init()", message: "Not available in Swift")

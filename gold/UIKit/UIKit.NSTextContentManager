@@ -5,7 +5,7 @@
 typealias NSTextContentManagerEnumerationOptions = NSTextContentManager.EnumerationOptions
 extension NSTextContentManager {
   @available(iOS 15.0, *)
-  struct EnumerationOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct EnumerationOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -30,7 +30,7 @@ protocol NSTextElementProvider : NSObjectProtocol {
   func replaceContents(in range: NSTextRange, with textElements: [NSTextElement]?)
   @available(swift, obsoleted: 3, renamed: "replaceContents(in:with:)")
   func replaceContentsInRange(_ range: NSTextRange, withTextElements textElements: [NSTextElement]?)
-  func synchronizeToBackingStore(_ completionHandler: (@Sendable (Error?) -> Void)? = nil)
+  func synchronizeToBackingStore(_ completionHandler: ((Error?) -> Void)? = nil)
   func synchronizeToBackingStore() async throws
   optional func location(_ location: NSTextLocation, offsetBy offset: Int) -> NSTextLocation?
   @available(swift, obsoleted: 3, renamed: "location(_:offsetBy:)")
@@ -43,7 +43,7 @@ protocol NSTextElementProvider : NSObjectProtocol {
   optional func adjustedRangeFromRange(_ textRange: NSTextRange, forEditingTextSelection: Bool) -> NSTextRange?
 }
 @available(iOS 15.0, *)
-class NSTextContentManager : NSObject, NSTextElementProvider, NSSecureCoding {
+@_nonSendable(_assumed) class NSTextContentManager : NSObject, NSTextElementProvider, NSSecureCoding {
   init()
   init?(coder: NSCoder)
   weak var delegate: @sil_weak NSTextContentManagerDelegate?
@@ -51,7 +51,7 @@ class NSTextContentManager : NSObject, NSTextElementProvider, NSSecureCoding {
   func addTextLayoutManager(_ textLayoutManager: NSTextLayoutManager)
   func removeTextLayoutManager(_ textLayoutManager: NSTextLayoutManager)
   var primaryTextLayoutManager: NSTextLayoutManager?
-  func synchronizeTextLayoutManagers(_ completionHandler: (@Sendable (Error?) -> Void)? = nil)
+  func synchronizeTextLayoutManagers(_ completionHandler: ((Error?) -> Void)? = nil)
   func synchronizeTextLayoutManagers() async throws
   func textElements(for range: NSTextRange) -> [NSTextElement]
   @available(swift, obsoleted: 3, renamed: "textElements(for:)")
@@ -74,7 +74,7 @@ class NSTextContentManager : NSObject, NSTextElementProvider, NSSecureCoding {
   @available(iOS 15.0, *)
   func replaceContents(in range: NSTextRange, with textElements: [NSTextElement]?)
   @available(iOS 15.0, *)
-  func synchronizeToBackingStore(_ completionHandler: (@Sendable (Error?) -> Void)? = nil)
+  func synchronizeToBackingStore(_ completionHandler: ((Error?) -> Void)? = nil)
   @available(iOS 15.0, *)
   func synchronizeToBackingStore() async throws
   @available(iOS 15.0, *)
@@ -85,6 +85,10 @@ class NSTextContentManager : NSObject, NSTextElementProvider, NSSecureCoding {
   func adjustedRange(from textRange: NSTextRange, forEditingTextSelection: Bool) -> NSTextRange?
   @available(iOS 15.0, *)
   func encode(with coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSTextContentManager : @unchecked Sendable {
 }
 @available(iOS 15.0, *)
 protocol NSTextContentManagerDelegate : NSObjectProtocol {
@@ -102,7 +106,7 @@ protocol NSTextContentStorageDelegate : NSTextContentManagerDelegate {
   optional func textContentStorage(_ textContentStorage: NSTextContentStorage, textParagraphWithRange range: NSRange) -> NSTextParagraph?
 }
 @available(iOS 15.0, *)
-class NSTextContentStorage : NSTextContentManager, NSTextStorageObserving {
+@_nonSendable(_assumed) class NSTextContentStorage : NSTextContentManager, NSTextStorageObserving {
   weak var delegate: @sil_weak NSTextContentStorageDelegate?
   @NSCopying var attributedString: NSAttributedString?
   func attributedString(for textElement: NSTextElement) -> NSAttributedString?
@@ -128,6 +132,10 @@ class NSTextContentStorage : NSTextContentManager, NSTextStorageObserving {
   func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange)
   @available(iOS 15.0, *)
   func performEditingTransaction(for textStorage: NSTextStorage, using transaction: () -> Void)
+}
+
+@available(*, unavailable)
+extension NSTextContentStorage : @unchecked Sendable {
 }
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "NSNotification.Name.unsupportedAttributeAddedNotification")

@@ -28,7 +28,7 @@ extension UIDragDropSession {
   var localContext: Any? { get set }
 }
 @available(iOS 11.0, *)
-enum UIDropSessionProgressIndicatorStyle : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIDropSessionProgressIndicatorStyle : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt

@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UITableView.Style")
 typealias UITableViewStyle = UITableView.Style
 extension UITableView {
-  enum Style : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -19,7 +19,7 @@ extension UITableView {
     @available(swift, obsoleted: 3, renamed: "insetGrouped")
     static var InsetGrouped: UITableView.Style { get }
   }
-  enum ScrollPosition : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ScrollPosition : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -36,7 +36,7 @@ extension UITableView {
     @available(swift, obsoleted: 3, renamed: "bottom")
     static var Bottom: UITableView.ScrollPosition { get }
   }
-  enum RowAnimation : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum RowAnimation : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -71,7 +71,7 @@ extension UITableView {
   class let automaticDimension: CGFloat
   class let selectionDidChangeNotification: NSNotification.Name
   @available(iOS 11.0, *)
-  enum SeparatorInsetReference : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SeparatorInsetReference : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -81,6 +81,35 @@ extension UITableView {
     case fromAutomaticInsets
     @available(swift, obsoleted: 3, renamed: "fromAutomaticInsets")
     static var FromAutomaticInsets: UITableView.SeparatorInsetReference { get }
+  }
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) enum SelfSizingInvalidation : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+
+    /// No updates will take place when -invalidateIntrinsicContentSize is called on a self-sizing cell or its contentView.
+    case disabled
+
+    /// No updates will take place when -invalidateIntrinsicContentSize is called on a self-sizing cell or its contentView.
+    @available(swift, obsoleted: 3, renamed: "disabled")
+    static var Disabled: UITableView.SelfSizingInvalidation { get }
+
+    /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary.
+    case enabled
+
+    /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary.
+    @available(swift, obsoleted: 3, renamed: "enabled")
+    static var Enabled: UITableView.SelfSizingInvalidation { get }
+
+    /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary, and
+    /// any Auto Layout changes within the contentView of a self-sizing cell will automatically trigger -invalidateIntrinsicContentSize.
+    case enabledIncludingConstraints
+
+    /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary, and
+    /// any Auto Layout changes within the contentView of a self-sizing cell will automatically trigger -invalidateIntrinsicContentSize.
+    @available(swift, obsoleted: 3, renamed: "enabledIncludingConstraints")
+    static var EnabledIncludingConstraints: UITableView.SelfSizingInvalidation { get }
   }
 }
 @available(swift, obsoleted: 4.2, renamed: "UITableView.ScrollPosition")
@@ -98,7 +127,7 @@ let UITableViewAutomaticDimension: CGFloat
 typealias UITableViewRowActionStyle = UITableViewRowAction.Style
 extension UITableViewRowAction {
   @available(iOS, introduced: 8.0, deprecated: 13.0, message: "Use UIContextualAction and related APIs instead.")
-  enum Style : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -112,7 +141,7 @@ extension UITableViewRowAction {
   }
 }
 @available(iOS, introduced: 8.0, deprecated: 13.0, message: "Use UIContextualAction and related APIs instead.")
-@MainActor class UITableViewRowAction : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class UITableViewRowAction : NSObject, NSCopying {
   convenience init(style: UITableViewRowAction.Style, title: String?, handler: @escaping (UITableViewRowAction, IndexPath) -> Void)
   @available(*, unavailable, renamed: "init(style:title:handler:)", message: "Not available in Swift")
   class func rowActionWithStyle(_ style: UITableViewRowAction.Style, title: String?, handler: @escaping (UITableViewRowAction, IndexPath) -> Void) -> Self
@@ -125,7 +154,7 @@ extension UITableViewRowAction {
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 9.0, *)
-@MainActor class UITableViewFocusUpdateContext : UIFocusUpdateContext {
+@MainActor @_nonSendable(_assumed) class UITableViewFocusUpdateContext : UIFocusUpdateContext {
   var previouslyFocusedIndexPath: IndexPath? { get }
   var nextFocusedIndexPath: IndexPath? { get }
   init()
@@ -211,6 +240,68 @@ extension UITableViewRowAction {
   @available(iOS 3.0, *)
   @available(swift, obsoleted: 3, renamed: "tableView(_:didDeselectRowAt:)")
   optional func tableView(_ tableView: UITableView, didDeselectRowAtIndexPath indexPath: IndexPath)
+
+  /**
+   * @abstract Called to determine if a primary action can be performed for the row at the given indexPath.
+   * See @c tableView:performPrimaryActionForRowAtIndexPath: for more details about primary actions.
+   *
+   * @param tableView This UITableView
+   * @param indexPath NSIndexPath of the row
+   *
+   * @return `YES` if the primary action can be performed; otherwise `NO`. If not implemented defaults to `YES` when not editing
+   * and `NO` when editing.
+   */
+  @available(iOS 16.0, *)
+  optional func tableView(_ tableView: UITableView, canPerformPrimaryActionForRowAt indexPath: IndexPath) -> Bool
+
+  /**
+   * @abstract Called to determine if a primary action can be performed for the row at the given indexPath.
+   * See @c tableView:performPrimaryActionForRowAtIndexPath: for more details about primary actions.
+   *
+   * @param tableView This UITableView
+   * @param indexPath NSIndexPath of the row
+   *
+   * @return `YES` if the primary action can be performed; otherwise `NO`. If not implemented defaults to `YES` when not editing
+   * and `NO` when editing.
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "tableView(_:canPerformPrimaryActionForRowAt:)")
+  optional func tableView(_ tableView: UITableView, canPerformPrimaryActionForRowAtIndexPath indexPath: IndexPath) -> Bool
+
+  /**
+   * @abstract Called when the primary action should be performed for the row at the given indexPath.
+   *
+   * @discussion Primary actions allow you to distinguish between a change of selection (which can be based on focus changes or
+   * other indirect selection changes) and distinct user actions. Primary actions are performed when the user selects a cell without extending
+   * an existing selection. This is called after @c willSelectRow and @c didSelectRow , regardless of whether the cell's selection
+   * state was allowed to change.
+   *
+   * As an example, use @c didSelectRowAtIndexPath for updating state in the current view controller (i.e. buttons, title, etc) and
+   * use the primary action for navigation or showing another split view column.
+   *
+   * @param tableView This UITableView
+   * @param indexPath NSIndexPath of the row to perform the action on
+   */
+  @available(iOS 16.0, *)
+  optional func tableView(_ tableView: UITableView, performPrimaryActionForRowAt indexPath: IndexPath)
+
+  /**
+   * @abstract Called when the primary action should be performed for the row at the given indexPath.
+   *
+   * @discussion Primary actions allow you to distinguish between a change of selection (which can be based on focus changes or
+   * other indirect selection changes) and distinct user actions. Primary actions are performed when the user selects a cell without extending
+   * an existing selection. This is called after @c willSelectRow and @c didSelectRow , regardless of whether the cell's selection
+   * state was allowed to change.
+   *
+   * As an example, use @c didSelectRowAtIndexPath for updating state in the current view controller (i.e. buttons, title, etc) and
+   * use the primary action for navigation or showing another split view column.
+   *
+   * @param tableView This UITableView
+   * @param indexPath NSIndexPath of the row to perform the action on
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "tableView(_:performPrimaryActionForRowAt:)")
+  optional func tableView(_ tableView: UITableView, performPrimaryActionForRowAtIndexPath indexPath: IndexPath)
   @available(iOS 2.0, *)
   optional func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle
   @available(swift, obsoleted: 3, renamed: "tableView(_:editingStyleForRowAt:)")
@@ -437,8 +528,11 @@ let UITableViewSelectionDidChangeNotification: NSNotification.Name
 @available(iOS 11.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UITableView.SeparatorInsetReference")
 typealias UITableViewSeparatorInsetReference = UITableView.SeparatorInsetReference
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UITableView.SelfSizingInvalidation")
+typealias UITableViewSelfSizingInvalidation = UITableView.SelfSizingInvalidation
 @available(iOS 2.0, *)
-@MainActor class UITableView : UIScrollView, NSCoding, UIDataSourceTranslating {
+@MainActor @_nonSendable(_assumed) class UITableView : UIScrollView, NSCoding, UIDataSourceTranslating {
   init(frame: CGRect, style: UITableView.Style)
   init?(coder: NSCoder)
   var style: UITableView.Style { get }
@@ -477,6 +571,8 @@ typealias UITableViewSeparatorInsetReference = UITableView.SeparatorInsetReferen
   var separatorInset: UIEdgeInsets
   @available(iOS 11.0, *)
   var separatorInsetReference: UITableView.SeparatorInsetReference
+  @available(iOS 16.0, *)
+  var selfSizingInvalidation: UITableView.SelfSizingInvalidation
   @available(iOS 3.2, *)
   var backgroundView: UIView?
   @available(iOS 14.0, *)
@@ -769,7 +865,7 @@ extension UITableView : UISpringLoadedInteractionSupporting {
 typealias UITableViewDropIntent = UITableViewDropProposal.Intent
 extension UITableViewDropProposal {
   @available(iOS 11.0, *)
-  enum Intent : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Intent : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -788,7 +884,7 @@ extension UITableViewDropProposal {
   }
 }
 @available(iOS 11.0, *)
-@MainActor class UITableViewDropProposal : UIDropProposal {
+@MainActor @_nonSendable(_assumed) class UITableViewDropProposal : UIDropProposal {
   init(operation: UIDropOperation, intent: UITableViewDropProposal.Intent)
   @available(swift, obsoleted: 3, renamed: "init(operation:intent:)")
   init(dropOperation operation: UIDropOperation, intent: UITableViewDropProposal.Intent)
@@ -817,7 +913,7 @@ extension UITableViewDropProposal {
   func dropItem(_ dragItem: UIDragItem, toTarget target: UIDragPreviewTarget) -> UIDragAnimating
 }
 @available(iOS 11.0, *)
-@MainActor class UITableViewPlaceholder : NSObject {
+@MainActor @_nonSendable(_assumed) class UITableViewPlaceholder : NSObject {
   init(insertionIndexPath: IndexPath, reuseIdentifier: String, rowHeight: CGFloat)
   @available(*, unavailable)
   convenience init()
@@ -826,7 +922,7 @@ extension UITableViewDropProposal {
   var cellUpdateHandler: ((UITableViewCell) -> Void)?
 }
 @available(iOS 11.0, *)
-@MainActor class UITableViewDropPlaceholder : UITableViewPlaceholder {
+@MainActor @_nonSendable(_assumed) class UITableViewDropPlaceholder : UITableViewPlaceholder {
   var previewParametersProvider: ((UITableViewCell) -> UIDragPreviewParameters?)?
   init(insertionIndexPath: IndexPath, reuseIdentifier: String, rowHeight: CGFloat)
   @available(*, unavailable)

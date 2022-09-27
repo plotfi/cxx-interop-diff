@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 10.0, *)
-@MainActor class UICubicTimingParameters : NSObject, UITimingCurveProvider {
+@MainActor @_nonSendable(_assumed) class UICubicTimingParameters : NSObject, UITimingCurveProvider {
   var animationCurve: UIView.AnimationCurve { get }
   var controlPoint1: CGPoint { get }
   var controlPoint2: CGPoint { get }
@@ -21,7 +21,7 @@
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 10.0, *)
-@MainActor class UISpringTimingParameters : NSObject, UITimingCurveProvider {
+@MainActor @_nonSendable(_assumed) class UISpringTimingParameters : NSObject, UITimingCurveProvider {
   var initialVelocity: CGVector { get }
   init()
   init?(coder: NSCoder)

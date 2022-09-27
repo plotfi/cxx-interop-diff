@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.4, *)
-enum UIScrollType : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIScrollType : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt
@@ -13,7 +13,7 @@ enum UIScrollType : UInt, @unchecked Sendable {
   static var Continuous: UIScrollType { get }
 }
 @available(iOS 13.4, *)
-struct UIScrollTypeMask : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct UIScrollTypeMask : OptionSet, @unchecked Sendable {
   init(rawValue: Int)
   let rawValue: Int
   typealias RawValue = Int
@@ -30,7 +30,7 @@ struct UIScrollTypeMask : OptionSet, @unchecked Sendable {
   static var All: UIScrollTypeMask { get }
 }
 @available(iOS 3.2, *)
-@MainActor class UIPanGestureRecognizer : UIGestureRecognizer {
+@MainActor @_nonSendable(_assumed) class UIPanGestureRecognizer : UIGestureRecognizer {
   var minimumNumberOfTouches: Int
   var maximumNumberOfTouches: Int
   func translation(in view: UIView?) -> CGPoint

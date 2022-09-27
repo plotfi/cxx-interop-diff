@@ -7,7 +7,7 @@ typealias NSRoundingMode = NSDecimalNumber.RoundingMode
 extension NSDecimalNumber {
 
   /***************	Type definitions		***********/
-  enum RoundingMode : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum RoundingMode : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -24,7 +24,7 @@ extension NSDecimalNumber {
     @available(swift, obsoleted: 3, renamed: "bankers")
     static var NSRoundBankers: NSDecimalNumber.RoundingMode { get }
   }
-  enum CalculationError : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum CalculationError : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -49,7 +49,7 @@ extension NSDecimalNumber {
 typealias NSCalculationError = NSDecimalNumber.CalculationError
 var NSDecimalMaxSize: Int32 { get }
 var NSDecimalNoScale: Int32 { get }
-struct Decimal {
+@_nonSendable(_assumed) struct Decimal : @unchecked Sendable {
   init()
   init(_exponent: Int32, _length: UInt32, _isNegative: UInt32, _isCompact: UInt32, _reserved: UInt32, _mantissa: (UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16))
   var _exponent: Int32
@@ -58,65 +58,6 @@ struct Decimal {
   var _isCompact: UInt32
   var _reserved: UInt32
   var _mantissa: (UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16)
-}
-
-@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-extension Decimal {
-  struct FormatStyle : FormatStyle {
-    var locale: Locale
-    init(locale: Locale = .autoupdatingCurrent)
-    var attributed: Decimal.FormatStyle.Attributed { get }
-    typealias Configuration = NumberFormatStyleConfiguration
-    func grouping(_ group: Decimal.FormatStyle.Configuration.Grouping) -> Decimal.FormatStyle
-    func precision(_ p: Decimal.FormatStyle.Configuration.Precision) -> Decimal.FormatStyle
-    func sign(strategy: Decimal.FormatStyle.Configuration.SignDisplayStrategy) -> Decimal.FormatStyle
-    func decimalSeparator(strategy: Decimal.FormatStyle.Configuration.DecimalSeparatorDisplayStrategy) -> Decimal.FormatStyle
-    func rounded(rule: Decimal.FormatStyle.Configuration.RoundingRule = .toNearestOrEven, increment: Int? = nil) -> Decimal.FormatStyle
-    func scale(_ multiplicand: Double) -> Decimal.FormatStyle
-    func notation(_ notation: Decimal.FormatStyle.Configuration.Notation) -> Decimal.FormatStyle
-    func format(_ value: Decimal) -> String
-    func locale(_ locale: Locale) -> Decimal.FormatStyle
-    func hash(into hasher: inout Hasher)
-    static func == (a: Decimal.FormatStyle, b: Decimal.FormatStyle) -> Bool
-    typealias FormatInput = Decimal
-    typealias FormatOutput = String
-    func encode(to encoder: Encoder) throws
-    var hashValue: Int { get }
-    init(from decoder: Decoder) throws
-  }
-}
-
-@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-extension Decimal {
-  /// Format `self` using `Decimal.FormatStyle`
-  func formatted() -> String
-  /// Format `self` with the given format.
-  func formatted<S>(_ format: S) -> S.FormatOutput where S : FormatStyle, S.FormatInput == Decimal
-}
-
-@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-extension Decimal {
-  struct ParseStrategy<Format> : ParseStrategy, Codable, Hashable where Format : FormatStyle, Format.FormatInput == Decimal {
-    var formatStyle: Format
-    var lenient: Bool
-    func parse(_ value: String) throws -> Format.FormatInput
-    func hash(into hasher: inout Hasher)
-    static func == (a: Decimal.ParseStrategy<Format>, b: Decimal.ParseStrategy<Format>) -> Bool
-    typealias ParseInput = String
-    typealias ParseOutput = Decimal
-    func encode(to encoder: Encoder) throws
-    var hashValue: Int { get }
-    init(from decoder: Decoder) throws
-  }
-}
-
-@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-extension Decimal {
-  /// Initialize an instance by parsing `value` with the given `strategy`.
-  init<S>(_ value: S.ParseInput, strategy: S) throws where S : ParseStrategy, S.ParseOutput == Decimal
-  init(_ value: String, format: Decimal.FormatStyle, lenient: Bool = true) throws
-  init(_ value: String, format: Decimal.FormatStyle.Percent, lenient: Bool = true) throws
-  init(_ value: String, format: Decimal.FormatStyle.Currency, lenient: Bool = true) throws
 }
 
 extension Decimal {
@@ -255,8 +196,86 @@ extension Decimal : _ObjectiveCBridgeable {
 }
 
 @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal {
+  struct ParseStrategy<Format> : ParseStrategy, Codable, Hashable where Format : FormatStyle, Format.FormatInput == Decimal {
+    var formatStyle: Format
+    var lenient: Bool
+    func parse(_ value: String) throws -> Format.FormatInput
+    func hash(into hasher: inout Hasher)
+    static func == (a: Decimal.ParseStrategy<Format>, b: Decimal.ParseStrategy<Format>) -> Bool
+    typealias ParseInput = String
+    typealias ParseOutput = Decimal
+    func encode(to encoder: Encoder) throws
+    var hashValue: Int { get }
+    init(from decoder: Decoder) throws
+  }
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal {
+  /// Initialize an instance by parsing `value` with the given `strategy`.
+  init<S>(_ value: S.ParseInput, strategy: S) throws where S : ParseStrategy, S.ParseOutput == Decimal
+  init(_ value: String, format: Decimal.FormatStyle, lenient: Bool = true) throws
+  init(_ value: String, format: Decimal.FormatStyle.Percent, lenient: Bool = true) throws
+  init(_ value: String, format: Decimal.FormatStyle.Currency, lenient: Bool = true) throws
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal {
+  struct FormatStyle : FormatStyle, Sendable {
+    var locale: Locale
+    init(locale: Locale = .autoupdatingCurrent)
+    var attributed: Decimal.FormatStyle.Attributed { get }
+    typealias Configuration = NumberFormatStyleConfiguration
+    func grouping(_ group: Decimal.FormatStyle.Configuration.Grouping) -> Decimal.FormatStyle
+    func precision(_ p: Decimal.FormatStyle.Configuration.Precision) -> Decimal.FormatStyle
+    func sign(strategy: Decimal.FormatStyle.Configuration.SignDisplayStrategy) -> Decimal.FormatStyle
+    func decimalSeparator(strategy: Decimal.FormatStyle.Configuration.DecimalSeparatorDisplayStrategy) -> Decimal.FormatStyle
+    func rounded(rule: Decimal.FormatStyle.Configuration.RoundingRule = .toNearestOrEven, increment: Int? = nil) -> Decimal.FormatStyle
+    func scale(_ multiplicand: Double) -> Decimal.FormatStyle
+    func notation(_ notation: Decimal.FormatStyle.Configuration.Notation) -> Decimal.FormatStyle
+    func format(_ value: Decimal) -> String
+    func locale(_ locale: Locale) -> Decimal.FormatStyle
+    func hash(into hasher: inout Hasher)
+    static func == (a: Decimal.FormatStyle, b: Decimal.FormatStyle) -> Bool
+    typealias FormatInput = Decimal
+    typealias FormatOutput = String
+    func encode(to encoder: Encoder) throws
+    var hashValue: Int { get }
+    init(from decoder: Decoder) throws
+  }
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal {
+  /// Format `self` using `Decimal.FormatStyle`
+  func formatted() -> String
+  /// Format `self` with the given format.
+  func formatted<S>(_ format: S) -> S.FormatOutput where S : FormatStyle, S.FormatInput == Decimal
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal.ParseStrategy : Sendable where Format : Sendable {
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal.ParseStrategy where Format == Decimal.FormatStyle {
+  init(format: Format, lenient: Bool = true)
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal.ParseStrategy where Format == Decimal.FormatStyle.Percent {
+  init(format: Format, lenient: Bool = true)
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+extension Decimal.ParseStrategy where Format == Decimal.FormatStyle.Currency {
+  init(format: Format, lenient: Bool = true)
+}
+
+@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
 extension Decimal.FormatStyle {
-  struct Percent : FormatStyle {
+  struct Percent : FormatStyle, Sendable {
     var locale: Locale
     init(locale: Locale = .autoupdatingCurrent)
     var attributed: Decimal.FormatStyle.Attributed { get }
@@ -279,7 +298,7 @@ extension Decimal.FormatStyle {
     init(from decoder: Decoder) throws
   }
   @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-  struct Currency : FormatStyle {
+  struct Currency : FormatStyle, Sendable {
     typealias Configuration = CurrencyFormatStyleConfiguration
     var locale: Locale
     var currencyCode: String
@@ -302,7 +321,7 @@ extension Decimal.FormatStyle {
     var hashValue: Int { get }
     init(from decoder: Decoder) throws
   }
-  struct Attributed : FormatStyle {
+  struct Attributed : FormatStyle, Sendable {
     /// Returns an attributed string with `NumberFormatAttributes.SymbolAttribute` and `NumberFormatAttributes.NumberPartAttribute`.
     func format(_ value: Decimal) -> AttributedString
     func locale(_ locale: Locale) -> Decimal.FormatStyle.Attributed
@@ -322,19 +341,10 @@ extension Decimal.FormatStyle : ParseableFormatStyle {
   typealias Strategy = Decimal.ParseStrategy<Decimal.FormatStyle>
 }
 
-@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-extension Decimal.ParseStrategy where Format == Decimal.FormatStyle {
-  init(format: Format, lenient: Bool = true)
-}
-
-@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-extension Decimal.ParseStrategy where Format == Decimal.FormatStyle.Percent {
-  init(format: Format, lenient: Bool = true)
-}
-
-@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-extension Decimal.ParseStrategy where Format == Decimal.FormatStyle.Currency {
-  init(format: Format, lenient: Bool = true)
+@available(macOS 13.0, iOS 16.0, tvOS 16.0, watchOS 9.0, *)
+extension Decimal.FormatStyle : CustomConsumingRegexComponent {
+  typealias RegexOutput = Decimal
+  func consuming(_ input: String, startingAt index: String.Index, in bounds: Range<String.Index>) throws -> (upperBound: String.Index, output: Decimal)?
 }
 
 @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
@@ -343,10 +353,22 @@ extension Decimal.FormatStyle.Percent : ParseableFormatStyle {
   typealias Strategy = Decimal.ParseStrategy<Decimal.FormatStyle.Percent>
 }
 
+@available(macOS 13.0, iOS 16.0, tvOS 16.0, watchOS 9.0, *)
+extension Decimal.FormatStyle.Percent : CustomConsumingRegexComponent {
+  typealias RegexOutput = Decimal
+  func consuming(_ input: String, startingAt index: String.Index, in bounds: Range<String.Index>) throws -> (upperBound: String.Index, output: Decimal)?
+}
+
 @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
 extension Decimal.FormatStyle.Currency : ParseableFormatStyle {
   var parseStrategy: Decimal.ParseStrategy<Decimal.FormatStyle.Currency> { get }
   typealias Strategy = Decimal.ParseStrategy<Decimal.FormatStyle.Currency>
+}
+
+@available(macOS 13.0, iOS 16.0, tvOS 16.0, watchOS 9.0, *)
+extension Decimal.FormatStyle.Currency : CustomConsumingRegexComponent {
+  typealias RegexOutput = Decimal
+  func consuming(_ input: String, startingAt index: String.Index, in bounds: Range<String.Index>) throws -> (upperBound: String.Index, output: Decimal)?
 }
 @available(swift, obsoleted: 3, renamed: "Decimal")
 typealias NSDecimal = Decimal

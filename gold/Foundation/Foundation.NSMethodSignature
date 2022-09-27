@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(*, unavailable, message: "NSInvocation and related APIs not available")
-class NSMethodSignature : NSObject {
+@_nonSendable(_assumed) class NSMethodSignature : NSObject {
   /*not inherited*/ init?(objCTypes types: UnsafePointer<CChar>)
   @available(*, unavailable, renamed: "init(objCTypes:)", message: "Not available in Swift")
   class func signatureWithObjCTypes(_ types: UnsafePointer<CChar>) -> NSMethodSignature?
@@ -14,4 +14,8 @@ class NSMethodSignature : NSObject {
   var methodReturnType: UnsafePointer<CChar> { get }
   var methodReturnLength: Int { get }
   init()
+}
+
+@available(*, unavailable)
+extension NSMethodSignature : @unchecked Sendable {
 }

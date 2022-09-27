@@ -11,7 +11,7 @@
  - UISpringLoadedInteractionEffectStateActivated: the view springloaded and the activation handler is called. The default effect will restore the view to its original appearance.
  */
 @available(iOS 11.0, *)
-enum UISpringLoadedInteractionEffectState : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UISpringLoadedInteractionEffectState : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -29,7 +29,7 @@ enum UISpringLoadedInteractionEffectState : Int, @unchecked Sendable {
   static var Activated: UISpringLoadedInteractionEffectState { get }
 }
 @available(iOS 11.0, *)
-@MainActor class UISpringLoadedInteraction : NSObject, UIInteraction {
+@MainActor @_nonSendable(_assumed) class UISpringLoadedInteraction : NSObject, UIInteraction {
   @available(*, unavailable)
   class func new() -> Self
   @available(*, unavailable)

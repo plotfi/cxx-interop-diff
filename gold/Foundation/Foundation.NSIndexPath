@@ -1,6 +1,6 @@
 @_exported import CoreFoundation
 
-class NSIndexPath : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSIndexPath : NSObject, NSCopying, NSSecureCoding {
   @available(*, unavailable, message: "superseded by import of -[NSIndexPath initWithIndex:]")
   convenience init(index: Int)
   @available(*, unavailable, renamed: "init(index:)", message: "Not available in Swift")
@@ -41,6 +41,10 @@ class NSIndexPath : NSObject, NSCopying, NSSecureCoding {
 
 extension NSIndexPath : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}
+
+@available(*, unavailable)
+extension NSIndexPath : @unchecked Sendable {
 }
 extension NSIndexPath {
 

@@ -5,7 +5,7 @@
 typealias NSTextStorageEditActions = NSTextStorage.EditActions
 extension NSTextStorage {
   @available(iOS 7.0, *)
-  struct EditActions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct EditActions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -26,7 +26,7 @@ extension NSTextStorage {
   class let didProcessEditingNotification: NSNotification.Name
 }
 @available(iOS 7.0, *)
-class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
+@_nonSendable(_assumed) class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
 
   /**************************** Layout manager ****************************/
   var layoutManagers: [NSLayoutManager] { get }
@@ -78,6 +78,10 @@ class NSTextStorage : NSMutableAttributedString, NSSecureCoding {
   init(string str: String)
   init(string str: String, attributes attrs: [NSAttributedString.Key : Any]? = nil)
   init(attributedString attrStr: NSAttributedString)
+}
+
+@available(*, unavailable)
+extension NSTextStorage : @unchecked Sendable {
 }
 
 /****  NSTextStorage delegate methods ****/

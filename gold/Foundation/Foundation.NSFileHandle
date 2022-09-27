@@ -1,6 +1,6 @@
 @_exported import CoreFoundation
 
-class FileHandle : NSObject, NSSecureCoding {
+@_nonSendable(_assumed) class FileHandle : NSObject, NSSecureCoding, @unchecked Sendable {
   var availableData: Data { get }
   init(fileDescriptor fd: Int32, closeOnDealloc closeopt: Bool)
   init?(coder: NSCoder)
@@ -58,11 +58,11 @@ extension FileHandle {
 
 extension FileHandle {
   @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-  struct AsyncBytes : AsyncSequence {
+  struct AsyncBytes : AsyncSequence, Sendable {
     typealias Element = UInt8
     typealias AsyncIterator = FileHandle.AsyncBytes.Iterator
     func makeAsyncIterator() -> FileHandle.AsyncBytes.Iterator
-    @frozen struct Iterator : AsyncIteratorProtocol {
+    @frozen struct Iterator : AsyncIteratorProtocol, Sendable {
       typealias Element = UInt8
       @usableFromInline
       var buffer: _AsyncBytesBuffer
@@ -164,9 +164,9 @@ extension FileHandle {
   func waitForDataInBackgroundAndNotifyForModes(_ modes: [RunLoop.Mode]?)
   func waitForDataInBackgroundAndNotify()
   @available(iOS 5.0, *)
-  var readabilityHandler: ((FileHandle) -> Void)?
+  var readabilityHandler: (@Sendable (FileHandle) -> Void)?
   @available(iOS 5.0, *)
-  var writeabilityHandler: ((FileHandle) -> Void)?
+  var writeabilityHandler: (@Sendable (FileHandle) -> Void)?
 }
 extension FileHandle {
   convenience init(fileDescriptor fd: Int32)
@@ -206,7 +206,7 @@ extension FileHandle {
 }
 @available(swift, obsoleted: 3, renamed: "Pipe")
 typealias NSPipe = Pipe
-class Pipe : NSObject {
+@_nonSendable(_assumed) class Pipe : NSObject, @unchecked Sendable {
   var fileHandleForReading: FileHandle { get }
   var fileHandleForWriting: FileHandle { get }
   @available(*, unavailable, message: "superseded by import of -[NSObject init]")

@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 8.0, *)
-class UIImageAsset : NSObject, NSSecureCoding {
+@_nonSendable(_assumed) class UIImageAsset : NSObject, NSSecureCoding, @unchecked Sendable {
   init()
   init?(coder: NSCoder)
   func image(with configuration: UIImage.Configuration) -> UIImage

@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 2.0, *)
-@MainActor class UILabel : UIView, NSCoding, UIContentSizeCategoryAdjusting {
+@MainActor @_nonSendable(_assumed) class UILabel : UIView, NSCoding, UIContentSizeCategoryAdjusting {
   var text: String?
   var font: UIFont!
   var textColor: UIColor!

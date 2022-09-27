@@ -1,6 +1,6 @@
 @_exported import Foundation
 
-enum UIModalTransitionStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIModalTransitionStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -19,7 +19,7 @@ enum UIModalTransitionStyle : Int, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "partialCurl")
   static var PartialCurl: UIModalTransitionStyle { get }
 }
-enum UIModalPresentationStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIModalPresentationStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -113,7 +113,7 @@ extension UIViewController {
   class let hierarchyInconsistencyException: NSExceptionName
 }
 @available(iOS 2.0, *)
-@MainActor class UIViewController : UIResponder, NSCoding, UIAppearanceContainer, UITraitEnvironment, UIContentContainer, UIFocusEnvironment {
+@MainActor @_nonSendable(_assumed) class UIViewController : UIResponder, NSCoding, UIAppearanceContainer, UITraitEnvironment, UIContentContainer, UIFocusEnvironment {
   init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
   init?(coder: NSCoder)
   var view: UIView!
@@ -227,6 +227,10 @@ extension UIViewController {
   /// The identifier of the focus group that this view controller belongs to. If this is nil, the view controller inherits the focus group of its parent focus environment.
   @available(iOS 15.0, *)
   var focusGroupIdentifier: String?
+
+  /// The base name for tracking user interactions as activities hosted by this view controller.
+  @available(iOS 16.0, *)
+  var interactionActivityTrackingBaseName: String?
   @available(iOS 5.0, *)
   var isBeingPresented: Bool { get }
   @available(iOS 5.0, *)
@@ -400,19 +404,24 @@ extension UIViewController {
   @MainActor func setContentScrollView(_ scrollView: UIScrollView?)
 }
 extension UIViewController {
-  @available(iOS 5.0, *)
+  @available(iOS, introduced: 5.0, deprecated: 16.0, message: "Please use instance method `setNeedsUpdateOfSupportedInterfaceOrientations`.")
   class func attemptRotationToDeviceOrientation()
   @available(iOS, unavailable, introduced: 2.0, deprecated: 6.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
   func shouldAutorotate(to toInterfaceOrientation: UIInterfaceOrientation) -> Bool
   @available(swift, obsoleted: 3, renamed: "shouldAutorotate(to:)")
   @available(iOS, unavailable, introduced: 2.0, deprecated: 6.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
   func shouldAutorotateToInterfaceOrientation(_ toInterfaceOrientation: UIInterfaceOrientation) -> Bool
-  @available(iOS 6.0, *)
+  @available(iOS, introduced: 6.0, deprecated: 16.0, message: "Update supported interface orientations and call setNeedsUpdateOfSupportedInterfaceOrientations to indicate a change.")
   var shouldAutorotate: Bool { get }
   @available(iOS 6.0, *)
   var supportedInterfaceOrientations: UIInterfaceOrientationMask { get }
   @available(iOS 6.0, *)
   var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation { get }
+
+  /// Notifies the view controller that a change occurred that affects supported interface orientations or the preferred interface orientation for presentation.
+  /// By default, this will animate any changes to orientation. To perform a non-animated update, call within `[UIView performWithoutAnimation:]`.
+  @available(iOS 16.0, *)
+  func setNeedsUpdateOfSupportedInterfaceOrientations()
   @available(iOS, introduced: 2.0, deprecated: 8.0, message: "Header views are animated along with the rest of the view hierarchy")
   func rotatingHeaderView() -> UIView?
   @available(iOS, introduced: 2.0, deprecated: 8.0, message: "Footer views are animated along with the rest of the view hierarchy")
@@ -610,6 +619,8 @@ extension UIViewController {
   var sheetPresentationController: UISheetPresentationController? { get }
   @available(iOS 8.0, *)
   var popoverPresentationController: UIPopoverPresentationController? { get }
+  @available(iOS 16.0, *)
+  var activePresentationController: UIPresentationController? { get }
   @available(iOS 13.0, *)
   var isModalInPresentation: Bool
   @available(iOS 13.0, *)
@@ -691,7 +702,7 @@ extension UIViewController {
 typealias UIPreviewActionStyle = UIPreviewAction.Style
 extension UIPreviewAction {
   @available(iOS 9.0, *)
-  enum Style : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -707,7 +718,7 @@ extension UIPreviewAction {
   }
 }
 @available(iOS 9.0, *)
-@MainActor class UIPreviewAction : NSObject, NSCopying, UIPreviewActionItem {
+@MainActor @_nonSendable(_assumed) class UIPreviewAction : NSObject, NSCopying, UIPreviewActionItem {
   var handler: (UIPreviewActionItem, UIViewController) -> Void { get }
   convenience init(title: String, style: UIPreviewAction.Style, handler: @escaping (UIPreviewAction, UIViewController) -> Void)
   @available(*, unavailable, renamed: "init(title:style:handler:)", message: "Not available in Swift")
@@ -719,7 +730,7 @@ extension UIPreviewAction {
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 9.0, *)
-@MainActor class UIPreviewActionGroup : NSObject, NSCopying, UIPreviewActionItem {
+@MainActor @_nonSendable(_assumed) class UIPreviewActionGroup : NSObject, NSCopying, UIPreviewActionItem {
   convenience init(title: String, style: UIPreviewAction.Style, actions: [UIPreviewAction])
   @available(*, unavailable, renamed: "init(title:style:actions:)", message: "Not available in Swift")
   class func actionGroupWithTitle(_ title: String, style: UIPreviewAction.Style, actions: [UIPreviewAction]) -> Self

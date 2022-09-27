@@ -13,7 +13,7 @@ extension NSCoder {
    Describes the action an NSCoder should take when it encounters decode failures (e.g. corrupt data) for non-TopLevel decodes.
    */
   @available(iOS 9.0, *)
-  enum DecodingFailurePolicy : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum DecodingFailurePolicy : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -25,7 +25,7 @@ extension NSCoder {
     static var SetErrorAndReturn: NSCoder.DecodingFailurePolicy { get }
   }
 }
-class NSCoder : NSObject {
+@_nonSendable(_assumed) class NSCoder : NSObject {
   func encodeValue(ofObjCType type: UnsafePointer<CChar>, at addr: UnsafeRawPointer)
   @available(swift, obsoleted: 3, renamed: "encodeValue(ofObjCType:at:)")
   func encodeValueOfObjCType(_ type: UnsafePointer<CChar>, at addr: UnsafeRawPointer)
@@ -47,11 +47,7 @@ class NSCoder : NSObject {
 }
 
 extension NSCoder {
-  @available(*, unavailable, renamed: "decodeObject(of:forKey:)")
-  func decodeObjectOfClass<DecodedObjectType>(_ cls: DecodedObjectType.Type, forKey key: String) -> DecodedObjectType? where DecodedObjectType : NSObject, DecodedObjectType : NSCoding
   func decodeObject<DecodedObjectType>(of cls: DecodedObjectType.Type, forKey key: String) -> DecodedObjectType? where DecodedObjectType : NSObject, DecodedObjectType : NSCoding
-  @available(*, unavailable, renamed: "decodeObject(of:forKey:)")
-  @nonobjc func decodeObjectOfClasses(_ classes: NSSet?, forKey key: String) -> AnyObject?
   @nonobjc func decodeObject(of classes: [AnyClass]?, forKey key: String) -> Any?
   @available(macOS 10.11, iOS 9.0, *)
   @available(macOS, introduced: 10.11, deprecated: 100000.0, message: "Use decodeTopLevelObject(of:forKey:) instead")
@@ -59,8 +55,6 @@ extension NSCoder {
   @available(tvOS, introduced: 9.0, deprecated: 100000.0, message: "Use decodeTopLevelObject(of:forKey:) instead")
   @available(watchOS, introduced: 2.0, deprecated: 100000.0, message: "Use decodeTopLevelObject(of:forKey:) instead")
   @nonobjc func decodeTopLevelObject() throws -> Any?
-  @available(*, unavailable, renamed: "decodeTopLevelObject(forKey:)")
-  func decodeTopLevelObjectForKey(_ key: String) throws -> AnyObject?
   @available(macOS 10.11, iOS 9.0, *)
   @available(swift, obsoleted: 4)
   @available(macOS, introduced: 10.11, deprecated: 100000.0, message: "Use decodeTopLevelObject(of:forKey:) instead")
@@ -75,12 +69,8 @@ extension NSCoder {
   @available(tvOS, introduced: 9.0, deprecated: 100000.0, message: "Use decodeTopLevelObject(of:forKey:) instead")
   @available(watchOS, introduced: 2.0, deprecated: 100000.0, message: "Use decodeTopLevelObject(of:forKey:) instead")
   @nonobjc func decodeTopLevelObject(forKey key: String) throws -> Any?
-  @available(*, unavailable, renamed: "decodeTopLevelObject(of:forKey:)")
-  func decodeTopLevelObjectOfClass<DecodedObjectType>(_ cls: DecodedObjectType.Type, forKey key: String) throws -> DecodedObjectType? where DecodedObjectType : NSObject, DecodedObjectType : NSCoding
   @available(macOS 10.11, iOS 9.0, *)
   func decodeTopLevelObject<DecodedObjectType>(of cls: DecodedObjectType.Type, forKey key: String) throws -> DecodedObjectType? where DecodedObjectType : NSObject, DecodedObjectType : NSCoding
-  @available(*, unavailable, renamed: "decodeTopLevelObject(of:forKey:)")
-  @nonobjc func decodeTopLevelObjectOfClasses(_ classes: NSSet?, forKey key: String) throws -> AnyObject?
   @available(macOS 10.11, iOS 9.0, *)
   @nonobjc func decodeTopLevelObject(of classes: [AnyClass]?, forKey key: String) throws -> Any?
   @available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
@@ -91,6 +81,10 @@ extension NSCoder {
   @nonobjc func decodeDictionary<DecodedKey, DecodedObject>(withKeyClass keyClass: DecodedKey.Type, objectClass: DecodedObject.Type, forKey key: String) -> [DecodedKey : DecodedObject]? where DecodedKey : NSObject, DecodedKey : NSCopying, DecodedKey : NSSecureCoding, DecodedObject : NSObject, DecodedObject : NSSecureCoding
   @available(macOS 11.0, iOS 14.0, watchOS 7.0, tvOS 14.0, *)
   @nonobjc func decodeDictionary(withKeysOfClasses keyClasses: [AnyClass], objectsOfClasses classes: [AnyClass], forKey key: String) -> [AnyHashable : Any]?
+}
+
+@available(*, unavailable)
+extension NSCoder : @unchecked Sendable {
 }
 extension NSCoder {
   func encode(_ object: Any?)

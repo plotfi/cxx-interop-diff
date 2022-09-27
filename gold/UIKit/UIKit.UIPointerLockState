@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 14.0, *)
-@MainActor class UIPointerLockState : NSObject {
+@MainActor @_nonSendable(_assumed) class UIPointerLockState : NSObject {
   @available(*, unavailable)
   init()
   @available(*, unavailable)

@@ -1,75 +1,79 @@
 @_exported import CoreFoundation
 
 protocol NSLocking {
-  func lock()
-  func unlock()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lock()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func unlock()
 }
-class NSLock : NSObject, NSLocking {
-  func `try`() -> Bool
+
+extension NSLocking {
+  @_alwaysEmitIntoClient @_disfavoredOverload func withLock<R>(_ body: () throws -> R) rethrows -> R
+}
+@_nonSendable(_assumed) class NSLock : NSObject, NSLocking, @unchecked Sendable {
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func `try`() -> Bool
   @available(swift, obsoleted: 3, renamed: "try()")
-  func tryLock() -> Bool
-  func lock(before limit: Date) -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func tryLock() -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lock(before limit: Date) -> Bool
   @available(swift, obsoleted: 3, renamed: "lock(before:)")
-  func lockBeforeDate(_ limit: Date) -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lockBeforeDate(_ limit: Date) -> Bool
   @available(iOS 2.0, *)
   var name: String?
   init()
-  func lock()
-  func unlock()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lock()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func unlock()
 }
-class NSConditionLock : NSObject, NSLocking {
+@_nonSendable(_assumed) class NSConditionLock : NSObject, NSLocking, @unchecked Sendable {
   init(condition: Int)
   var condition: Int { get }
-  func lock(whenCondition condition: Int)
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lock(whenCondition condition: Int)
   @available(swift, obsoleted: 3, renamed: "lock(whenCondition:)")
-  func lockWhenCondition(_ condition: Int)
-  func `try`() -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lockWhenCondition(_ condition: Int)
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func `try`() -> Bool
   @available(swift, obsoleted: 3, renamed: "try()")
-  func tryLock() -> Bool
-  func tryLock(whenCondition condition: Int) -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func tryLock() -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func tryLock(whenCondition condition: Int) -> Bool
   @available(swift, obsoleted: 3, renamed: "tryLock(whenCondition:)")
-  func tryLockWhenCondition(_ condition: Int) -> Bool
-  func unlock(withCondition condition: Int)
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func tryLockWhenCondition(_ condition: Int) -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func unlock(withCondition condition: Int)
   @available(swift, obsoleted: 3, renamed: "unlock(withCondition:)")
-  func unlockWithCondition(_ condition: Int)
-  func lock(before limit: Date) -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func unlockWithCondition(_ condition: Int)
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lock(before limit: Date) -> Bool
   @available(swift, obsoleted: 3, renamed: "lock(before:)")
-  func lockBeforeDate(_ limit: Date) -> Bool
-  func lock(whenCondition condition: Int, before limit: Date) -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lockBeforeDate(_ limit: Date) -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lock(whenCondition condition: Int, before limit: Date) -> Bool
   @available(swift, obsoleted: 3, renamed: "lock(whenCondition:before:)")
-  func lockWhenCondition(_ condition: Int, beforeDate limit: Date) -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lockWhenCondition(_ condition: Int, beforeDate limit: Date) -> Bool
   @available(iOS 2.0, *)
   var name: String?
   convenience init()
-  func lock()
-  func unlock()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lock()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func unlock()
 }
-class NSRecursiveLock : NSObject, NSLocking {
-  func `try`() -> Bool
+@_nonSendable(_assumed) class NSRecursiveLock : NSObject, NSLocking, @unchecked Sendable {
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func `try`() -> Bool
   @available(swift, obsoleted: 3, renamed: "try()")
-  func tryLock() -> Bool
-  func lock(before limit: Date) -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func tryLock() -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lock(before limit: Date) -> Bool
   @available(swift, obsoleted: 3, renamed: "lock(before:)")
-  func lockBeforeDate(_ limit: Date) -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lockBeforeDate(_ limit: Date) -> Bool
   @available(iOS 2.0, *)
   var name: String?
   init()
-  func lock()
-  func unlock()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lock()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func unlock()
 }
 @available(iOS 2.0, *)
-class NSCondition : NSObject, NSLocking {
-  func wait()
-  func wait(until limit: Date) -> Bool
+@_nonSendable(_assumed) class NSCondition : NSObject, NSLocking, @unchecked Sendable {
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func wait()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func wait(until limit: Date) -> Bool
   @available(swift, obsoleted: 3, renamed: "wait(until:)")
-  func waitUntilDate(_ limit: Date) -> Bool
-  func signal()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func waitUntilDate(_ limit: Date) -> Bool
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func signal()
   func broadcast()
   @available(iOS 2.0, *)
   var name: String?
   init()
   @available(iOS 2.0, *)
-  func lock()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func lock()
   @available(iOS 2.0, *)
-  func unlock()
+  @_unavailableFromAsync(message: "Use async-safe scoped locking instead") func unlock()
 }

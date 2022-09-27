@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "UINavigationItem.LargeTitleDisplayMode")
 typealias UINavigationItemLargeTitleDisplayMode = UINavigationItem.LargeTitleDisplayMode
 extension UINavigationItem {
-  enum LargeTitleDisplayMode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum LargeTitleDisplayMode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -29,7 +29,7 @@ extension UINavigationItem {
     @available(swift, obsoleted: 3, renamed: "never")
     static var Never: UINavigationItem.LargeTitleDisplayMode { get }
   }
-  enum BackButtonDisplayMode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum BackButtonDisplayMode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -55,11 +55,92 @@ extension UINavigationItem {
     @available(swift, obsoleted: 3, renamed: "minimal")
     static var Minimal: UINavigationItem.BackButtonDisplayMode { get }
   }
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) enum SearchBarPlacement : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+
+    /// The navigation bar will choose a placement for the search bar that is appropriate for the current layout
+    case automatic
+
+    /// The navigation bar will choose a placement for the search bar that is appropriate for the current layout
+    @available(swift, obsoleted: 3, renamed: "automatic")
+    static var Automatic: UINavigationItem.SearchBarPlacement { get }
+
+    /// The navigation bar will place the search bar inline with other content, on the trailing edge.
+    case inline
+
+    /// The navigation bar will place the search bar inline with other content, on the trailing edge.
+    @available(swift, obsoleted: 3, renamed: "inline")
+    static var Inline: UINavigationItem.SearchBarPlacement { get }
+
+    /// The navigation bar will place the search bar vertically stacked with other content.
+    case stacked
+
+    /// The navigation bar will place the search bar vertically stacked with other content.
+    @available(swift, obsoleted: 3, renamed: "stacked")
+    static var Stacked: UINavigationItem.SearchBarPlacement { get }
+  }
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) enum ItemStyle : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+
+    /// Traditional navigation bar behavior. Center items are placed in the overflow menu.
+    case navigator
+
+    /// Traditional navigation bar behavior. Center items are placed in the overflow menu.
+    @available(swift, obsoleted: 3, renamed: "navigator")
+    static var Navigator: UINavigationItem.ItemStyle { get }
+
+    /// A style designed for use as a browser. Title is leading aligned, center items are displayed. Typically used with history-based navigation.
+    case browser
+
+    /// A style designed for use as a browser. Title is leading aligned, center items are displayed. Typically used with history-based navigation.
+    @available(swift, obsoleted: 3, renamed: "browser")
+    static var Browser: UINavigationItem.ItemStyle { get }
+
+    /// A style designed for use as an editor. The back button will always present as chevron-only, title is leading aligned, center items are displayed. Typically used without navigation.
+    case editor
+
+    /// A style designed for use as an editor. The back button will always present as chevron-only, title is leading aligned, center items are displayed. Typically used without navigation.
+    @available(swift, obsoleted: 3, renamed: "editor")
+    static var Editor: UINavigationItem.ItemStyle { get }
+  }
 }
 @available(swift, obsoleted: 3, renamed: "UINavigationItem.BackButtonDisplayMode")
 typealias UINavigationItemBackButtonDisplayMode = UINavigationItem.BackButtonDisplayMode
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UINavigationItem.SearchBarPlacement")
+typealias UINavigationItemSearchBarPlacement = UINavigationItem.SearchBarPlacement
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UINavigationItem.ItemStyle")
+typealias UINavigationItemStyle = UINavigationItem.ItemStyle
+@available(iOS 16.0, *)
+@available(*, unavailable, message: "Not available in Swift")
+@MainActor protocol UINavigationItemRenameDelegate : NSObjectProtocol {
+
+  /// This method is called when renaming has ended. The title on the navigation item has already been changed when this method is called but
+  /// clients can make further adjustments to it when necessary.
+  func navigationItem(_ navigationItem: UINavigationItem, didEndRenamingWithTitle title: String)
+
+  /// Controls whether the rename action is supported for the given navigation item. For example this method is called when the navigation bar's
+  /// document menu is shown to validate if the rename action should be part of that menu.
+  optional func navigationItemShouldBeginRenaming(_ navigationItem: UINavigationItem) -> Bool
+
+  /// Called when we begin renaming. Implementing this method allows for customizing the initial text that will show up in the text field as well as the
+  /// selected range of that text.
+  optional func navigationItem(_ navigationItem: UINavigationItem, willBeginRenamingWithSuggestedTitle title: String, selectedRange: UnsafeMutablePointer<NSRange>) -> String
+
+  /// This method can be used to prevent renaming from happening. However there are cases (e.g. when a new navigation item is pushed on the navigation
+  /// bar) where this method will not be called and instead navigationItem:didEndRenamingWithTitle: is called right away. Clients are therefore expected to
+  /// handle titles in navigationItem:didEndRenamingWithTitle: for which they would return NO from navigationItem:shouldEndRenamingWithTitle:.
+  optional func navigationItem(_ navigationItem: UINavigationItem, shouldEndRenamingWithTitle title: String) -> Bool
+}
 @available(iOS 2.0, *)
-@MainActor class UINavigationItem : NSObject, NSCoding {
+@MainActor @_nonSendable(_assumed) class UINavigationItem : NSObject, NSCoding {
   init(title: String)
   init?(coder: NSCoder)
 
@@ -86,6 +167,24 @@ typealias UINavigationItemBackButtonDisplayMode = UINavigationItem.BackButtonDis
   /// Controls how the back button sources its title.
   @available(iOS 14.0, *)
   var backButtonDisplayMode: UINavigationItem.BackButtonDisplayMode
+
+  /// Replaces the back action for the navigation bar. if a back button is naturally present, this replaces only its action, otherwise a back button will be synthesized with the image or title from the action.
+  @available(iOS 16.0, *)
+  @NSCopying var backAction: UIAction?
+
+  /// When non-nil, UIKit will generate suggestedActions and call this block to generate a menu that is displayed from the title.
+  @available(iOS 16.0, *)
+  var titleMenuProvider: (([UIMenuElement]) -> UIMenu?)?
+
+  /// When non-nil, enables the UINavigationBar to respond to the rename: action by providing an inline UI.
+  /// Setting this property to nil while a rename operation is in progress will cancel the operation immediately.
+  @available(iOS 16.0, *)
+  @available(*, unavailable, message: "Not available in Swift")
+  weak var renameDelegate: @sil_weak UINavigationItemRenameDelegate?
+
+  /// When non-nil, UIKit will use the metadata provided to generate additional controls displayed from the title.
+  @available(iOS 16.0, *)
+  var documentProperties: UIDocumentProperties?
   @available(iOS 5.0, *)
   var leftBarButtonItems: [UIBarButtonItem]?
   @available(iOS 5.0, *)
@@ -107,17 +206,58 @@ typealias UINavigationItemBackButtonDisplayMode = UINavigationItem.BackButtonDis
   @available(swift, obsoleted: 3, renamed: "setRightBarButton(_:animated:)")
   func setRightBarButtonItem(_ item: UIBarButtonItem?, animated: Bool)
 
+  /// Setting a non-nil customizationIdentifier enables customization and UIKit will automatically save & restore customizations based on this identifier. The identifier must be unique within the scope of the application.
+  @available(iOS 16.0, *)
+  var customizationIdentifier: String?
+
+  /// UIBarButtonItemGroups to be displayed in the leading section of the navigation bar. Items set via this method will replace items set via .leftBarButtonItem or .leftBarButtonItems.
+  @available(iOS 16.0, *)
+  var leadingItemGroups: [UIBarButtonItemGroup]
+
+  /// Customizable UIBarButtonItemGroups that will be placed in the center region when the navigation bar is the browser or editor modes. In navigation mode, these items will be placed in the overflow.
+  @available(iOS 16.0, *)
+  var centerItemGroups: [UIBarButtonItemGroup]
+
+  /// UIBarButtonItemGroups to be displayed in the trailing section of the navigation bar. Items set via this method will replace items set via .rightBarButtonItem or .rightBarButtonItems.
+  @available(iOS 16.0, *)
+  var trailingItemGroups: [UIBarButtonItemGroup]
+
+  /// Set a group of items to be placed on the trailing edge of the bar, past the overflow & search items (if present). If you wish to have more than 1 item, it is HIGHLY recommended to assign a representative item to the group to avoid overflowing the bar as this group cannot move to the overflow.
+  @available(iOS 16.0, *)
+  var pinnedTrailingGroup: UIBarButtonItemGroup?
+
+  /// Additional items to add to the overflow menu. Setting this property to a non-nil value will force the overflow button to appear, regardless of if you provide any content in the element's callback. Items returned are displayed directly in the presented menu.
+  @available(iOS 16.0, *)
+  var additionalOverflowItems: UIDeferredMenuElement?
+
+  /// If the overflow button for this item is currently present, then this will return a non-nil item that can be used as a presentation source (e.g. for popovers). Otherwise it will return nil.
+  @available(iOS 16.0, *)
+  var overflowPresentationSource: UIPopoverPresentationControllerSourceItem? { get }
+
   /// When UINavigationBar.prefersLargeTitles=YES, this property controls when the larger out-of-line title is displayed. If prefersLargeTitles=NO, this property has no effect. The default value is Automatic.
   @available(iOS 11.0, *)
   var largeTitleDisplayMode: UINavigationItem.LargeTitleDisplayMode
+
+  /// Controls how content defined by this item is laid out in the navigation bar.
+  @available(iOS 16.0, *)
+  var style: UINavigationItem.ItemStyle
 
   /// A view controller that will be shown inside of a navigation controller can assign a UISearchController to this property to display the search controller’s search bar in its containing navigation controller’s navigation bar.
   @available(iOS 11.0, *)
   var searchController: UISearchController?
 
   /// If this property is true (the default), the searchController’s search bar will hide as the user scrolls in the top view controller’s scroll view. If false, the search bar will remain visible and pinned underneath the navigation bar.
+  /// Not appicable and ignored for UINavigationItemSearchBarPlacementInline
   @available(iOS 11.0, *)
   var hidesSearchBarWhenScrolling: Bool
+
+  /// The preferred search bar placement, when a search controller is assigned to this item.
+  @available(iOS 16.0, *)
+  var preferredSearchBarPlacement: UINavigationItem.SearchBarPlacement
+
+  /// The realized placement. Only valid if a search controller has been assigned to this item.
+  @available(iOS 16.0, *)
+  var searchBarPlacement: UINavigationItem.SearchBarPlacement { get }
 
   ///  When set and this item is topmost, overrides the hosting navigation bar's standardAppearance. See UINavigationBar.standardAppearance for further details.
   @available(iOS 13.0, *)
@@ -137,4 +277,13 @@ typealias UINavigationItemBackButtonDisplayMode = UINavigationItem.BackButtonDis
   convenience init()
   @available(iOS 2.0, *)
   func encode(with coder: NSCoder)
+}
+
+extension UINavigationItem {
+  /// When non-nil, enables the UINavigationBar to respond to the rename: action by providing an inline UI.
+  /// Setting this property to nil while a rename operation is in progress will cancel the operation immediately.
+  @available(iOS 16.0, *)
+  @available(tvOS, unavailable)
+  @available(watchOS, unavailable)
+  @MainActor weak var renameDelegate: @sil_weak UINavigationItemRenameDelegate?
 }

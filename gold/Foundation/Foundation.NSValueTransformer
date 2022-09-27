@@ -44,7 +44,7 @@ let NSSecureUnarchiveFromDataTransformerName: NSValueTransformerName
 @available(swift, obsoleted: 3, renamed: "ValueTransformer")
 typealias NSValueTransformer = ValueTransformer
 @available(iOS 3.0, *)
-class ValueTransformer : NSObject {
+@_nonSendable(_assumed) class ValueTransformer : NSObject {
   class func setValueTransformer(_ transformer: ValueTransformer?, forName name: NSValueTransformerName)
   /*not inherited*/ init?(forName name: NSValueTransformerName)
   @available(*, unavailable, renamed: "init(forName:)", message: "Not available in Swift")
@@ -57,9 +57,13 @@ class ValueTransformer : NSObject {
   init()
 }
 
+@available(*, unavailable)
+extension ValueTransformer : @unchecked Sendable {
+}
+
 /// A value transformer which transforms values to and from \c NSData by archiving and unarchiving using secure coding.
 @available(iOS 12.0, *)
-class NSSecureUnarchiveFromDataTransformer : ValueTransformer {
+@_nonSendable(_assumed) class NSSecureUnarchiveFromDataTransformer : ValueTransformer {
 
   /// The list of allowable classes which the top-level object in the archive must conform to on encoding and decoding.
   ///
@@ -68,4 +72,8 @@ class NSSecureUnarchiveFromDataTransformer : ValueTransformer {
   /// Can be overridden by subclasses to provide an expanded or different set of allowed transformation classes.
   class var allowedTopLevelClasses: [AnyClass] { get }
   init()
+}
+
+@available(*, unavailable)
+extension NSSecureUnarchiveFromDataTransformer : @unchecked Sendable {
 }

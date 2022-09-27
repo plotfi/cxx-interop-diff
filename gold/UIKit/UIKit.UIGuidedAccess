@@ -12,7 +12,7 @@ extension UIAccessibility {
     init(_nsError: NSError)
     static var errorDomain: String { get }
     @available(iOS 12.2, *)
-    enum Code : Int, _ErrorCodeProtocol, @unchecked Sendable {
+    @_nonSendable(_assumed) enum Code : Int, _ErrorCodeProtocol, @unchecked Sendable {
       init?(rawValue: Int)
       var rawValue: Int { get }
       typealias RawValue = Int
@@ -27,7 +27,7 @@ extension UIAccessibility {
     static var permissionDenied: UIAccessibility.GuidedAccessError.Code { get }
     static var failed: UIAccessibility.GuidedAccessError.Code { get }
   }
-  enum GuidedAccessRestrictionState : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum GuidedAccessRestrictionState : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -65,7 +65,7 @@ typealias UIGuidedAccessRestrictionState = UIAccessibility.GuidedAccessRestricti
 @available(swift, obsoleted: 3, renamed: "UIAccessibility.guidedAccessRestrictionState(forIdentifier:)")
 func UIGuidedAccessRestrictionStateForIdentifier(_ restrictionIdentifier: String) -> UIAccessibility.GuidedAccessRestrictionState
 @available(iOS 12.2, *)
-struct UIGuidedAccessAccessibilityFeature : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct UIGuidedAccessAccessibilityFeature : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt

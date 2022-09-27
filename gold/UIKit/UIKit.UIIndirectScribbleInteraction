@@ -8,7 +8,7 @@
       - A view that contains multiple virtual text fields which the user can normally tap and type into, but are not full blown text fields all the time
  */
 @available(iOS 14.0, *)
-@MainActor class __UIIndirectScribbleInteraction : NSObject, UIInteraction {
+@MainActor @_nonSendable(_assumed) class __UIIndirectScribbleInteraction : NSObject, UIInteraction {
   @available(*, unavailable)
   convenience init()
   @available(*, unavailable)
@@ -55,7 +55,7 @@ typealias __UIScribbleElementIdentifier = NSCopying & NSObjectProtocol
       @param rect The rect around the area where the user is trying to write, in the interaction's view coordinate system. Only elements intersecting this rect should be returned.
       @param completion  You must call the completion handler, synchronously or asynchronously, with an array of identifiers of the available elements, or an empty array if no elements are available.
    */
-  func indirectScribbleInteraction(_ interaction: __UIIndirectScribbleInteraction, requestElementsIn rect: CGRect, completion: @escaping @Sendable ([__UIScribbleElementIdentifier]) -> Void)
+  func indirectScribbleInteraction(_ interaction: __UIIndirectScribbleInteraction, requestElementsIn rect: CGRect, completion: @escaping ([__UIScribbleElementIdentifier]) -> Void)
 
   /**
       @abstract This method will be called to request the text input elements in a certain rect of the view, each of which represents an area where the user can start writing even if it's not a text input field itself.
@@ -72,7 +72,7 @@ typealias __UIScribbleElementIdentifier = NSCopying & NSObjectProtocol
       @param completion  You must call the completion handler, synchronously or asynchronously, with an array of identifiers of the available elements, or an empty array if no elements are available.
    */
   @available(swift, obsoleted: 3, renamed: "indirectScribbleInteraction(_:requestElementsIn:completion:)")
-  func indirectScribbleInteraction(_ interaction: __UIIndirectScribbleInteraction, requestElementsInRect rect: CGRect, completion: @escaping @Sendable ([__UIScribbleElementIdentifier]) -> Void)
+  func indirectScribbleInteraction(_ interaction: __UIIndirectScribbleInteraction, requestElementsInRect rect: CGRect, completion: @escaping ([__UIScribbleElementIdentifier]) -> Void)
 
   /**
       @abstract Asks the delegate if an element is currently focused, according to the internal state of the interaction's view.
@@ -98,7 +98,7 @@ typealias __UIScribbleElementIdentifier = NSCopying & NSObjectProtocol
       @param elementIdentifier The identifier of the element that should be focused.
       @param completion You must always call the completion handler, either synchronously or asynchronously. On success, the first parameter should be the text input that became first responder and that will handle text operations for this element. On failure, call the completion with a nil parameter.
   */
-  func indirectScribbleInteraction(_ interaction: __UIIndirectScribbleInteraction, focusElementIfNeeded elementIdentifier: __UIScribbleElementIdentifier, referencePoint focusReferencePoint: CGPoint, completion: @escaping @Sendable ((UIResponder & UITextInput)?) -> Void)
+  func indirectScribbleInteraction(_ interaction: __UIIndirectScribbleInteraction, focusElementIfNeeded elementIdentifier: __UIScribbleElementIdentifier, referencePoint focusReferencePoint: CGPoint, completion: @escaping ((UIResponder & UITextInput)?) -> Void)
 
   /**
       @abstract Asks the delegate to focus an element to handle text edits. In response, it should make the element the currently focused one, and make the corresponding UITextInput become first responder.

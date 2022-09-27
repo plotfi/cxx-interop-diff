@@ -1,6 +1,6 @@
 @_exported import CoreFoundation
 
-class DateFormatter : Formatter {
+@_nonSendable(_assumed) class DateFormatter : Formatter, @unchecked Sendable {
   @available(iOS 8.0, *)
   var formattingContext: Formatter.Context
   func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, range rangep: UnsafeMutablePointer<NSRange>?) throws
@@ -87,7 +87,7 @@ typealias NSDateFormatter = DateFormatter
 @available(swift, obsoleted: 3, renamed: "DateFormatter.Style")
 typealias NSDateFormatterStyle = DateFormatter.Style
 extension DateFormatter {
-  enum Style : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -107,7 +107,7 @@ extension DateFormatter {
     @available(swift, obsoleted: 3, renamed: "full")
     static var NSDateFormatterFullStyle: DateFormatter.Style { get }
   }
-  enum Behavior : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Behavior : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt

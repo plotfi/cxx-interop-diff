@@ -1,0 +1,34 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+@_nonSendable(_assumed) class NSTextListElement : NSTextParagraph {
+  init(parent: NSTextListElement?, textList: NSTextList, contents: NSAttributedString?, markerAttributes: [NSAttributedString.Key : Any]? = nil, children: [NSTextListElement]?)
+  @available(swift, obsoleted: 3, renamed: "init(parent:textList:contents:markerAttributes:children:)")
+  init(parentElement parent: NSTextListElement?, textList: NSTextList, contents: NSAttributedString?, markerAttributes: [NSAttributedString.Key : Any]? = nil, childElements children: [NSTextListElement]?)
+  @available(*, unavailable)
+  convenience init(attributedString: NSAttributedString?)
+  convenience init(contents: NSAttributedString, markerAttributes: [NSAttributedString.Key : Any]? = nil, textList: NSTextList, children: [NSTextListElement]?)
+  @available(swift, obsoleted: 3, renamed: "init(contents:markerAttributes:textList:children:)")
+  convenience init(contents: NSAttributedString, markerAttributes: [NSAttributedString.Key : Any]? = nil, textList: NSTextList, childElements children: [NSTextListElement]?)
+  @available(*, unavailable, renamed: "init(contents:markerAttributes:textList:children:)", message: "Not available in Swift")
+  class func textListElementWithContents(_ contents: NSAttributedString, markerAttributes: [NSAttributedString.Key : Any]? = nil, textList: NSTextList, childElements children: [NSTextListElement]?) -> Self
+  convenience init?(children: [NSTextListElement], textList: NSTextList, nestingLevel: Int)
+  @available(swift, obsoleted: 3, renamed: "init(children:textList:nestingLevel:)")
+  convenience init?(childElements children: [NSTextListElement], textList: NSTextList, nestingLevel: Int)
+  @available(*, unavailable, renamed: "init(children:textList:nestingLevel:)", message: "Not available in Swift")
+  class func textListElementWithChildElements(_ children: [NSTextListElement], textList: NSTextList, nestingLevel: Int) -> Self?
+  var textList: NSTextList { get }
+  var contents: NSAttributedString? { get }
+  var markerAttributes: [NSAttributedString.Key : Any]? { get }
+  var attributedString: NSAttributedString { get }
+  var childElements: [NSTextListElement] { get }
+  weak var parent: @sil_weak NSTextListElement? { get }
+  @available(swift, obsoleted: 3, renamed: "parent")
+  weak var parentElement: @sil_weak NSTextListElement? { get }
+  convenience init(textContentManager: NSTextContentManager?)
+  convenience init()
+}
+
+@available(*, unavailable)
+extension NSTextListElement : @unchecked Sendable {
+}

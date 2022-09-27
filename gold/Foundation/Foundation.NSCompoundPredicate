@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "NSCompoundPredicate.LogicalType")
 typealias NSCompoundPredicateType = NSCompoundPredicate.LogicalType
 extension NSCompoundPredicate {
-  enum LogicalType : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum LogicalType : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -19,7 +19,7 @@ extension NSCompoundPredicate {
   }
 }
 @available(iOS 3.0, *)
-class NSCompoundPredicate : NSPredicate {
+@_nonSendable(_assumed) class NSCompoundPredicate : NSPredicate {
   init(type: NSCompoundPredicate.LogicalType, subpredicates: [NSPredicate])
   init?(coder: NSCoder)
   var compoundPredicateType: NSCompoundPredicate.LogicalType { get }
@@ -38,4 +38,8 @@ class NSCompoundPredicate : NSPredicate {
   @available(*, unavailable, renamed: "init(notPredicateWithSubpredicate:)", message: "Not available in Swift")
   class func notPredicateWithSubpredicate(_ predicate: NSPredicate) -> NSCompoundPredicate
   convenience init()
+}
+
+@available(*, unavailable)
+extension NSCompoundPredicate : @unchecked Sendable {
 }

@@ -5,7 +5,7 @@
 typealias UIPageControlInteractionState = UIPageControl.InteractionState
 extension UIPageControl {
   @available(iOS 14.0, *)
-  enum InteractionState : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum InteractionState : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -32,7 +32,7 @@ extension UIPageControl {
     static var Continuous: UIPageControl.InteractionState { get }
   }
   @available(iOS 14.0, *)
-  enum BackgroundStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum BackgroundStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -58,12 +58,60 @@ extension UIPageControl {
     @available(swift, obsoleted: 3, renamed: "minimal")
     static var Minimal: UIPageControl.BackgroundStyle { get }
   }
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) enum Direction : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+
+    /// Page indicators are laid out in the natural direction of the system locale.
+    /// By default, this is equivalent to @c UIPageControlDirectionLeftToRight on LTR locales, and
+    /// @c UIPageControlDirectionRightToLeft on RTL locales.
+    case natural
+
+    /// Page indicators are laid out in the natural direction of the system locale.
+    /// By default, this is equivalent to @c UIPageControlDirectionLeftToRight on LTR locales, and
+    /// @c UIPageControlDirectionRightToLeft on RTL locales.
+    @available(swift, obsoleted: 3, renamed: "natural")
+    static var Natural: UIPageControl.Direction { get }
+
+    /// Page indicators are laid out from left to right.
+    case leftToRight
+
+    /// Page indicators are laid out from left to right.
+    @available(swift, obsoleted: 3, renamed: "leftToRight")
+    static var LeftToRight: UIPageControl.Direction { get }
+
+    /// Page indicators are laid out from right to left.
+    case rightToLeft
+
+    /// Page indicators are laid out from right to left.
+    @available(swift, obsoleted: 3, renamed: "rightToLeft")
+    static var RightToLeft: UIPageControl.Direction { get }
+
+    /// Page indicators are laid out from top to bottom.
+    case topToBottom
+
+    /// Page indicators are laid out from top to bottom.
+    @available(swift, obsoleted: 3, renamed: "topToBottom")
+    static var TopToBottom: UIPageControl.Direction { get }
+
+    /// Page indicators are laid out from bottom to top.
+    case bottomToTop
+
+    /// Page indicators are laid out from bottom to top.
+    @available(swift, obsoleted: 3, renamed: "bottomToTop")
+    static var BottomToTop: UIPageControl.Direction { get }
+  }
 }
 @available(iOS 14.0, *)
 @available(swift, obsoleted: 3, renamed: "UIPageControl.BackgroundStyle")
 typealias UIPageControlBackgroundStyle = UIPageControl.BackgroundStyle
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIPageControl.Direction")
+typealias UIPageControlDirection = UIPageControl.Direction
 @available(iOS 2.0, *)
-@MainActor class UIPageControl : UIControl {
+@MainActor @_nonSendable(_assumed) class UIPageControl : UIControl {
 
   /// default is 0
   var numberOfPages: Int
@@ -85,6 +133,10 @@ typealias UIPageControlBackgroundStyle = UIPageControl.BackgroundStyle
   /// The preferred background style. Default is UIPageControlBackgroundStyleAutomatic on iOS, and UIPageControlBackgroundStyleProminent on tvOS.
   @available(iOS 14.0, *)
   var backgroundStyle: UIPageControl.BackgroundStyle
+
+  /// The layout direction of the page indicators. The default value is \c UIPageControlDirectionNatural.
+  @available(iOS 16.0, *)
+  var direction: UIPageControl.Direction
 
   /// The current interaction state for when the current page changes. Default is UIPageControlInteractionStateNone
   @available(iOS 14.0, *)
@@ -115,11 +167,40 @@ typealias UIPageControlBackgroundStyle = UIPageControl.BackgroundStyle
 
   /**
    * @abstract Override the indicator image for a specific page. Symbol images are recommended.
-   * @param image    The image for the indicator. Resets to the default if image is nil.
+   * @param image     The image for the indicator. Resets to the default if image is nil.
    * @param page      Must be in the range of 0..numberOfPages
    */
   @available(iOS 14.0, *)
   func setIndicatorImage(_ image: UIImage?, forPage page: Int)
+
+  /// The preferred image for the current page indicator. Symbol images are recommended. Default is nil.
+  /// If this value is nil, then UIPageControl will use \c preferredPageIndicatorImage (or its per-page variant) as
+  /// the indicator image.
+  @available(iOS 16.0, *)
+  var preferredCurrentPageIndicatorImage: UIImage?
+
+  /**
+   * @abstract Returns the override current page indicator image for the specific page, nil if no override image was set.
+   * @param page Must be in the range of 0..numberOfPages
+   */
+  @available(iOS 16.0, *)
+  func currentPageIndicatorImage(forPage page: Int) -> UIImage?
+
+  /**
+   * @abstract Returns the override current page indicator image for the specific page, nil if no override image was set.
+   * @param page Must be in the range of 0..numberOfPages
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "currentPageIndicatorImage(forPage:)")
+  func currentPageIndicatorImageForPage(_ page: Int) -> UIImage?
+
+  /**
+   * @abstract Override the current page indicator image for a specific page. Symbol images are recommended.
+   * @param image     The image for the indicator. Resets to the default if image is nil.
+   * @param page      Must be in the range of 0..numberOfPages
+   */
+  @available(iOS 16.0, *)
+  func setCurrentPageIndicatorImage(_ image: UIImage?, forPage page: Int)
 
   /// Returns the minimum size required to display indicators for the given page count. Can be used to size the control if the page count could change.
   func size(forNumberOfPages pageCount: Int) -> CGSize

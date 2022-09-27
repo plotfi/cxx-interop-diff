@@ -1,0 +1,25 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+@MainActor @_nonSendable(_assumed) class UIDocumentProperties : NSObject {
+  @available(*, unavailable)
+  init()
+  @available(*, unavailable)
+  class func new() -> Self
+
+  /// When initializing with a url, UIKit will automatically lookup metadata based on the data at that url.
+  init(url: URL)
+
+  /// When initializing with a url, UIKit will automatically lookup metadata based on the data at that url.
+  @available(swift, obsoleted: 3, renamed: "init(url:)")
+  init(URL url: URL)
+
+  /// To support drag & drop, assign a closure to return an array of drag items corresponding to the represented document.
+  var dragItemsProvider: ((UIDragSession) -> [UIDragItem])?
+
+  /// To support sharing, assign a closure to return a UIActivityViewController configured to share the represented document.
+  var activityViewControllerProvider: (() -> UIActivityViewController)?
+
+  /// If enabled, shows an icon representation of the document in the navigation bar.
+  var wantsIconRepresentation: Bool
+}

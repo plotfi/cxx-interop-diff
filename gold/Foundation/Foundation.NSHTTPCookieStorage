@@ -21,7 +21,7 @@ extension HTTPCookie {
       @constant NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain Accept cookies
       only from the main document domain
   */
-  enum AcceptPolicy : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum AcceptPolicy : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -46,7 +46,7 @@ extension HTTPCookie {
     generate cookie-related HTTP header fields.
 */
 @available(iOS 2.0, *)
-class HTTPCookieStorage : NSObject {
+@_nonSendable(_assumed) class HTTPCookieStorage : NSObject, @unchecked Sendable {
 
   /**
       @property sharedHTTPCookieStorage

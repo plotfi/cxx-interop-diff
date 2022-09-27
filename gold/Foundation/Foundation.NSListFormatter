@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 13.0, *)
-class ListFormatter : Formatter {
+@_nonSendable(_assumed) class ListFormatter : Formatter {
   var locale: Locale!
   @NSCopying var itemFormatter: Formatter?
   class func localizedString(byJoining strings: [String]) -> String
@@ -15,6 +15,10 @@ class ListFormatter : Formatter {
   func stringForObjectValue(_ obj: Any?) -> String?
   init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension ListFormatter : @unchecked Sendable {
 }
 @available(iOS 13.0, *)
 @available(swift, obsoleted: 3, renamed: "ListFormatter")

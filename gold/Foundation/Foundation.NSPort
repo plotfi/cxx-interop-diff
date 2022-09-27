@@ -10,7 +10,7 @@ extension Port {
 }
 @available(swift, obsoleted: 3, renamed: "Port")
 typealias NSPort = Port
-class Port : NSObject, NSCopying, NSCoding {
+@_nonSendable(_assumed) class Port : NSObject, NSCopying, NSCoding {
   @available(*, unavailable, message: "superseded by import of -[NSObject init]")
   /*not inherited*/ init()
   @available(*, unavailable, renamed: "init()", message: "Not available in Swift")
@@ -39,11 +39,15 @@ class Port : NSObject, NSCopying, NSCoding {
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension Port : @unchecked Sendable {
+}
 @available(swift, obsoleted: 3, renamed: "PortDelegate")
 typealias NSPortDelegate = PortDelegate
 protocol PortDelegate : NSObjectProtocol {
 }
-class NSMachPort : Port {
+@_nonSendable(_assumed) class NSMachPort : Port {
   class func port(withMachPort machPort: UInt32) -> Port
   @available(swift, obsoleted: 3, renamed: "port(withMachPort:)")
   class func portWithMachPort(_ machPort: UInt32) -> Port
@@ -67,12 +71,16 @@ class NSMachPort : Port {
   convenience init()
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension NSMachPort : @unchecked Sendable {
+}
 @available(iOS 2.0, *)
 @available(swift, obsoleted: 3, renamed: "NSMachPort.Options")
 typealias NSMachPortOptions = NSMachPort.Options
 extension NSMachPort {
   @available(iOS 2.0, *)
-  struct Options : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Options : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -94,9 +102,13 @@ extension NSMachPort {
 protocol NSMachPortDelegate : PortDelegate {
   optional func handleMachMessage(_ msg: UnsafeMutableRawPointer)
 }
-class MessagePort : Port {
+@_nonSendable(_assumed) class MessagePort : Port {
   init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension MessagePort : @unchecked Sendable {
 }
 @available(swift, obsoleted: 3, renamed: "MessagePort")
 typealias NSMessagePort = MessagePort

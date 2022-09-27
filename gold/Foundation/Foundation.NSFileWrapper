@@ -5,7 +5,7 @@
 typealias NSFileWrapperReadingOptions = FileWrapper.ReadingOptions
 extension FileWrapper {
   @available(iOS 4.0, *)
-  struct ReadingOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct ReadingOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -19,7 +19,7 @@ extension FileWrapper {
     static var WithoutMapping: FileWrapper.ReadingOptions { get }
   }
   @available(iOS 4.0, *)
-  struct WritingOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct WritingOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -37,7 +37,7 @@ extension FileWrapper {
 @available(swift, obsoleted: 3, renamed: "FileWrapper.WritingOptions")
 typealias NSFileWrapperWritingOptions = FileWrapper.WritingOptions
 @available(iOS 4.0, *)
-class FileWrapper : NSObject, NSSecureCoding {
+@_nonSendable(_assumed) class FileWrapper : NSObject, NSSecureCoding {
   @available(iOS 4.0, *)
   init(url: URL, options: FileWrapper.ReadingOptions = []) throws
   @available(iOS 4.0, *)
@@ -94,6 +94,10 @@ class FileWrapper : NSObject, NSSecureCoding {
   class var supportsSecureCoding: Bool { get }
   @available(iOS 4.0, *)
   func encode(with coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension FileWrapper : @unchecked Sendable {
 }
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "FileWrapper")

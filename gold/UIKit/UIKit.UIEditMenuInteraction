@@ -1,0 +1,215 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+enum UIEditMenuArrowDirection : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+  case automatic
+  @available(swift, obsoleted: 3, renamed: "automatic")
+  static var Automatic: UIEditMenuArrowDirection { get }
+  case up
+  @available(swift, obsoleted: 3, renamed: "up")
+  static var Up: UIEditMenuArrowDirection { get }
+  case down
+  @available(swift, obsoleted: 3, renamed: "down")
+  static var Down: UIEditMenuArrowDirection { get }
+  case left
+  @available(swift, obsoleted: 3, renamed: "left")
+  static var Left: UIEditMenuArrowDirection { get }
+  case right
+  @available(swift, obsoleted: 3, renamed: "right")
+  static var Right: UIEditMenuArrowDirection { get }
+}
+@available(iOS 16.0, *)
+@MainActor class UIEditMenuConfiguration : NSObject {
+
+  /// The unique identifier of the configuration.
+  @NSCopying var __identifier: NSCopying { get }
+
+  /// The source location of the menu. The suggested actions menu elements will be derived from this location in the interaction's view.
+  /// By default, the menu will be presented from this location. You can change the presentation source of the menu with the delegate
+  /// method @c editMenuInteraction:targetRectForConfiguration:
+  var sourcePoint: CGPoint { get }
+
+  /// The preferred arrow direction of the edit menu. Default is @c UIEditMenuArrowDirectionAutomatic
+  var preferredArrowDirection: UIEditMenuArrowDirection
+
+  /// Creates a new configuration with the specified source location.
+  convenience init(__identifier identifier: NSCopying?, sourcePoint: CGPoint)
+
+  /// Creates a new configuration with the specified source location.
+  @available(*, unavailable, renamed: "init(__identifier:sourcePoint:)", message: "Not available in Swift")
+  class func __configurationWithIdentifier(_ identifier: NSCopying?, sourcePoint: CGPoint) -> Self
+  @available(*, unavailable)
+  init()
+  @available(*, unavailable)
+  class func new() -> Self
+}
+
+@available(iOS 16.0, *)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
+extension UIEditMenuConfiguration {
+  /// The unique identifier of the configuration.
+  @MainActor var identifier: AnyHashable { get }
+  @MainActor convenience init(identifier: AnyHashable?, sourcePoint: CGPoint)
+}
+@available(iOS 16.0, *)
+@MainActor class UIEditMenuInteraction : NSObject, UIInteraction {
+
+  /// The object that defines the delegate of the interaction.
+  weak var delegate: @sil_weak UIEditMenuInteractionDelegate? { get }
+
+  /// Creates a new edit menu interaction with the specified delegate.
+  init(delegate: UIEditMenuInteractionDelegate?)
+
+  /// Presents an edit menu with the specified @c configuration object.
+  /// If a menu is already presented, it will be dismissed automatically before the new menu is presented.
+  ///
+  /// @NOTE: @c presentEditMenuWithConfiguration: is not supported on Mac Catalyst.
+  func presentEditMenu(with configuration: UIEditMenuConfiguration)
+
+  /// Presents an edit menu with the specified @c configuration object.
+  /// If a menu is already presented, it will be dismissed automatically before the new menu is presented.
+  ///
+  /// @NOTE: @c presentEditMenuWithConfiguration: is not supported on Mac Catalyst.
+  @available(swift, obsoleted: 3, renamed: "presentEditMenu(with:)")
+  func presentEditMenuWithConfiguration(_ configuration: UIEditMenuConfiguration)
+
+  /// Dismiss the currently active menu if one is currently presented.
+  func dismissMenu()
+
+  /// Reloads the visible menu. This menu has no effect if there is no menu presented. This method will query
+  /// the menu again from the delegate method @c editMenuInteraction:menuForConfiguration:suggestedActions:
+  /// and refresh the UI with the updated menu.
+  func reloadVisibleMenu()
+
+  /// Updates the position of the currently visible menu, with an option to animate the action. This method
+  /// has no effect if no menu is presented. This method will query the position from the delegate method
+  /// @c editMenuInteraction:targetRectForConfiguration: if it is implemented.
+  func updateVisibleMenuPosition(animated: Bool)
+
+  /// Updates the position of the currently visible menu, with an option to animate the action. This method
+  /// has no effect if no menu is presented. This method will query the position from the delegate method
+  /// @c editMenuInteraction:targetRectForConfiguration: if it is implemented.
+  @available(swift, obsoleted: 3, renamed: "updateVisibleMenuPosition(animated:)")
+  func updateVisibleMenuPositionAnimated(_ animated: Bool)
+
+  /// Returns the interaction's location within the given view.
+  func location(in view: UIView?) -> CGPoint
+
+  /// Returns the interaction's location within the given view.
+  @available(swift, obsoleted: 3, renamed: "location(in:)")
+  func locationInView(_ view: UIView?) -> CGPoint
+  @available(*, unavailable)
+  init()
+  @available(*, unavailable)
+  class func new() -> Self
+  @available(iOS 11.0, *)
+  weak var view: @sil_weak UIView? { get }
+  @available(iOS 11.0, *)
+  func willMove(to view: UIView?)
+  @available(iOS 11.0, *)
+  func didMove(to view: UIView?)
+}
+@available(iOS 16.0, *)
+@MainActor protocol UIEditMenuInteractionAnimating : NSObjectProtocol {
+  func addAnimations(_ animations: @escaping () -> Void)
+  func addCompletion(_ completion: @escaping () -> Void)
+}
+@available(iOS 16.0, *)
+protocol UIEditMenuInteractionDelegate : NSObjectProtocol {
+
+  /**
+   * @abstract Called when the interaction begins.
+   *
+   * @param interaction       The UIEditMenuInteraction.
+   * @param configuration     The UIEditMenuConfiguration object used to present the menu.
+   * @param suggestedActions  An array of suggested actions gathered from the UIResponder chain. You may
+   *                          include these actions in the hierarchy to display them in the resulting menu.
+   *
+   * @return Return a UIMenu describing the desired menu hierarchy. Return @c nil to present the default system menu.
+   */
+  optional func editMenuInteraction(_ interaction: UIEditMenuInteraction, menuFor configuration: UIEditMenuConfiguration, suggestedActions: [UIMenuElement]) -> UIMenu?
+
+  /**
+   * @abstract Called when the interaction begins.
+   *
+   * @param interaction       The UIEditMenuInteraction.
+   * @param configuration     The UIEditMenuConfiguration object used to present the menu.
+   * @param suggestedActions  An array of suggested actions gathered from the UIResponder chain. You may
+   *                          include these actions in the hierarchy to display them in the resulting menu.
+   *
+   * @return Return a UIMenu describing the desired menu hierarchy. Return @c nil to present the default system menu.
+   */
+  @available(swift, obsoleted: 3, renamed: "editMenuInteraction(_:menuFor:suggestedActions:)")
+  optional func editMenuInteraction(_ interaction: UIEditMenuInteraction, menuForConfiguration configuration: UIEditMenuConfiguration, suggestedActions: [UIMenuElement]) -> UIMenu?
+
+  /**
+   * @abstract Called when the interaction begins, or when @c updateVisibleMenuPosition(animated:) is called.
+   *
+   * @param interaction   The UIEditMenuInteraction.
+   * @param configuration The UIEditMenuConfiguration object used to present the menu.
+   *
+   * @return Return a rectangle relative to the interaction's view. The menu will be displayed around
+   *         target rect, space permitting, with the arrow pointing at the edge of the target rectangle
+   *         for the specified arrow direction of the configuration. By default, an empty-sized rectangle
+   *         centered at @c configuration.sourcePoint will be used if this method is not implemented. Return
+   *         @c CGRectNull to use the default rect.
+   */
+  optional func editMenuInteraction(_ interaction: UIEditMenuInteraction, targetRectFor configuration: UIEditMenuConfiguration) -> CGRect
+
+  /**
+   * @abstract Called when the interaction begins, or when @c updateVisibleMenuPosition(animated:) is called.
+   *
+   * @param interaction   The UIEditMenuInteraction.
+   * @param configuration The UIEditMenuConfiguration object used to present the menu.
+   *
+   * @return Return a rectangle relative to the interaction's view. The menu will be displayed around
+   *         target rect, space permitting, with the arrow pointing at the edge of the target rectangle
+   *         for the specified arrow direction of the configuration. By default, an empty-sized rectangle
+   *         centered at @c configuration.sourcePoint will be used if this method is not implemented. Return
+   *         @c CGRectNull to use the default rect.
+   */
+  @available(swift, obsoleted: 3, renamed: "editMenuInteraction(_:targetRectFor:)")
+  optional func editMenuInteraction(_ interaction: UIEditMenuInteraction, targetRectForConfiguration configuration: UIEditMenuConfiguration) -> CGRect
+
+  /**
+   * @abstract Called when the interaction is about to present the menu.
+   *
+   * @param interaction   The UIEditMenuInteraction.
+   * @param configuration The configuration object of the menu about to be presented by this interaction.
+   * @param animator      Appearance animator. Add animations to this object to run them alongside the appearance transition.
+   */
+  optional func editMenuInteraction(_ interaction: UIEditMenuInteraction, willPresentMenuFor configuration: UIEditMenuConfiguration, animator: UIEditMenuInteractionAnimating)
+
+  /**
+   * @abstract Called when the interaction is about to present the menu.
+   *
+   * @param interaction   The UIEditMenuInteraction.
+   * @param configuration The configuration object of the menu about to be presented by this interaction.
+   * @param animator      Appearance animator. Add animations to this object to run them alongside the appearance transition.
+   */
+  @available(swift, obsoleted: 3, renamed: "editMenuInteraction(_:willPresentMenuFor:animator:)")
+  optional func editMenuInteraction(_ interaction: UIEditMenuInteraction, willPresentMenuForConfiguration configuration: UIEditMenuConfiguration, animator: UIEditMenuInteractionAnimating)
+
+  /**
+   * @abstract Called when the interaction is about to dismiss the menu.
+   *
+   * @param interaction   The UIEditMenuInteraction.
+   * @param configuration The configuration object of the menu about to be dismissed by this interaction.
+   * @param animator      Dismiss animator. Add animations to this object to run them alongside the dismiss transition.
+   */
+  optional func editMenuInteraction(_ interaction: UIEditMenuInteraction, willDismissMenuFor configuration: UIEditMenuConfiguration, animator: UIEditMenuInteractionAnimating)
+
+  /**
+   * @abstract Called when the interaction is about to dismiss the menu.
+   *
+   * @param interaction   The UIEditMenuInteraction.
+   * @param configuration The configuration object of the menu about to be dismissed by this interaction.
+   * @param animator      Dismiss animator. Add animations to this object to run them alongside the dismiss transition.
+   */
+  @available(swift, obsoleted: 3, renamed: "editMenuInteraction(_:willDismissMenuFor:animator:)")
+  optional func editMenuInteraction(_ interaction: UIEditMenuInteraction, willDismissMenuForConfiguration configuration: UIEditMenuConfiguration, animator: UIEditMenuInteractionAnimating)
+}

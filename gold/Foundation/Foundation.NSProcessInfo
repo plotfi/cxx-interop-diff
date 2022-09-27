@@ -9,7 +9,7 @@ var NSSunOSOperatingSystem: Int { get }
 var NSOSF1OperatingSystem: Int { get }
 @available(swift, obsoleted: 3, renamed: "OperatingSystemVersion")
 typealias NSOperatingSystemVersion = OperatingSystemVersion
-struct OperatingSystemVersion {
+@_nonSendable(_assumed) struct OperatingSystemVersion : @unchecked Sendable {
   init()
   init(majorVersion: Int, minorVersion: Int, patchVersion: Int)
   var majorVersion: Int
@@ -18,7 +18,7 @@ struct OperatingSystemVersion {
 }
 @available(swift, obsoleted: 3, renamed: "ProcessInfo")
 typealias NSProcessInfo = ProcessInfo
-class ProcessInfo : NSObject {
+@_nonSendable(_assumed) class ProcessInfo : NSObject {
   class var processInfo: ProcessInfo { get }
   var environment: [String : String] { get }
   var arguments: [String] { get }
@@ -58,12 +58,16 @@ class ProcessInfo : NSObject {
   var automaticTerminationSupportEnabled: Bool
   init()
 }
+
+@available(*, unavailable)
+extension ProcessInfo : @unchecked Sendable {
+}
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "ProcessInfo.ActivityOptions")
 typealias NSActivityOptions = ProcessInfo.ActivityOptions
 extension ProcessInfo {
   @available(iOS 7.0, *)
-  struct ActivityOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct ActivityOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt64)
     let rawValue: UInt64
     typealias RawValue = UInt64
@@ -81,6 +85,16 @@ extension ProcessInfo {
     static var automaticTerminationDisabled: ProcessInfo.ActivityOptions { get }
     @available(swift, obsoleted: 3, renamed: "automaticTerminationDisabled")
     static var AutomaticTerminationDisabled: ProcessInfo.ActivityOptions { get }
+    @available(iOS 16.0, *)
+    static var animationTrackingEnabled: ProcessInfo.ActivityOptions { get }
+    @available(iOS 16.0, *)
+    @available(swift, obsoleted: 3, renamed: "animationTrackingEnabled")
+    static var AnimationTrackingEnabled: ProcessInfo.ActivityOptions { get }
+    @available(iOS 16.0, *)
+    static var trackingEnabled: ProcessInfo.ActivityOptions { get }
+    @available(iOS 16.0, *)
+    @available(swift, obsoleted: 3, renamed: "trackingEnabled")
+    static var TrackingEnabled: ProcessInfo.ActivityOptions { get }
     static var userInitiated: ProcessInfo.ActivityOptions { get }
     @available(swift, obsoleted: 3, renamed: "userInitiated")
     static var UserInitiated: ProcessInfo.ActivityOptions { get }
@@ -93,9 +107,14 @@ extension ProcessInfo {
     static var latencyCritical: ProcessInfo.ActivityOptions { get }
     @available(swift, obsoleted: 3, renamed: "latencyCritical")
     static var LatencyCritical: ProcessInfo.ActivityOptions { get }
+    @available(iOS 16.0, *)
+    static var userInteractive: ProcessInfo.ActivityOptions { get }
+    @available(iOS 16.0, *)
+    @available(swift, obsoleted: 3, renamed: "userInteractive")
+    static var UserInteractive: ProcessInfo.ActivityOptions { get }
   }
   @available(iOS 11.0, *)
-  enum ThermalState : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ThermalState : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -129,10 +148,10 @@ extension ProcessInfo {
   @available(swift, obsoleted: 3, renamed: "performActivity(options:reason:using:)")
   func performActivityWithOptions(_ options: ProcessInfo.ActivityOptions = [], reason: String, usingBlock block: @escaping () -> Void)
   @available(iOS 8.2, *)
-  func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void)
+  func performExpiringActivity(withReason reason: String, using block: @escaping @Sendable (Bool) -> Void)
   @available(iOS 8.2, *)
   @available(swift, obsoleted: 3, renamed: "performExpiringActivity(withReason:using:)")
-  func performExpiringActivityWithReason(_ reason: String, usingBlock block: @escaping (Bool) -> Void)
+  func performExpiringActivityWithReason(_ reason: String, usingBlock block: @escaping @Sendable (Bool) -> Void)
 }
 extension ProcessInfo {
   @available(iOS, unavailable)

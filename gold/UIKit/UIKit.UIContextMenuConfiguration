@@ -1,5 +1,33 @@
 @_exported import Foundation
 
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIContextMenuConfiguration.ElementOrder")
+typealias UIContextMenuConfigurationElementOrder = UIContextMenuConfiguration.ElementOrder
+extension UIContextMenuConfiguration {
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) enum ElementOrder : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case automatic
+    @available(swift, obsoleted: 3, renamed: "automatic")
+    static var Automatic: UIContextMenuConfiguration.ElementOrder { get }
+
+    /// Allows the system to choose the appropriate ordering strategy for the current context.
+    case priority
+
+    /// Allows the system to choose the appropriate ordering strategy for the current context.
+    @available(swift, obsoleted: 3, renamed: "priority")
+    static var Priority: UIContextMenuConfiguration.ElementOrder { get }
+
+    /// Order menu elements according to priority. Keeping the first element in the UIMenu closest to user's interaction point.
+    case fixed
+
+    /// Order menu elements according to priority. Keeping the first element in the UIMenu closest to user's interaction point.
+    @available(swift, obsoleted: 3, renamed: "fixed")
+    static var Fixed: UIContextMenuConfiguration.ElementOrder { get }
+  }
+}
 
 /**
  * @abstract Return a UIAction-based UIMenu describing the desired action hierarchy.
@@ -14,18 +42,24 @@ typealias UIContextMenuActionProvider = ([UIMenuElement]) -> UIMenu?
  */
 typealias UIContextMenuContentPreviewProvider = () -> UIViewController?
 @available(iOS 13.0, *)
-@MainActor class UIContextMenuConfiguration : NSObject {
+@MainActor @_nonSendable(_assumed) class UIContextMenuConfiguration : NSObject {
+
+  /// This configuration's identifier. When representing multiple items in your app, this identifier
+  /// corresponds to the primary item (i.e. the one with which the user interacted when invoking the menu).
   var identifier: NSCopying { get }
 
-  /**
-   * @abstract Returns a UIContextMenuConfiguration.
-   *
-   * @param identifier       Optional unique identifier. If omitted, an NSUUID will be generated. May be used to
-   *                         identify this configuration throughout the interaction's lifecycle.
-   * @param previewProvider  Optional preview view controller provider block, called when the menu is about to be presented.
-   * @param actionProvider   Optional action provider block, called when the menu is about to be presented.
-   */
-  convenience init(identifier: NSCopying?, previewProvider: UIContextMenuContentPreviewProvider?, actionProvider: UIContextMenuActionProvider? = nil)
+  /// When this menu acts on multiple items, you may include the identifiers of secondary items to display a multi-item menu.
+  @available(iOS 16.0, *)
+  var secondaryItemIdentifiers: Set<AnyHashable>
+
+  /// Number of items on which this menu acts. Used to badge a multi-item menu's preview stack.
+  /// When unset, this value is determined automatically by the system. Values lower than 2 hide the badge.
+  @available(iOS 16.0, *)
+  var badgeCount: Int
+
+  /// Preferred menu element ordering strategy for this menu.
+  @available(iOS 16.0, *)
+  var preferredMenuElementOrder: UIContextMenuConfiguration.ElementOrder
 
   /**
    * @abstract Returns a UIContextMenuConfiguration.
@@ -35,7 +69,28 @@ typealias UIContextMenuContentPreviewProvider = () -> UIViewController?
    * @param previewProvider  Optional preview view controller provider block, called when the menu is about to be presented.
    * @param actionProvider   Optional action provider block, called when the menu is about to be presented.
    */
-  @available(*, unavailable, renamed: "init(identifier:previewProvider:actionProvider:)", message: "Not available in Swift")
-  class func configurationWithIdentifier(_ identifier: NSCopying?, previewProvider: UIContextMenuContentPreviewProvider?, actionProvider: UIContextMenuActionProvider? = nil) -> Self
+  convenience init(__identifier identifier: NSCopying?, previewProvider: UIContextMenuContentPreviewProvider?, actionProvider: UIContextMenuActionProvider? = nil)
+
+  /**
+   * @abstract Returns a UIContextMenuConfiguration.
+   *
+   * @param identifier       Optional unique identifier. If omitted, an NSUUID will be generated. May be used to
+   *                         identify this configuration throughout the interaction's lifecycle.
+   * @param previewProvider  Optional preview view controller provider block, called when the menu is about to be presented.
+   * @param actionProvider   Optional action provider block, called when the menu is about to be presented.
+   */
+  @available(*, unavailable, renamed: "init(__identifier:previewProvider:actionProvider:)", message: "Not available in Swift")
+  class func __configurationWithIdentifier(_ identifier: NSCopying?, previewProvider: UIContextMenuContentPreviewProvider?, actionProvider: UIContextMenuActionProvider? = nil) -> Self
   init()
+}
+
+@available(iOS 13.0, *)
+extension UIContextMenuConfiguration {
+  /// Returns a UIContextMenuConfiguration.
+  ///
+  /// - Parameters:
+  ///   - identifier: Optional unique identifier. If omitted, an NSUUID will be generated. May be used to identify this configuration throughout the interaction's lifecycle.
+  ///   - previewProvider: Optional preview view controller provider block, called when the menu is about to be presented.
+  ///   - actionProvider: Optional action provider block, called when the menu is about to be presented.
+  @_alwaysEmitIntoClient @MainActor convenience init(identifier: NSCopying? = nil, previewProvider: UIContextMenuContentPreviewProvider? = nil, actionProvider: UIContextMenuActionProvider? = nil)
 }

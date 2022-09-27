@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 14.0, *)
-enum __UICollectionLayoutListAppearance : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UICollectionLayoutListAppearance : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -22,7 +22,7 @@ enum __UICollectionLayoutListAppearance : Int, @unchecked Sendable {
   static var SidebarPlain: __UICollectionLayoutListAppearance { get }
 }
 @available(iOS 14.0, *)
-enum __UICollectionLayoutListHeaderMode : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UICollectionLayoutListHeaderMode : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -49,7 +49,7 @@ enum __UICollectionLayoutListHeaderMode : Int, @unchecked Sendable {
   static var FirstItemInSection: __UICollectionLayoutListHeaderMode { get }
 }
 @available(iOS 14.0, *)
-enum __UICollectionLayoutListFooterMode : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum __UICollectionLayoutListFooterMode : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -83,7 +83,7 @@ typealias __UICollectionLayoutListItemSeparatorHandler = (IndexPath, __UIListSep
 
 /// A list configuration can be used to layout a section inside a UICollectionViewCompositionalLayout as a list.
 @available(iOS 14.0, *)
-@MainActor class __UICollectionLayoutListConfiguration : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class __UICollectionLayoutListConfiguration : NSObject, NSCopying {
   @available(*, unavailable)
   class func new() -> Self
   @available(*, unavailable)

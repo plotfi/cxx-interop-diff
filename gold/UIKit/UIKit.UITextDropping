@@ -9,7 +9,7 @@
   var textDropActive: Bool { get }
 }
 @available(iOS 11.0, *)
-enum UITextDropEditability : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum UITextDropEditability : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt

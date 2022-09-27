@@ -1,6 +1,6 @@
 @_exported import Foundation
 
-enum UIStatusBarStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIStatusBarStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -22,7 +22,7 @@ enum UIStatusBarStyle : Int, @unchecked Sendable {
   @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, renamed: "UIStatusBarStyle.lightContent", message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
   case blackOpaque
 }
-enum UIStatusBarAnimation : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIStatusBarAnimation : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -40,7 +40,7 @@ enum UIStatusBarAnimation : Int, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "slide")
   static var Slide: UIStatusBarAnimation { get }
 }
-enum UIInterfaceOrientation : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIInterfaceOrientation : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -63,7 +63,7 @@ enum UIInterfaceOrientation : Int, @unchecked Sendable {
 @available(iOS 6.0, *)
 @available(swift, obsoleted: 3, renamed: "UIApplication.invalidInterfaceOrientationException")
 let UIApplicationInvalidInterfaceOrientationException: NSExceptionName
-struct UIInterfaceOrientationMask : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct UIInterfaceOrientationMask : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
@@ -100,7 +100,7 @@ extension UIInterfaceOrientation {
 @available(swift, obsoleted: 3, renamed: "getter:UIInterfaceOrientation.isLandscape(self:)")
 func UIInterfaceOrientationIsLandscape(_ orientation: UIInterfaceOrientation) -> Bool
 @available(iOS, introduced: 3.0, deprecated: 8.0, message: "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead.")
-struct UIRemoteNotificationType : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct UIRemoteNotificationType : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
@@ -125,7 +125,7 @@ struct UIRemoteNotificationType : OptionSet, @unchecked Sendable {
   static var NewsstandContentAvailability: UIRemoteNotificationType { get }
 }
 @available(iOS 7.0, *)
-enum UIBackgroundFetchResult : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIBackgroundFetchResult : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt
@@ -140,7 +140,7 @@ enum UIBackgroundFetchResult : UInt, @unchecked Sendable {
   static var Failed: UIBackgroundFetchResult { get }
 }
 @available(iOS 7.0, *)
-enum UIBackgroundRefreshStatus : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIBackgroundRefreshStatus : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -180,7 +180,7 @@ let UIApplicationBackgroundFetchIntervalNever: TimeInterval
 @available(swift, obsoleted: 3, renamed: "UIApplication.OpenExternalURLOptionsKey")
 typealias UIApplicationOpenExternalURLOptionsKey = UIApplication.OpenExternalURLOptionsKey
 @available(iOS 2.0, *)
-@MainActor class UIApplication : UIResponder {
+@MainActor @_nonSendable(_assumed) class UIApplication : UIResponder {
   class var shared: UIApplication { get }
   @available(swift, obsoleted: 3, renamed: "shared")
   class var sharedApplication: UIApplication { get }
@@ -202,12 +202,12 @@ typealias UIApplicationOpenExternalURLOptionsKey = UIApplication.OpenExternalURL
   @available(iOS 3.0, *)
   func canOpenURL(_ url: URL) -> Bool
   @available(iOS 10.0, *)
-  func open(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey : Any] = [:], completionHandler completion: (@Sendable (Bool) -> Void)? = nil)
+  func open(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey : Any] = [:], completionHandler completion: ((Bool) -> Void)? = nil)
   @available(iOS 10.0, *)
   func open(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey : Any] = [:]) async -> Bool
   @available(iOS 10.0, *)
   @available(swift, obsoleted: 3, renamed: "open(_:options:completionHandler:)")
-  func openURL(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey : Any] = [:], completionHandler completion: (@Sendable (Bool) -> Void)? = nil)
+  func openURL(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey : Any] = [:], completionHandler completion: ((Bool) -> Void)? = nil)
   func sendEvent(_ event: UIEvent)
   @available(iOS, introduced: 2.0, deprecated: 13.0, message: "Should not be used for applications that support multiple scenes as it returns a key window across all connected scenes")
   var keyWindow: UIWindow? { get }
@@ -298,6 +298,11 @@ typealias UIApplicationOpenExternalURLOptionsKey = UIApplication.OpenExternalURL
   func requestSceneSessionRefresh(_ sceneSession: UISceneSession)
   init()
 }
+
+extension UIApplication {
+  @available(iOS 16.0, *)
+  @MainActor static let openNotificationSettingsURLString: String
+}
 extension UIApplication {
   @available(iOS 8.0, *)
   func registerForRemoteNotifications()
@@ -352,7 +357,7 @@ extension UIApplication {
   @available(iOS 10.3, *)
   var supportsAlternateIcons: Bool { get }
   @available(iOS 10.3, *)
-  func setAlternateIconName(_ alternateIconName: String?, completionHandler: (@Sendable (Error?) -> Void)? = nil)
+  func setAlternateIconName(_ alternateIconName: String?, completionHandler: ((Error?) -> Void)? = nil)
   @available(iOS 10.3, *)
   func setAlternateIconName(_ alternateIconName: String?) async throws
   @available(iOS 10.3, *)
@@ -430,7 +435,7 @@ extension UIApplication {
   @available(iOS 6.0, *)
   class let invalidInterfaceOrientationException: NSExceptionName
   @available(iOS 4.0, *)
-  enum State : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum State : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -513,33 +518,33 @@ extension UIApplication {
   @available(iOS, introduced: 4.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate willPresentNotification:withCompletionHandler:] or -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
   optional func application(_ application: UIApplication, didReceiveLocalNotification notification: UILocalNotification)
   @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
-  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, completionHandler: @escaping @Sendable () -> Void)
+  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, completionHandler: @escaping () -> Void)
   @available(iOS, unavailable, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
   optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification) async
   @available(swift, obsoleted: 3, renamed: "application(_:handleActionWithIdentifier:for:completionHandler:)")
   @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
-  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: @escaping @Sendable () -> Void)
+  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: @escaping () -> Void)
   @available(iOS, introduced: 9.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
-  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [AnyHashable : Any], withResponseInfo responseInfo: [AnyHashable : Any], completionHandler: @escaping @Sendable () -> Void)
+  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [AnyHashable : Any], withResponseInfo responseInfo: [AnyHashable : Any], completionHandler: @escaping () -> Void)
   @available(iOS, unavailable, introduced: 9.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
   optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [AnyHashable : Any], withResponseInfo responseInfo: [AnyHashable : Any]) async
   @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
-  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [AnyHashable : Any], completionHandler: @escaping @Sendable () -> Void)
+  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [AnyHashable : Any], completionHandler: @escaping () -> Void)
   @available(iOS, unavailable, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
   optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [AnyHashable : Any]) async
   @available(iOS, introduced: 9.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
-  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable : Any], completionHandler: @escaping @Sendable () -> Void)
+  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable : Any], completionHandler: @escaping () -> Void)
   @available(iOS, unavailable, introduced: 9.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
   optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable : Any]) async
   @available(swift, obsoleted: 3, renamed: "application(_:handleActionWithIdentifier:for:withResponseInfo:completionHandler:)")
   @available(iOS, introduced: 9.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
-  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable : Any], completionHandler: @escaping @Sendable () -> Void)
+  optional func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable : Any], completionHandler: @escaping () -> Void)
 
   /** This delegate method offers an opportunity for applications with the "remote-notification" background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
    
    This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !*/
   @available(iOS 7.0, *)
-  optional func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping @Sendable (UIBackgroundFetchResult) -> Void)
+  optional func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
 
   /** This delegate method offers an opportunity for applications with the "remote-notification" background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
    
@@ -551,18 +556,18 @@ extension UIApplication {
   @available(iOS, introduced: 7.0, deprecated: 13.0, message: "Use a BGAppRefreshTask in the BackgroundTasks framework instead")
   optional func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
   @available(iOS 9.0, *)
-  optional func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping @Sendable (Bool) -> Void)
+  optional func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void)
   @available(iOS 9.0, *)
   optional func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem) async -> Bool
   @available(iOS 9.0, *)
   @available(swift, obsoleted: 3, renamed: "application(_:performActionFor:completionHandler:)")
-  optional func application(_ application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping @Sendable (Bool) -> Void)
+  optional func application(_ application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void)
   @available(iOS 7.0, *)
-  optional func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping @Sendable () -> Void)
+  optional func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void)
   @available(iOS 7.0, *)
   optional func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String) async
   @available(iOS 8.2, *)
-  optional func application(_ application: UIApplication, handleWatchKitExtensionRequest userInfo: [AnyHashable : Any]?, reply: @escaping @Sendable ([AnyHashable : Any]?) -> Void)
+  optional func application(_ application: UIApplication, handleWatchKitExtensionRequest userInfo: [AnyHashable : Any]?, reply: @escaping ([AnyHashable : Any]?) -> Void)
   @available(iOS 8.2, *)
   optional func application(_ application: UIApplication, handleWatchKitExtensionRequest userInfo: [AnyHashable : Any]?) async -> [AnyHashable : Any]?
   @available(iOS 9.0, *)
@@ -723,7 +728,7 @@ extension UIApplication.LaunchOptionsKey {
   static let remoteNotification: UIApplication.LaunchOptionsKey
   @available(iOS, introduced: 4.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
   static let localNotification: UIApplication.LaunchOptionsKey
-  @available(iOS 3.2, *)
+  @available(iOS, introduced: 3.2, deprecated: 16.0, message: "This dictionary key is no longer used.")
   static let annotation: UIApplication.LaunchOptionsKey
   @available(iOS 4.0, *)
   static let location: UIApplication.LaunchOptionsKey
@@ -753,8 +758,8 @@ let UIApplicationLaunchOptionsRemoteNotificationKey: UIApplication.LaunchOptions
 @available(swift, obsoleted: 3, renamed: "UIApplication.LaunchOptionsKey.localNotification")
 @available(iOS, introduced: 4.0, deprecated: 10.0, message: "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]")
 let UIApplicationLaunchOptionsLocalNotificationKey: UIApplication.LaunchOptionsKey
-@available(iOS 3.2, *)
 @available(swift, obsoleted: 3, renamed: "UIApplication.LaunchOptionsKey.annotation")
+@available(iOS, introduced: 3.2, deprecated: 16.0, message: "This dictionary key is no longer used.")
 let UIApplicationLaunchOptionsAnnotationKey: UIApplication.LaunchOptionsKey
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "UIApplication.LaunchOptionsKey.location")
@@ -786,7 +791,7 @@ let UIApplicationLaunchOptionsCloudKitShareMetadataKey: UIApplication.LaunchOpti
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UIApplication.openSettingsURLString")
 let UIApplicationOpenSettingsURLString: String
-@available(iOS 15.4, *)
+@available(iOS, introduced: 15.4, deprecated: 16.0)
 let UIApplicationOpenNotificationSettingsURLString: String
 @available(iOS 9.0, *)
 @available(swift, obsoleted: 3, renamed: "UIApplication.OpenURLOptionsKey.sourceApplication")

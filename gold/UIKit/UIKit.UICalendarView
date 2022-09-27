@@ -1,0 +1,86 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+@MainActor @_nonSendable(_assumed) class UICalendarView : UIView {
+
+  /// The object that defines the delegate of the calendar view.
+  weak var delegate: @sil_weak UICalendarViewDelegate?
+
+  /// The object that defines the selection behavior of the calendar view.
+  var selectionBehavior: UICalendarSelection?
+
+  /// The backing locale of the calendar view. The default value is @c NSLocale.currentLocale
+  var locale: Locale
+
+  /// The backing calendar of the calendar view. The default value is @c NSCalendar.currentCalendar
+  var calendar: Calendar
+
+  /// The backing time zone of the calendar view. Default is nil
+  var timeZone: TimeZone?
+
+  /// The font design of the calendar view. The default value is @c UIFontDescriptorSystemDesignDefault
+  var fontDesign: UIFontDescriptor.SystemDesign
+
+  /// The available date range of the calendar view. The default is a date interval from @c NSDate.distantPast
+  /// to @c NSDate.distantFuture
+  var availableDateRange: DateInterval
+
+  /// The date components representing the current visible date of the calendar view. The default value is the
+  /// NSDateComponents representation of the current date given the granularity of the displayed component.
+  /// The @c visibleDateComponents must also be a valid date within @c availableDateRange
+  ///
+  /// @note If @c visibleDateComponents.calendar and @c UICalendarView.calendar are not equal,the input date components
+  ///       will be converted to use @c UICalendarView.calendar upon assignment. UICalendarView will use
+  ///       @c UICalendarView.calendar if @c visibleDateComponents.calendar is not explicitly marked, and may result
+  ///       in incorrect dates if the dateComponents is not valid in @c UICalendarView.calendar.
+  var visibleDateComponents: DateComponents
+
+  /// Sets the visible date components of the calendar view, with an option to animate the setting.
+  /// The @c visibleDateComponents must also be a valid date within @c availableDateRange
+  ///
+  /// @note If @c visibleDateComponents.calendar and @c UICalendarView.calendar are not equal,the input date components
+  ///       will be converted to use @c UICalendarView.calendar upon assignment. UICalendarView will use
+  ///       @c UICalendarView.calendar if @c visibleDateComponents.calendar is not explicitly marked, and may result
+  ///       in incorrect dates if the dateComponents is not valid in @c UICalendarView.calendar.
+  func setVisibleDateComponents(_ dateComponents: DateComponents, animated: Bool)
+
+  /// Determines if we show date decorations. By default, this value returns @c YES, but you must also implement
+  /// the delegate method @c calendarView:decorationForDate: to show decorations.
+  var wantsDateDecorations: Bool
+
+  /// Reloads the decorations for the specified dates, with an option to animate the action.
+  /// Decorations are only available if you implement the delegate method @c calendarView:decorationForDate:
+  func reloadDecorations(forDateComponents dates: [DateComponents], animated: Bool)
+
+  /// Reloads the decorations for the specified dates, with an option to animate the action.
+  /// Decorations are only available if you implement the delegate method @c calendarView:decorationForDate:
+  @available(swift, obsoleted: 3, renamed: "reloadDecorations(forDateComponents:animated:)")
+  func reloadDecorationsForDateComponents(_ dates: [DateComponents], animated: Bool)
+  init(frame: CGRect)
+  init?(coder: NSCoder)
+  convenience init()
+}
+@available(iOS 16.0, *)
+protocol UICalendarViewDelegate : NSObjectProtocol {
+
+  /**
+   *  @abstract Called when the calendar view is preparing decorations.
+   *
+   *  @param calendarView The @c UICalendarView
+   *  @param dateComponents The date for which the decoration is prepared for.
+   *
+   *  @return A @c UICalendarViewDecoration to annotate the specific date. Return @c nil for no decoration.
+   */
+  func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration?
+
+  /**
+   *  @abstract Called when the calendar view is preparing decorations.
+   *
+   *  @param calendarView The @c UICalendarView
+   *  @param dateComponents The date for which the decoration is prepared for.
+   *
+   *  @return A @c UICalendarViewDecoration to annotate the specific date. Return @c nil for no decoration.
+   */
+  @available(swift, obsoleted: 3, renamed: "calendarView(_:decorationFor:)")
+  func calendarView(_ calendarView: UICalendarView, decorationForDateComponents dateComponents: DateComponents) -> UICalendarView.Decoration?
+}

@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "ByteCountFormatter.Units")
 typealias NSByteCountFormatterUnits = ByteCountFormatter.Units
 extension ByteCountFormatter {
-  struct Units : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Units : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -45,7 +45,7 @@ extension ByteCountFormatter {
     @available(swift, obsoleted: 3, renamed: "useAll")
     static var UseAll: ByteCountFormatter.Units { get }
   }
-  enum CountStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum CountStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -66,7 +66,7 @@ extension ByteCountFormatter {
 @available(swift, obsoleted: 3, renamed: "ByteCountFormatter.CountStyle")
 typealias NSByteCountFormatterCountStyle = ByteCountFormatter.CountStyle
 @available(iOS 6.0, *)
-class ByteCountFormatter : Formatter {
+@_nonSendable(_assumed) class ByteCountFormatter : Formatter {
   class func string(fromByteCount byteCount: Int64, countStyle: ByteCountFormatter.CountStyle) -> String
   @available(swift, obsoleted: 3, renamed: "string(fromByteCount:countStyle:)")
   class func stringFromByteCount(_ byteCount: Int64, countStyle: ByteCountFormatter.CountStyle) -> String
@@ -100,6 +100,10 @@ class ByteCountFormatter : Formatter {
   var formattingContext: Formatter.Context
   init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension ByteCountFormatter : @unchecked Sendable {
 }
 @available(iOS 6.0, *)
 @available(swift, obsoleted: 3, renamed: "ByteCountFormatter")

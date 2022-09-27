@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 2.0, *)
-@MainActor class UIToolbar : UIView, UIBarPositioning {
+@MainActor @_nonSendable(_assumed) class UIToolbar : UIView, UIBarPositioning {
   var barStyle: UIBarStyle
   var items: [UIBarButtonItem]?
   @available(iOS 3.0, *)

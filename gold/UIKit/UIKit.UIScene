@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-@MainActor class UIScene : UIResponder {
+@MainActor @_nonSendable(_assumed) class UIScene : UIResponder {
   @available(*, unavailable)
   class func new() -> Self
   @available(*, unavailable)
@@ -10,10 +10,10 @@
   var session: UISceneSession { get }
   var delegate: UISceneDelegate?
   var activationState: UIScene.ActivationState { get }
-  func open(_ url: URL, options: UIScene.OpenExternalURLOptions?, completionHandler completion: (@Sendable (Bool) -> Void)? = nil)
+  func open(_ url: URL, options: UIScene.OpenExternalURLOptions?, completionHandler completion: ((Bool) -> Void)? = nil)
   func open(_ url: URL, options: UIScene.OpenExternalURLOptions?) async -> Bool
   @available(swift, obsoleted: 3, renamed: "open(_:options:completionHandler:)")
-  func openURL(_ url: URL, options: UIScene.OpenExternalURLOptions?, completionHandler completion: (@Sendable (Bool) -> Void)? = nil)
+  func openURL(_ url: URL, options: UIScene.OpenExternalURLOptions?, completionHandler completion: ((Bool) -> Void)? = nil)
   var title: String!
   @available(iOS 15.0, *)
   var subtitle: String

@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UISearchBar.Icon")
 typealias UISearchBarIcon = UISearchBar.Icon
 extension UISearchBar {
-  enum Icon : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Icon : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -21,7 +21,7 @@ extension UISearchBar {
     static var ResultsList: UISearchBar.Icon { get }
   }
   @available(iOS 7.0, *)
-  enum Style : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -40,7 +40,7 @@ extension UISearchBar {
 @available(swift, obsoleted: 4.2, renamed: "UISearchBar.Style")
 typealias UISearchBarStyle = UISearchBar.Style
 @available(iOS 2.0, *)
-@MainActor class UISearchBar : UIView, UIBarPositioning, UITextInputTraits {
+@MainActor @_nonSendable(_assumed) class UISearchBar : UIView, UIBarPositioning, UITextInputTraits {
   convenience init()
   init(frame: CGRect)
   init?(coder: NSCoder)

@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 5.0, *)
-@MainActor class UIStoryboardSegue : NSObject {
+@MainActor @_nonSendable(_assumed) class UIStoryboardSegue : NSObject {
   @available(iOS 6.0, *)
   convenience init(identifier: String?, source: UIViewController, destination: UIViewController, performHandler: @escaping () -> Void)
   @available(iOS 6.0, *)
@@ -26,7 +26,7 @@
 /// Encapsulates the source of a prospective unwind segue.
 /// You do not create instances of this class directly. Instead, UIKit creates an instance of this class and sends -allowedChildViewControllersForUnwindingFromSource: to each ancestor of the sourceViewController until it finds a view controller which returns YES from -canPerformUnwindSegueAction:fromViewController:sender:.
 @available(iOS 9.0, *)
-@MainActor class UIStoryboardUnwindSegueSource : NSObject {
+@MainActor @_nonSendable(_assumed) class UIStoryboardUnwindSegueSource : NSObject {
   @available(*, unavailable)
   init()
   var source: UIViewController { get }

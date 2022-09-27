@@ -4,7 +4,7 @@ var __FOUNDATION_NSPOINTERFUNCTIONS__: Int32 { get }
 @available(swift, obsoleted: 3, renamed: "NSPointerFunctions.Options")
 typealias NSPointerFunctionsOptions = NSPointerFunctions.Options
 extension NSPointerFunctions {
-  struct Options : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Options : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -80,7 +80,7 @@ extension NSPointerFunctions {
   }
 }
 @available(iOS 6.0, *)
-class NSPointerFunctions : NSObject, NSCopying {
+@_nonSendable(_assumed) class NSPointerFunctions : NSObject, NSCopying {
   init(options: NSPointerFunctions.Options = [])
   @available(*, unavailable, renamed: "init(options:)", message: "Not available in Swift")
   class func pointerFunctionsWithOptions(_ options: NSPointerFunctions.Options = []) -> NSPointerFunctions
@@ -97,4 +97,8 @@ class NSPointerFunctions : NSObject, NSCopying {
   convenience init()
   @available(iOS 6.0, *)
   func copy(with zone: NSZone? = nil) -> Any
+}
+
+@available(*, unavailable)
+extension NSPointerFunctions : @unchecked Sendable {
 }

@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "NotificationQueue.PostingStyle")
 typealias NSPostingStyle = NotificationQueue.PostingStyle
 extension NotificationQueue {
-  enum PostingStyle : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum PostingStyle : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -17,7 +17,7 @@ extension NotificationQueue {
     @available(swift, obsoleted: 3, renamed: "now")
     static var NSPostNow: NotificationQueue.PostingStyle { get }
   }
-  struct NotificationCoalescing : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct NotificationCoalescing : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -39,7 +39,7 @@ extension NotificationQueue {
 typealias NSNotificationCoalescing = NotificationQueue.NotificationCoalescing
 @available(swift, obsoleted: 3, renamed: "NotificationQueue")
 typealias NSNotificationQueue = NotificationQueue
-class NotificationQueue : NSObject {
+@_nonSendable(_assumed) class NotificationQueue : NSObject {
   class var `default`: NotificationQueue { get }
   @available(swift, obsoleted: 3, renamed: "default")
   class var defaultQueue: NotificationQueue { get }
@@ -54,4 +54,8 @@ class NotificationQueue : NSObject {
   @available(swift, obsoleted: 3, renamed: "dequeueNotifications(matching:coalesceMask:)")
   func dequeueNotificationsMatching(_ notification: Notification, coalesceMask: Int)
   convenience init()
+}
+
+@available(*, unavailable)
+extension NotificationQueue : @unchecked Sendable {
 }

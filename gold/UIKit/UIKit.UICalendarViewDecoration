@@ -1,0 +1,82 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UICalendarView.DecorationSize")
+typealias UICalendarViewDecorationSize = UICalendarView.DecorationSize
+extension UICalendarView {
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) enum DecorationSize : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case small
+    @available(swift, obsoleted: 3, renamed: "small")
+    static var Small: UICalendarView.DecorationSize { get }
+    case medium
+    @available(swift, obsoleted: 3, renamed: "medium")
+    static var Medium: UICalendarView.DecorationSize { get }
+    case large
+    @available(swift, obsoleted: 3, renamed: "large")
+    static var Large: UICalendarView.DecorationSize { get }
+  }
+  @available(iOS 16.0, *)
+  @MainActor @_nonSendable(_assumed) class Decoration : NSObject {
+
+    /// Creates a default decoration with a circle image.
+    init()
+
+    /**
+     * @abstract Creates a new image-based decoration with the specified image, color, and size.
+     *
+     * @param image The image of the decoration, defaults to @c circlebadge.fill if nil.
+     * @param color The color of the the decoration. defaults to @c UIColor.systemFillColor if nil.
+     * @param size  The preferred size of the decoration. The default is UICalendarViewDecorationSizeMedium
+     */
+    init(__image image: UIImage?, color: UIColor?, size: UICalendarView.DecorationSize)
+
+    /**
+     * Creates a new custom view decoration using the provided view provider. The provider will
+     * be called once when the decoration view is first loaded. The decoration will be clipped to
+     * its parent's bounds, and cannot have interaction.
+     */
+    init(__customViewProvider customViewProvider: @escaping () -> UIView)
+
+    /// Creates a default image accessory with a circle image, and the specified color and size.
+    convenience init(__color color: UIColor?, size: UICalendarView.DecorationSize)
+
+    /// Creates a default image accessory with a circle image, and the specified color and size.
+    @available(*, unavailable, renamed: "init(__color:size:)", message: "Not available in Swift")
+    class func __decorationWithColor(_ color: UIColor?, size: UICalendarView.DecorationSize) -> Self
+
+    /// Creates an accessory with the specified image, and default color, and size.
+    convenience init(__image image: UIImage?)
+
+    /// Creates an accessory with the specified image, and default color, and size.
+    @available(*, unavailable, renamed: "init(__image:)", message: "Not available in Swift")
+    class func __decorationWithImage(_ image: UIImage?) -> Self
+
+    /// Creates an accessory with the specified image, color, and size.
+    @available(*, unavailable, renamed: "init(__image:color:size:)", message: "Not available in Swift")
+    class func __decorationWithImage(_ image: UIImage?, color: UIColor?, size: UICalendarView.DecorationSize) -> Self
+
+    /// Creates a new custom view decoration using the specified custom view provider. The provider will be called once
+    /// when the decoration view is first loaded. The decoration will be clipped to its parent's bounds, and cannot have
+    /// user interaction.
+    class func customView(_ customViewProvider: @escaping () -> UIView) -> Self
+
+    /// Creates a new custom view decoration using the specified custom view provider. The provider will be called once
+    /// when the decoration view is first loaded. The decoration will be clipped to its parent's bounds, and cannot have
+    /// user interaction.
+    @available(swift, obsoleted: 3, renamed: "customView(_:)")
+    convenience init(customViewProvider: @escaping () -> UIView)
+
+    /// Creates a new custom view decoration using the specified custom view provider. The provider will be called once
+    /// when the decoration view is first loaded. The decoration will be clipped to its parent's bounds, and cannot have
+    /// user interaction.
+    @available(*, unavailable, renamed: "customView(_:)", message: "Not available in Swift")
+    class func decorationWithCustomViewProvider(_ customViewProvider: @escaping () -> UIView) -> Self
+  }
+}
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UICalendarView.Decoration")
+@MainActor typealias UICalendarViewDecoration = UICalendarView.Decoration

@@ -1,6 +1,6 @@
 @_exported import CoreFoundation
 
-class Bundle : NSObject {
+@_nonSendable(_assumed) class Bundle : NSObject {
   class var main: Bundle { get }
   @available(swift, obsoleted: 3, renamed: "main")
   class var mainBundle: Bundle { get }
@@ -158,6 +158,10 @@ class Bundle : NSObject {
   var executableArchitectures: [NSNumber]? { get }
   convenience init()
 }
+
+@available(*, unavailable)
+extension Bundle : @unchecked Sendable {
+}
 @available(swift, obsoleted: 3, renamed: "Bundle")
 typealias NSBundle = Bundle
 var NSBundleExecutableArchitectureI386: Int { get }
@@ -177,7 +181,7 @@ extension Bundle {
 }
 let NSLoadedClasses: String
 @available(iOS 9.0, *)
-class NSBundleResourceRequest : NSObject, ProgressReporting {
+@_nonSendable(_assumed) class NSBundleResourceRequest : NSObject, ProgressReporting {
   @available(iOS, unavailable)
   convenience init()
   convenience init(tags: Set<String>)
@@ -195,6 +199,10 @@ class NSBundleResourceRequest : NSObject, ProgressReporting {
   func conditionallyBeginAccessingResourcesWithCompletionHandler(_ completionHandler: @escaping @Sendable (Bool) -> Void)
   func endAccessingResources()
   var progress: Progress { get }
+}
+
+@available(*, unavailable)
+extension NSBundleResourceRequest : @unchecked Sendable {
 }
 extension Bundle {
   @available(iOS 9.0, *)

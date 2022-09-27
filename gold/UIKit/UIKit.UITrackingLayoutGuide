@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 15.0, *)
-@MainActor class UITrackingLayoutGuide : UILayoutGuide {
+@MainActor @_nonSendable(_assumed) class UITrackingLayoutGuide : UILayoutGuide {
 
   /// @param trackingConstraints Constraints to activate when the guide is close to the specified edge, and deactivate when it moves away. Sending nil will deactivate any currently active constraints associated with this edge and remove them from tracking.
   /// @param edge When the tracking layout guide is close to this edge, specified constraints will change

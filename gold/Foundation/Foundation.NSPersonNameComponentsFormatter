@@ -5,7 +5,7 @@
 typealias NSPersonNameComponentsFormatterStyle = PersonNameComponentsFormatter.Style
 extension PersonNameComponentsFormatter {
   @available(iOS 9.0, *)
-  enum Style : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -26,7 +26,7 @@ extension PersonNameComponentsFormatter {
     static var Abbreviated: PersonNameComponentsFormatter.Style { get }
   }
   @available(iOS 9.0, *)
-  struct Options : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Options : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -44,7 +44,7 @@ typealias NSPersonNameComponentsFormatterOptions = PersonNameComponentsFormatter
 @available(swift, obsoleted: 3, renamed: "PersonNameComponentsFormatter")
 typealias NSPersonNameComponentsFormatter = PersonNameComponentsFormatter
 @available(iOS 9.0, *)
-class PersonNameComponentsFormatter : Formatter {
+@_nonSendable(_assumed) class PersonNameComponentsFormatter : Formatter {
   var style: PersonNameComponentsFormatter.Style
   var isPhonetic: Bool
   @available(swift, obsoleted: 3, renamed: "isPhonetic")
@@ -70,6 +70,10 @@ class PersonNameComponentsFormatter : Formatter {
   func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, forString string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
   init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension PersonNameComponentsFormatter : @unchecked Sendable {
 }
 @available(iOS 9.0, *)
 let NSPersonNameComponentKey: String

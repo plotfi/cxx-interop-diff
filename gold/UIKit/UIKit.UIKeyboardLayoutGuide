@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 15.0, *)
-@MainActor class UIKeyboardLayoutGuide : UITrackingLayoutGuide {
+@MainActor @_nonSendable(_assumed) class UIKeyboardLayoutGuide : UITrackingLayoutGuide {
 
   /// The automatic behavior is to track the keyboard only when docked. When offscreen or undocked, the topAnchor is tied to the safeAreaLayoutGuide's bottomAnchor. To instead follow all keyboard anchors even when undocked or floating, set followsUndockedKeyboard to YES. 
   var followsUndockedKeyboard: Bool

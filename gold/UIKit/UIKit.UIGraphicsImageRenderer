@@ -12,7 +12,7 @@ extension UIGraphicsImageRenderer {
 typealias UIGraphicsImageRendererFormatRange = UIGraphicsImageRendererFormat.Range
 extension UIGraphicsImageRendererFormat {
   @available(iOS 12.0, *)
-  enum Range : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Range : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -31,7 +31,7 @@ extension UIGraphicsImageRendererFormat {
   }
 }
 @available(iOS 10.0, *)
-class UIGraphicsImageRendererFormat : UIGraphicsRendererFormat {
+@_nonSendable(_assumed) class UIGraphicsImageRendererFormat : UIGraphicsRendererFormat {
   var scale: CGFloat
   var opaque: Bool
   @available(iOS, introduced: 10.0, deprecated: 12.0, message: "Use the preferredRange property instead")
@@ -48,13 +48,21 @@ class UIGraphicsImageRendererFormat : UIGraphicsRendererFormat {
   class func formatForTraitCollection(_ traitCollection: UITraitCollection) -> Self
   init()
 }
+
+@available(*, unavailable)
+extension UIGraphicsImageRendererFormat : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
-class UIGraphicsImageRendererContext : UIGraphicsRendererContext {
+@_nonSendable(_assumed) class UIGraphicsImageRendererContext : UIGraphicsRendererContext {
   var currentImage: UIImage { get }
   init()
 }
+
+@available(*, unavailable)
+extension UIGraphicsImageRendererContext : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
-class UIGraphicsImageRenderer : UIGraphicsRenderer {
+@_nonSendable(_assumed) class UIGraphicsImageRenderer : UIGraphicsRenderer {
   convenience init(size: CGSize)
   init(size: CGSize, format: UIGraphicsImageRendererFormat)
   init(bounds: CGRect, format: UIGraphicsImageRendererFormat)
@@ -69,4 +77,8 @@ class UIGraphicsImageRenderer : UIGraphicsRenderer {
   func JPEGDataWithCompressionQuality(_ compressionQuality: CGFloat, actions: (UIGraphicsImageRendererContext) -> Void) -> Data
   convenience init(bounds: CGRect)
   convenience init()
+}
+
+@available(*, unavailable)
+extension UIGraphicsImageRenderer : @unchecked Sendable {
 }

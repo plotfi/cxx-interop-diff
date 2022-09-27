@@ -5,7 +5,7 @@ typealias UIContextualActionHandler = UIContextualAction.Handler
 extension UIContextualAction {
   typealias Handler = (UIContextualAction, UIView, @escaping (Bool) -> Void) -> Void
   @available(iOS 11.0, *)
-  enum Style : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -21,7 +21,7 @@ extension UIContextualAction {
 @available(swift, obsoleted: 3, renamed: "UIContextualAction.Style")
 typealias UIContextualActionStyle = UIContextualAction.Style
 @available(iOS 11.0, *)
-@MainActor class UIContextualAction : NSObject {
+@MainActor @_nonSendable(_assumed) class UIContextualAction : NSObject {
   convenience init(style: UIContextualAction.Style, title: String?, handler: @escaping UIContextualAction.Handler)
   @available(*, unavailable, renamed: "init(style:title:handler:)", message: "Not available in Swift")
   class func contextualActionWithStyle(_ style: UIContextualAction.Style, title: String?, handler: @escaping UIContextualAction.Handler) -> Self

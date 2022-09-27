@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UICollectionViewUpdateItem.Action")
 typealias UICollectionUpdateAction = UICollectionViewUpdateItem.Action
 extension UICollectionViewUpdateItem {
-  enum Action : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Action : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -25,7 +25,7 @@ extension UICollectionViewUpdateItem {
   }
 }
 @available(iOS 6.0, *)
-@MainActor class UICollectionViewUpdateItem : NSObject {
+@MainActor @_nonSendable(_assumed) class UICollectionViewUpdateItem : NSObject {
   var indexPathBeforeUpdate: IndexPath? { get }
   var indexPathAfterUpdate: IndexPath? { get }
   var updateAction: UICollectionViewUpdateItem.Action { get }

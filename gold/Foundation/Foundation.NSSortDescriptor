@@ -1,6 +1,6 @@
 @_exported import CoreFoundation
 
-class NSSortDescriptor : NSObject, NSSecureCoding, NSCopying {
+@_nonSendable(_assumed) class NSSortDescriptor : NSObject, NSSecureCoding, NSCopying {
   @available(iOS 4.0, *)
   @available(*, unavailable, message: "superseded by import of -[NSSortDescriptor initWithKey:ascending:]")
   convenience init(key: String?, ascending: Bool)
@@ -55,6 +55,10 @@ extension NSSortDescriptor {
   /// - Parameters:
   ///     - sortDescriptor: The `SortDescriptor` to convert.
   convenience init<Compared>(_ sortDescriptor: SortDescriptor<Compared>)
+}
+
+@available(*, unavailable)
+extension NSSortDescriptor : @unchecked Sendable {
 }
 extension NSSet {
   @available(iOS 4.0, *)

@@ -3,7 +3,7 @@
 
 /// The command system to build or rebuild.
 @available(iOS 13.0, *)
-@MainActor class UIMenuSystem : NSObject {
+@MainActor @_nonSendable(_assumed) class UIMenuSystem : NSObject {
 
   /// The main command system.
   class var main: UIMenuSystem { get }

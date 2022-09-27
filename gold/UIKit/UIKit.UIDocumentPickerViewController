@@ -15,7 +15,7 @@
   optional func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAtURL url: URL)
 }
 @available(iOS, introduced: 8.0, deprecated: 14.0, message: "Use appropriate initializers instead")
-enum UIDocumentPickerMode : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIDocumentPickerMode : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt
@@ -33,7 +33,7 @@ enum UIDocumentPickerMode : UInt, @unchecked Sendable {
   static var MoveToService: UIDocumentPickerMode { get }
 }
 @available(iOS 8.0, *)
-@MainActor class UIDocumentPickerViewController : UIViewController {
+@MainActor @_nonSendable(_assumed) class UIDocumentPickerViewController : UIViewController {
   @available(iOS, introduced: 8.0, deprecated: 14.0)
   init(documentTypes allowedUTIs: [String], in mode: UIDocumentPickerMode)
   @available(swift, obsoleted: 3, renamed: "init(documentTypes:in:)")

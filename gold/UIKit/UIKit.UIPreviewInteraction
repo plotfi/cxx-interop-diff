@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 10.0, *)
-@MainActor class UIPreviewInteraction : NSObject {
+@MainActor @_nonSendable(_assumed) class UIPreviewInteraction : NSObject {
   init(view: UIView)
   weak var view: @sil_weak UIView? { get }
   @available(*, unavailable)

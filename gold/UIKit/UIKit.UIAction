@@ -42,7 +42,7 @@ let UIActionPasteAndGo: UIAction.Identifier
 let UIActionPasteAndSearch: UIAction.Identifier
 typealias UIActionHandler = (UIAction) -> Void
 @available(iOS 13.0, *)
-@MainActor class UIAction : UIMenuElement {
+@MainActor @_nonSendable(_assumed) class UIAction : UIMenuElement, UIMenuLeaf {
 
   /// Short display title.
   var title: String
@@ -50,7 +50,7 @@ typealias UIActionHandler = (UIAction) -> Void
   /// Image that can appear next to this action.
   @NSCopying var image: UIImage?
 
-  /// Elaborated title, if any.
+  /// Elaborated title used in keyboard shortcut overlay.
   var discoverabilityTitle: String?
 
   /// This action's identifier.
@@ -120,6 +120,16 @@ typealias UIActionHandler = (UIAction) -> Void
   @available(*, unavailable)
   class func new() -> Self
   init?(coder: NSCoder)
+
+  /// Source item for subsequent presentations. For example, an element displayed in a menu attached to a
+  /// @c UIButton may return the button so that a popover may be presented from it when the element is tapped.
+  /// If available, this property is only populated during the execution of the element's action (i.e. its handler or selector).
+  @available(iOS 16.0, *)
+  var presentationSourceItem: UIPopoverPresentationControllerSourceItem? { get }
+
+  /// Performs the element’s primary action (i.e. it's handler or selector).
+  @available(iOS 16.0, *)
+  func performWithSender(_ sender: Any?, target: Any?)
 }
 
 @available(iOS 13.0, tvOS 14.0, *)

@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS, introduced: 2.0, deprecated: 13.0, message: "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead.")
-enum UIActionSheetStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIActionSheetStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -19,7 +19,7 @@ enum UIActionSheetStyle : Int, @unchecked Sendable {
   static var BlackOpaque: UIActionSheetStyle { get }
 }
 @available(iOS, introduced: 2.0, deprecated: 8.3, message: "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead")
-@MainActor class UIActionSheet : UIView {
+@MainActor @_nonSendable(_assumed) class UIActionSheet : UIView {
   init(title: String?, delegate: UIActionSheetDelegate?, cancelButtonTitle: String?, destructiveButtonTitle: String?)
   weak var delegate: @sil_weak UIActionSheetDelegate?
   var title: String
@@ -64,6 +64,7 @@ enum UIActionSheetStyle : Int, @unchecked Sendable {
   convenience init()
 }
 
+@available(iOS, introduced: 2.0, deprecated: 8.3, message: "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead")
 extension UIActionSheet {
   @MainActor convenience init(title: String?, delegate: UIActionSheetDelegate?, cancelButtonTitle: String?, destructiveButtonTitle: String?, otherButtonTitles firstButtonTitle: String, _ moreButtonTitles: String...)
 }

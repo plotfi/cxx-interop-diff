@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 8.0, *)
-@MainActor class UIVisualEffect : NSObject, NSCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UIVisualEffect : NSObject, NSCopying, NSSecureCoding {
   init()
   @available(iOS 8.0, *)
   class var supportsSecureCoding: Bool { get }

@@ -34,7 +34,9 @@ struct UITransitionContextViewKey : _ObjectiveCBridgeable, Hashable, Equatable, 
   @available(swift, obsoleted: 3, renamed: "isCancelled")
   var cancelled: Bool { get }
   var transitionDuration: TimeInterval { get }
+  @available(iOS 2.0, *)
   var percentComplete: CGFloat { get }
+  @available(iOS 2.0, *)
   var completionVelocity: CGFloat { get }
   @available(iOS 2.0, *)
   var completionCurve: UIView.AnimationCurve { get }

@@ -4,7 +4,7 @@ typealias unichar = UInt16
 @available(swift, obsoleted: 3, renamed: "NSString.CompareOptions")
 typealias NSStringCompareOptions = NSString.CompareOptions
 extension NSString {
-  struct CompareOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct CompareOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -46,7 +46,7 @@ extension NSString {
     @available(swift, obsoleted: 3, renamed: "regularExpression")
     static var NSRegularExpressionSearch: NSString.CompareOptions { get }
   }
-  struct EncodingConversionOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct EncodingConversionOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -59,7 +59,7 @@ extension NSString {
     @available(swift, obsoleted: 3, renamed: "externalRepresentation")
     static var ExternalRepresentation: NSString.EncodingConversionOptions { get }
   }
-  struct EnumerationOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct EnumerationOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -127,7 +127,7 @@ var NSUTF32BigEndianStringEncoding: UInt { get }
 var NSUTF32LittleEndianStringEncoding: UInt { get }
 @available(swift, obsoleted: 3, renamed: "NSString.EncodingConversionOptions")
 typealias NSStringEncodingConversionOptions = NSString.EncodingConversionOptions
-class NSString : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSString : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   var length: Int { get }
   func character(at index: Int) -> unichar
   @available(swift, obsoleted: 3, renamed: "character(at:)")
@@ -172,6 +172,10 @@ extension NSString {
 extension NSString : _CustomPlaygroundQuickLookable {
   @available(*, deprecated, message: "NSString.customPlaygroundQuickLook will be removed in a future Swift version")
   var customPlaygroundQuickLook: PlaygroundQuickLook { get }
+}
+
+@available(*, unavailable)
+extension NSString : @unchecked Sendable {
 }
 extension NSString {
   func substring(from: Int) -> String
@@ -417,6 +421,12 @@ extension NSString {
   convenience init(string aString: String)
   convenience init(format: String, arguments argList: CVaListPointer)
   convenience init(format: String, locale: Any?, arguments argList: CVaListPointer)
+  @available(iOS 16.0, *)
+  @available(*, unavailable, message: "Use string interpolations instead")
+  convenience init(validatedFormat format: String, validFormatSpecifiers: String, arguments argList: CVaListPointer) throws
+  @available(iOS 11.0, *)
+  @available(*, unavailable, message: "Use string interpolations instead")
+  convenience init(validatedFormat format: String, validFormatSpecifiers: String, locale: Any?, arguments argList: CVaListPointer) throws
   convenience init?(data: Data, encoding: UInt)
   convenience init?(bytes: UnsafeRawPointer, length len: Int, encoding: UInt)
   convenience init?(bytesNoCopy bytes: UnsafeMutableRawPointer, length len: Int, encoding: UInt, freeWhenDone freeBuffer: Bool)
@@ -620,9 +630,9 @@ extension NSString : NSItemProviderReading, NSItemProviderWriting {
   @available(iOS 11.0, *)
   func itemProviderVisibilityForRepresentation(withTypeIdentifier typeIdentifier: String) -> NSItemProviderRepresentationVisibility
   @available(iOS 11.0, *)
-  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress?
+  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping @Sendable (Data?, Error?) -> Void) -> Progress?
 }
-class NSMutableString : NSString {
+@_nonSendable(_assumed) class NSMutableString : NSString {
   func replaceCharacters(in range: NSRange, with aString: String)
   @available(swift, obsoleted: 3, renamed: "replaceCharacters(in:with:)")
   func replaceCharactersInRange(_ range: NSRange, withString aString: String)
@@ -635,6 +645,12 @@ class NSMutableString : NSString {
   convenience init(string aString: String)
   convenience init(format: String, arguments argList: CVaListPointer)
   convenience init(format: String, locale: Any?, arguments argList: CVaListPointer)
+  @available(iOS 16.0, *)
+  @available(*, unavailable, message: "Use string interpolations instead")
+  convenience init(validatedFormat format: String, validFormatSpecifiers: String, arguments argList: CVaListPointer) throws
+  @available(iOS 11.0, *)
+  @available(*, unavailable, message: "Use string interpolations instead")
+  convenience init(validatedFormat format: String, validFormatSpecifiers: String, locale: Any?, arguments argList: CVaListPointer) throws
   convenience init?(data: Data, encoding: UInt)
   convenience init?(bytes: UnsafeRawPointer, length len: Int, encoding: UInt)
   convenience init?(bytesNoCopy bytes: UnsafeMutableRawPointer, length len: Int, encoding: UInt, freeWhenDone freeBuffer: Bool)
@@ -658,6 +674,10 @@ class NSMutableString : NSString {
 
 extension NSMutableString {
   func appendFormat(_ format: NSString, _ args: CVarArg...)
+}
+
+@available(*, unavailable)
+extension NSMutableString : @unchecked Sendable {
 }
 extension NSMutableString {
   func insert(_ aString: String, at loc: Int)
@@ -763,7 +783,7 @@ extension NSString {
 }
 var NSProprietaryStringEncoding: UInt { get }
 @available(*, unavailable, message: "Use String or NSString instead.")
-class NSSimpleCString : NSString {
+@_nonSendable(_assumed) class NSSimpleCString : NSString {
   init()
   init?(coder: NSCoder)
   convenience init(charactersNoCopy characters: UnsafeMutablePointer<unichar>, length: Int, freeWhenDone freeBuffer: Bool)
@@ -773,6 +793,12 @@ class NSSimpleCString : NSString {
   convenience init(string aString: String)
   convenience init(format: String, arguments argList: CVaListPointer)
   convenience init(format: String, locale: Any?, arguments argList: CVaListPointer)
+  @available(iOS 16.0, *)
+  @available(*, unavailable, message: "Use string interpolations instead")
+  convenience init(validatedFormat format: String, validFormatSpecifiers: String, arguments argList: CVaListPointer) throws
+  @available(iOS 11.0, *)
+  @available(*, unavailable, message: "Use string interpolations instead")
+  convenience init(validatedFormat format: String, validFormatSpecifiers: String, locale: Any?, arguments argList: CVaListPointer) throws
   convenience init?(data: Data, encoding: UInt)
   convenience init?(bytes: UnsafeRawPointer, length len: Int, encoding: UInt)
   convenience init?(bytesNoCopy bytes: UnsafeMutableRawPointer, length len: Int, encoding: UInt, freeWhenDone freeBuffer: Bool)
@@ -793,8 +819,12 @@ class NSSimpleCString : NSString {
   @available(iOS, unavailable, introduced: 2.0, deprecated: 2.0, message: "Use -initWithCString:encoding: instead")
   convenience init?(cString bytes: UnsafePointer<CChar>)
 }
+
+@available(*, unavailable)
+extension NSSimpleCString : @unchecked Sendable {
+}
 @available(*, unavailable, message: "Use String or NSString instead.")
-class NSConstantString : NSSimpleCString {
+@_nonSendable(_assumed) class NSConstantString : NSSimpleCString {
   init()
   init?(coder: NSCoder)
   convenience init(charactersNoCopy characters: UnsafeMutablePointer<unichar>, length: Int, freeWhenDone freeBuffer: Bool)
@@ -804,6 +834,12 @@ class NSConstantString : NSSimpleCString {
   convenience init(string aString: String)
   convenience init(format: String, arguments argList: CVaListPointer)
   convenience init(format: String, locale: Any?, arguments argList: CVaListPointer)
+  @available(iOS 16.0, *)
+  @available(*, unavailable, message: "Use string interpolations instead")
+  convenience init(validatedFormat format: String, validFormatSpecifiers: String, arguments argList: CVaListPointer) throws
+  @available(iOS 11.0, *)
+  @available(*, unavailable, message: "Use string interpolations instead")
+  convenience init(validatedFormat format: String, validFormatSpecifiers: String, locale: Any?, arguments argList: CVaListPointer) throws
   convenience init?(data: Data, encoding: UInt)
   convenience init?(bytes: UnsafeRawPointer, length len: Int, encoding: UInt)
   convenience init?(bytesNoCopy bytes: UnsafeMutableRawPointer, length len: Int, encoding: UInt, freeWhenDone freeBuffer: Bool)
@@ -823,4 +859,8 @@ class NSConstantString : NSSimpleCString {
   convenience init?(cString bytes: UnsafePointer<CChar>, length: Int)
   @available(iOS, unavailable, introduced: 2.0, deprecated: 2.0, message: "Use -initWithCString:encoding: instead")
   convenience init?(cString bytes: UnsafePointer<CChar>)
+}
+
+@available(*, unavailable)
+extension NSConstantString : @unchecked Sendable {
 }

@@ -37,6 +37,16 @@ struct UIDataDetectorTypes : OptionSet, @unchecked Sendable {
   @available(iOS 10.0, *)
   @available(swift, obsoleted: 3, renamed: "lookupSuggestion")
   static var LookupSuggestion: UIDataDetectorTypes { get }
+  @available(iOS 16.0, *)
+  static var money: UIDataDetectorTypes { get }
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "money")
+  static var Money: UIDataDetectorTypes { get }
+  @available(iOS 16.0, *)
+  static var physicalValue: UIDataDetectorTypes { get }
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "physicalValue")
+  static var PhysicalValue: UIDataDetectorTypes { get }
   @available(*, unavailable, message: "use [] to construct an empty option set")
   static var none: UIDataDetectorTypes { get }
   @available(*, unavailable, message: "use [] to construct an empty option set")

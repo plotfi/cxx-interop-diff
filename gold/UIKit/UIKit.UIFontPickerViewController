@@ -6,7 +6,7 @@
   optional func fontPickerViewControllerDidPickFont(_ viewController: UIFontPickerViewController)
 }
 @available(iOS 13.0, *)
-@MainActor class UIFontPickerViewController : UIViewController {
+@MainActor @_nonSendable(_assumed) class UIFontPickerViewController : UIViewController {
   init(configuration: UIFontPickerViewController.Configuration)
   @NSCopying var configuration: UIFontPickerViewController.Configuration { get }
   weak var delegate: @sil_weak UIFontPickerViewControllerDelegate?

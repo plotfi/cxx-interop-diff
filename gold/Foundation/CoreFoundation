@@ -7,6 +7,7 @@ import CoreFoundation.CFAvailability
 @_exported import CoreFoundation.CFBitVector
 @_exported import CoreFoundation.CFBundle
 @_exported import CoreFoundation.CFByteOrder
+@_exported import CoreFoundation.CFCGTypes
 @_exported import CoreFoundation.CFCalendar
 @_exported import CoreFoundation.CFCharacterSet
 @_exported import CoreFoundation.CFData
@@ -44,9 +45,222 @@ import CoreFoundation.CFPlugInCOM
 @_exported import CoreFoundation.CFXMLNode
 @_exported import CoreFoundation.CFXMLParser
 import _Concurrency
+import _StringProcessing
 
 var __COREFOUNDATION__: Int32 { get }
 func __assert_rtn(_: UnsafePointer<CChar>!, _: UnsafePointer<CChar>!, _: Int32, _: UnsafePointer<CChar>!) -> Never
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+@frozen struct CGFloat {
+  /// The native type used to store the CGFloat, which is Float on
+  /// 32-bit architectures and Double on 64-bit architectures.
+  typealias NativeType = Double
+  @_transparent init()
+  @_transparent init(_ value: Float)
+  @_transparent init(_ value: Double)
+  @_transparent init(_ value: CGFloat)
+  /// The native value.
+  var native: CGFloat.NativeType
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension CGFloat : SignedNumeric {
+  @_alwaysEmitIntoClient init<T>(_ source: T) where T : BinaryInteger
+  @_transparent init?<T>(exactly source: T) where T : BinaryInteger
+  @_transparent var magnitude: CGFloat { get }
+  typealias IntegerLiteralType = Int
+  typealias Magnitude = CGFloat
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension CGFloat : BinaryFloatingPoint {
+  typealias RawSignificand = UInt
+  typealias Exponent = Int
+  @_transparent static var exponentBitCount: Int { get }
+  @_transparent static var significandBitCount: Int { get }
+  @_transparent var bitPattern: UInt { get }
+  @_transparent init(bitPattern: UInt)
+  @_transparent var sign: FloatingPointSign { get }
+  @_transparent var exponentBitPattern: UInt { get }
+  @_transparent var significandBitPattern: UInt { get }
+  @_transparent init(sign: FloatingPointSign, exponentBitPattern: UInt, significandBitPattern: UInt)
+  @_transparent init(nan payload: CGFloat.RawSignificand, signaling: Bool)
+  @_transparent static var infinity: CGFloat { get }
+  @_transparent static var nan: CGFloat { get }
+  @_transparent static var signalingNaN: CGFloat { get }
+  @available(*, unavailable, renamed: "nan")
+  static var quietNaN: CGFloat { get }
+  @_transparent static var greatestFiniteMagnitude: CGFloat { get }
+  @_transparent static var pi: CGFloat { get }
+  @_transparent var ulp: CGFloat { get }
+  @_transparent static var leastNormalMagnitude: CGFloat { get }
+  @_transparent static var leastNonzeroMagnitude: CGFloat { get }
+  @_transparent var exponent: Int { get }
+  @_transparent var significand: CGFloat { get }
+  @_transparent init(sign: FloatingPointSign, exponent: Int, significand: CGFloat)
+  @_transparent mutating func round(_ rule: FloatingPointRoundingRule)
+  @_transparent var nextUp: CGFloat { get }
+  @_transparent mutating func negate()
+  @_transparent static func += (lhs: inout CGFloat, rhs: CGFloat)
+  @_transparent static func -= (lhs: inout CGFloat, rhs: CGFloat)
+  @_transparent static func *= (lhs: inout CGFloat, rhs: CGFloat)
+  @_transparent static func /= (lhs: inout CGFloat, rhs: CGFloat)
+  @_transparent mutating func formTruncatingRemainder(dividingBy other: CGFloat)
+  @_transparent mutating func formRemainder(dividingBy other: CGFloat)
+  @_transparent mutating func formSquareRoot()
+  @_transparent mutating func addProduct(_ lhs: CGFloat, _ rhs: CGFloat)
+  @_transparent func isEqual(to other: CGFloat) -> Bool
+  @_transparent func isLess(than other: CGFloat) -> Bool
+  @_transparent func isLessThanOrEqualTo(_ other: CGFloat) -> Bool
+  @_transparent var isNormal: Bool { get }
+  @_transparent var isFinite: Bool { get }
+  @_transparent var isZero: Bool { get }
+  @_transparent var isSubnormal: Bool { get }
+  @_transparent var isInfinite: Bool { get }
+  @_transparent var isNaN: Bool { get }
+  @_transparent var isSignalingNaN: Bool { get }
+  @available(*, unavailable, renamed: "isSignalingNaN")
+  var isSignaling: Bool { get }
+  @_transparent var isCanonical: Bool { get }
+  @_transparent var floatingPointClass: FloatingPointClassification { get }
+  @_transparent var binade: CGFloat { get }
+  @_transparent var significandWidth: Int { get }
+  /// Create an instance initialized to `value`.
+  @_transparent init(floatLiteral value: CGFloat.NativeType)
+  /// Create an instance initialized to `value`.
+  @_transparent init(integerLiteral value: Int)
+  typealias FloatLiteralType = CGFloat.NativeType
+  typealias RawExponent = UInt
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension CGFloat : CustomReflectable {
+  /// Returns a mirror that reflects `self`.
+  var customMirror: Mirror { get }
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension CGFloat : CustomStringConvertible {
+  /// A textual representation of `self`.
+  @_transparent var description: String { get }
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension CGFloat : Hashable {
+  /// The hash value.
+  ///
+  /// **Axiom:** `x == y` implies `x.hashValue == y.hashValue`
+  ///
+  /// - Note: the hash value is not guaranteed to be stable across
+  ///   different invocations of the same program.  Do not persist the
+  ///   hash value across program runs.
+  @_transparent var hashValue: Int { get }
+  /// Hashes the essential components of this value by feeding them into the
+  /// given hasher.
+  ///
+  /// - Parameter hasher: The hasher to use when combining the components
+  ///   of this instance.
+  @inlinable @_transparent func hash(into hasher: inout Hasher)
+  @_alwaysEmitIntoClient @inlinable func _rawHashValue(seed: Int) -> Int
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension CGFloat {
+  @_transparent static func + (lhs: CGFloat, rhs: CGFloat) -> CGFloat
+  @_transparent static func - (lhs: CGFloat, rhs: CGFloat) -> CGFloat
+  @_transparent static func * (lhs: CGFloat, rhs: CGFloat) -> CGFloat
+  @_transparent static func / (lhs: CGFloat, rhs: CGFloat) -> CGFloat
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension CGFloat : Strideable {
+  /// Returns a stride `x` such that `self.advanced(by: x)` approximates
+  /// `other`.
+  ///
+  /// - Complexity: O(1).
+  @_transparent func distance(to other: CGFloat) -> CGFloat
+  /// Returns a `Self` `x` such that `self.distance(to: x)` approximates
+  /// `n`.
+  ///
+  /// - Complexity: O(1).
+  @_transparent func advanced(by amount: CGFloat) -> CGFloat
+  typealias Stride = CGFloat
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension CGFloat : _CVarArgPassedAsDouble, _CVarArgAligned {
+  /// Transform `self` into a series of machine words that can be
+  /// appropriately interpreted by C varargs
+  @_transparent var _cVarArgEncoding: [Int] { get }
+  /// Return the required alignment in bytes of
+  /// the value returned by `_cVarArgEncoding`.
+  @_transparent var _cVarArgAlignment: Int { get }
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension CGFloat : Codable {
+  @_transparent init(from decoder: Decoder) throws
+  @_transparent func encode(to encoder: Encoder) throws
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension CGFloat : Sendable {
+}
+
 protocol _CFObject : AnyObject, Hashable {
 }
 
@@ -54,5 +268,125 @@ extension _CFObject {
   var hashValue: Int { get }
   func hash(into hasher: inout Hasher)
   static func == (left: Self, right: Self) -> Bool
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension UInt8 {
+  @_transparent init(_ value: CGFloat)
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension Int8 {
+  @_transparent init(_ value: CGFloat)
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension UInt16 {
+  @_transparent init(_ value: CGFloat)
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension Int16 {
+  @_transparent init(_ value: CGFloat)
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension UInt32 {
+  @_transparent init(_ value: CGFloat)
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension Int32 {
+  @_transparent init(_ value: CGFloat)
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension UInt64 {
+  @_transparent init(_ value: CGFloat)
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension Int64 {
+  @_transparent init(_ value: CGFloat)
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension UInt {
+  @_transparent init(_ value: CGFloat)
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension Int {
+  @_transparent init(_ value: CGFloat)
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension Double {
+  @_transparent init(_ value: CGFloat)
+}
+
+@available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
+@_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
+@_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", iOS 16.0)
+@_originallyDefinedIn(module: "CoreGraphics", watchOS 9.0)
+@_originallyDefinedIn(module: "CoreGraphics", tvOS 16.0)
+extension Float {
+  @_transparent init(_ value: CGFloat)
 }
 

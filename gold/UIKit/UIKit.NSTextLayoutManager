@@ -5,7 +5,7 @@
 typealias NSTextLayoutManagerSegmentType = NSTextLayoutManager.SegmentType
 extension NSTextLayoutManager {
   @available(iOS 15.0, *)
-  enum SegmentType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SegmentType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -20,7 +20,7 @@ extension NSTextLayoutManager {
     static var Highlight: NSTextLayoutManager.SegmentType { get }
   }
   @available(iOS 15.0, *)
-  struct SegmentOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct SegmentOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -52,7 +52,7 @@ extension NSTextLayoutManager {
 @available(swift, obsoleted: 3, renamed: "NSTextLayoutManager.SegmentOptions")
 typealias NSTextLayoutManagerSegmentOptions = NSTextLayoutManager.SegmentOptions
 @available(iOS 15.0, *)
-class NSTextLayoutManager : NSObject, NSSecureCoding, NSTextSelectionDataSource {
+@_nonSendable(_assumed) class NSTextLayoutManager : NSObject, NSSecureCoding, NSTextSelectionDataSource {
   init()
   init?(coder: NSCoder)
   weak var delegate: @sil_weak NSTextLayoutManagerDelegate?
@@ -140,6 +140,10 @@ class NSTextLayoutManager : NSObject, NSSecureCoding, NSTextSelectionDataSource 
   func enumerateContainerBoundaries(from location: NSTextLocation, reverse: Bool, using block: (NSTextLocation, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 15.0, *)
   func textLayoutOrientation(at location: NSTextLocation) -> NSTextSelectionNavigation.LayoutOrientation
+}
+
+@available(*, unavailable)
+extension NSTextLayoutManager : @unchecked Sendable {
 }
 @available(iOS 15.0, *)
 protocol NSTextLayoutManagerDelegate : NSObjectProtocol {

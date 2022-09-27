@@ -5,7 +5,7 @@
 typealias NSJSONReadingOptions = JSONSerialization.ReadingOptions
 extension JSONSerialization {
   @available(iOS 5.0, *)
-  struct ReadingOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct ReadingOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -37,7 +37,7 @@ extension JSONSerialization {
     static var AllowFragments: JSONSerialization.ReadingOptions { get }
   }
   @available(iOS 5.0, *)
-  struct WritingOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct WritingOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -65,7 +65,7 @@ extension JSONSerialization {
 @available(swift, obsoleted: 3, renamed: "JSONSerialization.WritingOptions")
 typealias NSJSONWritingOptions = JSONSerialization.WritingOptions
 @available(iOS 5.0, *)
-class JSONSerialization : NSObject {
+@_nonSendable(_assumed) class JSONSerialization : NSObject {
   class func isValidJSONObject(_ obj: Any) -> Bool
   class func data(withJSONObject obj: Any, options opt: JSONSerialization.WritingOptions = []) throws -> Data
   @available(swift, obsoleted: 3, renamed: "data(withJSONObject:options:)")
@@ -80,6 +80,10 @@ class JSONSerialization : NSObject {
   @available(swift, obsoleted: 3, renamed: "jsonObject(with:options:)")
   class func JSONObjectWithStream(_ stream: InputStream, options opt: JSONSerialization.ReadingOptions = []) throws -> Any
   init()
+}
+
+@available(*, unavailable)
+extension JSONSerialization : @unchecked Sendable {
 }
 @available(iOS 5.0, *)
 @available(swift, obsoleted: 3, renamed: "JSONSerialization")

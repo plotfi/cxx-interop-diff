@@ -10,7 +10,7 @@ typealias UIDocumentState = UIDocument.State
 @available(swift, obsoleted: 3, renamed: "UIDocument.stateChangedNotification")
 let UIDocumentStateChangedNotification: NSNotification.Name
 @available(iOS 5.0, *)
-@MainActor class UIDocument : NSObject, NSFilePresenter, ProgressReporting {
+@MainActor @_nonSendable(_assumed) class UIDocument : NSObject, NSFilePresenter, ProgressReporting {
   init(fileURL url: URL)
   var fileURL: URL { get }
   var localizedName: String { get }
@@ -19,14 +19,14 @@ let UIDocumentStateChangedNotification: NSNotification.Name
   var documentState: UIDocument.State { get }
   @available(iOS 9.0, *)
   var progress: Progress? { get }
-  func open(completionHandler: (@Sendable (Bool) -> Void)? = nil)
+  func open(completionHandler: ((Bool) -> Void)? = nil)
   func open() async -> Bool
   @available(swift, obsoleted: 3, renamed: "open(completionHandler:)")
-  func openWithCompletionHandler(_ completionHandler: (@Sendable (Bool) -> Void)? = nil)
-  func close(completionHandler: (@Sendable (Bool) -> Void)? = nil)
+  func openWithCompletionHandler(_ completionHandler: ((Bool) -> Void)? = nil)
+  func close(completionHandler: ((Bool) -> Void)? = nil)
   func close() async -> Bool
   @available(swift, obsoleted: 3, renamed: "close(completionHandler:)")
-  func closeWithCompletionHandler(_ completionHandler: (@Sendable (Bool) -> Void)? = nil)
+  func closeWithCompletionHandler(_ completionHandler: ((Bool) -> Void)? = nil)
   func load(fromContents contents: Any, ofType typeName: String?) throws
   @available(swift, obsoleted: 3, renamed: "load(fromContents:ofType:)")
   func loadFromContents(_ contents: Any, ofType typeName: String?) throws
@@ -44,14 +44,14 @@ let UIDocumentStateChangedNotification: NSNotification.Name
   func updateChangeCount(withToken changeCountToken: Any, for saveOperation: UIDocument.SaveOperation)
   @available(swift, obsoleted: 3, renamed: "updateChangeCount(withToken:for:)")
   func updateChangeCountWithToken(_ changeCountToken: Any, forSaveOperation saveOperation: UIDocument.SaveOperation)
-  func save(to url: URL, for saveOperation: UIDocument.SaveOperation, completionHandler: (@Sendable (Bool) -> Void)? = nil)
+  func save(to url: URL, for saveOperation: UIDocument.SaveOperation, completionHandler: ((Bool) -> Void)? = nil)
   func save(to url: URL, for saveOperation: UIDocument.SaveOperation) async -> Bool
   @available(swift, obsoleted: 3, renamed: "save(to:for:completionHandler:)")
-  func saveToURL(_ url: URL, forSaveOperation saveOperation: UIDocument.SaveOperation, completionHandler: (@Sendable (Bool) -> Void)? = nil)
-  func autosave(completionHandler: (@Sendable (Bool) -> Void)? = nil)
+  func saveToURL(_ url: URL, forSaveOperation saveOperation: UIDocument.SaveOperation, completionHandler: ((Bool) -> Void)? = nil)
+  func autosave(completionHandler: ((Bool) -> Void)? = nil)
   func autosave() async -> Bool
   @available(swift, obsoleted: 3, renamed: "autosave(completionHandler:)")
-  func autosaveWithCompletionHandler(_ completionHandler: (@Sendable (Bool) -> Void)? = nil)
+  func autosaveWithCompletionHandler(_ completionHandler: ((Bool) -> Void)? = nil)
   var savingFileType: String? { get }
   func fileNameExtension(forType typeName: String?, saveOperation: UIDocument.SaveOperation) -> String
   @available(swift, obsoleted: 3, renamed: "fileNameExtension(forType:saveOperation:)")
@@ -76,10 +76,10 @@ let UIDocumentStateChangedNotification: NSNotification.Name
   func userInteractionNoLongerPermitted(forError error: Error)
   @available(swift, obsoleted: 3, renamed: "userInteractionNoLongerPermitted(forError:)")
   func userInteractionNoLongerPermittedForError(_ error: Error)
-  func revert(toContentsOf url: URL, completionHandler: (@Sendable (Bool) -> Void)? = nil)
+  func revert(toContentsOf url: URL, completionHandler: ((Bool) -> Void)? = nil)
   func revert(toContentsOf url: URL) async -> Bool
   @available(swift, obsoleted: 3, renamed: "revert(toContentsOf:completionHandler:)")
-  func revertToContentsOfURL(_ url: URL, completionHandler: (@Sendable (Bool) -> Void)? = nil)
+  func revertToContentsOfURL(_ url: URL, completionHandler: ((Bool) -> Void)? = nil)
   convenience init()
   @available(iOS 5.0, *)
   var presentedItemURL: URL? { get }
@@ -90,9 +90,9 @@ let UIDocumentStateChangedNotification: NSNotification.Name
   @available(iOS 11.0, *)
   var observedPresentedItemUbiquityAttributes: Set<URLResourceKey> { get }
   @available(iOS 5.0, *)
-  func relinquishPresentedItem(toReader reader: @escaping ((() -> Void)?) -> Void)
+  func relinquishPresentedItem(toReader reader: @escaping @Sendable ((() -> Void)?) -> Void)
   @available(iOS 5.0, *)
-  func relinquishPresentedItem(toWriter writer: @escaping ((() -> Void)?) -> Void)
+  func relinquishPresentedItem(toWriter writer: @escaping @Sendable ((() -> Void)?) -> Void)
   @available(iOS 5.0, *)
   func savePresentedItemChanges(completionHandler: @escaping @Sendable (Error?) -> Void)
   @available(iOS 5.0, *)
@@ -136,7 +136,7 @@ let NSUserActivityDocumentURLKey: String
 extension UIDocument {
   @available(iOS 8.0, *)
   class let userActivityURLKey: String
-  enum ChangeKind : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ChangeKind : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -153,7 +153,7 @@ extension UIDocument {
     @available(swift, obsoleted: 3, renamed: "cleared")
     static var Cleared: UIDocument.ChangeKind { get }
   }
-  enum SaveOperation : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SaveOperation : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -164,7 +164,7 @@ extension UIDocument {
     @available(swift, obsoleted: 3, renamed: "forOverwriting")
     static var ForOverwriting: UIDocument.SaveOperation { get }
   }
-  struct State : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct State : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt

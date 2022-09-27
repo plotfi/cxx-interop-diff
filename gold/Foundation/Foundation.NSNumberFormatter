@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "NumberFormatter.Behavior")
 typealias NSNumberFormatterBehavior = NumberFormatter.Behavior
 extension NumberFormatter {
-  enum Behavior : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Behavior : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -14,7 +14,7 @@ extension NumberFormatter {
     @available(swift, obsoleted: 3, renamed: "behavior10_4")
     static var Behavior10_4: NumberFormatter.Behavior { get }
   }
-  enum Style : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -57,7 +57,7 @@ extension NumberFormatter {
     @available(swift, obsoleted: 3, renamed: "currencyAccounting")
     static var NSNumberFormatterCurrencyAccountingStyle: NumberFormatter.Style { get }
   }
-  enum PadPosition : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum PadPosition : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -74,7 +74,7 @@ extension NumberFormatter {
     @available(swift, obsoleted: 3, renamed: "afterSuffix")
     static var AfterSuffix: NumberFormatter.PadPosition { get }
   }
-  enum RoundingMode : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum RoundingMode : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -103,7 +103,7 @@ extension NumberFormatter {
 }
 @available(swift, obsoleted: 3, renamed: "NumberFormatter")
 typealias NSNumberFormatter = NumberFormatter
-class NumberFormatter : Formatter {
+@_nonSendable(_assumed) class NumberFormatter : Formatter, @unchecked Sendable {
   @available(iOS 8.0, *)
   var formattingContext: Formatter.Context
   func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, range rangep: UnsafeMutablePointer<NSRange>?) throws

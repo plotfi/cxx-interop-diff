@@ -6,7 +6,7 @@ var __NSLAYOUT_MANAGER_SHARED_SECTION__: Int32 { get }
 typealias NSTextLayoutOrientation = NSLayoutManager.TextLayoutOrientation
 extension NSLayoutManager {
   @available(iOS 7.0, *)
-  enum TextLayoutOrientation : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum TextLayoutOrientation : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -18,7 +18,7 @@ extension NSLayoutManager {
     static var Vertical: NSLayoutManager.TextLayoutOrientation { get }
   }
   @available(iOS 7.0, *)
-  struct GlyphProperty : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct GlyphProperty : OptionSet, @unchecked Sendable {
     init(rawValue: Int)
     let rawValue: Int
     typealias RawValue = Int
@@ -38,7 +38,7 @@ extension NSLayoutManager {
     static var NonBaseCharacter: NSLayoutManager.GlyphProperty { get }
   }
   @available(iOS 7.0, *)
-  struct ControlCharacterAction : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct ControlCharacterAction : OptionSet, @unchecked Sendable {
     init(rawValue: Int)
     let rawValue: Int
     typealias RawValue = Int
@@ -75,7 +75,7 @@ protocol NSTextLayoutOrientationProvider {
   var layoutOrientation: NSLayoutManager.TextLayoutOrientation { get }
 }
 @available(iOS 7.0, *)
-class NSLayoutManager : NSObject, NSSecureCoding {
+@_nonSendable(_assumed) class NSLayoutManager : NSObject, NSSecureCoding {
 
   /**************************** Initialization ****************************/
   init()
@@ -332,6 +332,10 @@ class NSLayoutManager : NSObject, NSSecureCoding {
   class var supportsSecureCoding: Bool { get }
   @available(iOS 7.0, *)
   func encode(with coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSLayoutManager : @unchecked Sendable {
 }
 protocol NSLayoutManagerDelegate : NSObjectProtocol {
 

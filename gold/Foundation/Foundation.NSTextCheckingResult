@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "NSTextCheckingResult.CheckingType")
 typealias NSTextCheckingType = NSTextCheckingResult.CheckingType
 extension NSTextCheckingResult {
-  struct CheckingType : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct CheckingType : OptionSet, @unchecked Sendable {
     init(rawValue: UInt64)
     let rawValue: UInt64
     typealias RawValue = UInt64
@@ -69,7 +69,7 @@ struct NSTextCheckingKey : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNew
   typealias _ObjectiveCType = NSString
 }
 @available(iOS 4.0, *)
-class NSTextCheckingResult : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSTextCheckingResult : NSObject, NSCopying, NSSecureCoding {
   var resultType: NSTextCheckingResult.CheckingType { get }
   var range: NSRange { get }
   init()
@@ -80,6 +80,10 @@ class NSTextCheckingResult : NSObject, NSCopying, NSSecureCoding {
   @available(iOS 4.0, *)
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSTextCheckingResult : @unchecked Sendable {
 }
 extension NSTextCheckingResult {
   @NSCopying var orthography: NSOrthography? { get }

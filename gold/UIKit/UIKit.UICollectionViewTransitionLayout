@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 7.0, *)
-@MainActor class UICollectionViewTransitionLayout : UICollectionViewLayout {
+@MainActor @_nonSendable(_assumed) class UICollectionViewTransitionLayout : UICollectionViewLayout {
   var transitionProgress: CGFloat
   var currentLayout: UICollectionViewLayout { get }
   var nextLayout: UICollectionViewLayout { get }

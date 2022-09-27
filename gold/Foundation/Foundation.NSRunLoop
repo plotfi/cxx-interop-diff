@@ -17,7 +17,7 @@ extension RunLoop.Mode {
 let NSRunLoopCommonModes: RunLoop.Mode
 @available(swift, obsoleted: 3, renamed: "RunLoop")
 typealias NSRunLoop = RunLoop
-class RunLoop : NSObject {
+@_nonSendable(_assumed) class RunLoop : NSObject {
   class var current: RunLoop { get }
   @available(swift, obsoleted: 3, renamed: "current")
   class var currentRunLoop: RunLoop { get }
@@ -40,16 +40,16 @@ class RunLoop : NSObject {
   func limitDate(forMode mode: RunLoop.Mode) -> Date?
   @available(swift, obsoleted: 3, renamed: "limitDate(forMode:)")
   func limitDateForMode(_ mode: RunLoop.Mode) -> Date?
-  func acceptInput(forMode mode: RunLoop.Mode, before limitDate: Date)
+  @_unavailableFromAsync(message: "acceptInput(for:before:) cannot be used from async contexts.") func acceptInput(forMode mode: RunLoop.Mode, before limitDate: Date)
   @available(swift, obsoleted: 3, renamed: "acceptInput(forMode:before:)")
-  func acceptInputForMode(_ mode: RunLoop.Mode, beforeDate limitDate: Date)
+  @_unavailableFromAsync(message: "acceptInput(for:before:) cannot be used from async contexts.") func acceptInputForMode(_ mode: RunLoop.Mode, beforeDate limitDate: Date)
   init()
 }
 
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension RunLoop : Scheduler {
   /// The scheduler time type used by the run loop.
-  struct SchedulerTimeType : Strideable, Codable, Hashable {
+  struct SchedulerTimeType : Strideable, Codable, Hashable, Sendable {
     /// The date represented by this type.
     var date: Date
     /// Initializes a run loop scheduler time with the given date.
@@ -67,7 +67,7 @@ extension RunLoop : Scheduler {
     /// - Returns: A dispatch queue time advanced by the given interval from this instance’s time.
     func advanced(by n: RunLoop.SchedulerTimeType.Stride) -> RunLoop.SchedulerTimeType
     /// The interval by which run loop times advance.
-    struct Stride : ExpressibleByFloatLiteral, Comparable, SignedNumeric, Codable, SchedulerTimeIntervalConvertible {
+    struct Stride : ExpressibleByFloatLiteral, Comparable, SignedNumeric, Codable, SchedulerTimeIntervalConvertible, Sendable {
       typealias FloatLiteralType = TimeInterval
       typealias IntegerLiteralType = TimeInterval
       typealias Magnitude = TimeInterval
@@ -101,7 +101,7 @@ extension RunLoop : Scheduler {
     init(from decoder: Decoder) throws
   }
   /// Options that affect the operation of the run loop scheduler.
-  struct SchedulerOptions {
+  struct SchedulerOptions : Sendable {
   }
   func schedule(options: RunLoop.SchedulerOptions?, _ action: @escaping () -> Void)
   func schedule(after date: RunLoop.SchedulerTimeType, tolerance: RunLoop.SchedulerTimeType.Stride, options: RunLoop.SchedulerOptions?, _ action: @escaping () -> Void)
@@ -109,38 +109,42 @@ extension RunLoop : Scheduler {
   var now: RunLoop.SchedulerTimeType { get }
   var minimumTolerance: RunLoop.SchedulerTimeType.Stride { get }
 }
+
+@available(*, unavailable)
+extension RunLoop : @unchecked Sendable {
+}
 extension RunLoop {
-  func run()
-  func run(until limitDate: Date)
+  @_unavailableFromAsync(message: "run cannot be used from async contexts.") func run()
+  @_unavailableFromAsync(message: "run(until:) cannot be used from async contexts.") func run(until limitDate: Date)
   @available(swift, obsoleted: 3, renamed: "run(until:)")
-  func runUntilDate(_ limitDate: Date)
-  func run(mode: RunLoop.Mode, before limitDate: Date) -> Bool
+  @_unavailableFromAsync(message: "run(until:) cannot be used from async contexts.") func runUntilDate(_ limitDate: Date)
+  @_unavailableFromAsync(message: "run(_:before:) cannot be used from async contexts.") func run(mode: RunLoop.Mode, before limitDate: Date) -> Bool
   @available(swift, obsoleted: 3, renamed: "run(mode:before:)")
-  func runMode(_ mode: RunLoop.Mode, beforeDate limitDate: Date) -> Bool
+  @_unavailableFromAsync(message: "run(_:before:) cannot be used from async contexts.") func runMode(_ mode: RunLoop.Mode, beforeDate limitDate: Date) -> Bool
 
   /// Schedules the execution of a block on the target run loop in given modes.
   /// - parameter: modes   An array of input modes for which the block may be executed.
   /// - parameter: block   The block to execute
   @available(iOS 10.0, *)
-  func perform(inModes modes: [RunLoop.Mode], block: @escaping () -> Void)
+  func perform(inModes modes: [RunLoop.Mode], block: @escaping @Sendable () -> Void)
 
   /// Schedules the execution of a block on the target run loop in given modes.
   /// - parameter: modes   An array of input modes for which the block may be executed.
   /// - parameter: block   The block to execute
   @available(iOS 10.0, *)
   @available(swift, obsoleted: 3, renamed: "perform(inModes:block:)")
-  func performInModes(_ modes: [RunLoop.Mode], block: @escaping () -> Void)
+  func performInModes(_ modes: [RunLoop.Mode], block: @escaping @Sendable () -> Void)
 
   /// Schedules the execution of a block on the target run loop.
   /// - parameter: block   The block to execute
   @available(iOS 10.0, *)
-  func perform(_ block: @escaping () -> Void)
+  func perform(_ block: @escaping @Sendable () -> Void)
 
   /// Schedules the execution of a block on the target run loop.
   /// - parameter: block   The block to execute
   @available(iOS 10.0, *)
   @available(swift, obsoleted: 3, renamed: "perform(_:)")
-  func performBlock(_ block: @escaping () -> Void)
+  func performBlock(_ block: @escaping @Sendable () -> Void)
 }
 
 /**************** 	Delayed perform	 ******************/

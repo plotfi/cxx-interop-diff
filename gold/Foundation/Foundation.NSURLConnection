@@ -23,7 +23,7 @@
 
         A terminal condition produced by the loader will result in a
         connection:didFailWithError: in the case of an error, or
-        connectiondidFinishLoading: or connectionDidFinishDownloading:
+        connectionDidFinishLoading: or connectionDidFinishDownloading:
         delegate message.<p>
 
         The -cancel message hints to the loader that a resource load
@@ -78,7 +78,7 @@
         respond to, e.g., authentication challenges.<p>
 */
 @available(iOS 2.0, *)
-class NSURLConnection : NSObject {
+@_nonSendable(_assumed) class NSURLConnection : NSObject {
   @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use NSURLSession (see NSURLSession.h)")
   init?(request: URLRequest, delegate: Any?, startImmediately: Bool)
   @available(iOS, introduced: 2.0, deprecated: 9.0, message: "Use NSURLSession (see NSURLSession.h)")
@@ -165,6 +165,10 @@ class NSURLConnection : NSObject {
   init()
 }
 
+@available(*, unavailable)
+extension NSURLConnection : @unchecked Sendable {
+}
+
 /**
     @protocol       NSURLConnectionDelegate
 
@@ -199,12 +203,12 @@ class NSURLConnection : NSObject {
                     of authentication challenges.
 
                     connection:canAuthenticateAgainstProtectionSpace:
-                    connection:didReciveAuthenticationChallenge:
+                    connection:didReceiveAuthenticationChallenge:
                     connection:didCancelAuthenticationChallenge: are
-                    deprected and new code should adopt
+                    deprecated and new code should adopt
                     connection:willSendRequestForAuthenticationChallenge.
                     The older delegates will still be called for
-                    compatability, but incur more latency in dealing
+                    compatibility, but incur more latency in dealing
                     with the authentication challenge.
 */
 @available(iOS 2.0, *)
@@ -505,7 +509,7 @@ extension NSURLConnection {
            handler   A block which receives the results of the resource load.
    */
   @available(iOS, introduced: 5.0, deprecated: 9.0, message: "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h")
-  class func sendAsynchronousRequest(_ request: URLRequest, queue: OperationQueue, completionHandler handler: @escaping @Sendable (URLResponse?, Data?, Error?) -> Void)
+  class func sendAsynchronousRequest(_ request: URLRequest, queue: OperationQueue, completionHandler handler: @escaping (URLResponse?, Data?, Error?) -> Void)
 
   /**
       @method       sendAsynchronousRequest:queue:completionHandler:

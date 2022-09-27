@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-enum UIContextMenuInteractionCommitStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIContextMenuInteractionCommitStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -17,7 +17,7 @@ enum UIContextMenuInteractionCommitStyle : Int, @unchecked Sendable {
 typealias UIContextMenuInteractionAppearance = UIContextMenuInteraction.appearance
 extension UIContextMenuInteraction {
   @available(iOS 14.0, *)
-  enum appearance : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum appearance : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -33,7 +33,7 @@ extension UIContextMenuInteraction {
   }
 }
 @available(iOS 13.0, *)
-@MainActor class UIContextMenuInteraction : NSObject, UIInteraction {
+@MainActor @_nonSendable(_assumed) class UIContextMenuInteraction : NSObject, UIInteraction {
 
   /// The interaction's delegate.
   weak var delegate: @sil_weak UIContextMenuInteractionDelegate? { get }
@@ -142,24 +142,24 @@ extension UIContextMenuInteraction {
   func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration?
 
   /**
-   * @abstract Called when the interaction begins. Return a UITargetedPreview describing the desired highlight preview.
+   * @abstract Called when a context menu interaction begins. Return a UITargetedPreview corresponding to the item with the given identifier.
    *
-   * @param interaction    The UIContextMenuInteraction requesting a highlighting preview.
-   * @param configuration  The configuration of the menu about to be displayed by this interaction.
+   * @param interaction    The UIContextMenuInteraction.
+   * @param configuration  Configuration of the menu that will be presented if the interaction proceeds.
+   * @param identifier     Identifier for the item whose preview is being requested.
    */
-  optional func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview?
+  @available(iOS 16.0, *)
+  optional func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configuration: UIContextMenuConfiguration, highlightPreviewForItemWithIdentifier identifier: NSCopying) -> UITargetedPreview?
 
   /**
-   * @abstract Called when the interaction is about to dismiss. Return a UITargetedPreview describing the desired dismissal target.
-   * The interaction will animate the presented menu to the target. Use this to customize the dismissal animation.
+   * @abstract Called when a context menu is dismissed. Return a UITargetedPreview corresponding to the item with the given identifier.
    *
-   * @param interaction    The UIContextMenuInteraction requesting a dismissal preview.
-   * @param configuration  The configuration of the menu displayed by this interaction.
-   *
-   * @return Return a UITargetedPreview describing the desired dismissal target. Return nil to cause the menu to
-   *         animate away without morphing into a specific view.
+   * @param interaction    The UIContextMenuInteraction.
+   * @param configuration  Configuration of the menu being dismissed.
+   * @param identifier     Identifier for the item whose preview is being requested.
    */
-  optional func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForDismissingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview?
+  @available(iOS 16.0, *)
+  optional func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configuration: UIContextMenuConfiguration, dismissalPreviewForItemWithIdentifier identifier: NSCopying) -> UITargetedPreview?
 
   /**
    * @abstract Called when the interaction is about to "commit" in response to the user tapping the preview.
@@ -217,4 +217,26 @@ extension UIContextMenuInteraction {
    */
   @available(swift, obsoleted: 3, renamed: "contextMenuInteraction(_:willEndFor:animator:)")
   optional func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willEndForConfiguration configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?)
+
+  /**
+   * @abstract Called when the interaction begins. Return a UITargetedPreview describing the desired highlight preview.
+   *
+   * @param interaction    The UIContextMenuInteraction requesting a highlighting preview.
+   * @param configuration  The configuration of the menu about to be displayed by this interaction.
+   */
+  @available(iOS, introduced: 13.0, deprecated: 16.0)
+  optional func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForHighlightingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview?
+
+  /**
+   * @abstract Called when the interaction is about to dismiss. Return a UITargetedPreview describing the desired dismissal target.
+   * The interaction will animate the presented menu to the target. Use this to customize the dismissal animation.
+   *
+   * @param interaction    The UIContextMenuInteraction requesting a dismissal preview.
+   * @param configuration  The configuration of the menu displayed by this interaction.
+   *
+   * @return Return a UITargetedPreview describing the desired dismissal target. Return nil to cause the menu to
+   *         animate away without morphing into a specific view.
+   */
+  @available(iOS, introduced: 13.0, deprecated: 16.0)
+  optional func contextMenuInteraction(_ interaction: UIContextMenuInteraction, previewForDismissingMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview?
 }

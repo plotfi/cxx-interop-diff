@@ -6,7 +6,7 @@ protocol NSTextLocation : NSObjectProtocol {
   func compare(_ location: NSTextLocation) -> ComparisonResult
 }
 @available(iOS 15.0, *)
-class NSTextRange : NSObject {
+@_nonSendable(_assumed) class NSTextRange : NSObject {
   init?(location: NSTextLocation, end endLocation: NSTextLocation?)
   @available(swift, obsoleted: 3, renamed: "init(location:end:)")
   init?(location: NSTextLocation, endLocation: NSTextLocation?)
@@ -38,4 +38,8 @@ class NSTextRange : NSObject {
   func union(_ textRange: NSTextRange) -> Self
   @available(swift, obsoleted: 3, renamed: "union(_:)")
   func textRangeByFormingUnionWithTextRange(_ textRange: NSTextRange) -> Self
+}
+
+@available(*, unavailable)
+extension NSTextRange : @unchecked Sendable {
 }

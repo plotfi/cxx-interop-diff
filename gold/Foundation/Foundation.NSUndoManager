@@ -5,7 +5,7 @@ let NSUndoCloseGroupingRunLoopOrdering: Int
 @available(swift, obsoleted: 3, renamed: "UndoManager")
 typealias NSUndoManager = UndoManager
 @available(iOS 3.0, *)
-class UndoManager : NSObject {
+@_nonSendable(_assumed) class UndoManager : NSObject {
   func beginUndoGrouping()
   func endUndoGrouping()
   var groupingLevel: Int { get }
@@ -46,7 +46,7 @@ class UndoManager : NSObject {
         As with other undo operations, this does not strongly retain target. Care should be taken to avoid introducing retain cycles by other references captured by the block.
    */
   @available(iOS 9.0, *)
-  func __registerUndoWithTarget(_ target: Any, handler undoHandler: @escaping (Any) -> Void)
+  func __registerUndoWithTarget(_ target: Any, handler undoHandler: @escaping @Sendable (Any) -> Void)
   @available(iOS 5.0, *)
   func setActionIsDiscardable(_ discardable: Bool)
   @available(iOS 5.0, *)
@@ -68,10 +68,12 @@ class UndoManager : NSObject {
 }
 
 extension UndoManager {
-  @available(*, unavailable, renamed: "registerUndo(withTarget:handler:)")
-  func registerUndoWithTarget<TargetType>(_ target: TargetType, handler: (TargetType) -> Void) where TargetType : AnyObject
   @available(macOS 10.11, iOS 9.0, *)
   func registerUndo<TargetType>(withTarget target: TargetType, handler: @escaping (TargetType) -> Void) where TargetType : AnyObject
+}
+
+@available(*, unavailable)
+extension UndoManager : @unchecked Sendable {
 }
 @available(iOS 5.0, *)
 let NSUndoManagerGroupIsDiscardableKey: String

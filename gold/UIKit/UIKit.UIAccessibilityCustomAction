@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 8.0, *)
-class UIAccessibilityCustomAction : NSObject {
+@_nonSendable(_assumed) class UIAccessibilityCustomAction : NSObject {
   init(name: String, target: Any?, selector: Selector)
   @available(iOS 11.0, *)
   init(attributedName: NSAttributedString, target: Any?, selector: Selector)
@@ -26,6 +26,10 @@ class UIAccessibilityCustomAction : NSObject {
   @available(iOS 13.0, *)
   var actionHandler: UIAccessibilityCustomAction.Handler?
   init()
+}
+
+@available(*, unavailable)
+extension UIAccessibilityCustomAction : @unchecked Sendable {
 }
 @available(swift, obsoleted: 3, renamed: "UIAccessibilityCustomAction.Handler")
 typealias UIAccessibilityCustomActionHandler = UIAccessibilityCustomAction.Handler

@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "The segmentedControlStyle property no longer has any effect")
-enum UISegmentedControlStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UISegmentedControlStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -22,7 +22,7 @@ enum UISegmentedControlStyle : Int, @unchecked Sendable {
 var UISegmentedControlNoSegment: Int { get }
 extension UISegmentedControl {
   class var noSegment: Int { get }
-  enum Segment : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Segment : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -46,7 +46,7 @@ extension UISegmentedControl {
 @available(swift, obsoleted: 4.2, renamed: "UISegmentedControl.Segment")
 typealias UISegmentedControlSegment = UISegmentedControl.Segment
 @available(iOS 2.0, *)
-@MainActor class UISegmentedControl : UIControl, NSCoding {
+@MainActor @_nonSendable(_assumed) class UISegmentedControl : UIControl, NSCoding {
   init(frame: CGRect)
   init?(coder: NSCoder)
 

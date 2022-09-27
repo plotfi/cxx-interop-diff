@@ -5,7 +5,7 @@
  @abstract This class allows your application to produce a higher fidelity, PDF screenshot to the user. Set the delegate so that when a screenshot is taken, screenshots can show the full document content from the application.
  */
 @available(iOS 13.0, *)
-@MainActor class UIScreenshotService : NSObject {
+@MainActor @_nonSendable(_assumed) class UIScreenshotService : NSObject {
   @available(*, unavailable)
   init()
   @available(*, unavailable)
@@ -40,7 +40,7 @@ extension UIWindowScene {
    If no PDF data is available, data can be nil. The indexOfCurrentPage is zero-based, and is the index of the current page of the snapshotted PDF. The rectInCurrentPage is the rect in PDF coordinates with respect to the current page. If the receiver cannot provide the visible area, pass CGRectZero for rectInCurrentPage.
    */
   @available(iOS 13.0, *)
-  optional func screenshotService(_ screenshotService: UIScreenshotService, generatePDFRepresentationWithCompletion completionHandler: @escaping @Sendable (Data?, Int, CGRect) -> Void)
+  optional func screenshotService(_ screenshotService: UIScreenshotService, generatePDFRepresentationWithCompletion completionHandler: @escaping (Data?, Int, CGRect) -> Void)
 
   /**
    @abstract  The delegate method to send the PDF data to screenshots

@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.4, *)
-@MainActor class UIPointerInteraction : NSObject, UIInteraction {
+@MainActor @_nonSendable(_assumed) class UIPointerInteraction : NSObject, UIInteraction {
   weak var delegate: @sil_weak UIPointerInteractionDelegate? { get }
   var isEnabled: Bool
   @available(swift, obsoleted: 3, renamed: "isEnabled")
@@ -106,7 +106,7 @@
   optional func pointerInteraction(_ interaction: UIPointerInteraction, willExitRegion region: UIPointerRegion, animator: UIPointerInteractionAnimating)
 }
 @available(iOS 13.4, *)
-@MainActor class UIPointerRegionRequest : NSObject {
+@MainActor @_nonSendable(_assumed) class UIPointerRegionRequest : NSObject {
 
   /// The location of the pointer in the interaction's view's coordinate space.
   var location: CGPoint { get }

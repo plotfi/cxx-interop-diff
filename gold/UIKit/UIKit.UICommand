@@ -31,7 +31,7 @@ struct UIKeyModifierFlags : OptionSet, @unchecked Sendable {
 ///
 /// Two alternates are equal iff their modifierFlags are equal.
 @available(iOS 13.0, *)
-@MainActor class UICommandAlternate : NSObject, NSCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UICommandAlternate : NSObject, NSCopying, NSSecureCoding {
 
   /// Short display title.
   var title: String { get }
@@ -73,7 +73,7 @@ struct UIKeyModifierFlags : OptionSet, @unchecked Sendable {
 
 /// Represents an action to take.
 @available(iOS 13.0, *)
-@MainActor class UICommand : UIMenuElement {
+@MainActor @_nonSendable(_assumed) class UICommand : UIMenuElement, UIMenuLeaf {
 
   /// Short display title.
   var title: String
@@ -81,7 +81,7 @@ struct UIKeyModifierFlags : OptionSet, @unchecked Sendable {
   /// Image that can appear next to this command
   @NSCopying var image: UIImage?
 
-  /// Elaborated title, if any.
+  /// Elaborated title used in keyboard shortcut overlay.
   var discoverabilityTitle: String?
 
   /// Action to take on choosing this command.
@@ -147,6 +147,22 @@ struct UIKeyModifierFlags : OptionSet, @unchecked Sendable {
   @available(*, unavailable)
   convenience init()
   init?(coder: NSCoder)
+
+  /// The object on behalf of which the element's primary action is being performed.
+  /// This property is only populated during the execution of the element's
+  /// primary action (i.e. its handler or selector) if available.
+  @available(iOS 16.0, *)
+  var sender: Any? { get }
+
+  /// Source item for subsequent presentations. For example, an element displayed in a menu attached to a
+  /// @c UIButton may return the button so that a popover may be presented from it when the element is tapped.
+  /// If available, this property is only populated during the execution of the element's action (i.e. its handler or selector).
+  @available(iOS 16.0, *)
+  var presentationSourceItem: UIPopoverPresentationControllerSourceItem? { get }
+
+  /// Performs the element’s primary action (i.e. it's handler or selector).
+  @available(iOS 16.0, *)
+  func performWithSender(_ sender: Any?, target: Any?)
 }
 
 @available(iOS 13.0, *)

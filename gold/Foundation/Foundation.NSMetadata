@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 5.0, *)
-class NSMetadataQuery : NSObject {
+@_nonSendable(_assumed) class NSMetadataQuery : NSObject {
   unowned(unsafe) var delegate: @sil_unmanaged NSMetadataQueryDelegate?
   @NSCopying var predicate: NSPredicate?
   var sortDescriptors: [NSSortDescriptor]
@@ -54,6 +54,10 @@ class NSMetadataQuery : NSObject {
   @available(swift, obsoleted: 3, renamed: "value(ofAttribute:forResultAt:)")
   func valueOfAttribute(_ attrName: String, forResultAtIndex idx: Int) -> Any?
   init()
+}
+
+@available(*, unavailable)
+extension NSMetadataQuery : @unchecked Sendable {
 }
 protocol NSMetadataQueryDelegate : NSObjectProtocol {
   @available(iOS 5.0, *)
@@ -108,7 +112,7 @@ let NSMetadataQueryUbiquitousDataScope: String
 @available(iOS 8.0, *)
 let NSMetadataQueryAccessibleUbiquitousExternalDocumentsScope: String
 @available(iOS 5.0, *)
-class NSMetadataItem : NSObject {
+@_nonSendable(_assumed) class NSMetadataItem : NSObject {
   @available(iOS, unavailable)
   init?(url: URL)
   @available(swift, obsoleted: 3, renamed: "init(url:)")
@@ -123,15 +127,23 @@ class NSMetadataItem : NSObject {
   var attributes: [String] { get }
   convenience init()
 }
+
+@available(*, unavailable)
+extension NSMetadataItem : @unchecked Sendable {
+}
 @available(iOS 5.0, *)
-class NSMetadataQueryAttributeValueTuple : NSObject {
+@_nonSendable(_assumed) class NSMetadataQueryAttributeValueTuple : NSObject {
   var attribute: String { get }
   var value: Any? { get }
   var count: Int { get }
   init()
 }
+
+@available(*, unavailable)
+extension NSMetadataQueryAttributeValueTuple : @unchecked Sendable {
+}
 @available(iOS 5.0, *)
-class NSMetadataQueryResultGroup : NSObject {
+@_nonSendable(_assumed) class NSMetadataQueryResultGroup : NSObject {
   var attribute: String { get }
   var value: Any { get }
   var subgroups: [NSMetadataQueryResultGroup]? { get }
@@ -141,4 +153,8 @@ class NSMetadataQueryResultGroup : NSObject {
   func resultAtIndex(_ idx: Int) -> Any
   var results: [Any] { get }
   init()
+}
+
+@available(*, unavailable)
+extension NSMetadataQueryResultGroup : @unchecked Sendable {
 }

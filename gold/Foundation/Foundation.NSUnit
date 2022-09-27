@@ -4,7 +4,7 @@
 @available(swift, obsoleted: 3, renamed: "UnitConverter")
 typealias NSUnitConverter = UnitConverter
 @available(iOS 10.0, *)
-class UnitConverter : NSObject {
+@_nonSendable(_assumed) class UnitConverter : NSObject {
   func baseUnitValue(fromValue value: Double) -> Double
   @available(swift, obsoleted: 3, renamed: "baseUnitValue(fromValue:)")
   func baseUnitValueFromValue(_ value: Double) -> Double
@@ -13,11 +13,15 @@ class UnitConverter : NSObject {
   func valueFromBaseUnitValue(_ baseUnitValue: Double) -> Double
   init()
 }
+
+@available(*, unavailable)
+extension UnitConverter : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitConverterLinear")
 typealias NSUnitConverterLinear = UnitConverterLinear
 @available(iOS 10.0, *)
-class UnitConverterLinear : UnitConverter, NSSecureCoding {
+@_nonSendable(_assumed) class UnitConverterLinear : UnitConverter, NSSecureCoding {
   var coefficient: Double { get }
   var constant: Double { get }
   convenience init(coefficient: Double)
@@ -29,11 +33,15 @@ class UnitConverterLinear : UnitConverter, NSSecureCoding {
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitConverterLinear : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "Unit")
 typealias NSUnit = Unit
 @available(iOS 10.0, *)
-class Unit : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class Unit : NSObject, NSCopying, NSSecureCoding {
   var symbol: String { get }
   @available(iOS, unavailable)
   convenience init()
@@ -48,8 +56,12 @@ class Unit : NSObject, NSCopying, NSSecureCoding {
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension Unit : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
-class Dimension : Unit, NSSecureCoding {
+@_nonSendable(_assumed) class Dimension : Unit, NSSecureCoding {
   @NSCopying var converter: UnitConverter { get }
   init(symbol: String, converter: UnitConverter)
   class func baseUnit() -> Self
@@ -58,6 +70,16 @@ class Dimension : Unit, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+extension Dimension {
+  /// Creates a `Dimension` which the specified `locale` prefers.
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  convenience init(forLocale: Locale)
+}
+
+@available(*, unavailable)
+extension Dimension : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "Dimension")
 typealias NSDimension = Dimension
@@ -65,7 +87,7 @@ typealias NSDimension = Dimension
 @available(swift, obsoleted: 3, renamed: "UnitAcceleration")
 typealias NSUnitAcceleration = UnitAcceleration
 @available(iOS 10.0, *)
-class UnitAcceleration : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitAcceleration : Dimension, NSSecureCoding {
   @NSCopying class var metersPerSecondSquared: UnitAcceleration { get }
   @NSCopying class var gravity: UnitAcceleration { get }
   init(symbol: String, converter: UnitConverter)
@@ -74,11 +96,15 @@ class UnitAcceleration : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitAcceleration : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitAngle")
 typealias NSUnitAngle = UnitAngle
 @available(iOS 10.0, *)
-class UnitAngle : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitAngle : Dimension, NSSecureCoding {
   @NSCopying class var degrees: UnitAngle { get }
   @NSCopying class var arcMinutes: UnitAngle { get }
   @NSCopying class var arcSeconds: UnitAngle { get }
@@ -91,11 +117,15 @@ class UnitAngle : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitAngle : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitArea")
 typealias NSUnitArea = UnitArea
 @available(iOS 10.0, *)
-class UnitArea : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitArea : Dimension, NSSecureCoding {
   @NSCopying class var squareMegameters: UnitArea { get }
   @NSCopying class var squareKilometers: UnitArea { get }
   @NSCopying class var squareMeters: UnitArea { get }
@@ -116,11 +146,15 @@ class UnitArea : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitArea : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitConcentrationMass")
 typealias NSUnitConcentrationMass = UnitConcentrationMass
 @available(iOS 10.0, *)
-class UnitConcentrationMass : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitConcentrationMass : Dimension, NSSecureCoding {
   @NSCopying class var gramsPerLiter: UnitConcentrationMass { get }
   @NSCopying class var milligramsPerDeciliter: UnitConcentrationMass { get }
   class func millimolesPerLiter(withGramsPerMole gramsPerMole: Double) -> UnitConcentrationMass
@@ -132,11 +166,15 @@ class UnitConcentrationMass : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitConcentrationMass : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitDispersion")
 typealias NSUnitDispersion = UnitDispersion
 @available(iOS 10.0, *)
-class UnitDispersion : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitDispersion : Dimension, NSSecureCoding {
   @NSCopying class var partsPerMillion: UnitDispersion { get }
   init(symbol: String, converter: UnitConverter)
   @available(iOS, unavailable)
@@ -144,11 +182,15 @@ class UnitDispersion : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitDispersion : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitDuration")
 typealias NSUnitDuration = UnitDuration
 @available(iOS 10.0, *)
-class UnitDuration : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitDuration : Dimension, NSSecureCoding {
   @NSCopying class var hours: UnitDuration { get }
   @NSCopying class var minutes: UnitDuration { get }
   @NSCopying class var seconds: UnitDuration { get }
@@ -166,11 +208,15 @@ class UnitDuration : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitDuration : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitElectricCharge")
 typealias NSUnitElectricCharge = UnitElectricCharge
 @available(iOS 10.0, *)
-class UnitElectricCharge : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitElectricCharge : Dimension, NSSecureCoding {
   @NSCopying class var coulombs: UnitElectricCharge { get }
   @NSCopying class var megaampereHours: UnitElectricCharge { get }
   @NSCopying class var kiloampereHours: UnitElectricCharge { get }
@@ -183,11 +229,15 @@ class UnitElectricCharge : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitElectricCharge : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitElectricCurrent")
 typealias NSUnitElectricCurrent = UnitElectricCurrent
 @available(iOS 10.0, *)
-class UnitElectricCurrent : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitElectricCurrent : Dimension, NSSecureCoding {
   @NSCopying class var megaamperes: UnitElectricCurrent { get }
   @NSCopying class var kiloamperes: UnitElectricCurrent { get }
   @NSCopying class var amperes: UnitElectricCurrent { get }
@@ -199,11 +249,15 @@ class UnitElectricCurrent : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitElectricCurrent : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitElectricPotentialDifference")
 typealias NSUnitElectricPotentialDifference = UnitElectricPotentialDifference
 @available(iOS 10.0, *)
-class UnitElectricPotentialDifference : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitElectricPotentialDifference : Dimension, NSSecureCoding {
   @NSCopying class var megavolts: UnitElectricPotentialDifference { get }
   @NSCopying class var kilovolts: UnitElectricPotentialDifference { get }
   @NSCopying class var volts: UnitElectricPotentialDifference { get }
@@ -215,11 +269,15 @@ class UnitElectricPotentialDifference : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitElectricPotentialDifference : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitElectricResistance")
 typealias NSUnitElectricResistance = UnitElectricResistance
 @available(iOS 10.0, *)
-class UnitElectricResistance : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitElectricResistance : Dimension, NSSecureCoding {
   @NSCopying class var megaohms: UnitElectricResistance { get }
   @NSCopying class var kiloohms: UnitElectricResistance { get }
   @NSCopying class var ohms: UnitElectricResistance { get }
@@ -231,11 +289,15 @@ class UnitElectricResistance : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitElectricResistance : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitEnergy")
 typealias NSUnitEnergy = UnitEnergy
 @available(iOS 10.0, *)
-class UnitEnergy : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitEnergy : Dimension, NSSecureCoding {
   @NSCopying class var kilojoules: UnitEnergy { get }
   @NSCopying class var joules: UnitEnergy { get }
   @NSCopying class var kilocalories: UnitEnergy { get }
@@ -247,11 +309,21 @@ class UnitEnergy : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+extension UnitEnergy {
+  /// Creates a `UnitEnergy` which the specified `locale` prefers for the specific `usage`.
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  @_disfavoredOverload convenience init(forLocale: Locale, usage: MeasurementFormatUnitUsage<UnitEnergy> = .general)
+}
+
+@available(*, unavailable)
+extension UnitEnergy : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitFrequency")
 typealias NSUnitFrequency = UnitFrequency
 @available(iOS 10.0, *)
-class UnitFrequency : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitFrequency : Dimension, NSSecureCoding {
   @NSCopying class var terahertz: UnitFrequency { get }
   @NSCopying class var gigahertz: UnitFrequency { get }
   @NSCopying class var megahertz: UnitFrequency { get }
@@ -268,11 +340,15 @@ class UnitFrequency : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitFrequency : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitFuelEfficiency")
 typealias NSUnitFuelEfficiency = UnitFuelEfficiency
 @available(iOS 10.0, *)
-class UnitFuelEfficiency : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitFuelEfficiency : Dimension, NSSecureCoding {
   @NSCopying class var litersPer100Kilometers: UnitFuelEfficiency { get }
   @NSCopying class var milesPerImperialGallon: UnitFuelEfficiency { get }
   @NSCopying class var milesPerGallon: UnitFuelEfficiency { get }
@@ -282,11 +358,15 @@ class UnitFuelEfficiency : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitFuelEfficiency : @unchecked Sendable {
+}
 @available(iOS 13.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitInformationStorage")
 typealias NSUnitInformationStorage = UnitInformationStorage
 @available(iOS 13.0, *)
-class UnitInformationStorage : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitInformationStorage : Dimension, NSSecureCoding {
   @NSCopying class var bytes: UnitInformationStorage { get }
   @NSCopying class var bits: UnitInformationStorage { get }
   @NSCopying class var nibbles: UnitInformationStorage { get }
@@ -328,11 +408,15 @@ class UnitInformationStorage : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitInformationStorage : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitLength")
 typealias NSUnitLength = UnitLength
 @available(iOS 10.0, *)
-class UnitLength : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitLength : Dimension, NSSecureCoding {
   @NSCopying class var megameters: UnitLength { get }
   @NSCopying class var kilometers: UnitLength { get }
   @NSCopying class var hectometers: UnitLength { get }
@@ -361,11 +445,21 @@ class UnitLength : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+extension UnitLength {
+  /// Creates a `UnitLength` which the specified `locale` prefers for the specific `usage`.
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  @_disfavoredOverload convenience init(forLocale: Locale, usage: MeasurementFormatUnitUsage<UnitLength> = .general)
+}
+
+@available(*, unavailable)
+extension UnitLength : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitIlluminance")
 typealias NSUnitIlluminance = UnitIlluminance
 @available(iOS 10.0, *)
-class UnitIlluminance : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitIlluminance : Dimension, NSSecureCoding {
   @NSCopying class var lux: UnitIlluminance { get }
   init(symbol: String, converter: UnitConverter)
   @available(iOS, unavailable)
@@ -373,11 +467,15 @@ class UnitIlluminance : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitIlluminance : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitMass")
 typealias NSUnitMass = UnitMass
 @available(iOS 10.0, *)
-class UnitMass : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitMass : Dimension, NSSecureCoding {
   @NSCopying class var kilograms: UnitMass { get }
   @NSCopying class var grams: UnitMass { get }
   @NSCopying class var decigrams: UnitMass { get }
@@ -402,11 +500,21 @@ class UnitMass : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+extension UnitMass {
+  /// Creates a `UnitMass` which the specified `locale` prefers for the specific `usage`.
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  @_disfavoredOverload convenience init(forLocale: Locale, usage: MeasurementFormatUnitUsage<UnitMass> = .general)
+}
+
+@available(*, unavailable)
+extension UnitMass : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitPower")
 typealias NSUnitPower = UnitPower
 @available(iOS 10.0, *)
-class UnitPower : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitPower : Dimension, NSSecureCoding {
   @NSCopying class var terawatts: UnitPower { get }
   @NSCopying class var gigawatts: UnitPower { get }
   @NSCopying class var megawatts: UnitPower { get }
@@ -424,11 +532,15 @@ class UnitPower : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitPower : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitPressure")
 typealias NSUnitPressure = UnitPressure
 @available(iOS 10.0, *)
-class UnitPressure : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitPressure : Dimension, NSSecureCoding {
   @NSCopying class var newtonsPerMetersSquared: UnitPressure { get }
   @NSCopying class var gigapascals: UnitPressure { get }
   @NSCopying class var megapascals: UnitPressure { get }
@@ -445,11 +557,15 @@ class UnitPressure : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitPressure : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitSpeed")
 typealias NSUnitSpeed = UnitSpeed
 @available(iOS 10.0, *)
-class UnitSpeed : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitSpeed : Dimension, NSSecureCoding {
   @NSCopying class var metersPerSecond: UnitSpeed { get }
   @NSCopying class var kilometersPerHour: UnitSpeed { get }
   @NSCopying class var milesPerHour: UnitSpeed { get }
@@ -460,11 +576,15 @@ class UnitSpeed : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension UnitSpeed : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitTemperature")
 typealias NSUnitTemperature = UnitTemperature
 @available(iOS 10.0, *)
-class UnitTemperature : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitTemperature : Dimension, NSSecureCoding {
   @NSCopying class var kelvin: UnitTemperature { get }
   @NSCopying class var celsius: UnitTemperature { get }
   @NSCopying class var fahrenheit: UnitTemperature { get }
@@ -474,11 +594,21 @@ class UnitTemperature : Dimension, NSSecureCoding {
   convenience init(symbol: String)
   init?(coder: NSCoder)
 }
+
+extension UnitTemperature {
+  /// Creates a `UnitTemperature` which the specified `locale` prefers for the specific `usage`.
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  @_disfavoredOverload convenience init(forLocale: Locale, usage: MeasurementFormatUnitUsage<UnitTemperature> = .general)
+}
+
+@available(*, unavailable)
+extension UnitTemperature : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "UnitVolume")
 typealias NSUnitVolume = UnitVolume
 @available(iOS 10.0, *)
-class UnitVolume : Dimension, NSSecureCoding {
+@_nonSendable(_assumed) class UnitVolume : Dimension, NSSecureCoding {
   @NSCopying class var megaliters: UnitVolume { get }
   @NSCopying class var kiloliters: UnitVolume { get }
   @NSCopying class var liters: UnitVolume { get }
@@ -515,4 +645,14 @@ class UnitVolume : Dimension, NSSecureCoding {
   convenience init()
   convenience init(symbol: String)
   init?(coder: NSCoder)
+}
+
+extension UnitVolume {
+  /// Creates a `UnitVolume` which the specified `locale` prefers for the specific `usage`.
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  @_disfavoredOverload convenience init(forLocale: Locale, usage: MeasurementFormatUnitUsage<UnitVolume> = .general)
+}
+
+@available(*, unavailable)
+extension UnitVolume : @unchecked Sendable {
 }

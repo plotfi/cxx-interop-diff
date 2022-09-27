@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 15.0, *)
-struct __UIPointerAccessoryPosition {
+@_nonSendable(_assumed) struct __UIPointerAccessoryPosition : @unchecked Sendable {
   init()
   init(offset: CGFloat, angle: CGFloat)
 
@@ -30,7 +30,7 @@ let __UIPointerAccessoryPositionLeft: __UIPointerAccessoryPosition
 @available(iOS 15.0, *)
 let __UIPointerAccessoryPositionTopLeft: __UIPointerAccessoryPosition
 @available(iOS 15.0, *)
-@MainActor class UIPointerAccessory : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class UIPointerAccessory : NSObject, NSCopying {
 
   /// This accessory's shape.
   @NSCopying var __shape: __UIPointerShape { get }
@@ -75,7 +75,7 @@ let __UIPointerAccessoryPositionTopLeft: __UIPointerAccessoryPosition
 
 @available(iOS 15.0, *)
 extension UIPointerAccessory {
-  struct Position {
+  struct Position : Sendable {
     static let defaultOffset: CGFloat
     var offset: CGFloat
     var angle: CGFloat

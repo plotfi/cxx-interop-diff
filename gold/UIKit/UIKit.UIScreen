@@ -1,12 +1,12 @@
 @_exported import Foundation
 
-@available(iOS 3.2, *)
 @available(swift, obsoleted: 3, renamed: "UIScreen.didConnectNotification")
+@available(iOS, introduced: 3.2, deprecated: 16.0, message: "Use UISceneDelegate or related notifications to be informed of connecting scenes from other screens")
 let UIScreenDidConnectNotification: NSNotification.Name
 extension UIScreen {
-  @available(iOS 3.2, *)
+  @available(iOS, introduced: 3.2, deprecated: 16.0, message: "Use UISceneDelegate or related notifications to be informed of connecting scenes from other screens")
   class let didConnectNotification: NSNotification.Name
-  @available(iOS 3.2, *)
+  @available(iOS, introduced: 3.2, deprecated: 16.0, message: "Use UISceneDelegate or related notifications to be informed of disconnecting scenes from other screens")
   class let didDisconnectNotification: NSNotification.Name
   @available(iOS 3.2, *)
   class let modeDidChangeNotification: NSNotification.Name
@@ -14,7 +14,9 @@ extension UIScreen {
   class let brightnessDidChangeNotification: NSNotification.Name
   @available(iOS 11.0, *)
   class let capturedDidChangeNotification: NSNotification.Name
-  enum OverscanCompensation : Int, @unchecked Sendable {
+  @available(iOS 16.0, *)
+  class let referenceDisplayModeStatusDidChangeNotification: NSNotification.Name
+  @_nonSendable(_assumed) enum OverscanCompensation : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -32,9 +34,27 @@ extension UIScreen {
     @available(iOS, introduced: 5.0, deprecated: 9.0, renamed: "UIScreen.OverscanCompensation.none")
     static var insetApplicationFrame: UIScreen.OverscanCompensation { get }
   }
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) enum ReferenceDisplayModeStatus : Int, @unchecked Sendable {
+    init?(rawValue: Int)
+    var rawValue: Int { get }
+    typealias RawValue = Int
+    case notSupported
+    @available(swift, obsoleted: 3, renamed: "notSupported")
+    static var NotSupported: UIScreen.ReferenceDisplayModeStatus { get }
+    case notEnabled
+    @available(swift, obsoleted: 3, renamed: "notEnabled")
+    static var NotEnabled: UIScreen.ReferenceDisplayModeStatus { get }
+    case limited
+    @available(swift, obsoleted: 3, renamed: "limited")
+    static var Limited: UIScreen.ReferenceDisplayModeStatus { get }
+    case enabled
+    @available(swift, obsoleted: 3, renamed: "enabled")
+    static var Enabled: UIScreen.ReferenceDisplayModeStatus { get }
+  }
 }
-@available(iOS 3.2, *)
 @available(swift, obsoleted: 3, renamed: "UIScreen.didDisconnectNotification")
+@available(iOS, introduced: 3.2, deprecated: 16.0, message: "Use UISceneDelegate or related notifications to be informed of disconnecting scenes from other screens")
 let UIScreenDidDisconnectNotification: NSNotification.Name
 @available(iOS 3.2, *)
 @available(swift, obsoleted: 3, renamed: "UIScreen.modeDidChangeNotification")
@@ -45,14 +65,22 @@ let UIScreenBrightnessDidChangeNotification: NSNotification.Name
 @available(iOS 11.0, *)
 @available(swift, obsoleted: 3, renamed: "UIScreen.capturedDidChangeNotification")
 let UIScreenCapturedDidChangeNotification: NSNotification.Name
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIScreen.referenceDisplayModeStatusDidChangeNotification")
+let UIScreenReferenceDisplayModeStatusDidChangeNotification: NSNotification.Name
 @available(swift, obsoleted: 4.2, renamed: "UIScreen.OverscanCompensation")
 typealias UIScreenOverscanCompensation = UIScreen.OverscanCompensation
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIScreen.ReferenceDisplayModeStatus")
+typealias UIScreenReferenceDisplayModeStatus = UIScreen.ReferenceDisplayModeStatus
 @available(iOS 2.0, *)
-@MainActor class UIScreen : NSObject, UITraitEnvironment {
-  @available(iOS 3.2, *)
+@MainActor @_nonSendable(_assumed) class UIScreen : NSObject, UITraitEnvironment {
+  @available(iOS, introduced: 3.2, deprecated: 16.0, message: "Use UIApplication.shared.openSessions to find open sessions with scenes from other screens")
   class var screens: [UIScreen] { get }
+  @available(iOS, introduced: 2.0, deprecated: 100000, message: "Use a UIScreen instance found through context instead: i.e, view.window.windowScene.screen")
   class var main: UIScreen { get }
   @available(swift, obsoleted: 3, renamed: "main")
+  @available(iOS, introduced: 2.0, deprecated: 100000, message: "Use a UIScreen instance found through context instead: i.e, view.window.windowScene.screen")
   class var mainScreen: UIScreen { get }
   var bounds: CGRect { get }
   @available(iOS 4.0, *)
@@ -98,6 +126,12 @@ typealias UIScreenOverscanCompensation = UIScreen.OverscanCompensation
   var maximumFramesPerSecond: Int { get }
   @available(iOS 13.0, *)
   var calibratedLatency: CFTimeInterval { get }
+  @available(iOS 16.0, *)
+  var referenceDisplayModeStatus: UIScreen.ReferenceDisplayModeStatus { get }
+  @available(iOS 16.0, *)
+  var currentEDRHeadroom: CGFloat { get }
+  @available(iOS 16.0, *)
+  var potentialEDRHeadroom: CGFloat { get }
   @available(iOS, introduced: 10.0, deprecated: 15.0, message: "Use -[UIWindowScene focusSystem].focusedItem instead")
   weak var focusedItem: @sil_weak UIFocusItem? { get }
   @available(iOS, introduced: 9.0, deprecated: 15.0, message: "Use -[UIWindowScene focusSystem].focusedItem instead")

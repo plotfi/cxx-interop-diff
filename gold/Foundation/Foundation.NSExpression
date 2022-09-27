@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "NSExpression.ExpressionType")
 typealias NSExpressionType = NSExpression.ExpressionType
 extension NSExpression {
-  enum ExpressionType : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ExpressionType : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -63,7 +63,7 @@ extension NSExpression {
   }
 }
 @available(iOS 3.0, *)
-class NSExpression : NSObject, NSSecureCoding, NSCopying {
+@_nonSendable(_assumed) class NSExpression : NSObject, NSSecureCoding, NSCopying {
   @available(iOS 4.0, *)
   /*not inherited*/ init(format expressionFormat: String, argumentArray arguments: [Any])
   @available(iOS 4.0, *)
@@ -188,7 +188,11 @@ extension NSExpression {
 extension NSExpression {
   convenience init<Root, Value>(forKeyPath keyPath: KeyPath<Root, Value>)
 }
-struct _expressionFlags {
+
+@available(*, unavailable)
+extension NSExpression : @unchecked Sendable {
+}
+@_nonSendable(_assumed) struct _expressionFlags {
   init()
   init(_evaluationBlocked: UInt32, _usesKVC: UInt32, _validatedExpression: UInt32, _validatedKeys: UInt32, _reservedExpressionFlags: UInt32)
   var _evaluationBlocked: UInt32
@@ -196,4 +200,8 @@ struct _expressionFlags {
   var _validatedExpression: UInt32
   var _validatedKeys: UInt32
   var _reservedExpressionFlags: UInt32
+}
+
+@available(*, unavailable)
+extension _expressionFlags : @unchecked Sendable {
 }

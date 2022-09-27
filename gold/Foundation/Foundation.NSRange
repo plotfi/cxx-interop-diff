@@ -1,15 +1,30 @@
 @_exported import CoreFoundation
 
-struct _NSRange {
+@_nonSendable(_assumed) struct _NSRange : @unchecked Sendable {
   init()
   init(location: Int, length: Int)
   var location: Int
   var length: Int
 }
 
+extension _NSRange : _ObjectiveCBridgeable {
+  func _bridgeToObjectiveC() -> NSValue
+  static func _forceBridgeFromObjectiveC(_ source: NSValue, result: inout NSRange?)
+  static func _conditionallyBridgeFromObjectiveC(_ source: NSValue, result: inout NSRange?) -> Bool
+  static func _unconditionallyBridgeFromObjectiveC(_ source: NSValue?) -> NSRange
+  typealias _ObjectiveCType = NSValue
+}
+
+@available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+extension _NSRange {
+  init<R, S>(_ region: R, in target: S) where R : RangeExpression, S : AttributedStringProtocol, R.Bound == AttributedString.Index
+  @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+  init?<S>(_ markdownSourcePosition: AttributedString.MarkdownSourcePosition, in target: S) where S : StringProtocol
+}
+
 extension _NSRange : Hashable {
-  func hash(into hasher: inout Hasher)
-  static func == (lhs: NSRange, rhs: NSRange) -> Bool
+  @inlinable func hash(into hasher: inout Hasher)
+  @inlinable static func == (lhs: NSRange, rhs: NSRange) -> Bool
   var hashValue: Int { get }
 }
 
@@ -23,16 +38,16 @@ extension _NSRange {
 }
 
 extension _NSRange {
-  var lowerBound: Int { get }
-  var upperBound: Int { get }
-  func contains(_ index: Int) -> Bool
-  mutating func formUnion(_ other: NSRange)
-  func union(_ other: NSRange) -> NSRange
-  func intersection(_ other: NSRange) -> NSRange?
+  @inlinable var lowerBound: Int { get }
+  @inlinable var upperBound: Int { get }
+  @inlinable func contains(_ index: Int) -> Bool
+  @inlinable mutating func formUnion(_ other: NSRange)
+  @inlinable func union(_ other: NSRange) -> NSRange
+  @inlinable func intersection(_ other: NSRange) -> NSRange?
 }
 
 extension _NSRange {
-  init<R>(_ region: R) where R : RangeExpression, R.Bound : FixedWidthInteger
+  @inlinable init<R>(_ region: R) where R : RangeExpression, R.Bound : FixedWidthInteger
   init<R, S>(_ region: R, in target: S) where R : RangeExpression, S : StringProtocol, R.Bound == String.Index
   @available(swift, deprecated: 4, message: "Use Range.init(_:) instead")
   func toRange() -> Range<Int>?
@@ -50,19 +65,6 @@ extension _NSRange : _CustomPlaygroundQuickLookable {
 extension _NSRange : Codable {
   init(from decoder: Decoder) throws
   func encode(to encoder: Encoder) throws
-}
-
-@available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
-extension _NSRange {
-  init<R, S>(_ region: R, in target: S) where R : RangeExpression, S : AttributedStringProtocol, R.Bound == AttributedString.Index
-}
-
-extension _NSRange : _ObjectiveCBridgeable {
-  func _bridgeToObjectiveC() -> NSValue
-  static func _forceBridgeFromObjectiveC(_ source: NSValue, result: inout NSRange?)
-  static func _conditionallyBridgeFromObjectiveC(_ source: NSValue, result: inout NSRange?) -> Bool
-  static func _unconditionallyBridgeFromObjectiveC(_ source: NSValue?) -> NSRange
-  typealias _ObjectiveCType = NSValue
 }
 typealias NSRange = _NSRange
 typealias NSRangePointer = UnsafeMutablePointer<NSRange>

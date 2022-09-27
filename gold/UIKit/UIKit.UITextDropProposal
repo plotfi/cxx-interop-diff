@@ -5,7 +5,7 @@
 typealias UITextDropAction = UITextDropProposal.Action
 extension UITextDropProposal {
   @available(iOS 11.0, *)
-  enum Action : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Action : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -20,7 +20,7 @@ extension UITextDropProposal {
     static var ReplaceAll: UITextDropProposal.Action { get }
   }
   @available(iOS 11.0, *)
-  enum ProgressMode : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ProgressMode : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -32,7 +32,7 @@ extension UITextDropProposal {
     static var Custom: UITextDropProposal.ProgressMode { get }
   }
   @available(iOS 11.0, *)
-  enum Performer : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Performer : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -51,7 +51,7 @@ typealias UITextDropProgressMode = UITextDropProposal.ProgressMode
 @available(swift, obsoleted: 4.2, renamed: "UITextDropProposal.Performer")
 typealias UITextDropPerformer = UITextDropProposal.Performer
 @available(iOS 11.0, *)
-@MainActor class UITextDropProposal : UIDropProposal, NSCopying {
+@MainActor @_nonSendable(_assumed) class UITextDropProposal : UIDropProposal, NSCopying {
   var dropAction: UITextDropProposal.Action
   var dropProgressMode: UITextDropProposal.ProgressMode
   var useFastSameViewOperations: Bool

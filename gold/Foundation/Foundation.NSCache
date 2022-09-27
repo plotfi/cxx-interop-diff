@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 4.0, *)
-class NSCache<KeyType, ObjectType> : NSObject where KeyType : AnyObject, ObjectType : AnyObject {
+@_nonSendable(_assumed) class NSCache<KeyType, ObjectType> : NSObject where KeyType : AnyObject, ObjectType : AnyObject {
   var name: String
   unowned(unsafe) var delegate: @sil_unmanaged NSCacheDelegate?
   func object(forKey key: KeyType) -> ObjectType?
@@ -17,6 +17,10 @@ class NSCache<KeyType, ObjectType> : NSObject where KeyType : AnyObject, ObjectT
   var countLimit: Int
   var evictsObjectsWithDiscardedContent: Bool
   init()
+}
+
+@available(*, unavailable)
+extension NSCache : @unchecked Sendable {
 }
 protocol NSCacheDelegate : NSObjectProtocol {
   @available(iOS 4.0, *)

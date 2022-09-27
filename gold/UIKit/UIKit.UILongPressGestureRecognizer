@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 3.2, *)
-@MainActor class UILongPressGestureRecognizer : UIGestureRecognizer {
+@MainActor @_nonSendable(_assumed) class UILongPressGestureRecognizer : UIGestureRecognizer {
   var numberOfTapsRequired: Int
   var numberOfTouchesRequired: Int
   var minimumPressDuration: TimeInterval

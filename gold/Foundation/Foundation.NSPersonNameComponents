@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 9.0, *)
-class NSPersonNameComponents : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSPersonNameComponents : NSObject, NSCopying, NSSecureCoding {
   var namePrefix: String?
   var givenName: String?
   var middleName: String?
@@ -22,4 +22,8 @@ class NSPersonNameComponents : NSObject, NSCopying, NSSecureCoding {
 @available(macOS 10.11, iOS 9.0, *)
 extension NSPersonNameComponents : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}
+
+@available(*, unavailable)
+extension NSPersonNameComponents : @unchecked Sendable {
 }

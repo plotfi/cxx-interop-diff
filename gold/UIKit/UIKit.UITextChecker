@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 3.2, *)
-@MainActor class UITextChecker : NSObject {
+@MainActor @_nonSendable(_assumed) class UITextChecker : NSObject {
   func rangeOfMisspelledWord(in stringToCheck: String, range: NSRange, startingAt startingOffset: Int, wrap wrapFlag: Bool, language: String) -> NSRange
   @available(swift, obsoleted: 3, renamed: "rangeOfMisspelledWord(in:range:startingAt:wrap:language:)")
   func rangeOfMisspelledWordInString(_ stringToCheck: String, range: NSRange, startingAt startingOffset: Int, wrap wrapFlag: Bool, language: String) -> NSRange

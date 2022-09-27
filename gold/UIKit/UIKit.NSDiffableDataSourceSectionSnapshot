@@ -4,7 +4,7 @@
 @available(swift, obsoleted: 3, renamed: "NSDiffableDataSourceSectionSnapshotReference")
 typealias NSDiffableDataSourceSectionSnapshot = NSDiffableDataSourceSectionSnapshotReference
 @available(iOS 14.0, *)
-class NSDiffableDataSourceSectionSnapshotReference : NSObject, NSCopying {
+@_nonSendable(_assumed) class NSDiffableDataSourceSectionSnapshotReference : NSObject, NSCopying {
   init()
   func appendItems(_ items: [Any])
   func appendItems(_ items: [Any], intoParentItem parentItem: Any?)
@@ -48,4 +48,8 @@ class NSDiffableDataSourceSectionSnapshotReference : NSObject, NSCopying {
   func visualDescription() -> String
   @available(iOS 14.0, *)
   func copy(with zone: NSZone? = nil) -> Any
+}
+
+@available(*, unavailable)
+extension NSDiffableDataSourceSectionSnapshotReference : @unchecked Sendable {
 }

@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIImagePickerController.SourceType")
 typealias UIImagePickerControllerSourceType = UIImagePickerController.SourceType
 extension UIImagePickerController {
-  enum SourceType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SourceType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -21,7 +21,7 @@ extension UIImagePickerController {
     @available(swift, obsoleted: 3, renamed: "savedPhotosAlbum")
     static var SavedPhotosAlbum: UIImagePickerController.SourceType { get }
   }
-  enum QualityType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum QualityType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -50,7 +50,7 @@ extension UIImagePickerController {
     @available(swift, obsoleted: 3, renamed: "typeIFrame960x540")
     static var TypeIFrame960x540: UIImagePickerController.QualityType { get }
   }
-  enum CameraCaptureMode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum CameraCaptureMode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -61,7 +61,7 @@ extension UIImagePickerController {
     @available(swift, obsoleted: 3, renamed: "video")
     static var Video: UIImagePickerController.CameraCaptureMode { get }
   }
-  enum CameraDevice : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum CameraDevice : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -72,7 +72,7 @@ extension UIImagePickerController {
     @available(swift, obsoleted: 3, renamed: "front")
     static var Front: UIImagePickerController.CameraDevice { get }
   }
-  enum CameraFlashMode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum CameraFlashMode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -87,7 +87,7 @@ extension UIImagePickerController {
     static var On: UIImagePickerController.CameraFlashMode { get }
   }
   @available(iOS, introduced: 11, deprecated: 100000, message: "Will be removed in a future release, use PHPicker.")
-  enum ImageURLExportPreset : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ImageURLExportPreset : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -162,7 +162,7 @@ let UIImagePickerControllerPHAsset: UIImagePickerController.InfoKey
 @available(swift, obsoleted: 3, renamed: "UIImagePickerController.InfoKey.imageURL")
 let UIImagePickerControllerImageURL: UIImagePickerController.InfoKey
 @available(iOS 2.0, *)
-@MainActor class UIImagePickerController : UINavigationController, NSCoding {
+@MainActor @_nonSendable(_assumed) class UIImagePickerController : UINavigationController, NSCoding {
   class func isSourceTypeAvailable(_ sourceType: UIImagePickerController.SourceType) -> Bool
   class func availableMediaTypes(for sourceType: UIImagePickerController.SourceType) -> [String]?
   @available(swift, obsoleted: 3, renamed: "availableMediaTypes(for:)")

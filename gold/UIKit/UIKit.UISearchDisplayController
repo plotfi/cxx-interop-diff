@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS, introduced: 3.0, deprecated: 8.0, message: "UISearchDisplayController has been replaced with UISearchController")
-@MainActor class UISearchDisplayController : NSObject {
+@MainActor @_nonSendable(_assumed) class UISearchDisplayController : NSObject {
   init(searchBar: UISearchBar, contentsController viewController: UIViewController)
   unowned(unsafe) var delegate: @sil_unmanaged UISearchDisplayDelegate?
   var isActive: Bool

@@ -1,0 +1,15 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+@MainActor class UISceneWindowingBehaviors : NSObject {
+  @available(*, unavailable)
+  init!()
+  @available(*, unavailable)
+  class func new() -> Self!
+  var isClosable: Bool
+  @available(swift, obsoleted: 3, renamed: "isClosable")
+  var closable: Bool
+  var isMiniaturizable: Bool
+  @available(swift, obsoleted: 3, renamed: "isMiniaturizable")
+  var miniaturizable: Bool
+}

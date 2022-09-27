@@ -5,7 +5,7 @@
 @MainActor typealias UISceneConnectionOptions = UIScene.ConnectionOptions
 extension UIScene {
   @available(iOS 13.0, *)
-  @MainActor class ConnectionOptions : NSObject {
+  @MainActor @_nonSendable(_assumed) class ConnectionOptions : NSObject {
     @available(*, unavailable)
     class func new() -> Self
     @available(*, unavailable)
@@ -20,21 +20,21 @@ extension UIScene {
     var shortcutItem: UIApplicationShortcutItem? { get }
   }
   @available(iOS 13.0, *)
-  @MainActor class ActivationRequestOptions : NSObject {
+  @MainActor @_nonSendable(_assumed) class ActivationRequestOptions : NSObject {
     var requestingScene: UIScene?
     @available(iOS, unavailable)
     var collectionJoinBehavior: UISceneCollectionJoinBehavior
     init()
   }
   @available(iOS 13.0, *)
-  @MainActor class OpenExternalURLOptions : NSObject {
+  @MainActor @_nonSendable(_assumed) class OpenExternalURLOptions : NSObject {
     var universalLinksOnly: Bool
     @available(iOS 14.5, *)
     @NSCopying var eventAttribution: UIEventAttribution?
     init()
   }
   @available(iOS 13.0, *)
-  @MainActor class OpenURLOptions : NSObject {
+  @MainActor @_nonSendable(_assumed) class OpenURLOptions : NSObject {
     @available(*, unavailable)
     class func new() -> Self
     @available(*, unavailable)
@@ -53,7 +53,7 @@ extension UIScene {
 @available(swift, obsoleted: 3, renamed: "UIScene.OpenExternalURLOptions")
 @MainActor typealias UISceneOpenExternalURLOptions = UIScene.OpenExternalURLOptions
 @available(iOS, unavailable)
-enum UISceneCollectionJoinBehavior : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UISceneCollectionJoinBehavior : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -74,6 +74,6 @@ enum UISceneCollectionJoinBehavior : Int, @unchecked Sendable {
 @available(swift, obsoleted: 3, renamed: "UIScene.ActivationRequestOptions")
 @MainActor typealias UISceneActivationRequestOptions = UIScene.ActivationRequestOptions
 @available(iOS 13.0, *)
-@MainActor class UISceneDestructionRequestOptions : NSObject {
+@MainActor @_nonSendable(_assumed) class UISceneDestructionRequestOptions : NSObject {
   init()
 }

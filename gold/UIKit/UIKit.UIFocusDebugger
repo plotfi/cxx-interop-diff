@@ -3,7 +3,7 @@
 
 /// UIFocusDebugger provides a collection of runtime utilities for debugging issues related to focus interaction.
 @available(iOS 11.0, *)
-@MainActor class UIFocusDebugger : NSObject {
+@MainActor @_nonSendable(_assumed) class UIFocusDebugger : NSObject {
 
   /// Outputs an overview of all supported debugging utilities and other relevant information.
   ///   - To use in Swift, enter `po UIFocusDebugger.help()` when paused in lldb.
@@ -39,16 +39,27 @@
 
   /// Outputs a diagnosis of the focus groups of the specified environment and its children.
   /// Pass a focus system as the environment to get the full focus group tree for this focus system.
-  ///  - To use in Swift, enter `po UIFocusDebugger.checkFocusGroupTree(for: <environment reference>)` when paused in lldb.
-  ///  - To use in Objective-C, enter `po [UIFocusDebugger checkFocusGroupTreeForEnvironment:<environment reference>]` when paused in lldb.
-  class func checkFocusGroupTree(for environment: UIFocusEnvironment) -> String
+  ///  - To use in Swift, enter `po UIFocusDebugger.focusGroups(for: <environment reference>)` when paused in lldb.
+  ///  - To use in Objective-C, enter `po [UIFocusDebugger focusGroupsForEnvironment:<environment reference>]` when paused in lldb.
+  class func focusGroups(for environment: UIFocusEnvironment) -> UIFocusDebuggerOutput
 
   /// Outputs a diagnosis of the focus groups of the specified environment and its children.
   /// Pass a focus system as the environment to get the full focus group tree for this focus system.
-  ///  - To use in Swift, enter `po UIFocusDebugger.checkFocusGroupTree(for: <environment reference>)` when paused in lldb.
-  ///  - To use in Objective-C, enter `po [UIFocusDebugger checkFocusGroupTreeForEnvironment:<environment reference>]` when paused in lldb.
-  @available(swift, obsoleted: 3, renamed: "checkFocusGroupTree(for:)")
-  class func checkFocusGroupTreeForEnvironment(_ environment: UIFocusEnvironment) -> String
+  ///  - To use in Swift, enter `po UIFocusDebugger.focusGroups(for: <environment reference>)` when paused in lldb.
+  ///  - To use in Objective-C, enter `po [UIFocusDebugger focusGroupsForEnvironment:<environment reference>]` when paused in lldb.
+  @available(swift, obsoleted: 3, renamed: "focusGroups(for:)")
+  class func focusGroupsForEnvironment(_ environment: UIFocusEnvironment) -> UIFocusDebuggerOutput
+
+  /// Outputs a diagnoses of the preferred focus environments tree.
+  /// - To use in Swift, enter `po UIFocusDebugger.preferredFocusEnvironments(for: <environment reference>)` when paused in lldb.
+  /// - To use in Objective-C, enter `po [UIFocusDebugger preferredFocusEnvironmentsForEnvironment:<environment reference>]` when paused in lldb.
+  class func preferredFocusEnvironments(for environment: UIFocusEnvironment) -> UIFocusDebuggerOutput
+
+  /// Outputs a diagnoses of the preferred focus environments tree.
+  /// - To use in Swift, enter `po UIFocusDebugger.preferredFocusEnvironments(for: <environment reference>)` when paused in lldb.
+  /// - To use in Objective-C, enter `po [UIFocusDebugger preferredFocusEnvironmentsForEnvironment:<environment reference>]` when paused in lldb.
+  @available(swift, obsoleted: 3, renamed: "preferredFocusEnvironments(for:)")
+  class func preferredFocusEnvironmentsForEnvironment(_ environment: UIFocusEnvironment) -> UIFocusDebuggerOutput
   init()
 }
 @available(iOS 11.0, *)

@@ -1,0 +1,146 @@
+@_exported import Foundation
+
+@available(swift, obsoleted: 3, renamed: "NSTextList.Options")
+typealias NSTextListOptions = NSTextList.Options
+extension NSTextList {
+  @_nonSendable(_assumed) struct Options : OptionSet, @unchecked Sendable {
+    init(rawValue: UInt)
+    let rawValue: UInt
+    typealias RawValue = UInt
+    typealias Element = NSTextList.Options
+    typealias ArrayLiteralElement = NSTextList.Options
+    @available(iOS 7.0, *)
+    static var prependEnclosingMarker: NSTextList.Options { get }
+    @available(iOS 7.0, *)
+    @available(swift, obsoleted: 3, renamed: "prependEnclosingMarker")
+    static var PrependEnclosingMarker: NSTextList.Options { get }
+  }
+  @available(iOS 7.0, *)
+  struct MarkerFormat : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+    init(_ rawValue: String)
+    init(rawValue: String)
+    var _rawValue: NSString
+    var rawValue: String { get }
+    typealias RawValue = String
+    typealias _ObjectiveCType = NSString
+  }
+}
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat")
+typealias NSTextListMarkerFormat = NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.box")
+let NSTextListMarkerBox: NSTextList.MarkerFormat
+extension NSTextList.MarkerFormat {
+  @available(iOS 7.0, *)
+  static let box: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let check: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let circle: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let diamond: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let disc: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let hyphen: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let square: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let lowercaseHexadecimal: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let uppercaseHexadecimal: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let octal: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let lowercaseAlpha: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let uppercaseAlpha: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let lowercaseLatin: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let uppercaseLatin: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let lowercaseRoman: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let uppercaseRoman: NSTextList.MarkerFormat
+  @available(iOS 7.0, *)
+  static let decimal: NSTextList.MarkerFormat
+}
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.check")
+let NSTextListMarkerCheck: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.circle")
+let NSTextListMarkerCircle: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.diamond")
+let NSTextListMarkerDiamond: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.disc")
+let NSTextListMarkerDisc: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.hyphen")
+let NSTextListMarkerHyphen: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.square")
+let NSTextListMarkerSquare: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.lowercaseHexadecimal")
+let NSTextListMarkerLowercaseHexadecimal: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.uppercaseHexadecimal")
+let NSTextListMarkerUppercaseHexadecimal: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.octal")
+let NSTextListMarkerOctal: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.lowercaseAlpha")
+let NSTextListMarkerLowercaseAlpha: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.uppercaseAlpha")
+let NSTextListMarkerUppercaseAlpha: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.lowercaseLatin")
+let NSTextListMarkerLowercaseLatin: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.uppercaseLatin")
+let NSTextListMarkerUppercaseLatin: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.lowercaseRoman")
+let NSTextListMarkerLowercaseRoman: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.uppercaseRoman")
+let NSTextListMarkerUppercaseRoman: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "NSTextList.MarkerFormat.decimal")
+let NSTextListMarkerDecimal: NSTextList.MarkerFormat
+@available(iOS 7.0, *)
+@_nonSendable(_assumed) class NSTextList : NSObject, NSSecureCoding, NSCopying {
+  @available(iOS 16.0, *)
+  init(markerFormat: NSTextList.MarkerFormat, options: NSTextList.Options = [], startingItemNumber: Int)
+  convenience init(markerFormat: NSTextList.MarkerFormat, options: Int)
+  init?(coder: NSCoder)
+  var markerFormat: NSTextList.MarkerFormat { get }
+  var listOptions: NSTextList.Options { get }
+  var startingItemNumber: Int
+  @available(iOS 16.0, *)
+  var isOrdered: Bool { get }
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "isOrdered")
+  var ordered: Bool { get }
+  func marker(forItemNumber itemNumber: Int) -> String
+  @available(swift, obsoleted: 3, renamed: "marker(forItemNumber:)")
+  func markerForItemNumber(_ itemNumber: Int) -> String
+  convenience init()
+  @available(iOS 7.0, *)
+  class var supportsSecureCoding: Bool { get }
+  @available(iOS 7.0, *)
+  func encode(with coder: NSCoder)
+  @available(iOS 7.0, *)
+  func copy(with zone: NSZone? = nil) -> Any
+}
+
+@available(*, unavailable)
+extension NSTextList : @unchecked Sendable {
+}

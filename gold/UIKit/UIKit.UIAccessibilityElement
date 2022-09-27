@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 3.0, *)
-@MainActor class UIAccessibilityElement : UIResponder, UIAccessibilityIdentification {
+@MainActor @_nonSendable(_assumed) class UIAccessibilityElement : UIResponder, UIAccessibilityIdentification {
   init(accessibilityContainer container: Any)
   weak var accessibilityContainer: @sil_weak AnyObject?
   var isAccessibilityElement: Bool

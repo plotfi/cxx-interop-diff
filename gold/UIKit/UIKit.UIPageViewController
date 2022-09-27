@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIPageViewController.NavigationOrientation")
 typealias UIPageViewControllerNavigationOrientation = UIPageViewController.NavigationOrientation
 extension UIPageViewController {
-  enum NavigationOrientation : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum NavigationOrientation : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -14,7 +14,7 @@ extension UIPageViewController {
     @available(swift, obsoleted: 3, renamed: "vertical")
     static var Vertical: UIPageViewController.NavigationOrientation { get }
   }
-  enum SpineLocation : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SpineLocation : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -31,7 +31,7 @@ extension UIPageViewController {
     @available(swift, obsoleted: 3, renamed: "max")
     static var Max: UIPageViewController.SpineLocation { get }
   }
-  enum NavigationDirection : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum NavigationDirection : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -42,7 +42,7 @@ extension UIPageViewController {
     @available(swift, obsoleted: 3, renamed: "reverse")
     static var Reverse: UIPageViewController.NavigationDirection { get }
   }
-  enum TransitionStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum TransitionStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -85,7 +85,7 @@ extension UIPageViewController.OptionsKey {
 @available(swift, obsoleted: 3, renamed: "UIPageViewControllerOptionsKey.interPageSpacing")
 let UIPageViewControllerOptionInterPageSpacingKey: UIPageViewController.OptionsKey
 @available(iOS 5.0, *)
-@MainActor class UIPageViewController : UIViewController {
+@MainActor @_nonSendable(_assumed) class UIPageViewController : UIViewController {
   init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil)
   init?(coder: NSCoder)
   weak var delegate: @sil_weak UIPageViewControllerDelegate?

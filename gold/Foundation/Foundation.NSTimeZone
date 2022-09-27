@@ -1,6 +1,6 @@
 @_exported import CoreFoundation
 
-class NSTimeZone : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSTimeZone : NSObject, NSCopying, NSSecureCoding, @unchecked Sendable {
   var name: String { get }
   var data: Data { get }
   func secondsFromGMT(for aDate: Date) -> Int
@@ -67,7 +67,7 @@ extension NSTimeZone {
 @available(swift, obsoleted: 3, renamed: "NSTimeZone.NameStyle")
 typealias NSTimeZoneNameStyle = NSTimeZone.NameStyle
 extension NSTimeZone {
-  enum NameStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum NameStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int

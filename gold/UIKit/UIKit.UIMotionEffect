@@ -7,7 +7,7 @@
  
     Subclasses must implement conformance for NSCopying and NSCoding. */
 @available(iOS 7.0, *)
-@MainActor class UIMotionEffect : NSObject, NSCopying, NSCoding {
+@MainActor @_nonSendable(_assumed) class UIMotionEffect : NSObject, NSCopying, NSCoding {
   init()
   init?(coder: NSCoder)
 
@@ -55,7 +55,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIInterpolatingMotionEffect.EffectType")
 typealias UIInterpolatingMotionEffectType = UIInterpolatingMotionEffect.EffectType
 extension UIInterpolatingMotionEffect {
-  enum EffectType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum EffectType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -90,7 +90,7 @@ extension UIInterpolatingMotionEffect {
  
     `keyPath` should be expressed relative to the effect's target view. */
 @available(iOS 7.0, *)
-@MainActor class UIInterpolatingMotionEffect : UIMotionEffect {
+@MainActor @_nonSendable(_assumed) class UIInterpolatingMotionEffect : UIMotionEffect {
   init(keyPath: String, type: UIInterpolatingMotionEffect.EffectType)
   init?(coder: NSCoder)
   var keyPath: String { get }
@@ -103,7 +103,7 @@ extension UIInterpolatingMotionEffect {
 /** Behaves like CAAnimationGroup. Merges key/value pairs of constituent
     using Core Animation's implementations of addition for all the standard types. */
 @available(iOS 7.0, *)
-@MainActor class UIMotionEffectGroup : UIMotionEffect {
+@MainActor @_nonSendable(_assumed) class UIMotionEffectGroup : UIMotionEffect {
   var motionEffects: [UIMotionEffect]?
   init()
   init?(coder: NSCoder)

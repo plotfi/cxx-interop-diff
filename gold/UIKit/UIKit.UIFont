@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 2.0, *)
-class UIFont : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class UIFont : NSObject, NSCopying, NSSecureCoding, @unchecked Sendable {
   @available(iOS 7.0, *)
   class func preferredFont(forTextStyle style: UIFont.TextStyle) -> UIFont
   @available(iOS 7.0, *)
@@ -38,6 +38,11 @@ class UIFont : NSObject, NSCopying, NSSecureCoding {
   @available(iOS 9.0, *)
   @available(swift, obsoleted: 3, renamed: "monospacedDigitSystemFont(ofSize:weight:)")
   class func monospacedDigitSystemFontOfSize(_ fontSize: CGFloat, weight: UIFont.Weight) -> UIFont
+  @available(iOS 16.0, *)
+  class func systemFont(ofSize fontSize: CGFloat, weight: UIFont.Weight, width: UIFont.Width) -> UIFont
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "systemFont(ofSize:weight:width:)")
+  class func systemFontOfSize(_ fontSize: CGFloat, weight: UIFont.Weight, width: UIFont.Width) -> UIFont
   @available(iOS 13.0, *)
   class func monospacedSystemFont(ofSize fontSize: CGFloat, weight: UIFont.Weight) -> UIFont
   @available(iOS 13.0, *)

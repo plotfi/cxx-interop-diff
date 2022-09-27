@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 10.0, *)
-class NSMeasurement : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSMeasurement : NSObject, NSCopying, NSSecureCoding {
   @NSCopying var unit: Unit { get }
   var doubleValue: Double { get }
   @available(iOS, unavailable)
@@ -31,4 +31,8 @@ class NSMeasurement : NSObject, NSCopying, NSSecureCoding {
 @available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *)
 extension NSMeasurement : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
+}
+
+@available(*, unavailable)
+extension NSMeasurement : @unchecked Sendable {
 }

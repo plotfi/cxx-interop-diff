@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 6.0, *)
-class NSPointerArray : NSObject, NSFastEnumeration, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSPointerArray : NSObject, NSFastEnumeration, NSCopying, NSSecureCoding {
   init(options: NSPointerFunctions.Options = [])
   init(pointerFunctions functions: NSPointerFunctions)
   @available(*, unavailable, renamed: "init(options:)", message: "Not available in Swift")
@@ -34,6 +34,10 @@ class NSPointerArray : NSObject, NSFastEnumeration, NSCopying, NSSecureCoding {
   @available(iOS 6.0, *)
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSPointerArray : @unchecked Sendable {
 }
 extension NSPointerArray {
   @available(iOS 6.0, *)

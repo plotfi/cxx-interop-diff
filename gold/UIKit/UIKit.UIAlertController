@@ -5,7 +5,7 @@
 typealias UIAlertActionStyle = UIAlertAction.Style
 extension UIAlertAction {
   @available(iOS 8.0, *)
-  enum Style : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -25,7 +25,7 @@ extension UIAlertAction {
 typealias UIAlertControllerStyle = UIAlertController.Style
 extension UIAlertController {
   @available(iOS 8.0, *)
-  enum Style : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -37,8 +37,20 @@ extension UIAlertController {
     static var Alert: UIAlertController.Style { get }
   }
 }
+@available(iOS 16.0, *)
+@_nonSendable(_assumed) enum UIAlertControllerSeverity : Int, @unchecked Sendable {
+  init?(rawValue: Int)
+  var rawValue: Int { get }
+  typealias RawValue = Int
+  case `default`
+  @available(swift, obsoleted: 3, renamed: "default")
+  static var Default: UIAlertControllerSeverity { get }
+  case critical
+  @available(swift, obsoleted: 3, renamed: "critical")
+  static var Critical: UIAlertControllerSeverity { get }
+}
 @available(iOS 8.0, *)
-@MainActor class UIAlertAction : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class UIAlertAction : NSObject, NSCopying {
   convenience init(title: String?, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)? = nil)
   @available(*, unavailable, renamed: "init(title:style:handler:)", message: "Not available in Swift")
   class func actionWithTitle(_ title: String?, style: UIAlertAction.Style, handler: ((UIAlertAction) -> Void)? = nil) -> Self
@@ -52,7 +64,7 @@ extension UIAlertController {
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 8.0, *)
-@MainActor class UIAlertController : UIViewController {
+@MainActor @_nonSendable(_assumed) class UIAlertController : UIViewController {
   convenience init(title: String?, message: String?, preferredStyle: UIAlertController.Style)
   @available(*, unavailable, renamed: "init(title:message:preferredStyle:)", message: "Not available in Swift")
   class func alertControllerWithTitle(_ title: String?, message: String?, preferredStyle: UIAlertController.Style) -> Self
@@ -67,6 +79,8 @@ extension UIAlertController {
   var title: String?
   var message: String?
   var preferredStyle: UIAlertController.Style { get }
+  @available(iOS 16.0, *)
+  var severity: UIAlertControllerSeverity
   init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
   init?(coder: NSCoder)
   convenience init()

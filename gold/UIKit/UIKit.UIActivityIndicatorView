@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIActivityIndicatorView.Style")
 typealias UIActivityIndicatorViewStyle = UIActivityIndicatorView.Style
 extension UIActivityIndicatorView {
-  enum Style : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -35,7 +35,7 @@ extension UIActivityIndicatorView {
   }
 }
 @available(iOS 2.0, *)
-@MainActor class UIActivityIndicatorView : UIView, NSCoding {
+@MainActor @_nonSendable(_assumed) class UIActivityIndicatorView : UIView, NSCoding {
   init(style: UIActivityIndicatorView.Style)
   @available(swift, obsoleted: 4.2, renamed: "init(style:)")
   init(activityIndicatorStyle style: UIActivityIndicatorView.Style)

@@ -37,9 +37,72 @@
   @available(swift, obsoleted: 3, renamed: "textView(_:shouldInteractWith:in:)")
   @available(iOS, introduced: 7.0, deprecated: 10.0)
   optional func textView(_ textView: UITextView, shouldInteractWithTextAttachment textAttachment: NSTextAttachment, inRange characterRange: NSRange) -> Bool
+
+  /**
+   * @abstract Asks the delegate for the menu to be shown for the specified text range.
+   *
+   * @param textView                     The text view requesting the menu.
+   * @param range                            The text range for which the menu is presented for.
+   * @param suggestedActions   The actions and commands that the system suggests.
+   *
+   * @return Return a UIMenu describing the desired menu hierarchy. Return @c nil to present the default system menu.
+   */
+  @available(iOS 16.0, *)
+  optional func textView(_ textView: UITextView, editMenuForTextIn range: NSRange, suggestedActions: [UIMenuElement]) -> UIMenu?
+
+  /**
+   * @abstract Asks the delegate for the menu to be shown for the specified text range.
+   *
+   * @param textView                     The text view requesting the menu.
+   * @param range                            The text range for which the menu is presented for.
+   * @param suggestedActions   The actions and commands that the system suggests.
+   *
+   * @return Return a UIMenu describing the desired menu hierarchy. Return @c nil to present the default system menu.
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "textView(_:editMenuForTextIn:suggestedActions:)")
+  optional func textView(_ textView: UITextView, editMenuForTextInRange range: NSRange, suggestedActions: [UIMenuElement]) -> UIMenu?
+
+  /**
+   * @abstract Called when the text view is about to present the edit menu.
+   *
+   * @param textView      The text view displaying the menu.
+   * @param animator      Appearance animator. Add animations to this object to run them alongside the appearance transition.
+   */
+  @available(iOS 16.0, *)
+  optional func textView(_ textView: UITextView, willPresentEditMenuWith animator: UIEditMenuInteractionAnimating)
+
+  /**
+   * @abstract Called when the text view is about to present the edit menu.
+   *
+   * @param textView      The text view displaying the menu.
+   * @param animator      Appearance animator. Add animations to this object to run them alongside the appearance transition.
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "textView(_:willPresentEditMenuWith:)")
+  optional func textView(_ textView: UITextView, willPresentEditMenuWithAnimator animator: UIEditMenuInteractionAnimating)
+
+  /**
+   * @abstract Called when the text view is about to dismiss the edit menu.
+   *
+   * @param textView      The text view displaying the menu.
+   * @param animator      Dismissal animator. Add animations to this object to run them alongside the dismissal transition.
+   */
+  @available(iOS 16.0, *)
+  optional func textView(_ textView: UITextView, willDismissEditMenuWith animator: UIEditMenuInteractionAnimating)
+
+  /**
+   * @abstract Called when the text view is about to dismiss the edit menu.
+   *
+   * @param textView      The text view displaying the menu.
+   * @param animator      Dismissal animator. Add animations to this object to run them alongside the dismissal transition.
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "textView(_:willDismissEditMenuWith:)")
+  optional func textView(_ textView: UITextView, willDismissEditMenuWithAnimator animator: UIEditMenuInteractionAnimating)
 }
 @available(iOS 2.0, *)
-@MainActor class UITextView : UIScrollView, UITextInput, UIContentSizeCategoryAdjusting {
+@MainActor @_nonSendable(_assumed) class UITextView : UIScrollView, UITextInput, UIContentSizeCategoryAdjusting {
   weak var delegate: @sil_weak UITextViewDelegate?
   var text: String!
   var font: UIFont?
@@ -69,11 +132,18 @@
   var clearsOnInsertion: Bool
   @available(iOS 7.0, *)
   init(frame: CGRect, textContainer: NSTextContainer?)
+  @available(iOS 16.0, *)
+  convenience init(usingTextLayoutManager: Bool)
+  @available(iOS 16.0, *)
+  @available(*, unavailable, renamed: "init(usingTextLayoutManager:)", message: "Not available in Swift")
+  class func textViewUsingTextLayoutManager(_ usingTextLayoutManager: Bool) -> Self
   init?(coder: NSCoder)
   @available(iOS 7.0, *)
   var textContainer: NSTextContainer { get }
   @available(iOS 7.0, *)
   var textContainerInset: UIEdgeInsets
+  @available(iOS 16.0, *)
+  var textLayoutManager: NSTextLayoutManager? { get }
   @available(iOS 7.0, *)
   var layoutManager: NSLayoutManager { get }
   @available(iOS 7.0, *)
@@ -82,6 +152,19 @@
   var linkTextAttributes: [NSAttributedString.Key : Any]!
   @available(iOS 13.0, *)
   var usesStandardTextScaling: Bool
+
+  /// If `findInteractionEnabled` is set to true, returns this text view's built-in find interaction. Otherwise, nil.
+  @available(iOS 16.0, *)
+  var findInteraction: UIFindInteraction? { get }
+
+  /// Enables this text view's built-in find interaction.
+  @available(iOS 16.0, *)
+  var isFindInteractionEnabled: Bool
+
+  /// Enables this text view's built-in find interaction.
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "isFindInteractionEnabled")
+  var findInteractionEnabled: Bool
   convenience init(frame: CGRect)
   convenience init()
   @available(iOS 3.2, *)
@@ -204,12 +287,27 @@
   func updateFloatingCursor(at point: CGPoint)
   @available(iOS 9.0, *)
   func endFloatingCursor()
+
+  /**
+   * Called when the text input is preparing an edit menu presentation for the specified text range.
+   *
+   * @param textRange                  The text range for which the menu is presented for.
+   * @param suggestedActions  The actions and commands that the system suggests.
+   *
+   * @return Return a UIMenu describing the desired menu hierarchy. Return @c nil to present the default system menu.
+   */
+  @available(iOS 16.0, *)
+  func editMenu(for textRange: UITextRange, suggestedActions: [UIMenuElement]) -> UIMenu?
+  @available(iOS 16.0, *)
+  func willPresentEditMenu(animator: UIEditMenuInteractionAnimating)
+  @available(iOS 16.0, *)
+  func willDismissEditMenu(animator: UIEditMenuInteractionAnimating)
   @available(iOS 2.0, *)
   func insertText(_ text: String)
   @available(iOS 2.0, *)
   func deleteBackward()
 }
-extension UITextView : UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting {
+extension UITextView : UITextDraggable, UITextDroppable, UITextPasteConfigurationSupporting, UIFindInteractionDelegate, __UITextSearching {
   @available(iOS 11.0, *)
   weak var textDragDelegate: @sil_weak UITextDragDelegate?
   @available(iOS 11.0, *)
@@ -226,6 +324,112 @@ extension UITextView : UITextDraggable, UITextDroppable, UITextPasteConfiguratio
   var isTextDropActive: Bool { get }
   @available(iOS 11.0, *)
   weak var pasteDelegate: @sil_weak UITextPasteDelegate?
+
+  /// Return YES if your searchable item also supports replacement. If this method is unimplemented, it is
+  /// assumed that text replacement is not supported.
+  @available(iOS 16.0, *)
+  var supportsTextReplacement: Bool { get }
+
+  /// Returns the current search document, if applicable. Nil otherwise.
+  @available(iOS 16.0, *)
+  var selectedTextSearchDocument: __UITextSearchDocumentIdentifier? { get }
+
+  /// Called when a find session is requested to begin by the user. Return an instance of a UIFindSession implementation to allow the
+  /// find session to begin, otherwise return nil to prevent the system find panel from appearing.
+  @available(iOS 16.0, *)
+  func findInteraction(_ interaction: UIFindInteraction, sessionFor view: UIView) -> UIFindSession?
+
+  /// Called when the search operation begins (and the system search UI appears).
+  /// This would be a good time to decorate your view to indicate that a search operation is about to occur.
+  /// System text elements will apply a dimming view around all non-highlighted search results, for instance.
+  @available(iOS 16.0, *)
+  func findInteraction(_ interaction: UIFindInteraction, didBegin session: UIFindSession)
+
+  /// Called when the current search session has changed or ended. This would be a good time to remove all
+  /// decorations applied to found search results, and any decorations added when the search operation began
+  /// (such as a dimming view).
+  @available(iOS 16.0, *)
+  func findInteraction(_ interaction: UIFindInteraction, didEnd session: UIFindSession)
+
+  /// Provide a comparison result comparing developer-provided @c fromRange to @c toRange . This is used by
+  /// the system find panel to know which @c UITextRange to highlight next when the user taps the "next" or "previous"
+  /// result buttons.
+  ///
+  /// @param foundRange    Developer-provided range to compare from.
+  /// @param toRange  Developer-provided range to compare to.
+  /// @param document If multiple documents are used, a document identifier will be provided here. Ranges are only
+  ///                compared between other ranges of the same document.
+  @available(iOS 16.0, *)
+  func compareFound(_ foundRange: UITextRange, to toRange: UITextRange, inDocument document: __UITextSearchDocumentIdentifier?) -> ComparisonResult
+
+  /// Perform a text search (across all available searchable documents) using @c string. When results are found,
+  /// provide the results to @c aggregator.
+  ///
+  /// @param string     The query string to search for
+  /// @param options    Search options provided by the user.
+  /// @param aggregator When results are found, provide them to the aggregator. The aggregator is thread-safe,
+  ///                   so you may send it messages on other threads.
+  @available(iOS 16.0, *)
+  func performTextSearch(withQueryString string: String, using options: UITextSearchOptions, resultAggregator aggregator: __UITextSearchAggregator)
+
+  /// Given a found @c range , decorate this text appropriately using the provided @c style type.
+  ///
+  /// @param range    The range of text to decorate.
+  /// @param document If multiple documents are used, the relevant document identifier is provided here.
+  ///                 Otherwise nil.
+  /// @param style    A style hint for how to decorate the text. This is ultimately up to the developer, but developers are
+  ///               encouraged to match the system's appearance (i.e., UITextView) as close as possible. 
+  @available(iOS 16.0, *)
+  func decorateFound(_ range: UITextRange, inDocument document: __UITextSearchDocumentIdentifier?, using style: UITextSearchFoundTextStyle)
+
+  /// Called when the current search session has changed or ended, with the expectation that all decorations
+  /// applied via @c decorateFoundTextRange:usingStyle: are cleared.
+  @available(iOS 16.0, *)
+  func clearAllDecoratedFoundText()
+
+  /// Optionally return NO to disallow the replacement of a particular result @c range . This will disable the "replace"
+  /// button in the UI. If this method is unimplemented, it is assumed that all results are replaceable.
+  ///
+  /// @param range    Range to replace.
+  /// @param document If multiple documents are used, the document from which range originates.
+  /// @param replacementText  Text that the user intends to replace with.
+  @available(iOS 16.0, *)
+  func shouldReplaceFoundText(in range: UITextRange, inDocument document: __UITextSearchDocumentIdentifier?, withText replacementText: String) -> Bool
+
+  /// If you return YES for `-supportsTextReplacement`, this method will be called whenever the user intends to
+  /// replace a range of text.
+  ///
+  /// @param range            The range of text requesting to be replaced.
+  /// @param document         If multiple search documents are used, the relevant document identifier is provided
+  ///                    here. Otherwise nil.
+  /// @param replacementText  The replacement string.
+  @available(iOS 16.0, *)
+  func replaceFoundText(in range: UITextRange, inDocument document: __UITextSearchDocumentIdentifier?, withText replacementText: String)
+
+  /// When replacing all occurrences at once, this method is called instead of the one above.
+  ///
+  /// @param queryString             The search term to replace.
+  /// @param options                      Search options provided by the find panel UI.
+  /// @param replacementText    The string to replace it with.
+  @available(iOS 16.0, *)
+  func replaceAllOccurrences(ofQueryString queryString: String, using options: UITextSearchOptions, withText replacementText: String)
+
+  /// Called when the highlighted search result is about to change to @c range .
+  @available(iOS 16.0, *)
+  func willHighlightFound(_ range: UITextRange, inDocument document: __UITextSearchDocumentIdentifier?)
+
+  /// If scrolling is supported, implement this to know when the document should be scrolled to a particular
+  /// search result.
+  ///
+  /// @param range    The text range to scroll to.
+  /// @param document (Optional) If multiple documents are used, the document identifier to scroll to.
+  @available(iOS 16.0, *)
+  func scrollRangeToVisible(_ range: UITextRange, inDocument document: __UITextSearchDocumentIdentifier?)
+
+  /// Returns the visible ordering from `fromDocument` to `toDocument`. If your document identifiers
+  /// are index paths, for example, this would yield the same result as `-[NSIndexPath compare:]`.
+  @available(iOS 16.0, *)
+  func compareOrder(fromDocument: __UITextSearchDocumentIdentifier, toDocument: __UITextSearchDocumentIdentifier) -> ComparisonResult
 }
 extension UITextView {
   @available(iOS 15.0, *)

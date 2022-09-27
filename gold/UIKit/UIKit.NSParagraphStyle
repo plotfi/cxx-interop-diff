@@ -2,7 +2,7 @@
 
 var __NSPARAGRAPH_STYLE_SHARED_SECTION__: Int32 { get }
 @available(iOS 6.0, *)
-enum NSLineBreakMode : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum NSLineBreakMode : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -28,7 +28,7 @@ enum NSLineBreakMode : Int, @unchecked Sendable {
 @available(swift, obsoleted: 3, renamed: "NSParagraphStyle.LineBreakStrategy")
 typealias NSLineBreakStrategy = NSParagraphStyle.LineBreakStrategy
 extension NSParagraphStyle {
-  struct LineBreakStrategy : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct LineBreakStrategy : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -78,7 +78,7 @@ extension NSTextTab.OptionKey {
   static let NSTabColumnTerminatorsAttributeName: NSTextTab.OptionKey
 }
 @available(iOS 7.0, *)
-class NSTextTab : NSObject, NSCopying, NSCoding, NSSecureCoding {
+@_nonSendable(_assumed) class NSTextTab : NSObject, NSCopying, NSCoding, NSSecureCoding {
   @available(iOS 7.0, *)
   class func columnTerminators(for aLocale: Locale?) -> CharacterSet
   @available(iOS 7.0, *)
@@ -97,8 +97,12 @@ class NSTextTab : NSObject, NSCopying, NSCoding, NSSecureCoding {
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension NSTextTab : @unchecked Sendable {
+}
 @available(iOS 6.0, *)
-class NSParagraphStyle : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSParagraphStyle : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   @NSCopying class var `default`: NSParagraphStyle { get }
   @available(swift, obsoleted: 3, renamed: "default")
   @NSCopying class var defaultParagraphStyle: NSParagraphStyle { get }
@@ -124,6 +128,8 @@ class NSParagraphStyle : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   var tabStops: [NSTextTab] { get }
   @available(iOS 7.0, *)
   var defaultTabInterval: CGFloat { get }
+  @available(iOS 7.0, *)
+  var textLists: [NSTextList] { get }
   @available(iOS 9.0, *)
   var allowsDefaultTighteningForTruncation: Bool { get }
   @available(iOS 9.0, *)
@@ -139,8 +145,12 @@ class NSParagraphStyle : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension NSParagraphStyle : @unchecked Sendable {
+}
 @available(iOS 6.0, *)
-class NSMutableParagraphStyle : NSParagraphStyle {
+@_nonSendable(_assumed) class NSMutableParagraphStyle : NSParagraphStyle {
   var lineSpacing: CGFloat
   var paragraphSpacing: CGFloat
   var alignment: NSTextAlignment
@@ -164,6 +174,8 @@ class NSMutableParagraphStyle : NSParagraphStyle {
   var allowsDefaultTighteningForTruncation: Bool
   @available(iOS 9.0, *)
   var lineBreakStrategy: NSParagraphStyle.LineBreakStrategy
+  @available(iOS 7.0, *)
+  var textLists: [NSTextList]
   @available(iOS 9.0, *)
   func addTabStop(_ anObject: NSTextTab)
   @available(iOS 9.0, *)
@@ -172,4 +184,8 @@ class NSMutableParagraphStyle : NSParagraphStyle {
   func setParagraphStyle(_ obj: NSParagraphStyle)
   init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSMutableParagraphStyle : @unchecked Sendable {
 }

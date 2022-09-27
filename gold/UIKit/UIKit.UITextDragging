@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 11.0, *)
-struct UITextDragOptions : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct UITextDragOptions : OptionSet, @unchecked Sendable {
   init(rawValue: Int)
   let rawValue: Int
   typealias RawValue = Int

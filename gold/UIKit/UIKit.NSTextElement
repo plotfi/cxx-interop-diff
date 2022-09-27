@@ -1,18 +1,35 @@
 @_exported import Foundation
 
 @available(iOS 15.0, *)
-class NSTextElement : NSObject {
+@_nonSendable(_assumed) class NSTextElement : NSObject {
   init(textContentManager: NSTextContentManager?)
   weak var textContentManager: @sil_weak NSTextContentManager?
   var elementRange: NSTextRange?
+  @available(iOS 16.0, *)
+  var childElements: [NSTextElement] { get }
+  @available(iOS 16.0, *)
+  weak var parent: @sil_weak NSTextElement? { get }
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "parent")
+  weak var parentElement: @sil_weak NSTextElement? { get }
+  @available(iOS 16.0, *)
+  var isRepresentedElement: Bool { get }
   convenience init()
 }
+
+@available(*, unavailable)
+extension NSTextElement : @unchecked Sendable {
+}
 @available(iOS 15.0, *)
-class NSTextParagraph : NSTextElement {
+@_nonSendable(_assumed) class NSTextParagraph : NSTextElement {
   init(attributedString: NSAttributedString?)
   var attributedString: NSAttributedString { get }
   var paragraphContentRange: NSTextRange? { get }
   var paragraphSeparatorRange: NSTextRange? { get }
   convenience init(textContentManager: NSTextContentManager?)
   convenience init()
+}
+
+@available(*, unavailable)
+extension NSTextParagraph : @unchecked Sendable {
 }

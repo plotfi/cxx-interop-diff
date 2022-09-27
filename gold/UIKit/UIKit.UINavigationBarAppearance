@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-@MainActor class UINavigationBarAppearance : UIBarAppearance {
+@MainActor @_nonSendable(_assumed) class UINavigationBarAppearance : UIBarAppearance {
 
   /// Inline Title text attributes. If the font or color are unspecified, appropriate defaults are supplied.
   var titleTextAttributes: [NSAttributedString.Key : Any]

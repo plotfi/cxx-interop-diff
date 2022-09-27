@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UINotificationFeedbackGenerator.FeedbackType")
 typealias UINotificationFeedbackType = UINotificationFeedbackGenerator.FeedbackType
 extension UINotificationFeedbackGenerator {
-  enum FeedbackType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum FeedbackType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -19,7 +19,7 @@ extension UINotificationFeedbackGenerator {
   }
 }
 @available(iOS 10.0, *)
-@MainActor class UINotificationFeedbackGenerator : UIFeedbackGenerator {
+@MainActor @_nonSendable(_assumed) class UINotificationFeedbackGenerator : UIFeedbackGenerator {
 
   /// call when a notification is displayed, passing the corresponding type
   func notificationOccurred(_ notificationType: UINotificationFeedbackGenerator.FeedbackType)

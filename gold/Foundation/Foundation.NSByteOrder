@@ -24,12 +24,12 @@ func NSSwapHostShortToLittle(_ x: UInt16) -> UInt16
 func NSSwapHostIntToLittle(_ x: UInt32) -> UInt32
 func NSSwapHostLongToLittle(_ x: UInt) -> UInt
 func NSSwapHostLongLongToLittle(_ x: UInt64) -> UInt64
-struct NSSwappedFloat {
+@_nonSendable(_assumed) struct NSSwappedFloat : @unchecked Sendable {
   init()
   init(v: UInt32)
   var v: UInt32
 }
-struct NSSwappedDouble {
+@_nonSendable(_assumed) struct NSSwappedDouble : @unchecked Sendable {
   init()
   init(v: UInt64)
   var v: UInt64

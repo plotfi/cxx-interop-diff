@@ -2,26 +2,26 @@
 
 @available(swift, obsoleted: 3, renamed: "Timer")
 typealias NSTimer = Timer
-class Timer : NSObject {
+@_nonSendable(_assumed) class Timer : NSObject {
   /*not inherited*/ init(timeInterval ti: TimeInterval, invocation: NSInvocation, repeats yesOrNo: Bool)
   @available(*, unavailable, renamed: "init(timeInterval:invocation:repeats:)", message: "Not available in Swift")
   class func timerWithTimeInterval(_ ti: TimeInterval, invocation: NSInvocation, repeats yesOrNo: Bool) -> Timer
-  class func scheduledTimer(timeInterval ti: TimeInterval, invocation: NSInvocation, repeats yesOrNo: Bool) -> Timer
+  @_unavailableFromAsync(message: "Timers scheduled in an async context may never fire.") class func scheduledTimer(timeInterval ti: TimeInterval, invocation: NSInvocation, repeats yesOrNo: Bool) -> Timer
   @available(swift, obsoleted: 3, renamed: "scheduledTimer(timeInterval:invocation:repeats:)")
-  class func scheduledTimerWithTimeInterval(_ ti: TimeInterval, invocation: NSInvocation, repeats yesOrNo: Bool) -> Timer
+  @_unavailableFromAsync(message: "Timers scheduled in an async context may never fire.") class func scheduledTimerWithTimeInterval(_ ti: TimeInterval, invocation: NSInvocation, repeats yesOrNo: Bool) -> Timer
   /*not inherited*/ init(timeInterval ti: TimeInterval, target aTarget: Any, selector aSelector: Selector, userInfo: Any?, repeats yesOrNo: Bool)
   @available(*, unavailable, renamed: "init(timeInterval:target:selector:userInfo:repeats:)", message: "Not available in Swift")
   class func timerWithTimeInterval(_ ti: TimeInterval, target aTarget: Any, selector aSelector: Selector, userInfo: Any?, repeats yesOrNo: Bool) -> Timer
-  class func scheduledTimer(timeInterval ti: TimeInterval, target aTarget: Any, selector aSelector: Selector, userInfo: Any?, repeats yesOrNo: Bool) -> Timer
+  @_unavailableFromAsync(message: "Timers scheduled in an async context may never fire.") class func scheduledTimer(timeInterval ti: TimeInterval, target aTarget: Any, selector aSelector: Selector, userInfo: Any?, repeats yesOrNo: Bool) -> Timer
   @available(swift, obsoleted: 3, renamed: "scheduledTimer(timeInterval:target:selector:userInfo:repeats:)")
-  class func scheduledTimerWithTimeInterval(_ ti: TimeInterval, target aTarget: Any, selector aSelector: Selector, userInfo: Any?, repeats yesOrNo: Bool) -> Timer
+  @_unavailableFromAsync(message: "Timers scheduled in an async context may never fire.") class func scheduledTimerWithTimeInterval(_ ti: TimeInterval, target aTarget: Any, selector aSelector: Selector, userInfo: Any?, repeats yesOrNo: Bool) -> Timer
 
   /// Creates and returns a new NSTimer object initialized with the specified block object. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
   /// - parameter:  timeInterval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
   /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
   /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
   @available(iOS 10.0, *)
-  /*not inherited*/ init(timeInterval interval: TimeInterval, repeats: Bool, block: @escaping (Timer) -> Void)
+  /*not inherited*/ init(timeInterval interval: TimeInterval, repeats: Bool, block: @escaping @Sendable (Timer) -> Void)
 
   /// Creates and returns a new NSTimer object initialized with the specified block object. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
   /// - parameter:  timeInterval  The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
@@ -29,14 +29,14 @@ class Timer : NSObject {
   /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
   @available(iOS 10.0, *)
   @available(*, unavailable, renamed: "init(timeInterval:repeats:block:)", message: "Not available in Swift")
-  class func timerWithTimeInterval(_ interval: TimeInterval, repeats: Bool, block: @escaping (Timer) -> Void) -> Timer
+  class func timerWithTimeInterval(_ interval: TimeInterval, repeats: Bool, block: @escaping @Sendable (Timer) -> Void) -> Timer
 
   /// Creates and returns a new NSTimer object initialized with the specified block object and schedules it on the current run loop in the default mode.
   /// - parameter:  ti    The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
   /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
   /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
   @available(iOS 10.0, *)
-  class func scheduledTimer(withTimeInterval interval: TimeInterval, repeats: Bool, block: @escaping (Timer) -> Void) -> Timer
+  class func scheduledTimer(withTimeInterval interval: TimeInterval, repeats: Bool, block: @escaping @Sendable (Timer) -> Void) -> Timer
 
   /// Creates and returns a new NSTimer object initialized with the specified block object and schedules it on the current run loop in the default mode.
   /// - parameter:  ti    The number of seconds between firings of the timer. If seconds is less than or equal to 0.0, this method chooses the nonnegative value of 0.1 milliseconds instead
@@ -44,7 +44,7 @@ class Timer : NSObject {
   /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
   @available(iOS 10.0, *)
   @available(swift, obsoleted: 3, renamed: "scheduledTimer(withTimeInterval:repeats:block:)")
-  class func scheduledTimerWithTimeInterval(_ interval: TimeInterval, repeats: Bool, block: @escaping (Timer) -> Void) -> Timer
+  class func scheduledTimerWithTimeInterval(_ interval: TimeInterval, repeats: Bool, block: @escaping @Sendable (Timer) -> Void) -> Timer
 
   /// Initializes a new NSTimer object using the block as the main body of execution for the timer. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
   /// - parameter:  fireDate   The time at which the timer should first fire.
@@ -52,7 +52,7 @@ class Timer : NSObject {
   /// - parameter:  repeats  If YES, the timer will repeatedly reschedule itself until invalidated. If NO, the timer will be invalidated after it fires.
   /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
   @available(iOS 10.0, *)
-  convenience init(fire date: Date, interval: TimeInterval, repeats: Bool, block: @escaping (Timer) -> Void)
+  convenience init(fire date: Date, interval: TimeInterval, repeats: Bool, block: @escaping @Sendable (Timer) -> Void)
 
   /// Initializes a new NSTimer object using the block as the main body of execution for the timer. This timer needs to be scheduled on a run loop (via -[NSRunLoop addTimer:]) before it will fire.
   /// - parameter:  fireDate   The time at which the timer should first fire.
@@ -61,7 +61,7 @@ class Timer : NSObject {
   /// - parameter:  block  The execution body of the timer; the timer itself is passed as the parameter to this block when executed to aid in avoiding cyclical references
   @available(iOS 10.0, *)
   @available(swift, obsoleted: 3, renamed: "init(fire:interval:repeats:block:)")
-  convenience init(fireDate date: Date, interval: TimeInterval, repeats: Bool, block: @escaping (Timer) -> Void)
+  convenience init(fireDate date: Date, interval: TimeInterval, repeats: Bool, block: @escaping @Sendable (Timer) -> Void)
   init(fireAt date: Date, interval ti: TimeInterval, target t: Any, selector s: Selector, userInfo ui: Any?, repeats rep: Bool)
   @available(swift, obsoleted: 3, renamed: "init(fireAt:interval:target:selector:userInfo:repeats:)")
   init(fireDate date: Date, interval ti: TimeInterval, target t: Any, selector s: Selector, userInfo ui: Any?, repeats rep: Bool)
@@ -111,4 +111,13 @@ extension Timer {
     final func connect() -> Cancellable
     final func receive<S>(subscriber: S) where S : Subscriber, S.Failure == Never, S.Input == Date
   }
+}
+
+@available(*, unavailable)
+extension Timer : @unchecked Sendable {
+}
+
+@available(iOS, unavailable, introduced: 13)
+@available(*, unavailable)
+extension Timer.TimerPublisher : @unchecked Sendable {
 }

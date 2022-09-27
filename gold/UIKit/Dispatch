@@ -1,5 +1,6 @@
 import Combine
 import _Concurrency
+import _StringProcessing
 @_exported import os_object
 
 var DISPATCH_API_VERSION: Int32 { get }
@@ -373,7 +374,9 @@ extension DispatchObject {
    * terminated.
    *
    * If a dispatch queue is active and targeted by other dispatch objects,
-   * changing its target queue results in undefined behavior.
+   * changing its target queue results in undefined behavior.  Instead, it is
+   * recommended to create dispatch objects in an inactive state, set up the
+   * relevant target queues and then activate them.
    *
    * @param object
    * The object to modify.
@@ -1071,6 +1074,8 @@ extension DispatchQueue {
    * When no quality of service class is specified, the target queue of a newly
    * created dispatch queue is the default priority global concurrent queue.
    *
+   * Unless explicitly specified via the attribute, queues are created active.
+   *
    * @param label
    * A string label to attach to the queue.
    * This parameter is optional and may be NULL.
@@ -1205,6 +1210,8 @@ func dispatch_apply_f(_ iterations: Int, _ queue: DispatchQueue?, _ context: Uns
  */
 @available(iOS, unavailable, introduced: 4.0, deprecated: 6.0, message: "unsupported interface")
 func dispatch_get_current_queue() -> DispatchQueue
+@available(iOS 4.0, *)
+var _dispatch_main_q: <<error type>>
 
 /**
  * @function dispatch_get_main_queue
@@ -1286,6 +1293,8 @@ class __OS_dispatch_queue_attr : DispatchObject {
 typealias dispatch_queue_attr_t = __OS_dispatch_queue_attr
 @available(*, unavailable, message: "use 'nil' instead of this imported macro")
 var DISPATCH_QUEUE_SERIAL: ()
+@available(iOS 4.3, *)
+var _dispatch_queue_attr_concurrent: <<error type>>
 
 /**
  * @function dispatch_queue_attr_make_initially_inactive
@@ -1520,6 +1529,8 @@ func __dispatch_queue_create_with_target(_ label: UnsafePointer<CChar>?, _ attr:
  * When no quality of service class is specified, the target queue of a newly
  * created dispatch queue is the default priority global concurrent queue.
  *
+ * Unless explicitly specified via the attribute, queues are created active.
+ *
  * @param label
  * A string label to attach to the queue.
  * This parameter is optional and may be NULL.
@@ -1641,7 +1652,9 @@ func __dispatch_queue_get_qos_class(_ queue: DispatchQueue, _ relative_priority_
  * terminated.
  *
  * If a dispatch queue is active and targeted by other dispatch objects,
- * changing its target queue results in undefined behavior.
+ * changing its target queue results in undefined behavior.  Instead, it is
+ * recommended to create dispatch objects in an inactive state, set up the
+ * relevant target queues and then activate them.
  *
  * @param object
  * The object to modify.
@@ -2419,6 +2432,8 @@ extension DispatchSource : DispatchSourceProtocol {
  * interpreted.
  */
 typealias __dispatch_source_type_t = OpaquePointer
+@available(iOS 4.0, *)
+var _dispatch_source_type_data_add: <<error type>>
 protocol DispatchSourceUserDataAdd : DispatchSourceProtocol {
 }
 
@@ -2438,6 +2453,8 @@ extension DispatchSourceUserDataAdd {
 typealias OS_dispatch_source_data_add = DispatchSourceUserDataAdd
 extension DispatchSource : DispatchSourceUserDataAdd {
 }
+@available(iOS 4.0, *)
+var _dispatch_source_type_data_or: <<error type>>
 protocol DispatchSourceUserDataOr : DispatchSourceProtocol {
 }
 
@@ -2457,6 +2474,8 @@ extension DispatchSourceUserDataOr {
 typealias OS_dispatch_source_data_or = DispatchSourceUserDataOr
 extension DispatchSource : DispatchSourceUserDataOr {
 }
+@available(iOS 11.0, *)
+var _dispatch_source_type_data_replace: <<error type>>
 protocol DispatchSourceUserDataReplace : DispatchSourceProtocol {
 }
 
@@ -2476,6 +2495,8 @@ extension DispatchSourceUserDataReplace {
 typealias OS_dispatch_source_data_replace = DispatchSourceUserDataReplace
 extension DispatchSource : DispatchSourceUserDataReplace {
 }
+@available(iOS 4.0, *)
+var _dispatch_source_type_mach_send: <<error type>>
 protocol DispatchSourceMachSend : DispatchSourceProtocol {
 }
 
@@ -2488,6 +2509,8 @@ extension DispatchSourceMachSend {
 typealias OS_dispatch_source_mach_send = DispatchSourceMachSend
 extension DispatchSource : DispatchSourceMachSend {
 }
+@available(iOS 4.0, *)
+var _dispatch_source_type_mach_recv: <<error type>>
 protocol DispatchSourceMachReceive : DispatchSourceProtocol {
 }
 
@@ -2498,6 +2521,8 @@ extension DispatchSourceMachReceive {
 typealias OS_dispatch_source_mach_recv = DispatchSourceMachReceive
 extension DispatchSource : DispatchSourceMachReceive {
 }
+@available(iOS 8.0, *)
+var _dispatch_source_type_memorypressure: <<error type>>
 protocol DispatchSourceMemoryPressure : DispatchSourceProtocol {
 }
 
@@ -2509,6 +2534,8 @@ extension DispatchSourceMemoryPressure {
 typealias OS_dispatch_source_memorypressure = DispatchSourceMemoryPressure
 extension DispatchSource : DispatchSourceMemoryPressure {
 }
+@available(iOS 4.0, *)
+var _dispatch_source_type_proc: <<error type>>
 protocol DispatchSourceProcess : DispatchSourceProtocol {
 }
 
@@ -2521,18 +2548,24 @@ extension DispatchSourceProcess {
 typealias OS_dispatch_source_proc = DispatchSourceProcess
 extension DispatchSource : DispatchSourceProcess {
 }
+@available(iOS 4.0, *)
+var _dispatch_source_type_read: <<error type>>
 protocol DispatchSourceRead : DispatchSourceProtocol {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceRead")
 typealias OS_dispatch_source_read = DispatchSourceRead
 extension DispatchSource : DispatchSourceRead {
 }
+@available(iOS 4.0, *)
+var _dispatch_source_type_signal: <<error type>>
 protocol DispatchSourceSignal : DispatchSourceProtocol {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceSignal")
 typealias OS_dispatch_source_signal = DispatchSourceSignal
 extension DispatchSource : DispatchSourceSignal {
 }
+@available(iOS 4.0, *)
+var _dispatch_source_type_timer: <<error type>>
 protocol DispatchSourceTimer : DispatchSourceProtocol {
 }
 
@@ -2850,6 +2883,8 @@ extension DispatchSourceTimer {
 typealias OS_dispatch_source_timer = DispatchSourceTimer
 extension DispatchSource : DispatchSourceTimer {
 }
+@available(iOS 4.0, *)
+var _dispatch_source_type_vnode: <<error type>>
 protocol DispatchSourceFileSystemObject : DispatchSourceProtocol {
 }
 
@@ -2862,6 +2897,8 @@ extension DispatchSourceFileSystemObject {
 typealias OS_dispatch_source_vnode = DispatchSourceFileSystemObject
 extension DispatchSource : DispatchSourceFileSystemObject {
 }
+@available(iOS 4.0, *)
+var _dispatch_source_type_write: <<error type>>
 protocol DispatchSourceWrite : DispatchSourceProtocol {
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSourceWrite")
@@ -3232,9 +3269,9 @@ extension DispatchGroup {
   func notify(qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], queue: DispatchQueue, execute work: @escaping @convention(block) () -> Void)
   @available(macOS 10.10, iOS 8.0, *)
   func notify(queue: DispatchQueue, work: DispatchWorkItem)
-  func wait()
-  func wait(timeout: DispatchTime) -> DispatchTimeoutResult
-  func wait(wallTimeout timeout: DispatchWallTime) -> DispatchTimeoutResult
+  @_unavailableFromAsync(message: "Use a TaskGroup instead") func wait()
+  @_unavailableFromAsync(message: "Use a TaskGroup instead") func wait(timeout: DispatchTime) -> DispatchTimeoutResult
+  @_unavailableFromAsync(message: "Use a TaskGroup instead") func wait(wallTimeout timeout: DispatchWallTime) -> DispatchTimeoutResult
 }
 @available(swift, obsoleted: 3, renamed: "DispatchGroup")
 typealias OS_dispatch_group = DispatchGroup
@@ -3455,9 +3492,9 @@ class DispatchSemaphore : DispatchObject {
 extension DispatchSemaphore {
   @discardableResult
   func signal() -> Int
-  func wait()
-  func wait(timeout: DispatchTime) -> DispatchTimeoutResult
-  func wait(wallTimeout: DispatchWallTime) -> DispatchTimeoutResult
+  @_unavailableFromAsync(message: "Await a Task handle instead") func wait()
+  @_unavailableFromAsync(message: "Await a Task handle instead") func wait(timeout: DispatchTime) -> DispatchTimeoutResult
+  @_unavailableFromAsync(message: "Await a Task handle instead") func wait(wallTimeout: DispatchWallTime) -> DispatchTimeoutResult
 }
 @available(swift, obsoleted: 3, renamed: "DispatchSemaphore")
 typealias OS_dispatch_semaphore = DispatchSemaphore
@@ -3519,7 +3556,9 @@ extension DispatchSemaphore {
  *
  * @discussion
  * Decrement the counting semaphore. If the resulting value is less than zero,
- * this function waits for a signal to occur before returning.
+ * this function waits for a signal to occur before returning. If the timeout is
+ * reached without a signal being received, the semaphore is re-incremented
+ * before the function returns.
  *
  * @param dsema
  * The semaphore. The result of passing NULL in this parameter is undefined.
@@ -3576,6 +3615,8 @@ class __DispatchData : NSObject {
 }
 @available(*, unavailable, message: "Not available in Swift")
 typealias dispatch_data_t = __DispatchData
+@available(iOS 5.0, *)
+var _dispatch_data_empty: <<error type>>
 @available(*, unavailable, message: "use 'nil' instead of this imported macro")
 var DISPATCH_DATA_DESTRUCTOR_DEFAULT: ()
 @available(iOS 5.0, *)
@@ -5878,18 +5919,18 @@ extension DispatchGroup {
   func notify(qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], queue: DispatchQueue, execute work: @escaping @convention(block) () -> Void)
   @available(macOS 10.10, iOS 8.0, *)
   func notify(queue: DispatchQueue, work: DispatchWorkItem)
-  func wait()
-  func wait(timeout: DispatchTime) -> DispatchTimeoutResult
-  func wait(wallTimeout timeout: DispatchWallTime) -> DispatchTimeoutResult
+  @_unavailableFromAsync(message: "Use a TaskGroup instead") func wait()
+  @_unavailableFromAsync(message: "Use a TaskGroup instead") func wait(timeout: DispatchTime) -> DispatchTimeoutResult
+  @_unavailableFromAsync(message: "Use a TaskGroup instead") func wait(wallTimeout timeout: DispatchWallTime) -> DispatchTimeoutResult
 }
 
 /// dispatch_semaphore
 extension DispatchSemaphore {
   @discardableResult
   func signal() -> Int
-  func wait()
-  func wait(timeout: DispatchTime) -> DispatchTimeoutResult
-  func wait(wallTimeout: DispatchWallTime) -> DispatchTimeoutResult
+  @_unavailableFromAsync(message: "Await a Task handle instead") func wait()
+  @_unavailableFromAsync(message: "Await a Task handle instead") func wait(timeout: DispatchTime) -> DispatchTimeoutResult
+  @_unavailableFromAsync(message: "Await a Task handle instead") func wait(wallTimeout: DispatchWallTime) -> DispatchTimeoutResult
 }
 
 @available(*, unavailable, renamed: "DispatchQueue.GlobalQueuePriority.high")

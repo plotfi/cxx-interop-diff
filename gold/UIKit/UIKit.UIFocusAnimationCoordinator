@@ -11,7 +11,7 @@
 
 /// UIFocusAnimationCoordinator is used to coordinate disparate animations that are related to a focus update.
 @available(iOS 9.0, *)
-@MainActor class UIFocusAnimationCoordinator : NSObject {
+@MainActor @_nonSendable(_assumed) class UIFocusAnimationCoordinator : NSObject {
 
   /**
    Specifies focus-related animations that should be coordinated with the animations of the focusing or un-focusing view.

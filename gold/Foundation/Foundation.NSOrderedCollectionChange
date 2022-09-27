@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 13.0, *)
-enum NSCollectionChangeType : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum NSCollectionChangeType : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -13,7 +13,7 @@ enum NSCollectionChangeType : Int, @unchecked Sendable {
   static var Remove: NSCollectionChangeType { get }
 }
 @available(iOS 13.0, *)
-class NSOrderedCollectionChange : NSObject {
+@_nonSendable(_assumed) class NSOrderedCollectionChange : NSObject {
   @available(*, unavailable, message: "superseded by import of -[NSOrderedCollectionChange initWithObject:type:index:]")
   /*not inherited*/ init(object anObject: Any?, type: NSCollectionChangeType, index: Int)
   @available(*, unavailable, renamed: "init(object:type:index:)", message: "Not available in Swift")
@@ -30,4 +30,8 @@ class NSOrderedCollectionChange : NSObject {
   convenience init()
   convenience init(object anObject: Any?, type: NSCollectionChangeType, index: Int)
   init(object anObject: Any?, type: NSCollectionChangeType, index: Int, associatedIndex: Int)
+}
+
+@available(*, unavailable)
+extension NSOrderedCollectionChange : @unchecked Sendable {
 }

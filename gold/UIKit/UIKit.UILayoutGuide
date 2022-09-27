@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 9.0, *)
-@MainActor class UILayoutGuide : NSObject, NSCoding {
+@MainActor @_nonSendable(_assumed) class UILayoutGuide : NSObject, NSCoding {
   var layoutFrame: CGRect { get }
   weak var owningView: @sil_weak UIView?
   var identifier: String

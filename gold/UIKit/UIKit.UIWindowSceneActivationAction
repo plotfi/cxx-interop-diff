@@ -24,7 +24,7 @@ extension UIWindowScene {
 
   /// An action that facilitates activating a @c UIWindowScene when performed.
   @available(iOS 15.0, *)
-  class ActivationAction : UIAction {
+  @_nonSendable(_assumed) class ActivationAction : UIAction {
 
     /// The actions title. Set to nil to use the default title.
     var title: String!

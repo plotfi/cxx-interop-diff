@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 3.1, *)
-@MainActor class UIVideoEditorController : UINavigationController {
+@MainActor @_nonSendable(_assumed) class UIVideoEditorController : UINavigationController {
   @available(iOS 3.1, *)
   class func canEditVideo(atPath videoPath: String) -> Bool
   @available(iOS 3.1, *)

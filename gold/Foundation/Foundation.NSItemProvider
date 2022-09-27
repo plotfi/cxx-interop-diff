@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 11.0, *)
-enum NSItemProviderRepresentationVisibility : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum NSItemProviderRepresentationVisibility : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -20,7 +20,7 @@ enum NSItemProviderRepresentationVisibility : Int, @unchecked Sendable {
   static var OwnProcess: NSItemProviderRepresentationVisibility { get }
 }
 @available(iOS 11.0, *)
-struct NSItemProviderFileOptions : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct NSItemProviderFileOptions : OptionSet, @unchecked Sendable {
   init(rawValue: Int)
   let rawValue: Int
   typealias RawValue = Int
@@ -40,9 +40,9 @@ protocol NSItemProviderWriting : NSObjectProtocol {
   optional func itemProviderVisibilityForRepresentation(withTypeIdentifier typeIdentifier: String) -> NSItemProviderRepresentationVisibility
   @available(swift, obsoleted: 3, renamed: "itemProviderVisibilityForRepresentation(withTypeIdentifier:)")
   optional func itemProviderVisibilityForRepresentationWithTypeIdentifier(_ typeIdentifier: String) -> NSItemProviderRepresentationVisibility
-  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress?
+  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping @Sendable (Data?, Error?) -> Void) -> Progress?
   @available(swift, obsoleted: 3, renamed: "loadData(withTypeIdentifier:forItemProviderCompletionHandler:)")
-  func loadDataWithTypeIdentifier(_ typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress?
+  func loadDataWithTypeIdentifier(_ typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping @Sendable (Data?, Error?) -> Void) -> Progress?
 }
 @available(iOS 11.0, *)
 protocol NSItemProviderReading : NSObjectProtocol {
@@ -54,12 +54,12 @@ protocol NSItemProviderReading : NSObjectProtocol {
 @available(swift, obsoleted: 3, renamed: "NSItemProvider.CompletionHandler")
 typealias NSItemProviderCompletionHandler = NSItemProvider.CompletionHandler
 extension NSItemProvider {
-  typealias CompletionHandler = (NSSecureCoding?, Error?) -> Void
-  typealias LoadHandler = (NSItemProvider.CompletionHandler?, AnyClass?, [AnyHashable : Any]?) -> Void
+  typealias CompletionHandler = @Sendable (NSSecureCoding?, Error?) -> Void
+  typealias LoadHandler = @Sendable (NSItemProvider.CompletionHandler?, AnyClass?, [AnyHashable : Any]?) -> Void
   @available(iOS 8.0, *)
   class let errorDomain: String
   @available(iOS 8.0, *)
-  enum ErrorCode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ErrorCode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -82,18 +82,18 @@ extension NSItemProvider {
 @available(swift, obsoleted: 3, renamed: "NSItemProvider.LoadHandler")
 typealias NSItemProviderLoadHandler = NSItemProvider.LoadHandler
 @available(iOS 8.0, *)
-class NSItemProvider : NSObject, NSCopying {
+@_nonSendable(_assumed) class NSItemProvider : NSObject, NSCopying {
   init()
   @available(iOS 11.0, *)
-  func registerDataRepresentation(forTypeIdentifier typeIdentifier: String, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping (@escaping (Data?, Error?) -> Void) -> Progress?)
+  func registerDataRepresentation(forTypeIdentifier typeIdentifier: String, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping @Sendable (@escaping (Data?, Error?) -> Void) -> Progress?)
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "registerDataRepresentation(forTypeIdentifier:visibility:loadHandler:)")
-  func registerDataRepresentationForTypeIdentifier(_ typeIdentifier: String, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping (@escaping (Data?, Error?) -> Void) -> Progress?)
+  func registerDataRepresentationForTypeIdentifier(_ typeIdentifier: String, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping @Sendable (@escaping (Data?, Error?) -> Void) -> Progress?)
   @available(iOS 11.0, *)
-  func registerFileRepresentation(forTypeIdentifier typeIdentifier: String, fileOptions: NSItemProviderFileOptions = [], visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping (@escaping (URL?, Bool, Error?) -> Void) -> Progress?)
+  func registerFileRepresentation(forTypeIdentifier typeIdentifier: String, fileOptions: NSItemProviderFileOptions = [], visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping @Sendable (@escaping (URL?, Bool, Error?) -> Void) -> Progress?)
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "registerFileRepresentation(forTypeIdentifier:fileOptions:visibility:loadHandler:)")
-  func registerFileRepresentationForTypeIdentifier(_ typeIdentifier: String, fileOptions: NSItemProviderFileOptions = [], visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping (@escaping (URL?, Bool, Error?) -> Void) -> Progress?)
+  func registerFileRepresentationForTypeIdentifier(_ typeIdentifier: String, fileOptions: NSItemProviderFileOptions = [], visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping @Sendable (@escaping (URL?, Bool, Error?) -> Void) -> Progress?)
   var registeredTypeIdentifiers: [String] { get }
   @available(iOS 11.0, *)
   func registeredTypeIdentifiers(fileOptions: NSItemProviderFileOptions = []) -> [String]
@@ -107,20 +107,20 @@ class NSItemProvider : NSObject, NSCopying {
   @available(swift, obsoleted: 3, renamed: "hasRepresentationConforming(toTypeIdentifier:fileOptions:)")
   func hasRepresentationConformingToTypeIdentifier(_ typeIdentifier: String, fileOptions: NSItemProviderFileOptions = []) -> Bool
   @available(iOS 11.0, *)
-  func loadDataRepresentation(forTypeIdentifier typeIdentifier: String, completionHandler: @escaping (Data?, Error?) -> Void) -> Progress
+  func loadDataRepresentation(forTypeIdentifier typeIdentifier: String, completionHandler: @escaping @Sendable (Data?, Error?) -> Void) -> Progress
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "loadDataRepresentation(forTypeIdentifier:completionHandler:)")
-  func loadDataRepresentationForTypeIdentifier(_ typeIdentifier: String, completionHandler: @escaping (Data?, Error?) -> Void) -> Progress
+  func loadDataRepresentationForTypeIdentifier(_ typeIdentifier: String, completionHandler: @escaping @Sendable (Data?, Error?) -> Void) -> Progress
   @available(iOS 11.0, *)
-  func loadFileRepresentation(forTypeIdentifier typeIdentifier: String, completionHandler: @escaping (URL?, Error?) -> Void) -> Progress
+  func loadFileRepresentation(forTypeIdentifier typeIdentifier: String, completionHandler: @escaping @Sendable (URL?, Error?) -> Void) -> Progress
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "loadFileRepresentation(forTypeIdentifier:completionHandler:)")
-  func loadFileRepresentationForTypeIdentifier(_ typeIdentifier: String, completionHandler: @escaping (URL?, Error?) -> Void) -> Progress
+  func loadFileRepresentationForTypeIdentifier(_ typeIdentifier: String, completionHandler: @escaping @Sendable (URL?, Error?) -> Void) -> Progress
   @available(iOS 11.0, *)
-  func loadInPlaceFileRepresentation(forTypeIdentifier typeIdentifier: String, completionHandler: @escaping (URL?, Bool, Error?) -> Void) -> Progress
+  func loadInPlaceFileRepresentation(forTypeIdentifier typeIdentifier: String, completionHandler: @escaping @Sendable (URL?, Bool, Error?) -> Void) -> Progress
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "loadInPlaceFileRepresentation(forTypeIdentifier:completionHandler:)")
-  func loadInPlaceFileRepresentationForTypeIdentifier(_ typeIdentifier: String, completionHandler: @escaping (URL?, Bool, Error?) -> Void) -> Progress
+  func loadInPlaceFileRepresentationForTypeIdentifier(_ typeIdentifier: String, completionHandler: @escaping @Sendable (URL?, Bool, Error?) -> Void) -> Progress
   @available(iOS 11.0, *)
   var suggestedName: String?
   @available(iOS 11.0, *)
@@ -128,20 +128,20 @@ class NSItemProvider : NSObject, NSCopying {
   @available(iOS 11.0, *)
   func registerObject(_ object: NSItemProviderWriting, visibility: NSItemProviderRepresentationVisibility)
   @available(iOS 11.0, *)
-  func registerObject(ofClass aClass: NSItemProviderWriting.Type, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping (@escaping (NSItemProviderWriting?, Error?) -> Void) -> Progress?)
+  func registerObject(ofClass aClass: NSItemProviderWriting.Type, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping @Sendable (@escaping (NSItemProviderWriting?, Error?) -> Void) -> Progress?)
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "registerObject(ofClass:visibility:loadHandler:)")
-  func registerObjectOfClass(_ aClass: NSItemProviderWriting.Type, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping (@escaping (NSItemProviderWriting?, Error?) -> Void) -> Progress?)
+  func registerObjectOfClass(_ aClass: NSItemProviderWriting.Type, visibility: NSItemProviderRepresentationVisibility, loadHandler: @escaping @Sendable (@escaping (NSItemProviderWriting?, Error?) -> Void) -> Progress?)
   @available(iOS 11.0, *)
   func canLoadObject(ofClass aClass: NSItemProviderReading.Type) -> Bool
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "canLoadObject(ofClass:)")
   func canLoadObjectOfClass(_ aClass: NSItemProviderReading.Type) -> Bool
   @available(iOS 11.0, *)
-  func loadObject(ofClass aClass: NSItemProviderReading.Type, completionHandler: @escaping (NSItemProviderReading?, Error?) -> Void) -> Progress
+  func loadObject(ofClass aClass: NSItemProviderReading.Type, completionHandler: @escaping @Sendable (NSItemProviderReading?, Error?) -> Void) -> Progress
   @available(iOS 11.0, *)
   @available(swift, obsoleted: 3, renamed: "loadObject(ofClass:completionHandler:)")
-  func loadObjectOfClass(_ aClass: NSItemProviderReading.Type, completionHandler: @escaping (NSItemProviderReading?, Error?) -> Void) -> Progress
+  func loadObjectOfClass(_ aClass: NSItemProviderReading.Type, completionHandler: @escaping @Sendable (NSItemProviderReading?, Error?) -> Void) -> Progress
   init(item: NSSecureCoding?, typeIdentifier: String?)
   convenience init?(contentsOf fileURL: URL!)
   @available(swift, obsoleted: 3, renamed: "init(contentsOf:)")
@@ -149,10 +149,10 @@ class NSItemProvider : NSObject, NSCopying {
   func registerItem(forTypeIdentifier typeIdentifier: String, loadHandler: @escaping NSItemProvider.LoadHandler)
   @available(swift, obsoleted: 3, renamed: "registerItem(forTypeIdentifier:loadHandler:)")
   func registerItemForTypeIdentifier(_ typeIdentifier: String, loadHandler: @escaping NSItemProvider.LoadHandler)
-  func loadItem(forTypeIdentifier typeIdentifier: String, options: [AnyHashable : Any]? = nil, completionHandler: (@Sendable (NSSecureCoding?, Error?) -> Void)? = nil)
+  func loadItem(forTypeIdentifier typeIdentifier: String, options: [AnyHashable : Any]? = nil, completionHandler: NSItemProvider.CompletionHandler? = nil)
   func loadItem(forTypeIdentifier typeIdentifier: String, options: [AnyHashable : Any]? = nil) async throws -> NSSecureCoding
   @available(swift, obsoleted: 3, renamed: "loadItem(forTypeIdentifier:options:completionHandler:)")
-  func loadItemForTypeIdentifier(_ typeIdentifier: String, options: [AnyHashable : Any]? = nil, completionHandler: (@Sendable (NSSecureCoding?, Error?) -> Void)? = nil)
+  func loadItemForTypeIdentifier(_ typeIdentifier: String, options: [AnyHashable : Any]? = nil, completionHandler: NSItemProvider.CompletionHandler? = nil)
   @available(iOS 8.0, *)
   func copy(with zone: NSZone? = nil) -> Any
 }
@@ -166,18 +166,22 @@ extension NSItemProvider {
   @available(macOS 10.13, iOS 11.0, watchOS 4.0, tvOS 11.0, *)
   func loadObject<T>(ofClass: T.Type, completionHandler: @escaping (T?, Error?) -> Void) -> Progress where T : _ObjectiveCBridgeable, T._ObjectiveCType : NSItemProviderReading
 }
+
+@available(*, unavailable)
+extension NSItemProvider : @unchecked Sendable {
+}
 @available(iOS 8.0, *)
 let NSItemProviderPreferredImageSizeKey: String
 extension NSItemProvider {
   @available(iOS 8.0, *)
   var previewImageHandler: NSItemProvider.LoadHandler?
   @available(iOS 8.0, *)
-  func loadPreviewImage(options: [AnyHashable : Any]! = [:], completionHandler: (@Sendable (NSSecureCoding?, Error?) -> Void)!)
+  func loadPreviewImage(options: [AnyHashable : Any]! = [:], completionHandler: NSItemProvider.CompletionHandler!)
   @available(iOS 8.0, *)
   func loadPreviewImage(options: [AnyHashable : Any]! = [:]) async throws -> NSSecureCoding
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "loadPreviewImage(options:completionHandler:)")
-  func loadPreviewImageWithOptions(_ options: [AnyHashable : Any]! = [:], completionHandler: (@Sendable (NSSecureCoding?, Error?) -> Void)!)
+  func loadPreviewImageWithOptions(_ options: [AnyHashable : Any]! = [:], completionHandler: NSItemProvider.CompletionHandler!)
 }
 @available(iOS 8.0, *)
 let NSExtensionJavaScriptPreprocessingResultsKey: String

@@ -10,7 +10,7 @@ extension UICollectionView {
   class let elementKindSectionHeader: String
   @available(iOS 6.0, *)
   class let elementKindSectionFooter: String
-  enum ScrollDirection : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ScrollDirection : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -21,7 +21,7 @@ extension UICollectionView {
     @available(swift, obsoleted: 3, renamed: "horizontal")
     static var Horizontal: UICollectionView.ScrollDirection { get }
   }
-  enum ElementCategory : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ElementCategory : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -44,7 +44,7 @@ typealias UICollectionViewScrollDirection = UICollectionView.ScrollDirection
 @available(swift, obsoleted: 4.2, renamed: "UICollectionView.ElementCategory")
 typealias UICollectionElementCategory = UICollectionView.ElementCategory
 @available(iOS 6.0, *)
-@MainActor class UICollectionViewLayoutAttributes : NSObject, NSCopying, UIDynamicItem {
+@MainActor @_nonSendable(_assumed) class UICollectionViewLayoutAttributes : NSObject, NSCopying, UIDynamicItem {
   var frame: CGRect
   var center: CGPoint
   var size: CGSize
@@ -95,7 +95,7 @@ typealias UICollectionElementCategory = UICollectionView.ElementCategory
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 7.0, *)
-@MainActor class UICollectionViewLayoutInvalidationContext : NSObject {
+@MainActor @_nonSendable(_assumed) class UICollectionViewLayoutInvalidationContext : NSObject {
   var invalidateEverything: Bool { get }
   var invalidateDataSourceCounts: Bool { get }
   @available(iOS 8.0, *)
@@ -132,7 +132,7 @@ typealias UICollectionElementCategory = UICollectionView.ElementCategory
   init()
 }
 @available(iOS 6.0, *)
-@MainActor class UICollectionViewLayout : NSObject, NSCoding {
+@MainActor @_nonSendable(_assumed) class UICollectionViewLayout : NSObject, NSCoding {
   init()
   init?(coder: NSCoder)
   var collectionView: UICollectionView? { get }

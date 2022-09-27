@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 15.0, *)
-class UIToolTipInteraction : NSObject, UIInteraction {
+@_nonSendable(_assumed) class UIToolTipInteraction : NSObject, UIInteraction {
 
   /// The interaction's delegate.
   weak var delegate: @sil_weak UIToolTipInteractionDelegate?
@@ -28,8 +28,12 @@ class UIToolTipInteraction : NSObject, UIInteraction {
   @available(iOS 11.0, *)
   func didMove(to view: UIView?)
 }
+
+@available(*, unavailable)
+extension UIToolTipInteraction : @unchecked Sendable {
+}
 @available(iOS 15.0, *)
-class UIToolTipConfiguration : NSObject {
+@_nonSendable(_assumed) class UIToolTipConfiguration : NSObject {
 
   /// The string to annotate the contents at a given point.
   var toolTip: String { get }
@@ -64,6 +68,10 @@ class UIToolTipConfiguration : NSObject {
 @available(tvOS, unavailable)
 extension UIToolTipConfiguration {
   var sourceRect: CGRect? { get }
+}
+
+@available(*, unavailable)
+extension UIToolTipConfiguration : @unchecked Sendable {
 }
 @available(iOS 15.0, *)
 protocol UIToolTipInteractionDelegate : NSObjectProtocol {

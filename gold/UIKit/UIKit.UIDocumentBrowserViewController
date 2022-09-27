@@ -105,7 +105,7 @@ class UIDocumentBrowserViewController : UIViewController, NSCoding {
 
   /// Called to reveal a document at the URL.
   /// Typically called from the application delegate method application:openURL:options:; to let the application present the document.
-  func revealDocument(at url: URL, importIfNeeded: Bool, completion: (@Sendable (URL?, Error?) -> Void)? = nil)
+  func revealDocument(at url: URL, importIfNeeded: Bool, completion: ((URL?, Error?) -> Void)? = nil)
 
   /// Called to reveal a document at the URL.
   /// Typically called from the application delegate method application:openURL:options:; to let the application present the document.
@@ -114,17 +114,36 @@ class UIDocumentBrowserViewController : UIViewController, NSCoding {
   /// Called to reveal a document at the URL.
   /// Typically called from the application delegate method application:openURL:options:; to let the application present the document.
   @available(swift, obsoleted: 3, renamed: "revealDocument(at:importIfNeeded:completion:)")
-  func revealDocumentAtURL(_ url: URL, importIfNeeded: Bool, completion: (@Sendable (URL?, Error?) -> Void)? = nil)
+  func revealDocumentAtURL(_ url: URL, importIfNeeded: Bool, completion: ((URL?, Error?) -> Void)? = nil)
 
   /// Allow a document to be imported next to another document.
-  func importDocument(at documentURL: URL, nextToDocumentAt neighbourURL: URL, mode importMode: UIDocumentBrowserViewController.ImportMode, completionHandler completion: @escaping @Sendable (URL?, Error?) -> Void)
+  func importDocument(at documentURL: URL, nextToDocumentAt neighbourURL: URL, mode importMode: UIDocumentBrowserViewController.ImportMode, completionHandler completion: @escaping (URL?, Error?) -> Void)
 
   /// Allow a document to be imported next to another document.
   func importDocument(at documentURL: URL, nextToDocumentAt neighbourURL: URL, mode importMode: UIDocumentBrowserViewController.ImportMode) async throws -> URL
 
   /// Allow a document to be imported next to another document.
   @available(swift, obsoleted: 3, renamed: "importDocument(at:nextToDocumentAt:mode:completionHandler:)")
-  func importDocumentAtURL(_ documentURL: URL, nextToDocumentAtURL neighbourURL: URL, mode importMode: UIDocumentBrowserViewController.ImportMode, completionHandler completion: @escaping @Sendable (URL?, Error?) -> Void)
+  func importDocumentAtURL(_ documentURL: URL, nextToDocumentAtURL neighbourURL: URL, mode importMode: UIDocumentBrowserViewController.ImportMode, completionHandler completion: @escaping (URL?, Error?) -> Void)
+
+  /// Rename a document.
+  /// If the proposed name is already taken, a different name may be used after confirming with the user.
+  /// The finalURL and error are available in the completion handler.
+  @available(iOS 16.0, *)
+  func renameDocument(at documentURL: URL, proposedName: String, completionHandler: @escaping (URL?, Error?) -> Void)
+
+  /// Rename a document.
+  /// If the proposed name is already taken, a different name may be used after confirming with the user.
+  /// The finalURL and error are available in the completion handler.
+  @available(iOS 16.0, *)
+  func renameDocument(at documentURL: URL, proposedName: String) async throws -> URL
+
+  /// Rename a document.
+  /// If the proposed name is already taken, a different name may be used after confirming with the user.
+  /// The finalURL and error are available in the completion handler.
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "renameDocument(at:proposedName:completionHandler:)")
+  func renameDocumentAtURL(_ documentURL: URL, proposedName: String, completionHandler: @escaping (URL?, Error?) -> Void)
 
   /// A UIDocumentBrowserTransitionController object is used to display a loading indicator, while the application is spending time on time-consuming operations (e.g., loading, parsing, …) after having finished the file download, and before presenting it. To be used together with the UIViewControllerTransitioningDelegate protocol for custom view controller transitions.
   @available(iOS 12.0, *)

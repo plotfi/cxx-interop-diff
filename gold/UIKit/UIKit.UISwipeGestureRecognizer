@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UISwipeGestureRecognizer.Direction")
 typealias UISwipeGestureRecognizerDirection = UISwipeGestureRecognizer.Direction
 extension UISwipeGestureRecognizer {
-  struct Direction : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Direction : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -24,7 +24,7 @@ extension UISwipeGestureRecognizer {
   }
 }
 @available(iOS 3.2, *)
-@MainActor class UISwipeGestureRecognizer : UIGestureRecognizer {
+@MainActor @_nonSendable(_assumed) class UISwipeGestureRecognizer : UIGestureRecognizer {
   var numberOfTouchesRequired: Int
   var direction: UISwipeGestureRecognizer.Direction
   init(target: Any?, action: Selector?)

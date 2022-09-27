@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 8.0, *)
-@MainActor class UILexiconEntry : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class UILexiconEntry : NSObject, NSCopying {
   var documentText: String { get }
   var userInput: String { get }
   init()
@@ -9,7 +9,7 @@
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 8.0, *)
-@MainActor class UILexicon : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class UILexicon : NSObject, NSCopying {
   var entries: [UILexiconEntry] { get }
   init()
   @available(iOS 8.0, *)

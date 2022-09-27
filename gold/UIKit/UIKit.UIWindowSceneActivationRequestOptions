@@ -4,7 +4,7 @@
 typealias UIWindowScenePresentationStyle = UIWindowScene.PresentationStyle
 extension UIWindowScene {
   @available(iOS 15.0, *)
-  enum PresentationStyle : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum PresentationStyle : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -31,7 +31,7 @@ extension UIWindowScene {
     static var Prominent: UIWindowScene.PresentationStyle { get }
   }
   @available(iOS 15.0, *)
-  class ActivationRequestOptions : UIScene.ActivationRequestOptions {
+  @_nonSendable(_assumed) class ActivationRequestOptions : UIScene.ActivationRequestOptions {
 
     /// Request a specific presentation style. Defaults to @c UIWindowScenePresentationStyleAutomatic .
     var preferredPresentationStyle: UIWindowScene.PresentationStyle

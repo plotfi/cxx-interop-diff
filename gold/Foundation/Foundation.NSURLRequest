@@ -99,7 +99,7 @@ extension NSURLRequest {
       confirms its validity, otherwise the URL is loaded from the
       origin source.
   */
-  enum CachePolicy : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum CachePolicy : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -154,7 +154,7 @@ extension NSURLRequest {
   
    @constant NSURLNetworkServiceTypeCallSignaling Specifies that the request is for call signaling.
   */
-  enum NetworkServiceType : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum NetworkServiceType : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -211,7 +211,7 @@ extension NSURLRequest {
    the user.
   */
   @available(iOS 15.0, *)
-  enum Attribution : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Attribution : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -305,7 +305,7 @@ typealias NSURLRequestAttribution = NSURLRequest.Attribution
     NSURLConnection class method which performs synchronous loads.
 */
 @available(iOS 2.0, *)
-class NSURLRequest : NSObject, NSSecureCoding, NSCopying, NSMutableCopying {
+@_nonSendable(_assumed) class NSURLRequest : NSObject, NSSecureCoding, NSCopying, NSMutableCopying {
 
   /** 
       @method requestWithURL:
@@ -471,7 +471,7 @@ class NSURLRequest : NSObject, NSSecureCoding, NSCopying, NSMutableCopying {
   /** 
       @abstract Returns the timeout interval of the receiver.
       @discussion The timeout interval specifies the limit on the idle
-      interval alloted to a request in the process of loading. The "idle
+      interval allotted to a request in the process of loading. The "idle
       interval" is defined as the period of time that has passed since the
       last instance of load activity occurred for a request that is in the
       process of loading. Hence, when an instance of load activity occurs
@@ -507,7 +507,7 @@ class NSURLRequest : NSObject, NSSecureCoding, NSCopying, NSMutableCopying {
    @abstract returns whether a connection created with this request is allowed to use
    the built in cellular radios (if present).
    @result YES if the receiver is allowed to use the built in cellular radios to
-   satify the request, NO otherwise.
+   satisfy the request, NO otherwise.
    */
   @available(iOS 6.0, *)
   var allowsCellularAccess: Bool { get }
@@ -516,7 +516,7 @@ class NSURLRequest : NSObject, NSSecureCoding, NSCopying, NSMutableCopying {
    @abstract returns whether a connection created with this request is allowed to use
    network interfaces which have been marked as expensive.
    @result YES if the receiver is allowed to use an interface marked as expensive to
-   satify the request, NO otherwise.
+   satisfy the request, NO otherwise.
    */
   @available(iOS 13.0, *)
   var allowsExpensiveNetworkAccess: Bool { get }
@@ -525,7 +525,7 @@ class NSURLRequest : NSObject, NSSecureCoding, NSCopying, NSMutableCopying {
    @abstract returns whether a connection created with this request is allowed to use
    network interfaces which have been marked as constrained.
    @result YES if the receiver is allowed to use an interface marked as constrained to
-   satify the request, NO otherwise.
+   satisfy the request, NO otherwise.
    */
   @available(iOS 13.0, *)
   var allowsConstrainedNetworkAccess: Bool { get }
@@ -561,6 +561,10 @@ extension NSURLRequest : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
 }
 
+@available(*, unavailable)
+extension NSURLRequest : @unchecked Sendable {
+}
+
 /** 
     @class NSMutableURLRequest
     
@@ -591,7 +595,7 @@ extension NSURLRequest : _HasCustomAnyHashableRepresentation {
     </ul>
 */
 @available(iOS 2.0, *)
-class NSMutableURLRequest : NSURLRequest {
+@_nonSendable(_assumed) class NSMutableURLRequest : NSURLRequest {
 
   /** 
       @abstract The URL of the receiver.
@@ -657,7 +661,7 @@ class NSMutableURLRequest : NSURLRequest {
    @abstract sets whether a connection created with this request is allowed to use
    network interfaces which have been marked as expensive.
    @discussion NO if the receiver should not be allowed to use an interface marked as expensive to
-   satify the request, YES otherwise.
+   satisfy the request, YES otherwise.
    */
   @available(iOS 13.0, *)
   var allowsExpensiveNetworkAccess: Bool
@@ -666,7 +670,7 @@ class NSMutableURLRequest : NSURLRequest {
    @abstract sets whether a connection created with this request is allowed to use
    network interfaces which have been marked as constrained.
    @discussion NO if the receiver should not be allowed to use an interface marked as constrained to
-   satify the request, YES otherwise.
+   satisfy the request, YES otherwise.
    */
   @available(iOS 13.0, *)
   var allowsConstrainedNetworkAccess: Bool
@@ -679,6 +683,14 @@ class NSMutableURLRequest : NSURLRequest {
    */
   @available(iOS 14.5, *)
   var assumesHTTP3Capable: Bool
+
+  /**
+   @abstract sets whether a request is required to do DNSSEC validation during DNS lookup.
+   @discussion YES, if the DNS lookup for this request should require DNSSEC validation,
+   No otherwise. Defaults to NO.
+   */
+  @available(iOS 16.0, *)
+  var requiresDNSSECValidation: Bool
 
   /**
    @abstract Sets the NSURLRequestAttribution to associate with this request.
@@ -742,6 +754,10 @@ class NSMutableURLRequest : NSURLRequest {
   init(url URL: URL, cachePolicy: NSURLRequest.CachePolicy, timeoutInterval: TimeInterval)
   convenience init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSMutableURLRequest : @unchecked Sendable {
 }
 
 /**

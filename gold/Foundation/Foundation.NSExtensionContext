@@ -1,11 +1,11 @@
 @_exported import CoreFoundation
 
 @available(iOS 8.0, *)
-class NSExtensionContext : NSObject {
+@_nonSendable(_assumed) class NSExtensionContext : NSObject {
   var inputItems: [Any] { get }
-  func completeRequest(returningItems items: [Any]?, completionHandler: ((Bool) -> Void)? = nil)
+  func completeRequest(returningItems items: [Any]?, completionHandler: (@Sendable (Bool) -> Void)? = nil)
   @available(swift, obsoleted: 3, renamed: "completeRequest(returningItems:completionHandler:)")
-  func completeRequestReturningItems(_ items: [Any]?, completionHandler: ((Bool) -> Void)? = nil)
+  func completeRequestReturningItems(_ items: [Any]?, completionHandler: (@Sendable (Bool) -> Void)? = nil)
   func cancelRequest(withError error: Error)
   @available(swift, obsoleted: 3, renamed: "cancelRequest(withError:)")
   func cancelRequestWithError(_ error: Error)
@@ -14,6 +14,10 @@ class NSExtensionContext : NSObject {
   @available(swift, obsoleted: 3, renamed: "open(_:completionHandler:)")
   func openURL(_ URL: URL, completionHandler: (@Sendable (Bool) -> Void)? = nil)
   init()
+}
+
+@available(*, unavailable)
+extension NSExtensionContext : @unchecked Sendable {
 }
 @available(iOS 8.0, *)
 let NSExtensionItemsAndErrorsKey: String

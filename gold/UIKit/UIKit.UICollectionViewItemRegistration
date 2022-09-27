@@ -2,7 +2,7 @@
 
 typealias __UICollectionViewCellRegistrationConfigurationHandler = (UICollectionViewCell, IndexPath, Any) -> Void
 @available(iOS 14.0, *)
-@MainActor class __UICollectionViewCellRegistration : NSObject {
+@MainActor @_nonSendable(_assumed) class __UICollectionViewCellRegistration : NSObject {
   convenience init(cellClass: AnyClass, configurationHandler: @escaping __UICollectionViewCellRegistrationConfigurationHandler)
   @available(*, unavailable, renamed: "init(cellClass:configurationHandler:)", message: "Not available in Swift")
   class func registrationWithCellClass(_ cellClass: AnyClass, configurationHandler: @escaping __UICollectionViewCellRegistrationConfigurationHandler) -> Self
@@ -16,7 +16,7 @@ typealias __UICollectionViewCellRegistrationConfigurationHandler = (UICollection
 }
 typealias __UICollectionViewSupplementaryRegistrationConfigurationHandler = (UICollectionReusableView, String, IndexPath) -> Void
 @available(iOS 14.0, *)
-@MainActor class __UICollectionViewSupplementaryRegistration : NSObject {
+@MainActor @_nonSendable(_assumed) class __UICollectionViewSupplementaryRegistration : NSObject {
   convenience init(supplementaryClass: AnyClass, elementKind: String, configurationHandler: @escaping __UICollectionViewSupplementaryRegistrationConfigurationHandler)
   @available(*, unavailable, renamed: "init(supplementaryClass:elementKind:configurationHandler:)", message: "Not available in Swift")
   class func registrationWithSupplementaryClass(_ supplementaryClass: AnyClass, elementKind: String, configurationHandler: @escaping __UICollectionViewSupplementaryRegistrationConfigurationHandler) -> Self

@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIButton.ButtonType")
 typealias UIButtonType = UIButton.ButtonType
 extension UIButton {
-  enum ButtonType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ButtonType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -37,7 +37,7 @@ extension UIButton {
     static var roundedRect: UIButton.ButtonType { get }
   }
   @available(iOS 14.0, *)
-  enum Role : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Role : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -66,7 +66,7 @@ typealias UIButtonPointerStyleProvider = (UIButton, __UIPointerEffect, __UIPoint
 @available(swift, obsoleted: 3, renamed: "UIButton.ConfigurationUpdateHandler")
 typealias UIButtonConfigurationUpdateHandler = UIButton.ConfigurationUpdateHandler
 @available(iOS 2.0, *)
-@MainActor class UIButton : UIControl, NSCoding {
+@MainActor @_nonSendable(_assumed) class UIButton : UIControl, NSCoding {
   init(frame: CGRect)
   init?(coder: NSCoder)
 
@@ -176,6 +176,10 @@ typealias UIButtonConfigurationUpdateHandler = UIButton.ConfigurationUpdateHandl
   @available(iOS 14.0, *)
   @NSCopying var menu: UIMenu?
 
+  /// Preferred menu element ordering strategy for menus displayed by this button.
+  @available(iOS 16.0, *)
+  var preferredMenuElementOrder: UIContextMenuConfiguration.ElementOrder
+
   /// Indicates if the button changes selection as its primary action.
   /// This shows the menu as options for selection if a menu is populated and showsMenuAsPrimaryAction is enabled.
   /// If no menu is provided or it is not the primary action, UIControlStateSelected is toggled on and off for the primary action.
@@ -258,7 +262,7 @@ extension UIButton {
 }
 
 extension UIButton {
-  @available(iOS 14.0, *)
+  @available(iOS 14.0, tvOS 14.0, *)
   @MainActor convenience init(type buttonType: UIButton.ButtonType = .system, primaryAction: UIAction?)
 }
 
@@ -317,6 +321,18 @@ extension UIButton {
       func hash(into hasher: inout Hasher)
       var hashValue: Int { get }
     }
+    @available(iOS 16.0, tvOS 16.0, *)
+    enum Indicator {
+      /// Automatically determine an indicator based on the button's properties.
+      case automatic
+      /// Don't show any indicator
+      case none
+      /// Show an indicator appropriate for a popup-style button
+      case popup
+      static func == (a: UIButton.Configuration.Indicator, b: UIButton.Configuration.Indicator) -> Bool
+      func hash(into hasher: inout Hasher)
+      var hashValue: Int { get }
+    }
     static func plain() -> UIButton.Configuration
     static func tinted() -> UIButton.Configuration
     static func gray() -> UIButton.Configuration
@@ -350,6 +366,10 @@ extension UIButton {
     var subtitle: String?
     var attributedSubtitle: AttributedString?
     var subtitleTextAttributesTransformer: UIConfigurationTextAttributesTransformer?
+    @available(iOS 16.0, tvOS 16.0, *)
+    var indicator: UIButton.Configuration.Indicator
+    @available(iOS 16.0, tvOS 16.0, *)
+    var indicatorColorTransformer: UIConfigurationColorTransformer?
     /// By default the button's content region is inset from its bounds based on the button's styling properties. The contentInsets are an additional inset applied afterwards.
     var contentInsets: NSDirectionalEdgeInsets
     /// Restore the default content insets.
@@ -411,6 +431,14 @@ extension UIButton.Configuration.MacIdiomStyle : Equatable {
 
 @available(iOS 15.0, tvOS 15.0, *)
 extension UIButton.Configuration.MacIdiomStyle : Hashable {
+}
+
+@available(iOS 16.0, tvOS 16.0, *)
+extension UIButton.Configuration.Indicator : Equatable {
+}
+
+@available(iOS 16.0, tvOS 16.0, *)
+extension UIButton.Configuration.Indicator : Hashable {
 }
 extension UIButton {
   @available(iOS, unavailable, introduced: 2.0, deprecated: 3.0, message: "Specify an attributed title with a custom font")

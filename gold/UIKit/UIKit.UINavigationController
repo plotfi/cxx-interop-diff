@@ -27,7 +27,7 @@ extension UINavigationController {
    UINavigationController is rotatable if its top view controller is rotatable.
    Navigation between controllers with non-uniform rotatability is currently not supported.
   */
-  enum Operation : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Operation : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -46,7 +46,7 @@ extension UINavigationController {
 @available(swift, obsoleted: 4.2, renamed: "UINavigationController.hideShowBarDuration")
 let UINavigationControllerHideShowBarDuration: CGFloat
 @available(iOS 2.0, *)
-@MainActor class UINavigationController : UIViewController {
+@MainActor @_nonSendable(_assumed) class UINavigationController : UIViewController {
   @available(iOS 5.0, *)
   init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?)
   init(rootViewController: UIViewController)

@@ -35,13 +35,26 @@ extension UIMenuElement {
     static var hidden: UIMenuElement.Attributes { get }
     @available(swift, obsoleted: 3, renamed: "hidden")
     static var Hidden: UIMenuElement.Attributes { get }
+
+    /// Indicates that the menu should remain presented after firing
+    /// the element's action rather than dismissing as it normally does.
+    /// This attribute has no effect on Mac Catalyst.
+    @available(iOS 16.0, *)
+    static var keepsMenuPresented: UIMenuElement.Attributes { get }
+
+    /// Indicates that the menu should remain presented after firing
+    /// the element's action rather than dismissing as it normally does.
+    /// This attribute has no effect on Mac Catalyst.
+    @available(iOS 16.0, *)
+    @available(swift, obsoleted: 3, renamed: "keepsMenuPresented")
+    static var KeepsMenuPresented: UIMenuElement.Attributes { get }
   }
 }
 @available(iOS 13.0, *)
 @available(swift, obsoleted: 3, renamed: "UIMenuElement.Attributes")
 typealias UIMenuElementAttributes = UIMenuElement.Attributes
 @available(iOS 13.0, *)
-@MainActor class UIMenuElement : NSObject, NSCopying, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UIMenuElement : NSObject, NSCopying, NSSecureCoding {
 
   /// The element's title.
   var title: String { get }

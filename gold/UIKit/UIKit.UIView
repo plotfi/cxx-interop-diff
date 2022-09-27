@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIView.AnimationCurve")
 typealias UIViewAnimationCurve = UIView.AnimationCurve
 extension UIView {
-  enum AnimationCurve : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum AnimationCurve : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -20,7 +20,7 @@ extension UIView {
     @available(swift, obsoleted: 3, renamed: "linear")
     static var Linear: UIView.AnimationCurve { get }
   }
-  enum ContentMode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ContentMode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -64,7 +64,7 @@ extension UIView {
     @available(swift, obsoleted: 3, renamed: "bottomRight")
     static var BottomRight: UIView.ContentMode { get }
   }
-  enum AnimationTransition : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum AnimationTransition : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -84,7 +84,7 @@ extension UIView {
     @available(swift, obsoleted: 3, renamed: "curlDown")
     static var CurlDown: UIView.AnimationTransition { get }
   }
-  struct AutoresizingMask : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct AutoresizingMask : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -115,7 +115,7 @@ extension UIView {
     static var FlexibleBottomMargin: UIView.AutoresizingMask { get }
   }
   @available(iOS 4.0, *)
-  struct AnimationOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct AnimationOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -203,7 +203,7 @@ extension UIView {
     static var PreferredFramesPerSecond30: UIView.AnimationOptions { get }
   }
   @available(iOS 7.0, *)
-  struct KeyframeAnimationOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct KeyframeAnimationOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -248,7 +248,7 @@ extension UIView {
     static var CalculationModeCubicPaced: UIView.KeyframeAnimationOptions { get }
   }
   @available(iOS 7.0, *)
-  enum SystemAnimation : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SystemAnimation : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -257,7 +257,7 @@ extension UIView {
     static var Delete: UIView.SystemAnimation { get }
   }
   @available(iOS 7.0, *)
-  enum TintAdjustmentMode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum TintAdjustmentMode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -297,7 +297,7 @@ typealias UISystemAnimation = UIView.SystemAnimation
 @available(swift, obsoleted: 4.2, renamed: "UIView.TintAdjustmentMode")
 typealias UIViewTintAdjustmentMode = UIView.TintAdjustmentMode
 @available(iOS 9.0, *)
-enum UISemanticContentAttribute : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UISemanticContentAttribute : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -342,7 +342,7 @@ enum UISemanticContentAttribute : Int, @unchecked Sendable {
   var bounds: CGRect { get }
 }
 @available(iOS 2.0, *)
-@MainActor class UIView : UIResponder, NSCoding, UIAppearance, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, UIFocusItemContainer, CALayerDelegate {
+@MainActor @_nonSendable(_assumed) class UIView : UIResponder, NSCoding, UIAppearance, UIAppearanceContainer, UIDynamicItem, UITraitEnvironment, UICoordinateSpace, UIFocusItem, UIFocusItemContainer, CALayerDelegate {
   class var layerClass: AnyClass { get }
   init(frame: CGRect)
   init?(coder: NSCoder)
@@ -485,6 +485,7 @@ enum UISemanticContentAttribute : Int, @unchecked Sendable {
   func soundIdentifierForFocusUpdate(in context: UIFocusUpdateContext) -> UIFocusSoundIdentifier?
 
   /// Returns an array of all focus items within this container that intersect with the provided rect. `rect` is expressed in `coordinateSpace`.
+  /// Note: starting in iOS & tvOS 16.0, UIView will return its subviews from this method. If you override this method in a UIView subclass, it will be your responsibility to call super and merge your array of custom focus items with UIView's default focus items.
   @available(iOS 12.0, *)
   func focusItems(in rect: CGRect) -> [UIFocusItem]
   @available(iOS 2.0, *)
@@ -554,6 +555,38 @@ extension UIView : __DefaultCustomPlaygroundQuickLookable {
   @available(*, deprecated, message: "UIView._defaultCustomPlaygroundQuickLook will be removed in a future Swift version")
   @MainActor var _defaultCustomPlaygroundQuickLook: PlaygroundQuickLook { get }
 }
+
+@available(*, unavailable)
+extension UIView.Invalidating : Sendable {
+}
+
+@available(*, unavailable)
+extension UIView.Invalidations : Sendable {
+}
+
+@available(*, unavailable)
+extension UIView.Invalidations.Display : Sendable {
+}
+
+@available(*, unavailable)
+extension UIView.Invalidations.Layout : Sendable {
+}
+
+@available(*, unavailable)
+extension UIView.Invalidations.Constraints : Sendable {
+}
+
+@available(*, unavailable)
+extension UIView.Invalidations.IntrinsicContentSize : Sendable {
+}
+
+@available(*, unavailable)
+extension UIView.Invalidations.Configuration : Sendable {
+}
+
+@available(*, unavailable)
+extension UIView.Invalidations.Tuple : Sendable {
+}
 extension UIView {
   var frame: CGRect
   var bounds: CGRect
@@ -563,6 +596,8 @@ extension UIView {
   var transform3D: CATransform3D
   @available(iOS 4.0, *)
   var contentScaleFactor: CGFloat
+  @available(iOS 16.0, *)
+  var anchorPoint: CGPoint
   var isMultipleTouchEnabled: Bool
   @available(swift, obsoleted: 3, renamed: "isMultipleTouchEnabled")
   var multipleTouchEnabled: Bool
@@ -741,12 +776,12 @@ extension UIView {
 }
 extension UIView {
   @available(iOS 7.0, *)
-  class func animateKeyframes(withDuration duration: TimeInterval, delay: TimeInterval, options: UIView.KeyframeAnimationOptions = [], animations: @escaping () -> Void, completion: (@Sendable (Bool) -> Void)? = nil)
+  class func animateKeyframes(withDuration duration: TimeInterval, delay: TimeInterval, options: UIView.KeyframeAnimationOptions = [], animations: @escaping () -> Void, completion: ((Bool) -> Void)? = nil)
   @available(iOS 7.0, *)
   class func animateKeyframes(withDuration duration: TimeInterval, delay: TimeInterval, options: UIView.KeyframeAnimationOptions = [], animations: @escaping () -> Void) async -> Bool
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "animateKeyframes(withDuration:delay:options:animations:completion:)")
-  class func animateKeyframesWithDuration(_ duration: TimeInterval, delay: TimeInterval, options: UIView.KeyframeAnimationOptions = [], animations: @escaping () -> Void, completion: (@Sendable (Bool) -> Void)? = nil)
+  class func animateKeyframesWithDuration(_ duration: TimeInterval, delay: TimeInterval, options: UIView.KeyframeAnimationOptions = [], animations: @escaping () -> Void, completion: ((Bool) -> Void)? = nil)
   @available(iOS 7.0, *)
   class func addKeyframe(withRelativeStartTime frameStartTime: Double, relativeDuration frameDuration: Double, animations: @escaping () -> Void)
   @available(iOS 7.0, *)
@@ -783,7 +818,7 @@ extension UIView {
 @available(swift, obsoleted: 4.2, renamed: "NSLayoutConstraint.Axis")
 typealias UILayoutConstraintAxis = NSLayoutConstraint.Axis
 extension NSLayoutConstraint {
-  enum Axis : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Axis : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -1042,11 +1077,14 @@ extension UIView {
   ///     // limit the support content size categories between .medium and .accessibilityExtraLarge (included).
   ///     view.minimumContentSizeCategory = UIContentSizeCategoryMedium;
   ///     view.maximumContentSizeCategory = UIContentSizeCategoryAccessibilityExtraLarge;
+  @available(iOS 15.0, *)
   var minimumContentSizeCategory: UIContentSizeCategory?
+  @available(iOS 15.0, *)
   var maximumContentSizeCategory: UIContentSizeCategory?
 
   /// Will return a string with a log of all the superviews of this view, alongside with what
   /// content size category each view has and if that view has limits applied.
   /// This is for debugging purposes only.
+  @available(iOS 15.0, *)
   var appliedContentSizeCategoryLimitsDescription: String { get }
 }

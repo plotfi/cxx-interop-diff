@@ -5,7 +5,7 @@
 typealias UICloudSharingPermissionOptions = UICloudSharingController.PermissionOptions
 extension UICloudSharingController {
   @available(iOS 10.0, *)
-  struct PermissionOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct PermissionOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -51,7 +51,7 @@ extension UICloudSharingController {
   optional func cloudSharingControllerDidStopSharing(_ csc: UICloudSharingController)
 }
 @available(iOS 10.0, *)
-@MainActor class UICloudSharingController : UIViewController {
+@MainActor @_nonSendable(_assumed) class UICloudSharingController : UIViewController {
   @available(*, unavailable)
   init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
   @available(*, unavailable)

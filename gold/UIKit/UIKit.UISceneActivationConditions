@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-@MainActor class UISceneActivationConditions : NSObject, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UISceneActivationConditions : NSObject, NSSecureCoding {
   init()
   init?(coder aDecoder: NSCoder)
   @NSCopying var canActivateForTargetContentIdentifierPredicate: NSPredicate

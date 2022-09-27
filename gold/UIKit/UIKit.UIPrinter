@@ -110,7 +110,7 @@
    *		supportsColor, and supportsDuplex for the printer.
    *		The operation can take up to 30 seconds.
    */
-  func contactPrinter(_ completionHandler: (@Sendable (Bool) -> Void)? = nil)
+  func contactPrinter(_ completionHandler: ((Bool) -> Void)? = nil)
 
   /**
    *  @method     contactPrinter:

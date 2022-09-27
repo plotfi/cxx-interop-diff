@@ -5,7 +5,7 @@
 typealias NSEnergyFormatterUnit = EnergyFormatter.Unit
 extension EnergyFormatter {
   @available(iOS 8.0, *)
-  enum Unit : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Unit : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -24,7 +24,7 @@ extension EnergyFormatter {
   }
 }
 @available(iOS 8.0, *)
-class EnergyFormatter : Formatter {
+@_nonSendable(_assumed) class EnergyFormatter : Formatter {
   @NSCopying var numberFormatter: NumberFormatter!
   var unitStyle: Formatter.UnitStyle
   var isForFoodEnergyUse: Bool
@@ -47,6 +47,10 @@ class EnergyFormatter : Formatter {
   func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, forString string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
   init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension EnergyFormatter : @unchecked Sendable {
 }
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 3, renamed: "EnergyFormatter")

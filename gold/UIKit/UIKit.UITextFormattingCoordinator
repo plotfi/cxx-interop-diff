@@ -9,7 +9,7 @@
   func updateTextAttributesWithConversionHandler(_ conversionHandler: ([NSAttributedString.Key : Any]) -> [NSAttributedString.Key : Any])
 }
 @available(iOS 13.0, *)
-@MainActor class UITextFormattingCoordinator : NSObject, UIFontPickerViewControllerDelegate {
+@MainActor @_nonSendable(_assumed) class UITextFormattingCoordinator : NSObject, UIFontPickerViewControllerDelegate {
   weak var delegate: @sil_weak UITextFormattingCoordinatorDelegate?
   class var isFontPanelVisible: Bool { get }
   @available(swift, obsoleted: 3, renamed: "isFontPanelVisible")

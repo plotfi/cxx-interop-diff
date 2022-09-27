@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 6.0, *)
-@MainActor class UIRefreshControl : UIControl {
+@MainActor @_nonSendable(_assumed) class UIRefreshControl : UIControl {
   init()
   var isRefreshing: Bool { get }
   @available(swift, obsoleted: 3, renamed: "isRefreshing")

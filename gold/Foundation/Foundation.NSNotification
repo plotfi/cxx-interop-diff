@@ -14,7 +14,7 @@ extension NSNotification {
 }
 
 /****************	Notifications	****************/
-class NSNotification : NSObject, NSCopying, NSCoding {
+@_nonSendable(_assumed) class NSNotification : NSObject, NSCopying, NSCoding {
   var name: NSNotification.Name { get }
   var object: Any? { get }
   var userInfo: [AnyHashable : Any]? { get }
@@ -29,6 +29,10 @@ class NSNotification : NSObject, NSCopying, NSCoding {
 extension NSNotification : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
 }
+
+@available(*, unavailable)
+extension NSNotification : @unchecked Sendable {
+}
 extension NSNotification {
   convenience init(name aName: NSNotification.Name, object anObject: Any?)
   @available(*, unavailable, renamed: "init(name:object:)", message: "Not available in Swift")
@@ -42,7 +46,7 @@ extension NSNotification {
 typealias NSNotificationCenter = NotificationCenter
 
 /****************	Notification Center	****************/
-class NotificationCenter : NSObject {
+@_nonSendable(_assumed) class NotificationCenter : NSObject {
   class var `default`: NotificationCenter { get }
   @available(swift, obsoleted: 3, renamed: "default")
   class var defaultCenter: NotificationCenter { get }
@@ -59,11 +63,27 @@ class NotificationCenter : NSObject {
   func removeObserver(_ observer: Any)
   func removeObserver(_ observer: Any, name aName: NSNotification.Name?, object anObject: Any?)
   @available(iOS 4.0, *)
-  func addObserver(forName name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, using block: @escaping (Notification) -> Void) -> NSObjectProtocol
+  func addObserver(forName name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, using block: @escaping @Sendable (Notification) -> Void) -> NSObjectProtocol
   @available(iOS 4.0, *)
   @available(swift, obsoleted: 3, renamed: "addObserver(forName:object:queue:using:)")
-  func addObserverForName(_ name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, usingBlock block: @escaping (Notification) -> Void) -> NSObjectProtocol
+  func addObserverForName(_ name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, usingBlock block: @escaping @Sendable (Notification) -> Void) -> NSObjectProtocol
   init()
+}
+
+extension NotificationCenter {
+  @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+  func notifications(named name: Notification.Name, object: AnyObject? = nil) -> NotificationCenter.Notifications
+  @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+  final class Notifications : AsyncSequence {
+    typealias Element = Notification
+    @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+    struct Iterator : AsyncIteratorProtocol {
+      func next() async -> Notification?
+      typealias Element = Notification
+    }
+    final __consuming func makeAsyncIterator() -> NotificationCenter.Notifications.Iterator
+    typealias AsyncIterator = NotificationCenter.Notifications.Iterator
+  }
 }
 
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
@@ -100,23 +120,26 @@ extension NotificationCenter {
   }
 }
 
-extension NotificationCenter {
-  @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
-  func notifications(named name: Notification.Name, object: AnyObject? = nil) -> NotificationCenter.Notifications
-  @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
-  final class Notifications : AsyncSequence {
-    typealias Element = Notification
-    @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
-    struct Iterator : AsyncIteratorProtocol {
-      func next() async -> Notification?
-      typealias Element = Notification
-    }
-    final __consuming func makeAsyncIterator() -> NotificationCenter.Notifications.Iterator
-    typealias AsyncIterator = NotificationCenter.Notifications.Iterator
-  }
+@available(*, unavailable)
+extension NotificationCenter : @unchecked Sendable {
+}
+
+@available(iOS, unavailable, introduced: 15)
+@available(*, unavailable)
+extension NotificationCenter.Notifications : @unchecked Sendable {
+}
+
+@available(iOS, unavailable, introduced: 13)
+@available(*, unavailable)
+extension NotificationCenter.Publisher : @unchecked Sendable {
 }
 
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension NotificationCenter.Publisher : Equatable {
   static func == (lhs: NotificationCenter.Publisher, rhs: NotificationCenter.Publisher) -> Bool
+}
+
+@available(iOS, unavailable, introduced: 15)
+@available(*, unavailable)
+extension NotificationCenter.Notifications.Iterator : @unchecked Sendable {
 }

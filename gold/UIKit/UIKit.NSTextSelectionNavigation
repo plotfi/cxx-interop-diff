@@ -5,7 +5,7 @@
 typealias NSTextSelectionNavigationDirection = NSTextSelectionNavigation.Direction
 extension NSTextSelectionNavigation {
   @available(iOS 15.0, *)
-  enum Direction : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Direction : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -29,7 +29,7 @@ extension NSTextSelectionNavigation {
     static var Down: NSTextSelectionNavigation.Direction { get }
   }
   @available(iOS 15.0, *)
-  enum Destination : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Destination : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -56,7 +56,7 @@ extension NSTextSelectionNavigation {
     static var Document: NSTextSelectionNavigation.Destination { get }
   }
   @available(iOS 15.0, *)
-  struct Modifier : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Modifier : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -73,7 +73,7 @@ extension NSTextSelectionNavigation {
     static var Multiple: NSTextSelectionNavigation.Modifier { get }
   }
   @available(iOS 15.0, *)
-  enum WritingDirection : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum WritingDirection : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -85,7 +85,7 @@ extension NSTextSelectionNavigation {
     static var RightToLeft: NSTextSelectionNavigation.WritingDirection { get }
   }
   @available(iOS 15.0, *)
-  enum LayoutOrientation : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum LayoutOrientation : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -110,7 +110,7 @@ typealias NSTextSelectionNavigationWritingDirection = NSTextSelectionNavigation.
 @available(swift, obsoleted: 3, renamed: "NSTextSelectionNavigation.LayoutOrientation")
 typealias NSTextSelectionNavigationLayoutOrientation = NSTextSelectionNavigation.LayoutOrientation
 @available(iOS 15.0, *)
-class NSTextSelectionNavigation : NSObject {
+@_nonSendable(_assumed) class NSTextSelectionNavigation : NSObject {
   init(dataSource: NSTextSelectionDataSource)
   @available(*, unavailable)
   class func new() -> Self
@@ -138,6 +138,10 @@ class NSTextSelectionNavigation : NSObject {
   func deletionRanges(for textSelection: NSTextSelection, direction: NSTextSelectionNavigation.Direction, destination: NSTextSelectionNavigation.Destination, allowsDecomposition: Bool) -> [NSTextRange]
   @available(swift, obsoleted: 3, renamed: "deletionRanges(for:direction:destination:allowsDecomposition:)")
   func deletionRangesForTextSelection(_ textSelection: NSTextSelection, direction: NSTextSelectionNavigation.Direction, destination: NSTextSelectionNavigation.Destination, allowsDecomposition: Bool) -> [NSTextRange]
+}
+
+@available(*, unavailable)
+extension NSTextSelectionNavigation : @unchecked Sendable {
 }
 @available(iOS 15.0, *)
 protocol NSTextSelectionDataSource : NSObjectProtocol {

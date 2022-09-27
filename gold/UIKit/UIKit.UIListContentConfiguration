@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 14.0, *)
-@MainActor class __UIListContentConfiguration : NSObject, __UIContentConfiguration, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class __UIListContentConfiguration : NSObject, __UIContentConfiguration, NSSecureCoding {
 
   /// Returns the default configuration for a list cell.
   class func cell() -> Self
@@ -167,7 +167,7 @@
   init?(coder: NSCoder)
 }
 @available(iOS 14.0, *)
-@MainActor class UIListContentView : UIView, __UIContentView {
+@MainActor @_nonSendable(_assumed) class UIListContentView : UIView, __UIContentView {
   init(__configuration configuration: __UIListContentConfiguration)
   init?(coder: NSCoder)
   @available(*, unavailable)
@@ -195,10 +195,19 @@
   /// Returns nil if there is no image. If a new configuration is applied that does contain an image, then this layout
   /// guide is removed from the view, and any constraints associated with it will be deactivated.
   var imageLayoutGuide: UILayoutGuide? { get }
+
+  /// Whether this view is compatible with the provided configuration, meaning the view supports
+  /// it being set to the `configuration` property and is capable of updating itself for the
+  /// configuration. If not implemented, the view is assumed to be compatible with configuration
+  /// classes that match the class of the view's existing configuration.
+  @available(iOS 16.0, *)
+  func __supportsConfiguration(_ configuration: __UIContentConfiguration) -> Bool
 }
 
 @available(iOS 14.0, tvOS 14.0, *)
 extension UIListContentView : UIContentView {
+  @available(iOS 16.0, tvOS 16.0, *)
+  @MainActor func supports(_ configuration: UIContentConfiguration) -> Bool
   @available(iOS 14.0, tvOS 14.0, *)
   @MainActor var configuration: UIContentConfiguration
   @available(iOS 14.0, tvOS 14.0, *)

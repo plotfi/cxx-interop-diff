@@ -5,7 +5,7 @@
 typealias NSFormattingContext = Formatter.Context
 extension Formatter {
   @available(iOS 8.0, *)
-  enum Context : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Context : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -29,7 +29,7 @@ extension Formatter {
     static var MiddleOfSentence: Formatter.Context { get }
   }
   @available(iOS 8.0, *)
-  enum UnitStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum UnitStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -47,7 +47,7 @@ extension Formatter {
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 3, renamed: "Formatter.UnitStyle")
 typealias NSFormattingUnitStyle = Formatter.UnitStyle
-class Formatter : NSObject, NSCopying, NSCoding {
+@_nonSendable(_assumed) class Formatter : NSObject, NSCopying, NSCoding {
   func string(for obj: Any?) -> String?
   @available(swift, obsoleted: 3, renamed: "string(for:)")
   func stringForObjectValue(_ obj: Any?) -> String?
@@ -66,6 +66,10 @@ class Formatter : NSObject, NSCopying, NSCoding {
   func copy(with zone: NSZone? = nil) -> Any
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension Formatter : @unchecked Sendable {
 }
 @available(swift, obsoleted: 3, renamed: "Formatter")
 typealias NSFormatter = Formatter

@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 3.2, *)
-@MainActor class UIRotationGestureRecognizer : UIGestureRecognizer {
+@MainActor @_nonSendable(_assumed) class UIRotationGestureRecognizer : UIGestureRecognizer {
   var rotation: CGFloat
   var velocity: CGFloat { get }
   init(target: Any?, action: Selector?)

@@ -10,7 +10,7 @@ extension NSLocale {
     typealias RawValue = String
     typealias _ObjectiveCType = NSString
   }
-  enum LanguageDirection : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum LanguageDirection : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -33,7 +33,7 @@ extension NSLocale {
   @available(iOS 2.0, *)
   class let currentLocaleDidChangeNotification: NSNotification.Name
 }
-class NSLocale : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSLocale : NSObject, NSCopying, NSSecureCoding, @unchecked Sendable {
   func object(forKey key: NSLocale.Key) -> Any?
   @available(swift, obsoleted: 3, renamed: "object(forKey:)")
   func objectForKey(_ key: NSLocale.Key) -> Any?

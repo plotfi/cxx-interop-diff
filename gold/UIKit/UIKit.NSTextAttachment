@@ -37,7 +37,7 @@ protocol NSTextAttachmentLayout : NSObjectProtocol {
   func viewProviderForParentView(_ parentView: UIView?, location: NSTextLocation, textContainer: NSTextContainer?) -> NSTextAttachmentViewProvider?
 }
 @available(iOS 7.0, *)
-class NSTextAttachment : NSObject, NSTextAttachmentLayout, NSTextAttachmentContainer, NSSecureCoding {
+@_nonSendable(_assumed) class NSTextAttachment : NSObject, NSTextAttachmentLayout, NSTextAttachmentContainer, NSSecureCoding {
 
   /**************************** Initialization ****************************/
   @available(iOS 7.0, *)
@@ -90,6 +90,10 @@ class NSTextAttachment : NSObject, NSTextAttachmentLayout, NSTextAttachmentConta
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension NSTextAttachment : @unchecked Sendable {
+}
 extension NSAttributedString {
   @available(iOS 7.0, *)
   /*not inherited*/ init(attachment: NSTextAttachment)
@@ -98,7 +102,7 @@ extension NSAttributedString {
   class func attributedStringWithAttachment(_ attachment: NSTextAttachment) -> NSAttributedString
 }
 @available(iOS 15.0, *)
-class NSTextAttachmentViewProvider : NSObject {
+@_nonSendable(_assumed) class NSTextAttachmentViewProvider : NSObject {
   init(textAttachment: NSTextAttachment, parentView: UIView?, textLayoutManager: NSTextLayoutManager?, location: NSTextLocation)
   @available(*, unavailable)
   convenience init()
@@ -113,4 +117,8 @@ class NSTextAttachmentViewProvider : NSObject {
   func attachmentBounds(for attributes: [NSAttributedString.Key : Any], location: NSTextLocation, textContainer: NSTextContainer?, proposedLineFragment: CGRect, position: CGPoint) -> CGRect
   @available(swift, obsoleted: 3, renamed: "attachmentBounds(for:location:textContainer:proposedLineFragment:position:)")
   func attachmentBoundsForAttributes(_ attributes: [NSAttributedString.Key : Any] = [:], location: NSTextLocation, textContainer: NSTextContainer?, proposedLineFragment: CGRect, position: CGPoint) -> CGRect
+}
+
+@available(*, unavailable)
+extension NSTextAttachmentViewProvider : @unchecked Sendable {
 }

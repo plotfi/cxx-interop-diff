@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 14.0, *)
-@MainActor class __UIViewConfigurationState : NSObject, __UIConfigurationState {
+@MainActor @_nonSendable(_assumed) class __UIViewConfigurationState : NSObject, __UIConfigurationState {
 
   /// Returns a new instance with the specified trait collection.
   init(traitCollection: UITraitCollection)

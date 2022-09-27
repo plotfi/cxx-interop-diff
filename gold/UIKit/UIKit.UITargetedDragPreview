@@ -1,14 +1,14 @@
 @_exported import Foundation
 
 @available(iOS 11.0, *)
-@MainActor class UIDragPreviewTarget : UIPreviewTarget {
+@MainActor @_nonSendable(_assumed) class UIDragPreviewTarget : UIPreviewTarget {
   init(container: UIView, center: CGPoint, transform: CGAffineTransform)
   convenience init(container: UIView, center: CGPoint)
   @available(*, unavailable)
   convenience init()
 }
 @available(iOS 11.0, *)
-@MainActor class UITargetedDragPreview : UITargetedPreview {
+@MainActor @_nonSendable(_assumed) class UITargetedDragPreview : UITargetedPreview {
   func retargetedPreview(with newTarget: UIDragPreviewTarget) -> UITargetedDragPreview
   @available(swift, obsoleted: 3, renamed: "retargetedPreview(with:)")
   func retargetedPreviewWithTarget(_ newTarget: UIDragPreviewTarget) -> UITargetedDragPreview

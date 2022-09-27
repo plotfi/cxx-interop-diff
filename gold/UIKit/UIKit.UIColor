@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 2.0, *)
-class UIColor : NSObject, NSSecureCoding, NSCopying {
+@_nonSendable(_assumed) class UIColor : NSObject, NSSecureCoding, NSCopying, @unchecked Sendable {
   @available(*, unavailable, message: "superseded by import of -[UIColor initWithWhite:alpha:]")
   /*not inherited*/ init(white: CGFloat, alpha: CGFloat)
   @available(*, unavailable, renamed: "init(white:alpha:)", message: "Not available in Swift")
@@ -145,7 +145,7 @@ extension UIColor : NSItemProviderReading, NSItemProviderWriting {
   @available(iOS 11.0, *)
   func itemProviderVisibilityForRepresentation(withTypeIdentifier typeIdentifier: String) -> NSItemProviderRepresentationVisibility
   @available(iOS 11.0, *)
-  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress?
+  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping @Sendable (Data?, Error?) -> Void) -> Progress?
 }
 extension CIColor {
   @available(iOS 5.0, *)

@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIAccessibilityCustomRotor.Direction")
 typealias UIAccessibilityCustomRotorDirection = UIAccessibilityCustomRotor.Direction
 extension UIAccessibilityCustomRotor {
-  enum Direction : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Direction : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -19,7 +19,7 @@ extension UIAccessibilityCustomRotor {
     static var Next: UIAccessibilityCustomRotor.Direction { get }
   }
   @available(iOS 11.0, *)
-  enum SystemRotorType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SystemRotorType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -95,13 +95,17 @@ extension NSObject {
   class func setAccessibilityCustomRotors(_ accessibilityCustomRotors: [UIAccessibilityCustomRotor]?)
 }
 @available(iOS 10.0, *)
-class UIAccessibilityCustomRotorSearchPredicate : NSObject {
+@_nonSendable(_assumed) class UIAccessibilityCustomRotorSearchPredicate : NSObject {
   var currentItem: UIAccessibilityCustomRotorItemResult
   var searchDirection: UIAccessibilityCustomRotor.Direction
   init()
 }
+
+@available(*, unavailable)
+extension UIAccessibilityCustomRotorSearchPredicate : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
-class UIAccessibilityCustomRotor : NSObject {
+@_nonSendable(_assumed) class UIAccessibilityCustomRotor : NSObject {
   init(name: String, itemSearch itemSearchBlock: @escaping UIAccessibilityCustomRotor.Search)
   @available(swift, obsoleted: 3, renamed: "init(name:itemSearch:)")
   init(name: String, itemSearchBlock: @escaping UIAccessibilityCustomRotor.Search)
@@ -123,10 +127,18 @@ class UIAccessibilityCustomRotor : NSObject {
   var systemRotorType: UIAccessibilityCustomRotor.SystemRotorType { get }
   init()
 }
+
+@available(*, unavailable)
+extension UIAccessibilityCustomRotor : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
-class UIAccessibilityCustomRotorItemResult : NSObject {
+@_nonSendable(_assumed) class UIAccessibilityCustomRotorItemResult : NSObject {
   init(targetElement: NSObjectProtocol, targetRange: UITextRange?)
   weak var targetElement: @sil_weak NSObjectProtocol?
   var targetRange: UITextRange?
   init()
+}
+
+@available(*, unavailable)
+extension UIAccessibilityCustomRotorItemResult : @unchecked Sendable {
 }

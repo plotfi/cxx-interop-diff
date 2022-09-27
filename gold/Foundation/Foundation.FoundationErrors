@@ -72,6 +72,8 @@ var NSXPCConnectionInterrupted: Int { get }
 var NSXPCConnectionInvalid: Int { get }
 @available(iOS 6.0, *)
 var NSXPCConnectionReplyInvalid: Int { get }
+@available(iOS 16.0, *)
+var NSXPCConnectionCodeSigningRequirementFailure: Int { get }
 @available(iOS 6.0, *)
 var NSXPCConnectionErrorMinimum: Int { get }
 @available(iOS 6.0, *)

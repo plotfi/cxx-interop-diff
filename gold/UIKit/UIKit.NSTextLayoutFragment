@@ -5,7 +5,7 @@
 typealias NSTextLayoutFragmentEnumerationOptions = NSTextLayoutFragment.EnumerationOptions
 extension NSTextLayoutFragment {
   @available(iOS 15.0, *)
-  struct EnumerationOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct EnumerationOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -30,7 +30,7 @@ extension NSTextLayoutFragment {
     static var EnsuresExtraLineFragment: NSTextLayoutFragment.EnumerationOptions { get }
   }
   @available(iOS 15.0, *)
-  enum State : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum State : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -52,7 +52,7 @@ extension NSTextLayoutFragment {
 @available(swift, obsoleted: 3, renamed: "NSTextLayoutFragment.State")
 typealias NSTextLayoutFragmentState = NSTextLayoutFragment.State
 @available(iOS 15.0, *)
-class NSTextLayoutFragment : NSObject, NSSecureCoding {
+@_nonSendable(_assumed) class NSTextLayoutFragment : NSObject, NSSecureCoding {
   init(textElement: NSTextElement, range rangeInElement: NSTextRange?)
   init?(coder: NSCoder)
   @available(*, unavailable)
@@ -81,4 +81,8 @@ class NSTextLayoutFragment : NSObject, NSSecureCoding {
   class var supportsSecureCoding: Bool { get }
   @available(iOS 15.0, *)
   func encode(with coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSTextLayoutFragment : @unchecked Sendable {
 }

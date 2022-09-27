@@ -3,7 +3,7 @@
 
 /****************       Immutable Ordered Set   ****************/
 @available(iOS 5.0, *)
-class NSOrderedSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding, NSFastEnumeration {
+@_nonSendable(_assumed) class NSOrderedSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding, NSFastEnumeration {
   var count: Int { get }
   func object(at idx: Int) -> Any
   @available(swift, obsoleted: 3, renamed: "object(at:)")
@@ -46,6 +46,10 @@ extension NSOrderedSet {
 extension NSOrderedSet : ExpressibleByArrayLiteral {
   required convenience init(arrayLiteral elements: Any...)
   typealias ArrayLiteralElement = Any
+}
+
+@available(*, unavailable)
+extension NSOrderedSet : @unchecked Sendable {
 }
 extension NSOrderedSet {
   @available(*, unavailable, message: "Use 'array' instead")
@@ -189,7 +193,7 @@ extension NSOrderedSet {
 
 /****************       Mutable Ordered Set     ****************/
 @available(iOS 5.0, *)
-class NSMutableOrderedSet : NSOrderedSet {
+@_nonSendable(_assumed) class NSMutableOrderedSet : NSOrderedSet {
   func insert(_ object: Any, at idx: Int)
   @available(swift, obsoleted: 3, renamed: "insert(_:at:)")
   func insertObject(_ object: Any, atIndex idx: Int)
@@ -227,6 +231,10 @@ class NSMutableOrderedSet : NSOrderedSet {
   convenience init(array set: [Any], range: NSRange, copyItems flag: Bool)
   convenience init(set: Set<AnyHashable>)
   convenience init(set: Set<AnyHashable>, copyItems flag: Bool)
+}
+
+@available(*, unavailable)
+extension NSMutableOrderedSet : @unchecked Sendable {
 }
 extension NSMutableOrderedSet {
   func add(_ object: Any)

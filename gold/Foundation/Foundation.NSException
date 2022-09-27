@@ -51,7 +51,7 @@ let NSPortReceiveException: NSExceptionName
 let NSOldStyleException: NSExceptionName
 @available(swift, obsoleted: 3, renamed: "NSExceptionName.inconsistentArchiveException")
 let NSInconsistentArchiveException: NSExceptionName
-class NSException : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSException : NSObject, NSCopying, NSSecureCoding {
   @available(*, unavailable, message: "superseded by import of -[NSException initWithName:reason:userInfo:]")
   /*not inherited*/ init(name: NSExceptionName, reason: String?, userInfo: [AnyHashable : Any]? = nil)
   @available(*, unavailable, renamed: "init(name:reason:userInfo:)", message: "Not available in Swift")
@@ -71,6 +71,10 @@ class NSException : NSObject, NSCopying, NSSecureCoding {
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension NSException : @unchecked Sendable {
+}
 extension NSException {
   class func raise(_ name: NSExceptionName, format: String, arguments argList: CVaListPointer)
 }
@@ -79,9 +83,13 @@ func NSGetUncaughtExceptionHandler() -> (@convention(c) (NSException) -> Void)?
 func NSSetUncaughtExceptionHandler(_: (@convention(c) (NSException) -> Void)?)
 @available(iOS 4.0, *)
 let NSAssertionHandlerKey: String
-class NSAssertionHandler : NSObject {
+@_nonSendable(_assumed) class NSAssertionHandler : NSObject {
   class var current: NSAssertionHandler { get }
   @available(swift, obsoleted: 3, renamed: "current")
   class var currentHandler: NSAssertionHandler { get }
   init()
+}
+
+@available(*, unavailable)
+extension NSAssertionHandler : @unchecked Sendable {
 }

@@ -1,6 +1,6 @@
 @_exported import Foundation
 
-enum UIDeviceOrientation : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIDeviceOrientation : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -28,7 +28,7 @@ enum UIDeviceOrientation : Int, @unchecked Sendable {
 }
 @available(swift, obsoleted: 4.2, renamed: "UIDevice.BatteryState")
 typealias UIDeviceBatteryState = UIDevice.BatteryState
-enum UIUserInterfaceIdiom : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIUserInterfaceIdiom : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -76,7 +76,7 @@ func UIDeviceOrientationIsFlat(_ orientation: UIDeviceOrientation) -> Bool
 @available(swift, obsoleted: 3, renamed: "getter:UIDeviceOrientation.isValidInterfaceOrientation(self:)")
 func UIDeviceOrientationIsValidInterfaceOrientation(_ orientation: UIDeviceOrientation) -> Bool
 @available(iOS 2.0, *)
-@MainActor class UIDevice : NSObject {
+@MainActor @_nonSendable(_assumed) class UIDevice : NSObject {
   class var current: UIDevice { get }
   @available(swift, obsoleted: 3, renamed: "current")
   class var currentDevice: UIDevice { get }
@@ -135,7 +135,7 @@ extension UIDevice {
   class let batteryLevelDidChangeNotification: NSNotification.Name
   @available(iOS 3.0, *)
   class let proximityStateDidChangeNotification: NSNotification.Name
-  enum BatteryState : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum BatteryState : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int

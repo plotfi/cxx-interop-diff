@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 10.0, *)
-class UIGraphicsRendererFormat : NSObject, NSCopying {
+@_nonSendable(_assumed) class UIGraphicsRendererFormat : NSObject, NSCopying {
   @available(iOS 10.0, *)
   class func `default`() -> Self
   @available(iOS 10.0, *)
@@ -17,8 +17,12 @@ class UIGraphicsRendererFormat : NSObject, NSCopying {
   @available(iOS 10.0, *)
   func copy(with zone: NSZone? = nil) -> Any
 }
+
+@available(*, unavailable)
+extension UIGraphicsRendererFormat : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
-class UIGraphicsRendererContext : NSObject {
+@_nonSendable(_assumed) class UIGraphicsRendererContext : NSObject {
   var cgContext: CGContext { get }
   @available(swift, obsoleted: 3, renamed: "cgContext")
   var CGContext: CGContext { get }
@@ -40,11 +44,19 @@ class UIGraphicsRendererContext : NSObject {
   func clipToRect(_ rect: CGRect)
   init()
 }
+
+@available(*, unavailable)
+extension UIGraphicsRendererContext : @unchecked Sendable {
+}
 @available(iOS 10.0, *)
-class UIGraphicsRenderer : NSObject {
+@_nonSendable(_assumed) class UIGraphicsRenderer : NSObject {
   convenience init(bounds: CGRect)
   init(bounds: CGRect, format: UIGraphicsRendererFormat)
   var format: UIGraphicsRendererFormat { get }
   var allowsImageOutput: Bool { get }
   convenience init()
+}
+
+@available(*, unavailable)
+extension UIGraphicsRenderer : @unchecked Sendable {
 }

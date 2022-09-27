@@ -145,7 +145,7 @@ func NSGetSizeAndAlignment(_ typePtr: UnsafePointer<CChar>, _ sizep: UnsafeMutab
 @available(*, unavailable, message: "Variadic function is unavailable")
 func NSLog(_ format: String, _ varargs: Any...)
 func NSLogv(_ format: String, _ args: CVaListPointer)
-@frozen enum ComparisonResult : Int, @unchecked Sendable {
+@_nonSendable(_assumed) @frozen enum ComparisonResult : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -164,7 +164,7 @@ typealias NSComparisonResult = ComparisonResult
 typealias Comparator = (Any, Any) -> ComparisonResult
 @available(swift, obsoleted: 3, renamed: "Comparator")
 typealias NSComparator = Comparator
-struct NSEnumerationOptions : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct NSEnumerationOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
@@ -177,7 +177,7 @@ struct NSEnumerationOptions : OptionSet, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "reverse")
   static var Reverse: NSEnumerationOptions { get }
 }
-struct NSSortOptions : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct NSSortOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
@@ -194,7 +194,7 @@ struct NSSortOptions : OptionSet, @unchecked Sendable {
 @available(swift, obsoleted: 3, renamed: "QualityOfService")
 typealias NSQualityOfService = QualityOfService
 @available(iOS 8.0, *)
-enum QualityOfService : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum QualityOfService : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int

@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "PropertyListSerialization.MutabilityOptions")
 typealias NSPropertyListMutabilityOptions = PropertyListSerialization.MutabilityOptions
 extension PropertyListSerialization {
-  struct MutabilityOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct MutabilityOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -21,7 +21,7 @@ extension PropertyListSerialization {
     @available(swift, obsoleted: 3, renamed: "mutableContainersAndLeaves")
     static var MutableContainersAndLeaves: PropertyListSerialization.MutabilityOptions { get }
   }
-  enum PropertyListFormat : UInt, @unchecked Sendable {
+  @_nonSendable(_assumed) enum PropertyListFormat : UInt, @unchecked Sendable {
     init?(rawValue: UInt)
     var rawValue: UInt { get }
     typealias RawValue = UInt
@@ -46,7 +46,7 @@ typealias NSPropertyListReadOptions = PropertyListSerialization.ReadOptions
 typealias NSPropertyListWriteOptions = PropertyListSerialization.WriteOptions
 @available(swift, obsoleted: 3, renamed: "PropertyListSerialization")
 typealias NSPropertyListSerialization = PropertyListSerialization
-class PropertyListSerialization : NSObject {
+@_nonSendable(_assumed) class PropertyListSerialization : NSObject {
   class func propertyList(_ plist: Any, isValidFor format: PropertyListSerialization.PropertyListFormat) -> Bool
   @available(swift, obsoleted: 3, renamed: "propertyList(_:isValidFor:)")
   class func propertyList(_ plist: Any, isValidForFormat format: PropertyListSerialization.PropertyListFormat) -> Bool
@@ -75,4 +75,8 @@ class PropertyListSerialization : NSObject {
   @available(iOS, introduced: 2.0, deprecated: 8.0, message: "Use propertyListWithData:options:format:error: instead.")
   class func propertyListFromData(_ data: Data, mutabilityOption opt: PropertyListSerialization.MutabilityOptions = [], format: UnsafeMutablePointer<PropertyListSerialization.PropertyListFormat>?, errorDescription errorString: UnsafeMutablePointer<NSString?>?) -> Any?
   init()
+}
+
+@available(*, unavailable)
+extension PropertyListSerialization : @unchecked Sendable {
 }

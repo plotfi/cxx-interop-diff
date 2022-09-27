@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 9.0, *)
-enum UIDynamicItemCollisionBoundsType : UInt, @unchecked Sendable {
+@_nonSendable(_assumed) enum UIDynamicItemCollisionBoundsType : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }
   typealias RawValue = UInt
@@ -35,7 +35,7 @@ enum UIDynamicItemCollisionBoundsType : UInt, @unchecked Sendable {
   optional var collisionBoundingPath: UIBezierPath { get }
 }
 @available(iOS 9.0, *)
-@MainActor class UIDynamicItemGroup : NSObject, UIDynamicItem {
+@MainActor @_nonSendable(_assumed) class UIDynamicItemGroup : NSObject, UIDynamicItem {
   init(items: [UIDynamicItem])
   var items: [UIDynamicItem] { get }
   init()
@@ -61,7 +61,7 @@ enum UIDynamicItemCollisionBoundsType : UInt, @unchecked Sendable {
   var collisionBoundingPath: UIBezierPath { get }
 }
 @available(iOS 7.0, *)
-@MainActor class UIDynamicBehavior : NSObject {
+@MainActor @_nonSendable(_assumed) class UIDynamicBehavior : NSObject {
   func addChildBehavior(_ behavior: UIDynamicBehavior)
   func removeChildBehavior(_ behavior: UIDynamicBehavior)
   var childBehaviors: [UIDynamicBehavior] { get }

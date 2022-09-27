@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UITableViewCell.CellStyle")
 typealias UITableViewCellStyle = UITableViewCell.CellStyle
 extension UITableViewCell {
-  enum CellStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum CellStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -20,7 +20,7 @@ extension UITableViewCell {
     @available(swift, obsoleted: 3, renamed: "subtitle")
     static var Subtitle: UITableViewCell.CellStyle { get }
   }
-  enum SeparatorStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SeparatorStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -36,7 +36,7 @@ extension UITableViewCell {
     @available(swift, obsoleted: 3, renamed: "singleLineEtched")
     static var SingleLineEtched: UITableViewCell.SeparatorStyle { get }
   }
-  enum SelectionStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum SelectionStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -56,7 +56,7 @@ extension UITableViewCell {
     static var Default: UITableViewCell.SelectionStyle { get }
   }
   @available(iOS 9.0, *)
-  enum FocusStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum FocusStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -67,7 +67,7 @@ extension UITableViewCell {
     @available(swift, obsoleted: 3, renamed: "custom")
     static var Custom: UITableViewCell.FocusStyle { get }
   }
-  enum EditingStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum EditingStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -81,7 +81,7 @@ extension UITableViewCell {
     @available(swift, obsoleted: 3, renamed: "insert")
     static var Insert: UITableViewCell.EditingStyle { get }
   }
-  enum AccessoryType : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum AccessoryType : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -103,7 +103,7 @@ extension UITableViewCell {
     @available(swift, obsoleted: 3, renamed: "detailButton")
     static var DetailButton: UITableViewCell.AccessoryType { get }
   }
-  struct StateMask : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct StateMask : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -126,7 +126,7 @@ extension UITableViewCell {
     static var ShowingDeleteConfirmationMask: UITableViewCell.StateMask { get }
   }
   @available(iOS 11.0, *)
-  enum DragState : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum DragState : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -160,7 +160,7 @@ typealias UITableViewCellDragState = UITableViewCell.DragState
 @available(iOS 15.0, *)
 typealias __UITableViewCellConfigurationUpdateHandler = (UITableViewCell, __UICellConfigurationState) -> Void
 @available(iOS 2.0, *)
-@MainActor class UITableViewCell : UIView, NSCoding, UIGestureRecognizerDelegate {
+@MainActor @_nonSendable(_assumed) class UITableViewCell : UIView, NSCoding, UIGestureRecognizerDelegate {
   @available(iOS 3.0, *)
   init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
   init?(coder: NSCoder)
@@ -214,6 +214,11 @@ typealias __UITableViewCellConfigurationUpdateHandler = (UITableViewCell, __UICe
   var textLabel: UILabel? { get }
   @available(iOS, introduced: 3.0, deprecated: 100000, message: "Use UIListContentConfiguration instead, this property will be deprecated in a future release.")
   var detailTextLabel: UILabel? { get }
+
+  /// Returns a default background configuration for the cell's style.
+  /// This background configuration represents the default appearance that the cell will use.
+  @available(iOS 16.0, *)
+  func __defaultBackgroundConfiguration() -> __UIBackgroundConfiguration
 
   /// Setting a background configuration supersedes the cell's backgroundView, selectedBackgroundView, and multipleSelectionBackgroundView. The default value is nil.
   @available(iOS 14.0, *)
@@ -300,6 +305,8 @@ extension UITableViewCell {
 extension UITableViewCell {
   @available(iOS 14.0, tvOS 14.0, *)
   @MainActor var backgroundConfiguration: UIBackgroundConfiguration?
+  @available(iOS 16.0, tvOS 16.0, *)
+  @MainActor func defaultBackgroundConfiguration() -> UIBackgroundConfiguration
 }
 
 @available(iOS 14.0, tvOS 14.0, *)

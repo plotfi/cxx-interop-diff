@@ -3,7 +3,7 @@
 
 /** A trait collection encapsulates the system traits of an interface's environment. */
 @available(iOS 8.0, *)
-class UITraitCollection : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class UITraitCollection : NSObject, NSCopying, NSSecureCoding, @unchecked Sendable {
   init()
   init?(coder: NSCoder)
   func containsTraits(in trait: UITraitCollection?) -> Bool
@@ -102,6 +102,10 @@ class UITraitCollection : NSObject, NSCopying, NSSecureCoding {
   class func traitCollectionWithActiveAppearance(_ userInterfaceActiveAppearance: UIUserInterfaceActiveAppearance) -> UITraitCollection
   @available(iOS 14.0, *)
   var activeAppearance: UIUserInterfaceActiveAppearance { get }
+  /*not inherited*/ init(toolbarItemPresentationSize: UINSToolbarItemPresentationSize)
+  @available(*, unavailable, renamed: "init(toolbarItemPresentationSize:)", message: "Not available in Swift")
+  class func traitCollectionWithToolbarItemPresentationSize(_ toolbarItemPresentationSize: UINSToolbarItemPresentationSize) -> UITraitCollection
+  var toolbarItemPresentationSize: UINSToolbarItemPresentationSize { get }
   @available(iOS 8.0, *)
   class var supportsSecureCoding: Bool { get }
   @available(iOS 8.0, *)

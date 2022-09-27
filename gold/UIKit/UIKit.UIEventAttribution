@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 14.5, *)
-@MainActor class UIEventAttribution : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class UIEventAttribution : NSObject, NSCopying {
 
   /// An identifier that is associated with the source of the attribution. For example, you may choose to use this as a campaign identifier to measure the effectiveness of different advertisement campaigns.
   ///

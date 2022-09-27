@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 4.2, renamed: "UIImage.Orientation")
 typealias UIImageOrientation = UIImage.Orientation
 extension UIImage {
-  enum Orientation : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Orientation : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -32,7 +32,7 @@ extension UIImage {
     @available(swift, obsoleted: 3, renamed: "rightMirrored")
     static var RightMirrored: UIImage.Orientation { get }
   }
-  enum ResizingMode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ResizingMode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -44,7 +44,7 @@ extension UIImage {
     static var Stretch: UIImage.ResizingMode { get }
   }
   @available(iOS 7.0, *)
-  enum RenderingMode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum RenderingMode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -67,7 +67,7 @@ typealias UIImageResizingMode = UIImage.ResizingMode
 @available(swift, obsoleted: 4.2, renamed: "UIImage.RenderingMode")
 typealias UIImageRenderingMode = UIImage.RenderingMode
 @available(iOS 2.0, *)
-class UIImage : NSObject, NSSecureCoding {
+@_nonSendable(_assumed) class UIImage : NSObject, NSSecureCoding, @unchecked Sendable {
   @available(iOS 13.0, *)
   /*not inherited*/ init?(systemName name: String)
   @available(iOS 13.0, *)
@@ -83,6 +83,29 @@ class UIImage : NSObject, NSSecureCoding {
   @available(iOS 13.0, *)
   @available(swift, obsoleted: 3, renamed: "init(systemName:compatibleWith:)")
   class func systemImageNamed(_ name: String, compatibleWithTraitCollection traitCollection: UITraitCollection?) -> UIImage?
+
+  /**
+   * Retrieve a system-provided image with the specified name and variable value (between 0 and 1).
+   *
+   * This will only return system-provided images. If you want a custom image as defined in your own catalogs,
+   * you should use @c +imageNamed:inBundle:variableValue:withConfiguration:.
+   *
+   * Returns @c nil if an image with specified name doesn't exist.
+   */
+  @available(iOS 16.0, *)
+  /*not inherited*/ init?(__systemName name: String, variableValue value: Double, with configuration: UIImage.Configuration?)
+
+  /**
+   * Retrieve a system-provided image with the specified name and variable value (between 0 and 1).
+   *
+   * This will only return system-provided images. If you want a custom image as defined in your own catalogs,
+   * you should use @c +imageNamed:inBundle:variableValue:withConfiguration:.
+   *
+   * Returns @c nil if an image with specified name doesn't exist.
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(__systemName:variableValue:with:)")
+  class func __systemImageNamed(_ name: String, variableValue value: Double, withConfiguration configuration: UIImage.Configuration?) -> UIImage?
   /*not inherited*/ init?(named name: String)
   @available(*, unavailable, renamed: "init(named:)", message: "Not available in Swift")
   class func imageNamed(_ name: String) -> UIImage?
@@ -102,6 +125,41 @@ class UIImage : NSObject, NSSecureCoding {
   @available(iOS 8.0, *)
   @available(*, unavailable, renamed: "init(named:in:compatibleWith:)", message: "Not available in Swift")
   class func imageNamed(_ name: String, inBundle bundle: Bundle?, compatibleWithTraitCollection traitCollection: UITraitCollection?) -> UIImage?
+
+  /**
+   * Retrieve a image with the specified name and variable value (between 0 and 1).
+   *
+   * This will only return custom images defined in your own catalogs. If you want a system-provided image,
+   * you should use @c +systemImageNamed:variableValue:withConfiguration:.
+   *
+   * Returns @c nil if an image with specified name doesn't exist.
+   */
+  @available(iOS 16.0, *)
+  /*not inherited*/ init?(__named name: String, in bundle: Bundle?, variableValue value: Double, with configuration: UIImage.Configuration?)
+
+  /**
+   * Retrieve a image with the specified name and variable value (between 0 and 1).
+   *
+   * This will only return custom images defined in your own catalogs. If you want a system-provided image,
+   * you should use @c +systemImageNamed:variableValue:withConfiguration:.
+   *
+   * Returns @c nil if an image with specified name doesn't exist.
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "init(__named:in:variableValue:with:)")
+  /*not inherited*/ init?(__named name: String, inBundle bundle: Bundle?, variableValue value: Double, withConfiguration configuration: UIImage.Configuration?)
+
+  /**
+   * Retrieve a image with the specified name and variable value (between 0 and 1).
+   *
+   * This will only return custom images defined in your own catalogs. If you want a system-provided image,
+   * you should use @c +systemImageNamed:variableValue:withConfiguration:.
+   *
+   * Returns @c nil if an image with specified name doesn't exist.
+   */
+  @available(iOS 16.0, *)
+  @available(*, unavailable, renamed: "init(__named:in:variableValue:with:)", message: "Not available in Swift")
+  class func __imageNamed(_ name: String, inBundle bundle: Bundle?, variableValue value: Double, withConfiguration configuration: UIImage.Configuration?) -> UIImage?
   @available(*, unavailable, message: "superseded by import of -[UIImage initWithContentsOfFile:]")
   /*not inherited*/ init?(contentsOfFile path: String)
   @available(*, unavailable, renamed: "init(contentsOfFile:)", message: "Not available in Swift")
@@ -322,7 +380,7 @@ class UIImage : NSObject, NSSecureCoding {
   ///
   /// @note The prepared UIImage is not related to the original image. If the properties of the screen (such as its resolution or color gamut) change, or if the image is displayed on a different screen that the one it was prepared for, it may not render correctly.
   @available(iOS 15.0, *)
-  func prepareForDisplay(completionHandler: @escaping @Sendable (UIImage?) -> Void)
+  func prepareForDisplay(completionHandler: @escaping (UIImage?) -> Void)
 
   /// Asynchronously prepares this image for displaying on the specified screen.
   ///
@@ -343,19 +401,19 @@ class UIImage : NSObject, NSSecureCoding {
   /// @note The prepared UIImage is not related to the original image. If the properties of the screen (such as its resolution or color gamut) change, or if the image is displayed on a different screen that the one it was prepared for, it may not render correctly.
   @available(iOS 15.0, *)
   @available(swift, obsoleted: 3, renamed: "prepareForDisplay(completionHandler:)")
-  func prepareForDisplayWithCompletionHandler(_ completionHandler: @escaping @Sendable (UIImage?) -> Void)
+  func prepareForDisplayWithCompletionHandler(_ completionHandler: @escaping (UIImage?) -> Void)
   @available(iOS 15.0, *)
   func preparingThumbnail(of size: CGSize) -> UIImage?
   @available(iOS 15.0, *)
   @available(swift, obsoleted: 3, renamed: "preparingThumbnail(of:)")
   func imageByPreparingThumbnailOfSize(_ size: CGSize) -> UIImage?
   @available(iOS 15.0, *)
-  func prepareThumbnail(of size: CGSize, completionHandler: @escaping @Sendable (UIImage?) -> Void)
+  func prepareThumbnail(of size: CGSize, completionHandler: @escaping (UIImage?) -> Void)
   @available(iOS 15.0, *)
   func byPreparingThumbnail(ofSize size: CGSize) async -> UIImage?
   @available(iOS 15.0, *)
   @available(swift, obsoleted: 3, renamed: "prepareThumbnail(of:completionHandler:)")
-  func prepareThumbnailOfSize(_ size: CGSize, completionHandler: @escaping @Sendable (UIImage?) -> Void)
+  func prepareThumbnailOfSize(_ size: CGSize, completionHandler: @escaping (UIImage?) -> Void)
   init()
   @available(iOS 2.0, *)
   class var supportsSecureCoding: Bool { get }
@@ -371,6 +429,24 @@ extension UIImage : _ExpressibleByImageLiteral {
 @available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension UIImage {
   var baselineOffsetFromBottom: CGFloat? { get }
+}
+
+@available(iOS 16.0, tvOS 16.0, watchOS 9.0, *)
+extension UIImage {
+  /// Retrieve a system-provided image with the specified name and variable value (between 0 and 1).
+  ///
+  /// This will only return system-provided images. If you want a custom image as defined in your own catalogs,
+  /// you should use `init(named:in:variableValue:configuration:)`.
+  ///
+  /// Returns `nil` if an image with specified name doesn't exist.
+  convenience init?(systemName name: String, variableValue: Double, configuration: UIImage.Configuration? = nil)
+  /// Retrieve an image with the specified name and variable value (between 0 and 1).
+  ///
+  /// This will only return custom images defined in your own catalogs. If you want a system-provided image,
+  /// you should use `init(systemName:variableValue:configuration:)`.
+  ///
+  /// Returns `nil` if an image with specified name doesn't exist.
+  convenience init?(named name: String, in bundle: Bundle? = nil, variableValue: Double, configuration: UIImage.Configuration? = nil)
 }
 extension UIImage {
   @available(iOS 13.0, *)
@@ -415,7 +491,7 @@ extension UIImage : NSItemProviderReading, NSItemProviderWriting, UIItemProvider
   @available(iOS 11.0, *)
   func itemProviderVisibilityForRepresentation(withTypeIdentifier typeIdentifier: String) -> NSItemProviderRepresentationVisibility
   @available(iOS 11.0, *)
-  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress?
+  func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping @Sendable (Data?, Error?) -> Void) -> Progress?
 }
 extension NSTextAttachment {
   @available(iOS 13.0, *)

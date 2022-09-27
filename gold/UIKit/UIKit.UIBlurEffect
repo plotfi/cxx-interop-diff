@@ -5,7 +5,7 @@
 typealias UIBlurEffectStyle = UIBlurEffect.Style
 extension UIBlurEffect {
   @available(iOS 8.0, *)
-  enum Style : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum Style : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -108,7 +108,7 @@ extension UIBlurEffect {
   }
 }
 @available(iOS 8.0, *)
-@MainActor class UIBlurEffect : UIVisualEffect {
+@MainActor @_nonSendable(_assumed) class UIBlurEffect : UIVisualEffect {
   /*not inherited*/ init(style: UIBlurEffect.Style)
   @available(*, unavailable, renamed: "init(style:)", message: "Not available in Swift")
   class func effectWithStyle(_ style: UIBlurEffect.Style) -> UIBlurEffect

@@ -1,9 +1,10 @@
 @_exported import Foundation
 
 @available(swift, obsoleted: 4.2, renamed: "UIMenuController.ArrowDirection")
+@available(iOS, introduced: 3.2, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
 typealias UIMenuControllerArrowDirection = UIMenuController.ArrowDirection
-@available(iOS 3.0, *)
-@MainActor class UIMenuController : NSObject {
+@available(iOS, introduced: 3.0, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
+@MainActor @_nonSendable(_assumed) class UIMenuController : NSObject {
   class var shared: UIMenuController { get }
   @available(swift, obsoleted: 3, renamed: "shared")
   class var sharedMenuController: UIMenuController { get }
@@ -38,14 +39,21 @@ typealias UIMenuControllerArrowDirection = UIMenuController.ArrowDirection
   init()
 }
 @available(swift, obsoleted: 3, renamed: "UIMenuController.willShowMenuNotification")
+@available(iOS, introduced: 3.0, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
 let UIMenuControllerWillShowMenuNotification: NSNotification.Name
 extension UIMenuController {
+  @available(iOS, introduced: 3.0, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
   class let willShowMenuNotification: NSNotification.Name
+  @available(iOS, introduced: 3.0, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
   class let didShowMenuNotification: NSNotification.Name
+  @available(iOS, introduced: 3.0, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
   class let willHideMenuNotification: NSNotification.Name
+  @available(iOS, introduced: 3.0, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
   class let didHideMenuNotification: NSNotification.Name
+  @available(iOS, introduced: 3.0, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
   class let menuFrameDidChangeNotification: NSNotification.Name
-  enum ArrowDirection : Int, @unchecked Sendable {
+  @available(iOS, introduced: 3.2, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
+  @_nonSendable(_assumed) enum ArrowDirection : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -75,15 +83,19 @@ extension UIMenuController {
   }
 }
 @available(swift, obsoleted: 3, renamed: "UIMenuController.didShowMenuNotification")
+@available(iOS, introduced: 3.0, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
 let UIMenuControllerDidShowMenuNotification: NSNotification.Name
 @available(swift, obsoleted: 3, renamed: "UIMenuController.willHideMenuNotification")
+@available(iOS, introduced: 3.0, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
 let UIMenuControllerWillHideMenuNotification: NSNotification.Name
 @available(swift, obsoleted: 3, renamed: "UIMenuController.didHideMenuNotification")
+@available(iOS, introduced: 3.0, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
 let UIMenuControllerDidHideMenuNotification: NSNotification.Name
 @available(swift, obsoleted: 3, renamed: "UIMenuController.menuFrameDidChangeNotification")
+@available(iOS, introduced: 3.0, deprecated: 16.0, message: "UIMenuController is deprecated. Use UIEditMenuInteraction instead.")
 let UIMenuControllerMenuFrameDidChangeNotification: NSNotification.Name
-@available(iOS 3.2, *)
-@MainActor class UIMenuItem : NSObject {
+@available(iOS, introduced: 3.2, deprecated: 16.0, message: "UIMenuItem is deprecated. Use UIEditMenuInteraction instead.")
+@MainActor @_nonSendable(_assumed) class UIMenuItem : NSObject {
   init(title: String, action: Selector)
   var title: String
   var action: Selector

@@ -11,7 +11,7 @@ extension NSNotification.Name {
 typealias NSTimeInterval = TimeInterval
 typealias TimeInterval = Double
 var NSTimeIntervalSince1970: Double { get }
-class NSDate : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSDate : NSObject, NSCopying, NSSecureCoding, @unchecked Sendable {
   var timeIntervalSinceReferenceDate: TimeInterval { get }
   init()
   init(timeIntervalSinceReferenceDate ti: TimeInterval)

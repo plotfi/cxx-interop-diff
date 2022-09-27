@@ -1,0 +1,21 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIWindowScene.Geometry")
+typealias UIWindowSceneGeometry = UIWindowScene.Geometry
+extension UIWindowScene {
+  @available(iOS 16.0, *)
+  @_nonSendable(_assumed) class Geometry : NSObject, NSCopying {
+
+    /// Geometry objects are readonly and should only be created by the framework. To set a window scene's geometry, see UIWindowSceneGeometryPreferences and -[UIWindowScene requestGeometryUpdateWithPreferences:].
+    @available(*, unavailable)
+    init()
+    @available(*, unavailable)
+    class func new() -> Self
+    @available(iOS, unavailable)
+    var systemFrame: CGRect { get }
+    var interfaceOrientation: UIInterfaceOrientation { get }
+    @available(iOS 16.0, *)
+    func copy(with zone: NSZone? = nil) -> Any
+  }
+}

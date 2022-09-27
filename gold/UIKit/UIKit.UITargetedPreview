@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 13.0, *)
-@MainActor class UIPreviewTarget : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class UIPreviewTarget : NSObject, NSCopying {
   init(container: UIView, center: CGPoint, transform: CGAffineTransform)
   convenience init(container: UIView, center: CGPoint)
   @available(*, unavailable)
@@ -15,7 +15,7 @@
   func copy(with zone: NSZone? = nil) -> Any
 }
 @available(iOS 13.0, *)
-@MainActor class UITargetedPreview : NSObject, NSCopying {
+@MainActor @_nonSendable(_assumed) class UITargetedPreview : NSObject, NSCopying {
   init(view: UIView, parameters: UIPreviewParameters, target: UIPreviewTarget)
   convenience init(view: UIView, parameters: UIPreviewParameters)
   convenience init(view: UIView)

@@ -3,7 +3,7 @@
 
 /// Options supported by methods that produce difference objects.
 @available(iOS 13.0, *)
-struct NSOrderedCollectionDifferenceCalculationOptions : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct NSOrderedCollectionDifferenceCalculationOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
@@ -34,7 +34,7 @@ struct NSOrderedCollectionDifferenceCalculationOptions : OptionSet, @unchecked S
   static var InferMoves: NSOrderedCollectionDifferenceCalculationOptions { get }
 }
 @available(iOS 13.0, *)
-class NSOrderedCollectionDifference : NSObject, NSFastEnumeration {
+@_nonSendable(_assumed) class NSOrderedCollectionDifference : NSObject, NSFastEnumeration {
 
   /// Creates a new difference representing the changes in the parameter.
   ///
@@ -71,4 +71,8 @@ class NSOrderedCollectionDifference : NSObject, NSFastEnumeration {
   convenience init()
   @available(iOS 13.0, *)
   func countByEnumerating(with state: UnsafeMutablePointer<NSFastEnumerationState>, objects buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>, count len: Int) -> Int
+}
+
+@available(*, unavailable)
+extension NSOrderedCollectionDifference : @unchecked Sendable {
 }

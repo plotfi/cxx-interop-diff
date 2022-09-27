@@ -99,7 +99,7 @@ typealias NSURLAuthenticationChallenge = URLAuthenticationChallenge
     to indicate when it's done.
 */
 @available(iOS 2.0, *)
-class URLAuthenticationChallenge : NSObject, NSSecureCoding {
+@_nonSendable(_assumed) class URLAuthenticationChallenge : NSObject, NSSecureCoding {
 
   /**
       @method initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:
@@ -178,4 +178,8 @@ class URLAuthenticationChallenge : NSObject, NSSecureCoding {
   @available(iOS 2.0, *)
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension URLAuthenticationChallenge : @unchecked Sendable {
 }

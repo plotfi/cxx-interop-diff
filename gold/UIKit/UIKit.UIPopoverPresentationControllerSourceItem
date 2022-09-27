@@ -1,0 +1,17 @@
+@_exported import Foundation
+
+@available(iOS 16.0, *)
+protocol UIPopoverPresentationControllerSourceItem : NSObjectProtocol {
+}
+@available(iOS 16.0, *)
+extension UIView : UIPopoverPresentationControllerSourceItem {
+}
+@available(iOS 16.0, *)
+extension UILayoutGuide : UIPopoverPresentationControllerSourceItem {
+}
+@available(iOS 16.0, *)
+extension UIBarButtonItem : UIPopoverPresentationControllerSourceItem {
+}
+@available(iOS 16.0, *)
+extension UITabBarItem : UIPopoverPresentationControllerSourceItem {
+}

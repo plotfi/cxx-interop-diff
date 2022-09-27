@@ -1,6 +1,6 @@
 @_exported import Foundation
 
-enum UITextInteractionMode : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UITextInteractionMode : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -22,7 +22,7 @@ enum UITextInteractionMode : Int, @unchecked Sendable {
   optional func interactionDidEnd(_ interaction: UITextInteraction)
 }
 @available(iOS 13.0, *)
-@MainActor class UITextInteraction : NSObject, UIInteraction {
+@MainActor @_nonSendable(_assumed) class UITextInteraction : NSObject, UIInteraction {
   weak var delegate: @sil_weak UITextInteractionDelegate?
   weak var textInput: @sil_weak (UIResponder & UITextInput)?
   var textInteractionMode: UITextInteractionMode { get }

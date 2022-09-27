@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 var NSOpenStepUnicodeReservedBase: Int { get }
-class NSCharacterSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSCharacterSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   class var controlCharacters: CharacterSet { get }
   @available(swift, obsoleted: 3, renamed: "controlCharacters")
   class var controlCharacterSet: CharacterSet { get }
@@ -84,7 +84,11 @@ class NSCharacterSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
 extension NSCharacterSet : _HasCustomAnyHashableRepresentation {
   @nonobjc func _toCustomAnyHashable() -> AnyHashable?
 }
-class NSMutableCharacterSet : NSCharacterSet, NSCopying, NSMutableCopying, NSSecureCoding {
+
+@available(*, unavailable)
+extension NSCharacterSet : @unchecked Sendable {
+}
+@_nonSendable(_assumed) class NSMutableCharacterSet : NSCharacterSet, NSCopying, NSMutableCopying, NSSecureCoding {
   func addCharacters(in aRange: NSRange)
   @available(swift, obsoleted: 3, renamed: "addCharacters(in:)")
   func addCharactersInRange(_ aRange: NSRange)
@@ -167,4 +171,8 @@ class NSMutableCharacterSet : NSCharacterSet, NSCopying, NSMutableCopying, NSSec
   class func characterSetWithContentsOfFile(_ fName: String) -> NSMutableCharacterSet?
   init(coder: NSCoder)
   convenience init()
+}
+
+@available(*, unavailable)
+extension NSMutableCharacterSet : @unchecked Sendable {
 }

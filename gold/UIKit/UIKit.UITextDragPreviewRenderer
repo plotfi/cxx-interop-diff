@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 11.0, *)
-@MainActor class UITextDragPreviewRenderer : NSObject {
+@MainActor @_nonSendable(_assumed) class UITextDragPreviewRenderer : NSObject {
   convenience init(layoutManager: NSLayoutManager, range: NSRange)
   init(layoutManager: NSLayoutManager, range: NSRange, unifyRects: Bool)
   @available(*, unavailable)

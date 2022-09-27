@@ -120,14 +120,14 @@ typealias NSURLProtectionSpace = URLProtectionSpace
     @discussion This class represents a protection space requiring authentication.
 */
 @available(iOS 2.0, *)
-class URLProtectionSpace : NSObject, NSSecureCoding, NSCopying {
+@_nonSendable(_assumed) class URLProtectionSpace : NSObject, NSSecureCoding, NSCopying, @unchecked Sendable {
 
   /**
       @method initWithHost:port:protocol:realm:authenticationMethod:
       @abstract Initialize a protection space representing an origin server, or a realm on one
       @param host The hostname of the server
       @param port The port for the server
-      @param protocol The sprotocol for this server - e.g. "http", "ftp", "https"
+      @param protocol The protocol for this server - e.g. "http", "ftp", "https"
       @param realm A string indicating a protocol-specific subdivision
       of a single host. For http and https, this maps to the realm
       string in http authentication challenges. For many other protocols

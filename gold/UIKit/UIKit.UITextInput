@@ -5,7 +5,7 @@
   func insertText(_ text: String)
   func deleteBackward()
 }
-enum UITextStorageDirection : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UITextStorageDirection : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -16,7 +16,7 @@ enum UITextStorageDirection : Int, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "backward")
   static var Backward: UITextStorageDirection { get }
 }
-enum UITextLayoutDirection : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UITextLayoutDirection : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -43,7 +43,7 @@ extension UITextDirection {
   static func storage(_ direction: UITextStorageDirection) -> UITextDirection
   static func layout(_ direction: UITextLayoutDirection) -> UITextDirection
 }
-enum UITextGranularity : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UITextGranularity : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -67,13 +67,13 @@ enum UITextGranularity : Int, @unchecked Sendable {
   static var Document: UITextGranularity { get }
 }
 @available(iOS 5.1, *)
-@MainActor class UIDictationPhrase : NSObject {
+@MainActor @_nonSendable(_assumed) class UIDictationPhrase : NSObject {
   var text: String { get }
   var alternativeInterpretations: [String]? { get }
   init()
 }
 @available(iOS 9.0, *)
-@MainActor class UITextInputAssistantItem : NSObject {
+@MainActor @_nonSendable(_assumed) class UITextInputAssistantItem : NSObject {
 
   /// Default is YES, controls if the user is allowed to hide the shortcuts bar. Does not influence the built in auto-hiding logic.
   var allowsHidingShortcuts: Bool
@@ -86,11 +86,11 @@ enum UITextGranularity : Int, @unchecked Sendable {
   init()
 }
 @available(iOS 13.0, *)
-@MainActor class UITextPlaceholder : NSObject {
+@MainActor @_nonSendable(_assumed) class UITextPlaceholder : NSObject {
   var rects: [UITextSelectionRect] { get }
   init()
 }
-enum UITextAlternativeStyle : Int, @unchecked Sendable {
+@_nonSendable(_assumed) enum UITextAlternativeStyle : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }
   typealias RawValue = Int
@@ -237,6 +237,39 @@ enum UITextAlternativeStyle : Int, @unchecked Sendable {
   optional func updateFloatingCursorAtPoint(_ point: CGPoint)
   @available(iOS 9.0, *)
   optional func endFloatingCursor()
+
+  /**
+   * Called when the text input is preparing an edit menu presentation for the specified text range.
+   *
+   * @param textRange                  The text range for which the menu is presented for.
+   * @param suggestedActions  The actions and commands that the system suggests.
+   *
+   * @return Return a UIMenu describing the desired menu hierarchy. Return @c nil to present the default system menu.
+   */
+  @available(iOS 16.0, *)
+  optional func editMenu(for textRange: UITextRange, suggestedActions: [UIMenuElement]) -> UIMenu?
+
+  /**
+   * Called when the text input is preparing an edit menu presentation for the specified text range.
+   *
+   * @param textRange                  The text range for which the menu is presented for.
+   * @param suggestedActions  The actions and commands that the system suggests.
+   *
+   * @return Return a UIMenu describing the desired menu hierarchy. Return @c nil to present the default system menu.
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "editMenu(for:suggestedActions:)")
+  optional func editMenuForTextRange(_ textRange: UITextRange, suggestedActions: [UIMenuElement]) -> UIMenu?
+  @available(iOS 16.0, *)
+  optional func willPresentEditMenu(animator: UIEditMenuInteractionAnimating)
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "willPresentEditMenu(animator:)")
+  optional func willPresentEditMenuWithAnimator(_ animator: UIEditMenuInteractionAnimating)
+  @available(iOS 16.0, *)
+  optional func willDismissEditMenu(animator: UIEditMenuInteractionAnimating)
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "willDismissEditMenu(animator:)")
+  optional func willDismissEditMenuWithAnimator(_ animator: UIEditMenuInteractionAnimating)
 }
 @available(iOS, introduced: 3.2, deprecated: 8.0, renamed: "NSAttributedString.Key.backgroundColor")
 let UITextInputTextBackgroundColorKey: String
@@ -245,11 +278,11 @@ let UITextInputTextColorKey: String
 @available(iOS, introduced: 3.2, deprecated: 8.0, renamed: "NSAttributedString.Key.font")
 let UITextInputTextFontKey: String
 @available(iOS 3.2, *)
-@MainActor class UITextPosition : NSObject {
+@MainActor @_nonSendable(_assumed) class UITextPosition : NSObject {
   init()
 }
 @available(iOS 3.2, *)
-@MainActor class UITextRange : NSObject {
+@MainActor @_nonSendable(_assumed) class UITextRange : NSObject {
   var isEmpty: Bool { get }
   @available(swift, obsoleted: 3, renamed: "isEmpty")
   var empty: Bool { get }
@@ -258,7 +291,7 @@ let UITextInputTextFontKey: String
   init()
 }
 @available(iOS 6.0, *)
-@MainActor class UITextSelectionRect : NSObject {
+@MainActor @_nonSendable(_assumed) class UITextSelectionRect : NSObject {
   var rect: CGRect { get }
   var writingDirection: NSWritingDirection { get }
   var containsStart: Bool { get }
@@ -287,7 +320,7 @@ let UITextInputTextFontKey: String
   func isPosition(_ position: UITextPosition, withinTextUnit granularity: UITextGranularity, inDirection direction: UITextDirection) -> Bool
 }
 @available(iOS 3.2, *)
-@MainActor class UITextInputStringTokenizer : NSObject, UITextInputTokenizer {
+@MainActor @_nonSendable(_assumed) class UITextInputStringTokenizer : NSObject, UITextInputTokenizer {
   init(textInput: UIResponder & UITextInput)
   init()
   @available(iOS 3.2, *)
@@ -300,7 +333,7 @@ let UITextInputTextFontKey: String
   func isPosition(_ position: UITextPosition, withinTextUnit granularity: UITextGranularity, inDirection direction: UITextDirection) -> Bool
 }
 @available(iOS 4.2, *)
-@MainActor class UITextInputMode : NSObject, NSSecureCoding {
+@MainActor @_nonSendable(_assumed) class UITextInputMode : NSObject, NSSecureCoding {
   var primaryLanguage: String? { get }
   @available(iOS, unavailable, introduced: 4.2, deprecated: 7.0, message: "APIs deprecated as of iOS 7 and earlier are unavailable in Swift")
   class func current() -> UITextInputMode?

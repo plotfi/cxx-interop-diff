@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "ISO8601DateFormatter.Options")
 typealias NSISO8601DateFormatOptions = ISO8601DateFormatter.Options
 extension ISO8601DateFormatter {
-  struct Options : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct Options : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -82,7 +82,7 @@ extension ISO8601DateFormatter {
   }
 }
 @available(iOS 10.0, *)
-class ISO8601DateFormatter : Formatter, NSSecureCoding {
+@_nonSendable(_assumed) class ISO8601DateFormatter : Formatter, NSSecureCoding {
   var timeZone: TimeZone!
   var formatOptions: ISO8601DateFormatter.Options
   init()
@@ -98,6 +98,10 @@ class ISO8601DateFormatter : Formatter, NSSecureCoding {
   init?(coder: NSCoder)
   @available(iOS 10.0, *)
   class var supportsSecureCoding: Bool { get }
+}
+
+@available(*, unavailable)
+extension ISO8601DateFormatter : @unchecked Sendable {
 }
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 3, renamed: "ISO8601DateFormatter")

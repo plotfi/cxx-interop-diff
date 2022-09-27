@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "NSFileCoordinator.ReadingOptions")
 typealias NSFileCoordinatorReadingOptions = NSFileCoordinator.ReadingOptions
 extension NSFileCoordinator {
-  struct ReadingOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct ReadingOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -26,7 +26,7 @@ extension NSFileCoordinator {
     @available(swift, obsoleted: 3, renamed: "forUploading")
     static var ForUploading: NSFileCoordinator.ReadingOptions { get }
   }
-  struct WritingOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct WritingOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -54,7 +54,7 @@ extension NSFileCoordinator {
 @available(swift, obsoleted: 3, renamed: "NSFileCoordinator.WritingOptions")
 typealias NSFileCoordinatorWritingOptions = NSFileCoordinator.WritingOptions
 @available(iOS 8.0, *)
-class NSFileAccessIntent : NSObject {
+@_nonSendable(_assumed) class NSFileAccessIntent : NSObject {
   class func readingIntent(with url: URL, options: NSFileCoordinator.ReadingOptions = []) -> Self
   @available(swift, obsoleted: 3, renamed: "readingIntent(with:options:)")
   class func readingIntentWithURL(_ url: URL, options: NSFileCoordinator.ReadingOptions = []) -> Self
@@ -66,8 +66,12 @@ class NSFileAccessIntent : NSObject {
   var URL: URL { get }
   init()
 }
+
+@available(*, unavailable)
+extension NSFileAccessIntent : @unchecked Sendable {
+}
 @available(iOS 5.0, *)
-class NSFileCoordinator : NSObject {
+@_nonSendable(_assumed) class NSFileCoordinator : NSObject {
   class func addFilePresenter(_ filePresenter: NSFilePresenter)
   class func removeFilePresenter(_ filePresenter: NSFilePresenter)
   class var filePresenters: [NSFilePresenter] { get }
@@ -75,10 +79,10 @@ class NSFileCoordinator : NSObject {
   @available(iOS 5.0, *)
   var purposeIdentifier: String
   @available(iOS 8.0, *)
-  func coordinate(with intents: [NSFileAccessIntent], queue: OperationQueue, byAccessor accessor: @escaping (Error?) -> Void)
+  func coordinate(with intents: [NSFileAccessIntent], queue: OperationQueue, byAccessor accessor: @escaping @Sendable (Error?) -> Void)
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "coordinate(with:queue:byAccessor:)")
-  func coordinateAccessWithIntents(_ intents: [NSFileAccessIntent], queue: OperationQueue, byAccessor accessor: @escaping (Error?) -> Void)
+  func coordinateAccessWithIntents(_ intents: [NSFileAccessIntent], queue: OperationQueue, byAccessor accessor: @escaping @Sendable (Error?) -> Void)
   func coordinate(readingItemAt url: URL, options: NSFileCoordinator.ReadingOptions = [], error outError: NSErrorPointer, byAccessor reader: (URL) -> Void)
   @available(swift, obsoleted: 3, renamed: "coordinate(readingItemAt:options:error:byAccessor:)")
   func coordinateReadingItemAtURL(_ url: URL, options: NSFileCoordinator.ReadingOptions = [], error outError: NSErrorPointer, byAccessor reader: (URL) -> Void)
@@ -109,4 +113,8 @@ class NSFileCoordinator : NSObject {
   func itemAtURL(_ url: URL, didChangeUbiquityAttributes attributes: Set<URLResourceKey>)
   func cancel()
   convenience init()
+}
+
+@available(*, unavailable)
+extension NSFileCoordinator : @unchecked Sendable {
 }

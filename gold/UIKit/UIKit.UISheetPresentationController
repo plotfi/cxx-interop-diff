@@ -26,12 +26,19 @@ extension UISheetPresentationController.Detent.Identifier {
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "UISheetPresentationControllerDetent.Identifier.large")
 let UISheetPresentationControllerDetentIdentifierLarge: UISheetPresentationController.Detent.Identifier
+@available(iOS 16.0, *)
+let __UISheetPresentationControllerDetentInactive: CGFloat
+@available(iOS 16.0, *)
+@MainActor protocol UISheetPresentationControllerDetentResolutionContext : NSObjectProtocol {
+  var containerTraitCollection: UITraitCollection { get }
+  var maximumDetentValue: CGFloat { get }
+}
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "UISheetPresentationController.Detent")
 @MainActor typealias UISheetPresentationControllerDetent = UISheetPresentationController.Detent
 extension UISheetPresentationController {
   @available(iOS 15.0, *)
-  @MainActor class Detent : NSObject {
+  @MainActor @_nonSendable(_assumed) class Detent : NSObject {
     @available(*, unavailable)
     init()
     @available(*, unavailable)
@@ -42,6 +49,18 @@ extension UISheetPresentationController {
     class func large() -> Self
     @available(swift, obsoleted: 3, renamed: "large()")
     class func largeDetent() -> Self
+    @available(iOS 16.0, *)
+    class func __customDetent(withIdentifier identifier: UISheetPresentationController.Detent.Identifier?, resolver: @escaping (UISheetPresentationControllerDetentResolutionContext) -> CGFloat) -> Self
+    @available(iOS 16.0, *)
+    @available(swift, obsoleted: 3, renamed: "__customDetent(withIdentifier:resolver:)")
+    class func __customDetentWithIdentifier(_ identifier: UISheetPresentationController.Detent.Identifier?, resolver: @escaping (UISheetPresentationControllerDetentResolutionContext) -> CGFloat) -> Self
+    @available(iOS 16.0, *)
+    var identifier: UISheetPresentationController.Detent.Identifier { get }
+    @available(iOS 16.0, *)
+    func __resolvedValue(in context: UISheetPresentationControllerDetentResolutionContext) -> CGFloat
+    @available(iOS 16.0, *)
+    @available(swift, obsoleted: 3, renamed: "__resolvedValue(in:)")
+    func __resolvedValueInContext(_ context: UISheetPresentationControllerDetentResolutionContext) -> CGFloat
   }
 }
 @available(iOS 15.0, *)
@@ -51,7 +70,7 @@ let __UISheetPresentationControllerAutomaticDimension: CGFloat
   optional func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController)
 }
 @available(iOS 15.0, *)
-@MainActor class UISheetPresentationController : UIPresentationController {
+@MainActor @_nonSendable(_assumed) class UISheetPresentationController : UIPresentationController {
   weak var delegate: @sil_weak UISheetPresentationControllerDelegate?
   var sourceView: UIView?
   var prefersEdgeAttachedInCompactHeight: Bool
@@ -59,6 +78,8 @@ let __UISheetPresentationControllerAutomaticDimension: CGFloat
   var prefersGrabberVisible: Bool
   var __preferredCornerRadius: CGFloat
   var detents: [UISheetPresentationController.Detent]
+  @available(iOS 16.0, *)
+  func invalidateDetents()
   var selectedDetentIdentifier: UISheetPresentationController.Detent.Identifier?
   var largestUndimmedDetentIdentifier: UISheetPresentationController.Detent.Identifier?
   var prefersScrollingExpandsWhenScrolledToEdge: Bool
@@ -68,7 +89,7 @@ let __UISheetPresentationControllerAutomaticDimension: CGFloat
   convenience init()
 }
 
-@available(iOS 15.0, *)
+@available(tvOS, unavailable)
 extension UISheetPresentationController {
   /// The preferred corner radius of the sheet when presented.
   /// This value is only respected when the sheet is at the front of its stack.

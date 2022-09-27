@@ -1,6 +1,6 @@
 @_exported import CoreFoundation
 
-class NSIndexSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSIndexSet : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
   @available(*, unavailable, message: "superseded by import of -[NSObject init]")
   convenience init()
   @available(*, unavailable, renamed: "init()", message: "Not available in Swift")
@@ -136,7 +136,11 @@ extension NSIndexSet : Sequence {
   typealias Element = NSIndexSetIterator.Element
   typealias Iterator = NSIndexSetIterator
 }
-class NSMutableIndexSet : NSIndexSet {
+
+@available(*, unavailable)
+extension NSIndexSet : @unchecked Sendable {
+}
+@_nonSendable(_assumed) class NSMutableIndexSet : NSIndexSet {
   func add(_ indexSet: IndexSet)
   @available(swift, obsoleted: 3, renamed: "add(_:)")
   func addIndexes(_ indexSet: IndexSet)
@@ -170,4 +174,8 @@ class NSMutableIndexSet : NSIndexSet {
   convenience init(index value: Int)
   convenience init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension NSMutableIndexSet : @unchecked Sendable {
 }

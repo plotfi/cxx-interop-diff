@@ -26,7 +26,7 @@ let NSLocalizedFailureErrorKey: String
 let NSStringEncodingErrorKey: String
 let NSURLErrorKey: String
 let NSFilePathErrorKey: String
-class NSError : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class NSError : NSObject, NSCopying, NSSecureCoding, @unchecked Sendable {
   init(domain: String, code: Int, userInfo dict: [String : Any]? = nil)
   @available(*, unavailable, renamed: "init(domain:code:userInfo:)", message: "Not available in Swift")
   @available(*, unavailable, message: "Not available in Swift")
@@ -43,10 +43,10 @@ class NSError : NSObject, NSCopying, NSSecureCoding {
   @available(iOS 14.5, *)
   var underlyingErrors: [Error] { get }
   @available(iOS 9.0, *)
-  class func setUserInfoValueProvider(forDomain errorDomain: String, provider: ((Error, String) -> Any?)? = nil)
+  class func setUserInfoValueProvider(forDomain errorDomain: String, provider: (@Sendable (Error, String) -> Any?)? = nil)
   @available(iOS 9.0, *)
   @available(swift, obsoleted: 3, renamed: "setUserInfoValueProvider(forDomain:provider:)")
-  class func setUserInfoValueProviderForDomain(_ errorDomain: String, provider: ((Error, String) -> Any?)? = nil)
+  class func setUserInfoValueProviderForDomain(_ errorDomain: String, provider: (@Sendable (Error, String) -> Any?)? = nil)
   @available(iOS 9.0, *)
   class func userInfoValueProvider(forDomain errorDomain: String) -> ((Error, String) -> Any?)?
   @available(iOS 9.0, *)

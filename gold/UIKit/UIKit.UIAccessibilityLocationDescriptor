@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 11.0, *)
-class UIAccessibilityLocationDescriptor : NSObject {
+@_nonSendable(_assumed) class UIAccessibilityLocationDescriptor : NSObject {
   @available(*, unavailable)
   convenience init()
   @available(*, unavailable)
@@ -17,4 +17,8 @@ class UIAccessibilityLocationDescriptor : NSObject {
   var point: CGPoint { get }
   var name: String { get }
   var attributedName: NSAttributedString { get }
+}
+
+@available(*, unavailable)
+extension UIAccessibilityLocationDescriptor : @unchecked Sendable {
 }

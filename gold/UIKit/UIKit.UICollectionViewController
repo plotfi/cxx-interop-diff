@@ -1,7 +1,7 @@
 @_exported import Foundation
 
 @available(iOS 6.0, *)
-@MainActor class UICollectionViewController : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+@MainActor @_nonSendable(_assumed) class UICollectionViewController : UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
   init(collectionViewLayout layout: UICollectionViewLayout)
   init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
   init?(coder: NSCoder)
@@ -28,6 +28,36 @@
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
   @available(iOS 6.0, *)
   func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath)
+
+  /**
+   * @abstract Called to determine if a primary action can be performed for the item at the given indexPath.
+   * See @c collectionView:performPrimaryActionForItemAtIndexPath: for more details about primary actions.
+   *
+   * @param collectionView This UICollectionView
+   * @param indexPath NSIndexPath of the item
+   *
+   * @return `YES` if the primary action can be performed; otherwise `NO`. If not implemented, defaults to `YES` when not editing
+   * and `NO` when editing.
+   */
+  @available(iOS 16.0, *)
+  func collectionView(_ collectionView: UICollectionView, canPerformPrimaryActionForItemAt indexPath: IndexPath) -> Bool
+
+  /**
+   * @abstract Called when the primary action should be performed for the item at the given indexPath.
+   *
+   * @discussion Primary actions allow you to distinguish between a change of selection (which can be based on focus changes or
+   * other indirect selection changes) and distinct user actions. Primary actions are performed when the user selects a cell without extending
+   * an existing selection. This is called after @c shouldSelectItem and @c didSelectItem , regardless of whether the cell's selection
+   * state was allowed to change.
+   *
+   * As an example, use @c didSelectItemAtIndexPath for updating state in the current view controller (i.e. buttons, title, etc) and
+   * use the primary action for navigation or showing another split view column.
+   *
+   * @param collectionView This UICollectionView
+   * @param indexPath NSIndexPath of the item to perform the action on
+   */
+  @available(iOS 16.0, *)
+  func collectionView(_ collectionView: UICollectionView, performPrimaryActionForItemAt indexPath: IndexPath)
   @available(iOS 8.0, *)
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath)
   @available(iOS 8.0, *)
@@ -75,43 +105,49 @@
   func collectionViewDidEndMultipleSelectionInteraction(_ collectionView: UICollectionView)
 
   /**
-   * @abstract Called when the interaction begins.
+   * @abstract Called when a context menu is invoked from this collection view.
    *
-   * @param collectionView  This UICollectionView.
-   * @param indexPath       IndexPath of the item for which a configuration is being requested.
-   * @param point           Location in the collection view's coordinate space
+   * @param collectionView  The @c UICollectionView.
+   * @param indexPaths      An array of index paths on which the menu acts.
+   * @param point           Touch location in the collection view's coordinate space.
    *
-   * @return A UIContextMenuConfiguration describing the menu to be presented. Return nil to prevent the interaction from beginning.
+   * @return A @c UIContextMenuConfiguration describing the menu to be presented. Return nil to prevent the interaction from beginning.
    *         Returning an empty configuration causes the interaction to begin then fail with a cancellation effect. You might use this
    *         to indicate to users that it's possible for a menu to be presented from this element, but that there are no actions to
    *         present at this particular time.
+   *
+   * @discussion  The @c indexPaths array may contain 0-many items:
+   *              - An empty array indicates that the menu was invoked in the space between cells (or any location that does not map to an item index path).
+   *              - An array with multiple index paths indicates that the menu was invoked on an item within a multiple selection.
    */
-  @available(iOS 13.0, *)
-  func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration?
+  @available(iOS 16.0, *)
+  func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration?
 
   /**
-   * @abstract Called when the interaction begins. Return a UITargetedPreview describing the desired highlight preview.
+   * @abstract Called when a context menu interaction begins in this collection view to request a preview for the interaction's initial highlight effect.
+   *           Return a @c UITargetedPreview corresponding to the item at the given indexPath.
    *
-   * @param collectionView  This UICollectionView.
-   * @param configuration   The configuration of the menu about to be displayed by this interaction.
+   * @param collectionView  The @c UICollectionView.
+   * @param configuration   Configuration of the menu that will be presented if the interaction proceeds.
+   * @param indexPath       Index path of the item at which the interaction is occurring.
    */
-  @available(iOS 13.0, *)
-  func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview?
+  @available(iOS 16.0, *)
+  func collectionView(_ collectionView: UICollectionView, contextMenuConfiguration configuration: UIContextMenuConfiguration, highlightPreviewForItemAt indexPath: IndexPath) -> UITargetedPreview?
 
   /**
-   * @abstract Called when the interaction is about to dismiss. Return a UITargetedPreview describing the desired dismissal target.
-   * The interaction will animate the presented menu to the target. Use this to customize the dismissal animation.
+   * @abstract Called when a context menu presented from this collection view is dismissed. Return a @c UITargetedPreview corresponding to the item at the given indexPath.
    *
-   * @param collectionView  This UICollectionView.
-   * @param configuration   The configuration of the menu displayed by this interaction.
+   * @param collectionView  The @c UICollectionView.
+   * @param configuration   Configuration of the menu being dismissed.
+   * @param indexPath       Index path of the item to which the menu is being dismissed.
    */
-  @available(iOS 13.0, *)
-  func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview?
+  @available(iOS 16.0, *)
+  func collectionView(_ collectionView: UICollectionView, contextMenuConfiguration configuration: UIContextMenuConfiguration, dismissalPreviewForItemAt indexPath: IndexPath) -> UITargetedPreview?
 
   /**
    * @abstract Called when the interaction is about to "commit" in response to the user tapping the preview.
    *
-   * @param collectionView  This UICollectionView.
+   * @param collectionView  The @c UICollectionView.
    * @param configuration   Configuration of the currently displayed menu.
    * @param animator        Commit animator. Add animations to this object to run them alongside the commit transition.
    */
@@ -121,7 +157,7 @@
   /**
    * @abstract Called when the collection view is about to display a menu.
    *
-   * @param collectionView  This UICollectionView.
+   * @param collectionView  The @c UICollectionView.
    * @param configuration   The configuration of the menu about to be displayed.
    * @param animator        Appearance animator. Add animations to run them alongside the appearance transition.
    */
@@ -131,7 +167,7 @@
   /**
    * @abstract Called when the collection view's context menu interaction is about to end.
    *
-   * @param collectionView  This UICollectionView.
+   * @param collectionView  The @c UICollectionView.
    * @param configuration   Ending configuration.
    * @param animator        Disappearance animator. Add animations to run them alongside the disappearance transition.
    */
@@ -147,6 +183,42 @@
    */
   @available(iOS 15.0, *)
   func collectionView(_ collectionView: UICollectionView, sceneActivationConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIWindowScene.ActivationConfiguration?
+
+  /**
+   * @abstract Called when the interaction begins.
+   *
+   * @param collectionView  The @c UICollectionView.
+   * @param indexPath       IndexPath of the item for which a configuration is being requested.
+   * @param point           Touch location in the collection view's coordinate space
+   *
+   * @return A UIContextMenuConfiguration describing the menu to be presented. Return nil to prevent the interaction from beginning.
+   *         Returning an empty configuration causes the interaction to begin then fail with a cancellation effect. You might use this
+   *         to indicate to users that it's possible for a menu to be presented from this element, but that there are no actions to
+   *         present at this particular time. If the non-deprecated replacement for the configuration, highlight preview, or dismissal preview methods is implemented this method is not called.
+   */
+  @available(iOS, introduced: 13.0, deprecated: 16.0)
+  func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration?
+
+  /**
+   * @abstract Called when the interaction begins. Return a UITargetedPreview describing the desired highlight preview.
+   *           If the non-deprecated replacement for the configuration, highlight preview, or dismissal preview methods is implemented this method is not called.
+   *
+   * @param collectionView  The @c UICollectionView.
+   * @param configuration   The configuration of the menu about to be displayed by this interaction.
+   */
+  @available(iOS, introduced: 13.0, deprecated: 16.0)
+  func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview?
+
+  /**
+   * @abstract Called when the interaction is about to dismiss. Return a UITargetedPreview describing the desired dismissal target.
+   *           The interaction will animate the presented menu to the target. Use this to customize the dismissal animation.
+   *           If the non-deprecated replacement for the configuration, highlight preview, or dismissal preview methods is implemented this method is not called.
+   *
+   * @param collectionView  The @c UICollectionView.
+   * @param configuration   The configuration of the menu displayed by this interaction.
+   */
+  @available(iOS, introduced: 13.0, deprecated: 16.0)
+  func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview?
   @available(iOS 6.0, *)
   func scrollViewDidScroll(_ scrollView: UIScrollView)
   @available(iOS 3.2, *)

@@ -3,7 +3,7 @@
 @available(swift, obsoleted: 3, renamed: "NSFileVersion.AddingOptions")
 typealias NSFileVersionAddingOptions = NSFileVersion.AddingOptions
 extension NSFileVersion {
-  struct AddingOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct AddingOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -13,7 +13,7 @@ extension NSFileVersion {
     @available(swift, obsoleted: 3, renamed: "byMoving")
     static var ByMoving: NSFileVersion.AddingOptions { get }
   }
-  struct ReplacingOptions : OptionSet, @unchecked Sendable {
+  @_nonSendable(_assumed) struct ReplacingOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
     typealias RawValue = UInt
@@ -27,7 +27,7 @@ extension NSFileVersion {
 @available(swift, obsoleted: 3, renamed: "NSFileVersion.ReplacingOptions")
 typealias NSFileVersionReplacingOptions = NSFileVersion.ReplacingOptions
 @available(iOS 5.0, *)
-class NSFileVersion : NSObject {
+@_nonSendable(_assumed) class NSFileVersion : NSObject {
   class func currentVersionOfItem(at url: URL) -> NSFileVersion?
   @available(swift, obsoleted: 3, renamed: "currentVersionOfItem(at:)")
   class func currentVersionOfItemAtURL(_ url: URL) -> NSFileVersion?
@@ -91,4 +91,8 @@ class NSFileVersion : NSObject {
   @available(swift, obsoleted: 3, renamed: "removeOtherVersionsOfItem(at:)")
   class func removeOtherVersionsOfItemAtURL(_ url: URL) throws
   init()
+}
+
+@available(*, unavailable)
+extension NSFileVersion : @unchecked Sendable {
 }

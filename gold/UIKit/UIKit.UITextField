@@ -8,7 +8,7 @@ typealias UITextFieldViewMode = UITextField.ViewMode
 @available(swift, obsoleted: 4.2, renamed: "UITextField.DidEndEditingReason")
 typealias UITextFieldDidEndEditingReason = UITextField.DidEndEditingReason
 @available(iOS 2.0, *)
-@MainActor class UITextField : UIControl, UITextInput, NSCoding, UIContentSizeCategoryAdjusting {
+@MainActor @_nonSendable(_assumed) class UITextField : UIControl, UITextInput, NSCoding, UIContentSizeCategoryAdjusting {
   var text: String?
   @available(iOS 6.0, *)
   @NSCopying var attributedText: NSAttributedString?
@@ -199,6 +199,21 @@ typealias UITextFieldDidEndEditingReason = UITextField.DidEndEditingReason
   func updateFloatingCursor(at point: CGPoint)
   @available(iOS 9.0, *)
   func endFloatingCursor()
+
+  /**
+   * Called when the text input is preparing an edit menu presentation for the specified text range.
+   *
+   * @param textRange                  The text range for which the menu is presented for.
+   * @param suggestedActions  The actions and commands that the system suggests.
+   *
+   * @return Return a UIMenu describing the desired menu hierarchy. Return @c nil to present the default system menu.
+   */
+  @available(iOS 16.0, *)
+  func editMenu(for textRange: UITextRange, suggestedActions: [UIMenuElement]) -> UIMenu?
+  @available(iOS 16.0, *)
+  func willPresentEditMenu(animator: UIEditMenuInteractionAnimating)
+  @available(iOS 16.0, *)
+  func willDismissEditMenu(animator: UIEditMenuInteractionAnimating)
   @available(iOS 2.0, *)
   func insertText(_ text: String)
   @available(iOS 2.0, *)
@@ -250,6 +265,69 @@ extension UIView {
   optional func textFieldShouldClear(_ textField: UITextField) -> Bool
   @available(iOS 2.0, *)
   optional func textFieldShouldReturn(_ textField: UITextField) -> Bool
+
+  /**
+   * @abstract Asks the delegate for the menu to be shown for the specified text range.
+   *
+   * @param textField                   The text field requesting the menu.
+   * @param range                            The characters range for which the menu is presented for.
+   * @param suggestedActions   The actions and commands that the system suggests.
+   *
+   * @return Return a UIMenu describing the desired menu hierarchy. Return @c nil to present the default system menu.
+   */
+  @available(iOS 16.0, *)
+  optional func textField(_ textField: UITextField, editMenuForCharactersIn range: NSRange, suggestedActions: [UIMenuElement]) -> UIMenu?
+
+  /**
+   * @abstract Asks the delegate for the menu to be shown for the specified text range.
+   *
+   * @param textField                   The text field requesting the menu.
+   * @param range                            The characters range for which the menu is presented for.
+   * @param suggestedActions   The actions and commands that the system suggests.
+   *
+   * @return Return a UIMenu describing the desired menu hierarchy. Return @c nil to present the default system menu.
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "textField(_:editMenuForCharactersIn:suggestedActions:)")
+  optional func textField(_ textField: UITextField, editMenuForCharactersInRange range: NSRange, suggestedActions: [UIMenuElement]) -> UIMenu?
+
+  /**
+   * @abstract Called when the text field is about to present the edit menu.
+   *
+   * @param textField    The text field displaying the menu.
+   * @param animator      Appearance animator. Add animations to this object to run them alongside the appearance transition.
+   */
+  @available(iOS 16.0, *)
+  optional func textField(_ textField: UITextField, willPresentEditMenuWith animator: UIEditMenuInteractionAnimating)
+
+  /**
+   * @abstract Called when the text field is about to present the edit menu.
+   *
+   * @param textField    The text field displaying the menu.
+   * @param animator      Appearance animator. Add animations to this object to run them alongside the appearance transition.
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "textField(_:willPresentEditMenuWith:)")
+  optional func textField(_ textField: UITextField, willPresentEditMenuWithAnimator animator: UIEditMenuInteractionAnimating)
+
+  /**
+   * @abstract Called when the text field is about to dismiss the edit menu.
+   *
+   * @param textField    The text field displaying the menu.
+   * @param animator      Dismissal animator. Add animations to this object to run them alongside the dismissal transition.
+   */
+  @available(iOS 16.0, *)
+  optional func textField(_ textField: UITextField, willDismissEditMenuWith animator: UIEditMenuInteractionAnimating)
+
+  /**
+   * @abstract Called when the text field is about to dismiss the edit menu.
+   *
+   * @param textField    The text field displaying the menu.
+   * @param animator      Dismissal animator. Add animations to this object to run them alongside the dismissal transition.
+   */
+  @available(iOS 16.0, *)
+  @available(swift, obsoleted: 3, renamed: "textField(_:willDismissEditMenuWith:)")
+  optional func textField(_ textField: UITextField, willDismissEditMenuWithAnimator animator: UIEditMenuInteractionAnimating)
 }
 @available(swift, obsoleted: 3, renamed: "UITextField.textDidBeginEditingNotification")
 let UITextFieldTextDidBeginEditingNotification: NSNotification.Name
@@ -259,7 +337,7 @@ extension UITextField {
   class let textDidChangeNotification: NSNotification.Name
   @available(iOS 10.0, *)
   class let didEndEditingReasonUserInfoKey: String
-  enum BorderStyle : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum BorderStyle : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -276,7 +354,7 @@ extension UITextField {
     @available(swift, obsoleted: 3, renamed: "roundedRect")
     static var RoundedRect: UITextField.BorderStyle { get }
   }
-  enum ViewMode : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum ViewMode : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int
@@ -294,7 +372,7 @@ extension UITextField {
     static var Always: UITextField.ViewMode { get }
   }
   @available(iOS 10.0, *)
-  enum DidEndEditingReason : Int, @unchecked Sendable {
+  @_nonSendable(_assumed) enum DidEndEditingReason : Int, @unchecked Sendable {
     init?(rawValue: Int)
     var rawValue: Int { get }
     typealias RawValue = Int

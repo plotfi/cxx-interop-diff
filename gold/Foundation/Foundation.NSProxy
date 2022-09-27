@@ -1,6 +1,6 @@
 @_exported import CoreFoundation
 
-class NSProxy : NSObjectProtocol {
+@_nonSendable(_assumed) class NSProxy : NSObjectProtocol {
   class func alloc() -> Self
   @available(*, unavailable, message: "not available in automatic reference counting mode")
   class func alloc(with zone: NSZone? = nil) -> Self
@@ -77,4 +77,8 @@ class NSProxy : NSObjectProtocol {
   func zone() -> NSZone!
   @available(*, unavailable, message: "not available in automatic reference counting mode")
   class func zone() -> NSZone!
+}
+
+@available(*, unavailable)
+extension NSProxy : @unchecked Sendable {
 }

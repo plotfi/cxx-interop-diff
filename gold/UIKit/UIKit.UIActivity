@@ -62,6 +62,10 @@ extension UIActivity.ActivityType {
   static let markupAsPDF: UIActivity.ActivityType
   @available(iOS 15.4, *)
   static let sharePlay: UIActivity.ActivityType
+  @available(iOS 16.0, *)
+  static let collaborationInviteWithLink: UIActivity.ActivityType
+  @available(iOS 16.0, *)
+  static let collaborationCopyLink: UIActivity.ActivityType
 }
 @available(iOS 6.0, *)
 @available(swift, obsoleted: 3, renamed: "UIActivity.ActivityType.postToTwitter")
@@ -111,6 +115,12 @@ let UIActivityTypeMarkupAsPDF: UIActivity.ActivityType
 @available(iOS 15.4, *)
 @available(swift, obsoleted: 3, renamed: "UIActivity.ActivityType.sharePlay")
 let UIActivityTypeSharePlay: UIActivity.ActivityType
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIActivity.ActivityType.collaborationInviteWithLink")
+let UIActivityTypeCollaborationInviteWithLink: UIActivity.ActivityType
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "UIActivity.ActivityType.collaborationCopyLink")
+let UIActivityTypeCollaborationCopyLink: UIActivity.ActivityType
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UIActivity.Category")
 typealias UIActivityCategory = UIActivity.Category

@@ -1,7 +1,7 @@
 @_exported import CoreFoundation
 
 @available(iOS 15.0, *)
-class __NSInflectionRule : NSObject, NSCopying, NSSecureCoding {
+@_nonSendable(_assumed) class __NSInflectionRule : NSObject, NSCopying, NSSecureCoding {
   @available(*, unavailable)
   init()
   class var automatic: __NSInflectionRule { get }
@@ -15,13 +15,21 @@ class __NSInflectionRule : NSObject, NSCopying, NSSecureCoding {
   func encode(with coder: NSCoder)
   init?(coder: NSCoder)
 }
+
+@available(*, unavailable)
+extension __NSInflectionRule : @unchecked Sendable {
+}
 @available(iOS 15.0, *)
-class __NSInflectionRuleExplicit : __NSInflectionRule {
+@_nonSendable(_assumed) class __NSInflectionRuleExplicit : __NSInflectionRule {
   init(morphology: __NSMorphology)
   @NSCopying var morphology: __NSMorphology { get }
   @available(*, unavailable)
   convenience init()
   init?(coder: NSCoder)
+}
+
+@available(*, unavailable)
+extension __NSInflectionRuleExplicit : @unchecked Sendable {
 }
 extension __NSInflectionRule {
   @available(iOS 15.0, *)
