@@ -100,6 +100,8 @@ extension UITouch {
 @available(iOS 9.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UITouch.TouchType")
 typealias UITouchType = UITouch.TouchType
+@available(*, unavailable, message: "Not available in Swift")
+typealias UITouchProperties = Int
 @available(iOS 9.1, *)
 @available(swift, obsoleted: 4.2, renamed: "UITouch.Properties")
 typealias UITouchProperties = UITouch.Properties
@@ -153,8 +155,8 @@ typealias UITouchProperties = UITouch.Properties
   @available(iOS 9.1, *)
   var estimationUpdateIndex: NSNumber? { get }
   @available(iOS 9.1, *)
-  var estimatedProperties: UITouch.Properties { get }
+  var estimatedProperties: Int { get }
   @available(iOS 9.1, *)
-  var estimatedPropertiesExpectingUpdates: UITouch.Properties { get }
+  var estimatedPropertiesExpectingUpdates: Int { get }
   init()
 }

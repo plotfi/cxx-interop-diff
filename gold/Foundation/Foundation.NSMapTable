@@ -4,15 +4,15 @@ var __FOUNDATION_NSMAPTABLE__: Int32 { get }
 
 /****************	Class	****************/
 @available(iOS 6.0, *)
-let NSMapTableStrongMemory: NSPointerFunctions.Options
+let NSMapTableStrongMemory: Int
 @available(iOS, unavailable)
-let NSMapTableZeroingWeakMemory: NSPointerFunctions.Options
+let NSMapTableZeroingWeakMemory: Int
 @available(iOS 6.0, *)
-let NSMapTableCopyIn: NSPointerFunctions.Options
+let NSMapTableCopyIn: Int
 @available(iOS 6.0, *)
-let NSMapTableObjectPointerPersonality: NSPointerFunctions.Options
+let NSMapTableObjectPointerPersonality: Int
 @available(iOS 6.0, *)
-let NSMapTableWeakMemory: NSPointerFunctions.Options
+let NSMapTableWeakMemory: Int
 typealias NSMapTableOptions = Int
 @available(iOS 6.0, *)
 @_nonSendable(_assumed) class NSMapTable<KeyType, ObjectType> : NSObject, NSCopying, NSSecureCoding, NSFastEnumeration where KeyType : AnyObject, ObjectType : AnyObject {

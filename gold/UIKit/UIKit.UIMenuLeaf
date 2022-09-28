@@ -13,7 +13,7 @@
   var discoverabilityTitle: String? { get set }
 
   /// The element's attributes.
-  var attributes: UIMenuElement.Attributes { get set }
+  var attributes: Int { get set }
 
   /// The element's selection state.
   var state: UIMenuElement.State { get set }

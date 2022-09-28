@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UICloudSharingPermissionOptions = Int
 @available(iOS 10.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UICloudSharingController.PermissionOptions")
 typealias UICloudSharingPermissionOptions = UICloudSharingController.PermissionOptions
@@ -57,7 +59,7 @@ extension UICloudSharingController {
   @available(*, unavailable)
   init?(coder: NSCoder)
   weak var delegate: @sil_weak UICloudSharingControllerDelegate?
-  var availablePermissions: UICloudSharingController.PermissionOptions
+  var availablePermissions: Int
   func activityItemSource() -> UIActivityItemSource
   convenience init()
 }

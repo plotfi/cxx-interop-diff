@@ -63,6 +63,8 @@
 @available(iOS 6.0, *)
 @available(swift, obsoleted: 3, renamed: "UIApplication.invalidInterfaceOrientationException")
 let UIApplicationInvalidInterfaceOrientationException: NSExceptionName
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIInterfaceOrientationMask = Int
 @_nonSendable(_assumed) struct UIInterfaceOrientationMask : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
@@ -99,6 +101,8 @@ extension UIInterfaceOrientation {
 }
 @available(swift, obsoleted: 3, renamed: "getter:UIInterfaceOrientation.isLandscape(self:)")
 func UIInterfaceOrientationIsLandscape(_ orientation: UIInterfaceOrientation) -> Bool
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIRemoteNotificationType = Int
 @available(iOS, introduced: 3.0, deprecated: 8.0, message: "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead.")
 @_nonSendable(_assumed) struct UIRemoteNotificationType : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)

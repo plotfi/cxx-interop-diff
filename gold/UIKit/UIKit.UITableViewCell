@@ -152,6 +152,8 @@ typealias UITableViewCellFocusStyle = UITableViewCell.FocusStyle
 typealias UITableViewCellEditingStyle = UITableViewCell.EditingStyle
 @available(swift, obsoleted: 4.2, renamed: "UITableViewCell.AccessoryType")
 typealias UITableViewCellAccessoryType = UITableViewCell.AccessoryType
+@available(*, unavailable, message: "Not available in Swift")
+typealias UITableViewCellStateMask = Int
 @available(swift, obsoleted: 4.2, renamed: "UITableViewCell.StateMask")
 typealias UITableViewCellStateMask = UITableViewCell.StateMask
 @available(iOS 11.0, *)

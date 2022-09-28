@@ -60,6 +60,8 @@ extension UIMenu {
     static var Large: UIMenu.ElementSize { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIMenuOptions = Int
 @available(iOS 13.0, *)
 @available(swift, obsoleted: 3, renamed: "UIMenu.Options")
 typealias UIMenuOptions = UIMenu.Options
@@ -73,7 +75,7 @@ typealias UIMenuElementSize = UIMenu.ElementSize
   var identifier: UIMenu.Identifier { get }
 
   /// Options.
-  var options: UIMenu.Options { get }
+  var options: Int { get }
 
   /// Size of this menu's child elements. This property has no effect on Mac Catalyst.
   @available(iOS 16.0, *)
@@ -188,14 +190,6 @@ typealias UIMenuElementSize = UIMenu.ElementSize
 
 @available(iOS 13.0, tvOS 14.0, *)
 extension UIMenu {
-  /// Creates a UIMenu with the given arguments.
-  ///
-  /// - Parameters:
-  ///   - title: The menu's title.
-  ///   - image: Image to be displayed alongside the menu's title.
-  ///   - identifier: The menu's unique identifier. Pass nil to use an auto-generated identifier.
-  ///   - options: The menu's options.
-  ///   - children: The menu's sub-elements and sub-menus.
   @_disfavoredOverload @MainActor convenience init(title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: UIMenu.Options = [], children: [UIMenuElement] = [])
   @available(iOS 15.0, tvOS 15.0, *)
   @_disfavoredOverload @MainActor convenience init(title: String = "", subtitle: String? = nil, image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: UIMenu.Options = [], children: [UIMenuElement] = [])

@@ -16,7 +16,7 @@
   var charactersIgnoringModifiers: String { get }
 
   /// @returns a bitfield representing which modifier keys are currently being held in addition to this key.
-  var modifierFlags: UIKeyModifierFlags { get }
+  var modifierFlags: Int { get }
 
   /// @returns the raw HID usage code for the pressed key. See UIKeyConstants.h.
   var keyCode: UIKeyboardHIDUsage { get }

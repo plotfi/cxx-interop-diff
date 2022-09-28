@@ -227,7 +227,7 @@ extension UITextField : UITextDraggable, UITextDroppable, UITextPasteConfigurati
   @available(iOS 11.0, *)
   var isTextDragActive: Bool { get }
   @available(iOS 11.0, *)
-  var textDragOptions: UITextDragOptions
+  var textDragOptions: Int
   @available(iOS 11.0, *)
   weak var textDropDelegate: @sil_weak UITextDropDelegate?
   @available(iOS 11.0, *)

@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIFocusHeading = Int
 @available(iOS 9.0, *)
 struct UIFocusHeading : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
@@ -248,7 +250,7 @@ extension UIFocusItem {
   weak var nextFocusedView: @sil_weak UIView? { get }
 
   /// The focus heading in which the update is occurring.
-  var focusHeading: UIFocusHeading { get }
+  var focusHeading: Int { get }
   init()
 }
 @available(iOS 11.0, *)

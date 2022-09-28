@@ -69,7 +69,7 @@ extension UITextSearchOptions {
   var wordMatchMethod: UITextSearchOptions.WordMatchMethod { get }
 
   /// Comparison options to use when searching for strings.
-  var stringCompareOptions: NSString.CompareOptions { get }
+  var stringCompareOptions: Int { get }
   init()
 }
 

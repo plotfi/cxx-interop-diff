@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSTextListOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSTextList.Options")
 typealias NSTextListOptions = NSTextList.Options
 extension NSTextList {
@@ -122,7 +124,7 @@ let NSTextListMarkerDecimal: NSTextList.MarkerFormat
   convenience init(markerFormat: NSTextList.MarkerFormat, options: Int)
   init?(coder: NSCoder)
   var markerFormat: NSTextList.MarkerFormat { get }
-  var listOptions: NSTextList.Options { get }
+  var listOptions: Int { get }
   var startingItemNumber: Int
   @available(iOS 16.0, *)
   var isOrdered: Bool { get }

@@ -4,6 +4,8 @@
 typealias UIDocumentChangeKind = UIDocument.ChangeKind
 @available(swift, obsoleted: 4.2, renamed: "UIDocument.SaveOperation")
 typealias UIDocumentSaveOperation = UIDocument.SaveOperation
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIDocumentState = Int
 @available(swift, obsoleted: 4.2, renamed: "UIDocument.State")
 typealias UIDocumentState = UIDocument.State
 @available(iOS 5.0, *)
@@ -16,7 +18,7 @@ let UIDocumentStateChangedNotification: NSNotification.Name
   var localizedName: String { get }
   var fileType: String? { get }
   var fileModificationDate: Date?
-  var documentState: UIDocument.State { get }
+  var documentState: Int { get }
   @available(iOS 9.0, *)
   var progress: Progress? { get }
   func open(completionHandler: ((Bool) -> Void)? = nil)

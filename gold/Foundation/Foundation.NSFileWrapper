@@ -1,5 +1,7 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileWrapperReadingOptions = Int
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "FileWrapper.ReadingOptions")
 typealias NSFileWrapperReadingOptions = FileWrapper.ReadingOptions
@@ -33,6 +35,8 @@ extension FileWrapper {
     static var WithNameUpdating: FileWrapper.WritingOptions { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileWrapperWritingOptions = Int
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "FileWrapper.WritingOptions")
 typealias NSFileWrapperWritingOptions = FileWrapper.WritingOptions

@@ -77,6 +77,8 @@ extension UIOffset : _ObjectiveCBridgeable {
   static func _unconditionallyBridgeFromObjectiveC(_ source: NSValue?) -> UIOffset
   typealias _ObjectiveCType = NSValue
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIRectEdge = Int
 @available(iOS 7.0, *)
 @_nonSendable(_assumed) struct UIRectEdge : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
@@ -105,6 +107,8 @@ extension UIOffset : _ObjectiveCBridgeable {
   @available(swift, obsoleted: 3, renamed: "all")
   static var All: UIRectEdge { get }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIRectCorner = Int
 @_nonSendable(_assumed) struct UIRectCorner : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
@@ -127,6 +131,8 @@ extension UIOffset : _ObjectiveCBridgeable {
   @available(swift, obsoleted: 3, renamed: "allCorners")
   static var AllCorners: UIRectCorner { get }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIAxis = Int
 @available(iOS 13.4, *)
 @_nonSendable(_assumed) struct UIAxis : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
@@ -149,6 +155,8 @@ extension UIOffset : _ObjectiveCBridgeable {
   @available(swift, obsoleted: 3, renamed: "both")
   static var Both: UIAxis { get }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSDirectionalRectEdge = Int
 @available(iOS 13.0, *)
 @_nonSendable(_assumed) struct NSDirectionalRectEdge : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
@@ -177,6 +185,8 @@ extension UIOffset : _ObjectiveCBridgeable {
   @available(swift, obsoleted: 3, renamed: "all")
   static var All: NSDirectionalRectEdge { get }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIDirectionalRectEdge = Int
 @available(iOS, introduced: 13.0, deprecated: 13.0, renamed: "NSDirectionalRectEdge")
 @_nonSendable(_assumed) struct UIDirectionalRectEdge : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)

@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIFontDescriptorSymbolicTraits = UInt32
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UIFontDescriptor.SymbolicTraits")
 typealias UIFontDescriptorSymbolicTraits = UIFontDescriptor.SymbolicTraits
@@ -174,7 +176,7 @@ let UIFontDescriptorSystemDesignMonospaced: UIFontDescriptor.SystemDesign
   var postscriptName: String { get }
   var pointSize: CGFloat { get }
   var matrix: CGAffineTransform { get }
-  var symbolicTraits: UIFontDescriptor.SymbolicTraits { get }
+  var symbolicTraits: UInt32 { get }
   func object(forKey anAttribute: UIFontDescriptor.AttributeName) -> Any?
   @available(swift, obsoleted: 3, renamed: "object(forKey:)")
   func objectForKey(_ anAttribute: UIFontDescriptor.AttributeName) -> Any?

@@ -1,5 +1,7 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSTextCheckingType = UInt64
 @available(swift, obsoleted: 3, renamed: "NSTextCheckingResult.CheckingType")
 typealias NSTextCheckingType = NSTextCheckingResult.CheckingType
 extension NSTextCheckingResult {
@@ -70,7 +72,7 @@ struct NSTextCheckingKey : _ObjectiveCBridgeable, Hashable, Equatable, _SwiftNew
 }
 @available(iOS 4.0, *)
 @_nonSendable(_assumed) class NSTextCheckingResult : NSObject, NSCopying, NSSecureCoding {
-  var resultType: NSTextCheckingResult.CheckingType { get }
+  var resultType: UInt64 { get }
   var range: NSRange { get }
   init()
   @available(iOS 4.0, *)

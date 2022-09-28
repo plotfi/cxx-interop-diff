@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIUserNotificationType = Int
 @available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNAuthorizationOptions")
 @_nonSendable(_assumed) struct UIUserNotificationType : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
@@ -69,7 +71,7 @@ let UIUserNotificationActionResponseTypedTextKey: String
   convenience init(forTypes types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?)
   @available(*, unavailable, renamed: "init(types:categories:)", message: "Not available in Swift")
   class func settingsForTypes(_ types: UIUserNotificationType, categories: Set<UIUserNotificationCategory>?) -> Self
-  var types: UIUserNotificationType { get }
+  var types: Int { get }
   var categories: Set<UIUserNotificationCategory>? { get }
   init()
 }

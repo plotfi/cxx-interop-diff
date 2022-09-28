@@ -1,5 +1,7 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSByteCountFormatterUnits = Int
 @available(swift, obsoleted: 3, renamed: "ByteCountFormatter.Units")
 typealias NSByteCountFormatterUnits = ByteCountFormatter.Units
 extension ByteCountFormatter {
@@ -86,7 +88,7 @@ typealias NSByteCountFormatterCountStyle = ByteCountFormatter.CountStyle
   func string(for obj: Any?) -> String?
   @available(swift, obsoleted: 3, renamed: "string(for:)")
   func stringForObjectValue(_ obj: Any?) -> String?
-  var allowedUnits: ByteCountFormatter.Units
+  var allowedUnits: Int
   var countStyle: ByteCountFormatter.CountStyle
   var allowsNonnumericFormatting: Bool
   var includesUnit: Bool

@@ -282,11 +282,17 @@ extension UIView {
 typealias UIViewContentMode = UIView.ContentMode
 @available(swift, obsoleted: 4.2, renamed: "UIView.AnimationTransition")
 typealias UIViewAnimationTransition = UIView.AnimationTransition
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIViewAutoresizing = Int
 @available(swift, obsoleted: 4.2, renamed: "UIView.AutoresizingMask")
 typealias UIViewAutoresizing = UIView.AutoresizingMask
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIViewAnimationOptions = Int
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UIView.AnimationOptions")
 typealias UIViewAnimationOptions = UIView.AnimationOptions
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIViewKeyframeAnimationOptions = Int
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UIView.KeyframeAnimationOptions")
 typealias UIViewKeyframeAnimationOptions = UIView.KeyframeAnimationOptions
@@ -623,7 +629,7 @@ extension UIView {
   @available(swift, obsoleted: 3, renamed: "convert(_:from:)")
   func convertRect(_ rect: CGRect, fromView view: UIView?) -> CGRect
   var autoresizesSubviews: Bool
-  var autoresizingMask: UIView.AutoresizingMask
+  var autoresizingMask: Int
   func sizeThatFits(_ size: CGSize) -> CGSize
   func sizeToFit()
 }

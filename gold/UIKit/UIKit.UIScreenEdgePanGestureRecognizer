@@ -5,7 +5,7 @@
     in from the bezel on the specified edge. */
 @available(iOS 7.0, *)
 @MainActor @_nonSendable(_assumed) class UIScreenEdgePanGestureRecognizer : UIPanGestureRecognizer {
-  var edges: UIRectEdge
+  var edges: Int
   init(target: Any?, action: Selector?)
   convenience init()
   convenience init?(coder: NSCoder)

@@ -2,15 +2,15 @@
 
 var __FOUNDATION_NSHASHTABLE__: Int32 { get }
 @available(iOS 6.0, *)
-let NSHashTableStrongMemory: NSPointerFunctions.Options
+let NSHashTableStrongMemory: Int
 @available(iOS, unavailable)
-let NSHashTableZeroingWeakMemory: NSPointerFunctions.Options
+let NSHashTableZeroingWeakMemory: Int
 @available(iOS 6.0, *)
-let NSHashTableCopyIn: NSPointerFunctions.Options
+let NSHashTableCopyIn: Int
 @available(iOS 6.0, *)
-let NSHashTableObjectPointerPersonality: NSPointerFunctions.Options
+let NSHashTableObjectPointerPersonality: Int
 @available(iOS 6.0, *)
-let NSHashTableWeakMemory: NSPointerFunctions.Options
+let NSHashTableWeakMemory: Int
 typealias NSHashTableOptions = Int
 @available(iOS 6.0, *)
 @_nonSendable(_assumed) class NSHashTable<ObjectType> : NSObject, NSCopying, NSSecureCoding, NSFastEnumeration where ObjectType : AnyObject {

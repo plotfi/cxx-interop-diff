@@ -64,6 +64,8 @@ typealias UIGuidedAccessRestrictionState = UIAccessibility.GuidedAccessRestricti
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "UIAccessibility.guidedAccessRestrictionState(forIdentifier:)")
 func UIGuidedAccessRestrictionStateForIdentifier(_ restrictionIdentifier: String) -> UIAccessibility.GuidedAccessRestrictionState
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIGuidedAccessAccessibilityFeature = Int
 @available(iOS 12.2, *)
 @_nonSendable(_assumed) struct UIGuidedAccessAccessibilityFeature : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)

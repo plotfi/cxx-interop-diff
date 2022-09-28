@@ -8,7 +8,7 @@ extension UIFontPickerViewController {
   @MainActor @_nonSendable(_assumed) class Configuration : NSObject, NSCopying {
     var includeFaces: Bool
     var displayUsingSystemFont: Bool
-    var filteredTraits: UIFontDescriptor.SymbolicTraits
+    var filteredTraits: UInt32
     @NSCopying var filteredLanguagesPredicate: NSPredicate?
     class func filterPredicate(forFilteredLanguages filteredLanguages: [String]) -> NSPredicate?
     @available(swift, obsoleted: 3, renamed: "filterPredicate(forFilteredLanguages:)")

@@ -2,11 +2,11 @@
 
 
 /****************	Read/Write Options	****************/
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSDataReadingOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSData.ReadingOptions")
 typealias NSDataReadingOptions = NSData.ReadingOptions
 extension NSData {
-
-  /****************	Read/Write Options	****************/
   @_nonSendable(_assumed) struct ReadingOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
@@ -85,8 +85,6 @@ extension NSData {
     @available(swift, obsoleted: 3, renamed: "atomicWrite")
     static var AtomicWrite: NSData.WritingOptions { get }
   }
-
-  /****************	Data Search Options	****************/
   @available(iOS 4.0, *)
   @_nonSendable(_assumed) struct SearchOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
@@ -101,8 +99,6 @@ extension NSData {
     @available(swift, obsoleted: 3, renamed: "anchored")
     static var Anchored: NSData.SearchOptions { get }
   }
-
-  /****************        Base 64 Options	****************/
   @available(iOS 7.0, *)
   @_nonSendable(_assumed) struct Base64EncodingOptions : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
@@ -153,18 +149,26 @@ extension NSData {
     static var NSDataCompressionAlgorithmZlib: NSData.CompressionAlgorithm { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSDataWritingOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSData.WritingOptions")
 typealias NSDataWritingOptions = NSData.WritingOptions
 
 /****************	Data Search Options	****************/
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSDataSearchOptions = Int
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "NSData.SearchOptions")
 typealias NSDataSearchOptions = NSData.SearchOptions
 
 /****************        Base 64 Options	****************/
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSDataBase64EncodingOptions = Int
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "NSData.Base64EncodingOptions")
 typealias NSDataBase64EncodingOptions = NSData.Base64EncodingOptions
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSDataBase64DecodingOptions = Int
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "NSData.Base64DecodingOptions")
 typealias NSDataBase64DecodingOptions = NSData.Base64DecodingOptions

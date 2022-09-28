@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSTextLayoutFragmentEnumerationOptions = Int
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "NSTextLayoutFragment.EnumerationOptions")
 typealias NSTextLayoutFragmentEnumerationOptions = NSTextLayoutFragment.EnumerationOptions

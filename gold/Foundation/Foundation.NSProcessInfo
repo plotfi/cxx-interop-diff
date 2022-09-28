@@ -62,6 +62,8 @@ typealias NSProcessInfo = ProcessInfo
 @available(*, unavailable)
 extension ProcessInfo : @unchecked Sendable {
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSActivityOptions = UInt64
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 3, renamed: "ProcessInfo.ActivityOptions")
 typealias NSActivityOptions = ProcessInfo.ActivityOptions

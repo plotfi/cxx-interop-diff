@@ -118,7 +118,7 @@
   @available(swift, obsoleted: 3, renamed: "isSelectable")
   var selectable: Bool
   @available(iOS 3.0, *)
-  var dataDetectorTypes: UIDataDetectorTypes
+  var dataDetectorTypes: Int
   @available(iOS 6.0, *)
   var allowsEditingTextAttributes: Bool
   @available(iOS 6.0, *)
@@ -315,7 +315,7 @@ extension UITextView : UITextDraggable, UITextDroppable, UITextPasteConfiguratio
   @available(iOS 11.0, *)
   var isTextDragActive: Bool { get }
   @available(iOS 11.0, *)
-  var textDragOptions: UITextDragOptions
+  var textDragOptions: Int
   @available(iOS 11.0, *)
   weak var textDropDelegate: @sil_weak UITextDropDelegate?
   @available(iOS 11.0, *)

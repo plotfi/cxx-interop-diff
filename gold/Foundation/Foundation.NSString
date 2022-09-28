@@ -1,6 +1,8 @@
 @_exported import CoreFoundation
 
 typealias unichar = UInt16
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSStringCompareOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSString.CompareOptions")
 typealias NSStringCompareOptions = NSString.CompareOptions
 extension NSString {
@@ -125,6 +127,8 @@ var NSUTF16LittleEndianStringEncoding: UInt { get }
 var NSUTF32StringEncoding: UInt { get }
 var NSUTF32BigEndianStringEncoding: UInt { get }
 var NSUTF32LittleEndianStringEncoding: UInt { get }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSStringEncodingConversionOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSString.EncodingConversionOptions")
 typealias NSStringEncodingConversionOptions = NSString.EncodingConversionOptions
 @_nonSendable(_assumed) class NSString : NSObject, NSCopying, NSMutableCopying, NSSecureCoding {
@@ -469,6 +473,8 @@ extension NSString {
   @available(*, unavailable, renamed: "init(contentsOfFile:usedEncoding:)", message: "Not available in Swift")
   class func stringWithContentsOfFile(_ path: String, usedEncoding enc: UnsafeMutablePointer<UInt>?) throws -> Self
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSStringEnumerationOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSString.EnumerationOptions")
 typealias NSStringEnumerationOptions = NSString.EnumerationOptions
 @available(swift, obsoleted: 3, renamed: "StringTransform")

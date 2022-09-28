@@ -48,6 +48,8 @@ extension NSTextLayoutManager {
     static var UpstreamAffinity: NSTextLayoutManager.SegmentOptions { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSTextLayoutManagerSegmentOptions = Int
 @available(iOS 15.0, *)
 @available(swift, obsoleted: 3, renamed: "NSTextLayoutManager.SegmentOptions")
 typealias NSTextLayoutManagerSegmentOptions = NSTextLayoutManager.SegmentOptions

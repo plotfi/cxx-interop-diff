@@ -15,6 +15,6 @@ extension UIWindowScene.GeometryPreferences {
 
     /// The preferred interface orientations. The system will choose the best orientation from the intersection of these
     /// orientations and the current supported orientations. Defaults to an empty mask to indicate no preference.
-    var __interfaceOrientations: UIInterfaceOrientationMask
+    var __interfaceOrientations: Int
   }
 }

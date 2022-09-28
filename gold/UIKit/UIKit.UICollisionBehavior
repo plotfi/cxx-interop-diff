@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UICollisionBehaviorMode = Int
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UICollisionBehavior.Mode")
 typealias UICollisionBehaviorMode = UICollisionBehavior.Mode
@@ -46,7 +48,7 @@ extension UICollisionBehavior {
   func addItem(_ item: UIDynamicItem)
   func removeItem(_ item: UIDynamicItem)
   var items: [UIDynamicItem] { get }
-  var collisionMode: UICollisionBehavior.Mode
+  var collisionMode: Int
   var translatesReferenceBoundsIntoBoundary: Bool
   func setTranslatesReferenceBoundsIntoBoundary(with insets: UIEdgeInsets)
   @available(swift, obsoleted: 3, renamed: "setTranslatesReferenceBoundsIntoBoundary(with:)")

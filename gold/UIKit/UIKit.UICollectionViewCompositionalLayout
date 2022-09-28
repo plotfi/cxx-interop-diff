@@ -352,7 +352,7 @@ extension NSCollectionLayoutGroup {
   init()
   @available(*, unavailable)
   class func new() -> Self
-  var edges: NSDirectionalRectEdge { get }
+  var edges: Int { get }
   var offset: CGPoint { get }
   var isAbsoluteOffset: Bool { get }
   var isFractionalOffset: Bool { get }

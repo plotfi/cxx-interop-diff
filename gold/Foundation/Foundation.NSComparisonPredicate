@@ -1,5 +1,7 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSComparisonPredicateOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSComparisonPredicate.Options")
 typealias NSComparisonPredicateOptions = NSComparisonPredicate.Options
 extension NSComparisonPredicate {
@@ -109,7 +111,7 @@ typealias NSPredicateOperatorType = NSComparisonPredicate.Operator
   var leftExpression: NSExpression { get }
   var rightExpression: NSExpression { get }
   var customSelector: Selector? { get }
-  var options: NSComparisonPredicate.Options { get }
+  var options: Int { get }
   convenience init()
 }
 

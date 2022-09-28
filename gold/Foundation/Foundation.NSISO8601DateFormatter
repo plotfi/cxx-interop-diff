@@ -1,5 +1,7 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSISO8601DateFormatOptions = Int
 @available(swift, obsoleted: 3, renamed: "ISO8601DateFormatter.Options")
 typealias NSISO8601DateFormatOptions = ISO8601DateFormatter.Options
 extension ISO8601DateFormatter {
@@ -84,7 +86,7 @@ extension ISO8601DateFormatter {
 @available(iOS 10.0, *)
 @_nonSendable(_assumed) class ISO8601DateFormatter : Formatter, NSSecureCoding {
   var timeZone: TimeZone!
-  var formatOptions: ISO8601DateFormatter.Options
+  var formatOptions: Int
   init()
   func string(from date: Date) -> String
   @available(swift, obsoleted: 3, renamed: "string(from:)")

@@ -75,6 +75,8 @@ protocol PortDelegate : NSObjectProtocol {
 @available(*, unavailable)
 extension NSMachPort : @unchecked Sendable {
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSMachPortOptions = Int
 @available(iOS 2.0, *)
 @available(swift, obsoleted: 3, renamed: "NSMachPort.Options")
 typealias NSMachPortOptions = NSMachPort.Options

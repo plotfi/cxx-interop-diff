@@ -40,7 +40,7 @@ extension UIBandSelectionInteraction {
   var __selectionRect: CGRect { get }
 
   /// Modifier keys held at the beginning of the interaction.
-  var initialModifierFlags: UIKeyModifierFlags { get }
+  var initialModifierFlags: Int { get }
 
   /// Called when the interaction is about to begin.
   /// Return a boolean indicating whether the interaction should begin at the given location.

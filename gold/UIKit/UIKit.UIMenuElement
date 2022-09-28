@@ -50,6 +50,8 @@ extension UIMenuElement {
     static var KeepsMenuPresented: UIMenuElement.Attributes { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIMenuElementAttributes = Int
 @available(iOS 13.0, *)
 @available(swift, obsoleted: 3, renamed: "UIMenuElement.Attributes")
 typealias UIMenuElementAttributes = UIMenuElement.Attributes
