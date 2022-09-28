@@ -1,5 +1,7 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSPropertyListMutabilityOptions = Int
 @available(swift, obsoleted: 3, renamed: "PropertyListSerialization.MutabilityOptions")
 typealias NSPropertyListMutabilityOptions = PropertyListSerialization.MutabilityOptions
 extension PropertyListSerialization {
@@ -35,7 +37,7 @@ extension PropertyListSerialization {
     @available(swift, obsoleted: 3, renamed: "binary")
     static var NSPropertyListBinaryFormat_v1_0: PropertyListSerialization.PropertyListFormat { get }
   }
-  typealias ReadOptions = PropertyListSerialization.MutabilityOptions
+  typealias ReadOptions = Int
   typealias WriteOptions = Int
 }
 @available(swift, obsoleted: 3, renamed: "PropertyListSerialization.PropertyListFormat")

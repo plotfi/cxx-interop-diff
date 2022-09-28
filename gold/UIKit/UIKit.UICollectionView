@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UICollectionViewScrollPosition = Int
 @available(swift, obsoleted: 4.2, renamed: "UICollectionView.ScrollPosition")
 typealias UICollectionViewScrollPosition = UICollectionView.ScrollPosition
 @available(iOS 11.0, *)

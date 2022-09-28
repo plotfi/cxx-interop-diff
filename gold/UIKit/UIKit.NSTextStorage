@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSTextStorageEditActions = Int
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 4.2, renamed: "NSTextStorage.EditActions")
 typealias NSTextStorageEditActions = NSTextStorage.EditActions
@@ -34,7 +36,7 @@ extension NSTextStorage {
   func removeLayoutManager(_ aLayoutManager: NSLayoutManager)
 
   /**************************** Pending edit info ****************************/
-  var editedMask: NSTextStorage.EditActions { get }
+  var editedMask: Int { get }
   var editedRange: NSRange { get }
   var changeInLength: Int { get }
 

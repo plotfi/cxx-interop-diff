@@ -68,6 +68,8 @@ extension NSAttributedString {
   @available(swift, obsoleted: 3, renamed: "enumerateAttribute(_:in:options:using:)")
   func enumerateAttribute(_ attrName: NSAttributedString.Key, inRange enumerationRange: NSRange, options opts: NSAttributedString.EnumerationOptions = [], usingBlock block: (Any?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSAttributedStringEnumerationOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSAttributedString.EnumerationOptions")
 typealias NSAttributedStringEnumerationOptions = NSAttributedString.EnumerationOptions
 extension NSAttributedString {
@@ -140,6 +142,8 @@ extension NSMutableAttributedString {
   func beginEditing()
   func endEditing()
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSInlinePresentationIntent = Int
 @available(iOS 15.0, *)
 @_nonSendable(_assumed) struct InlinePresentationIntent : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
@@ -293,6 +297,8 @@ extension NSAttributedString {
   @available(iOS 15.0, *)
   init(__markdownString markdownString: String, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSAttributedStringFormattingOptions = Int
 @_nonSendable(_assumed) struct __NSAttributedStringFormattingOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt

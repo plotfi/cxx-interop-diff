@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIControlEvents = Int
 @available(swift, obsoleted: 4.2, renamed: "UIControl.Event")
 typealias UIControlEvents = UIControl.Event
 extension UIControl {
@@ -157,6 +159,8 @@ extension UIControl {
 typealias UIControlContentVerticalAlignment = UIControl.ContentVerticalAlignment
 @available(swift, obsoleted: 4.2, renamed: "UIControl.ContentHorizontalAlignment")
 typealias UIControlContentHorizontalAlignment = UIControl.ContentHorizontalAlignment
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIControlState = Int
 @available(swift, obsoleted: 4.2, renamed: "UIControl.State")
 typealias UIControlState = UIControl.State
 @available(iOS 2.0, *)
@@ -179,7 +183,7 @@ typealias UIControlState = UIControl.State
   var contentVerticalAlignment: UIControl.ContentVerticalAlignment
   var contentHorizontalAlignment: UIControl.ContentHorizontalAlignment
   var effectiveContentHorizontalAlignment: UIControl.ContentHorizontalAlignment { get }
-  var state: UIControl.State { get }
+  var state: Int { get }
   var isTracking: Bool { get }
   @available(swift, obsoleted: 3, renamed: "isTracking")
   var tracking: Bool { get }
@@ -232,14 +236,14 @@ typealias UIControlState = UIControl.State
   @available(swift, obsoleted: 3, renamed: "removeAction(identifiedBy:for:)")
   func removeActionForIdentifier(_ actionIdentifier: UIAction.Identifier, forControlEvents controlEvents: UIControl.Event)
   var allTargets: Set<AnyHashable> { get }
-  var allControlEvents: UIControl.Event { get }
+  var allControlEvents: Int { get }
   func actions(forTarget target: Any?, forControlEvent controlEvent: UIControl.Event) -> [String]?
   @available(swift, obsoleted: 3, renamed: "actions(forTarget:forControlEvent:)")
   func actionsForTarget(_ target: Any?, forControlEvent controlEvent: UIControl.Event) -> [String]?
 
   /// Iterate over the event handlers installed on this control at the time this method is called. For each call, either actionHandler or action will be non-nil. controlEvents is always non-zero. Setting *stop to YES will terminate the enumeration early. It is legal to manipulate the control's event handlers within the block.
   @available(iOS 14.0, *)
-  func __enumerateEventHandlers(_ iterator: (UIAction?, Any?, Selector?, UIControl.Event, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func __enumerateEventHandlers(_ iterator: (UIAction?, Any?, Selector?, Int, UnsafeMutablePointer<ObjCBool>) -> Void)
 
   /// Dispatch the target-action pair. This method is called repeatedly by -sendActionsForControlEvents: and is a point at which you can observe or override behavior.
   func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?)

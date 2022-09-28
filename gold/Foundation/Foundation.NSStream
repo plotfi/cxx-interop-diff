@@ -70,6 +70,8 @@ extension Stream {
 }
 @available(swift, obsoleted: 3, renamed: "Stream.Status")
 typealias NSStreamStatus = Stream.Status
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSStreamEvent = Int
 @available(swift, obsoleted: 3, renamed: "Stream.Event")
 typealias NSStreamEvent = Stream.Event
 @available(swift, obsoleted: 3, renamed: "Stream")
