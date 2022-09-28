@@ -48,7 +48,6 @@ extension NSDecimalNumber {
 @available(swift, obsoleted: 3, renamed: "NSDecimalNumber.CalculationError")
 typealias NSCalculationError = NSDecimalNumber.CalculationError
 var NSDecimalMaxSize: Int32 { get }
-var NSDecimalNoScale: Int32 { get }
 @_nonSendable(_assumed) struct Decimal : @unchecked Sendable {
   init()
   init(_exponent: Int32, _length: UInt32, _isNegative: UInt32, _isCompact: UInt32, _reserved: UInt32, _mantissa: (UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16, UInt16))
