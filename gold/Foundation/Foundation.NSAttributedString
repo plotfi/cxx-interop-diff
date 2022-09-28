@@ -115,7 +115,7 @@ extension NSAttributedString {
 
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
+  init(__format format: NSAttributedString, options: NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
 }
 
 @available(*, unavailable)
@@ -299,28 +299,28 @@ extension NSAttributedString {
 }
 @available(*, unavailable, message: "Not available in Swift")
 typealias NSAttributedStringFormattingOptions = Int
-@_nonSendable(_assumed) struct __NSAttributedStringFormattingOptions : OptionSet, @unchecked Sendable {
+@_nonSendable(_assumed) struct NSAttributedStringFormattingOptions : OptionSet, @unchecked Sendable {
   init(rawValue: UInt)
   let rawValue: UInt
   typealias RawValue = UInt
-  typealias Element = __NSAttributedStringFormattingOptions
-  typealias ArrayLiteralElement = __NSAttributedStringFormattingOptions
+  typealias Element = NSAttributedStringFormattingOptions
+  typealias ArrayLiteralElement = NSAttributedStringFormattingOptions
   @available(iOS 15.0, *)
-  static var insertArgumentAttributesWithoutMerging: __NSAttributedStringFormattingOptions { get }
+  static var insertArgumentAttributesWithoutMerging: NSAttributedStringFormattingOptions { get }
   @available(iOS 15.0, *)
   @available(swift, obsoleted: 3, renamed: "insertArgumentAttributesWithoutMerging")
-  static var InsertArgumentAttributesWithoutMerging: __NSAttributedStringFormattingOptions { get }
+  static var InsertArgumentAttributesWithoutMerging: NSAttributedStringFormattingOptions { get }
   @available(iOS 15.0, *)
-  static var applyReplacementIndexAttribute: __NSAttributedStringFormattingOptions { get }
+  static var applyReplacementIndexAttribute: NSAttributedStringFormattingOptions { get }
   @available(iOS 15.0, *)
   @available(swift, obsoleted: 3, renamed: "applyReplacementIndexAttribute")
-  static var ApplyReplacementIndexAttribute: __NSAttributedStringFormattingOptions { get }
+  static var ApplyReplacementIndexAttribute: NSAttributedStringFormattingOptions { get }
 }
 extension NSAttributedString {
 
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
+  init(__format format: NSAttributedString, options: NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
 }
 extension NSMutableAttributedString {
 }

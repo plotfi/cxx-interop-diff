@@ -367,6 +367,7 @@ let UIAccessibilityTextAttributeCustom: NSAttributedString.Key
 @available(swift, obsoleted: 3, renamed: "NSAttributedString.Key.UIAccessibilityTextAttributeContext")
 let UIAccessibilityTextAttributeContext: NSAttributedString.Key
 @_nonSendable(_assumed) struct UIAccessibility {
+  init()
   init(_reserved: UnsafeMutableRawPointer)
   var _reserved: UnsafeMutableRawPointer
 }

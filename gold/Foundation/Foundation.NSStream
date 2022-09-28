@@ -180,8 +180,6 @@ extension OutputStream {
 @available(swift, obsoleted: 3, renamed: "StreamDelegate")
 typealias NSStreamDelegate = StreamDelegate
 protocol StreamDelegate : NSObjectProtocol {
-  optional func stream(_ aStream: Stream, handle eventCode: Stream.Event)
-  @available(swift, obsoleted: 3, renamed: "stream(_:handle:)")
   optional func stream(_ aStream: Stream, handleEvent eventCode: Stream.Event)
 }
 @available(iOS 2.0, *)
