@@ -2,7 +2,9 @@ import Combine
 import _Concurrency
 import _StringProcessing
 @_exported import os_object
+@_exported import std_config
 
+var __bool_true_false_are_defined: Int32 { get }
 var DISPATCH_API_VERSION: Int32 { get }
 var DISPATCH_SWIFT3_OVERLAY: Int32 { get }
 @available(*, unavailable, message: "Not available in Swift")
@@ -1242,7 +1244,6 @@ func dispatch_get_main_queue() -> dispatch_queue_main_t
 var DISPATCH_QUEUE_PRIORITY_HIGH: Int32 { get }
 var DISPATCH_QUEUE_PRIORITY_DEFAULT: Int32 { get }
 var DISPATCH_QUEUE_PRIORITY_LOW: Int32 { get }
-var DISPATCH_QUEUE_PRIORITY_BACKGROUND: Int32 { get }
 @available(*, unavailable, message: "Not available in Swift")
 typealias dispatch_queue_priority_t = Int
 
@@ -1291,8 +1292,6 @@ class __OS_dispatch_queue_attr : DispatchObject {
 }
 @available(*, unavailable, message: "Not available in Swift")
 typealias dispatch_queue_attr_t = __OS_dispatch_queue_attr
-@available(*, unavailable, message: "use 'nil' instead of this imported macro")
-var DISPATCH_QUEUE_SERIAL: ()
 @available(iOS 4.3, *)
 var _dispatch_queue_attr_concurrent: <<error type>>
 
@@ -1441,8 +1440,6 @@ enum __dispatch_autorelease_frequency_t : UInt, @unchecked Sendable {
  */
 @available(iOS 8.0, *)
 @_effects(readonly) func __dispatch_queue_attr_make_with_qos_class(_ attr: __OS_dispatch_queue_attr?, _ qos_class: qos_class_t, _ relative_priority: Int32) -> __OS_dispatch_queue_attr
-@available(*, unavailable, message: "use 'nil' instead of this imported macro")
-var DISPATCH_TARGET_QUEUE_DEFAULT: ()
 
 /**
  * @function dispatch_queue_create_with_target
@@ -1546,8 +1543,6 @@ func __dispatch_queue_create_with_target(_ label: UnsafePointer<CChar>?, _ attr:
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "DispatchQueue.init(__label:attr:)")
 func __dispatch_queue_create(_ label: UnsafePointer<CChar>?, _ attr: __OS_dispatch_queue_attr?) -> DispatchQueue
-@available(*, unavailable, message: "use 'nil' instead of this imported macro")
-var DISPATCH_CURRENT_QUEUE_LABEL: ()
 
 /**
  * @function dispatch_queue_get_label
@@ -3617,8 +3612,6 @@ class __DispatchData : NSObject {
 typealias dispatch_data_t = __DispatchData
 @available(iOS 5.0, *)
 var _dispatch_data_empty: <<error type>>
-@available(*, unavailable, message: "use 'nil' instead of this imported macro")
-var DISPATCH_DATA_DESTRUCTOR_DEFAULT: ()
 @available(iOS 5.0, *)
 @available(*, unavailable, message: "Not available in Swift")
 let _dispatch_data_destructor_free: @convention(block) () -> Void

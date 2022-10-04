@@ -29,7 +29,6 @@ extension DateComponentsFormatter {
     @available(swift, obsoleted: 3, renamed: "brief")
     static var Brief: DateComponentsFormatter.UnitsStyle { get }
   }
-  @available(iOS 8.0, *)
   @_nonSendable(_assumed) struct ZeroFormattingBehavior : OptionSet, @unchecked Sendable {
     init(rawValue: UInt)
     let rawValue: UInt
@@ -61,6 +60,7 @@ extension DateComponentsFormatter {
     static var Pad: DateComponentsFormatter.ZeroFormattingBehavior { get }
   }
 }
+@available(iOS 8.0, *)
 @available(*, unavailable, message: "Not available in Swift")
 typealias NSDateComponentsFormatterZeroFormattingBehavior = Int
 @available(swift, obsoleted: 3, renamed: "DateComponentsFormatter.ZeroFormattingBehavior")

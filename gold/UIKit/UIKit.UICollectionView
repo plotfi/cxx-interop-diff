@@ -676,8 +676,8 @@ extension UICollectionView {
   @available(iOS 9.0, *)
   @available(swift, obsoleted: 3, renamed: "indexPathsForVisibleSupplementaryElements(ofKind:)")
   func indexPathsForVisibleSupplementaryElementsOfKind(_ elementKind: String) -> [IndexPath]
-  func scrollToItem(at indexPath: IndexPath, at scrollPosition: UICollectionView.ScrollPosition, animated: Bool)
-  @available(swift, obsoleted: 3, renamed: "scrollToItem(at:at:animated:)")
+  func scrollToItem(at indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionView.ScrollPosition, animated: Bool)
+  @available(swift, obsoleted: 3, renamed: "scrollToItem(at:atScrollPosition:animated:)")
   func scrollToItemAtIndexPath(_ indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionView.ScrollPosition, animated: Bool)
   func insertSections(_ sections: IndexSet)
   func deleteSections(_ sections: IndexSet)

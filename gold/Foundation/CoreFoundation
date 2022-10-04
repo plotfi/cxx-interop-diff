@@ -46,9 +46,9 @@ import CoreFoundation.CFPlugInCOM
 @_exported import CoreFoundation.CFXMLParser
 import _Concurrency
 import _StringProcessing
+@_exported import std_config
 
 var __COREFOUNDATION__: Int32 { get }
-func __assert_rtn(_: UnsafePointer<CChar>!, _: UnsafePointer<CChar>!, _: Int32, _: UnsafePointer<CChar>!) -> Never
 @available(macOS 10.0, macCatalyst 13.0, iOS 2.0, watchOS 1.0, tvOS 9.0, *)
 @_originallyDefinedIn(module: "CoreGraphics", macOS 13.0)
 @_originallyDefinedIn(module: "CoreGraphics", macCatalyst 16.0)

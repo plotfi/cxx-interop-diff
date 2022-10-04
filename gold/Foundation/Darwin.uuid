@@ -1,3 +1,10 @@
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/net/if_var_status.h:449:8: error: definition of 'ifnet_interface_advisory' must be imported from module 'Darwin.net.if_var_status' before it is required
+struct ifnet_interface_advisory {
+       ^
+<unknown>:0: note: in evaluation of exception specification for 'ifnet_interface_advisory::ifnet_interface_advisory' needed here
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/net/if_var_status.h:449:8: note: definition here is not reachable
+struct ifnet_interface_advisory {
+       ^
 
 typealias uuid_string_t = __darwin_uuid_string_t
 let UUID_NULL: uuid_t

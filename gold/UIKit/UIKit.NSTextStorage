@@ -70,7 +70,7 @@ extension NSTextStorage {
 
   /// Formats the string using the arguments list and the specified locale (or the canonical one, if nil).
   @available(iOS 15.0, *)
-  init(__format format: NSAttributedString, options: __NSAttributedStringFormattingOptions = [], locale: Locale?, arguments: CVaListPointer)
+  init(__format format: NSAttributedString, options: Int = [], locale: Locale?, arguments: CVaListPointer)
   @available(iOS 15.0, *)
   init(__contentsOfMarkdownFileAt markdownFile: URL, options: __NSAttributedStringMarkdownParsingOptions?, baseURL: URL?) throws
   @available(iOS 15.0, *)
