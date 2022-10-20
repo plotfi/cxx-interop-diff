@@ -1,5 +1,7 @@
 @_exported import CoreFoundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileVersionAddingOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSFileVersion.AddingOptions")
 typealias NSFileVersionAddingOptions = NSFileVersion.AddingOptions
 extension NSFileVersion {
@@ -24,6 +26,8 @@ extension NSFileVersion {
     static var ByMoving: NSFileVersion.ReplacingOptions { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSFileVersionReplacingOptions = Int
 @available(swift, obsoleted: 3, renamed: "NSFileVersion.ReplacingOptions")
 typealias NSFileVersionReplacingOptions = NSFileVersion.ReplacingOptions
 @available(iOS 5.0, *)

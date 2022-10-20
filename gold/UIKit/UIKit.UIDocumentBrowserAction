@@ -1,5 +1,7 @@
 @_exported import Foundation
 
+@available(*, unavailable, message: "Not available in Swift")
+typealias UIDocumentBrowserActionAvailability = Int
 @available(iOS 11.0, *)
 @available(swift, obsoleted: 3, renamed: "UIDocumentBrowserAction.Availability")
 typealias UIDocumentBrowserActionAvailability = UIDocumentBrowserAction.Availability
@@ -28,7 +30,7 @@ class UIDocumentBrowserAction : NSObject {
   init(identifier: String, localizedTitle: String, availability: UIDocumentBrowserAction.Availability, handler: @escaping ([URL]) -> Void)
   var identifier: String { get }
   var localizedTitle: String { get }
-  var availability: UIDocumentBrowserAction.Availability { get }
+  var availability: Int { get }
   var image: UIImage?
 
   /// Allows clients to restrict the action to only a specific set of content types. Default: [UTTypeItem.identifier]

@@ -37,6 +37,8 @@ extension PersonNameComponentsFormatter {
     static var Phonetic: PersonNameComponentsFormatter.Options { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSPersonNameComponentsFormatterOptions = Int
 @available(iOS 9.0, *)
 @available(swift, obsoleted: 3, renamed: "PersonNameComponentsFormatter.Options")
 typealias NSPersonNameComponentsFormatterOptions = PersonNameComponentsFormatter.Options

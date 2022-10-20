@@ -57,7 +57,7 @@ typealias UIActionHandler = (UIAction) -> Void
   var identifier: UIAction.Identifier { get }
 
   /// This action's style.
-  var attributes: UIMenuElement.Attributes
+  var attributes: Int
 
   /// State that can appear next to this action.
   var state: UIMenuElement.State
@@ -124,16 +124,6 @@ typealias UIActionHandler = (UIAction) -> Void
 
 @available(iOS 13.0, tvOS 14.0, *)
 extension UIAction {
-  /// Creates a UIAction with the given arguments.
-  ///
-  /// - Parameters:
-  ///   - title: The action's title.
-  ///   - image: Image to be displayed alongside the action's title.
-  ///   - identifier: Action's unique identifier. Pass nil to use an auto-generated identifier.
-  ///   - discoverabilityTitle: Elaborated title, if any.
-  ///   - attributes: Action's attributes.
-  ///   - state: State that can appear next to the action.
-  ///   - handler: Handler block. Called when the user selects the action.
   @_disfavoredOverload @MainActor convenience init(title: String = "", image: UIImage? = nil, identifier: UIAction.Identifier? = nil, discoverabilityTitle: String? = nil, attributes: UIMenuElement.Attributes = [], state: UIMenuElement.State = .off, handler: @escaping UIActionHandler)
   @available(iOS 15.0, tvOS 15.0, *)
   @MainActor convenience init(title: String = "", subtitle: String? = nil, image: UIImage? = nil, identifier: UIAction.Identifier? = nil, discoverabilityTitle: String? = nil, attributes: UIMenuElement.Attributes = [], state: UIMenuElement.State = .off, handler: @escaping UIActionHandler)

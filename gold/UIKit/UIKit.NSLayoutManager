@@ -64,9 +64,13 @@ extension NSLayoutManager {
     static var ContainerBreak: NSLayoutManager.ControlCharacterAction { get }
   }
 }
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSGlyphProperty = Int
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 4, renamed: "NSLayoutManager.GlyphProperty")
 typealias NSGlyphProperty = NSLayoutManager.GlyphProperty
+@available(*, unavailable, message: "Not available in Swift")
+typealias NSControlCharacterAction = Int
 @available(iOS 7.0, *)
 @available(swift, obsoleted: 4, renamed: "NSLayoutManager.ControlCharacterAction")
 typealias NSControlCharacterAction = NSLayoutManager.ControlCharacterAction
@@ -158,7 +162,7 @@ class NSLayoutManager : NSObject, NSSecureCoding {
 
   /************************ Set glyphs and glyph properties ************************/
   @available(iOS 7.0, *)
-  func setGlyphs(_ glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: UIFont, forGlyphRange glyphRange: NSRange)
+  func setGlyphs(_ glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<Int>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: UIFont, forGlyphRange glyphRange: NSRange)
 
   /************************ Get glyphs and glyph properties ************************/
   var numberOfGlyphs: Int { get }
@@ -186,10 +190,10 @@ class NSLayoutManager : NSObject, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "glyphIndexForCharacter(at:)")
   func glyphIndexForCharacterAtIndex(_ charIndex: Int) -> Int
   @available(iOS 7.0, *)
-  func getGlyphs(in glyphRange: NSRange, glyphs glyphBuffer: UnsafeMutablePointer<CGGlyph>?, properties props: UnsafeMutablePointer<NSLayoutManager.GlyphProperty>?, characterIndexes charIndexBuffer: UnsafeMutablePointer<Int>?, bidiLevels bidiLevelBuffer: UnsafeMutablePointer<UInt8>?) -> Int
+  func getGlyphs(in glyphRange: NSRange, glyphs glyphBuffer: UnsafeMutablePointer<CGGlyph>?, properties props: UnsafeMutablePointer<Int>?, characterIndexes charIndexBuffer: UnsafeMutablePointer<Int>?, bidiLevels bidiLevelBuffer: UnsafeMutablePointer<UInt8>?) -> Int
   @available(iOS 7.0, *)
   @available(swift, obsoleted: 3, renamed: "getGlyphs(in:glyphs:properties:characterIndexes:bidiLevels:)")
-  func getGlyphsInRange(_ glyphRange: NSRange, glyphs glyphBuffer: UnsafeMutablePointer<CGGlyph>?, properties props: UnsafeMutablePointer<NSLayoutManager.GlyphProperty>?, characterIndexes charIndexBuffer: UnsafeMutablePointer<Int>?, bidiLevels bidiLevelBuffer: UnsafeMutablePointer<UInt8>?) -> Int
+  func getGlyphsInRange(_ glyphRange: NSRange, glyphs glyphBuffer: UnsafeMutablePointer<CGGlyph>?, properties props: UnsafeMutablePointer<Int>?, characterIndexes charIndexBuffer: UnsafeMutablePointer<Int>?, bidiLevels bidiLevelBuffer: UnsafeMutablePointer<UInt8>?) -> Int
   func setTextContainer(_ container: NSTextContainer, forGlyphRange glyphRange: NSRange)
   func setLineFragmentRect(_ fragmentRect: CGRect, forGlyphRange glyphRange: NSRange, usedRect: CGRect)
   func setExtraLineFragmentRect(_ fragmentRect: CGRect, usedRect: CGRect, textContainer container: NSTextContainer)
@@ -337,7 +341,7 @@ protocol NSLayoutManagerDelegate : NSObjectProtocol {
 
   /************************ Glyph generation ************************/
   @available(iOS 7.0, *)
-  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: UIFont, forGlyphRange glyphRange: NSRange) -> Int
+  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<Int>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: UIFont, forGlyphRange glyphRange: NSRange) -> Int
 
   /************************ Line layout ************************/
   @available(iOS 7.0, *)
@@ -358,9 +362,9 @@ protocol NSLayoutManagerDelegate : NSObjectProtocol {
   @available(swift, obsoleted: 3, renamed: "layoutManager(_:paragraphSpacingAfterGlyphAt:withProposedLineFragmentRect:)")
   optional func layoutManager(_ layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat
   @available(iOS 7.0, *)
-  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction
+  optional func layoutManager(_ layoutManager: NSLayoutManager, shouldUseAction action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction
   @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "layoutManager(_:shouldUse:forControlCharacterAt:)")
+  @available(swift, obsoleted: 3, renamed: "layoutManager(_:shouldUseAction:forControlCharacterAt:)")
   optional func layoutManager(_ layoutManager: NSLayoutManager, shouldUseAction action: NSLayoutManager.ControlCharacterAction, forControlCharacterAtIndex charIndex: Int) -> NSLayoutManager.ControlCharacterAction
   @available(iOS 7.0, *)
   optional func layoutManager(_ layoutManager: NSLayoutManager, shouldBreakLineByWordBeforeCharacterAt charIndex: Int) -> Bool
