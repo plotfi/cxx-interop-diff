@@ -173,11 +173,11 @@ extension NSOrderedSet {
 @available(iOS 13.0, *)
 @available(*, unavailable, message: "NSOrderedSet diffing methods are not available in Swift, use Collection.difference(from:) instead")
 extension NSOrderedSet {
-  func difference(from other: NSOrderedSet, with options: NSOrderedCollectionDifferenceCalculationOptions = [], usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
-  @available(swift, obsoleted: 3, renamed: "difference(from:with:usingEquivalenceTest:)")
+  func difference(from other: NSOrderedSet, withOptions options: NSOrderedCollectionDifferenceCalculationOptions = [], usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
+  @available(swift, obsoleted: 3, renamed: "difference(from:withOptions:usingEquivalenceTest:)")
   func differenceFromOrderedSet(_ other: NSOrderedSet, withOptions options: NSOrderedCollectionDifferenceCalculationOptions = [], usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
-  func difference(from other: NSOrderedSet, with options: NSOrderedCollectionDifferenceCalculationOptions = []) -> CollectionDifference<Any>
-  @available(swift, obsoleted: 3, renamed: "difference(from:with:)")
+  func difference(from other: NSOrderedSet, withOptions options: NSOrderedCollectionDifferenceCalculationOptions = []) -> CollectionDifference<Any>
+  @available(swift, obsoleted: 3, renamed: "difference(from:withOptions:)")
   func differenceFromOrderedSet(_ other: NSOrderedSet, withOptions options: NSOrderedCollectionDifferenceCalculationOptions = []) -> CollectionDifference<Any>
   func difference(from other: NSOrderedSet) -> CollectionDifference<Any>
   @available(swift, obsoleted: 3, renamed: "difference(from:)")

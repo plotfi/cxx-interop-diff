@@ -1,35 +1,11 @@
 @_exported import Foundation
 
-@available(iOS 10.0, *)
-@available(swift, obsoleted: 4.2, renamed: "UICloudSharingController.PermissionOptions")
-typealias UICloudSharingPermissionOptions = UICloudSharingController.PermissionOptions
-extension UICloudSharingController {
-  @available(iOS 10.0, *)
-  struct PermissionOptions : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = UICloudSharingController.PermissionOptions
-    typealias ArrayLiteralElement = UICloudSharingController.PermissionOptions
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var standard: UICloudSharingController.PermissionOptions { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "standard")
-    static var Standard: UICloudSharingController.PermissionOptions { get }
-    static var allowPublic: UICloudSharingController.PermissionOptions { get }
-    @available(swift, obsoleted: 3, renamed: "allowPublic")
-    static var AllowPublic: UICloudSharingController.PermissionOptions { get }
-    static var allowPrivate: UICloudSharingController.PermissionOptions { get }
-    @available(swift, obsoleted: 3, renamed: "allowPrivate")
-    static var AllowPrivate: UICloudSharingController.PermissionOptions { get }
-    static var allowReadOnly: UICloudSharingController.PermissionOptions { get }
-    @available(swift, obsoleted: 3, renamed: "allowReadOnly")
-    static var AllowReadOnly: UICloudSharingController.PermissionOptions { get }
-    static var allowReadWrite: UICloudSharingController.PermissionOptions { get }
-    @available(swift, obsoleted: 3, renamed: "allowReadWrite")
-    static var AllowReadWrite: UICloudSharingController.PermissionOptions { get }
-  }
-}
+typealias UICloudSharingPermissionOptions = Int
+var UICloudSharingPermissionStandard: Int { get }
+var UICloudSharingPermissionAllowPublic: Int { get }
+var UICloudSharingPermissionAllowPrivate: Int { get }
+var UICloudSharingPermissionAllowReadOnly: Int { get }
+var UICloudSharingPermissionAllowReadWrite: Int { get }
 @MainActor protocol UICloudSharingControllerDelegate : NSObjectProtocol {
   @available(iOS 10.0, *)
   func cloudSharingController(_ csc: UICloudSharingController, failedToSaveShareWithError error: Error)
@@ -57,7 +33,7 @@ extension UICloudSharingController {
   @available(*, unavailable)
   init?(coder: NSCoder)
   weak var delegate: @sil_weak UICloudSharingControllerDelegate?
-  var availablePermissions: UICloudSharingController.PermissionOptions
+  var availablePermissions: UICloudSharingPermissionOptions
   func activityItemSource() -> UIActivityItemSource
   convenience init()
 }

@@ -103,28 +103,6 @@ extension UITableViewCell {
     @available(swift, obsoleted: 3, renamed: "detailButton")
     static var DetailButton: UITableViewCell.AccessoryType { get }
   }
-  struct StateMask : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = UITableViewCell.StateMask
-    typealias ArrayLiteralElement = UITableViewCell.StateMask
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var defaultMask: UITableViewCell.StateMask { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "defaultMask")
-    static var DefaultMask: UITableViewCell.StateMask { get }
-    static var showingEditControl: UITableViewCell.StateMask { get }
-    @available(swift, obsoleted: 4.2, renamed: "showingEditControl")
-    static var showingEditControlMask: UITableViewCell.StateMask { get }
-    @available(swift, obsoleted: 3, renamed: "showingEditControl")
-    static var ShowingEditControlMask: UITableViewCell.StateMask { get }
-    static var showingDeleteConfirmation: UITableViewCell.StateMask { get }
-    @available(swift, obsoleted: 4.2, renamed: "showingDeleteConfirmation")
-    static var showingDeleteConfirmationMask: UITableViewCell.StateMask { get }
-    @available(swift, obsoleted: 3, renamed: "showingDeleteConfirmation")
-    static var ShowingDeleteConfirmationMask: UITableViewCell.StateMask { get }
-  }
   @available(iOS 11.0, *)
   enum DragState : Int, @unchecked Sendable {
     init?(rawValue: Int)
@@ -152,8 +130,18 @@ typealias UITableViewCellFocusStyle = UITableViewCell.FocusStyle
 typealias UITableViewCellEditingStyle = UITableViewCell.EditingStyle
 @available(swift, obsoleted: 4.2, renamed: "UITableViewCell.AccessoryType")
 typealias UITableViewCellAccessoryType = UITableViewCell.AccessoryType
-@available(swift, obsoleted: 4.2, renamed: "UITableViewCell.StateMask")
-typealias UITableViewCellStateMask = UITableViewCell.StateMask
+typealias UITableViewCellStateMask = Int
+var UITableViewCellStateDefaultMask: Int { get }
+@available(swift, obsoleted: 3, renamed: "showingEditControl")
+var UITableViewCellStateShowingEditControlMask: Int { get }
+var showingEditControl: Int { get }
+@available(swift, obsoleted: 4.2, renamed: "showingEditControl")
+var showingEditControlMask: Int { get }
+@available(swift, obsoleted: 3, renamed: "showingDeleteConfirmation")
+var UITableViewCellStateShowingDeleteConfirmationMask: Int { get }
+var showingDeleteConfirmation: Int { get }
+@available(swift, obsoleted: 4.2, renamed: "showingDeleteConfirmation")
+var showingDeleteConfirmationMask: Int { get }
 @available(iOS 11.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UITableViewCell.DragState")
 typealias UITableViewCellDragState = UITableViewCell.DragState
@@ -257,15 +245,15 @@ typealias __UITableViewCellConfigurationUpdateHandler = (UITableViewCell, __UICe
   @available(iOS 9.0, *)
   var focusStyle: UITableViewCell.FocusStyle
   @available(iOS 3.0, *)
-  func willTransition(to state: UITableViewCell.StateMask)
+  func willTransition(toState state: UITableViewCellStateMask)
   @available(iOS 3.0, *)
-  @available(swift, obsoleted: 3, renamed: "willTransition(to:)")
-  func willTransitionToState(_ state: UITableViewCell.StateMask)
+  @available(swift, obsoleted: 3, renamed: "willTransition(toState:)")
+  func willTransitionToState(_ state: UITableViewCellStateMask)
   @available(iOS 3.0, *)
-  func didTransition(to state: UITableViewCell.StateMask)
+  func didTransition(toState state: UITableViewCellStateMask)
   @available(iOS 3.0, *)
-  @available(swift, obsoleted: 3, renamed: "didTransition(to:)")
-  func didTransitionToState(_ state: UITableViewCell.StateMask)
+  @available(swift, obsoleted: 3, renamed: "didTransition(toState:)")
+  func didTransitionToState(_ state: UITableViewCellStateMask)
   @available(iOS 11.0, *)
   func dragStateDidChange(_ dragState: UITableViewCell.DragState)
   @available(iOS 11.0, *)

@@ -227,32 +227,12 @@ enum NSLinguisticTaggerUnit : Int, @unchecked Sendable {
   @available(swift, obsoleted: 3, renamed: "document")
   static var Document: NSLinguisticTaggerUnit { get }
 }
-@available(swift, obsoleted: 3, renamed: "NSLinguisticTagger.Options")
-typealias NSLinguisticTaggerOptions = NSLinguisticTagger.Options
-extension NSLinguisticTagger {
-  struct Options : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSLinguisticTagger.Options
-    typealias ArrayLiteralElement = NSLinguisticTagger.Options
-    static var omitWords: NSLinguisticTagger.Options { get }
-    @available(swift, obsoleted: 3, renamed: "omitWords")
-    static var OmitWords: NSLinguisticTagger.Options { get }
-    static var omitPunctuation: NSLinguisticTagger.Options { get }
-    @available(swift, obsoleted: 3, renamed: "omitPunctuation")
-    static var OmitPunctuation: NSLinguisticTagger.Options { get }
-    static var omitWhitespace: NSLinguisticTagger.Options { get }
-    @available(swift, obsoleted: 3, renamed: "omitWhitespace")
-    static var OmitWhitespace: NSLinguisticTagger.Options { get }
-    static var omitOther: NSLinguisticTagger.Options { get }
-    @available(swift, obsoleted: 3, renamed: "omitOther")
-    static var OmitOther: NSLinguisticTagger.Options { get }
-    static var joinNames: NSLinguisticTagger.Options { get }
-    @available(swift, obsoleted: 3, renamed: "joinNames")
-    static var JoinNames: NSLinguisticTagger.Options { get }
-  }
-}
+typealias NSLinguisticTaggerOptions = Int
+var NSLinguisticTaggerOmitWords: Int { get }
+var NSLinguisticTaggerOmitPunctuation: Int { get }
+var NSLinguisticTaggerOmitWhitespace: Int { get }
+var NSLinguisticTaggerOmitOther: Int { get }
+var NSLinguisticTaggerJoinNames: Int { get }
 @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
 class NSLinguisticTagger : NSObject {
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
@@ -294,35 +274,35 @@ class NSLinguisticTagger : NSObject {
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
   func sentenceRangeForRange(_ range: NSRange) -> NSRange
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func enumerateTags(in range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], using block: (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateTags(in range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], using block: (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(swift, obsoleted: 3, renamed: "enumerateTags(in:unit:scheme:options:using:)")
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func enumerateTagsInRange(_ range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], usingBlock block: (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateTagsInRange(_ range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], usingBlock block: (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
   func tag(at charIndex: Int, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, tokenRange: NSRangePointer?) -> NSLinguisticTag?
   @available(swift, obsoleted: 3, renamed: "tag(at:unit:scheme:tokenRange:)")
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
   func tagAtIndex(_ charIndex: Int, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, tokenRange: NSRangePointer?) -> NSLinguisticTag?
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func tags(in range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
+  func tags(in range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
   @available(swift, obsoleted: 3, renamed: "tags(in:unit:scheme:options:tokenRanges:)")
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func tagsInRange(_ range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
+  func tagsInRange(_ range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func enumerateTags(in range: NSRange, scheme tagScheme: NSLinguisticTagScheme, options opts: NSLinguisticTagger.Options = [], using block: (NSLinguisticTag?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateTags(in range: NSRange, scheme tagScheme: NSLinguisticTagScheme, options opts: NSLinguisticTaggerOptions = [], using block: (NSLinguisticTag?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(swift, obsoleted: 3, renamed: "enumerateTags(in:scheme:options:using:)")
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func enumerateTagsInRange(_ range: NSRange, scheme tagScheme: NSLinguisticTagScheme, options opts: NSLinguisticTagger.Options = [], usingBlock block: (NSLinguisticTag?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateTagsInRange(_ range: NSRange, scheme tagScheme: NSLinguisticTagScheme, options opts: NSLinguisticTaggerOptions = [], usingBlock block: (NSLinguisticTag?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
   func tag(at charIndex: Int, scheme: NSLinguisticTagScheme, tokenRange: NSRangePointer?, sentenceRange: NSRangePointer?) -> NSLinguisticTag?
   @available(swift, obsoleted: 3, renamed: "tag(at:scheme:tokenRange:sentenceRange:)")
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
   func tagAtIndex(_ charIndex: Int, scheme: NSLinguisticTagScheme, tokenRange: NSRangePointer?, sentenceRange: NSRangePointer?) -> NSLinguisticTag?
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func tags(in range: NSRange, scheme tagScheme: String, options opts: NSLinguisticTagger.Options = [], tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [String]
+  func tags(in range: NSRange, scheme tagScheme: String, options opts: NSLinguisticTaggerOptions = [], tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [String]
   @available(swift, obsoleted: 3, renamed: "tags(in:scheme:options:tokenRanges:)")
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func tagsInRange(_ range: NSRange, scheme tagScheme: String, options opts: NSLinguisticTagger.Options = [], tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [String]
+  func tagsInRange(_ range: NSRange, scheme tagScheme: String, options opts: NSLinguisticTaggerOptions = [], tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [String]
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
   var dominantLanguage: String? { get }
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
@@ -336,15 +316,15 @@ class NSLinguisticTagger : NSObject {
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
   class func tagForString(_ string: String, atIndex charIndex: Int, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, orthography: NSOrthography?, tokenRange: NSRangePointer?) -> NSLinguisticTag?
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  class func tags(for string: String, range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], orthography: NSOrthography?, tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
+  class func tags(for string: String, range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], orthography: NSOrthography?, tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
   @available(swift, obsoleted: 3, renamed: "tags(for:range:unit:scheme:options:orthography:tokenRanges:)")
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  class func tagsForString(_ string: String, range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], orthography: NSOrthography?, tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
+  class func tagsForString(_ string: String, range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], orthography: NSOrthography?, tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  class func enumerateTags(for string: String, range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], orthography: NSOrthography?, using block: (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  class func enumerateTags(for string: String, range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], orthography: NSOrthography?, using block: (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(swift, obsoleted: 3, renamed: "enumerateTags(for:range:unit:scheme:options:orthography:using:)")
   @available(iOS, introduced: 11.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  class func enumerateTagsForString(_ string: String, range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], orthography: NSOrthography?, usingBlock block: (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  class func enumerateTagsForString(_ string: String, range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], orthography: NSOrthography?, usingBlock block: (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
   func possibleTags(at charIndex: Int, scheme tagScheme: String, tokenRange: NSRangePointer?, sentenceRange: NSRangePointer?, scores: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [String]?
   @available(swift, obsoleted: 3, renamed: "possibleTags(at:scheme:tokenRange:sentenceRange:scores:)")
@@ -354,13 +334,13 @@ class NSLinguisticTagger : NSObject {
 }
 extension NSString {
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func linguisticTags(in range: NSRange, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], orthography: NSOrthography?, tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
+  func linguisticTags(in range: NSRange, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], orthography: NSOrthography?, tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
   @available(swift, obsoleted: 3, renamed: "linguisticTags(in:scheme:options:orthography:tokenRanges:)")
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func linguisticTagsInRange(_ range: NSRange, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], orthography: NSOrthography?, tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
+  func linguisticTagsInRange(_ range: NSRange, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], orthography: NSOrthography?, tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func enumerateLinguisticTags(in range: NSRange, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], orthography: NSOrthography?, using block: (NSLinguisticTag?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateLinguisticTags(in range: NSRange, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], orthography: NSOrthography?, using block: (NSLinguisticTag?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(swift, obsoleted: 3, renamed: "enumerateLinguisticTags(in:scheme:options:orthography:using:)")
   @available(iOS, introduced: 5.0, deprecated: 100000, message: "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API")
-  func enumerateLinguisticTagsInRange(_ range: NSRange, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], orthography: NSOrthography?, usingBlock block: (NSLinguisticTag?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateLinguisticTagsInRange(_ range: NSRange, scheme: NSLinguisticTagScheme, options: NSLinguisticTaggerOptions = [], orthography: NSOrthography?, usingBlock block: (NSLinguisticTag?, NSRange, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
 }

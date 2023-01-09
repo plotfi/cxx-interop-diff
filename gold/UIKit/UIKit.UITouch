@@ -62,26 +62,6 @@ extension UITouch {
     @available(swift, obsoleted: 3, renamed: "indirectPointer")
     static var IndirectPointer: UITouch.TouchType { get }
   }
-  @available(iOS 9.1, *)
-  struct Properties : OptionSet, @unchecked Sendable {
-    init(rawValue: Int)
-    let rawValue: Int
-    typealias RawValue = Int
-    typealias Element = UITouch.Properties
-    typealias ArrayLiteralElement = UITouch.Properties
-    static var force: UITouch.Properties { get }
-    @available(swift, obsoleted: 3, renamed: "force")
-    static var Force: UITouch.Properties { get }
-    static var azimuth: UITouch.Properties { get }
-    @available(swift, obsoleted: 3, renamed: "azimuth")
-    static var Azimuth: UITouch.Properties { get }
-    static var altitude: UITouch.Properties { get }
-    @available(swift, obsoleted: 3, renamed: "altitude")
-    static var Altitude: UITouch.Properties { get }
-    static var location: UITouch.Properties { get }
-    @available(swift, obsoleted: 3, renamed: "location")
-    static var Location: UITouch.Properties { get }
-  }
 }
 enum UIForceTouchCapability : Int, @unchecked Sendable {
   init?(rawValue: Int)
@@ -100,9 +80,11 @@ enum UIForceTouchCapability : Int, @unchecked Sendable {
 @available(iOS 9.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UITouch.TouchType")
 typealias UITouchType = UITouch.TouchType
-@available(iOS 9.1, *)
-@available(swift, obsoleted: 4.2, renamed: "UITouch.Properties")
-typealias UITouchProperties = UITouch.Properties
+typealias UITouchProperties = Int
+var UITouchPropertyForce: Int { get }
+var UITouchPropertyAzimuth: Int { get }
+var UITouchPropertyAltitude: Int { get }
+var UITouchPropertyLocation: Int { get }
 @available(iOS 2.0, *)
 @MainActor class UITouch : NSObject {
   var timestamp: TimeInterval { get }
@@ -153,8 +135,8 @@ typealias UITouchProperties = UITouch.Properties
   @available(iOS 9.1, *)
   var estimationUpdateIndex: NSNumber? { get }
   @available(iOS 9.1, *)
-  var estimatedProperties: UITouch.Properties { get }
+  var estimatedProperties: UITouchProperties { get }
   @available(iOS 9.1, *)
-  var estimatedPropertiesExpectingUpdates: UITouch.Properties { get }
+  var estimatedPropertiesExpectingUpdates: UITouchProperties { get }
   init()
 }

@@ -6,7 +6,7 @@
   init?(coder: NSCoder)
   var fireDate: Date?
   var timeZone: TimeZone?
-  var repeatInterval: NSCalendar.Unit
+  var repeatInterval: NSCalendarUnit
   var repeatCalendar: Calendar?
   @available(iOS 8.0, *)
   var regionTriggersOnce: Bool

@@ -1,21 +1,10 @@
 @_exported import Foundation
 
-@available(iOS 11.0, *)
-struct UITextDragOptions : OptionSet, @unchecked Sendable {
-  init(rawValue: Int)
-  let rawValue: Int
-  typealias RawValue = Int
-  typealias Element = UITextDragOptions
-  typealias ArrayLiteralElement = UITextDragOptions
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  static var none: UITextDragOptions { get }
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  @available(swift, obsoleted: 3, renamed: "none")
-  static var None: UITextDragOptions { get }
-  static var stripTextColorFromPreviews: UITextDragOptions { get }
-  @available(swift, obsoleted: 3, renamed: "stripTextColorFromPreviews")
-  static var UITextDragOptionStripTextColorFromPreviews: UITextDragOptions { get }
-}
+typealias UITextDragOptions = Int
+var UITextDragOptionsNone: Int { get }
+@available(swift, obsoleted: 3, renamed: "stripTextColorFromPreviews")
+var UITextDragOptionStripTextColorFromPreviews: Int { get }
+var stripTextColorFromPreviews: Int { get }
 @available(iOS 11.0, *)
 @MainActor protocol UITextDraggable : UITextInput {
   weak var textDragDelegate: @sil_weak UITextDragDelegate? { get set }

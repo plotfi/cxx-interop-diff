@@ -183,78 +183,43 @@ let NSWritingDirectionAttributeName: NSAttributedString.Key
 let NSVerticalGlyphFormAttributeName: NSAttributedString.Key
 
 /************************ Attribute values ************************/
-@available(iOS 6.0, *)
-struct NSUnderlineStyle : OptionSet, @unchecked Sendable {
-  init(rawValue: Int)
-  let rawValue: Int
-  typealias RawValue = Int
-  typealias Element = NSUnderlineStyle
-  typealias ArrayLiteralElement = NSUnderlineStyle
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  static var none: NSUnderlineStyle { get }
-  @available(swift, obsoleted: 4.2, renamed: "none")
-  static var styleNone: NSUnderlineStyle { get }
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  @available(swift, obsoleted: 3, renamed: "none")
-  static var None: NSUnderlineStyle { get }
-  static var single: NSUnderlineStyle { get }
-  @available(swift, obsoleted: 4.2, renamed: "single")
-  static var styleSingle: NSUnderlineStyle { get }
-  @available(swift, obsoleted: 3, renamed: "single")
-  static var Single: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  static var thick: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 4.2, renamed: "thick")
-  static var styleThick: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "thick")
-  static var Thick: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  static var double: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 4.2, renamed: "double")
-  static var styleDouble: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "double")
-  static var Double: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  static var patternSolid: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  @available(swift, obsoleted: 3, renamed: "patternSolid")
-  static var PatternSolid: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  static var patternDot: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "patternDot")
-  static var PatternDot: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  static var patternDash: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "patternDash")
-  static var PatternDash: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  static var patternDashDot: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "patternDashDot")
-  static var PatternDashDot: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  static var patternDashDotDot: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "patternDashDotDot")
-  static var PatternDashDotDot: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  static var byWord: NSUnderlineStyle { get }
-  @available(iOS 7.0, *)
-  @available(swift, obsoleted: 3, renamed: "byWord")
-  static var ByWord: NSUnderlineStyle { get }
-}
-
-@available(iOS 15, tvOS 15, watchOS 8, *)
-extension NSUnderlineStyle : Hashable {
-}
+typealias NSUnderlineStyle = Int
+var NSUnderlineStyleNone: Int { get }
+@available(swift, obsoleted: 4.2, renamed: "NSUnderlineStyleNone")
+var styleNone: Int { get }
+@available(swift, obsoleted: 3, renamed: "single")
+var NSUnderlineStyleSingle: Int { get }
+var single: Int { get }
+@available(swift, obsoleted: 4.2, renamed: "single")
+var styleSingle: Int { get }
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "thick")
+var NSUnderlineStyleThick: Int { get }
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 4.2, renamed: "thick")
+var styleThick: Int { get }
+@available(iOS 7.0, *)
+var thick: Int { get }
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "double")
+var NSUnderlineStyleDouble: Int { get }
+@available(iOS 7.0, *)
+var double: Int { get }
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 4.2, renamed: "double")
+var styleDouble: Int { get }
+@available(iOS 7.0, *)
+var NSUnderlineStylePatternSolid: Int { get }
+@available(iOS 7.0, *)
+var NSUnderlineStylePatternDot: Int { get }
+@available(iOS 7.0, *)
+var NSUnderlineStylePatternDash: Int { get }
+@available(iOS 7.0, *)
+var NSUnderlineStylePatternDashDot: Int { get }
+@available(iOS 7.0, *)
+var NSUnderlineStylePatternDashDotDot: Int { get }
+@available(iOS 7.0, *)
+var NSUnderlineStyleByWord: Int { get }
 @available(iOS 9.0, *)
 enum NSWritingDirectionFormatType : Int, @unchecked Sendable {
   init?(rawValue: Int)
@@ -610,7 +575,7 @@ let NSUnderlinePatternDashDot: NSUnderlineStyle
 let NSUnderlinePatternDashDotDot: NSUnderlineStyle
 @available(*, unavailable, message: "Not available in Swift")
 let NSUnderlineByWord: NSUnderlineStyle
-@available(iOS, introduced: 7.0, deprecated: 9.0, renamed: "NSWritingDirectionFormatType")
+@available(iOS, introduced: 7.0, deprecated: 9.0)
 enum NSTextWritingDirection : Int, @unchecked Sendable {
   init?(rawValue: Int)
   var rawValue: Int { get }

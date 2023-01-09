@@ -4,23 +4,23 @@ var __FOUNDATION_NSMAPTABLE__: Int32 { get }
 
 /****************	Class	****************/
 @available(iOS 6.0, *)
-let NSMapTableStrongMemory: NSPointerFunctions.Options
+let NSMapTableStrongMemory: NSPointerFunctionsOptions
 @available(iOS, unavailable)
-let NSMapTableZeroingWeakMemory: NSPointerFunctions.Options
+let NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions
 @available(iOS 6.0, *)
-let NSMapTableCopyIn: NSPointerFunctions.Options
+let NSMapTableCopyIn: NSPointerFunctionsOptions
 @available(iOS 6.0, *)
-let NSMapTableObjectPointerPersonality: NSPointerFunctions.Options
+let NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions
 @available(iOS 6.0, *)
-let NSMapTableWeakMemory: NSPointerFunctions.Options
+let NSMapTableWeakMemory: NSPointerFunctionsOptions
 typealias NSMapTableOptions = Int
 @available(iOS 6.0, *)
 class NSMapTable<KeyType, ObjectType> : NSObject, NSCopying, NSSecureCoding, NSFastEnumeration where KeyType : AnyObject, ObjectType : AnyObject {
-  init(keyOptions: NSPointerFunctions.Options = [], valueOptions: NSPointerFunctions.Options = [], capacity initialCapacity: Int)
+  init(keyOptions: NSPointerFunctionsOptions = [], valueOptions: NSPointerFunctionsOptions = [], capacity initialCapacity: Int)
   init(keyPointerFunctions keyFunctions: NSPointerFunctions, valuePointerFunctions valueFunctions: NSPointerFunctions, capacity initialCapacity: Int)
-  /*not inherited*/ init(keyOptions: NSPointerFunctions.Options = [], valueOptions: NSPointerFunctions.Options = [])
+  /*not inherited*/ init(keyOptions: NSPointerFunctionsOptions = [], valueOptions: NSPointerFunctionsOptions = [])
   @available(*, unavailable, renamed: "init(keyOptions:valueOptions:)", message: "Not available in Swift")
-  class func mapTableWithKeyOptions(_ keyOptions: NSPointerFunctions.Options = [], valueOptions: NSPointerFunctions.Options = []) -> NSMapTable<KeyType, ObjectType>
+  class func mapTableWithKeyOptions(_ keyOptions: NSPointerFunctionsOptions = [], valueOptions: NSPointerFunctionsOptions = []) -> NSMapTable<KeyType, ObjectType>
   @available(iOS, unavailable)
   class func mapTableWithStrongToStrongObjects() -> Any
   @available(iOS, unavailable)

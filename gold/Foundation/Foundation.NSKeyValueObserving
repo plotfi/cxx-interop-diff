@@ -1,28 +1,12 @@
 @_exported import CoreFoundation
 
-struct NSKeyValueObservingOptions : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = NSKeyValueObservingOptions
-  typealias ArrayLiteralElement = NSKeyValueObservingOptions
-  static var new: NSKeyValueObservingOptions { get }
-  @available(swift, obsoleted: 3, renamed: "new")
-  static var New: NSKeyValueObservingOptions { get }
-  static var old: NSKeyValueObservingOptions { get }
-  @available(swift, obsoleted: 3, renamed: "old")
-  static var Old: NSKeyValueObservingOptions { get }
-  @available(iOS 2.0, *)
-  static var initial: NSKeyValueObservingOptions { get }
-  @available(iOS 2.0, *)
-  @available(swift, obsoleted: 3, renamed: "initial")
-  static var Initial: NSKeyValueObservingOptions { get }
-  @available(iOS 2.0, *)
-  static var prior: NSKeyValueObservingOptions { get }
-  @available(iOS 2.0, *)
-  @available(swift, obsoleted: 3, renamed: "prior")
-  static var Prior: NSKeyValueObservingOptions { get }
-}
+typealias NSKeyValueObservingOptions = Int
+var NSKeyValueObservingOptionNew: Int { get }
+var NSKeyValueObservingOptionOld: Int { get }
+@available(iOS 2.0, *)
+var NSKeyValueObservingOptionInitial: Int { get }
+@available(iOS 2.0, *)
+var NSKeyValueObservingOptionPrior: Int { get }
 enum NSKeyValueChange : UInt, @unchecked Sendable {
   init?(rawValue: UInt)
   var rawValue: UInt { get }

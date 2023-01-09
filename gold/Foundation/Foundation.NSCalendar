@@ -11,152 +11,6 @@ extension NSCalendar {
     typealias RawValue = String
     typealias _ObjectiveCType = NSString
   }
-  struct Unit : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSCalendar.Unit
-    typealias ArrayLiteralElement = NSCalendar.Unit
-    static var era: NSCalendar.Unit { get }
-    @available(swift, obsoleted: 3, renamed: "era")
-    static var Era: NSCalendar.Unit { get }
-    static var year: NSCalendar.Unit { get }
-    @available(swift, obsoleted: 3, renamed: "year")
-    static var Year: NSCalendar.Unit { get }
-    static var month: NSCalendar.Unit { get }
-    @available(swift, obsoleted: 3, renamed: "month")
-    static var Month: NSCalendar.Unit { get }
-    static var day: NSCalendar.Unit { get }
-    @available(swift, obsoleted: 3, renamed: "day")
-    static var Day: NSCalendar.Unit { get }
-    static var hour: NSCalendar.Unit { get }
-    @available(swift, obsoleted: 3, renamed: "hour")
-    static var Hour: NSCalendar.Unit { get }
-    static var minute: NSCalendar.Unit { get }
-    @available(swift, obsoleted: 3, renamed: "minute")
-    static var Minute: NSCalendar.Unit { get }
-    static var second: NSCalendar.Unit { get }
-    @available(swift, obsoleted: 3, renamed: "second")
-    static var Second: NSCalendar.Unit { get }
-    static var weekday: NSCalendar.Unit { get }
-    @available(swift, obsoleted: 3, renamed: "weekday")
-    static var Weekday: NSCalendar.Unit { get }
-    static var weekdayOrdinal: NSCalendar.Unit { get }
-    @available(swift, obsoleted: 3, renamed: "weekdayOrdinal")
-    static var WeekdayOrdinal: NSCalendar.Unit { get }
-    @available(iOS 4.0, *)
-    static var quarter: NSCalendar.Unit { get }
-    @available(iOS 4.0, *)
-    @available(swift, obsoleted: 3, renamed: "quarter")
-    static var Quarter: NSCalendar.Unit { get }
-    @available(iOS 5.0, *)
-    static var weekOfMonth: NSCalendar.Unit { get }
-    @available(iOS 5.0, *)
-    @available(swift, obsoleted: 3, renamed: "weekOfMonth")
-    static var WeekOfMonth: NSCalendar.Unit { get }
-    @available(iOS 5.0, *)
-    static var weekOfYear: NSCalendar.Unit { get }
-    @available(iOS 5.0, *)
-    @available(swift, obsoleted: 3, renamed: "weekOfYear")
-    static var WeekOfYear: NSCalendar.Unit { get }
-    @available(iOS 5.0, *)
-    static var yearForWeekOfYear: NSCalendar.Unit { get }
-    @available(iOS 5.0, *)
-    @available(swift, obsoleted: 3, renamed: "yearForWeekOfYear")
-    static var YearForWeekOfYear: NSCalendar.Unit { get }
-    @available(iOS 5.0, *)
-    static var nanosecond: NSCalendar.Unit { get }
-    @available(iOS 5.0, *)
-    @available(swift, obsoleted: 3, renamed: "nanosecond")
-    static var Nanosecond: NSCalendar.Unit { get }
-    @available(iOS 4.0, *)
-    static var calendar: NSCalendar.Unit { get }
-    @available(iOS 4.0, *)
-    @available(swift, obsoleted: 3, renamed: "calendar")
-    static var Calendar: NSCalendar.Unit { get }
-    @available(iOS 4.0, *)
-    static var timeZone: NSCalendar.Unit { get }
-    @available(iOS 4.0, *)
-    @available(swift, obsoleted: 3, renamed: "timeZone")
-    static var TimeZone: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.era")
-    static var NSEraCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.year")
-    static var NSYearCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.month")
-    static var NSMonthCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.day")
-    static var NSDayCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.hour")
-    static var NSHourCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.minute")
-    static var NSMinuteCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.second")
-    static var NSSecondCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0, message: "NSCalendarUnitWeekOfMonth or NSCalendarUnitWeekOfYear, depending on which you mean")
-    static var NSWeekCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.weekday")
-    static var NSWeekdayCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Unit.weekdayOrdinal")
-    static var NSWeekdayOrdinalCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 4.0, deprecated: 8.0, renamed: "NSCalendar.Unit.quarter")
-    static var NSQuarterCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 5.0, deprecated: 8.0, renamed: "NSCalendar.Unit.weekOfMonth")
-    static var NSWeekOfMonthCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 5.0, deprecated: 8.0, renamed: "NSCalendar.Unit.weekOfYear")
-    static var NSWeekOfYearCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 5.0, deprecated: 8.0, renamed: "NSCalendar.Unit.yearForWeekOfYear")
-    static var NSYearForWeekOfYearCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 4.0, deprecated: 8.0, renamed: "NSCalendar.Unit.calendar")
-    static var NSCalendarCalendarUnit: NSCalendar.Unit { get }
-    @available(iOS, introduced: 4.0, deprecated: 8.0, renamed: "NSCalendar.Unit.timeZone")
-    static var NSTimeZoneCalendarUnit: NSCalendar.Unit { get }
-  }
-  struct Options : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = NSCalendar.Options
-    typealias ArrayLiteralElement = NSCalendar.Options
-    static var wrapComponents: NSCalendar.Options { get }
-    @available(swift, obsoleted: 3, renamed: "wrapComponents")
-    static var WrapComponents: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    static var matchStrictly: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    @available(swift, obsoleted: 3, renamed: "matchStrictly")
-    static var MatchStrictly: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    static var searchBackwards: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    @available(swift, obsoleted: 3, renamed: "searchBackwards")
-    static var SearchBackwards: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    static var matchPreviousTimePreservingSmallerUnits: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    @available(swift, obsoleted: 3, renamed: "matchPreviousTimePreservingSmallerUnits")
-    static var MatchPreviousTimePreservingSmallerUnits: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    static var matchNextTimePreservingSmallerUnits: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    @available(swift, obsoleted: 3, renamed: "matchNextTimePreservingSmallerUnits")
-    static var MatchNextTimePreservingSmallerUnits: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    static var matchNextTime: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    @available(swift, obsoleted: 3, renamed: "matchNextTime")
-    static var MatchNextTime: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    static var matchFirst: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    @available(swift, obsoleted: 3, renamed: "matchFirst")
-    static var MatchFirst: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    static var matchLast: NSCalendar.Options { get }
-    @available(iOS 7.0, *)
-    @available(swift, obsoleted: 3, renamed: "matchLast")
-    static var MatchLast: NSCalendar.Options { get }
-  }
 }
 @available(iOS 4.0, *)
 @available(swift, obsoleted: 3, renamed: "NSCalendar.Identifier.gregorian")
@@ -240,11 +94,79 @@ let NSCalendarIdentifierIslamicTabular: NSCalendar.Identifier
 @available(iOS 8.0, *)
 @available(swift, obsoleted: 3, renamed: "NSCalendar.Identifier.islamicUmmAlQura")
 let NSCalendarIdentifierIslamicUmmAlQura: NSCalendar.Identifier
-@available(swift, obsoleted: 3, renamed: "NSCalendar.Unit")
-typealias NSCalendarUnit = NSCalendar.Unit
-@available(swift, obsoleted: 3, renamed: "NSCalendar.Options")
-typealias NSCalendarOptions = NSCalendar.Options
-@available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSCalendar.Options.wrapComponents")
+typealias NSCalendarUnit = Int
+var NSCalendarUnitEra: Int { get }
+var NSCalendarUnitYear: Int { get }
+var NSCalendarUnitMonth: Int { get }
+var NSCalendarUnitDay: Int { get }
+var NSCalendarUnitHour: Int { get }
+var NSCalendarUnitMinute: Int { get }
+var NSCalendarUnitSecond: Int { get }
+var NSCalendarUnitWeekday: Int { get }
+var NSCalendarUnitWeekdayOrdinal: Int { get }
+@available(iOS 4.0, *)
+var NSCalendarUnitQuarter: Int { get }
+@available(iOS 5.0, *)
+var NSCalendarUnitWeekOfMonth: Int { get }
+@available(iOS 5.0, *)
+var NSCalendarUnitWeekOfYear: Int { get }
+@available(iOS 5.0, *)
+var NSCalendarUnitYearForWeekOfYear: Int { get }
+@available(iOS 5.0, *)
+var NSCalendarUnitNanosecond: Int { get }
+@available(iOS 4.0, *)
+var NSCalendarUnitCalendar: Int { get }
+@available(iOS 4.0, *)
+var NSCalendarUnitTimeZone: Int { get }
+@available(iOS, introduced: 2.0, deprecated: 8.0)
+var NSEraCalendarUnit: Int { get }
+@available(iOS, introduced: 2.0, deprecated: 8.0)
+var NSYearCalendarUnit: Int { get }
+@available(iOS, introduced: 2.0, deprecated: 8.0)
+var NSMonthCalendarUnit: Int { get }
+@available(iOS, introduced: 2.0, deprecated: 8.0)
+var NSDayCalendarUnit: Int { get }
+@available(iOS, introduced: 2.0, deprecated: 8.0)
+var NSHourCalendarUnit: Int { get }
+@available(iOS, introduced: 2.0, deprecated: 8.0)
+var NSMinuteCalendarUnit: Int { get }
+@available(iOS, introduced: 2.0, deprecated: 8.0)
+var NSSecondCalendarUnit: Int { get }
+@available(iOS, introduced: 2.0, deprecated: 8.0, message: "NSCalendarUnitWeekOfMonth or NSCalendarUnitWeekOfYear, depending on which you mean")
+var NSWeekCalendarUnit: Int { get }
+@available(iOS, introduced: 2.0, deprecated: 8.0)
+var NSWeekdayCalendarUnit: Int { get }
+@available(iOS, introduced: 2.0, deprecated: 8.0)
+var NSWeekdayOrdinalCalendarUnit: Int { get }
+@available(iOS, introduced: 4.0, deprecated: 8.0)
+var NSQuarterCalendarUnit: Int { get }
+@available(iOS, introduced: 5.0, deprecated: 8.0)
+var NSWeekOfMonthCalendarUnit: Int { get }
+@available(iOS, introduced: 5.0, deprecated: 8.0)
+var NSWeekOfYearCalendarUnit: Int { get }
+@available(iOS, introduced: 5.0, deprecated: 8.0)
+var NSYearForWeekOfYearCalendarUnit: Int { get }
+@available(iOS, introduced: 4.0, deprecated: 8.0)
+var NSCalendarCalendarUnit: Int { get }
+@available(iOS, introduced: 4.0, deprecated: 8.0)
+var NSTimeZoneCalendarUnit: Int { get }
+typealias NSCalendarOptions = Int
+var NSCalendarWrapComponents: Int { get }
+@available(iOS 7.0, *)
+var NSCalendarMatchStrictly: Int { get }
+@available(iOS 7.0, *)
+var NSCalendarSearchBackwards: Int { get }
+@available(iOS 7.0, *)
+var NSCalendarMatchPreviousTimePreservingSmallerUnits: Int { get }
+@available(iOS 7.0, *)
+var NSCalendarMatchNextTimePreservingSmallerUnits: Int { get }
+@available(iOS 7.0, *)
+var NSCalendarMatchNextTime: Int { get }
+@available(iOS 7.0, *)
+var NSCalendarMatchFirst: Int { get }
+@available(iOS 7.0, *)
+var NSCalendarMatchLast: Int { get }
+@available(iOS, introduced: 2.0, deprecated: 8.0)
 var NSWrapCalendarComponents: Int { get }
 class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   class var current: Calendar { get }
@@ -314,35 +236,35 @@ class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   @available(iOS 5.0, *)
   @available(swift, obsoleted: 3, renamed: "pmSymbol")
   var PMSymbol: String { get }
-  func minimumRange(of unit: NSCalendar.Unit) -> NSRange
-  @available(swift, obsoleted: 3, renamed: "minimumRange(of:)")
-  func minimumRangeOfUnit(_ unit: NSCalendar.Unit) -> NSRange
-  func maximumRange(of unit: NSCalendar.Unit) -> NSRange
-  @available(swift, obsoleted: 3, renamed: "maximumRange(of:)")
-  func maximumRangeOfUnit(_ unit: NSCalendar.Unit) -> NSRange
-  func range(of smaller: NSCalendar.Unit, in larger: NSCalendar.Unit, for date: Date) -> NSRange
-  @available(swift, obsoleted: 3, renamed: "range(of:in:for:)")
-  func rangeOfUnit(_ smaller: NSCalendar.Unit, inUnit larger: NSCalendar.Unit, forDate date: Date) -> NSRange
-  func ordinality(of smaller: NSCalendar.Unit, in larger: NSCalendar.Unit, for date: Date) -> Int
-  @available(swift, obsoleted: 3, renamed: "ordinality(of:in:for:)")
-  func ordinalityOfUnit(_ smaller: NSCalendar.Unit, inUnit larger: NSCalendar.Unit, forDate date: Date) -> Int
+  func minimumRange(ofUnit unit: NSCalendarUnit) -> NSRange
+  @available(swift, obsoleted: 3, renamed: "minimumRange(ofUnit:)")
+  func minimumRangeOfUnit(_ unit: NSCalendarUnit) -> NSRange
+  func maximumRange(ofUnit unit: NSCalendarUnit) -> NSRange
+  @available(swift, obsoleted: 3, renamed: "maximumRange(ofUnit:)")
+  func maximumRangeOfUnit(_ unit: NSCalendarUnit) -> NSRange
+  func range(ofUnit smaller: NSCalendarUnit, inUnit larger: NSCalendarUnit, for date: Date) -> NSRange
+  @available(swift, obsoleted: 3, renamed: "range(ofUnit:inUnit:for:)")
+  func rangeOfUnit(_ smaller: NSCalendarUnit, inUnit larger: NSCalendarUnit, forDate date: Date) -> NSRange
+  func ordinality(ofUnit smaller: NSCalendarUnit, inUnit larger: NSCalendarUnit, for date: Date) -> Int
+  @available(swift, obsoleted: 3, renamed: "ordinality(ofUnit:inUnit:for:)")
+  func ordinalityOfUnit(_ smaller: NSCalendarUnit, inUnit larger: NSCalendarUnit, forDate date: Date) -> Int
   @available(iOS 2.0, *)
-  func range(of unit: NSCalendar.Unit, start datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, for date: Date) -> Bool
+  func range(ofUnit unit: NSCalendarUnit, start datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, for date: Date) -> Bool
   @available(iOS 2.0, *)
-  @available(swift, obsoleted: 3, renamed: "range(of:start:interval:for:)")
-  func rangeOfUnit(_ unit: NSCalendar.Unit, startDate datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, forDate date: Date) -> Bool
+  @available(swift, obsoleted: 3, renamed: "range(ofUnit:start:interval:for:)")
+  func rangeOfUnit(_ unit: NSCalendarUnit, startDate datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, forDate date: Date) -> Bool
   func date(from comps: DateComponents) -> Date?
   @available(swift, obsoleted: 3, renamed: "date(from:)")
   func dateFromComponents(_ comps: DateComponents) -> Date?
-  func components(_ unitFlags: NSCalendar.Unit, from date: Date) -> DateComponents
+  func components(_ unitFlags: NSCalendarUnit, from date: Date) -> DateComponents
   @available(swift, obsoleted: 3, renamed: "components(_:from:)")
-  func components(_ unitFlags: NSCalendar.Unit, fromDate date: Date) -> DateComponents
-  func date(byAdding comps: DateComponents, to date: Date, options opts: NSCalendar.Options = []) -> Date?
+  func components(_ unitFlags: NSCalendarUnit, fromDate date: Date) -> DateComponents
+  func date(byAdding comps: DateComponents, to date: Date, options opts: NSCalendarOptions = []) -> Date?
   @available(swift, obsoleted: 3, renamed: "date(byAdding:to:options:)")
-  func dateByAddingComponents(_ comps: DateComponents, toDate date: Date, options opts: NSCalendar.Options = []) -> Date?
-  func components(_ unitFlags: NSCalendar.Unit, from startingDate: Date, to resultDate: Date, options opts: NSCalendar.Options = []) -> DateComponents
+  func dateByAddingComponents(_ comps: DateComponents, toDate date: Date, options opts: NSCalendarOptions = []) -> Date?
+  func components(_ unitFlags: NSCalendarUnit, from startingDate: Date, to resultDate: Date, options opts: NSCalendarOptions = []) -> DateComponents
   @available(swift, obsoleted: 3, renamed: "components(_:from:to:options:)")
-  func components(_ unitFlags: NSCalendar.Unit, fromDate startingDate: Date, toDate resultDate: Date, options opts: NSCalendar.Options = []) -> DateComponents
+  func components(_ unitFlags: NSCalendarUnit, fromDate startingDate: Date, toDate resultDate: Date, options opts: NSCalendarOptions = []) -> DateComponents
   @available(iOS 8.0, *)
   func getEra(_ eraValuePointer: UnsafeMutablePointer<Int>?, year yearValuePointer: UnsafeMutablePointer<Int>?, month monthValuePointer: UnsafeMutablePointer<Int>?, day dayValuePointer: UnsafeMutablePointer<Int>?, from date: Date)
   @available(iOS 8.0, *)
@@ -359,10 +281,10 @@ class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "getHour(_:minute:second:nanosecond:from:)")
   func getHour(_ hourValuePointer: UnsafeMutablePointer<Int>?, minute minuteValuePointer: UnsafeMutablePointer<Int>?, second secondValuePointer: UnsafeMutablePointer<Int>?, nanosecond nanosecondValuePointer: UnsafeMutablePointer<Int>?, fromDate date: Date)
   @available(iOS 8.0, *)
-  func component(_ unit: NSCalendar.Unit, from date: Date) -> Int
+  func component(_ unit: NSCalendarUnit, from date: Date) -> Int
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "component(_:from:)")
-  func component(_ unit: NSCalendar.Unit, fromDate date: Date) -> Int
+  func component(_ unit: NSCalendarUnit, fromDate date: Date) -> Int
   @available(iOS 8.0, *)
   func date(era eraValue: Int, year yearValue: Int, month monthValue: Int, day dayValue: Int, hour hourValue: Int, minute minuteValue: Int, second secondValue: Int, nanosecond nanosecondValue: Int) -> Date?
   @available(iOS 8.0, *)
@@ -384,15 +306,15 @@ class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "components(in:from:)")
   func componentsInTimeZone(_ timezone: TimeZone, fromDate date: Date) -> DateComponents
   @available(iOS 8.0, *)
-  func compare(_ date1: Date, to date2: Date, toUnitGranularity unit: NSCalendar.Unit) -> ComparisonResult
+  func compare(_ date1: Date, to date2: Date, toUnitGranularity unit: NSCalendarUnit) -> ComparisonResult
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "compare(_:to:toUnitGranularity:)")
-  func compareDate(_ date1: Date, toDate date2: Date, toUnitGranularity unit: NSCalendar.Unit) -> ComparisonResult
+  func compareDate(_ date1: Date, toDate date2: Date, toUnitGranularity unit: NSCalendarUnit) -> ComparisonResult
   @available(iOS 8.0, *)
-  func isDate(_ date1: Date, equalTo date2: Date, toUnitGranularity unit: NSCalendar.Unit) -> Bool
+  func isDate(_ date1: Date, equalTo date2: Date, toUnitGranularity unit: NSCalendarUnit) -> Bool
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "isDate(_:equalTo:toUnitGranularity:)")
-  func isDate(_ date1: Date, equalToDate date2: Date, toUnitGranularity unit: NSCalendar.Unit) -> Bool
+  func isDate(_ date1: Date, equalToDate date2: Date, toUnitGranularity unit: NSCalendarUnit) -> Bool
   @available(iOS 8.0, *)
   func isDate(_ date1: Date, inSameDayAs date2: Date) -> Bool
   @available(iOS 8.0, *)
@@ -412,50 +334,50 @@ class NSCalendar : NSObject, NSCopying, NSSecureCoding {
   @available(swift, obsoleted: 3, renamed: "range(ofWeekendStart:interval:containing:)")
   func rangeOfWeekendStartDate(_ datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, containingDate date: Date) -> Bool
   @available(iOS 8.0, *)
-  func nextWeekendStart(_ datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, options: NSCalendar.Options = [], after date: Date) -> Bool
+  func nextWeekendStart(_ datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, options: NSCalendarOptions = [], after date: Date) -> Bool
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "nextWeekendStart(_:interval:options:after:)")
-  func nextWeekendStartDate(_ datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, options: NSCalendar.Options = [], afterDate date: Date) -> Bool
+  func nextWeekendStartDate(_ datep: AutoreleasingUnsafeMutablePointer<NSDate?>?, interval tip: UnsafeMutablePointer<TimeInterval>?, options: NSCalendarOptions = [], afterDate date: Date) -> Bool
   @available(iOS 8.0, *)
-  func components(_ unitFlags: NSCalendar.Unit, from startingDateComp: DateComponents, to resultDateComp: DateComponents, options: NSCalendar.Options = []) -> DateComponents
+  func components(_ unitFlags: NSCalendarUnit, from startingDateComp: DateComponents, to resultDateComp: DateComponents, options: NSCalendarOptions = []) -> DateComponents
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "components(_:from:to:options:)")
-  func components(_ unitFlags: NSCalendar.Unit, fromDateComponents startingDateComp: DateComponents, toDateComponents resultDateComp: DateComponents, options: NSCalendar.Options = []) -> DateComponents
+  func components(_ unitFlags: NSCalendarUnit, fromDateComponents startingDateComp: DateComponents, toDateComponents resultDateComp: DateComponents, options: NSCalendarOptions = []) -> DateComponents
   @available(iOS 8.0, *)
-  func date(byAdding unit: NSCalendar.Unit, value: Int, to date: Date, options: NSCalendar.Options = []) -> Date?
+  func date(byAddingUnit unit: NSCalendarUnit, value: Int, to date: Date, options: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
-  @available(swift, obsoleted: 3, renamed: "date(byAdding:value:to:options:)")
-  func dateByAddingUnit(_ unit: NSCalendar.Unit, value: Int, toDate date: Date, options: NSCalendar.Options = []) -> Date?
+  @available(swift, obsoleted: 3, renamed: "date(byAddingUnit:value:to:options:)")
+  func dateByAddingUnit(_ unit: NSCalendarUnit, value: Int, toDate date: Date, options: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
-  func enumerateDates(startingAfter start: Date, matching comps: DateComponents, options opts: NSCalendar.Options = [], using block: (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateDates(startingAfter start: Date, matching comps: DateComponents, options opts: NSCalendarOptions = [], using block: (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "enumerateDates(startingAfter:matching:options:using:)")
-  func enumerateDatesStartingAfterDate(_ start: Date, matchingComponents comps: DateComponents, options opts: NSCalendar.Options = [], usingBlock block: (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
+  func enumerateDatesStartingAfterDate(_ start: Date, matchingComponents comps: DateComponents, options opts: NSCalendarOptions = [], usingBlock block: (Date?, Bool, UnsafeMutablePointer<ObjCBool>) -> Void)
   @available(iOS 8.0, *)
-  func nextDate(after date: Date, matching comps: DateComponents, options: NSCalendar.Options = []) -> Date?
+  func nextDate(after date: Date, matching comps: DateComponents, options: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "nextDate(after:matching:options:)")
-  func nextDateAfterDate(_ date: Date, matchingComponents comps: DateComponents, options: NSCalendar.Options = []) -> Date?
+  func nextDateAfterDate(_ date: Date, matchingComponents comps: DateComponents, options: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
-  func nextDate(after date: Date, matching unit: NSCalendar.Unit, value: Int, options: NSCalendar.Options = []) -> Date?
+  func nextDate(after date: Date, matchingUnit unit: NSCalendarUnit, value: Int, options: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
-  @available(swift, obsoleted: 3, renamed: "nextDate(after:matching:value:options:)")
-  func nextDateAfterDate(_ date: Date, matchingUnit unit: NSCalendar.Unit, value: Int, options: NSCalendar.Options = []) -> Date?
+  @available(swift, obsoleted: 3, renamed: "nextDate(after:matchingUnit:value:options:)")
+  func nextDateAfterDate(_ date: Date, matchingUnit unit: NSCalendarUnit, value: Int, options: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
-  func nextDate(after date: Date, matchingHour hourValue: Int, minute minuteValue: Int, second secondValue: Int, options: NSCalendar.Options = []) -> Date?
+  func nextDate(after date: Date, matchingHour hourValue: Int, minute minuteValue: Int, second secondValue: Int, options: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "nextDate(after:matchingHour:minute:second:options:)")
-  func nextDateAfterDate(_ date: Date, matchingHour hourValue: Int, minute minuteValue: Int, second secondValue: Int, options: NSCalendar.Options = []) -> Date?
+  func nextDateAfterDate(_ date: Date, matchingHour hourValue: Int, minute minuteValue: Int, second secondValue: Int, options: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
-  func date(bySettingUnit unit: NSCalendar.Unit, value v: Int, of date: Date, options opts: NSCalendar.Options = []) -> Date?
+  func date(bySettingUnit unit: NSCalendarUnit, value v: Int, of date: Date, options opts: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "date(bySettingUnit:value:of:options:)")
-  func dateBySettingUnit(_ unit: NSCalendar.Unit, value v: Int, ofDate date: Date, options opts: NSCalendar.Options = []) -> Date?
+  func dateBySettingUnit(_ unit: NSCalendarUnit, value v: Int, ofDate date: Date, options opts: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
-  func date(bySettingHour h: Int, minute m: Int, second s: Int, of date: Date, options opts: NSCalendar.Options = []) -> Date?
+  func date(bySettingHour h: Int, minute m: Int, second s: Int, of date: Date, options opts: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "date(bySettingHour:minute:second:of:options:)")
-  func dateBySettingHour(_ h: Int, minute m: Int, second s: Int, ofDate date: Date, options opts: NSCalendar.Options = []) -> Date?
+  func dateBySettingHour(_ h: Int, minute m: Int, second s: Int, ofDate date: Date, options opts: NSCalendarOptions = []) -> Date?
   @available(iOS 8.0, *)
   func date(_ date: Date, matchesComponents components: DateComponents) -> Bool
   class var supportsSecureCoding: Bool { get }
@@ -475,7 +397,7 @@ extension NSNotification.Name {
   static let NSCalendarDayChanged: NSNotification.Name
 }
 var NSDateComponentUndefined: Int { get }
-@available(iOS, introduced: 2.0, deprecated: 8.0, renamed: "NSDateComponentUndefined")
+@available(iOS, introduced: 2.0, deprecated: 8.0)
 var NSUndefinedDateComponent: Int { get }
 class NSDateComponents : NSObject, NSCopying, NSSecureCoding {
   @available(iOS 4.0, *)
@@ -513,12 +435,12 @@ class NSDateComponents : NSObject, NSCopying, NSSecureCoding {
   @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "Use -setWeekOfMonth: or -setWeekOfYear:, depending on which you mean")
   func setWeek(_ v: Int)
   @available(iOS 8.0, *)
-  func setValue(_ value: Int, forComponent unit: NSCalendar.Unit)
+  func setValue(_ value: Int, forComponent unit: NSCalendarUnit)
   @available(iOS 8.0, *)
-  func value(forComponent unit: NSCalendar.Unit) -> Int
+  func value(forComponent unit: NSCalendarUnit) -> Int
   @available(iOS 8.0, *)
   @available(swift, obsoleted: 3, renamed: "value(forComponent:)")
-  func valueForComponent(_ unit: NSCalendar.Unit) -> Int
+  func valueForComponent(_ unit: NSCalendarUnit) -> Int
   @available(iOS 8.0, *)
   var isValidDate: Bool { get }
   @available(iOS 8.0, *)

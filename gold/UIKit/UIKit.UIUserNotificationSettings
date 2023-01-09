@@ -1,27 +1,10 @@
 @_exported import Foundation
 
-@available(iOS, introduced: 8.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNAuthorizationOptions")
-struct UIUserNotificationType : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = UIUserNotificationType
-  typealias ArrayLiteralElement = UIUserNotificationType
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  static var none: UIUserNotificationType { get }
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  @available(swift, obsoleted: 3, renamed: "none")
-  static var None: UIUserNotificationType { get }
-  static var badge: UIUserNotificationType { get }
-  @available(swift, obsoleted: 3, renamed: "badge")
-  static var Badge: UIUserNotificationType { get }
-  static var sound: UIUserNotificationType { get }
-  @available(swift, obsoleted: 3, renamed: "sound")
-  static var Sound: UIUserNotificationType { get }
-  static var alert: UIUserNotificationType { get }
-  @available(swift, obsoleted: 3, renamed: "alert")
-  static var Alert: UIUserNotificationType { get }
-}
+typealias UIUserNotificationType = Int
+var UIUserNotificationTypeNone: Int { get }
+var UIUserNotificationTypeBadge: Int { get }
+var UIUserNotificationTypeSound: Int { get }
+var UIUserNotificationTypeAlert: Int { get }
 @available(iOS, introduced: 9.0, deprecated: 10.0, message: "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction")
 enum UIUserNotificationActionBehavior : UInt, @unchecked Sendable {
   init?(rawValue: UInt)

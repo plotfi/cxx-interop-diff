@@ -201,22 +201,10 @@ extension NSArray {
   @available(swift, obsoleted: 3, renamed: "index(of:inSortedRange:options:usingComparator:)")
   func indexOfObject(_ obj: Any, inSortedRange r: NSRange, options opts: NSBinarySearchingOptions = [], usingComparator cmp: (Any, Any) -> ComparisonResult) -> Int
 }
-struct NSBinarySearchingOptions : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = NSBinarySearchingOptions
-  typealias ArrayLiteralElement = NSBinarySearchingOptions
-  static var firstEqual: NSBinarySearchingOptions { get }
-  @available(swift, obsoleted: 3, renamed: "firstEqual")
-  static var FirstEqual: NSBinarySearchingOptions { get }
-  static var lastEqual: NSBinarySearchingOptions { get }
-  @available(swift, obsoleted: 3, renamed: "lastEqual")
-  static var LastEqual: NSBinarySearchingOptions { get }
-  static var insertionIndex: NSBinarySearchingOptions { get }
-  @available(swift, obsoleted: 3, renamed: "insertionIndex")
-  static var InsertionIndex: NSBinarySearchingOptions { get }
-}
+typealias NSBinarySearchingOptions = Int
+var NSBinarySearchingFirstEqual: Int { get }
+var NSBinarySearchingLastEqual: Int { get }
+var NSBinarySearchingInsertionIndex: Int { get }
 extension NSArray {
   @available(*, unavailable, renamed: "init()", message: "Not available in Swift")
   class func array() -> Self
@@ -249,11 +237,11 @@ extension NSArray {
 @available(iOS 13.0, *)
 @available(*, unavailable, message: "NSArray diffing methods are not available in Swift, use Collection.difference(from:) instead")
 extension NSArray {
-  func difference(from other: [Any], with options: NSOrderedCollectionDifferenceCalculationOptions = [], usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
-  @available(swift, obsoleted: 3, renamed: "difference(from:with:usingEquivalenceTest:)")
+  func difference(from other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions = [], usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
+  @available(swift, obsoleted: 3, renamed: "difference(from:withOptions:usingEquivalenceTest:)")
   func differenceFromArray(_ other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions = [], usingEquivalenceTest block: (Any, Any) -> Bool) -> CollectionDifference<Any>
-  func difference(from other: [Any], with options: NSOrderedCollectionDifferenceCalculationOptions = []) -> CollectionDifference<Any>
-  @available(swift, obsoleted: 3, renamed: "difference(from:with:)")
+  func difference(from other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions = []) -> CollectionDifference<Any>
+  @available(swift, obsoleted: 3, renamed: "difference(from:withOptions:)")
   func differenceFromArray(_ other: [Any], withOptions options: NSOrderedCollectionDifferenceCalculationOptions = []) -> CollectionDifference<Any>
   func difference(from other: [Any]) -> CollectionDifference<Any>
   @available(swift, obsoleted: 3, renamed: "difference(from:)")

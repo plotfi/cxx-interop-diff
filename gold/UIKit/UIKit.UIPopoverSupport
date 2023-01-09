@@ -1,30 +1,12 @@
 @_exported import Foundation
 
-struct UIPopoverArrowDirection : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = UIPopoverArrowDirection
-  typealias ArrayLiteralElement = UIPopoverArrowDirection
-  static var up: UIPopoverArrowDirection { get }
-  @available(swift, obsoleted: 3, renamed: "up")
-  static var Up: UIPopoverArrowDirection { get }
-  static var down: UIPopoverArrowDirection { get }
-  @available(swift, obsoleted: 3, renamed: "down")
-  static var Down: UIPopoverArrowDirection { get }
-  static var left: UIPopoverArrowDirection { get }
-  @available(swift, obsoleted: 3, renamed: "left")
-  static var Left: UIPopoverArrowDirection { get }
-  static var right: UIPopoverArrowDirection { get }
-  @available(swift, obsoleted: 3, renamed: "right")
-  static var Right: UIPopoverArrowDirection { get }
-  static var any: UIPopoverArrowDirection { get }
-  @available(swift, obsoleted: 3, renamed: "any")
-  static var `Any`: UIPopoverArrowDirection { get }
-  static var unknown: UIPopoverArrowDirection { get }
-  @available(swift, obsoleted: 3, renamed: "unknown")
-  static var Unknown: UIPopoverArrowDirection { get }
-}
+typealias UIPopoverArrowDirection = Int
+var UIPopoverArrowDirectionUp: Int { get }
+var UIPopoverArrowDirectionDown: Int { get }
+var UIPopoverArrowDirectionLeft: Int { get }
+var UIPopoverArrowDirectionRight: Int { get }
+var UIPopoverArrowDirectionAny: Int { get }
+var UIPopoverArrowDirectionUnknown: Int { get }
 extension UIViewController {
   @available(iOS, introduced: 3.2, deprecated: 13.0)
   var isModalInPopover: Bool

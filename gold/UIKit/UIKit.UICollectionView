@@ -1,7 +1,13 @@
 @_exported import Foundation
 
-@available(swift, obsoleted: 4.2, renamed: "UICollectionView.ScrollPosition")
-typealias UICollectionViewScrollPosition = UICollectionView.ScrollPosition
+typealias UICollectionViewScrollPosition = Int
+var UICollectionViewScrollPositionNone: Int { get }
+var UICollectionViewScrollPositionTop: Int { get }
+var UICollectionViewScrollPositionCenteredVertically: Int { get }
+var UICollectionViewScrollPositionBottom: Int { get }
+var UICollectionViewScrollPositionLeft: Int { get }
+var UICollectionViewScrollPositionCenteredHorizontally: Int { get }
+var UICollectionViewScrollPositionRight: Int { get }
 @available(iOS 11.0, *)
 @available(swift, obsoleted: 4.2, renamed: "UICollectionView.ReorderingCadence")
 typealias UICollectionViewReorderingCadence = UICollectionView.ReorderingCadence
@@ -9,36 +15,6 @@ typealias UICollectionViewReorderingCadence = UICollectionView.ReorderingCadence
 typealias UICollectionViewLayoutInteractiveTransitionCompletion = UICollectionView.LayoutInteractiveTransitionCompletion
 extension UICollectionView {
   typealias LayoutInteractiveTransitionCompletion = (Bool, Bool) -> Void
-  struct ScrollPosition : OptionSet, @unchecked Sendable {
-    init(rawValue: UInt)
-    let rawValue: UInt
-    typealias RawValue = UInt
-    typealias Element = UICollectionView.ScrollPosition
-    typealias ArrayLiteralElement = UICollectionView.ScrollPosition
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    static var none: UICollectionView.ScrollPosition { get }
-    @available(*, unavailable, message: "use [] to construct an empty option set")
-    @available(swift, obsoleted: 3, renamed: "none")
-    static var None: UICollectionView.ScrollPosition { get }
-    static var top: UICollectionView.ScrollPosition { get }
-    @available(swift, obsoleted: 3, renamed: "top")
-    static var Top: UICollectionView.ScrollPosition { get }
-    static var centeredVertically: UICollectionView.ScrollPosition { get }
-    @available(swift, obsoleted: 3, renamed: "centeredVertically")
-    static var CenteredVertically: UICollectionView.ScrollPosition { get }
-    static var bottom: UICollectionView.ScrollPosition { get }
-    @available(swift, obsoleted: 3, renamed: "bottom")
-    static var Bottom: UICollectionView.ScrollPosition { get }
-    static var left: UICollectionView.ScrollPosition { get }
-    @available(swift, obsoleted: 3, renamed: "left")
-    static var Left: UICollectionView.ScrollPosition { get }
-    static var centeredHorizontally: UICollectionView.ScrollPosition { get }
-    @available(swift, obsoleted: 3, renamed: "centeredHorizontally")
-    static var CenteredHorizontally: UICollectionView.ScrollPosition { get }
-    static var right: UICollectionView.ScrollPosition { get }
-    @available(swift, obsoleted: 3, renamed: "right")
-    static var Right: UICollectionView.ScrollPosition { get }
-  }
   @available(iOS 11.0, *)
   enum ReorderingCadence : Int, @unchecked Sendable {
     init?(rawValue: Int)
@@ -436,9 +412,9 @@ extension UICollectionView {
   var allowsSelection: Bool
   var allowsMultipleSelection: Bool
   var indexPathsForSelectedItems: [IndexPath]? { get }
-  func selectItem(at indexPath: IndexPath?, animated: Bool, scrollPosition: UICollectionView.ScrollPosition)
+  func selectItem(at indexPath: IndexPath?, animated: Bool, scrollPosition: UICollectionViewScrollPosition)
   @available(swift, obsoleted: 3, renamed: "selectItem(at:animated:scrollPosition:)")
-  func selectItemAtIndexPath(_ indexPath: IndexPath?, animated: Bool, scrollPosition: UICollectionView.ScrollPosition)
+  func selectItemAtIndexPath(_ indexPath: IndexPath?, animated: Bool, scrollPosition: UICollectionViewScrollPosition)
   func deselectItem(at indexPath: IndexPath, animated: Bool)
   @available(swift, obsoleted: 3, renamed: "deselectItem(at:animated:)")
   func deselectItemAtIndexPath(_ indexPath: IndexPath, animated: Bool)
@@ -493,9 +469,9 @@ extension UICollectionView {
   @available(iOS 9.0, *)
   @available(swift, obsoleted: 3, renamed: "indexPathsForVisibleSupplementaryElements(ofKind:)")
   func indexPathsForVisibleSupplementaryElementsOfKind(_ elementKind: String) -> [IndexPath]
-  func scrollToItem(at indexPath: IndexPath, at scrollPosition: UICollectionView.ScrollPosition, animated: Bool)
-  @available(swift, obsoleted: 3, renamed: "scrollToItem(at:at:animated:)")
-  func scrollToItemAtIndexPath(_ indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionView.ScrollPosition, animated: Bool)
+  func scrollToItem(at indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool)
+  @available(swift, obsoleted: 3, renamed: "scrollToItem(at:atScrollPosition:animated:)")
+  func scrollToItemAtIndexPath(_ indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool)
   func insertSections(_ sections: IndexSet)
   func deleteSections(_ sections: IndexSet)
   func moveSection(_ section: Int, toSection newSection: Int)

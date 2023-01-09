@@ -77,134 +77,38 @@ extension UIOffset : _ObjectiveCBridgeable {
   static func _unconditionallyBridgeFromObjectiveC(_ source: NSValue?) -> UIOffset
   typealias _ObjectiveCType = NSValue
 }
-@available(iOS 7.0, *)
-struct UIRectEdge : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = UIRectEdge
-  typealias ArrayLiteralElement = UIRectEdge
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  static var none: UIRectEdge { get }
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  @available(swift, obsoleted: 3, renamed: "none")
-  static var None: UIRectEdge { get }
-  static var top: UIRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "top")
-  static var Top: UIRectEdge { get }
-  static var left: UIRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "left")
-  static var Left: UIRectEdge { get }
-  static var bottom: UIRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "bottom")
-  static var Bottom: UIRectEdge { get }
-  static var right: UIRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "right")
-  static var Right: UIRectEdge { get }
-  static var all: UIRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "all")
-  static var All: UIRectEdge { get }
-}
-struct UIRectCorner : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = UIRectCorner
-  typealias ArrayLiteralElement = UIRectCorner
-  static var topLeft: UIRectCorner { get }
-  @available(swift, obsoleted: 3, renamed: "topLeft")
-  static var TopLeft: UIRectCorner { get }
-  static var topRight: UIRectCorner { get }
-  @available(swift, obsoleted: 3, renamed: "topRight")
-  static var TopRight: UIRectCorner { get }
-  static var bottomLeft: UIRectCorner { get }
-  @available(swift, obsoleted: 3, renamed: "bottomLeft")
-  static var BottomLeft: UIRectCorner { get }
-  static var bottomRight: UIRectCorner { get }
-  @available(swift, obsoleted: 3, renamed: "bottomRight")
-  static var BottomRight: UIRectCorner { get }
-  static var allCorners: UIRectCorner { get }
-  @available(swift, obsoleted: 3, renamed: "allCorners")
-  static var AllCorners: UIRectCorner { get }
-}
-@available(iOS 13.4, *)
-struct UIAxis : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = UIAxis
-  typealias ArrayLiteralElement = UIAxis
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  static var neither: UIAxis { get }
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  @available(swift, obsoleted: 3, renamed: "neither")
-  static var Neither: UIAxis { get }
-  static var horizontal: UIAxis { get }
-  @available(swift, obsoleted: 3, renamed: "horizontal")
-  static var Horizontal: UIAxis { get }
-  static var vertical: UIAxis { get }
-  @available(swift, obsoleted: 3, renamed: "vertical")
-  static var Vertical: UIAxis { get }
-  static var both: UIAxis { get }
-  @available(swift, obsoleted: 3, renamed: "both")
-  static var Both: UIAxis { get }
-}
-@available(iOS 13.0, *)
-struct NSDirectionalRectEdge : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = NSDirectionalRectEdge
-  typealias ArrayLiteralElement = NSDirectionalRectEdge
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  static var none: NSDirectionalRectEdge { get }
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  @available(swift, obsoleted: 3, renamed: "none")
-  static var None: NSDirectionalRectEdge { get }
-  static var top: NSDirectionalRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "top")
-  static var Top: NSDirectionalRectEdge { get }
-  static var leading: NSDirectionalRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "leading")
-  static var Leading: NSDirectionalRectEdge { get }
-  static var bottom: NSDirectionalRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "bottom")
-  static var Bottom: NSDirectionalRectEdge { get }
-  static var trailing: NSDirectionalRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "trailing")
-  static var Trailing: NSDirectionalRectEdge { get }
-  static var all: NSDirectionalRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "all")
-  static var All: NSDirectionalRectEdge { get }
-}
-@available(iOS, introduced: 13.0, deprecated: 13.0, renamed: "NSDirectionalRectEdge")
-struct UIDirectionalRectEdge : OptionSet, @unchecked Sendable {
-  init(rawValue: UInt)
-  let rawValue: UInt
-  typealias RawValue = UInt
-  typealias Element = UIDirectionalRectEdge
-  typealias ArrayLiteralElement = UIDirectionalRectEdge
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  static var none: UIDirectionalRectEdge { get }
-  @available(*, unavailable, message: "use [] to construct an empty option set")
-  @available(swift, obsoleted: 3, renamed: "none")
-  static var None: UIDirectionalRectEdge { get }
-  static var top: UIDirectionalRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "top")
-  static var Top: UIDirectionalRectEdge { get }
-  static var leading: UIDirectionalRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "leading")
-  static var Leading: UIDirectionalRectEdge { get }
-  static var bottom: UIDirectionalRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "bottom")
-  static var Bottom: UIDirectionalRectEdge { get }
-  static var trailing: UIDirectionalRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "trailing")
-  static var Trailing: UIDirectionalRectEdge { get }
-  static var all: UIDirectionalRectEdge { get }
-  @available(swift, obsoleted: 3, renamed: "all")
-  static var All: UIDirectionalRectEdge { get }
-}
+typealias UIRectEdge = Int
+var UIRectEdgeNone: Int { get }
+var UIRectEdgeTop: Int { get }
+var UIRectEdgeLeft: Int { get }
+var UIRectEdgeBottom: Int { get }
+var UIRectEdgeRight: Int { get }
+var UIRectEdgeAll: Int { get }
+typealias UIRectCorner = Int
+var UIRectCornerTopLeft: Int { get }
+var UIRectCornerTopRight: Int { get }
+var UIRectCornerBottomLeft: Int { get }
+var UIRectCornerBottomRight: Int { get }
+var UIRectCornerAllCorners: Int { get }
+typealias UIAxis = Int
+var UIAxisNeither: Int { get }
+var UIAxisHorizontal: Int { get }
+var UIAxisVertical: Int { get }
+var UIAxisBoth: Int { get }
+typealias NSDirectionalRectEdge = Int
+var NSDirectionalRectEdgeNone: Int { get }
+var NSDirectionalRectEdgeTop: Int { get }
+var NSDirectionalRectEdgeLeading: Int { get }
+var NSDirectionalRectEdgeBottom: Int { get }
+var NSDirectionalRectEdgeTrailing: Int { get }
+var NSDirectionalRectEdgeAll: Int { get }
+typealias UIDirectionalRectEdge = Int
+var UIDirectionalRectEdgeNone: Int { get }
+var UIDirectionalRectEdgeTop: Int { get }
+var UIDirectionalRectEdgeLeading: Int { get }
+var UIDirectionalRectEdgeBottom: Int { get }
+var UIDirectionalRectEdgeTrailing: Int { get }
+var UIDirectionalRectEdgeAll: Int { get }
 @available(iOS 13.0, *)
 enum NSRectAlignment : Int, @unchecked Sendable {
   init?(rawValue: Int)
