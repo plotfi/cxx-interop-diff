@@ -1,0 +1,13 @@
+
+struct CGColorDataFormat {
+  init()
+  init(version: UInt32, colorspace_info: Unmanaged<CFTypeRef>!, bitmap_info: CGBitmapInfo, bits_per_component: Int, bytes_per_row: Int, intent: CGColorRenderingIntent, decode: UnsafeMutablePointer<CGFloat>!)
+  var version: UInt32
+  var colorspace_info: Unmanaged<CFTypeRef>!
+  var bitmap_info: CGBitmapInfo
+  var bits_per_component: Int
+  var bytes_per_row: Int
+  var intent: CGColorRenderingIntent
+  var decode: UnsafeMutablePointer<CGFloat>!
+}
+func CGConvertColorDataWithFormat(_ width: Int, _ height: Int, _ dst_data: UnsafeMutableRawPointer!, _ dst_format: CGColorDataFormat, _ src_data: UnsafeMutableRawPointer!, _ src_format: CGColorDataFormat, _ options: CFDictionary!) -> Bool

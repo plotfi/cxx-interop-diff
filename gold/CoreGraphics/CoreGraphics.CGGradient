@@ -1,0 +1,41 @@
+
+class CGGradient : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CGGradient")
+typealias CGGradientRef = CGGradient
+struct CGGradientDrawingOptions : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt32)
+  let rawValue: UInt32
+  typealias RawValue = UInt32
+  typealias Element = CGGradientDrawingOptions
+  typealias ArrayLiteralElement = CGGradientDrawingOptions
+  static var drawsBeforeStartLocation: CGGradientDrawingOptions { get }
+  @available(swift, obsoleted: 3, renamed: "drawsBeforeStartLocation")
+  static var DrawsBeforeStartLocation: CGGradientDrawingOptions { get }
+  static var drawsAfterEndLocation: CGGradientDrawingOptions { get }
+  @available(swift, obsoleted: 3, renamed: "drawsAfterEndLocation")
+  static var DrawsAfterEndLocation: CGGradientDrawingOptions { get }
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGGradient.typeID()")
+func CGGradientGetTypeID() -> CFTypeID
+extension CGGradient {
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(colorSpace space: CGColorSpace, colorComponents components: UnsafePointer<CGFloat>, locations: UnsafePointer<CGFloat>?, count: Int)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(colorsSpace space: CGColorSpace?, colors: CFArray, locations: UnsafePointer<CGFloat>?)
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGGradient.init(colorSpace:colorComponents:locations:count:)")
+func CGGradientCreateWithColorComponents(_ space: CGColorSpace, _ components: UnsafePointer<CGFloat>, _ locations: UnsafePointer<CGFloat>?, _ count: Int) -> CGGradient?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGGradient.init(colorsSpace:colors:locations:)")
+func CGGradientCreateWithColors(_ space: CGColorSpace?, _ colors: CFArray, _ locations: UnsafePointer<CGFloat>?) -> CGGradient?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGGradientRetain(_ gradient: CGGradient) -> CGGradient
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGGradientRelease(_ gradient: CGGradient)

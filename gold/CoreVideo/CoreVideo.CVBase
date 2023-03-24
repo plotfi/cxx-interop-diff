@@ -1,0 +1,226 @@
+
+var COREVIDEO_TRUE: Bool { get }
+var COREVIDEO_FALSE: Bool { get }
+var COREVIDEO_SUPPORTS_DIRECT3D: Bool { get }
+var COREVIDEO_SUPPORTS_OPENGL: Bool { get }
+var COREVIDEO_SUPPORTS_OPENGLES: Bool { get }
+var COREVIDEO_SUPPORTS_COLORSPACE: Bool { get }
+var COREVIDEO_SUPPORTS_DISPLAYLINK: Bool { get }
+var COREVIDEO_SUPPORTS_IOSURFACE: Bool { get }
+var COREVIDEO_SUPPORTS_PREFETCH: Bool { get }
+var COREVIDEO_SUPPORTS_IOSURFACE_PREFETCH: Bool { get }
+var COREVIDEO_SUPPORTS_GLES_TEX_IMAGE_IOSURFACE: Bool { get }
+var COREVIDEO_USE_IOSURFACEREF: Bool { get }
+var COREVIDEO_SUPPORTS_METAL: Bool { get }
+var COREVIDEO_SUPPORTS_PERMANENT_ALLOCATOR: Bool { get }
+var COREVIDEO_USE_DERIVED_ENUMS_FOR_CONSTANTS: Bool { get }
+var COREVIDEO_DECLARE_NULLABILITY: Bool { get }
+
+/**
+    @typedef	CVOptionFlags
+    @abstract   Flags to be used for the display and render call back functions.
+    @discussion ***Values to be defined***
+*/
+typealias CVOptionFlags = UInt64
+
+/**
+    @struct         CVSMPTETime
+    @abstract       A structure for holding a SMPTE time.
+    @field          subframes
+                        The number of subframes in the full message.
+    @field          subframeDivisor
+                        The number of subframes per frame (typically 80).
+    @field          counter
+                        The total number of messages received.
+    @field          type
+                        The kind of SMPTE time using the SMPTE time type constants.
+    @field          flags
+                        A set of flags that indicate the SMPTE state.
+    @field          hours
+                        The number of hours in the full message.
+    @field          minutes
+                        The number of minutes in the full message.
+    @field          seconds
+                        The number of seconds in the full message.
+    @field          frames
+                        The number of frames in the full message.
+*/
+struct CVSMPTETime {
+  init()
+  init(subframes: Int16, subframeDivisor: Int16, counter: UInt32, type: UInt32, flags: UInt32, hours: Int16, minutes: Int16, seconds: Int16, frames: Int16)
+  var subframes: Int16
+  var subframeDivisor: Int16
+  var counter: UInt32
+  var type: UInt32
+  var flags: UInt32
+  var hours: Int16
+  var minutes: Int16
+  var seconds: Int16
+  var frames: Int16
+}
+
+/**
+    @enum           SMPTE Time Types
+    @abstract       Constants that describe the type of SMPTE time.
+    @constant       kCVSMPTETimeType24
+                        24 Frame
+    @constant       kCVSMPTETimeType25
+                        25 Frame
+    @constant       kCVSMPTETimeType30Drop
+                        30 Drop Frame
+    @constant       kCVSMPTETimeType30
+                        30 Frame
+    @constant       kCVSMPTETimeType2997
+                        29.97 Frame
+    @constant       kCVSMPTETimeType2997Drop
+                        29.97 Drop Frame
+    @constant       kCVSMPTETimeType60
+                        60 Frame
+    @constant       kCVSMPTETimeType5994
+                        59.94 Frame
+*/
+enum CVSMPTETimeType : UInt32, @unchecked Sendable {
+  init?(rawValue: UInt32)
+  var rawValue: UInt32 { get }
+  typealias RawValue = UInt32
+  case type24
+  @available(swift, obsoleted: 3, renamed: "type24")
+  static var Type24: CVSMPTETimeType { get }
+  case type25
+  @available(swift, obsoleted: 3, renamed: "type25")
+  static var Type25: CVSMPTETimeType { get }
+  case type30Drop
+  @available(swift, obsoleted: 3, renamed: "type30Drop")
+  static var Type30Drop: CVSMPTETimeType { get }
+  case type30
+  @available(swift, obsoleted: 3, renamed: "type30")
+  static var Type30: CVSMPTETimeType { get }
+  case type2997
+  @available(swift, obsoleted: 3, renamed: "type2997")
+  static var Type2997: CVSMPTETimeType { get }
+  case type2997Drop
+  @available(swift, obsoleted: 3, renamed: "type2997Drop")
+  static var Type2997Drop: CVSMPTETimeType { get }
+  case type60
+  @available(swift, obsoleted: 3, renamed: "type60")
+  static var Type60: CVSMPTETimeType { get }
+  case type5994
+  @available(swift, obsoleted: 3, renamed: "type5994")
+  static var Type5994: CVSMPTETimeType { get }
+}
+
+/**
+    @enum           SMPTE State Flags
+    @abstract       Flags that describe the SMPTE time state.
+    @constant       kCVSMPTETimeValid
+                        The full time is valid.
+    @constant       kCVSMPTETimeRunning
+                        Time is running.
+*/
+struct CVSMPTETimeFlags : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt32)
+  let rawValue: UInt32
+  typealias RawValue = UInt32
+  typealias Element = CVSMPTETimeFlags
+  typealias ArrayLiteralElement = CVSMPTETimeFlags
+  static var valid: CVSMPTETimeFlags { get }
+  @available(swift, obsoleted: 3, renamed: "valid")
+  static var Valid: CVSMPTETimeFlags { get }
+  static var running: CVSMPTETimeFlags { get }
+  @available(swift, obsoleted: 3, renamed: "running")
+  static var Running: CVSMPTETimeFlags { get }
+}
+struct CVTimeFlags : OptionSet, @unchecked Sendable {
+  init(rawValue: Int32)
+  let rawValue: Int32
+  typealias RawValue = Int32
+  typealias Element = CVTimeFlags
+  typealias ArrayLiteralElement = CVTimeFlags
+  static var isIndefinite: CVTimeFlags { get }
+  @available(swift, obsoleted: 3, renamed: "isIndefinite")
+  static var IsIndefinite: CVTimeFlags { get }
+}
+struct CVTime {
+  init()
+  init(timeValue: Int64, timeScale: Int32, flags: Int32)
+  var timeValue: Int64
+  var timeScale: Int32
+  var flags: Int32
+}
+
+/**
+    @struct CVTimeStamp
+    @abstract CoreVideo uses a CVTimeStamp structure to store video display time stamps.
+    @discussion This structure is purposely very similar to AudioTimeStamp defined in the CoreAudio framework. 
+		Most of the CVTimeStamp struct should be fairly self-explanatory. However, it is probably worth pointing out that unlike the audio time stamps, floats are not used to represent the video equivalent of sample times. This was done partly to avoid precision issues, and partly because QuickTime still uses integers for time values and time scales. In the actual implementation it has turned out to be very convenient to use integers, and we can represent framerates like NTSC (30000/1001 fps) exactly. The mHostTime structure field uses the same Mach absolute time base that is used in CoreAudio, so that clients of the CoreVideo API can synchronize between the two subsystems.
+    @field version The current CVTimeStamp is version 0.
+    @field videoTimeScale The scale (in units per second) of the videoTime and videoPeriod values
+    @field videoTime This represents the start of a frame (or field for interlaced)
+    @field hostTime Host root timebase time
+    @field rateScalar This is the current rate of the device as measured by the timestamps, divided by the nominal rate
+    @field videoRefreshPeriod This is the nominal update period of the current output device
+    @field smpteTime SMPTE time representation of the time stamp. 
+    @field flags Possible values are:		
+		kCVTimeStampVideoTimeValid
+		kCVTimeStampHostTimeValid
+		kCVTimeStampSMPTETimeValid
+		kCVTimeStampVideoPeriodValid
+		kCVTimeStampRateScalarValid
+		There are flags for each field to make it easier to detect interlaced vs progressive output
+		kCVTimeStampTopField
+		kCVTimeStampBottomField
+		Some commonly used combinations of timestamp flags
+		kCVTimeStampVideoHostTimeValid
+		kCVTimeStampIsInterlaced
+    @field reserved Reserved. Do not use.
+
+*/
+struct CVTimeStamp {
+  init()
+  init(version: UInt32, videoTimeScale: Int32, videoTime: Int64, hostTime: UInt64, rateScalar: Double, videoRefreshPeriod: Int64, smpteTime: CVSMPTETime, flags: UInt64, reserved: UInt64)
+  var version: UInt32
+  var videoTimeScale: Int32
+  var videoTime: Int64
+  var hostTime: UInt64
+  var rateScalar: Double
+  var videoRefreshPeriod: Int64
+  var smpteTime: CVSMPTETime
+  var flags: UInt64
+  var reserved: UInt64
+}
+struct CVTimeStampFlags : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt64)
+  let rawValue: UInt64
+  typealias RawValue = UInt64
+  typealias Element = CVTimeStampFlags
+  typealias ArrayLiteralElement = CVTimeStampFlags
+  static var videoTimeValid: CVTimeStampFlags { get }
+  @available(swift, obsoleted: 3, renamed: "videoTimeValid")
+  static var VideoTimeValid: CVTimeStampFlags { get }
+  static var hostTimeValid: CVTimeStampFlags { get }
+  @available(swift, obsoleted: 3, renamed: "hostTimeValid")
+  static var HostTimeValid: CVTimeStampFlags { get }
+  static var smpteTimeValid: CVTimeStampFlags { get }
+  @available(swift, obsoleted: 3, renamed: "smpteTimeValid")
+  static var SMPTETimeValid: CVTimeStampFlags { get }
+  static var videoRefreshPeriodValid: CVTimeStampFlags { get }
+  @available(swift, obsoleted: 3, renamed: "videoRefreshPeriodValid")
+  static var VideoRefreshPeriodValid: CVTimeStampFlags { get }
+  static var rateScalarValid: CVTimeStampFlags { get }
+  @available(swift, obsoleted: 3, renamed: "rateScalarValid")
+  static var RateScalarValid: CVTimeStampFlags { get }
+  static var topField: CVTimeStampFlags { get }
+  @available(swift, obsoleted: 3, renamed: "topField")
+  static var TopField: CVTimeStampFlags { get }
+  static var bottomField: CVTimeStampFlags { get }
+  @available(swift, obsoleted: 3, renamed: "bottomField")
+  static var BottomField: CVTimeStampFlags { get }
+  static var videoHostTimeValid: CVTimeStampFlags { get }
+  @available(swift, obsoleted: 3, renamed: "videoHostTimeValid")
+  static var VideoHostTimeValid: CVTimeStampFlags { get }
+  static var isInterlaced: CVTimeStampFlags { get }
+  @available(swift, obsoleted: 3, renamed: "isInterlaced")
+  static var IsInterlaced: CVTimeStampFlags { get }
+}
+let kCVZeroTime: CVTime
+let kCVIndefiniteTime: CVTime

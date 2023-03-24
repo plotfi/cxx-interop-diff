@@ -1,0 +1,32 @@
+
+class CGFunction : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CGFunction")
+typealias CGFunctionRef = CGFunction
+typealias CGFunctionEvaluateCallback = @convention(c) (UnsafeMutableRawPointer?, UnsafePointer<CGFloat>, UnsafeMutablePointer<CGFloat>) -> Void
+typealias CGFunctionReleaseInfoCallback = @convention(c) (UnsafeMutableRawPointer?) -> Void
+struct CGFunctionCallbacks {
+  init()
+  init(version: UInt32, evaluate: CGFunctionEvaluateCallback?, releaseInfo: CGFunctionReleaseInfoCallback?)
+  var version: UInt32
+  var evaluate: CGFunctionEvaluateCallback?
+  var releaseInfo: CGFunctionReleaseInfoCallback?
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFunction.typeID()")
+func CGFunctionGetTypeID() -> CFTypeID
+extension CGFunction {
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(info: UnsafeMutableRawPointer?, domainDimension: Int, domain: UnsafePointer<CGFloat>?, rangeDimension: Int, range: UnsafePointer<CGFloat>?, callbacks: UnsafePointer<CGFunctionCallbacks>)
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFunction.init(info:domainDimension:domain:rangeDimension:range:callbacks:)")
+func CGFunctionCreate(_ info: UnsafeMutableRawPointer?, _ domainDimension: Int, _ domain: UnsafePointer<CGFloat>?, _ rangeDimension: Int, _ range: UnsafePointer<CGFloat>?, _ callbacks: UnsafePointer<CGFunctionCallbacks>) -> CGFunction?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGFunctionRetain(_ function: CGFunction) -> CGFunction
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGFunctionRelease(_ function: CGFunction)

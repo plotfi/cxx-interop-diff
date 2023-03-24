@@ -1,0 +1,133 @@
+
+class CGColor : _CFObject {
+}
+
+extension CGColor {
+  @available(macOS 10.3, iOS 2.0, *)
+  var components: [CGFloat]? { get }
+}
+
+extension CGColor : _CGColorInitTrampoline, _ExpressibleByColorLiteral {
+}
+
+extension CGColor : @unchecked Sendable {
+}
+@available(swift, obsoleted: 3, renamed: "CGColor")
+typealias CGColorRef = CGColor
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.init(colorSpace:components:)")
+func CGColorCreate(_ space: CGColorSpace, _ components: UnsafePointer<CGFloat>) -> CGColor?
+extension CGColor {
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(colorSpace space: CGColorSpace, components: UnsafePointer<CGFloat>)
+  @available(iOS 13.0, *)
+  /*not inherited*/ init(gray: CGFloat, alpha: CGFloat)
+  @available(iOS 13.0, *)
+  /*not inherited*/ init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
+  @available(iOS 13.0, *)
+  /*not inherited*/ init(genericCMYKCyan cyan: CGFloat, magenta: CGFloat, yellow: CGFloat, black: CGFloat, alpha: CGFloat)
+  @available(iOS 13.0, *)
+  /*not inherited*/ init(genericGrayGamma2_2Gray gray: CGFloat, alpha: CGFloat)
+  @available(iOS 13.0, *)
+  /*not inherited*/ init(srgbRed red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
+  @available(iOS 14.0, *)
+  class func __constantColor(for colorName: CFString) -> CGColor?
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(patternSpace space: CGColorSpace, pattern: CGPattern, components: UnsafePointer<CGFloat>)
+  @available(iOS 2.0, *)
+  func copy() -> CGColor?
+  @available(iOS 2.0, *)
+  func copy(alpha: CGFloat) -> CGColor?
+  @available(iOS 9.0, *)
+  func converted(to _: CGColorSpace, intent: CGColorRenderingIntent, options: CFDictionary?) -> CGColor?
+  @available(iOS 2.0, *)
+  func __equalTo(_ color2: CGColor) -> Bool
+  @available(iOS 2.0, *)
+  var numberOfComponents: Int { get }
+  @available(iOS 2.0, *)
+  var __unsafeComponents: UnsafePointer<CGFloat>? { get }
+  @available(iOS 2.0, *)
+  var alpha: CGFloat { get }
+  @available(iOS 2.0, *)
+  var colorSpace: CGColorSpace? { get }
+  @available(iOS 2.0, *)
+  var pattern: CGPattern? { get }
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+
+  /*** Names of colors for use with `CGColorGetConstantColor'. ***/
+  @available(iOS 14.0, *)
+  class let __whiteColorName: CFString
+  @available(iOS 14.0, *)
+  class let __blackColorName: CFString
+  @available(iOS 14.0, *)
+  class let __clearColorName: CFString
+}
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.init(gray:alpha:)")
+func CGColorCreateGenericGray(_ gray: CGFloat, _ alpha: CGFloat) -> CGColor
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.init(red:green:blue:alpha:)")
+func CGColorCreateGenericRGB(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: CGFloat) -> CGColor
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.init(genericCMYKCyan:magenta:yellow:black:alpha:)")
+func CGColorCreateGenericCMYK(_ cyan: CGFloat, _ magenta: CGFloat, _ yellow: CGFloat, _ black: CGFloat, _ alpha: CGFloat) -> CGColor
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.init(genericGrayGamma2_2Gray:alpha:)")
+func CGColorCreateGenericGrayGamma2_2(_ gray: CGFloat, _ alpha: CGFloat) -> CGColor
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.init(srgbRed:green:blue:alpha:)")
+func CGColorCreateSRGB(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: CGFloat) -> CGColor
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.__constantColor(for:)")
+func __CGColorGetConstantColor(_ colorName: CFString) -> CGColor?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.init(patternSpace:pattern:components:)")
+func CGColorCreateWithPattern(_ space: CGColorSpace, _ pattern: CGPattern, _ components: UnsafePointer<CGFloat>) -> CGColor?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.copy(self:)")
+func CGColorCreateCopy(_ color: CGColor) -> CGColor?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.copy(self:alpha:)")
+func CGColorCreateCopyWithAlpha(_ color: CGColor, _ alpha: CGFloat) -> CGColor?
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.converted(to:intent:self:options:)")
+func CGColorCreateCopyByMatchingToColorSpace(_: CGColorSpace, _ intent: CGColorRenderingIntent, _ color: CGColor, _ options: CFDictionary?) -> CGColor?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGColorRetain(_ color: CGColor) -> CGColor
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGColorRelease(_ color: CGColor)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.__equalTo(self:_:)")
+func __CGColorEqualToColor(_ color1: CGColor, _ color2: CGColor) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColor.numberOfComponents(self:)")
+func CGColorGetNumberOfComponents(_ color: CGColor) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColor.__unsafeComponents(self:)")
+func __CGColorGetComponents(_ color: CGColor) -> UnsafePointer<CGFloat>?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColor.alpha(self:)")
+func CGColorGetAlpha(_ color: CGColor) -> CGFloat
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColor.colorSpace(self:)")
+func CGColorGetColorSpace(_ color: CGColor) -> CGColorSpace?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColor.pattern(self:)")
+func CGColorGetPattern(_ color: CGColor) -> CGPattern?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColor.typeID()")
+func CGColorGetTypeID() -> CFTypeID
+
+/*** Names of colors for use with `CGColorGetConstantColor'. ***/
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.__whiteColorName")
+let __kCGColorWhite: CFString
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.__blackColorName")
+let __kCGColorBlack: CFString
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.__clearColorName")
+let __kCGColorClear: CFString

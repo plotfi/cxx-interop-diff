@@ -1,0 +1,68 @@
+
+class CGPDFPage : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CGPDFPage")
+typealias CGPDFPageRef = CGPDFPage
+enum CGPDFBox : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case mediaBox
+  @available(swift, obsoleted: 3, renamed: "mediaBox")
+  static var MediaBox: CGPDFBox { get }
+  case cropBox
+  @available(swift, obsoleted: 3, renamed: "cropBox")
+  static var CropBox: CGPDFBox { get }
+  case bleedBox
+  @available(swift, obsoleted: 3, renamed: "bleedBox")
+  static var BleedBox: CGPDFBox { get }
+  case trimBox
+  @available(swift, obsoleted: 3, renamed: "trimBox")
+  static var TrimBox: CGPDFBox { get }
+  case artBox
+  @available(swift, obsoleted: 3, renamed: "artBox")
+  static var ArtBox: CGPDFBox { get }
+}
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGPDFPageRetain(_ page: CGPDFPage) -> CGPDFPage?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGPDFPageRelease(_ page: CGPDFPage)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFPage.document(self:)")
+func CGPDFPageGetDocument(_ page: CGPDFPage) -> CGPDFDocument?
+extension CGPDFPage {
+  @available(iOS 2.0, *)
+  var document: CGPDFDocument? { get }
+  @available(iOS 2.0, *)
+  var pageNumber: Int { get }
+  @available(iOS 2.0, *)
+  func getBoxRect(_ box: CGPDFBox) -> CGRect
+  @available(iOS 2.0, *)
+  var rotationAngle: Int32 { get }
+  @available(iOS 2.0, *)
+  func getDrawingTransform(_ box: CGPDFBox, rect: CGRect, rotate: Int32, preserveAspectRatio: Bool) -> CGAffineTransform
+  @available(iOS 2.0, *)
+  var dictionary: CGPDFDictionaryRef? { get }
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFPage.pageNumber(self:)")
+func CGPDFPageGetPageNumber(_ page: CGPDFPage) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPDFPage.getBoxRect(self:_:)")
+func CGPDFPageGetBoxRect(_ page: CGPDFPage, _ box: CGPDFBox) -> CGRect
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFPage.rotationAngle(self:)")
+func CGPDFPageGetRotationAngle(_ page: CGPDFPage) -> Int32
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPDFPage.getDrawingTransform(self:_:rect:rotate:preserveAspectRatio:)")
+func CGPDFPageGetDrawingTransform(_ page: CGPDFPage, _ box: CGPDFBox, _ rect: CGRect, _ rotate: Int32, _ preserveAspectRatio: Bool) -> CGAffineTransform
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFPage.dictionary(self:)")
+func CGPDFPageGetDictionary(_ page: CGPDFPage) -> CGPDFDictionaryRef?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFPage.typeID()")
+func CGPDFPageGetTypeID() -> CFTypeID

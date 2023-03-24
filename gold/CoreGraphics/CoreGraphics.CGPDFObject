@@ -1,0 +1,41 @@
+
+typealias CGPDFBoolean = UInt8
+typealias CGPDFInteger = Int
+typealias CGPDFReal = CGFloat
+typealias CGPDFObjectRef = OpaquePointer
+enum CGPDFObjectType : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case null
+  @available(swift, obsoleted: 3, renamed: "null")
+  static var Null: CGPDFObjectType { get }
+  case boolean
+  @available(swift, obsoleted: 3, renamed: "boolean")
+  static var Boolean: CGPDFObjectType { get }
+  case integer
+  @available(swift, obsoleted: 3, renamed: "integer")
+  static var Integer: CGPDFObjectType { get }
+  case real
+  @available(swift, obsoleted: 3, renamed: "real")
+  static var Real: CGPDFObjectType { get }
+  case name
+  @available(swift, obsoleted: 3, renamed: "name")
+  static var Name: CGPDFObjectType { get }
+  case string
+  @available(swift, obsoleted: 3, renamed: "string")
+  static var String: CGPDFObjectType { get }
+  case array
+  @available(swift, obsoleted: 3, renamed: "array")
+  static var Array: CGPDFObjectType { get }
+  case dictionary
+  @available(swift, obsoleted: 3, renamed: "dictionary")
+  static var Dictionary: CGPDFObjectType { get }
+  case stream
+  @available(swift, obsoleted: 3, renamed: "stream")
+  static var Stream: CGPDFObjectType { get }
+}
+@available(iOS 2.0, *)
+func CGPDFObjectGetType(_ object: CGPDFObjectRef) -> CGPDFObjectType
+@available(iOS 2.0, *)
+func CGPDFObjectGetValue(_ object: CGPDFObjectRef, _ type: CGPDFObjectType, _ value: UnsafeMutableRawPointer?) -> Bool

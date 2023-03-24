@@ -1,0 +1,56 @@
+
+class CGColorConversionInfo : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CGColorConversionInfo")
+typealias CGColorConversionInfoRef = CGColorConversionInfo
+@available(swift, obsoleted: 3, renamed: "getter:CGColorConversionInfo.typeID()")
+func CGColorConversionInfoGetTypeID() -> CFTypeID
+extension CGColorConversionInfo {
+  class var typeID: CFTypeID { get }
+  @available(iOS 10.0, *)
+  /*not inherited*/ init?(src: CGColorSpace, dst: CGColorSpace)
+  @available(iOS 13, *)
+  /*not inherited*/ init?(optionsSrc src: CGColorSpace, dst: CGColorSpace, options: CFDictionary?)
+  @available(iOS 11.0, *)
+  @available(*, unavailable, message: "Not available in Swift")
+  /*not inherited*/ init?(fromListWithArgumentsOptions options: CFDictionary?, _: CGColorSpace, _: CGColorConversionInfoTransformType, _: CGColorRenderingIntent, _: CVaListPointer)
+}
+enum CGColorConversionInfoTransformType : UInt32, @unchecked Sendable {
+  init?(rawValue: UInt32)
+  var rawValue: UInt32 { get }
+  typealias RawValue = UInt32
+  case transformFromSpace
+  @available(swift, obsoleted: 3, renamed: "transformFromSpace")
+  static var TransformFromSpace: CGColorConversionInfoTransformType { get }
+  case transformToSpace
+  @available(swift, obsoleted: 3, renamed: "transformToSpace")
+  static var TransformToSpace: CGColorConversionInfoTransformType { get }
+  case transformApplySpace
+  @available(swift, obsoleted: 3, renamed: "transformApplySpace")
+  static var TransformApplySpace: CGColorConversionInfoTransformType { get }
+}
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorConversionInfo.init(src:dst:)")
+func CGColorConversionInfoCreate(_ src: CGColorSpace, _ dst: CGColorSpace) -> CGColorConversionInfo?
+@available(iOS 13, *)
+@available(swift, obsoleted: 3, renamed: "CGColorConversionInfo.init(optionsSrc:dst:options:)")
+func CGColorConversionInfoCreateWithOptions(_ src: CGColorSpace, _ dst: CGColorSpace, _ options: CFDictionary?) -> CGColorConversionInfo?
+@available(iOS 10.0, *)
+@available(*, unavailable, message: "Variadic function is unavailable")
+func CGColorConversionInfoCreateFromList(_ options: CFDictionary?, _: CGColorSpace, _: CGColorConversionInfoTransformType, _: CGColorRenderingIntent, _ varargs: Any...) -> CGColorConversionInfo?
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorConversionInfo.init(fromListWithArgumentsOptions:_:_:_:_:)")
+@available(*, unavailable, message: "Not available in Swift")
+func CGColorConversionInfoCreateFromListWithArguments(_ options: CFDictionary?, _: CGColorSpace, _: CGColorConversionInfoTransformType, _: CGColorRenderingIntent, _: CVaListPointer) -> CGColorConversionInfo?
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.conversionBlackPointCompensation")
+let kCGColorConversionBlackPointCompensation: CFString
+extension CGColor {
+  @available(iOS 10.0, *)
+  class let conversionBlackPointCompensation: CFString
+  @available(iOS 11.0, *)
+  class let conversionTRCSize: CFString
+}
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColor.conversionTRCSize")
+let kCGColorConversionTRCSize: CFString

@@ -1,0 +1,41 @@
+
+class CGDataConsumer : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CGDataConsumer")
+typealias CGDataConsumerRef = CGDataConsumer
+typealias CGDataConsumerPutBytesCallback = @convention(c) (UnsafeMutableRawPointer?, UnsafeRawPointer, Int) -> Int
+typealias CGDataConsumerReleaseInfoCallback = @convention(c) (UnsafeMutableRawPointer?) -> Void
+struct CGDataConsumerCallbacks {
+  init()
+  init(putBytes: CGDataConsumerPutBytesCallback?, releaseConsumer: CGDataConsumerReleaseInfoCallback?)
+  var putBytes: CGDataConsumerPutBytesCallback?
+  var releaseConsumer: CGDataConsumerReleaseInfoCallback?
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGDataConsumer.typeID()")
+func CGDataConsumerGetTypeID() -> CFTypeID
+extension CGDataConsumer {
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(info: UnsafeMutableRawPointer?, cbks: UnsafePointer<CGDataConsumerCallbacks>)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(url: CFURL)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(data: CFMutableData)
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGDataConsumer.init(info:cbks:)")
+func CGDataConsumerCreate(_ info: UnsafeMutableRawPointer?, _ cbks: UnsafePointer<CGDataConsumerCallbacks>) -> CGDataConsumer?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGDataConsumer.init(url:)")
+func CGDataConsumerCreateWithURL(_ url: CFURL) -> CGDataConsumer?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGDataConsumer.init(data:)")
+func CGDataConsumerCreateWithCFData(_ data: CFMutableData) -> CGDataConsumer?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGDataConsumerRetain(_ consumer: CGDataConsumer) -> CGDataConsumer
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGDataConsumerRelease(_ consumer: CGDataConsumer)

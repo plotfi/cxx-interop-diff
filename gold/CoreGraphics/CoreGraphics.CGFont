@@ -1,0 +1,211 @@
+
+class CGFont : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CGFont")
+typealias CGFontRef = CGFont
+typealias CGFontIndex = UInt16
+typealias CGGlyph = CGFontIndex
+enum CGFontPostScriptFormat : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case type1
+  @available(swift, obsoleted: 3, renamed: "type1")
+  static var Type1: CGFontPostScriptFormat { get }
+  case type3
+  @available(swift, obsoleted: 3, renamed: "type3")
+  static var Type3: CGFontPostScriptFormat { get }
+  case type42
+  @available(swift, obsoleted: 3, renamed: "type42")
+  static var Type42: CGFontPostScriptFormat { get }
+}
+let kCGFontIndexMax: CGFontIndex
+let kCGFontIndexInvalid: CGFontIndex
+let kCGGlyphMax: CGFontIndex
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.typeID()")
+func CGFontGetTypeID() -> CFTypeID
+extension CGFont {
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+  @available(iOS, unavailable)
+  /*not inherited*/ init?(platformFontPlatformFontReference platformFontReference: UnsafeMutableRawPointer)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(_ provider: CGDataProvider)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(_ name: CFString)
+  @available(iOS 2.0, *)
+  func copy(withVariations variations: CFDictionary?) -> CGFont?
+  @available(iOS 2.0, *)
+  var numberOfGlyphs: Int { get }
+  @available(iOS 2.0, *)
+  var unitsPerEm: Int32 { get }
+  @available(iOS 2.0, *)
+  var postScriptName: CFString? { get }
+  @available(iOS 2.0, *)
+  var fullName: CFString? { get }
+  @available(iOS 2.0, *)
+  var ascent: Int32 { get }
+  @available(iOS 2.0, *)
+  var descent: Int32 { get }
+  @available(iOS 2.0, *)
+  var leading: Int32 { get }
+  @available(iOS 2.0, *)
+  var capHeight: Int32 { get }
+  @available(iOS 2.0, *)
+  var xHeight: Int32 { get }
+  @available(iOS 2.0, *)
+  var fontBBox: CGRect { get }
+  @available(iOS 2.0, *)
+  var italicAngle: CGFloat { get }
+  @available(iOS 2.0, *)
+  var stemV: CGFloat { get }
+  @available(iOS 2.0, *)
+  var variationAxes: CFArray? { get }
+  @available(iOS 2.0, *)
+  var variations: CFDictionary? { get }
+  @available(iOS 2.0, *)
+  func getGlyphAdvances(glyphs: UnsafePointer<CGGlyph>, count: Int, advances: UnsafeMutablePointer<Int32>) -> Bool
+  @available(iOS 2.0, *)
+  func getGlyphBBoxes(glyphs: UnsafePointer<CGGlyph>, count: Int, bboxes: UnsafeMutablePointer<CGRect>) -> Bool
+  @available(iOS 2.0, *)
+  func getGlyphWithGlyphName(name: CFString) -> CGGlyph
+  @available(iOS 2.0, *)
+  func name(for glyph: CGGlyph) -> CFString?
+  @available(iOS 2.0, *)
+  func canCreatePostScriptSubset(_ format: CGFontPostScriptFormat) -> Bool
+  @available(iOS 2.0, *)
+  func createPostScriptSubset(subsetName: CFString, format: CGFontPostScriptFormat, glyphs: UnsafePointer<CGGlyph>?, count: Int, encoding: UnsafePointer<CGGlyph>?) -> CFData?
+  @available(iOS 2.0, *)
+  func createPostScriptEncoding(encoding: UnsafePointer<CGGlyph>?) -> CFData?
+  @available(iOS 2.0, *)
+  var tableTags: CFArray? { get }
+  @available(iOS 2.0, *)
+  func table(for tag: UInt32) -> CFData?
+
+  /*** Keys for the font variation axis dictionary. ***/
+  @available(iOS 2.0, *)
+  class let variationAxisName: CFString
+  @available(iOS 2.0, *)
+  class let variationAxisMinValue: CFString
+  @available(iOS 2.0, *)
+  class let variationAxisMaxValue: CFString
+  @available(iOS 2.0, *)
+  class let variationAxisDefaultValue: CFString
+}
+@available(swift, obsoleted: 3, renamed: "CGFont.init(platformFontPlatformFontReference:)")
+@available(iOS, unavailable)
+func CGFontCreateWithPlatformFont(_ platformFontReference: UnsafeMutableRawPointer) -> CGFont?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.init(_:)")
+func CGFontCreateWithDataProvider(_ provider: CGDataProvider) -> CGFont?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.init(_:)")
+func CGFontCreateWithFontName(_ name: CFString) -> CGFont?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.copy(self:withVariations:)")
+func CGFontCreateCopyWithVariations(_ font: CGFont, _ variations: CFDictionary?) -> CGFont?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGFontRetain(_ font: CGFont) -> CGFont
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGFontRelease(_ font: CGFont)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.numberOfGlyphs(self:)")
+func CGFontGetNumberOfGlyphs(_ font: CGFont) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.unitsPerEm(self:)")
+func CGFontGetUnitsPerEm(_ font: CGFont) -> Int32
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.postScriptName(self:)")
+func CGFontCopyPostScriptName(_ font: CGFont) -> CFString?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.fullName(self:)")
+func CGFontCopyFullName(_ font: CGFont) -> CFString?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.ascent(self:)")
+func CGFontGetAscent(_ font: CGFont) -> Int32
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.descent(self:)")
+func CGFontGetDescent(_ font: CGFont) -> Int32
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.leading(self:)")
+func CGFontGetLeading(_ font: CGFont) -> Int32
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.capHeight(self:)")
+func CGFontGetCapHeight(_ font: CGFont) -> Int32
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.xHeight(self:)")
+func CGFontGetXHeight(_ font: CGFont) -> Int32
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.fontBBox(self:)")
+func CGFontGetFontBBox(_ font: CGFont) -> CGRect
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.italicAngle(self:)")
+func CGFontGetItalicAngle(_ font: CGFont) -> CGFloat
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.stemV(self:)")
+func CGFontGetStemV(_ font: CGFont) -> CGFloat
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.variationAxes(self:)")
+func CGFontCopyVariationAxes(_ font: CGFont) -> CFArray?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.variations(self:)")
+func CGFontCopyVariations(_ font: CGFont) -> CFDictionary?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.getGlyphAdvances(self:glyphs:count:advances:)")
+func CGFontGetGlyphAdvances(_ font: CGFont, _ glyphs: UnsafePointer<CGGlyph>, _ count: Int, _ advances: UnsafeMutablePointer<Int32>) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.getGlyphBBoxes(self:glyphs:count:bboxes:)")
+func CGFontGetGlyphBBoxes(_ font: CGFont, _ glyphs: UnsafePointer<CGGlyph>, _ count: Int, _ bboxes: UnsafeMutablePointer<CGRect>) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.getGlyphWithGlyphName(self:name:)")
+func CGFontGetGlyphWithGlyphName(_ font: CGFont, _ name: CFString) -> CGGlyph
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.name(self:for:)")
+func CGFontCopyGlyphNameForGlyph(_ font: CGFont, _ glyph: CGGlyph) -> CFString?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.canCreatePostScriptSubset(self:_:)")
+func CGFontCanCreatePostScriptSubset(_ font: CGFont, _ format: CGFontPostScriptFormat) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.createPostScriptSubset(self:subsetName:format:glyphs:count:encoding:)")
+func CGFontCreatePostScriptSubset(_ font: CGFont, _ subsetName: CFString, _ format: CGFontPostScriptFormat, _ glyphs: UnsafePointer<CGGlyph>?, _ count: Int, _ encoding: UnsafePointer<CGGlyph>?) -> CFData?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.createPostScriptEncoding(self:encoding:)")
+func CGFontCreatePostScriptEncoding(_ font: CGFont, _ encoding: UnsafePointer<CGGlyph>?) -> CFData?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGFont.tableTags(self:)")
+func CGFontCopyTableTags(_ font: CGFont) -> CFArray?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.table(self:for:)")
+func CGFontCopyTableForTag(_ font: CGFont, _ tag: UInt32) -> CFData?
+
+/*** Keys for the font variation axis dictionary. ***/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.variationAxisName")
+let kCGFontVariationAxisName: CFString
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.variationAxisMinValue")
+let kCGFontVariationAxisMinValue: CFString
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.variationAxisMaxValue")
+let kCGFontVariationAxisMaxValue: CFString
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGFont.variationAxisDefaultValue")
+let kCGFontVariationAxisDefaultValue: CFString
+enum CGGlyphDeprecatedEnum : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  @available(*, deprecated)
+  case min
+  @available(*, deprecated)
+  @available(swift, obsoleted: 3, renamed: "min")
+  static var Min: CGGlyphDeprecatedEnum { get }
+  @available(*, deprecated)
+  case max
+  @available(*, deprecated)
+  @available(swift, obsoleted: 3, renamed: "max")
+  static var Max: CGGlyphDeprecatedEnum { get }
+}

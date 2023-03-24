@@ -1,0 +1,419 @@
+
+class CGColorSpace : _CFObject {
+}
+
+extension CGColorSpace {
+  var colorTable: [UInt8]? { get }
+}
+
+extension CGColorSpace : @unchecked Sendable {
+}
+@available(swift, obsoleted: 3, renamed: "CGColorSpace")
+typealias CGColorSpaceRef = CGColorSpace
+enum CGColorRenderingIntent : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case defaultIntent
+  @available(swift, obsoleted: 3, renamed: "CGColorRenderingIntent.defaultIntent")
+  static var kCGRenderingIntentDefault: CGColorRenderingIntent { get }
+  case absoluteColorimetric
+  @available(swift, obsoleted: 3, renamed: "CGColorRenderingIntent.absoluteColorimetric")
+  static var kCGRenderingIntentAbsoluteColorimetric: CGColorRenderingIntent { get }
+  case relativeColorimetric
+  @available(swift, obsoleted: 3, renamed: "CGColorRenderingIntent.relativeColorimetric")
+  static var kCGRenderingIntentRelativeColorimetric: CGColorRenderingIntent { get }
+  case perceptual
+  @available(swift, obsoleted: 3, renamed: "CGColorRenderingIntent.perceptual")
+  static var kCGRenderingIntentPerceptual: CGColorRenderingIntent { get }
+  case saturation
+  @available(swift, obsoleted: 3, renamed: "CGColorRenderingIntent.saturation")
+  static var kCGRenderingIntentSaturation: CGColorRenderingIntent { get }
+}
+enum CGColorSpaceModel : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case unknown
+  @available(swift, obsoleted: 3, renamed: "unknown")
+  static var Unknown: CGColorSpaceModel { get }
+  case monochrome
+  @available(swift, obsoleted: 3, renamed: "monochrome")
+  static var Monochrome: CGColorSpaceModel { get }
+  case rgb
+  @available(swift, obsoleted: 3, renamed: "CGColorSpaceModel.rgb")
+  static var RGB: CGColorSpaceModel { get }
+  case cmyk
+  @available(swift, obsoleted: 3, renamed: "CGColorSpaceModel.cmyk")
+  static var CMYK: CGColorSpaceModel { get }
+  case lab
+  @available(swift, obsoleted: 3, renamed: "lab")
+  static var Lab: CGColorSpaceModel { get }
+  case deviceN
+  @available(swift, obsoleted: 3, renamed: "deviceN")
+  static var DeviceN: CGColorSpaceModel { get }
+  case indexed
+  @available(swift, obsoleted: 3, renamed: "indexed")
+  static var Indexed: CGColorSpaceModel { get }
+  case pattern
+  @available(swift, obsoleted: 3, renamed: "pattern")
+  static var Pattern: CGColorSpaceModel { get }
+  case XYZ
+}
+var CG_HDR_BT_2100: Int32 { get }
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.genericGray")
+@available(*, unavailable, message: "Not available in Swift")
+let kCGColorSpaceGenericGray: CFString
+extension CGColorSpace {
+  @available(iOS 9.0, *)
+  @available(*, unavailable, message: "Not available in Swift")
+  class let genericGray: CFString
+  @available(iOS 9.0, *)
+  @available(*, unavailable, message: "Not available in Swift")
+  class let genericRGB: CFString
+  @available(iOS 9.0, *)
+  class let genericCMYK: CFString
+  @available(iOS 9.3, *)
+  class let displayP3: CFString
+  @available(iOS 9.0, *)
+  class let genericRGBLinear: CFString
+  @available(iOS 9.0, *)
+  class let adobeRGB1998: CFString
+  @available(iOS 9.0, *)
+  class let sRGB: CFString
+  @available(iOS 9.0, *)
+  class let genericGrayGamma2_2: CFString
+  @available(iOS 9.0, *)
+  class let genericXYZ: CFString
+  @available(iOS 11.0, *)
+  class let genericLab: CFString
+  @available(iOS 9.0, *)
+  class let acescgLinear: CFString
+  @available(iOS 9.0, *)
+  class let itur_709: CFString
+  @available(iOS 15.1, *)
+  class let itur_709_PQ: CFString
+  @available(iOS 15.1, *)
+  class let itur_709_HLG: CFString
+  @available(iOS 9.0, *)
+  class let itur_2020: CFString
+  @available(iOS 15.1, *)
+  class let itur_2020_sRGBGamma: CFString
+  @available(iOS 9.0, *)
+  class let rommrgb: CFString
+  @available(iOS 9.0, *)
+  class let dcip3: CFString
+  @available(iOS 15.0, *)
+  class let linearITUR_2020: CFString
+  @available(iOS 14.0, *)
+  class let extendedITUR_2020: CFString
+  @available(iOS 12.3, *)
+  class let extendedLinearITUR_2020: CFString
+  @available(iOS 15.0, *)
+  class let linearDisplayP3: CFString
+  @available(iOS 14.0, *)
+  class let extendedDisplayP3: CFString
+  @available(iOS 12.3, *)
+  class let extendedLinearDisplayP3: CFString
+  @available(iOS 14.0, *)
+  class let itur_2100_PQ: CFString
+  @available(iOS 14.0, *)
+  class let itur_2100_HLG: CFString
+  @available(iOS 13.4, *)
+  class let displayP3_PQ: CFString
+  @available(iOS 12.6, *)
+  class let displayP3_HLG: CFString
+  @available(iOS, introduced: 13.4, deprecated: 14.0, message: "No longer supported")
+  class let itur_2020_PQ: CFString
+  @available(iOS, introduced: 12.6, deprecated: 14.0, message: "No longer supported")
+  class let itur_2020_HLG: CFString
+  @available(iOS, introduced: 12.6, deprecated: 13.4, message: "No longer supported")
+  class let displayP3_PQ_EOTF: CFString
+  @available(iOS, introduced: 12.6, deprecated: 13.4, message: "No longer supported")
+  class let itur_2020_PQ_EOTF: CFString
+  @available(iOS 10.0, *)
+  class let extendedSRGB: CFString
+  @available(iOS 10.0, *)
+  class let linearSRGB: CFString
+  @available(iOS 10.0, *)
+  class let extendedLinearSRGB: CFString
+  @available(iOS 10.0, *)
+  class let extendedGray: CFString
+  @available(iOS 10.0, *)
+  class let linearGray: CFString
+  @available(iOS 10.0, *)
+  class let extendedLinearGray: CFString
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(calibratedGrayWhitePoint whitePoint: UnsafePointer<CGFloat>, blackPoint: UnsafePointer<CGFloat>?, gamma: CGFloat)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(calibratedRGBWhitePoint whitePoint: UnsafePointer<CGFloat>, blackPoint: UnsafePointer<CGFloat>?, gamma: UnsafePointer<CGFloat>?, matrix: UnsafePointer<CGFloat>?)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(labWhitePoint whitePoint: UnsafePointer<CGFloat>, blackPoint: UnsafePointer<CGFloat>?, range: UnsafePointer<CGFloat>?)
+  @available(iOS 10.0, *)
+  /*not inherited*/ init?(iccData data: CFTypeRef)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(iccBasedNComponents nComponents: Int, range: UnsafePointer<CGFloat>?, profile: CGDataProvider, alternate: CGColorSpace?)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(indexedBaseSpace baseSpace: CGColorSpace, last lastIndex: Int, colorTable: UnsafePointer<UInt8>)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(patternBaseSpace baseSpace: CGColorSpace?)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(name: CFString)
+  @available(iOS 11.0, *)
+  var __name: CFString? { get }
+  @available(iOS 10.0, *)
+  var name: CFString? { get }
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+  @available(iOS 2.0, *)
+  var numberOfComponents: Int { get }
+  @available(iOS 2.0, *)
+  var model: CGColorSpaceModel { get }
+  @available(iOS 2.0, *)
+  var baseColorSpace: CGColorSpace? { get }
+  @available(iOS 2.0, *)
+  var __colorTableCount: Int { get }
+  @available(iOS 2.0, *)
+  func __unsafeGetColorTable(_ table: UnsafeMutablePointer<UInt8>)
+  @available(iOS 10.0, *)
+  func copyICCData() -> CFData?
+  @available(iOS 10.0, *)
+  var isWideGamutRGB: Bool { get }
+  @available(iOS, introduced: 13.0, deprecated: 13.4, message: "No longer supported")
+  func isHDR() -> Bool
+  @available(iOS 10.0, *)
+  var supportsOutput: Bool { get }
+  @available(iOS 10.0, *)
+  func copyPropertyList() -> CFPropertyList?
+  @available(iOS 10.0, *)
+  /*not inherited*/ init?(propertyListPlist plist: CFPropertyList)
+  @available(iOS, introduced: 2.0, deprecated: 11.0, message: "No longer supported")
+  /*not inherited*/ init?(iccProfileData data: CFData)
+  @available(iOS, introduced: 2.0, deprecated: 11.0, message: "No longer supported")
+  var iccData: CFData? { get }
+  @available(iOS, introduced: 9.0, deprecated: 15.0, message: "No longer supported")
+  /*not inherited*/ init?(platformColorSpaceRef ref: UnsafeRawPointer)
+}
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.genericRGB")
+@available(*, unavailable, message: "Not available in Swift")
+let kCGColorSpaceGenericRGB: CFString
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.genericCMYK")
+let kCGColorSpaceGenericCMYK: CFString
+@available(iOS 9.3, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.displayP3")
+let kCGColorSpaceDisplayP3: CFString
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.genericRGBLinear")
+let kCGColorSpaceGenericRGBLinear: CFString
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.adobeRGB1998")
+let kCGColorSpaceAdobeRGB1998: CFString
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.sRGB")
+let kCGColorSpaceSRGB: CFString
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.genericGrayGamma2_2")
+let kCGColorSpaceGenericGrayGamma2_2: CFString
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.genericXYZ")
+let kCGColorSpaceGenericXYZ: CFString
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.genericLab")
+let kCGColorSpaceGenericLab: CFString
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.acescgLinear")
+let kCGColorSpaceACESCGLinear: CFString
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.itur_709")
+let kCGColorSpaceITUR_709: CFString
+@available(iOS 15.1, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.itur_709_PQ")
+let kCGColorSpaceITUR_709_PQ: CFString
+@available(iOS 15.1, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.itur_709_HLG")
+let kCGColorSpaceITUR_709_HLG: CFString
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.itur_2020")
+let kCGColorSpaceITUR_2020: CFString
+@available(iOS 15.1, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.itur_2020_sRGBGamma")
+let kCGColorSpaceITUR_2020_sRGBGamma: CFString
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.rommrgb")
+let kCGColorSpaceROMMRGB: CFString
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.dcip3")
+let kCGColorSpaceDCIP3: CFString
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.linearITUR_2020")
+let kCGColorSpaceLinearITUR_2020: CFString
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.extendedITUR_2020")
+let kCGColorSpaceExtendedITUR_2020: CFString
+@available(iOS 12.3, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.extendedLinearITUR_2020")
+let kCGColorSpaceExtendedLinearITUR_2020: CFString
+@available(iOS 15.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.linearDisplayP3")
+let kCGColorSpaceLinearDisplayP3: CFString
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.extendedDisplayP3")
+let kCGColorSpaceExtendedDisplayP3: CFString
+@available(iOS 12.3, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.extendedLinearDisplayP3")
+let kCGColorSpaceExtendedLinearDisplayP3: CFString
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.itur_2100_PQ")
+let kCGColorSpaceITUR_2100_PQ: CFString
+@available(iOS 14.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.itur_2100_HLG")
+let kCGColorSpaceITUR_2100_HLG: CFString
+@available(iOS 13.4, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.displayP3_PQ")
+let kCGColorSpaceDisplayP3_PQ: CFString
+@available(iOS 12.6, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.displayP3_HLG")
+let kCGColorSpaceDisplayP3_HLG: CFString
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.itur_2020_PQ")
+@available(iOS, introduced: 13.4, deprecated: 14.0, message: "No longer supported")
+let kCGColorSpaceITUR_2020_PQ: CFString
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.itur_2020_HLG")
+@available(iOS, introduced: 12.6, deprecated: 14.0, message: "No longer supported")
+let kCGColorSpaceITUR_2020_HLG: CFString
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.displayP3_PQ_EOTF")
+@available(iOS, introduced: 12.6, deprecated: 13.4, message: "No longer supported")
+let kCGColorSpaceDisplayP3_PQ_EOTF: CFString
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.itur_2020_PQ_EOTF")
+@available(iOS, introduced: 12.6, deprecated: 13.4, message: "No longer supported")
+let kCGColorSpaceITUR_2020_PQ_EOTF: CFString
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.extendedSRGB")
+let kCGColorSpaceExtendedSRGB: CFString
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.linearSRGB")
+let kCGColorSpaceLinearSRGB: CFString
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.extendedLinearSRGB")
+let kCGColorSpaceExtendedLinearSRGB: CFString
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.extendedGray")
+let kCGColorSpaceExtendedGray: CFString
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.linearGray")
+let kCGColorSpaceLinearGray: CFString
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.extendedLinearGray")
+let kCGColorSpaceExtendedLinearGray: CFString
+@available(iOS 2.0, *)
+func CGColorSpaceCreateDeviceGray() -> CGColorSpace
+@available(iOS 2.0, *)
+func CGColorSpaceCreateDeviceRGB() -> CGColorSpace
+@available(iOS 2.0, *)
+func CGColorSpaceCreateDeviceCMYK() -> CGColorSpace
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.init(calibratedGrayWhitePoint:blackPoint:gamma:)")
+func CGColorSpaceCreateCalibratedGray(_ whitePoint: UnsafePointer<CGFloat>, _ blackPoint: UnsafePointer<CGFloat>?, _ gamma: CGFloat) -> CGColorSpace?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.init(calibratedRGBWhitePoint:blackPoint:gamma:matrix:)")
+func CGColorSpaceCreateCalibratedRGB(_ whitePoint: UnsafePointer<CGFloat>, _ blackPoint: UnsafePointer<CGFloat>?, _ gamma: UnsafePointer<CGFloat>?, _ matrix: UnsafePointer<CGFloat>?) -> CGColorSpace?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.init(labWhitePoint:blackPoint:range:)")
+func CGColorSpaceCreateLab(_ whitePoint: UnsafePointer<CGFloat>, _ blackPoint: UnsafePointer<CGFloat>?, _ range: UnsafePointer<CGFloat>?) -> CGColorSpace?
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.init(iccData:)")
+func CGColorSpaceCreateWithICCData(_ data: CFTypeRef) -> CGColorSpace?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.init(iccBasedNComponents:range:profile:alternate:)")
+func CGColorSpaceCreateICCBased(_ nComponents: Int, _ range: UnsafePointer<CGFloat>?, _ profile: CGDataProvider, _ alternate: CGColorSpace?) -> CGColorSpace?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.init(indexedBaseSpace:last:colorTable:)")
+func CGColorSpaceCreateIndexed(_ baseSpace: CGColorSpace, _ lastIndex: Int, _ colorTable: UnsafePointer<UInt8>) -> CGColorSpace?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.init(patternBaseSpace:)")
+func CGColorSpaceCreatePattern(_ baseSpace: CGColorSpace?) -> CGColorSpace?
+class ColorSyncProfile : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "ColorSyncProfile")
+typealias ColorSyncProfileRef = ColorSyncProfile
+let kCGColorSpaceExtendedRange: CFString
+@available(iOS 15.0, *)
+func CGColorSpaceCreateWithColorSyncProfile(_: ColorSyncProfile?, _ options: CFDictionary?) -> CGColorSpace?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.init(name:)")
+func CGColorSpaceCreateWithName(_ name: CFString) -> CGColorSpace?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGColorSpaceRetain(_ space: CGColorSpace) -> CGColorSpace
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGColorSpaceRelease(_ space: CGColorSpace)
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColorSpace.__name(self:)")
+func __CGColorSpaceGetName(_ space: CGColorSpace) -> CFString?
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColorSpace.name(self:)")
+func CGColorSpaceCopyName(_ space: CGColorSpace) -> CFString?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColorSpace.typeID()")
+func CGColorSpaceGetTypeID() -> CFTypeID
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColorSpace.numberOfComponents(self:)")
+func CGColorSpaceGetNumberOfComponents(_ space: CGColorSpace) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColorSpace.model(self:)")
+func CGColorSpaceGetModel(_ space: CGColorSpace) -> CGColorSpaceModel
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColorSpace.baseColorSpace(self:)")
+func CGColorSpaceGetBaseColorSpace(_ space: CGColorSpace) -> CGColorSpace?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColorSpace.__colorTableCount(self:)")
+func __CGColorSpaceGetColorTableCount(_ space: CGColorSpace) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.__unsafeGetColorTable(self:_:)")
+func __CGColorSpaceGetColorTable(_ space: CGColorSpace, _ table: UnsafeMutablePointer<UInt8>)
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.copyICCData(self:)")
+func CGColorSpaceCopyICCData(_ space: CGColorSpace) -> CFData?
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColorSpace.isWideGamutRGB(self:)")
+func CGColorSpaceIsWideGamutRGB(_: CGColorSpace) -> Bool
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.isHDR(self:)")
+@available(iOS, introduced: 13.0, deprecated: 13.4, message: "No longer supported")
+func CGColorSpaceIsHDR(_: CGColorSpace) -> Bool
+@available(iOS 14.0, *)
+func CGColorSpaceUsesITUR_2100TF(_: CGColorSpace) -> Bool
+@available(iOS 15.0, *)
+func CGColorSpaceIsPQBased(_ s: CGColorSpace) -> Bool
+@available(iOS 15.0, *)
+func CGColorSpaceIsHLGBased(_ s: CGColorSpace) -> Bool
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGColorSpace.supportsOutput(self:)")
+func CGColorSpaceSupportsOutput(_ space: CGColorSpace) -> Bool
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.copyPropertyList(self:)")
+func CGColorSpaceCopyPropertyList(_ space: CGColorSpace) -> CFPropertyList?
+@available(iOS 10.0, *)
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.init(propertyListPlist:)")
+func CGColorSpaceCreateWithPropertyList(_ plist: CFPropertyList) -> CGColorSpace?
+@available(iOS 10.0, *)
+func CGColorSpaceUsesExtendedRange(_ space: CGColorSpace) -> Bool
+@available(iOS 14.0, *)
+func CGColorSpaceCreateLinearized(_ space: CGColorSpace) -> CGColorSpace?
+@available(iOS 14.0, *)
+func CGColorSpaceCreateExtended(_ space: CGColorSpace) -> CGColorSpace?
+@available(iOS 14.0, *)
+func CGColorSpaceCreateExtendedLinearized(_ space: CGColorSpace) -> CGColorSpace?
+@available(iOS 16.0, *)
+func CGColorSpaceCreateCopyWithStandardRange(_ s: CGColorSpace) -> CGColorSpace
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.init(iccProfileData:)")
+@available(iOS, introduced: 2.0, deprecated: 11.0, message: "No longer supported")
+func CGColorSpaceCreateWithICCProfile(_ data: CFData) -> CGColorSpace?
+@available(swift, obsoleted: 3, renamed: "getter:CGColorSpace.iccData(self:)")
+@available(iOS, introduced: 2.0, deprecated: 11.0, message: "No longer supported")
+func CGColorSpaceCopyICCProfile(_ space: CGColorSpace) -> CFData?
+@available(swift, obsoleted: 3, renamed: "CGColorSpace.init(platformColorSpaceRef:)")
+@available(iOS, introduced: 9.0, deprecated: 15.0, message: "No longer supported")
+func CGColorSpaceCreateWithPlatformColorSpace(_ ref: UnsafeRawPointer) -> CGColorSpace?

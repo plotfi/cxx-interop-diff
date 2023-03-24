@@ -1,0 +1,549 @@
+
+var kCVPixelFormatType_1Monochrome: OSType { get }
+var kCVPixelFormatType_2Indexed: OSType { get }
+var kCVPixelFormatType_4Indexed: OSType { get }
+var kCVPixelFormatType_8Indexed: OSType { get }
+var kCVPixelFormatType_1IndexedGray_WhiteIsZero: OSType { get }
+var kCVPixelFormatType_2IndexedGray_WhiteIsZero: OSType { get }
+var kCVPixelFormatType_4IndexedGray_WhiteIsZero: OSType { get }
+var kCVPixelFormatType_8IndexedGray_WhiteIsZero: OSType { get }
+var kCVPixelFormatType_16BE555: OSType { get }
+var kCVPixelFormatType_16LE555: OSType { get }
+var kCVPixelFormatType_16LE5551: OSType { get }
+var kCVPixelFormatType_16BE565: OSType { get }
+var kCVPixelFormatType_16LE565: OSType { get }
+var kCVPixelFormatType_24RGB: OSType { get }
+var kCVPixelFormatType_24BGR: OSType { get }
+var kCVPixelFormatType_32ARGB: OSType { get }
+var kCVPixelFormatType_32BGRA: OSType { get }
+var kCVPixelFormatType_32ABGR: OSType { get }
+var kCVPixelFormatType_32RGBA: OSType { get }
+var kCVPixelFormatType_64ARGB: OSType { get }
+var kCVPixelFormatType_64RGBALE: OSType { get }
+var kCVPixelFormatType_48RGB: OSType { get }
+var kCVPixelFormatType_32AlphaGray: OSType { get }
+var kCVPixelFormatType_16Gray: OSType { get }
+var kCVPixelFormatType_30RGB: OSType { get }
+var kCVPixelFormatType_422YpCbCr8: OSType { get }
+var kCVPixelFormatType_4444YpCbCrA8: OSType { get }
+var kCVPixelFormatType_4444YpCbCrA8R: OSType { get }
+var kCVPixelFormatType_4444AYpCbCr8: OSType { get }
+var kCVPixelFormatType_4444AYpCbCr16: OSType { get }
+var kCVPixelFormatType_444YpCbCr8: OSType { get }
+var kCVPixelFormatType_422YpCbCr16: OSType { get }
+var kCVPixelFormatType_422YpCbCr10: OSType { get }
+var kCVPixelFormatType_444YpCbCr10: OSType { get }
+var kCVPixelFormatType_420YpCbCr8Planar: OSType { get }
+var kCVPixelFormatType_420YpCbCr8PlanarFullRange: OSType { get }
+var kCVPixelFormatType_422YpCbCr_4A_8BiPlanar: OSType { get }
+var kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_420YpCbCr8BiPlanarFullRange: OSType { get }
+var kCVPixelFormatType_422YpCbCr8BiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_422YpCbCr8BiPlanarFullRange: OSType { get }
+var kCVPixelFormatType_444YpCbCr8BiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_444YpCbCr8BiPlanarFullRange: OSType { get }
+var kCVPixelFormatType_422YpCbCr8_yuvs: OSType { get }
+var kCVPixelFormatType_422YpCbCr8FullRange: OSType { get }
+var kCVPixelFormatType_OneComponent8: OSType { get }
+var kCVPixelFormatType_TwoComponent8: OSType { get }
+var kCVPixelFormatType_30RGBLEPackedWideGamut: OSType { get }
+var kCVPixelFormatType_ARGB2101010LEPacked: OSType { get }
+var kCVPixelFormatType_40ARGBLEWideGamut: OSType { get }
+var kCVPixelFormatType_40ARGBLEWideGamutPremultiplied: OSType { get }
+var kCVPixelFormatType_OneComponent10: OSType { get }
+var kCVPixelFormatType_OneComponent12: OSType { get }
+var kCVPixelFormatType_OneComponent16: OSType { get }
+var kCVPixelFormatType_TwoComponent16: OSType { get }
+var kCVPixelFormatType_OneComponent16Half: OSType { get }
+var kCVPixelFormatType_OneComponent32Float: OSType { get }
+var kCVPixelFormatType_TwoComponent16Half: OSType { get }
+var kCVPixelFormatType_TwoComponent32Float: OSType { get }
+var kCVPixelFormatType_64RGBAHalf: OSType { get }
+var kCVPixelFormatType_128RGBAFloat: OSType { get }
+var kCVPixelFormatType_14Bayer_GRBG: OSType { get }
+var kCVPixelFormatType_14Bayer_RGGB: OSType { get }
+var kCVPixelFormatType_14Bayer_BGGR: OSType { get }
+var kCVPixelFormatType_14Bayer_GBRG: OSType { get }
+var kCVPixelFormatType_DisparityFloat16: OSType { get }
+var kCVPixelFormatType_DisparityFloat32: OSType { get }
+var kCVPixelFormatType_DepthFloat16: OSType { get }
+var kCVPixelFormatType_DepthFloat32: OSType { get }
+var kCVPixelFormatType_420YpCbCr10BiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_444YpCbCr10BiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_420YpCbCr10BiPlanarFullRange: OSType { get }
+var kCVPixelFormatType_422YpCbCr10BiPlanarFullRange: OSType { get }
+var kCVPixelFormatType_444YpCbCr10BiPlanarFullRange: OSType { get }
+var kCVPixelFormatType_420YpCbCr8VideoRange_8A_TriPlanar: OSType { get }
+var kCVPixelFormatType_16VersatileBayer: OSType { get }
+var kCVPixelFormatType_64RGBA_DownscaledProResRAW: OSType { get }
+var kCVPixelFormatType_422YpCbCr16BiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_444YpCbCr16BiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_444YpCbCr16VideoRange_16A_TriPlanar: OSType { get }
+var kCVPixelFormatType_Lossless_32BGRA: OSType { get }
+var kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarFullRange: OSType { get }
+var kCVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_Lossless_422YpCbCr10PackedBiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_Lossy_32BGRA: OSType { get }
+var kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarFullRange: OSType { get }
+var kCVPixelFormatType_Lossy_420YpCbCr10PackedBiPlanarVideoRange: OSType { get }
+var kCVPixelFormatType_Lossy_422YpCbCr10PackedBiPlanarVideoRange: OSType { get }
+
+/**
+	@enum Pixel Buffer Locking Flags
+	@discussion Flags to pass to CVPixelBufferLockBaseAddress() / CVPixelBufferUnlockBaseAddress()
+	@constant kCVPixelBufferLock_ReadOnly
+		If you are not going to modify the data while you hold the lock, you should set this flag
+		to avoid potentially invalidating any existing caches of the buffer contents.  This flag
+		should be passed both to the lock and unlock functions.  Non-symmetrical usage of this
+		flag will result in undefined behavior.
+*/
+struct CVPixelBufferLockFlags : OptionSet, @unchecked Sendable {
+  init(rawValue: CVOptionFlags)
+  let rawValue: CVOptionFlags
+  typealias RawValue = CVOptionFlags
+  typealias Element = CVPixelBufferLockFlags
+  typealias ArrayLiteralElement = CVPixelBufferLockFlags
+  static var readOnly: CVPixelBufferLockFlags { get }
+  @available(swift, obsoleted: 3, renamed: "readOnly")
+  static var ReadOnly: CVPixelBufferLockFlags { get }
+}
+struct CVPlanarComponentInfo {
+  init()
+  init(offset: Int32, rowBytes: UInt32)
+  var offset: Int32
+  var rowBytes: UInt32
+}
+struct CVPlanarPixelBufferInfo {
+  init()
+  init(componentInfo: (CVPlanarComponentInfo))
+  var componentInfo: (CVPlanarComponentInfo)
+}
+struct CVPlanarPixelBufferInfo_YCbCrPlanar {
+  init()
+  init(componentInfoY: CVPlanarComponentInfo, componentInfoCb: CVPlanarComponentInfo, componentInfoCr: CVPlanarComponentInfo)
+  var componentInfoY: CVPlanarComponentInfo
+  var componentInfoCb: CVPlanarComponentInfo
+  var componentInfoCr: CVPlanarComponentInfo
+}
+struct CVPlanarPixelBufferInfo_YCbCrBiPlanar {
+  init()
+  init(componentInfoY: CVPlanarComponentInfo, componentInfoCbCr: CVPlanarComponentInfo)
+  var componentInfoY: CVPlanarComponentInfo
+  var componentInfoCbCr: CVPlanarComponentInfo
+}
+@available(iOS 4.0, *)
+let kCVPixelBufferPixelFormatTypeKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferMemoryAllocatorKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferWidthKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferHeightKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferExtendedPixelsLeftKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferExtendedPixelsTopKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferExtendedPixelsRightKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferExtendedPixelsBottomKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferBytesPerRowAlignmentKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferCGBitmapContextCompatibilityKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferCGImageCompatibilityKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferOpenGLCompatibilityKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferPlaneAlignmentKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferIOSurfacePropertiesKey: CFString
+@available(iOS 6.0, *)
+let kCVPixelBufferOpenGLESCompatibilityKey: CFString
+@available(iOS 8.0, *)
+let kCVPixelBufferMetalCompatibilityKey: CFString
+@available(iOS, unavailable)
+let kCVPixelBufferOpenGLTextureCacheCompatibilityKey: CFString
+@available(iOS 9.0, *)
+let kCVPixelBufferOpenGLESTextureCacheCompatibilityKey: CFString
+
+/**
+    @const      kCVPixelBufferVersatileBayerKey_BayerPattern
+    @abstract   Buffer attachment key for code indicating Bayer pattern (sensel arrangement).
+    @discussion Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value follows the semantics of the ProRes RAW bayer_pattern bitstream syntax element, namely 0, 1, 2, or 3, where 0 means the top-left sensel of the frame is red-filtered ("RGGB"); 1 means the top-left sensel of the frame is green-filtered, with the top row alternating between green- and red-filtered sensels ("GRBG"); 2 means the top-left sensel of the frame is green- filtered, with the top row alternating between green- and blue-filtered sensels ("GBRG"); and 3 means the top-left sensel of the frame is blue-filtered ("BGGR").  This attachment applies only to buffers with VersatileBayer formats.
+*/
+@available(iOS 14.0, *)
+let kCVPixelBufferVersatileBayerKey_BayerPattern: CFString
+var kCVVersatileBayer_BayerPattern_RGGB: Int { get }
+var kCVVersatileBayer_BayerPattern_GRBG: Int { get }
+var kCVVersatileBayer_BayerPattern_GBRG: Int { get }
+var kCVVersatileBayer_BayerPattern_BGGR: Int { get }
+
+/**
+    @const      kCVPixelBufferProResRAWKey_SenselSitingOffsets
+    @abstract   Buffer attachment key for siting offsets, relative to pixel center, of individual sensels/components constituting each pixel.
+    @discussion Associated attachment is CFData containing an array of 8 32-bit floats.  The eight CFData array elements specify, in order, the following sensel/component offsets from pixel center: red horizontal offset, red vertical offset, green horizontal offset, green vertical offset, blue horizontal offset, blue vertical offset, alpha horizontal offset, and alpha vertical offset.  A positive offset value indicates that the sensel/component lies to the right of or below the center of its pixel, while a negative value indicates that the sensel/component lies to the left of or above the center of its pixel.  Horizontal and vertical offset magnitudes are respectively in terms of the spacing between horizontally- and vertically-adjacent pixel centers.  This attachment applies only to buffers with the bp64 format, and is optional for those buffers; if not present, all offsets are considered to be 0.
+*/
+@available(iOS 14.0, *)
+let kCVPixelBufferProResRAWKey_SenselSitingOffsets: CFString
+
+/**
+    @const      kCVPixelBufferProResRAWKey_BlackLevel
+    @abstract   Buffer attachment key for sensel black level.
+    @discussion Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value is the sensel level corresponding to no light exposure.  This attachment is required for buffers with either the bp16 or bp64 format.
+*/
+@available(iOS 14.0, *)
+let kCVPixelBufferProResRAWKey_BlackLevel: CFString
+
+/**
+    @const      kCVPixelBufferProResRAWKey_WhiteLevel
+    @abstract   Buffer attachment key for sensel white level.
+    @discussion Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value is the sensel level corresponding to sensor (or camera A-to-D converter) saturation.  This attachment is required for buffers with either the bp16 or bp64 format.
+*/
+@available(iOS 14.0, *)
+let kCVPixelBufferProResRAWKey_WhiteLevel: CFString
+
+/**
+    @const      kCVPixelBufferProResRAWKey_WhiteBalanceCCT
+    @abstract   Buffer attachment key for illuminant correlated color temperature.
+    @discussion Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value is the illuminant correlated color temperature (CCT), in kelvins, selected at the time of capture.  May be 0, indicating that the CCT is unknown or unspecified.  This attachment is optional for buffers with either the bp16 or bp64 format; if not present, the CCT is considered unknown or unspecified.
+*/
+@available(iOS 14.0, *)
+let kCVPixelBufferProResRAWKey_WhiteBalanceCCT: CFString
+
+/**
+    @const      kCVPixelBufferProResRAWKey_WhiteBalanceRedFactor
+    @abstract   Buffer attachment key for white balance red factor.
+    @discussion Associated attachment is a CFNumber of type kCFNumberFloat32Type.  The value is the white balance multiplication factor for red-filtered sensels.  This attachment is required for buffers with either the bp16 or bp64 format.
+*/
+@available(iOS 14.0, *)
+let kCVPixelBufferProResRAWKey_WhiteBalanceRedFactor: CFString
+
+/**
+    @const      kCVPixelBufferProResRAWKey_WhiteBalanceBlueFactor
+    @abstract   Buffer attachment key for white balance blue factor.
+    @discussion Associated attachment is a CFNumber of type kCFNumberFloat32Type.  The value is the white balance multiplication factor for blue-filtered sensels.  This attachment is required for buffers with either the bp16 or bp64 format.
+*/
+@available(iOS 14.0, *)
+let kCVPixelBufferProResRAWKey_WhiteBalanceBlueFactor: CFString
+
+/**
+    @const      kCVPixelBufferProResRAWKey_ColorMatrix
+    @abstract   Buffer attachment key for color translation matrix.
+    @discussion Associated attachment is CFData containing an array of 9 32-bit floats.  The value is a 3x3 matrix which transforms linear RGB pixel values in the camera native color space to CIE 1931 XYZ values relative to the D65 illuminant, where the matrix entries are stored in the CFData in row-major order.  This attachment is required for buffers with either the bp16 or bp64 format.
+*/
+@available(iOS 14.0, *)
+let kCVPixelBufferProResRAWKey_ColorMatrix: CFString
+
+/**
+    @const      kCVPixelBufferProResRAWKey_GainFactor
+    @abstract   Buffer attachment key for gain factor.
+    @discussion Associated attachment is a CFNumber of type kCFNumberFloat32Type.  The value is the overall gain factor for raw conversion.  This attachment is required for buffers with either the bp16 or bp64 format.
+*/
+@available(iOS 14.0, *)
+let kCVPixelBufferProResRAWKey_GainFactor: CFString
+
+/**
+    @const      kCVPixelBufferProResRAWKey_RecommendedCrop
+    @abstract   Buffer attachment key for recommended number of pixels/rows to discard from the sides of the image after raw conversion.
+    @discussion Associated attachment is CFData containing an array of 4 32-bit floats.  The four CFData array elements specify, in order, the recommended number of: pixels to discard from the start (left) of each row of the image; pixels to discard from the end (right) of each row of the image; rows of pixels to discard from the top of the image; and rows of pixels to discard from the bottom of the image.  (Pixels/rows are discarded after raw conversion.)  This attachment is optional for buffers with either the bp16 or bp64 format; if not present, the recommended crop values are considered to be 0.  For buffers with the bp64 format, the values may be nonintegral due to downscaling, in which case the handling of fractional parts is implementation-dependent.
+*/
+@available(iOS 14.0, *)
+let kCVPixelBufferProResRAWKey_RecommendedCrop: CFString
+
+/**
+	@const      kCVPixelBufferProResRAWKey_MetadataExtension
+	@abstract   Buffer attachment key for metadata extension.
+    @discussion Associated attachment is CFData containing ProRes RAW metadata extension. This attachment is optional for buffers with either bp16 or bp64.  The CFData contains a big-endian uint32 representing the size of the item in bytes followed by a 4-character code ('psim') followed by a variable-length pascal string identifying the metadata (like a key string) followed by the metadata payload.
+*/
+@available(iOS 15.0, *)
+let kCVPixelBufferProResRAWKey_MetadataExtension: CFString
+
+/**
+    @typedef	CVPixelBufferRef
+    @abstract   Based on the image buffer type. The pixel buffer implements the memory storage for an image buffer.
+
+*/
+typealias CVPixelBuffer = CVImageBuffer
+
+/**
+    @typedef	CVPixelBufferRef
+    @abstract   Based on the image buffer type. The pixel buffer implements the memory storage for an image buffer.
+
+*/
+@available(swift, obsoleted: 3, renamed: "CVPixelBuffer")
+typealias CVPixelBufferRef = CVPixelBuffer
+@available(iOS 4.0, *)
+func CVPixelBufferGetTypeID() -> CFTypeID
+
+/**
+    @function   CVPixelBufferRetain
+    @abstract   Retains a CVPixelBuffer object
+    @discussion Equivalent to CFRetain, but NULL safe
+    @param      buffer A CVPixelBuffer object that you want to retain.
+    @result     A CVPixelBuffer object that is the same as the passed in buffer.
+*/
+@available(iOS 4.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CVPixelBufferRetain(_ texture: CVPixelBuffer?) -> Unmanaged<CVPixelBuffer>?
+
+/**
+    @function   CVPixelBufferRelease
+    @abstract   Releases a CVPixelBuffer object
+    @discussion Equivalent to CFRelease, but NULL safe
+    @param      buffer A CVPixelBuffer object that you want to release.
+*/
+@available(iOS 4.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CVPixelBufferRelease(_ texture: CVPixelBuffer?)
+
+/**
+    @function   CVPixelBufferCreateResolvedAttributesDictionary
+    @abstract   Takes a CFArray of CFDictionary objects describing various pixel buffer attributes and tries to resolve them into a
+                single dictionary.
+    @discussion This is useful when you need to resolve multiple requirements between different potential clients of a buffer.
+    @param      attributes CFArray of CFDictionaries containing kCVPixelBuffer key/value pairs.
+    @param      resolvedDictionaryOut The resulting dictionary will be placed here.
+    @result     Return value that may be useful in discovering why resolution failed.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferCreateResolvedAttributesDictionary(_ allocator: CFAllocator?, _ attributes: CFArray?, _ resolvedDictionaryOut: UnsafeMutablePointer<CFDictionary?>) -> CVReturn
+
+/**
+    @function   CVPixelBufferCreate
+    @abstract   Call to create a single PixelBuffer for a given size and pixelFormatType.
+    @discussion Creates a single PixelBuffer for a given size and pixelFormatType. It allocates the necessary memory based on the pixel dimensions, pixelFormatType and extended pixels described in the pixelBufferAttributes. Not all parameters of the pixelBufferAttributes will be used here.
+    @param      width   Width of the PixelBuffer in pixels.
+    @param      height  Height of the PixelBuffer in pixels.
+    @param	pixelFormatType		Pixel format indentified by its respective OSType.
+    @param	pixelBufferAttributes      A dictionary with additional attributes for a pixel buffer. This parameter is optional. See BufferAttributeKeys for more details.
+    @param      pixelBufferOut          The new pixel buffer will be returned here
+    @result	returns kCVReturnSuccess on success.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferCreate(_ allocator: CFAllocator?, _ width: Int, _ height: Int, _ pixelFormatType: OSType, _ pixelBufferAttributes: CFDictionary?, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
+typealias CVPixelBufferReleaseBytesCallback = @convention(c) (UnsafeMutableRawPointer?, UnsafeRawPointer?) -> Void
+
+/**
+    @function   CVPixelBufferCreateWithBytes
+    @abstract   Call to create a single PixelBuffer for a given size and pixelFormatType based on a passed in piece of memory.
+    @discussion Creates a single PixelBuffer for a given size and pixelFormatType. Not all parameters of the pixelBufferAttributes will be used here. It requires a release callback function that will be called, when the PixelBuffer gets destroyed so that the owner of the pixels can free the memory.
+    @param      width   Width of the PixelBuffer in pixels
+    @param      height  Height of the PixelBuffer in pixels
+    @param      pixelFormatType		Pixel format indentified by its respective OSType.
+    @param      baseAddress		Address of the memory storing the pixels.
+    @param      bytesPerRow		Row bytes of the pixel storage memory.
+    @param      releaseCallback         CVPixelBufferReleaseBytePointerCallback function that gets called when the PixelBuffer gets destroyed.
+    @param      releaseRefCon           User data identifying the PixelBuffer for the release callback.
+    @param      pixelBufferAttributes      A dictionary with additional attributes for a a pixel buffer. This parameter is optional. See PixelBufferAttributes for more details.
+    @param      pixelBufferOut          The new pixel buffer will be returned here
+    @result	returns kCVReturnSuccess on success.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferCreateWithBytes(_ allocator: CFAllocator?, _ width: Int, _ height: Int, _ pixelFormatType: OSType, _ baseAddress: UnsafeMutableRawPointer, _ bytesPerRow: Int, _ releaseCallback: CVPixelBufferReleaseBytesCallback?, _ releaseRefCon: UnsafeMutableRawPointer?, _ pixelBufferAttributes: CFDictionary?, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
+typealias CVPixelBufferReleasePlanarBytesCallback = @convention(c) (UnsafeMutableRawPointer?, UnsafeRawPointer?, Int, Int, UnsafeMutablePointer<UnsafeRawPointer?>?) -> Void
+
+/**
+    @function   CVPixelBufferCreateWithPlanarBytes
+    @abstract   Call to create a single PixelBuffer in planar format for a given size and pixelFormatType based on a passed in piece of memory.
+    @discussion Creates a single PixelBuffer for a given size and pixelFormatType. Not all parameters of the pixelBufferAttributes will be used here. It requires a release callback function that will be called, when the PixelBuffer gets destroyed so that the owner of the pixels can free the memory.
+    @param      width			Width of the PixelBuffer in pixels
+    @param      height			Height of the PixelBuffer in pixels
+    @param      pixelFormatType		Pixel format indentified by its respective OSType.
+    @param	dataPtr			Pass a pointer to a plane descriptor block, or NULL.
+    @param	dataSize		pass size if planes are contiguous, NULL if not.
+    @param	numberOfPlanes		Number of planes.
+    @param	planeBaseAddress	Array of base addresses for the planes.
+    @param	planeWidth		Array of plane widths.
+    @param	planeHeight		Array of plane heights.
+    @param	planeBytesPerRow	Array of plane bytesPerRow values.
+    @param	releaseCallback		CVPixelBufferReleaseBytePointerCallback function that gets called when the PixelBuffer gets destroyed.
+    @param	releaseRefCon		User data identifying the PixelBuffer for the release callback.
+    @param	pixelBufferAttributes      A dictionary with additional attributes for a a pixel buffer. This parameter is optional. See PixelBufferAttributes for more details.
+    @param      pixelBufferOut          The new pixel buffer will be returned here
+    @result	returns kCVReturnSuccess on success.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferCreateWithPlanarBytes(_ allocator: CFAllocator?, _ width: Int, _ height: Int, _ pixelFormatType: OSType, _ dataPtr: UnsafeMutableRawPointer?, _ dataSize: Int, _ numberOfPlanes: Int, _ planeBaseAddress: UnsafeMutablePointer<UnsafeMutableRawPointer?>, _ planeWidth: UnsafeMutablePointer<Int>, _ planeHeight: UnsafeMutablePointer<Int>, _ planeBytesPerRow: UnsafeMutablePointer<Int>, _ releaseCallback: CVPixelBufferReleasePlanarBytesCallback?, _ releaseRefCon: UnsafeMutableRawPointer?, _ pixelBufferAttributes: CFDictionary?, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
+
+/**
+	@function   CVPixelBufferLockBaseAddress
+	@abstract   Description Locks the BaseAddress of the PixelBuffer to ensure that the memory is accessible.
+	@discussion This API ensures that the CVPixelBuffer is accessible in system memory. This should only be called if the base address is going to be used and the pixel data will be accessed by the CPU.
+	@param      pixelBuffer Target PixelBuffer.
+	@param      lockFlags See CVPixelBufferLockFlags.
+	@result     kCVReturnSuccess if the lock succeeded, or error code on failure
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferLockBaseAddress(_ pixelBuffer: CVPixelBuffer, _ lockFlags: CVPixelBufferLockFlags) -> CVReturn
+
+/**
+	@function   CVPixelBufferUnlockBaseAddress
+	@abstract   Description Unlocks the BaseAddress of the PixelBuffer.
+	@param      pixelBuffer Target PixelBuffer.
+	@param      unlockFlags See CVPixelBufferLockFlags.
+	@result     kCVReturnSuccess if the unlock succeeded, or error code on failure
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferUnlockBaseAddress(_ pixelBuffer: CVPixelBuffer, _ unlockFlags: CVPixelBufferLockFlags) -> CVReturn
+
+/**
+    @function   CVPixelBufferGetWidth
+    @abstract   Returns the width of the PixelBuffer.
+    @param      pixelBuffer Target PixelBuffer.
+    @result     Width in pixels.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetWidth(_ pixelBuffer: CVPixelBuffer) -> Int
+
+/**
+    @function   CVPixelBufferGetHeight
+    @abstract   Returns the height of the PixelBuffer.
+    @param      pixelBuffer Target PixelBuffer.
+    @result     Height in pixels.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetHeight(_ pixelBuffer: CVPixelBuffer) -> Int
+
+/**
+    @function   CVPixelBufferGetPixelFormatType
+    @abstract   Returns the PixelFormatType of the PixelBuffer.
+    @param      pixelBuffer Target PixelBuffer.
+    @result     OSType identifying the pixel format by its type.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetPixelFormatType(_ pixelBuffer: CVPixelBuffer) -> OSType
+
+/**
+    @function   CVPixelBufferGetBaseAddress
+    @abstract   Returns the base address of the PixelBuffer.
+    @discussion Retrieving the base address for a PixelBuffer requires that the buffer base address be locked
+                via a successful call to CVPixelBufferLockBaseAddress.
+    @param      pixelBuffer Target PixelBuffer.
+    @result     Base address of the pixels.
+		For chunky buffers, this will return a pointer to the pixel at 0,0 in the buffer
+		For planar buffers this will return a pointer to a PlanarComponentInfo struct (defined in QuickTime).
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetBaseAddress(_ pixelBuffer: CVPixelBuffer) -> UnsafeMutableRawPointer?
+
+/**
+    @function   CVPixelBufferGetBytesPerRow
+    @abstract   Returns the rowBytes of the PixelBuffer.
+    @param      pixelBuffer Target PixelBuffer.
+    @result     Bytes per row of the image data.   For planar buffers this will return a rowBytes value such that bytesPerRow * height
+                will cover the entire image including all planes.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetBytesPerRow(_ pixelBuffer: CVPixelBuffer) -> Int
+
+/**
+    @function   CVPixelBufferGetDataSize
+    @abstract   Returns the data size for contigous planes of the PixelBuffer.
+    @param      pixelBuffer Target PixelBuffer.
+    @result     Data size used in CVPixelBufferCreateWithPlanarBytes.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetDataSize(_ pixelBuffer: CVPixelBuffer) -> Int
+
+/**
+    @function   CVPixelBufferIsPlanar
+    @abstract   Returns if the PixelBuffer is planar.
+    @param      pixelBuffer Target PixelBuffer.
+    @result     True if the PixelBuffer was created using CVPixelBufferCreateWithPlanarBytes.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferIsPlanar(_ pixelBuffer: CVPixelBuffer) -> Bool
+
+/**
+    @function   CVPixelBufferGetPlaneCount
+    @abstract   Returns number of planes of the PixelBuffer.
+    @param      pixelBuffer Target PixelBuffer.
+    @result     Number of planes.  Returns 0 for non-planar CVPixelBufferRefs.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetPlaneCount(_ pixelBuffer: CVPixelBuffer) -> Int
+
+/**
+    @function   CVPixelBufferGetWidthOfPlane
+    @abstract   Returns the width of the plane at planeIndex in the PixelBuffer.
+    @discussion On OSX 10.10 and earlier, or iOS 8 and earlier, calling this 
+                function with a non-planar buffer will have undefined behavior.
+    @param      pixelBuffer Target PixelBuffer.
+    @param      planeIndex  Identifying the plane.
+    @result     Width in pixels, or 0 for non-planar CVPixelBufferRefs.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetWidthOfPlane(_ pixelBuffer: CVPixelBuffer, _ planeIndex: Int) -> Int
+
+/**
+    @function   CVPixelBufferGetHeightOfPlane
+    @abstract   Returns the height of the plane at planeIndex in the PixelBuffer.
+    @discussion On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
+                function with a non-planar buffer will have undefined behavior.
+    @param      pixelBuffer Target PixelBuffer.
+    @param      planeIndex  Identifying the plane.
+    @result     Height in pixels, or 0 for non-planar CVPixelBufferRefs.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetHeightOfPlane(_ pixelBuffer: CVPixelBuffer, _ planeIndex: Int) -> Int
+
+/**
+    @function   CVPixelBufferGetBaseAddressOfPlane
+    @abstract   Returns the base address of the plane at planeIndex in the PixelBuffer.
+    @discussion Retrieving the base address for a PixelBuffer requires that the buffer base address be locked
+                via a successful call to CVPixelBufferLockBaseAddress. On OSX 10.10 and earlier, or iOS 8 and
+                earlier, calling this function with a non-planar buffer will have undefined behavior.
+    @param      pixelBuffer Target PixelBuffer.
+    @param      planeIndex  Identifying the plane.
+    @result     Base address of the plane, or NULL for non-planar CVPixelBufferRefs.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetBaseAddressOfPlane(_ pixelBuffer: CVPixelBuffer, _ planeIndex: Int) -> UnsafeMutableRawPointer?
+
+/**
+    @function   CVPixelBufferGetBytesPerRowOfPlane
+    @abstract   Returns the row bytes of the plane at planeIndex in the PixelBuffer.
+    @discussion On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
+                function with a non-planar buffer will have undefined behavior.
+    @param      pixelBuffer Target PixelBuffer.
+    @param      planeIndex  Identifying the plane.
+    @result     Row bytes of the plane, or NULL for non-planar CVPixelBufferRefs.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetBytesPerRowOfPlane(_ pixelBuffer: CVPixelBuffer, _ planeIndex: Int) -> Int
+
+/**
+    @function   CVPixelBufferGetExtendedPixels
+    @abstract   Returns the size of extended pixels of the PixelBuffer.
+    @discussion On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
+                function with a non-planar buffer will have undefined behavior.
+    @param      pixelBuffer Target PixelBuffer.
+    @param      extraColumnsOnLeft Returns the pixel row padding to the left.  May be NULL.
+    @param      extraRowsOnTop Returns the pixel row padding to the top.  May be NULL. 
+    @param      extraColumnsOnRight Returns the pixel row padding to the right. May be NULL.
+    @param      extraRowsOnBottom Returns the pixel row padding to the bottom. May be NULL.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetExtendedPixels(_ pixelBuffer: CVPixelBuffer, _ extraColumnsOnLeft: UnsafeMutablePointer<Int>?, _ extraColumnsOnRight: UnsafeMutablePointer<Int>?, _ extraRowsOnTop: UnsafeMutablePointer<Int>?, _ extraRowsOnBottom: UnsafeMutablePointer<Int>?)
+
+/**
+    @function   CVPixelBufferFillExtendedPixels
+    @abstract   Fills the extended pixels of the PixelBuffer.   This function replicates edge pixels to fill the entire extended region of the image.
+    @param      pixelBuffer Target PixelBuffer.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferFillExtendedPixels(_ pixelBuffer: CVPixelBuffer) -> CVReturn
+
+/**
+    @function   CVPixelBufferCopyCreationAttributes
+    @abstract   Returns a copy of pixelBufferAttributes dictionary used to create the PixelBuffer.
+    @discussion Can be used to create similar pixelbuffers.
+    @param      pixelBuffer Target PixelBuffer.
+*/
+@available(iOS 15.0, *)
+func CVPixelBufferCopyCreationAttributes(_ pixelBuffer: CVPixelBuffer) -> CFDictionary

@@ -1,0 +1,84 @@
+
+class CGDataProvider : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CGDataProvider")
+typealias CGDataProviderRef = CGDataProvider
+typealias CGDataProviderGetBytesCallback = @convention(c) (UnsafeMutableRawPointer?, UnsafeMutableRawPointer, Int) -> Int
+typealias CGDataProviderSkipForwardCallback = @convention(c) (UnsafeMutableRawPointer?, off_t) -> off_t
+typealias CGDataProviderRewindCallback = @convention(c) (UnsafeMutableRawPointer?) -> Void
+typealias CGDataProviderReleaseInfoCallback = @convention(c) (UnsafeMutableRawPointer?) -> Void
+struct CGDataProviderSequentialCallbacks {
+  init()
+  init(version: UInt32, getBytes: CGDataProviderGetBytesCallback?, skipForward: CGDataProviderSkipForwardCallback?, rewind: CGDataProviderRewindCallback?, releaseInfo: CGDataProviderReleaseInfoCallback?)
+  var version: UInt32
+  var getBytes: CGDataProviderGetBytesCallback?
+  var skipForward: CGDataProviderSkipForwardCallback?
+  var rewind: CGDataProviderRewindCallback?
+  var releaseInfo: CGDataProviderReleaseInfoCallback?
+}
+typealias CGDataProviderGetBytePointerCallback = @convention(c) (UnsafeMutableRawPointer?) -> UnsafeRawPointer?
+typealias CGDataProviderReleaseBytePointerCallback = @convention(c) (UnsafeMutableRawPointer?, UnsafeRawPointer) -> Void
+typealias CGDataProviderGetBytesAtPositionCallback = @convention(c) (UnsafeMutableRawPointer?, UnsafeMutableRawPointer, off_t, Int) -> Int
+struct CGDataProviderDirectCallbacks {
+  init()
+  init(version: UInt32, getBytePointer: CGDataProviderGetBytePointerCallback?, releaseBytePointer: CGDataProviderReleaseBytePointerCallback?, getBytesAtPosition: CGDataProviderGetBytesAtPositionCallback?, releaseInfo: CGDataProviderReleaseInfoCallback?)
+  var version: UInt32
+  var getBytePointer: CGDataProviderGetBytePointerCallback?
+  var releaseBytePointer: CGDataProviderReleaseBytePointerCallback?
+  var getBytesAtPosition: CGDataProviderGetBytesAtPositionCallback?
+  var releaseInfo: CGDataProviderReleaseInfoCallback?
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGDataProvider.typeID()")
+func CGDataProviderGetTypeID() -> CFTypeID
+extension CGDataProvider {
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(sequentialInfo info: UnsafeMutableRawPointer?, callbacks: UnsafePointer<CGDataProviderSequentialCallbacks>)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(directInfo info: UnsafeMutableRawPointer?, size: off_t, callbacks: UnsafePointer<CGDataProviderDirectCallbacks>)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(dataInfo info: UnsafeMutableRawPointer?, data: UnsafeRawPointer, size: Int, releaseData: CGDataProviderReleaseDataCallback)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(data: CFData)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(url: CFURL)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(filename: UnsafePointer<CChar>)
+  @available(iOS 2.0, *)
+  var data: CFData? { get }
+  @available(iOS 11.0, *)
+  var info: UnsafeMutableRawPointer? { get }
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGDataProvider.init(sequentialInfo:callbacks:)")
+func CGDataProviderCreateSequential(_ info: UnsafeMutableRawPointer?, _ callbacks: UnsafePointer<CGDataProviderSequentialCallbacks>) -> CGDataProvider?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGDataProvider.init(directInfo:size:callbacks:)")
+func CGDataProviderCreateDirect(_ info: UnsafeMutableRawPointer?, _ size: off_t, _ callbacks: UnsafePointer<CGDataProviderDirectCallbacks>) -> CGDataProvider?
+typealias CGDataProviderReleaseDataCallback = @convention(c) (UnsafeMutableRawPointer?, UnsafeRawPointer, Int) -> Void
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGDataProvider.init(dataInfo:data:size:releaseData:)")
+func CGDataProviderCreateWithData(_ info: UnsafeMutableRawPointer?, _ data: UnsafeRawPointer, _ size: Int, _ releaseData: CGDataProviderReleaseDataCallback) -> CGDataProvider?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGDataProvider.init(data:)")
+func CGDataProviderCreateWithCFData(_ data: CFData) -> CGDataProvider?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGDataProvider.init(url:)")
+func CGDataProviderCreateWithURL(_ url: CFURL) -> CGDataProvider?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGDataProvider.init(filename:)")
+func CGDataProviderCreateWithFilename(_ filename: UnsafePointer<CChar>) -> CGDataProvider?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGDataProviderRetain(_ provider: CGDataProvider) -> CGDataProvider?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGDataProviderRelease(_ provider: CGDataProvider)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGDataProvider.data(self:)")
+func CGDataProviderCopyData(_ provider: CGDataProvider) -> CFData?
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGDataProvider.info(self:)")
+func CGDataProviderGetInfo(_ provider: CGDataProvider) -> UnsafeMutableRawPointer?

@@ -1,0 +1,28 @@
+
+class CGShading : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CGShading")
+typealias CGShadingRef = CGShading
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGShading.typeID()")
+func CGShadingGetTypeID() -> CFTypeID
+extension CGShading {
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(axialSpace space: CGColorSpace, start: CGPoint, end: CGPoint, function: CGFunction, extendStart: Bool, extendEnd: Bool)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(radialSpace space: CGColorSpace, start: CGPoint, startRadius: CGFloat, end: CGPoint, endRadius: CGFloat, function: CGFunction, extendStart: Bool, extendEnd: Bool)
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGShading.init(axialSpace:start:end:function:extendStart:extendEnd:)")
+func CGShadingCreateAxial(_ space: CGColorSpace, _ start: CGPoint, _ end: CGPoint, _ function: CGFunction, _ extendStart: Bool, _ extendEnd: Bool) -> CGShading?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGShading.init(radialSpace:start:startRadius:end:endRadius:function:extendStart:extendEnd:)")
+func CGShadingCreateRadial(_ space: CGColorSpace, _ start: CGPoint, _ startRadius: CGFloat, _ end: CGPoint, _ endRadius: CGFloat, _ function: CGFunction, _ extendStart: Bool, _ extendEnd: Bool) -> CGShading?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGShadingRetain(_ shading: CGShading) -> CGShading
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGShadingRelease(_ shading: CGShading)

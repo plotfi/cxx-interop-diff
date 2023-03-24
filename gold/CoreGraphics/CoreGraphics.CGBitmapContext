@@ -1,0 +1,64 @@
+
+typealias CGBitmapContextReleaseDataCallback = @convention(c) (UnsafeMutableRawPointer?, UnsafeMutableRawPointer?) -> Void
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.init(data:width:height:bitsPerComponent:bytesPerRow:space:bitmapInfo:releaseCallback:releaseInfo:)")
+func CGBitmapContextCreateWithData(_ data: UnsafeMutableRawPointer?, _ width: Int, _ height: Int, _ bitsPerComponent: Int, _ bytesPerRow: Int, _ space: CGColorSpace, _ bitmapInfo: UInt32, _ releaseCallback: CGBitmapContextReleaseDataCallback?, _ releaseInfo: UnsafeMutableRawPointer?) -> CGContext?
+extension CGContext {
+  @available(iOS 4.0, *)
+  /*not inherited*/ init?(data: UnsafeMutableRawPointer?, width: Int, height: Int, bitsPerComponent: Int, bytesPerRow: Int, space: CGColorSpace, bitmapInfo: UInt32, releaseCallback: CGBitmapContextReleaseDataCallback?, releaseInfo: UnsafeMutableRawPointer?)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(data: UnsafeMutableRawPointer?, width: Int, height: Int, bitsPerComponent: Int, bytesPerRow: Int, space: CGColorSpace, bitmapInfo: UInt32)
+  @available(iOS 2.0, *)
+  var data: UnsafeMutableRawPointer? { get }
+  @available(iOS 2.0, *)
+  var width: Int { get }
+  @available(iOS 2.0, *)
+  var height: Int { get }
+  @available(iOS 2.0, *)
+  var bitsPerComponent: Int { get }
+  @available(iOS 2.0, *)
+  var bitsPerPixel: Int { get }
+  @available(iOS 2.0, *)
+  var bytesPerRow: Int { get }
+  @available(iOS 2.0, *)
+  var colorSpace: CGColorSpace? { get }
+  @available(iOS 2.0, *)
+  var alphaInfo: CGImageAlphaInfo { get }
+  @available(iOS 2.0, *)
+  var bitmapInfo: CGBitmapInfo { get }
+  @available(iOS 2.0, *)
+  func makeImage() -> CGImage?
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.init(data:width:height:bitsPerComponent:bytesPerRow:space:bitmapInfo:)")
+func CGBitmapContextCreate(_ data: UnsafeMutableRawPointer?, _ width: Int, _ height: Int, _ bitsPerComponent: Int, _ bytesPerRow: Int, _ space: CGColorSpace, _ bitmapInfo: UInt32) -> CGContext?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.data(self:)")
+func CGBitmapContextGetData(_ context: CGContext) -> UnsafeMutableRawPointer?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.width(self:)")
+func CGBitmapContextGetWidth(_ context: CGContext) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.height(self:)")
+func CGBitmapContextGetHeight(_ context: CGContext) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.bitsPerComponent(self:)")
+func CGBitmapContextGetBitsPerComponent(_ context: CGContext) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.bitsPerPixel(self:)")
+func CGBitmapContextGetBitsPerPixel(_ context: CGContext) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.bytesPerRow(self:)")
+func CGBitmapContextGetBytesPerRow(_ context: CGContext) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.colorSpace(self:)")
+func CGBitmapContextGetColorSpace(_ context: CGContext) -> CGColorSpace?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.alphaInfo(self:)")
+func CGBitmapContextGetAlphaInfo(_ context: CGContext) -> CGImageAlphaInfo
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.bitmapInfo(self:)")
+func CGBitmapContextGetBitmapInfo(_ context: CGContext) -> CGBitmapInfo
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.makeImage(self:)")
+func CGBitmapContextCreateImage(_ context: CGContext) -> CGImage?

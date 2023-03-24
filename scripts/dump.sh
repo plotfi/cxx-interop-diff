@@ -11,7 +11,7 @@ OUTDIR=gold
 rm -rf ./$OUTDIR
 mkdir -p ./$OUTDIR
 
-export TOPLEVEL_MODULES="Foundation UIKit"
+export TOPLEVEL_MODULES="Foundation UIKit CoreGraphics CoreVideo"
 
 # dump the list of sub-modules
 echo $TOPLEVEL_MODULES | tr ' ' '\n' | \

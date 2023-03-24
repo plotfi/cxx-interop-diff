@@ -1,0 +1,891 @@
+
+class CGContext : _CFObject {
+}
+
+extension CGContext {
+  func setLineDash(phase: CGFloat, lengths: [CGFloat])
+  func move(to point: CGPoint)
+  func addLine(to point: CGPoint)
+  func addCurve(to end: CGPoint, control1: CGPoint, control2: CGPoint)
+  func addQuadCurve(to end: CGPoint, control: CGPoint)
+  func addRects(_ rects: [CGRect])
+  func addLines(between points: [CGPoint])
+  func addArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool)
+  func addArc(tangent1End: CGPoint, tangent2End: CGPoint, radius: CGFloat)
+  /// Fills the current path using the specified rule (winding by default).
+  ///
+  /// Any open subpath is implicitly closed.
+  func fillPath(using rule: CGPathFillRule = .winding)
+  /// Intersects the current path with the current clipping region and uses the
+  /// result as the new clipping region for subsequent drawing.
+  ///
+  /// Uses the specified fill rule (winding by default) to determine which
+  /// areas to treat as the interior of the clipping region. When evaluating
+  /// the path, any open subpath is implicitly closed.
+  func clip(using rule: CGPathFillRule = .winding)
+  func fill(_ rects: [CGRect])
+  func strokeLineSegments(between points: [CGPoint])
+  func clip(to rects: [CGRect])
+  func draw(_ image: CGImage, in rect: CGRect, byTiling: Bool = false)
+  var textPosition: CGPoint
+  func showGlyphs(_ glyphs: [CGGlyph], at positions: [CGPoint])
+}
+
+extension CGContext {
+  func draw(_ layer: CGLayer, in rect: CGRect)
+  func draw(_ layer: CGLayer, at point: CGPoint)
+}
+@available(swift, obsoleted: 3, renamed: "CGContext")
+typealias CGContextRef = CGContext
+enum CGPathDrawingMode : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case fill
+  @available(swift, obsoleted: 3, renamed: "fill")
+  static var Fill: CGPathDrawingMode { get }
+  case eoFill
+  @available(swift, obsoleted: 3, renamed: "eoFill")
+  static var EOFill: CGPathDrawingMode { get }
+  case stroke
+  @available(swift, obsoleted: 3, renamed: "stroke")
+  static var Stroke: CGPathDrawingMode { get }
+  case fillStroke
+  @available(swift, obsoleted: 3, renamed: "fillStroke")
+  static var FillStroke: CGPathDrawingMode { get }
+  case eoFillStroke
+  @available(swift, obsoleted: 3, renamed: "eoFillStroke")
+  static var EOFillStroke: CGPathDrawingMode { get }
+}
+enum CGTextDrawingMode : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case fill
+  @available(swift, obsoleted: 3, renamed: "fill")
+  static var Fill: CGTextDrawingMode { get }
+  case stroke
+  @available(swift, obsoleted: 3, renamed: "stroke")
+  static var Stroke: CGTextDrawingMode { get }
+  case fillStroke
+  @available(swift, obsoleted: 3, renamed: "fillStroke")
+  static var FillStroke: CGTextDrawingMode { get }
+  case invisible
+  @available(swift, obsoleted: 3, renamed: "invisible")
+  static var Invisible: CGTextDrawingMode { get }
+  case fillClip
+  @available(swift, obsoleted: 3, renamed: "fillClip")
+  static var FillClip: CGTextDrawingMode { get }
+  case strokeClip
+  @available(swift, obsoleted: 3, renamed: "strokeClip")
+  static var StrokeClip: CGTextDrawingMode { get }
+  case fillStrokeClip
+  @available(swift, obsoleted: 3, renamed: "fillStrokeClip")
+  static var FillStrokeClip: CGTextDrawingMode { get }
+  case clip
+  @available(swift, obsoleted: 3, renamed: "clip")
+  static var Clip: CGTextDrawingMode { get }
+}
+@available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+enum CGTextEncoding : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case encodingFontSpecific
+  @available(swift, obsoleted: 3, renamed: "encodingFontSpecific")
+  static var EncodingFontSpecific: CGTextEncoding { get }
+  case encodingMacRoman
+  @available(swift, obsoleted: 3, renamed: "encodingMacRoman")
+  static var EncodingMacRoman: CGTextEncoding { get }
+}
+enum CGInterpolationQuality : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case `default`
+  @available(swift, obsoleted: 3, renamed: "default")
+  static var Default: CGInterpolationQuality { get }
+  case none
+  @available(swift, obsoleted: 3, renamed: "none")
+  static var None: CGInterpolationQuality { get }
+  case low
+  @available(swift, obsoleted: 3, renamed: "low")
+  static var Low: CGInterpolationQuality { get }
+  case medium
+  @available(swift, obsoleted: 3, renamed: "medium")
+  static var Medium: CGInterpolationQuality { get }
+  case high
+  @available(swift, obsoleted: 3, renamed: "high")
+  static var High: CGInterpolationQuality { get }
+}
+enum CGBlendMode : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case normal
+  @available(swift, obsoleted: 3, renamed: "normal")
+  static var Normal: CGBlendMode { get }
+  case multiply
+  @available(swift, obsoleted: 3, renamed: "multiply")
+  static var Multiply: CGBlendMode { get }
+  case screen
+  @available(swift, obsoleted: 3, renamed: "screen")
+  static var Screen: CGBlendMode { get }
+  case overlay
+  @available(swift, obsoleted: 3, renamed: "overlay")
+  static var Overlay: CGBlendMode { get }
+  case darken
+  @available(swift, obsoleted: 3, renamed: "darken")
+  static var Darken: CGBlendMode { get }
+  case lighten
+  @available(swift, obsoleted: 3, renamed: "lighten")
+  static var Lighten: CGBlendMode { get }
+  case colorDodge
+  @available(swift, obsoleted: 3, renamed: "colorDodge")
+  static var ColorDodge: CGBlendMode { get }
+  case colorBurn
+  @available(swift, obsoleted: 3, renamed: "colorBurn")
+  static var ColorBurn: CGBlendMode { get }
+  case softLight
+  @available(swift, obsoleted: 3, renamed: "softLight")
+  static var SoftLight: CGBlendMode { get }
+  case hardLight
+  @available(swift, obsoleted: 3, renamed: "hardLight")
+  static var HardLight: CGBlendMode { get }
+  case difference
+  @available(swift, obsoleted: 3, renamed: "difference")
+  static var Difference: CGBlendMode { get }
+  case exclusion
+  @available(swift, obsoleted: 3, renamed: "exclusion")
+  static var Exclusion: CGBlendMode { get }
+  case hue
+  @available(swift, obsoleted: 3, renamed: "hue")
+  static var Hue: CGBlendMode { get }
+  case saturation
+  @available(swift, obsoleted: 3, renamed: "saturation")
+  static var Saturation: CGBlendMode { get }
+  case color
+  @available(swift, obsoleted: 3, renamed: "color")
+  static var Color: CGBlendMode { get }
+  case luminosity
+  @available(swift, obsoleted: 3, renamed: "luminosity")
+  static var Luminosity: CGBlendMode { get }
+  case clear
+  @available(swift, obsoleted: 3, renamed: "clear")
+  static var Clear: CGBlendMode { get }
+  case copy
+  @available(swift, obsoleted: 3, renamed: "copy")
+  static var Copy: CGBlendMode { get }
+  case sourceIn
+  @available(swift, obsoleted: 3, renamed: "sourceIn")
+  static var SourceIn: CGBlendMode { get }
+  case sourceOut
+  @available(swift, obsoleted: 3, renamed: "sourceOut")
+  static var SourceOut: CGBlendMode { get }
+  case sourceAtop
+  @available(swift, obsoleted: 3, renamed: "sourceAtop")
+  static var SourceAtop: CGBlendMode { get }
+  case destinationOver
+  @available(swift, obsoleted: 3, renamed: "destinationOver")
+  static var DestinationOver: CGBlendMode { get }
+  case destinationIn
+  @available(swift, obsoleted: 3, renamed: "destinationIn")
+  static var DestinationIn: CGBlendMode { get }
+  case destinationOut
+  @available(swift, obsoleted: 3, renamed: "destinationOut")
+  static var DestinationOut: CGBlendMode { get }
+  case destinationAtop
+  @available(swift, obsoleted: 3, renamed: "destinationAtop")
+  static var DestinationAtop: CGBlendMode { get }
+  case xor
+  @available(swift, obsoleted: 3, renamed: "CGBlendMode.xor")
+  static var XOR: CGBlendMode { get }
+  case plusDarker
+  @available(swift, obsoleted: 3, renamed: "plusDarker")
+  static var PlusDarker: CGBlendMode { get }
+  case plusLighter
+  @available(swift, obsoleted: 3, renamed: "plusLighter")
+  static var PlusLighter: CGBlendMode { get }
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.typeID()")
+func CGContextGetTypeID() -> CFTypeID
+extension CGContext {
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+
+  /** Graphics state functions. **/
+  @available(iOS 2.0, *)
+  func saveGState()
+  @available(iOS 2.0, *)
+  func restoreGState()
+
+  /** Coordinate space transformations. **/
+  @available(iOS 2.0, *)
+  func scaleBy(x sx: CGFloat, y sy: CGFloat)
+  @available(iOS 2.0, *)
+  func translateBy(x tx: CGFloat, y ty: CGFloat)
+  @available(iOS 2.0, *)
+  func rotate(by angle: CGFloat)
+  @available(iOS 2.0, *)
+  func concatenate(_ transform: CGAffineTransform)
+  @available(iOS 2.0, *)
+  var ctm: CGAffineTransform { get }
+
+  /** Drawing attribute functions. **/
+  @available(iOS 2.0, *)
+  func setLineWidth(_ width: CGFloat)
+  @available(iOS 2.0, *)
+  func setLineCap(_ cap: CGLineCap)
+  @available(iOS 2.0, *)
+  func setLineJoin(_ join: CGLineJoin)
+  @available(iOS 2.0, *)
+  func setMiterLimit(_ limit: CGFloat)
+  @available(iOS 2.0, *)
+  func __setLineDash(phase: CGFloat, lengths: UnsafePointer<CGFloat>?, count: Int)
+  @available(iOS 2.0, *)
+  func setFlatness(_ flatness: CGFloat)
+  @available(iOS 2.0, *)
+  func setAlpha(_ alpha: CGFloat)
+  @available(iOS 2.0, *)
+  func setBlendMode(_ mode: CGBlendMode)
+
+  /** Path construction functions. **/
+  @available(iOS 2.0, *)
+  func beginPath()
+  @available(iOS 2.0, *)
+  func __moveTo(x: CGFloat, y: CGFloat)
+  @available(iOS 2.0, *)
+  func __addLineTo(x: CGFloat, y: CGFloat)
+  @available(iOS 2.0, *)
+  func __addCurveTo(cp1x: CGFloat, cp1y: CGFloat, cp2x: CGFloat, cp2y: CGFloat, endingAtX x: CGFloat, y: CGFloat)
+  @available(iOS 2.0, *)
+  func __addQuadCurveTo(cpx: CGFloat, cpy: CGFloat, endingAtX x: CGFloat, y: CGFloat)
+  @available(iOS 2.0, *)
+  func closePath()
+
+  /** Path construction convenience functions. **/
+  @available(iOS 2.0, *)
+  func addRect(_ rect: CGRect)
+  @available(iOS 2.0, *)
+  func __addRects(_ rects: UnsafePointer<CGRect>?, count: Int)
+  @available(iOS 2.0, *)
+  func __addLines(between points: UnsafePointer<CGPoint>?, count: Int)
+  @available(iOS 2.0, *)
+  func addEllipse(in rect: CGRect)
+  @available(iOS 2.0, *)
+  func __addArc(centerX x: CGFloat, y: CGFloat, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Int32)
+  @available(iOS 2.0, *)
+  func __addArc(x1: CGFloat, y1: CGFloat, x2: CGFloat, y2: CGFloat, radius: CGFloat)
+  @available(iOS 2.0, *)
+  func addPath(_ path: CGPath)
+  @available(iOS 2.0, *)
+  func replacePathWithStrokedPath()
+
+  /** Path information functions. **/
+  @available(iOS 2.0, *)
+  var isPathEmpty: Bool { get }
+  @available(iOS 2.0, *)
+  var currentPointOfPath: CGPoint { get }
+  @available(iOS 2.0, *)
+  var boundingBoxOfPath: CGRect { get }
+  @available(iOS 2.0, *)
+  var path: CGPath? { get }
+  @available(iOS 2.0, *)
+  func pathContains(_ point: CGPoint, mode: CGPathDrawingMode) -> Bool
+
+  /** Path drawing functions. **/
+  @available(iOS 2.0, *)
+  func drawPath(using mode: CGPathDrawingMode)
+
+  /** Path drawing convenience functions. **/
+  @available(iOS 2.0, *)
+  func __fillPath()
+  @available(iOS 2.0, *)
+  func __eoFillPath()
+  @available(iOS 2.0, *)
+  func strokePath()
+  @available(iOS 2.0, *)
+  func fill(_ rect: CGRect)
+  @available(iOS 2.0, *)
+  func __fill(_ rects: UnsafePointer<CGRect>?, count: Int)
+  @available(iOS 2.0, *)
+  func stroke(_ rect: CGRect)
+  @available(iOS 2.0, *)
+  func stroke(_ rect: CGRect, width: CGFloat)
+  @available(iOS 2.0, *)
+  func clear(_ rect: CGRect)
+  @available(iOS 2.0, *)
+  func fillEllipse(in rect: CGRect)
+  @available(iOS 2.0, *)
+  func strokeEllipse(in rect: CGRect)
+  @available(iOS 2.0, *)
+  func __strokeLineSegments(between points: UnsafePointer<CGPoint>?, count: Int)
+
+  /** Clipping functions. **/
+  @available(iOS 2.0, *)
+  func __clip()
+  @available(iOS 2.0, *)
+  func __eoClip()
+  func resetClip()
+  @available(iOS 2.0, *)
+  func clip(to rect: CGRect, mask: CGImage)
+  @available(iOS 2.0, *)
+  var boundingBoxOfClipPath: CGRect { get }
+
+  /** Clipping convenience functions. **/
+  @available(iOS 2.0, *)
+  func clip(to rect: CGRect)
+  @available(iOS 2.0, *)
+  func __clip(to rects: UnsafePointer<CGRect>, count: Int)
+
+  /** Primitive color functions. **/
+  @available(iOS 2.0, *)
+  func setFillColor(_ color: CGColor)
+  @available(iOS 2.0, *)
+  func setStrokeColor(_ color: CGColor)
+
+  /** Color space functions. **/
+  @available(iOS 2.0, *)
+  func setFillColorSpace(_ space: CGColorSpace)
+  @available(iOS 2.0, *)
+  func setStrokeColorSpace(_ space: CGColorSpace)
+
+  /** Color functions. **/
+  @available(iOS 2.0, *)
+  func setFillColor(_ components: UnsafePointer<CGFloat>)
+  @available(iOS 2.0, *)
+  func setStrokeColor(_ components: UnsafePointer<CGFloat>)
+
+  /** Pattern functions. **/
+  @available(iOS 2.0, *)
+  func setFillPattern(_ pattern: CGPattern, colorComponents components: UnsafePointer<CGFloat>)
+  @available(iOS 2.0, *)
+  func setStrokePattern(_ pattern: CGPattern, colorComponents components: UnsafePointer<CGFloat>)
+  @available(iOS 2.0, *)
+  func setPatternPhase(_ phase: CGSize)
+
+  /** Color convenience functions. **/
+  @available(iOS 2.0, *)
+  func setFillColor(gray: CGFloat, alpha: CGFloat)
+  @available(iOS 2.0, *)
+  func setStrokeColor(gray: CGFloat, alpha: CGFloat)
+  @available(iOS 2.0, *)
+  func setFillColor(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
+  @available(iOS 2.0, *)
+  func setStrokeColor(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
+  @available(iOS 2.0, *)
+  func setFillColor(cyan: CGFloat, magenta: CGFloat, yellow: CGFloat, black: CGFloat, alpha: CGFloat)
+  @available(iOS 2.0, *)
+  func setStrokeColor(cyan: CGFloat, magenta: CGFloat, yellow: CGFloat, black: CGFloat, alpha: CGFloat)
+
+  /** Rendering intent. **/
+  @available(iOS 2.0, *)
+  func setRenderingIntent(_ intent: CGColorRenderingIntent)
+
+  /** Image functions. **/
+  @available(iOS 2.0, *)
+  func __draw(in rect: CGRect, image: CGImage)
+  @available(iOS 2.0, *)
+  func __draw(in rect: CGRect, byTiling image: CGImage)
+  @available(iOS 2.0, *)
+  var interpolationQuality: CGInterpolationQuality
+  @available(iOS 2.0, *)
+  func setShadow(offset: CGSize, blur: CGFloat, color: CGColor?)
+  @available(iOS 2.0, *)
+  func setShadow(offset: CGSize, blur: CGFloat)
+  @available(iOS 2.0, *)
+  func drawLinearGradient(_ gradient: CGGradient, start startPoint: CGPoint, end endPoint: CGPoint, options: CGGradientDrawingOptions)
+  @available(iOS 2.0, *)
+  func drawRadialGradient(_ gradient: CGGradient, startCenter: CGPoint, startRadius: CGFloat, endCenter: CGPoint, endRadius: CGFloat, options: CGGradientDrawingOptions)
+  @available(iOS 2.0, *)
+  func drawShading(_ shading: CGShading)
+
+  /** Text functions. **/
+  @available(iOS 2.0, *)
+  func setCharacterSpacing(_ spacing: CGFloat)
+  @available(iOS 2.0, *)
+  func __setTextPosition(x: CGFloat, y: CGFloat)
+  @available(iOS 2.0, *)
+  var __textPosition: CGPoint { get }
+  @available(iOS 2.0, *)
+  var textMatrix: CGAffineTransform
+  @available(iOS 2.0, *)
+  func setTextDrawingMode(_ mode: CGTextDrawingMode)
+  @available(iOS 2.0, *)
+  func setFont(_ font: CGFont)
+  @available(iOS 2.0, *)
+  func setFontSize(_ size: CGFloat)
+  @available(iOS 2.0, *)
+  func __showGlyphs(_ glyphs: UnsafePointer<CGGlyph>, atPositions Lpositions: UnsafePointer<CGPoint>, count: Int)
+
+  /** PDF functions. **/
+  @available(iOS 2.0, *)
+  func drawPDFPage(_ page: CGPDFPage)
+
+  /** Output page functions. **/
+  @available(iOS 2.0, *)
+  func beginPage(mediaBox: UnsafePointer<CGRect>?)
+  @available(iOS 2.0, *)
+  func endPage()
+  @available(iOS 2.0, *)
+  func flush()
+  @available(iOS 2.0, *)
+  func synchronize()
+  @available(iOS 2.0, *)
+  func setShouldAntialias(_ shouldAntialias: Bool)
+  @available(iOS 2.0, *)
+  func setAllowsAntialiasing(_ allowsAntialiasing: Bool)
+  @available(iOS 2.0, *)
+  func setShouldSmoothFonts(_ shouldSmoothFonts: Bool)
+  @available(iOS 2.0, *)
+  func setAllowsFontSmoothing(_ allowsFontSmoothing: Bool)
+  @available(iOS 2.0, *)
+  func setShouldSubpixelPositionFonts(_ shouldSubpixelPositionFonts: Bool)
+  @available(iOS 2.0, *)
+  func setAllowsFontSubpixelPositioning(_ allowsFontSubpixelPositioning: Bool)
+  @available(iOS 2.0, *)
+  func setShouldSubpixelQuantizeFonts(_ shouldSubpixelQuantizeFonts: Bool)
+  @available(iOS 2.0, *)
+  func setAllowsFontSubpixelQuantization(_ allowsFontSubpixelQuantization: Bool)
+
+  /** Transparency layer support. **/
+  @available(iOS 2.0, *)
+  func beginTransparencyLayer(auxiliaryInfo: CFDictionary?)
+  @available(iOS 2.0, *)
+  func beginTransparencyLayer(in rect: CGRect, auxiliaryInfo auxInfo: CFDictionary?)
+  @available(iOS 2.0, *)
+  func endTransparencyLayer()
+
+  /** User space to device space tranformations. **/
+  @available(iOS 2.0, *)
+  var userSpaceToDeviceSpaceTransform: CGAffineTransform { get }
+  @available(iOS 2.0, *)
+  func convertToDeviceSpace(_ point: CGPoint) -> CGPoint
+  @available(iOS 2.0, *)
+  func convertToUserSpace(_ point: CGPoint) -> CGPoint
+  @available(iOS 2.0, *)
+  func convertToDeviceSpace(_ size: CGSize) -> CGSize
+  @available(iOS 2.0, *)
+  func convertToUserSpace(_ size: CGSize) -> CGSize
+  @available(iOS 2.0, *)
+  func convertToDeviceSpace(_ rect: CGRect) -> CGRect
+  @available(iOS 2.0, *)
+  func convertToUserSpace(_ rect: CGRect) -> CGRect
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+  func selectFont(name: UnsafePointer<CChar>, size: CGFloat, textEncoding: CGTextEncoding)
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+  func showText(string: UnsafePointer<CChar>, length: Int)
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+  func showTextAtPoint(x: CGFloat, y: CGFloat, string: UnsafePointer<CChar>, length: Int)
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+  func showGlyphs(g: UnsafePointer<CGGlyph>?, count: Int)
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+  func showGlyphsAtPoint(x: CGFloat, y: CGFloat, glyphs: UnsafePointer<CGGlyph>?, count: Int)
+  @available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+  func showGlyphsWithAdvances(glyphs: UnsafePointer<CGGlyph>?, advances: UnsafePointer<CGSize>?, count: Int)
+  @available(iOS, unavailable)
+  func drawPDFDocument(_ rect: CGRect, document: CGPDFDocument, page: Int32)
+}
+
+/** Graphics state functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.saveGState(self:)")
+func CGContextSaveGState(_ c: CGContext)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.restoreGState(self:)")
+func CGContextRestoreGState(_ c: CGContext)
+
+/** Coordinate space transformations. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.scaleBy(self:x:y:)")
+func CGContextScaleCTM(_ c: CGContext, _ sx: CGFloat, _ sy: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.translateBy(self:x:y:)")
+func CGContextTranslateCTM(_ c: CGContext, _ tx: CGFloat, _ ty: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.rotate(self:by:)")
+func CGContextRotateCTM(_ c: CGContext, _ angle: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.concatenate(self:_:)")
+func CGContextConcatCTM(_ c: CGContext, _ transform: CGAffineTransform)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.ctm(self:)")
+func CGContextGetCTM(_ c: CGContext) -> CGAffineTransform
+
+/** Drawing attribute functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setLineWidth(self:_:)")
+func CGContextSetLineWidth(_ c: CGContext, _ width: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setLineCap(self:_:)")
+func CGContextSetLineCap(_ c: CGContext, _ cap: CGLineCap)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setLineJoin(self:_:)")
+func CGContextSetLineJoin(_ c: CGContext, _ join: CGLineJoin)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setMiterLimit(self:_:)")
+func CGContextSetMiterLimit(_ c: CGContext, _ limit: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__setLineDash(self:phase:lengths:count:)")
+func __CGContextSetLineDash(_ c: CGContext, _ phase: CGFloat, _ lengths: UnsafePointer<CGFloat>?, _ count: Int)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setFlatness(self:_:)")
+func CGContextSetFlatness(_ c: CGContext, _ flatness: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setAlpha(self:_:)")
+func CGContextSetAlpha(_ c: CGContext, _ alpha: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setBlendMode(self:_:)")
+func CGContextSetBlendMode(_ c: CGContext, _ mode: CGBlendMode)
+
+/** Path construction functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.beginPath(self:)")
+func CGContextBeginPath(_ c: CGContext)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__moveTo(self:x:y:)")
+func __CGContextMoveToPoint(_ c: CGContext, _ x: CGFloat, _ y: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__addLineTo(self:x:y:)")
+func __CGContextAddLineToPoint(_ c: CGContext, _ x: CGFloat, _ y: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__addCurveTo(self:cp1x:cp1y:cp2x:cp2y:endingAtX:y:)")
+func __CGContextAddCurveToPoint(_ c: CGContext, _ cp1x: CGFloat, _ cp1y: CGFloat, _ cp2x: CGFloat, _ cp2y: CGFloat, _ x: CGFloat, _ y: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__addQuadCurveTo(self:cpx:cpy:endingAtX:y:)")
+func __CGContextAddQuadCurveToPoint(_ c: CGContext, _ cpx: CGFloat, _ cpy: CGFloat, _ x: CGFloat, _ y: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.closePath(self:)")
+func CGContextClosePath(_ c: CGContext)
+
+/** Path construction convenience functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.addRect(self:_:)")
+func CGContextAddRect(_ c: CGContext, _ rect: CGRect)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__addRects(self:_:count:)")
+func __CGContextAddRects(_ c: CGContext, _ rects: UnsafePointer<CGRect>?, _ count: Int)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__addLines(self:between:count:)")
+func __CGContextAddLines(_ c: CGContext, _ points: UnsafePointer<CGPoint>?, _ count: Int)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.addEllipse(self:in:)")
+func CGContextAddEllipseInRect(_ c: CGContext, _ rect: CGRect)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__addArc(self:centerX:y:radius:startAngle:endAngle:clockwise:)")
+func __CGContextAddArc(_ c: CGContext, _ x: CGFloat, _ y: CGFloat, _ radius: CGFloat, _ startAngle: CGFloat, _ endAngle: CGFloat, _ clockwise: Int32)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__addArc(self:x1:y1:x2:y2:radius:)")
+func __CGContextAddArcToPoint(_ c: CGContext, _ x1: CGFloat, _ y1: CGFloat, _ x2: CGFloat, _ y2: CGFloat, _ radius: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.addPath(self:_:)")
+func CGContextAddPath(_ c: CGContext, _ path: CGPath)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.replacePathWithStrokedPath(self:)")
+func CGContextReplacePathWithStrokedPath(_ c: CGContext)
+
+/** Path information functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.isPathEmpty(self:)")
+func CGContextIsPathEmpty(_ c: CGContext) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.currentPointOfPath(self:)")
+func CGContextGetPathCurrentPoint(_ c: CGContext) -> CGPoint
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.boundingBoxOfPath(self:)")
+func CGContextGetPathBoundingBox(_ c: CGContext) -> CGRect
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.path(self:)")
+func CGContextCopyPath(_ c: CGContext) -> CGPath?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.pathContains(self:_:mode:)")
+func CGContextPathContainsPoint(_ c: CGContext, _ point: CGPoint, _ mode: CGPathDrawingMode) -> Bool
+
+/** Path drawing functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.drawPath(self:using:)")
+func CGContextDrawPath(_ c: CGContext, _ mode: CGPathDrawingMode)
+
+/** Path drawing convenience functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__fillPath(self:)")
+func __CGContextFillPath(_ c: CGContext)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__eoFillPath(self:)")
+func __CGContextEOFillPath(_ c: CGContext)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.strokePath(self:)")
+func CGContextStrokePath(_ c: CGContext)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.fill(self:_:)")
+func CGContextFillRect(_ c: CGContext, _ rect: CGRect)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__fill(self:_:count:)")
+func __CGContextFillRects(_ c: CGContext, _ rects: UnsafePointer<CGRect>?, _ count: Int)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.stroke(self:_:)")
+func CGContextStrokeRect(_ c: CGContext, _ rect: CGRect)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.stroke(self:_:width:)")
+func CGContextStrokeRectWithWidth(_ c: CGContext, _ rect: CGRect, _ width: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.clear(self:_:)")
+func CGContextClearRect(_ c: CGContext, _ rect: CGRect)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.fillEllipse(self:in:)")
+func CGContextFillEllipseInRect(_ c: CGContext, _ rect: CGRect)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.strokeEllipse(self:in:)")
+func CGContextStrokeEllipseInRect(_ c: CGContext, _ rect: CGRect)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__strokeLineSegments(self:between:count:)")
+func __CGContextStrokeLineSegments(_ c: CGContext, _ points: UnsafePointer<CGPoint>?, _ count: Int)
+
+/** Clipping functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__clip(self:)")
+func __CGContextClip(_ c: CGContext)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__eoClip(self:)")
+func __CGContextEOClip(_ c: CGContext)
+@available(swift, obsoleted: 3, renamed: "CGContext.resetClip(self:)")
+func CGContextResetClip(_ c: CGContext)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.clip(self:to:mask:)")
+func CGContextClipToMask(_ c: CGContext, _ rect: CGRect, _ mask: CGImage)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.boundingBoxOfClipPath(self:)")
+func CGContextGetClipBoundingBox(_ c: CGContext) -> CGRect
+
+/** Clipping convenience functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.clip(self:to:)")
+func CGContextClipToRect(_ c: CGContext, _ rect: CGRect)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__clip(self:to:count:)")
+func __CGContextClipToRects(_ c: CGContext, _ rects: UnsafePointer<CGRect>, _ count: Int)
+
+/** Primitive color functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setFillColor(self:_:)")
+func CGContextSetFillColorWithColor(_ c: CGContext, _ color: CGColor)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setStrokeColor(self:_:)")
+func CGContextSetStrokeColorWithColor(_ c: CGContext, _ color: CGColor)
+
+/** Color space functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setFillColorSpace(self:_:)")
+func CGContextSetFillColorSpace(_ c: CGContext, _ space: CGColorSpace)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setStrokeColorSpace(self:_:)")
+func CGContextSetStrokeColorSpace(_ c: CGContext, _ space: CGColorSpace)
+
+/** Color functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setFillColor(self:_:)")
+func CGContextSetFillColor(_ c: CGContext, _ components: UnsafePointer<CGFloat>)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setStrokeColor(self:_:)")
+func CGContextSetStrokeColor(_ c: CGContext, _ components: UnsafePointer<CGFloat>)
+
+/** Pattern functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setFillPattern(self:_:colorComponents:)")
+func CGContextSetFillPattern(_ c: CGContext, _ pattern: CGPattern, _ components: UnsafePointer<CGFloat>)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setStrokePattern(self:_:colorComponents:)")
+func CGContextSetStrokePattern(_ c: CGContext, _ pattern: CGPattern, _ components: UnsafePointer<CGFloat>)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setPatternPhase(self:_:)")
+func CGContextSetPatternPhase(_ c: CGContext, _ phase: CGSize)
+
+/** Color convenience functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setFillColor(self:gray:alpha:)")
+func CGContextSetGrayFillColor(_ c: CGContext, _ gray: CGFloat, _ alpha: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setStrokeColor(self:gray:alpha:)")
+func CGContextSetGrayStrokeColor(_ c: CGContext, _ gray: CGFloat, _ alpha: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setFillColor(self:red:green:blue:alpha:)")
+func CGContextSetRGBFillColor(_ c: CGContext, _ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setStrokeColor(self:red:green:blue:alpha:)")
+func CGContextSetRGBStrokeColor(_ c: CGContext, _ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setFillColor(self:cyan:magenta:yellow:black:alpha:)")
+func CGContextSetCMYKFillColor(_ c: CGContext, _ cyan: CGFloat, _ magenta: CGFloat, _ yellow: CGFloat, _ black: CGFloat, _ alpha: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setStrokeColor(self:cyan:magenta:yellow:black:alpha:)")
+func CGContextSetCMYKStrokeColor(_ c: CGContext, _ cyan: CGFloat, _ magenta: CGFloat, _ yellow: CGFloat, _ black: CGFloat, _ alpha: CGFloat)
+
+/** Rendering intent. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setRenderingIntent(self:_:)")
+func CGContextSetRenderingIntent(_ c: CGContext, _ intent: CGColorRenderingIntent)
+
+/** Image functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__draw(self:in:image:)")
+func __CGContextDrawImage(_ c: CGContext, _ rect: CGRect, _ image: CGImage)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__draw(self:in:byTiling:)")
+func __CGContextDrawTiledImage(_ c: CGContext, _ rect: CGRect, _ image: CGImage)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.interpolationQuality(self:)")
+func CGContextGetInterpolationQuality(_ c: CGContext) -> CGInterpolationQuality
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "setter:CGContext.interpolationQuality(self:_:)")
+func CGContextSetInterpolationQuality(_ c: CGContext, _ quality: CGInterpolationQuality)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setShadow(self:offset:blur:color:)")
+func CGContextSetShadowWithColor(_ c: CGContext, _ offset: CGSize, _ blur: CGFloat, _ color: CGColor?)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setShadow(self:offset:blur:)")
+func CGContextSetShadow(_ c: CGContext, _ offset: CGSize, _ blur: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.drawLinearGradient(self:_:start:end:options:)")
+func CGContextDrawLinearGradient(_ c: CGContext, _ gradient: CGGradient, _ startPoint: CGPoint, _ endPoint: CGPoint, _ options: CGGradientDrawingOptions)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.drawRadialGradient(self:_:startCenter:startRadius:endCenter:endRadius:options:)")
+func CGContextDrawRadialGradient(_ c: CGContext, _ gradient: CGGradient, _ startCenter: CGPoint, _ startRadius: CGFloat, _ endCenter: CGPoint, _ endRadius: CGFloat, _ options: CGGradientDrawingOptions)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.drawShading(self:_:)")
+func CGContextDrawShading(_ c: CGContext, _ shading: CGShading)
+
+/** Text functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setCharacterSpacing(self:_:)")
+func CGContextSetCharacterSpacing(_ c: CGContext, _ spacing: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__setTextPosition(self:x:y:)")
+func __CGContextSetTextPosition(_ c: CGContext, _ x: CGFloat, _ y: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.__textPosition(self:)")
+func __CGContextGetTextPosition(_ c: CGContext) -> CGPoint
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "setter:CGContext.textMatrix(self:_:)")
+func CGContextSetTextMatrix(_ c: CGContext, _ t: CGAffineTransform)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.textMatrix(self:)")
+func CGContextGetTextMatrix(_ c: CGContext) -> CGAffineTransform
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setTextDrawingMode(self:_:)")
+func CGContextSetTextDrawingMode(_ c: CGContext, _ mode: CGTextDrawingMode)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setFont(self:_:)")
+func CGContextSetFont(_ c: CGContext, _ font: CGFont)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setFontSize(self:_:)")
+func CGContextSetFontSize(_ c: CGContext, _ size: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__showGlyphs(self:_:atPositions:count:)")
+func __CGContextShowGlyphsAtPositions(_ c: CGContext, _ glyphs: UnsafePointer<CGGlyph>, _ Lpositions: UnsafePointer<CGPoint>, _ count: Int)
+
+/** PDF functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.drawPDFPage(self:_:)")
+func CGContextDrawPDFPage(_ c: CGContext, _ page: CGPDFPage)
+
+/** Output page functions. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.beginPage(self:mediaBox:)")
+func CGContextBeginPage(_ c: CGContext, _ mediaBox: UnsafePointer<CGRect>?)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.endPage(self:)")
+func CGContextEndPage(_ c: CGContext)
+
+/** Context functions. **/
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGContextRetain(_ c: CGContext) -> CGContext
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGContextRelease(_ c: CGContext)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.flush(self:)")
+func CGContextFlush(_ c: CGContext)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.synchronize(self:)")
+func CGContextSynchronize(_ c: CGContext)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setShouldAntialias(self:_:)")
+func CGContextSetShouldAntialias(_ c: CGContext, _ shouldAntialias: Bool)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setAllowsAntialiasing(self:_:)")
+func CGContextSetAllowsAntialiasing(_ c: CGContext, _ allowsAntialiasing: Bool)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setShouldSmoothFonts(self:_:)")
+func CGContextSetShouldSmoothFonts(_ c: CGContext, _ shouldSmoothFonts: Bool)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setAllowsFontSmoothing(self:_:)")
+func CGContextSetAllowsFontSmoothing(_ c: CGContext, _ allowsFontSmoothing: Bool)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setShouldSubpixelPositionFonts(self:_:)")
+func CGContextSetShouldSubpixelPositionFonts(_ c: CGContext, _ shouldSubpixelPositionFonts: Bool)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setAllowsFontSubpixelPositioning(self:_:)")
+func CGContextSetAllowsFontSubpixelPositioning(_ c: CGContext, _ allowsFontSubpixelPositioning: Bool)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setShouldSubpixelQuantizeFonts(self:_:)")
+func CGContextSetShouldSubpixelQuantizeFonts(_ c: CGContext, _ shouldSubpixelQuantizeFonts: Bool)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setAllowsFontSubpixelQuantization(self:_:)")
+func CGContextSetAllowsFontSubpixelQuantization(_ c: CGContext, _ allowsFontSubpixelQuantization: Bool)
+
+/** Transparency layer support. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.beginTransparencyLayer(self:auxiliaryInfo:)")
+func CGContextBeginTransparencyLayer(_ c: CGContext, _ auxiliaryInfo: CFDictionary?)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.beginTransparencyLayer(self:in:auxiliaryInfo:)")
+func CGContextBeginTransparencyLayerWithRect(_ c: CGContext, _ rect: CGRect, _ auxInfo: CFDictionary?)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.endTransparencyLayer(self:)")
+func CGContextEndTransparencyLayer(_ c: CGContext)
+
+/** User space to device space tranformations. **/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGContext.userSpaceToDeviceSpaceTransform(self:)")
+func CGContextGetUserSpaceToDeviceSpaceTransform(_ c: CGContext) -> CGAffineTransform
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.convertToDeviceSpace(self:_:)")
+func CGContextConvertPointToDeviceSpace(_ c: CGContext, _ point: CGPoint) -> CGPoint
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.convertToUserSpace(self:_:)")
+func CGContextConvertPointToUserSpace(_ c: CGContext, _ point: CGPoint) -> CGPoint
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.convertToDeviceSpace(self:_:)")
+func CGContextConvertSizeToDeviceSpace(_ c: CGContext, _ size: CGSize) -> CGSize
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.convertToUserSpace(self:_:)")
+func CGContextConvertSizeToUserSpace(_ c: CGContext, _ size: CGSize) -> CGSize
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.convertToDeviceSpace(self:_:)")
+func CGContextConvertRectToDeviceSpace(_ c: CGContext, _ rect: CGRect) -> CGRect
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.convertToUserSpace(self:_:)")
+func CGContextConvertRectToUserSpace(_ c: CGContext, _ rect: CGRect) -> CGRect
+@available(swift, obsoleted: 3, renamed: "CGContext.selectFont(self:name:size:textEncoding:)")
+@available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+func CGContextSelectFont(_ c: CGContext, _ name: UnsafePointer<CChar>, _ size: CGFloat, _ textEncoding: CGTextEncoding)
+@available(swift, obsoleted: 3, renamed: "CGContext.showText(self:string:length:)")
+@available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+func CGContextShowText(_ c: CGContext, _ string: UnsafePointer<CChar>, _ length: Int)
+@available(swift, obsoleted: 3, renamed: "CGContext.showTextAtPoint(self:x:y:string:length:)")
+@available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+func CGContextShowTextAtPoint(_ c: CGContext, _ x: CGFloat, _ y: CGFloat, _ string: UnsafePointer<CChar>, _ length: Int)
+@available(swift, obsoleted: 3, renamed: "CGContext.showGlyphs(self:g:count:)")
+@available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+func CGContextShowGlyphs(_ c: CGContext, _ g: UnsafePointer<CGGlyph>?, _ count: Int)
+@available(swift, obsoleted: 3, renamed: "CGContext.showGlyphsAtPoint(self:x:y:glyphs:count:)")
+@available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+func CGContextShowGlyphsAtPoint(_ c: CGContext, _ x: CGFloat, _ y: CGFloat, _ glyphs: UnsafePointer<CGGlyph>?, _ count: Int)
+@available(swift, obsoleted: 3, renamed: "CGContext.showGlyphsWithAdvances(self:glyphs:advances:count:)")
+@available(iOS, unavailable, introduced: 2.0, deprecated: 7.0, message: "No longer supported")
+func CGContextShowGlyphsWithAdvances(_ c: CGContext, _ glyphs: UnsafePointer<CGGlyph>?, _ advances: UnsafePointer<CGSize>?, _ count: Int)
+@available(swift, obsoleted: 3, renamed: "CGContext.drawPDFDocument(self:_:document:page:)")
+@available(iOS, unavailable)
+func CGContextDrawPDFDocument(_ c: CGContext, _ rect: CGRect, _ document: CGPDFDocument, _ page: Int32)

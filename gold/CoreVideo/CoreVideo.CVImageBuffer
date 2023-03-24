@@ -1,0 +1,234 @@
+
+@available(iOS 4.0, *)
+let kCVImageBufferCGColorSpaceKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferCleanApertureKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferCleanApertureWidthKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferCleanApertureHeightKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferCleanApertureHorizontalOffsetKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferCleanApertureVerticalOffsetKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferPreferredCleanApertureKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferFieldCountKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferFieldDetailKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferFieldDetailTemporalTopFirst: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferFieldDetailTemporalBottomFirst: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferFieldDetailSpatialFirstLineEarly: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferFieldDetailSpatialFirstLineLate: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferPixelAspectRatioKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferPixelAspectRatioHorizontalSpacingKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferPixelAspectRatioVerticalSpacingKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferDisplayDimensionsKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferDisplayWidthKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferDisplayHeightKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferGammaLevelKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferICCProfileKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferYCbCrMatrixKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferYCbCrMatrix_ITU_R_709_2: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferYCbCrMatrix_ITU_R_601_4: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferYCbCrMatrix_SMPTE_240M_1995: CFString
+@available(iOS, introduced: 9.0, deprecated: 14.0, message: "kCVImageBufferYCbCrMatrix_DCI_P3 no longer supported.")
+let kCVImageBufferYCbCrMatrix_DCI_P3: CFString
+@available(iOS, introduced: 9.0, deprecated: 14.0, message: "kCVImageBufferYCbCrMatrix_P3_D65 no longer supported.")
+let kCVImageBufferYCbCrMatrix_P3_D65: CFString
+@available(iOS 9.0, *)
+let kCVImageBufferYCbCrMatrix_ITU_R_2020: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferColorPrimariesKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferColorPrimaries_ITU_R_709_2: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferColorPrimaries_EBU_3213: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferColorPrimaries_SMPTE_C: CFString
+@available(iOS 6.0, *)
+let kCVImageBufferColorPrimaries_P22: CFString
+@available(iOS 9.0, *)
+let kCVImageBufferColorPrimaries_DCI_P3: CFString
+@available(iOS 9.0, *)
+let kCVImageBufferColorPrimaries_P3_D65: CFString
+@available(iOS 9.0, *)
+let kCVImageBufferColorPrimaries_ITU_R_2020: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferTransferFunctionKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferTransferFunction_ITU_R_709_2: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferTransferFunction_SMPTE_240M_1995: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferTransferFunction_UseGamma: CFString
+@available(iOS, unavailable)
+let kCVImageBufferTransferFunction_EBU_3213: CFString
+@available(iOS, unavailable)
+let kCVImageBufferTransferFunction_SMPTE_C: CFString
+@available(iOS 11.0, *)
+let kCVImageBufferTransferFunction_sRGB: CFString
+@available(iOS 9.0, *)
+let kCVImageBufferTransferFunction_ITU_R_2020: CFString
+@available(iOS 10.0, *)
+let kCVImageBufferTransferFunction_SMPTE_ST_428_1: CFString
+@available(iOS 11.0, *)
+let kCVImageBufferTransferFunction_SMPTE_ST_2084_PQ: CFString
+@available(iOS 11.0, *)
+let kCVImageBufferTransferFunction_ITU_R_2100_HLG: CFString
+@available(iOS 12.0, *)
+let kCVImageBufferTransferFunction_Linear: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaLocationTopFieldKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaLocationBottomFieldKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaLocation_Left: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaLocation_Center: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaLocation_TopLeft: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaLocation_Top: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaLocation_BottomLeft: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaLocation_Bottom: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaLocation_DV420: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaSubsamplingKey: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaSubsampling_420: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaSubsampling_422: CFString
+@available(iOS 4.0, *)
+let kCVImageBufferChromaSubsampling_411: CFString
+@available(iOS 8.0, *)
+let kCVImageBufferAlphaChannelIsOpaque: CFString
+@available(iOS 13.0, *)
+let kCVImageBufferAlphaChannelModeKey: CFString
+@available(iOS 13.0, *)
+let kCVImageBufferAlphaChannelMode_StraightAlpha: CFString
+@available(iOS 13.0, *)
+let kCVImageBufferAlphaChannelMode_PremultipliedAlpha: CFString
+@available(iOS 11.0, *)
+func CVYCbCrMatrixGetIntegerCodePointForString(_ yCbCrMatrixString: CFString?) -> Int32
+@available(iOS 11.0, *)
+func CVColorPrimariesGetIntegerCodePointForString(_ colorPrimariesString: CFString?) -> Int32
+@available(iOS 11.0, *)
+func CVTransferFunctionGetIntegerCodePointForString(_ transferFunctionString: CFString?) -> Int32
+@available(iOS 11.0, *)
+func CVYCbCrMatrixGetStringForIntegerCodePoint(_ yCbCrMatrixCodePoint: Int32) -> Unmanaged<CFString>?
+@available(iOS 11.0, *)
+func CVColorPrimariesGetStringForIntegerCodePoint(_ colorPrimariesCodePoint: Int32) -> Unmanaged<CFString>?
+@available(iOS 11.0, *)
+func CVTransferFunctionGetStringForIntegerCodePoint(_ transferFunctionCodePoint: Int32) -> Unmanaged<CFString>?
+
+/**
+    @typedef	CVImageBufferRef
+    @abstract   Base type for all CoreVideo image buffers
+
+*/
+typealias CVImageBuffer = CVBuffer
+
+/**
+    @typedef	CVImageBufferRef
+    @abstract   Base type for all CoreVideo image buffers
+
+*/
+@available(swift, obsoleted: 3, renamed: "CVImageBuffer")
+typealias CVImageBufferRef = CVImageBuffer
+
+/**
+    @function   CVImageBufferGetEncodedSize
+    @abstract   Returns the full encoded dimensions of a CVImageBuffer.  For example, for an NTSC DV frame this would be 720x480
+    @param      imageBuffer A CVImageBuffer that you wish to retrieve the encoded size from.
+    @result     A CGSize returning the full encoded size of the buffer
+		Returns zero size if called with a non-CVImageBufferRef type or NULL.
+*/
+@available(iOS 4.0, *)
+func CVImageBufferGetEncodedSize(_ imageBuffer: CVImageBuffer) -> CGSize
+
+/**
+    @function   CVImageBufferGetDisplaySize
+    @abstract   Returns the nominal output display size (in square pixels) of a CVImageBuffer.  
+                For example, for an NTSC DV frame this would be 640x480
+    @param      imageBuffer A CVImageBuffer that you wish to retrieve the display size from.
+    @result     A CGSize returning the nominal display size of the buffer
+		Returns zero size if called with a non-CVImageBufferRef type or NULL.
+*/
+@available(iOS 4.0, *)
+func CVImageBufferGetDisplaySize(_ imageBuffer: CVImageBuffer) -> CGSize
+
+/**
+    @function   CVImageBufferGetCleanRect
+    @abstract   Returns the source rectangle of a CVImageBuffer that represents the clean aperture
+		of the buffer in encoded pixels.    For example, an NTSC DV frame would return a CGRect with an
+		origin of 8,0 and a size of 704,480.		
+		Note that the origin of this rect always the lower left	corner.   This is the same coordinate system as
+		used by CoreImage.
+    @param      imageBuffer A CVImageBuffer that you wish to retrieve the display size from.
+    @result     A CGSize returning the nominal display size of the buffer
+		Returns zero rect if called with a non-CVImageBufferRef type or NULL.
+*/
+@available(iOS 4.0, *)
+func CVImageBufferGetCleanRect(_ imageBuffer: CVImageBuffer) -> CGRect
+
+/**
+    @function   CVImageBufferIsFlipped
+    @abstract   Returns whether the image is flipped vertically or not.
+    @param      CVImageBuffer target
+    @result     True if 0,0 in the texture is upper left, false if 0,0 is lower left.
+*/
+@available(iOS 4.0, *)
+func CVImageBufferIsFlipped(_ imageBuffer: CVImageBuffer) -> Bool
+
+/**
+   @function   CVImageBufferCreateColorSpaceFromAttachments
+   @abstract   Attempts to synthesize a CGColorSpace from an image buffer's attachments.
+   @param      attachments A CFDictionary of attachments for an image buffer, obtained using CVBufferCopyAttachments().
+   @result     A CGColorSpaceRef representing the color space of the buffer.
+		Returns NULL if the attachments dictionary does not contain the information required to synthesize a CGColorSpace.
+   @discussion
+	To generate a CGColorSpace, the attachments dictionary should include values for either:
+		1. kCVImageBufferICCProfile
+		2. kCVImageBufferColorPrimariesKey, kCVImageBufferTransferFunctionKey, and kCVImageBufferYCbCrMatrixKey (and possibly kCVImageBufferGammaLevelKey)
+	The client is responsible for releasing the CGColorSpaceRef when it is done with it (CGColorSpaceRelease() or CFRelease())
+		
+*/
+@available(iOS 10.0, *)
+func CVImageBufferCreateColorSpaceFromAttachments(_ attachments: CFDictionary) -> Unmanaged<CGColorSpace>?
+@available(iOS 11.0, *)
+let kCVImageBufferMasteringDisplayColorVolumeKey: CFString
+@available(iOS 11.0, *)
+let kCVImageBufferContentLightLevelInfoKey: CFString
+@available(iOS 15.0, *)
+let kCVImageBufferAmbientViewingEnvironmentKey: CFString
+
+/**
+	@constant    kCVImageBufferRegionOfInterestKey
+	@abstract
+		Specifies region of interest that image statistics cover. This value should be a CGRect dictionary created by CGRectCreateDictionaryRepresentation(). The origin in the CGRect represents the x,y coordinate within the CVPixelBuffer where region of interest is located.
+	@discussion
+		
+*/
+@available(iOS 15.0, *)
+let kCVImageBufferRegionOfInterestKey: CFString

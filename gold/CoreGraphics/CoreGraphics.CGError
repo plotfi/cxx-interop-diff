@@ -1,0 +1,41 @@
+
+enum CGError : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case success
+  @available(swift, obsoleted: 3, renamed: "success")
+  static var Success: CGError { get }
+  case failure
+  @available(swift, obsoleted: 3, renamed: "failure")
+  static var Failure: CGError { get }
+  case illegalArgument
+  @available(swift, obsoleted: 3, renamed: "illegalArgument")
+  static var IllegalArgument: CGError { get }
+  case invalidConnection
+  @available(swift, obsoleted: 3, renamed: "invalidConnection")
+  static var InvalidConnection: CGError { get }
+  case invalidContext
+  @available(swift, obsoleted: 3, renamed: "invalidContext")
+  static var InvalidContext: CGError { get }
+  case cannotComplete
+  @available(swift, obsoleted: 3, renamed: "cannotComplete")
+  static var CannotComplete: CGError { get }
+  case notImplemented
+  @available(swift, obsoleted: 3, renamed: "notImplemented")
+  static var NotImplemented: CGError { get }
+  case rangeCheck
+  @available(swift, obsoleted: 3, renamed: "rangeCheck")
+  static var RangeCheck: CGError { get }
+  case typeCheck
+  @available(swift, obsoleted: 3, renamed: "typeCheck")
+  static var TypeCheck: CGError { get }
+  case invalidOperation
+  @available(swift, obsoleted: 3, renamed: "invalidOperation")
+  static var InvalidOperation: CGError { get }
+  case noneAvailable
+  @available(swift, obsoleted: 3, renamed: "noneAvailable")
+  static var NoneAvailable: CGError { get }
+}
+typealias CGErrorCallback = @convention(c) () -> Void
+func CGErrorSetCallback(_ callback: CGErrorCallback!)

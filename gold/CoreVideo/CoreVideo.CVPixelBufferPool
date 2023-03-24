@@ -1,0 +1,110 @@
+
+class CVPixelBufferPool : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CVPixelBufferPool")
+typealias CVPixelBufferPoolRef = CVPixelBufferPool
+@available(iOS 4.0, *)
+let kCVPixelBufferPoolMinimumBufferCountKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferPoolMaximumBufferAgeKey: CFString
+@available(iOS 4.0, *)
+func CVPixelBufferPoolGetTypeID() -> CFTypeID
+
+/**
+    @function   CVPixelBufferPoolRetain
+    @abstract   Retains a CVPixelBufferPoolRef object
+    @discussion Equivalent to CFRetain, but NULL safe
+    @param      buffer A CVPixelBufferPoolRef object that you want to retain.
+    @result     A CVPixelBufferPoolRef object that is the same as the passed in buffer.
+*/
+@available(iOS 4.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CVPixelBufferPoolRetain(_ pixelBufferPool: CVPixelBufferPool?) -> Unmanaged<CVPixelBufferPool>?
+
+/**
+    @function   CVPixelBufferPoolRelease
+    @abstract   Releases a CVPixelBufferPoolRef object
+    @discussion Equivalent to CFRelease, but NULL safe
+    @param      buffer A CVPixelBufferPoolRef object that you want to release.
+*/
+@available(iOS 4.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CVPixelBufferPoolRelease(_ pixelBufferPool: CVPixelBufferPool?)
+
+/**
+    @function   CVPixelBufferPoolCreate
+    @abstract   Creates a new Pixel Buffer pool.
+    @param      allocator The CFAllocatorRef to use for allocating this buffer pool.  May be NULL.
+    @param      attributes   A CFDictionaryRef containing the attributes to be used for creating new PixelBuffers within the pool.
+    @param      poolOut   The newly created pool will be placed here
+    @result     Returns kCVReturnSuccess on success
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferPoolCreate(_ allocator: CFAllocator?, _ poolAttributes: CFDictionary?, _ pixelBufferAttributes: CFDictionary?, _ poolOut: UnsafeMutablePointer<CVPixelBufferPool?>) -> CVReturn
+
+/**
+    @function   CVPixelBufferPoolGetAttributes
+    @abstract   Returns the pool attributes dictionary for a CVPixelBufferPool
+    @param      pool  The CVPixelBufferPoolRef to retrieve the attributes from
+    @result     Returns the pool attributes dictionary, or NULL on failure.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferPoolGetAttributes(_ pool: CVPixelBufferPool) -> CFDictionary?
+
+/**
+    @function   CVPixelBufferPoolGetPixelBufferAttributes
+    @abstract   Returns the attributes of pixel buffers that will be created from this pool.
+    @discussion This function is provided for those cases where you may need to know some information about the buffers that
+                will be created up front.
+    @param      pool  The CVPixelBufferPoolRef to retrieve the attributes from
+    @result     Returns the pixel buffer attributes dictionary, or NULL on failure.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferPoolGetPixelBufferAttributes(_ pool: CVPixelBufferPool) -> CFDictionary?
+
+/**
+    @function   CVPixelBufferPoolCreatePixelBuffer
+    @abstract   Creates a new PixelBuffer object from the pool.
+    @discussion The function creates a new (attachment-free) CVPixelBuffer using the pixel buffer attributes specifed during pool creation.
+    @param      allocator The CFAllocatorRef to use for creating the pixel buffer.  May be NULL.
+    @param      pool      The CVPixelBufferPool that should create the new CVPixelBuffer.
+    @param      pixelBufferOut   The newly created pixel buffer will be placed here
+    @result     Returns kCVReturnSuccess on success
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferPoolCreatePixelBuffer(_ allocator: CFAllocator?, _ pixelBufferPool: CVPixelBufferPool, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
+@available(iOS 4.0, *)
+func CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(_ allocator: CFAllocator?, _ pixelBufferPool: CVPixelBufferPool, _ auxAttributes: CFDictionary?, _ pixelBufferOut: UnsafeMutablePointer<CVPixelBuffer?>) -> CVReturn
+@available(iOS 4.0, *)
+let kCVPixelBufferPoolAllocationThresholdKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferPoolFreeBufferNotification: CFString
+
+/**
+	@enum CVPixelBufferPoolFlush flags
+	@discussion Flags to pass to CVPixelBufferPoolFlush()
+	@constant kCVPixelBufferPoolFlushExcessBuffers
+		This flag will cause CVPixelBufferPoolFlush to flush all unused buffers regardless of age.
+*/
+struct CVPixelBufferPoolFlushFlags : OptionSet, @unchecked Sendable {
+  init(rawValue: CVOptionFlags)
+  let rawValue: CVOptionFlags
+  typealias RawValue = CVOptionFlags
+  typealias Element = CVPixelBufferPoolFlushFlags
+  typealias ArrayLiteralElement = CVPixelBufferPoolFlushFlags
+  static var excessBuffers: CVPixelBufferPoolFlushFlags { get }
+  @available(swift, obsoleted: 3, renamed: "excessBuffers")
+  static var ExcessBuffers: CVPixelBufferPoolFlushFlags { get }
+}
+
+/**
+	@function       CVPixelBufferPoolFlush
+	@abstract       Frees as many buffers from the pool as possible.
+	@discussion     By default, this function will free all aged out buffers.  Setting the
+            kCVPixelBufferPoolFlushExcessBuffers flag will cause this call to free all unused
+            buffers regardless of age.
+	@param		pool    The CVPixelBufferPool to be flushed.
+	@param		options Set to kCVPixelBufferPoolFlushExcessBuffers to free all unused buffers
+            regardless of their age.
+*/
+func CVPixelBufferPoolFlush(_ pool: CVPixelBufferPool, _ options: CVPixelBufferPoolFlushFlags)

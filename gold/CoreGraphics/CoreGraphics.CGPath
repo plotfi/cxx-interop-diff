@@ -1,0 +1,444 @@
+
+class CGMutablePath : CGPath, _CFObject {
+}
+
+extension CGMutablePath {
+  func addRoundedRect(in rect: CGRect, cornerWidth: CGFloat, cornerHeight: CGFloat, transform: CGAffineTransform = .identity)
+  func move(to point: CGPoint, transform: CGAffineTransform = .identity)
+  func addLine(to point: CGPoint, transform: CGAffineTransform = .identity)
+  func addQuadCurve(to end: CGPoint, control: CGPoint, transform: CGAffineTransform = .identity)
+  func addCurve(to end: CGPoint, control1: CGPoint, control2: CGPoint, transform: CGAffineTransform = .identity)
+  func addRect(_ rect: CGRect, transform: CGAffineTransform = .identity)
+  func addRects(_ rects: [CGRect], transform: CGAffineTransform = .identity)
+  func addLines(between points: [CGPoint], transform: CGAffineTransform = .identity)
+  func addEllipse(in rect: CGRect, transform: CGAffineTransform = .identity)
+  func addRelativeArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, delta: CGFloat, transform: CGAffineTransform = .identity)
+  func addArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool, transform: CGAffineTransform = .identity)
+  func addArc(tangent1End: CGPoint, tangent2End: CGPoint, radius: CGFloat, transform: CGAffineTransform = .identity)
+  func addPath(_ path: CGPath, transform: CGAffineTransform = .identity)
+}
+@available(swift, obsoleted: 3, renamed: "CGMutablePath")
+typealias CGMutablePathRef = CGMutablePath
+class CGPath : _CFObject {
+}
+
+extension CGPath {
+  func copy(dashingWithPhase phase: CGFloat, lengths: [CGFloat], transform: CGAffineTransform = .identity) -> CGPath
+  func copy(strokingWithWidth lineWidth: CGFloat, lineCap: CGLineCap, lineJoin: CGLineJoin, miterLimit: CGFloat, transform: CGAffineTransform = .identity) -> CGPath
+  func contains(_ point: CGPoint, using rule: CGPathFillRule = .winding, transform: CGAffineTransform = .identity) -> Bool
+}
+
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+extension CGPath {
+  /// Returns a new path with filled regions in either this path or the given path.
+  /// - Parameters:
+  ///   - other: The path to union.
+  ///   - rule: The rule for determining which areas to treat as the interior of the paths.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The filled region of resulting path is the combination of the filled region of both paths added together.
+  ///
+  /// Any unclosed subpaths in either path are assumed to be closed. The result of filling this
+  /// path using either even-odd or non-zero fill rules is identical.
+  func union(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new path with filled regions common to both paths.
+  /// - Parameters:
+  ///   - other: The path to intersect.
+  ///   - rule: The rule for determining which areas to treat as the interior of the paths.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The filled region of the resulting path is the overlapping area of the filled region of both paths.
+  /// This can be used to clip the fill of a path to a mask.
+  ///
+  /// Any unclosed subpaths in either path are assumed to be closed. The result of filling this
+  /// path using either even-odd or non-zero fill rules is identical.
+  func intersection(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new path with filled regions from this path that are not in the given path.
+  /// - Parameters:
+  ///   - other: The path to subtract.
+  ///   - rule: The rule for determining which areas to treat as the interior of the paths.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The filled region of the resulting path is the filled region of this path with the filled
+  /// region `other` removed from it.
+  ///
+  /// Any unclosed subpaths in either path are assumed to be closed. The result of filling this
+  /// path using either even-odd or non-zero fill rules is identical.
+  func subtracting(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new path with filled regions either from this path or the given path, but not in both.
+  /// - Parameters:
+  ///   - other: The path to difference.
+  ///   - rule: The rule for determining which areas to treat as the interior of the paths.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The filled region of the resulting path is the filled region contained in either this path
+  /// or `other`, but not both.
+  ///
+  /// Any unclosed subpaths in either path are assumed to be closed. The result of filling this
+  /// path using either even-odd or non-zero fill rules is identical.
+  func symmetricDifference(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new path with a line from this path that does not overlap the filled region of the given path.
+  /// - Parameters:
+  ///   - other: The path to subtract.
+  ///   - rule: The rule for determining which areas to treat as the interior of `other`.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The line of the resulting path is the line of this path that does not overlap the filled region of `other`.
+  ///
+  /// Intersected subpaths that are clipped create open subpaths. Closed subpaths that do not
+  /// intersect `other` remain closed.
+  func lineSubtracting(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new path with a line from this path that overlaps the filled regions of the given path.
+  /// - Parameters:
+  ///   - other: The path to intersect.
+  ///   - rule: The rule for determining which areas to treat as the interior of `other`.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The line of the resulting path is the line of this path that overlaps the filled region of `other`.
+  ///
+  /// Intersected subpaths that are clipped create open subpaths. Closed subpaths that do not
+  /// intersect `other` remain closed.
+  func lineIntersection(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a new weakly-simple copy of this path.
+  /// - Parameter rule: The rule for determining which areas to treat as the interior of the path.
+  ///   Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: A new path.
+  ///
+  /// The returned path is weakly-simple path, has no self-intersections, and has a normalized
+  /// orientation. The result of filling this path using either even-odd or non-zero fill rules
+  /// is identical.
+  func normalized(using rule: CGPathFillRule = .winding) -> CGPath
+  /// Returns a flattened copy of this path.
+  /// - Parameter threshold: The maximum error tolerance.
+  /// - Returns: A new path.
+  ///
+  /// The granularity of the approximation is controlled by `threshold` the maximum error
+  /// tolerance (measured in points) for curves.
+  func flattened(threshold: CGFloat) -> CGPath
+  /// Returns whether paths overlap.
+  /// - Parameters:
+  ///   - other: The path to check for intersection.
+  ///   - rule: The rule for determining which areas to treat as the interior of the paths.
+  ///     Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: `true` if the paths intersect.
+  ///
+  /// This is the same as testing if the intersection of two paths is not empty. That is, the
+  /// filled areas of the paths overlap. Open subpaths are treated as closed subpaths, the same
+  /// as when filling a path in a `CGContext`.
+  func intersects(_ other: CGPath, using rule: CGPathFillRule = .winding) -> Bool
+  /// Return an array of the visually separated components of a path.
+  /// - Parameter rule: The rule for determining which areas to treat as the interior of the path.
+  ///   Defaults to the `CGPathFillRule.winding` rule if not specified.
+  /// - Returns: The visually separate components.
+  ///
+  /// Separating components of a path returns the components from splitting the path into multiple
+  /// distinct paths. Rendered individually the components look the same as the original path.
+  /// This can be used to break a single path (eg. a symbol) into its component pieces so that each
+  /// component can be colored separately.
+  func componentsSeparated(using rule: CGPathFillRule = .winding) -> [CGPath]
+}
+@available(swift, obsoleted: 3, renamed: "CGPath")
+typealias CGPathRef = CGPath
+enum CGLineJoin : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case miter
+  @available(swift, obsoleted: 3, renamed: "miter")
+  static var Miter: CGLineJoin { get }
+  case round
+  @available(swift, obsoleted: 3, renamed: "round")
+  static var Round: CGLineJoin { get }
+  case bevel
+  @available(swift, obsoleted: 3, renamed: "bevel")
+  static var Bevel: CGLineJoin { get }
+}
+enum CGLineCap : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case butt
+  @available(swift, obsoleted: 3, renamed: "butt")
+  static var Butt: CGLineCap { get }
+  case round
+  @available(swift, obsoleted: 3, renamed: "round")
+  static var Round: CGLineCap { get }
+  case square
+  @available(swift, obsoleted: 3, renamed: "square")
+  static var Square: CGLineCap { get }
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPath.typeID()")
+func CGPathGetTypeID() -> CFTypeID
+extension CGPath {
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+  @available(iOS 2.0, *)
+  func copy() -> CGPath?
+  @available(iOS 5.0, *)
+  func copy(using transform: UnsafePointer<CGAffineTransform>?) -> CGPath?
+  @available(iOS 2.0, *)
+  func mutableCopy() -> CGMutablePath?
+  @available(iOS 5.0, *)
+  func mutableCopy(using transform: UnsafePointer<CGAffineTransform>?) -> CGMutablePath?
+  @available(iOS 4.0, *)
+  /*not inherited*/ init(rect: CGRect, transform: UnsafePointer<CGAffineTransform>?)
+  @available(iOS 5.0, *)
+  /*not inherited*/ init(ellipseIn rect: CGRect, transform: UnsafePointer<CGAffineTransform>?)
+  @available(iOS 7.0, *)
+  /*not inherited*/ init(roundedRect rect: CGRect, cornerWidth: CGFloat, cornerHeight: CGFloat, transform: UnsafePointer<CGAffineTransform>?)
+  @available(iOS 5.0, *)
+  /*not inherited*/ init?(__byDashing path: CGPath, transform: UnsafePointer<CGAffineTransform>?, phase: CGFloat, lengths: UnsafePointer<CGFloat>?, count: Int)
+  @available(iOS 5.0, *)
+  /*not inherited*/ init?(__byStroking path: CGPath, transform: UnsafePointer<CGAffineTransform>?, lineWidth: CGFloat, lineCap: CGLineCap, lineJoin: CGLineJoin, miterLimit: CGFloat)
+  @available(iOS 2.0, *)
+  func __equalTo(_ path2: CGPath) -> Bool
+
+  /*** Path information functions. ***/
+  @available(iOS 2.0, *)
+  var isEmpty: Bool { get }
+  @available(iOS 2.0, *)
+  func isRect(_ rect: UnsafeMutablePointer<CGRect>?) -> Bool
+  @available(iOS 2.0, *)
+  var currentPoint: CGPoint { get }
+  @available(iOS 2.0, *)
+  var boundingBox: CGRect { get }
+  @available(iOS 4.0, *)
+  var boundingBoxOfPath: CGRect { get }
+  @available(iOS 2.0, *)
+  func __containsPoint(transform m: UnsafePointer<CGAffineTransform>?, point: CGPoint, eoFill: Bool) -> Bool
+  @available(iOS 2.0, *)
+  func apply(info: UnsafeMutableRawPointer?, function: CGPathApplierFunction)
+  @available(iOS 11.0, *)
+  func applyWithBlock(_ block: (UnsafePointer<CGPathElement>) -> Void)
+  @available(iOS 16.0, *)
+  func __normalized(eoFill evenOddFillRule: Bool) -> CGPath?
+  @available(iOS 16.0, *)
+  func __union(other maskPath: CGPath, eoFill evenOddFillRule: Bool) -> CGPath?
+  @available(iOS 16.0, *)
+  func __intersection(other maskPath: CGPath, eoFill evenOddFillRule: Bool) -> CGPath?
+  @available(iOS 16.0, *)
+  func __subtracting(other maskPath: CGPath, eoFill evenOddFillRule: Bool) -> CGPath?
+  @available(iOS 16.0, *)
+  func __symmetricDifference(other maskPath: CGPath, eoFill evenOddFillRule: Bool) -> CGPath?
+  @available(iOS 16.0, *)
+  func __lineSubtracting(other maskPath: CGPath, eoFill evenOddFillRule: Bool) -> CGPath?
+  @available(iOS 16.0, *)
+  func __lineIntersection(other maskPath: CGPath, eoFill evenOddFillRule: Bool) -> CGPath?
+  @available(iOS 16.0, *)
+  func __componentsSeparated(eoFill evenOddFillRule: Bool) -> CFArray?
+  @available(iOS 16.0, *)
+  func __flattened(threshold flatteningThreshold: CGFloat) -> CGPath?
+  @available(iOS 16.0, *)
+  func __intersects(other path2: CGPath, eoFill evenOddFillRule: Bool) -> Bool
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.init()")
+func CGPathCreateMutable() -> CGMutablePath
+extension CGMutablePath {
+  @available(iOS 2.0, *)
+  /*not inherited*/ init()
+  @available(iOS 7.0, *)
+  func __addRoundedRect(transform: UnsafePointer<CGAffineTransform>?, rect: CGRect, cornerWidth: CGFloat, cornerHeight: CGFloat)
+
+  /*** Path construction functions. ***/
+  @available(iOS 2.0, *)
+  func __moveTo(transform m: UnsafePointer<CGAffineTransform>?, x: CGFloat, y: CGFloat)
+  @available(iOS 2.0, *)
+  func __addLineTo(transform m: UnsafePointer<CGAffineTransform>?, x: CGFloat, y: CGFloat)
+  @available(iOS 2.0, *)
+  func __addQuadCurve(transform m: UnsafePointer<CGAffineTransform>?, cpx: CGFloat, cpy: CGFloat, endingAtX x: CGFloat, y: CGFloat)
+  @available(iOS 2.0, *)
+  func __addCurve(transform m: UnsafePointer<CGAffineTransform>?, cp1x: CGFloat, cp1y: CGFloat, cp2x: CGFloat, cp2y: CGFloat, endingAtX x: CGFloat, y: CGFloat)
+  @available(iOS 2.0, *)
+  func closeSubpath()
+
+  /*** Path construction convenience functions. ***/
+  @available(iOS 2.0, *)
+  func __addRect(transform m: UnsafePointer<CGAffineTransform>?, rect: CGRect)
+  @available(iOS 2.0, *)
+  func __addRects(transform m: UnsafePointer<CGAffineTransform>?, rects: UnsafePointer<CGRect>?, count: Int)
+  @available(iOS 2.0, *)
+  func __addLines(transform m: UnsafePointer<CGAffineTransform>?, between points: UnsafePointer<CGPoint>?, count: Int)
+  @available(iOS 2.0, *)
+  func __addEllipse(transform m: UnsafePointer<CGAffineTransform>?, rect: CGRect)
+  @available(iOS 5.0, *)
+  func __addRelativeArc(transform matrix: UnsafePointer<CGAffineTransform>?, x: CGFloat, y: CGFloat, radius: CGFloat, startAngle: CGFloat, delta: CGFloat)
+  @available(iOS 2.0, *)
+  func __addArc(transform m: UnsafePointer<CGAffineTransform>?, x: CGFloat, y: CGFloat, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool)
+  @available(iOS 2.0, *)
+  func __addArc(transform m: UnsafePointer<CGAffineTransform>?, x1: CGFloat, y1: CGFloat, x2: CGFloat, y2: CGFloat, radius: CGFloat)
+  @available(iOS 2.0, *)
+  func __addPath(transform m: UnsafePointer<CGAffineTransform>?, path path2: CGPath)
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.copy(self:)")
+func CGPathCreateCopy(_ path: CGPath) -> CGPath?
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.copy(self:using:)")
+func CGPathCreateCopyByTransformingPath(_ path: CGPath, _ transform: UnsafePointer<CGAffineTransform>?) -> CGPath?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.mutableCopy(self:)")
+func CGPathCreateMutableCopy(_ path: CGPath) -> CGMutablePath?
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.mutableCopy(self:using:)")
+func CGPathCreateMutableCopyByTransformingPath(_ path: CGPath, _ transform: UnsafePointer<CGAffineTransform>?) -> CGMutablePath?
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.init(rect:transform:)")
+func CGPathCreateWithRect(_ rect: CGRect, _ transform: UnsafePointer<CGAffineTransform>?) -> CGPath
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.init(ellipseIn:transform:)")
+func CGPathCreateWithEllipseInRect(_ rect: CGRect, _ transform: UnsafePointer<CGAffineTransform>?) -> CGPath
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.init(roundedRect:cornerWidth:cornerHeight:transform:)")
+func CGPathCreateWithRoundedRect(_ rect: CGRect, _ cornerWidth: CGFloat, _ cornerHeight: CGFloat, _ transform: UnsafePointer<CGAffineTransform>?) -> CGPath
+@available(iOS 7.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addRoundedRect(self:transform:rect:cornerWidth:cornerHeight:)")
+func CGPathAddRoundedRect(_ path: CGMutablePath, _ transform: UnsafePointer<CGAffineTransform>?, _ rect: CGRect, _ cornerWidth: CGFloat, _ cornerHeight: CGFloat)
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.init(__byDashing:transform:phase:lengths:count:)")
+func __CGPathCreateCopyByDashingPath(_ path: CGPath, _ transform: UnsafePointer<CGAffineTransform>?, _ phase: CGFloat, _ lengths: UnsafePointer<CGFloat>?, _ count: Int) -> CGPath?
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.init(__byStroking:transform:lineWidth:lineCap:lineJoin:miterLimit:)")
+func __CGPathCreateCopyByStrokingPath(_ path: CGPath, _ transform: UnsafePointer<CGAffineTransform>?, _ lineWidth: CGFloat, _ lineCap: CGLineCap, _ lineJoin: CGLineJoin, _ miterLimit: CGFloat) -> CGPath?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGPathRetain(_ path: CGPath) -> CGPath
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGPathRelease(_ path: CGPath)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__equalTo(self:_:)")
+func __CGPathEqualToPath(_ path1: CGPath, _ path2: CGPath) -> Bool
+
+/*** Path construction functions. ***/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__moveTo(self:transform:x:y:)")
+func __CGPathMoveToPoint(_ path: CGMutablePath, _ m: UnsafePointer<CGAffineTransform>?, _ x: CGFloat, _ y: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addLineTo(self:transform:x:y:)")
+func __CGPathAddLineToPoint(_ path: CGMutablePath, _ m: UnsafePointer<CGAffineTransform>?, _ x: CGFloat, _ y: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addQuadCurve(self:transform:cpx:cpy:endingAtX:y:)")
+func __CGPathAddQuadCurveToPoint(_ path: CGMutablePath, _ m: UnsafePointer<CGAffineTransform>?, _ cpx: CGFloat, _ cpy: CGFloat, _ x: CGFloat, _ y: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addCurve(self:transform:cp1x:cp1y:cp2x:cp2y:endingAtX:y:)")
+func __CGPathAddCurveToPoint(_ path: CGMutablePath, _ m: UnsafePointer<CGAffineTransform>?, _ cp1x: CGFloat, _ cp1y: CGFloat, _ cp2x: CGFloat, _ cp2y: CGFloat, _ x: CGFloat, _ y: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.closeSubpath(self:)")
+func CGPathCloseSubpath(_ path: CGMutablePath)
+
+/*** Path construction convenience functions. ***/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addRect(self:transform:rect:)")
+func __CGPathAddRect(_ path: CGMutablePath, _ m: UnsafePointer<CGAffineTransform>?, _ rect: CGRect)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addRects(self:transform:rects:count:)")
+func __CGPathAddRects(_ path: CGMutablePath, _ m: UnsafePointer<CGAffineTransform>?, _ rects: UnsafePointer<CGRect>?, _ count: Int)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addLines(self:transform:between:count:)")
+func __CGPathAddLines(_ path: CGMutablePath, _ m: UnsafePointer<CGAffineTransform>?, _ points: UnsafePointer<CGPoint>?, _ count: Int)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addEllipse(self:transform:rect:)")
+func __CGPathAddEllipseInRect(_ path: CGMutablePath, _ m: UnsafePointer<CGAffineTransform>?, _ rect: CGRect)
+@available(iOS 5.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addRelativeArc(self:transform:x:y:radius:startAngle:delta:)")
+func __CGPathAddRelativeArc(_ path: CGMutablePath, _ matrix: UnsafePointer<CGAffineTransform>?, _ x: CGFloat, _ y: CGFloat, _ radius: CGFloat, _ startAngle: CGFloat, _ delta: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addArc(self:transform:x:y:radius:startAngle:endAngle:clockwise:)")
+func __CGPathAddArc(_ path: CGMutablePath, _ m: UnsafePointer<CGAffineTransform>?, _ x: CGFloat, _ y: CGFloat, _ radius: CGFloat, _ startAngle: CGFloat, _ endAngle: CGFloat, _ clockwise: Bool)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addArc(self:transform:x1:y1:x2:y2:radius:)")
+func __CGPathAddArcToPoint(_ path: CGMutablePath, _ m: UnsafePointer<CGAffineTransform>?, _ x1: CGFloat, _ y1: CGFloat, _ x2: CGFloat, _ y2: CGFloat, _ radius: CGFloat)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGMutablePath.__addPath(self:transform:path:)")
+func __CGPathAddPath(_ path1: CGMutablePath, _ m: UnsafePointer<CGAffineTransform>?, _ path2: CGPath)
+
+/*** Path information functions. ***/
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPath.isEmpty(self:)")
+func CGPathIsEmpty(_ path: CGPath) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.isRect(self:_:)")
+func CGPathIsRect(_ path: CGPath, _ rect: UnsafeMutablePointer<CGRect>?) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPath.currentPoint(self:)")
+func CGPathGetCurrentPoint(_ path: CGPath) -> CGPoint
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPath.boundingBox(self:)")
+func CGPathGetBoundingBox(_ path: CGPath) -> CGRect
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPath.boundingBoxOfPath(self:)")
+func CGPathGetPathBoundingBox(_ path: CGPath) -> CGRect
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__containsPoint(self:transform:point:eoFill:)")
+func __CGPathContainsPoint(_ path: CGPath, _ m: UnsafePointer<CGAffineTransform>?, _ point: CGPoint, _ eoFill: Bool) -> Bool
+enum CGPathElementType : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case moveToPoint
+  @available(swift, obsoleted: 3, renamed: "moveToPoint")
+  static var MoveToPoint: CGPathElementType { get }
+  case addLineToPoint
+  @available(swift, obsoleted: 3, renamed: "addLineToPoint")
+  static var AddLineToPoint: CGPathElementType { get }
+  case addQuadCurveToPoint
+  @available(swift, obsoleted: 3, renamed: "addQuadCurveToPoint")
+  static var AddQuadCurveToPoint: CGPathElementType { get }
+  case addCurveToPoint
+  @available(swift, obsoleted: 3, renamed: "addCurveToPoint")
+  static var AddCurveToPoint: CGPathElementType { get }
+  case closeSubpath
+  @available(swift, obsoleted: 3, renamed: "closeSubpath")
+  static var CloseSubpath: CGPathElementType { get }
+}
+struct CGPathElement {
+  init(type: CGPathElementType, points: UnsafeMutablePointer<CGPoint>)
+  var type: CGPathElementType
+  var points: UnsafeMutablePointer<CGPoint>
+}
+typealias CGPathApplierFunction = @convention(c) (UnsafeMutableRawPointer?, UnsafePointer<CGPathElement>) -> Void
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.apply(self:info:function:)")
+func CGPathApply(_ path: CGPath, _ info: UnsafeMutableRawPointer?, _ function: CGPathApplierFunction)
+typealias CGPathApplyBlock = (UnsafePointer<CGPathElement>) -> Void
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.applyWithBlock(self:_:)")
+func CGPathApplyWithBlock(_ path: CGPath, _ block: (UnsafePointer<CGPathElement>) -> Void)
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__normalized(self:eoFill:)")
+func __CGPathCreateCopyByNormalizing(_ path: CGPath, _ evenOddFillRule: Bool) -> CGPath?
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__union(self:other:eoFill:)")
+func __CGPathCreateCopyByUnioningPath(_ path: CGPath, _ maskPath: CGPath, _ evenOddFillRule: Bool) -> CGPath?
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__intersection(self:other:eoFill:)")
+func __CGPathCreateCopyByIntersectingPath(_ path: CGPath, _ maskPath: CGPath, _ evenOddFillRule: Bool) -> CGPath?
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__subtracting(self:other:eoFill:)")
+func __CGPathCreateCopyBySubtractingPath(_ path: CGPath, _ maskPath: CGPath, _ evenOddFillRule: Bool) -> CGPath?
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__symmetricDifference(self:other:eoFill:)")
+func __CGPathCreateCopyBySymmetricDifferenceOfPath(_ path: CGPath, _ maskPath: CGPath, _ evenOddFillRule: Bool) -> CGPath?
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__lineSubtracting(self:other:eoFill:)")
+func __CGPathCreateCopyOfLineBySubtractingPath(_ path: CGPath, _ maskPath: CGPath, _ evenOddFillRule: Bool) -> CGPath?
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__lineIntersection(self:other:eoFill:)")
+func __CGPathCreateCopyOfLineByIntersectingPath(_ path: CGPath, _ maskPath: CGPath, _ evenOddFillRule: Bool) -> CGPath?
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__componentsSeparated(self:eoFill:)")
+func __CGPathCreateSeparateComponents(_ path: CGPath, _ evenOddFillRule: Bool) -> CFArray?
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__flattened(self:threshold:)")
+func __CGPathCreateCopyByFlattening(_ path: CGPath, _ flatteningThreshold: CGFloat) -> CGPath?
+@available(iOS 16.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPath.__intersects(self:other:eoFill:)")
+func __CGPathIntersectsPath(_ path1: CGPath, _ path2: CGPath, _ evenOddFillRule: Bool) -> Bool

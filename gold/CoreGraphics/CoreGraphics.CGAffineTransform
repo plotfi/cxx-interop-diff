@@ -1,0 +1,58 @@
+
+@available(iOS 2.0, *)
+let CGAffineTransformIdentity: CGAffineTransform
+@available(iOS 2.0, *)
+@_effects(readonly) func CGAffineTransformMake(_ a: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat, _ tx: CGFloat, _ ty: CGFloat) -> CGAffineTransform
+@available(iOS 2.0, *)
+@_effects(readonly) func CGAffineTransformMakeTranslation(_ tx: CGFloat, _ ty: CGFloat) -> CGAffineTransform
+@available(iOS 2.0, *)
+@_effects(readonly) func CGAffineTransformMakeScale(_ sx: CGFloat, _ sy: CGFloat) -> CGAffineTransform
+@available(iOS 2.0, *)
+@_effects(readonly) func CGAffineTransformMakeRotation(_ angle: CGFloat) -> CGAffineTransform
+@available(iOS 2.0, *)
+@_effects(readonly) func CGAffineTransformIsIdentity(_ t: CGAffineTransform) -> Bool
+@available(iOS 2.0, *)
+@_effects(readonly) func CGAffineTransformTranslate(_ t: CGAffineTransform, _ tx: CGFloat, _ ty: CGFloat) -> CGAffineTransform
+@available(iOS 2.0, *)
+@_effects(readonly) func CGAffineTransformScale(_ t: CGAffineTransform, _ sx: CGFloat, _ sy: CGFloat) -> CGAffineTransform
+@available(iOS 2.0, *)
+@_effects(readonly) func CGAffineTransformRotate(_ t: CGAffineTransform, _ angle: CGFloat) -> CGAffineTransform
+@available(iOS 2.0, *)
+@_effects(readonly) func CGAffineTransformInvert(_ t: CGAffineTransform) -> CGAffineTransform
+@available(iOS 2.0, *)
+@_effects(readonly) func CGAffineTransformConcat(_ t1: CGAffineTransform, _ t2: CGAffineTransform) -> CGAffineTransform
+@available(iOS 2.0, *)
+@_effects(readonly) func CGAffineTransformEqualToTransform(_ t1: CGAffineTransform, _ t2: CGAffineTransform) -> Bool
+@available(iOS 2.0, *)
+@_effects(readonly) func CGPointApplyAffineTransform(_ point: CGPoint, _ t: CGAffineTransform) -> CGPoint
+@available(iOS 2.0, *)
+@_effects(readonly) func CGSizeApplyAffineTransform(_ size: CGSize, _ t: CGAffineTransform) -> CGSize
+@available(iOS 2.0, *)
+@_effects(readonly) func CGRectApplyAffineTransform(_ rect: CGRect, _ t: CGAffineTransform) -> CGRect
+
+/** @abstract Decompose a CGAffineTransform into a scale * shear * rotation * translation
+ *  @discussion This decomposition method may be used to provide insight into what a
+ *              arbitrary CGAffineTransform does. This may be necessary, for example, because
+ *              an algorithm would like to know what the scaling portion of a transform is before rotation,
+ *              or perhaps because some part of a transform is undesired and your application would like
+ *              to replace a portion of it with a different transformation.
+ *
+ *              Since there are many ways to make a affine transform out of other affine transforms
+ *              this method can not tell us the ordering of geometric steps used to create the original
+ *              CGAffineTransform. It tells us what the transform does, not how it was made.
+ *
+ *  @param transform        The CGAffineTransform to decompose
+ *  @return A decomposed set of geometric operations, the product of which is the CGAffineTransform.  */
+@available(iOS 16.0, *)
+@_effects(readonly) func __CGAffineTransformDecompose(_ transform: CGAffineTransform) -> CGAffineTransformComponents
+
+/** @abstract Create CGAffineTransform from scale * shear * rotation * translation CGAffineTransformComponents
+ *  @param components        The set of CGAffineTransformComponents to use to create a new CGAffineTransform
+ *  @return A new CGAffineTransform built from the provided components  */
+@available(iOS 16.0, *)
+@_effects(readonly) func __CGAffineTransformMakeWithComponents(_ components: CGAffineTransformComponents) -> CGAffineTransform
+
+/*** Definitions of inline functions. ***/
+func __CGAffineTransformMake(_ a: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat, _ tx: CGFloat, _ ty: CGFloat) -> CGAffineTransform
+func __CGPointApplyAffineTransform(_ point: CGPoint, _ t: CGAffineTransform) -> CGPoint
+func __CGSizeApplyAffineTransform(_ size: CGSize, _ t: CGAffineTransform) -> CGSize

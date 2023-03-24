@@ -1,0 +1,46 @@
+
+class CGPattern : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CGPattern")
+typealias CGPatternRef = CGPattern
+enum CGPatternTiling : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case noDistortion
+  @available(swift, obsoleted: 3, renamed: "noDistortion")
+  static var NoDistortion: CGPatternTiling { get }
+  case constantSpacingMinimalDistortion
+  @available(swift, obsoleted: 3, renamed: "constantSpacingMinimalDistortion")
+  static var ConstantSpacingMinimalDistortion: CGPatternTiling { get }
+  case constantSpacing
+  @available(swift, obsoleted: 3, renamed: "constantSpacing")
+  static var ConstantSpacing: CGPatternTiling { get }
+}
+typealias CGPatternDrawPatternCallback = @convention(c) (UnsafeMutableRawPointer?, CGContext) -> Void
+typealias CGPatternReleaseInfoCallback = @convention(c) (UnsafeMutableRawPointer?) -> Void
+struct CGPatternCallbacks {
+  init()
+  init(version: UInt32, drawPattern: CGPatternDrawPatternCallback?, releaseInfo: CGPatternReleaseInfoCallback?)
+  var version: UInt32
+  var drawPattern: CGPatternDrawPatternCallback?
+  var releaseInfo: CGPatternReleaseInfoCallback?
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPattern.typeID()")
+func CGPatternGetTypeID() -> CFTypeID
+extension CGPattern {
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(info: UnsafeMutableRawPointer?, bounds: CGRect, matrix: CGAffineTransform, xStep: CGFloat, yStep: CGFloat, tiling: CGPatternTiling, isColored: Bool, callbacks: UnsafePointer<CGPatternCallbacks>)
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPattern.init(info:bounds:matrix:xStep:yStep:tiling:isColored:callbacks:)")
+func CGPatternCreate(_ info: UnsafeMutableRawPointer?, _ bounds: CGRect, _ matrix: CGAffineTransform, _ xStep: CGFloat, _ yStep: CGFloat, _ tiling: CGPatternTiling, _ isColored: Bool, _ callbacks: UnsafePointer<CGPatternCallbacks>) -> CGPattern?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGPatternRetain(_ pattern: CGPattern) -> CGPattern
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGPatternRelease(_ pattern: CGPattern)

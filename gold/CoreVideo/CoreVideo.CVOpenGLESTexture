@@ -1,0 +1,58 @@
+
+
+/**
+    @typedef	CVOpenGLESTextureRef
+    @abstract   OpenGLES texture based image buffer
+
+*/
+typealias CVOpenGLESTexture = CVImageBuffer
+
+/**
+    @typedef	CVOpenGLESTextureRef
+    @abstract   OpenGLES texture based image buffer
+
+*/
+@available(swift, obsoleted: 3, renamed: "CVOpenGLESTexture")
+typealias CVOpenGLESTextureRef = CVOpenGLESTexture
+@available(iOS, introduced: 5.0, deprecated: 12.0, message: "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)")
+func CVOpenGLESTextureGetTypeID() -> CFTypeID
+
+/**
+    @function   CVOpenGLESTextureGetTarget
+    @abstract   Returns the texture target (eg. 2D vs. rect texture extension) of the CVOpenGLESTexture
+    @param      image Target CVOpenGLESTexture
+    @result     OpenGLES texture target
+*/
+@available(iOS, introduced: 5.0, deprecated: 12.0, message: "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)")
+func CVOpenGLESTextureGetTarget(_ image: CVOpenGLESTexture) -> GLenum
+
+/**
+    @function   CVOpenGLESTextureGetName
+    @abstract   Returns the texture target name of the CVOpenGLESTexture
+    @param      image Target CVOpenGLESTexture
+    @result     OpenGLES texture target name
+*/
+@available(iOS, introduced: 5.0, deprecated: 12.0, message: "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)")
+func CVOpenGLESTextureGetName(_ image: CVOpenGLESTexture) -> GLuint
+
+/**
+    @function   CVOpenGLESTextureIsFlipped
+    @abstract   Returns whether the image is flipped vertically or not.
+    @param      image Target CVOpenGLESTexture
+    @result     True if 0,0 in the texture is upper left, false if 0,0 is lower left
+*/
+@available(iOS, introduced: 5.0, deprecated: 12.0, message: "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)")
+func CVOpenGLESTextureIsFlipped(_ image: CVOpenGLESTexture) -> Bool
+
+/**
+    @function   CVOpenGLESTextureGetCleanTexCoords 
+    @abstract   Returns convenient normalized texture coordinates for the part of the image that should be displayed
+    @discussion This function automatically takes into account whether or not the texture is flipped.
+    @param      image Target CVOpenGLESTexture
+    @param      lowerLeft  - array of two GLfloats where the s and t normalized texture coordinates of the lower left corner of the image will be stored
+    @param      lowerRight - array of two GLfloats where the s and t normalized texture coordinates of the lower right corner of the image will be stored
+    @param      upperRight - array of two GLfloats where the s and t normalized texture coordinates of the upper right corner of the image will be stored
+    @param      upperLeft  - array of two GLfloats where the s and t normalized texture coordinates of the upper right corner of the image will be stored
+*/
+@available(iOS, introduced: 5.0, deprecated: 12.0, message: "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)")
+func CVOpenGLESTextureGetCleanTexCoords(_ image: CVOpenGLESTexture, _ lowerLeft: UnsafeMutablePointer<GLfloat>, _ lowerRight: UnsafeMutablePointer<GLfloat>, _ upperRight: UnsafeMutablePointer<GLfloat>, _ upperLeft: UnsafeMutablePointer<GLfloat>)

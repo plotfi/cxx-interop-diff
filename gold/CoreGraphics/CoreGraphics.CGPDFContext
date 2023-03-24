@@ -1,0 +1,289 @@
+
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.init(consumer:mediaBox:_:)")
+func CGPDFContextCreate(_ consumer: CGDataConsumer, _ mediaBox: UnsafePointer<CGRect>?, _ auxiliaryInfo: CFDictionary?) -> CGContext?
+extension CGContext {
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(consumer: CGDataConsumer, mediaBox: UnsafePointer<CGRect>?, _ auxiliaryInfo: CFDictionary?)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(_ url: CFURL, mediaBox: UnsafePointer<CGRect>?, _ auxiliaryInfo: CFDictionary?)
+  @available(iOS 2.0, *)
+  func closePDF()
+  @available(iOS 2.0, *)
+  func beginPDFPage(_ pageInfo: CFDictionary?)
+  @available(iOS 2.0, *)
+  func endPDFPage()
+  @available(iOS 4.0, *)
+  func addDocumentMetadata(_ metadata: CFData?)
+  @available(iOS 2.0, *)
+  func setURL(_ url: CFURL, for rect: CGRect)
+  @available(iOS 2.0, *)
+  func addDestination(_ name: CFString, at point: CGPoint)
+  @available(iOS 2.0, *)
+  func setDestination(_ name: CFString, for rect: CGRect)
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.init(_:mediaBox:_:)")
+func CGPDFContextCreateWithURL(_ url: CFURL, _ mediaBox: UnsafePointer<CGRect>?, _ auxiliaryInfo: CFDictionary?) -> CGContext?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.closePDF(self:)")
+func CGPDFContextClose(_ context: CGContext)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.beginPDFPage(self:_:)")
+func CGPDFContextBeginPage(_ context: CGContext, _ pageInfo: CFDictionary?)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.endPDFPage(self:)")
+func CGPDFContextEndPage(_ context: CGContext)
+@available(iOS 4.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.addDocumentMetadata(self:_:)")
+func CGPDFContextAddDocumentMetadata(_ context: CGContext, _ metadata: CFData?)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setURL(self:_:for:)")
+func CGPDFContextSetURLForRect(_ context: CGContext, _ url: CFURL, _ rect: CGRect)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.addDestination(self:_:at:)")
+func CGPDFContextAddDestinationAtPoint(_ context: CGContext, _ name: CFString, _ point: CGPoint)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.setDestination(self:_:for:)")
+func CGPDFContextSetDestinationForRect(_ context: CGContext, _ name: CFString, _ rect: CGRect)
+@available(iOS 2.0, *)
+let kCGPDFContextMediaBox: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextCropBox: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextBleedBox: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextTrimBox: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextArtBox: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextTitle: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextAuthor: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextSubject: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextKeywords: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextCreator: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextOwnerPassword: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextUserPassword: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextEncryptionKeyLength: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextAllowsPrinting: CFString
+@available(iOS 2.0, *)
+let kCGPDFContextAllowsCopying: CFString
+@available(iOS 14.0, *)
+let kCGPDFContextOutputIntent: CFString
+@available(iOS 14.0, *)
+let kCGPDFXOutputIntentSubtype: CFString
+@available(iOS 14.0, *)
+let kCGPDFXOutputConditionIdentifier: CFString
+@available(iOS 14.0, *)
+let kCGPDFXOutputCondition: CFString
+@available(iOS 14.0, *)
+let kCGPDFXRegistryName: CFString
+@available(iOS 14.0, *)
+let kCGPDFXInfo: CFString
+@available(iOS 14.0, *)
+let kCGPDFXDestinationOutputProfile: CFString
+@available(iOS 14.0, *)
+let kCGPDFContextOutputIntents: CFString
+@available(iOS 11.0, *)
+let kCGPDFContextAccessPermissions: CFString
+@available(iOS 11.0, *)
+func CGPDFContextSetOutline(_ context: CGContext, _ outline: CFDictionary?)
+@available(iOS 14.0, *)
+let kCGPDFContextCreateLinearizedPDF: CFString
+@available(iOS 14.0, *)
+let kCGPDFContextCreatePDFA: CFString
+@available(iOS 13.0, *)
+enum CGPDFTagType : Int32, @unchecked Sendable {
+  init?(rawValue: Int32)
+  var rawValue: Int32 { get }
+  typealias RawValue = Int32
+  case document
+  @available(swift, obsoleted: 3, renamed: "document")
+  static var Document: CGPDFTagType { get }
+  case part
+  @available(swift, obsoleted: 3, renamed: "part")
+  static var Part: CGPDFTagType { get }
+  case art
+  @available(swift, obsoleted: 3, renamed: "art")
+  static var Art: CGPDFTagType { get }
+  case section
+  @available(swift, obsoleted: 3, renamed: "section")
+  static var Section: CGPDFTagType { get }
+  case div
+  @available(swift, obsoleted: 3, renamed: "div")
+  static var Div: CGPDFTagType { get }
+  case blockQuote
+  @available(swift, obsoleted: 3, renamed: "blockQuote")
+  static var BlockQuote: CGPDFTagType { get }
+  case caption
+  @available(swift, obsoleted: 3, renamed: "caption")
+  static var Caption: CGPDFTagType { get }
+  case TOC
+  case TOCI
+  case index
+  @available(swift, obsoleted: 3, renamed: "index")
+  static var Index: CGPDFTagType { get }
+  case nonStructure
+  @available(swift, obsoleted: 3, renamed: "nonStructure")
+  static var NonStructure: CGPDFTagType { get }
+  case `private`
+  @available(swift, obsoleted: 3, renamed: "private")
+  static var Private: CGPDFTagType { get }
+  case paragraph
+  @available(swift, obsoleted: 3, renamed: "paragraph")
+  static var Paragraph: CGPDFTagType { get }
+  case header
+  @available(swift, obsoleted: 3, renamed: "header")
+  static var Header: CGPDFTagType { get }
+  case header1
+  @available(swift, obsoleted: 3, renamed: "header1")
+  static var Header1: CGPDFTagType { get }
+  case header2
+  @available(swift, obsoleted: 3, renamed: "header2")
+  static var Header2: CGPDFTagType { get }
+  case header3
+  @available(swift, obsoleted: 3, renamed: "header3")
+  static var Header3: CGPDFTagType { get }
+  case header4
+  @available(swift, obsoleted: 3, renamed: "header4")
+  static var Header4: CGPDFTagType { get }
+  case header5
+  @available(swift, obsoleted: 3, renamed: "header5")
+  static var Header5: CGPDFTagType { get }
+  case header6
+  @available(swift, obsoleted: 3, renamed: "header6")
+  static var Header6: CGPDFTagType { get }
+  case list
+  @available(swift, obsoleted: 3, renamed: "list")
+  static var List: CGPDFTagType { get }
+  case listItem
+  @available(swift, obsoleted: 3, renamed: "listItem")
+  static var ListItem: CGPDFTagType { get }
+  case label
+  @available(swift, obsoleted: 3, renamed: "label")
+  static var Label: CGPDFTagType { get }
+  case listBody
+  @available(swift, obsoleted: 3, renamed: "listBody")
+  static var ListBody: CGPDFTagType { get }
+  case table
+  @available(swift, obsoleted: 3, renamed: "table")
+  static var Table: CGPDFTagType { get }
+  case tableRow
+  @available(swift, obsoleted: 3, renamed: "tableRow")
+  static var TableRow: CGPDFTagType { get }
+  case tableHeaderCell
+  @available(swift, obsoleted: 3, renamed: "tableHeaderCell")
+  static var TableHeaderCell: CGPDFTagType { get }
+  case tableDataCell
+  @available(swift, obsoleted: 3, renamed: "tableDataCell")
+  static var TableDataCell: CGPDFTagType { get }
+  case tableHeader
+  @available(swift, obsoleted: 3, renamed: "tableHeader")
+  static var TableHeader: CGPDFTagType { get }
+  case tableBody
+  @available(swift, obsoleted: 3, renamed: "tableBody")
+  static var TableBody: CGPDFTagType { get }
+  case tableFooter
+  @available(swift, obsoleted: 3, renamed: "tableFooter")
+  static var TableFooter: CGPDFTagType { get }
+  case span
+  @available(swift, obsoleted: 3, renamed: "span")
+  static var Span: CGPDFTagType { get }
+  case quote
+  @available(swift, obsoleted: 3, renamed: "quote")
+  static var Quote: CGPDFTagType { get }
+  case note
+  @available(swift, obsoleted: 3, renamed: "note")
+  static var Note: CGPDFTagType { get }
+  case reference
+  @available(swift, obsoleted: 3, renamed: "reference")
+  static var Reference: CGPDFTagType { get }
+  case bibliography
+  @available(swift, obsoleted: 3, renamed: "bibliography")
+  static var Bibliography: CGPDFTagType { get }
+  case code
+  @available(swift, obsoleted: 3, renamed: "code")
+  static var Code: CGPDFTagType { get }
+  case link
+  @available(swift, obsoleted: 3, renamed: "link")
+  static var Link: CGPDFTagType { get }
+  case annotation
+  @available(swift, obsoleted: 3, renamed: "annotation")
+  static var Annotation: CGPDFTagType { get }
+  case ruby
+  @available(swift, obsoleted: 3, renamed: "ruby")
+  static var Ruby: CGPDFTagType { get }
+  case rubyBaseText
+  @available(swift, obsoleted: 3, renamed: "rubyBaseText")
+  static var RubyBaseText: CGPDFTagType { get }
+  case rubyAnnotationText
+  @available(swift, obsoleted: 3, renamed: "rubyAnnotationText")
+  static var RubyAnnotationText: CGPDFTagType { get }
+  case rubyPunctuation
+  @available(swift, obsoleted: 3, renamed: "rubyPunctuation")
+  static var RubyPunctuation: CGPDFTagType { get }
+  case warichu
+  @available(swift, obsoleted: 3, renamed: "warichu")
+  static var Warichu: CGPDFTagType { get }
+  case warichuText
+  @available(swift, obsoleted: 3, renamed: "warichuText")
+  static var WarichuText: CGPDFTagType { get }
+  case warichuPunctiation
+  @available(swift, obsoleted: 3, renamed: "warichuPunctiation")
+  static var WarichuPunctiation: CGPDFTagType { get }
+  case figure
+  @available(swift, obsoleted: 3, renamed: "figure")
+  static var Figure: CGPDFTagType { get }
+  case formula
+  @available(swift, obsoleted: 3, renamed: "formula")
+  static var Formula: CGPDFTagType { get }
+  case form
+  @available(swift, obsoleted: 3, renamed: "form")
+  static var Form: CGPDFTagType { get }
+}
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFTagType.name(self:)")
+func CGPDFTagTypeGetName(_ tagType: CGPDFTagType) -> UnsafePointer<CChar>
+extension CGPDFTagType {
+  @available(iOS 13.0, *)
+  var name: UnsafePointer<CChar> { get }
+}
+struct CGPDFTagProperty : Hashable, Equatable, _SwiftNewtypeWrapper, RawRepresentable, @unchecked Sendable {
+  init(rawValue: CFString)
+  let rawValue: CFString
+  typealias RawValue = CFString
+}
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPDFTagProperty.actualText")
+let kCGPDFTagPropertyActualText: CGPDFTagProperty
+extension CGPDFTagProperty {
+  @available(iOS 13.0, *)
+  static let actualText: CGPDFTagProperty
+  @available(iOS 13.0, *)
+  static let alternativeText: CGPDFTagProperty
+  @available(iOS 13.0, *)
+  static let titleText: CGPDFTagProperty
+  @available(iOS 13.0, *)
+  static let languageText: CGPDFTagProperty
+}
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPDFTagProperty.alternativeText")
+let kCGPDFTagPropertyAlternativeText: CGPDFTagProperty
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPDFTagProperty.titleText")
+let kCGPDFTagPropertyTitleText: CGPDFTagProperty
+@available(iOS 13.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPDFTagProperty.languageText")
+let kCGPDFTagPropertyLanguageText: CGPDFTagProperty
+@available(iOS 13.0, *)
+func CGPDFContextBeginTag(_ context: CGContext, _ tagType: CGPDFTagType, _ tagProperties: CFDictionary)
+@available(iOS 13.0, *)
+func CGPDFContextEndTag(_ context: CGContext)

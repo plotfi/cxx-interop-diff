@@ -1,0 +1,45 @@
+
+class CGLayer : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CGLayer")
+typealias CGLayerRef = CGLayer
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGLayer.init(_:size:auxiliaryInfo:)")
+func CGLayerCreateWithContext(_ context: CGContext, _ size: CGSize, _ auxiliaryInfo: CFDictionary?) -> CGLayer?
+extension CGLayer {
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(_ context: CGContext, size: CGSize, auxiliaryInfo: CFDictionary?)
+  @available(iOS 2.0, *)
+  var size: CGSize { get }
+  @available(iOS 2.0, *)
+  var context: CGContext? { get }
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+}
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGLayerRetain(_ layer: CGLayer) -> CGLayer
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGLayerRelease(_ layer: CGLayer)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGLayer.size(self:)")
+func CGLayerGetSize(_ layer: CGLayer) -> CGSize
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGLayer.context(self:)")
+func CGLayerGetContext(_ layer: CGLayer) -> CGContext?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__draw(self:in:layer:)")
+func __CGContextDrawLayerInRect(_ context: CGContext, _ rect: CGRect, _ layer: CGLayer)
+extension CGContext {
+  @available(iOS 2.0, *)
+  func __draw(in rect: CGRect, layer: CGLayer)
+  @available(iOS 2.0, *)
+  func __draw(at point: CGPoint, layer: CGLayer)
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGContext.__draw(self:at:layer:)")
+func __CGContextDrawLayerAtPoint(_ context: CGContext, _ point: CGPoint, _ layer: CGLayer)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGLayer.typeID()")
+func CGLayerGetTypeID() -> CFTypeID

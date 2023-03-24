@@ -1,0 +1,166 @@
+
+@available(iOS 4.0, *)
+let kCVBufferPropagatedAttachmentsKey: CFString
+@available(iOS 4.0, *)
+let kCVBufferNonPropagatedAttachmentsKey: CFString
+@available(iOS 4.0, *)
+let kCVBufferMovieTimeKey: CFString
+@available(iOS 4.0, *)
+let kCVBufferTimeValueKey: CFString
+@available(iOS 4.0, *)
+let kCVBufferTimeScaleKey: CFString
+enum CVAttachmentMode : UInt32, @unchecked Sendable {
+  init?(rawValue: UInt32)
+  var rawValue: UInt32 { get }
+  typealias RawValue = UInt32
+  case shouldNotPropagate
+  @available(swift, obsoleted: 3, renamed: "shouldNotPropagate")
+  static var ShouldNotPropagate: CVAttachmentMode { get }
+  case shouldPropagate
+  @available(swift, obsoleted: 3, renamed: "shouldPropagate")
+  static var ShouldPropagate: CVAttachmentMode { get }
+}
+
+/**
+    @typedef	CVBufferRef
+    @abstract   Base type for all CoreVideo buffers
+
+*/
+class CVBuffer : _CFObject {
+}
+
+/**
+    @typedef	CVBufferRef
+    @abstract   Base type for all CoreVideo buffers
+
+*/
+@available(swift, obsoleted: 3, renamed: "CVBuffer")
+typealias CVBufferRef = CVBuffer
+
+/**
+    @function   CVBufferRetain
+    @abstract   Retains a CVBuffer object
+    @discussion Like CFRetain CVBufferRetain increments the retain count of a CVBuffer object. In contrast to the CF call it is NULL safe.
+    @param      buffer A CVBuffer object that you want to retain.
+    @result     A CVBuffer object that is the same as the passed in buffer.
+*/
+@available(iOS 4.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CVBufferRetain(_ buffer: CVBuffer?) -> Unmanaged<CVBuffer>?
+
+/**
+    @function   CVBufferRelease
+    @abstract   Release a CVBuffer object
+    @discussion Like CFRetain CVBufferRetain decrements the retain count of a CVBuffer object. If that count consequently becomes zero the memory allocated to the object is deallocated and the object is destroyed. In contrast to the CF call it is NULL safe.
+    @param      buffer A CVBuffer object that you want to release.
+*/
+@available(iOS 4.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CVBufferRelease(_ buffer: CVBuffer?)
+
+/**
+    @function   CVBufferSetAttachment
+    @abstract   Sets or adds a attachment of a CVBuffer object
+    @discussion You can attach any CF object to a CVBuffer object to store additional information. CVBufferGetAttachment stores an attachement identified by a key. If the key doesn't exist, the attachment will be added. If the key does exist, the existing attachment will be replaced. In bouth cases the retain count of the attachment will be incremented. The value can be any CFType but nil has no defined behavior.
+    @param      buffer  Target CVBuffer object.
+    @param      key     Key in form of a CFString identifying the desired attachment.
+    @param      value	Attachment in form af a CF object.
+    @param      attachmentMode	Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
+                                a single mode at a time.
+*/
+@available(iOS 4.0, *)
+func CVBufferSetAttachment(_ buffer: CVBuffer, _ key: CFString, _ value: CFTypeRef, _ attachmentMode: CVAttachmentMode)
+
+/**
+    @function   CVBufferGetAttachment
+    @abstract   Returns a specific attachment of a CVBuffer object
+    @discussion You can attach any CF object to a CVBuffer object to store additional information. CVBufferGetAttachment retrieves an attachement identified by a key.
+    @param      buffer  Target CVBuffer object.
+    @param      key	Key in form of a CFString identifying the desired attachment.
+    @param      attachmentMode.  Returns the mode of the attachment, if desired.  May be NULL.
+    @result     If found the attachment object
+*/
+@available(iOS, introduced: 4.0, deprecated: 15.0, renamed: "CVBufferCopyAttachment(_:_:_:)")
+func CVBufferGetAttachment(_ buffer: CVBuffer, _ key: CFString, _ attachmentMode: UnsafeMutablePointer<CVAttachmentMode>?) -> Unmanaged<CFTypeRef>?
+
+/**
+    @function   CVBufferRemoveAttachment
+    @abstract   Removes a specific attachment of a CVBuffer object
+    @discussion CVBufferRemoveAttachment removes an attachement identified by a key. If found the attachement is removed and the retain count decremented.
+    @param      buffer  Target CVBuffer object.
+    @param      key	Key in form of a CFString identifying the desired attachment.
+*/
+@available(iOS 4.0, *)
+func CVBufferRemoveAttachment(_ buffer: CVBuffer, _ key: CFString)
+
+/**
+    @function   CVBufferRemoveAllAttachments
+    @abstract   Removes all attachments of a CVBuffer object
+    @discussion While CVBufferRemoveAttachment removes a specific attachement identified by a key CVBufferRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.
+    @param      buffer  Target CVBuffer object.
+*/
+@available(iOS 4.0, *)
+func CVBufferRemoveAllAttachments(_ buffer: CVBuffer)
+
+/**
+    @function   CVBufferGetAttachments
+    @abstract   Returns all attachments of a CVBuffer object
+    @discussion CVBufferGetAttachments is a convenience call that returns all attachments with their corresponding keys in a CFDictionary.
+    @param      buffer  Target CVBuffer object.
+    @result     A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, the dictionary is empty.  Returns NULL
+		for invalid attachment mode.
+*/
+@available(iOS, introduced: 4.0, deprecated: 15.0, renamed: "CVBufferCopyAttachments(_:_:)")
+func CVBufferGetAttachments(_ buffer: CVBuffer, _ attachmentMode: CVAttachmentMode) -> CFDictionary?
+
+/**
+    @function   CVBufferSetAttachments
+    @abstract   Sets a set of attachments for a CVBuffer
+    @discussion CVBufferSetAttachments is a convenience call that in turn calls CVBufferSetAttachment for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.
+    @param      buffer  Target CVBuffer object.
+*/
+@available(iOS 4.0, *)
+func CVBufferSetAttachments(_ buffer: CVBuffer, _ theAttachments: CFDictionary, _ attachmentMode: CVAttachmentMode)
+
+/**
+    @function   CVBufferPropagateAttachments
+    @abstract   Copy all propagatable attachments from one buffer to another.
+    @discussion CVBufferPropagateAttachments is a convenience call that copies all attachments with a mode of kCVAttachmentMode_ShouldPropagate from one
+                buffer to another.
+    @param      sourceBuffer  CVBuffer to copy attachments from.
+    @param      destinationBuffer  CVBuffer to copy attachments to.
+*/
+@available(iOS 4.0, *)
+func CVBufferPropagateAttachments(_ sourceBuffer: CVBuffer, _ destinationBuffer: CVBuffer)
+
+/**
+    @function   CVBufferCopyAttachments
+    @abstract   Returns a copy of all attachments of a CVBuffer object. It is the caller’s responsibility to release the returned dictionary.
+    @discussion CVBufferCopyAttachments is a convenience call that returns a copy of all attachments with their corresponding keys in a CFDictionary.
+    @param      buffer  Target CVBuffer object.
+    @result     A CFDictionary with all buffer attachments identified by their keys. If no attachment is present or invalid attachment mode,   returns NULL
+*/
+@available(iOS 15.0, *)
+func CVBufferCopyAttachments(_ buffer: CVBuffer, _ attachmentMode: CVAttachmentMode) -> CFDictionary?
+
+/**
+    @function   CVBufferCopyAttachment
+    @abstract   Returns a retained specific attachment of a CVBuffer object. It is the caller’s responsibility to release the returned value.
+    @discussion You can attach any CF object to a CVBuffer object to store additional information. CVBufferCopyAttachment retrieves a retained attachment identified by a key.
+    @param      buffer  Target CVBuffer object.
+    @param      key    Key in form of a CFString identifying the desired attachment.
+    @param      attachmentMode.  Returns the mode of the attachment, if desired.  May be NULL.
+    @result     If found the attachment object, return the value; otherwize, return NULL.
+*/
+@available(iOS 15.0, *)
+func CVBufferCopyAttachment(_ buffer: CVBuffer, _ key: CFString, _ attachmentMode: UnsafeMutablePointer<CVAttachmentMode>?) -> CFTypeRef?
+
+/**
+    @function   CVBufferHasAttachment
+    @abstract   Returns true if an attachment with the passed key is present on a CVBuffer object.
+    @param      buffer  Target CVBuffer object.
+    @param      key    Key in form of a CFString identifying the desired attachment.
+    @result     True if an attachment with this key is present, otherwise false.
+*/
+@available(iOS 15.0, *)
+func CVBufferHasAttachment(_ buffer: CVBuffer, _ key: CFString) -> Bool

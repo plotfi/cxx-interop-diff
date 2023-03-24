@@ -1,0 +1,50 @@
+
+
+/**
+    @enum	CVReturn
+    @abstract   CoreVideo specific error codes
+
+    @constant   kCVReturnSuccess Function executed successfully without errors.
+    @constant   kCVReturnFirst Placeholder to mark the beginning of the range of CVReturn codes.
+    @constant   kCVReturnLast Placeholder to mark the end of the range of CVReturn codes.
+ 
+    @constant   kCVReturnInvalidArgument At least one of the arguments passed in is not valid. Either out of range or the wrong type.
+    @constant   kCVReturnAllocationFailed The allocation for a buffer or buffer pool failed. Most likely because of lack of resources.
+
+    @constant   kCVReturnInvalidDisplay A CVDisplayLink cannot be created for the given DisplayRef.
+    @constant   kCVReturnDisplayLinkAlreadyRunning The CVDisplayLink is already started and running.
+    @constant   kCVReturnDisplayLinkNotRunning The CVDisplayLink has not been started.
+    @constant   kCVReturnDisplayLinkCallbacksNotSet The output callback is not set.
+
+    @constant   kCVReturnInvalidPixelFormat The requested pixelformat is not supported for the CVBuffer type.
+    @constant   kCVReturnInvalidSize The requested size (most likely too big) is not supported for the CVBuffer type.
+    @constant   kCVReturnInvalidPixelBufferAttributes A CVBuffer cannot be created with the given attributes.
+    @constant   kCVReturnPixelBufferNotOpenGLCompatible The Buffer cannot be used with OpenGL as either its size, pixelformat or attributes are not supported by OpenGL.
+    @constant   kCVReturnPixelBufferNotMetalCompatible The Buffer cannot be used with Metal as either its size, pixelformat or attributes are not supported by Metal.
+ 
+    @constant   kCVReturnWouldExceedAllocationThreshold The allocation request failed because it would have exceeded a specified allocation threshold (see kCVPixelBufferPoolAllocationThresholdKey).
+    @constant   kCVReturnPoolAllocationFailed The allocation for the buffer pool failed. Most likely because of lack of resources. Check if your parameters are in range.
+    @constant   kCVReturnInvalidPoolAttributes A CVBufferPool cannot be created with the given attributes.
+    @constant   kCVReturnRetry a scan hasn't completely traversed the CVBufferPool due to a concurrent operation. The client can retry the scan.
+*/
+typealias CVReturn = Int32
+var kCVReturnSuccess: CVReturn { get }
+var kCVReturnFirst: CVReturn { get }
+var kCVReturnError: CVReturn { get }
+var kCVReturnInvalidArgument: CVReturn { get }
+var kCVReturnAllocationFailed: CVReturn { get }
+var kCVReturnUnsupported: CVReturn { get }
+var kCVReturnInvalidDisplay: CVReturn { get }
+var kCVReturnDisplayLinkAlreadyRunning: CVReturn { get }
+var kCVReturnDisplayLinkNotRunning: CVReturn { get }
+var kCVReturnDisplayLinkCallbacksNotSet: CVReturn { get }
+var kCVReturnInvalidPixelFormat: CVReturn { get }
+var kCVReturnInvalidSize: CVReturn { get }
+var kCVReturnInvalidPixelBufferAttributes: CVReturn { get }
+var kCVReturnPixelBufferNotOpenGLCompatible: CVReturn { get }
+var kCVReturnPixelBufferNotMetalCompatible: CVReturn { get }
+var kCVReturnWouldExceedAllocationThreshold: CVReturn { get }
+var kCVReturnPoolAllocationFailed: CVReturn { get }
+var kCVReturnInvalidPoolAttributes: CVReturn { get }
+var kCVReturnRetry: CVReturn { get }
+var kCVReturnLast: CVReturn { get }

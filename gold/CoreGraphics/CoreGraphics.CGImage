@@ -1,0 +1,257 @@
+
+class CGImage : _CFObject {
+}
+
+extension CGImage {
+  func copy(maskingColorComponents components: [CGFloat]) -> CGImage?
+}
+
+extension CGImage : @unchecked Sendable {
+}
+@available(swift, obsoleted: 3, renamed: "CGImage")
+typealias CGImageRef = CGImage
+enum CGImageAlphaInfo : UInt32, @unchecked Sendable {
+  init?(rawValue: UInt32)
+  var rawValue: UInt32 { get }
+  typealias RawValue = UInt32
+  case none
+  @available(swift, obsoleted: 3, renamed: "none")
+  static var None: CGImageAlphaInfo { get }
+  case premultipliedLast
+  @available(swift, obsoleted: 3, renamed: "premultipliedLast")
+  static var PremultipliedLast: CGImageAlphaInfo { get }
+  case premultipliedFirst
+  @available(swift, obsoleted: 3, renamed: "premultipliedFirst")
+  static var PremultipliedFirst: CGImageAlphaInfo { get }
+  case last
+  @available(swift, obsoleted: 3, renamed: "last")
+  static var Last: CGImageAlphaInfo { get }
+  case first
+  @available(swift, obsoleted: 3, renamed: "first")
+  static var First: CGImageAlphaInfo { get }
+  case noneSkipLast
+  @available(swift, obsoleted: 3, renamed: "noneSkipLast")
+  static var NoneSkipLast: CGImageAlphaInfo { get }
+  case noneSkipFirst
+  @available(swift, obsoleted: 3, renamed: "noneSkipFirst")
+  static var NoneSkipFirst: CGImageAlphaInfo { get }
+  case alphaOnly
+  @available(swift, obsoleted: 3, renamed: "alphaOnly")
+  static var Only: CGImageAlphaInfo { get }
+}
+@available(iOS 2.0, *)
+enum CGImageByteOrderInfo : UInt32, @unchecked Sendable {
+  init?(rawValue: UInt32)
+  var rawValue: UInt32 { get }
+  typealias RawValue = UInt32
+  case orderMask
+  @available(swift, obsoleted: 3, renamed: "orderMask")
+  static var OrderMask: CGImageByteOrderInfo { get }
+  case orderDefault
+  @available(swift, obsoleted: 3, renamed: "orderDefault")
+  static var OrderDefault: CGImageByteOrderInfo { get }
+  case order16Little
+  @available(swift, obsoleted: 3, renamed: "order16Little")
+  static var Order16Little: CGImageByteOrderInfo { get }
+  case order32Little
+  @available(swift, obsoleted: 3, renamed: "order32Little")
+  static var Order32Little: CGImageByteOrderInfo { get }
+  case order16Big
+  @available(swift, obsoleted: 3, renamed: "order16Big")
+  static var Order16Big: CGImageByteOrderInfo { get }
+  case order32Big
+  @available(swift, obsoleted: 3, renamed: "order32Big")
+  static var Order32Big: CGImageByteOrderInfo { get }
+}
+@available(iOS 12.0, *)
+enum CGImagePixelFormatInfo : UInt32, @unchecked Sendable {
+  init?(rawValue: UInt32)
+  var rawValue: UInt32 { get }
+  typealias RawValue = UInt32
+  case mask
+  @available(swift, obsoleted: 3, renamed: "mask")
+  static var Mask: CGImagePixelFormatInfo { get }
+  case packed
+  @available(swift, obsoleted: 3, renamed: "packed")
+  static var Packed: CGImagePixelFormatInfo { get }
+  case RGB555
+  case RGB565
+  case RGB101010
+  case RGBCIF10
+}
+@available(iOS 2.0, *)
+struct CGBitmapInfo : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt32)
+  let rawValue: UInt32
+  typealias RawValue = UInt32
+  typealias Element = CGBitmapInfo
+  typealias ArrayLiteralElement = CGBitmapInfo
+  static var alphaInfoMask: CGBitmapInfo { get }
+  @available(swift, obsoleted: 3, renamed: "alphaInfoMask")
+  static var AlphaInfoMask: CGBitmapInfo { get }
+  static var floatInfoMask: CGBitmapInfo { get }
+  @available(swift, obsoleted: 3, renamed: "floatInfoMask")
+  static var FloatInfoMask: CGBitmapInfo { get }
+  static var floatComponents: CGBitmapInfo { get }
+  @available(swift, obsoleted: 3, renamed: "floatComponents")
+  static var FloatComponents: CGBitmapInfo { get }
+  static var byteOrderMask: CGBitmapInfo { get }
+  @available(swift, obsoleted: 3, renamed: "byteOrderMask")
+  static var ByteOrderMask: CGBitmapInfo { get }
+  static var byteOrderDefault: CGBitmapInfo { get }
+  @available(*, unavailable, message: "use [] to construct an empty option set")
+  @available(swift, obsoleted: 3, renamed: "byteOrderDefault")
+  static var ByteOrderDefault: CGBitmapInfo { get }
+  static var byteOrder16Little: CGBitmapInfo { get }
+  @available(swift, obsoleted: 3, renamed: "byteOrder16Little")
+  static var ByteOrder16Little: CGBitmapInfo { get }
+  static var byteOrder32Little: CGBitmapInfo { get }
+  @available(swift, obsoleted: 3, renamed: "byteOrder32Little")
+  static var ByteOrder32Little: CGBitmapInfo { get }
+  static var byteOrder16Big: CGBitmapInfo { get }
+  @available(swift, obsoleted: 3, renamed: "byteOrder16Big")
+  static var ByteOrder16Big: CGBitmapInfo { get }
+  static var byteOrder32Big: CGBitmapInfo { get }
+  @available(swift, obsoleted: 3, renamed: "byteOrder32Big")
+  static var ByteOrder32Big: CGBitmapInfo { get }
+}
+let kCGBitmapByteOrder16Host: CGBitmapInfo
+let kCGBitmapByteOrder32Host: CGBitmapInfo
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.typeID()")
+func CGImageGetTypeID() -> CFTypeID
+extension CGImage {
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(width: Int, height: Int, bitsPerComponent: Int, bitsPerPixel: Int, bytesPerRow: Int, space: CGColorSpace, bitmapInfo: CGBitmapInfo, provider: CGDataProvider, decode: UnsafePointer<CGFloat>?, shouldInterpolate: Bool, intent: CGColorRenderingIntent)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(maskWidth width: Int, height: Int, bitsPerComponent: Int, bitsPerPixel: Int, bytesPerRow: Int, provider: CGDataProvider, decode: UnsafePointer<CGFloat>?, shouldInterpolate: Bool)
+  @available(iOS 2.0, *)
+  func copy() -> CGImage?
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(jpegDataProviderSource source: CGDataProvider, decode: UnsafePointer<CGFloat>?, shouldInterpolate: Bool, intent: CGColorRenderingIntent)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(pngDataProviderSource source: CGDataProvider, decode: UnsafePointer<CGFloat>?, shouldInterpolate: Bool, intent: CGColorRenderingIntent)
+  @available(iOS 2.0, *)
+  func cropping(to rect: CGRect) -> CGImage?
+  @available(iOS 2.0, *)
+  func masking(_ mask: CGImage) -> CGImage?
+  @available(iOS 2.0, *)
+  func __copy(maskingColorComponents components: UnsafePointer<CGFloat>) -> CGImage?
+  @available(iOS 2.0, *)
+  func copy(colorSpace space: CGColorSpace) -> CGImage?
+  @available(iOS 2.0, *)
+  var isMask: Bool { get }
+  @available(iOS 2.0, *)
+  var width: Int { get }
+  @available(iOS 2.0, *)
+  var height: Int { get }
+  @available(iOS 2.0, *)
+  var bitsPerComponent: Int { get }
+  @available(iOS 2.0, *)
+  var bitsPerPixel: Int { get }
+  @available(iOS 2.0, *)
+  var bytesPerRow: Int { get }
+  @available(iOS 2.0, *)
+  var colorSpace: CGColorSpace? { get }
+  @available(iOS 2.0, *)
+  var alphaInfo: CGImageAlphaInfo { get }
+  @available(iOS 2.0, *)
+  var dataProvider: CGDataProvider? { get }
+  @available(iOS 2.0, *)
+  var decode: UnsafePointer<CGFloat>? { get }
+  @available(iOS 2.0, *)
+  var shouldInterpolate: Bool { get }
+  @available(iOS 2.0, *)
+  var renderingIntent: CGColorRenderingIntent { get }
+  @available(iOS 2.0, *)
+  var bitmapInfo: CGBitmapInfo { get }
+  @available(iOS 12.0, *)
+  var byteOrderInfo: CGImageByteOrderInfo { get }
+  @available(iOS 12.0, *)
+  var pixelFormatInfo: CGImagePixelFormatInfo { get }
+  @available(iOS 9.0, *)
+  var utType: CFString? { get }
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGImage.init(width:height:bitsPerComponent:bitsPerPixel:bytesPerRow:space:bitmapInfo:provider:decode:shouldInterpolate:intent:)")
+func CGImageCreate(_ width: Int, _ height: Int, _ bitsPerComponent: Int, _ bitsPerPixel: Int, _ bytesPerRow: Int, _ space: CGColorSpace, _ bitmapInfo: CGBitmapInfo, _ provider: CGDataProvider, _ decode: UnsafePointer<CGFloat>?, _ shouldInterpolate: Bool, _ intent: CGColorRenderingIntent) -> CGImage?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGImage.init(maskWidth:height:bitsPerComponent:bitsPerPixel:bytesPerRow:provider:decode:shouldInterpolate:)")
+func CGImageMaskCreate(_ width: Int, _ height: Int, _ bitsPerComponent: Int, _ bitsPerPixel: Int, _ bytesPerRow: Int, _ provider: CGDataProvider, _ decode: UnsafePointer<CGFloat>?, _ shouldInterpolate: Bool) -> CGImage?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGImage.copy(self:)")
+func CGImageCreateCopy(_ image: CGImage) -> CGImage?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGImage.init(jpegDataProviderSource:decode:shouldInterpolate:intent:)")
+func CGImageCreateWithJPEGDataProvider(_ source: CGDataProvider, _ decode: UnsafePointer<CGFloat>?, _ shouldInterpolate: Bool, _ intent: CGColorRenderingIntent) -> CGImage?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGImage.init(pngDataProviderSource:decode:shouldInterpolate:intent:)")
+func CGImageCreateWithPNGDataProvider(_ source: CGDataProvider, _ decode: UnsafePointer<CGFloat>?, _ shouldInterpolate: Bool, _ intent: CGColorRenderingIntent) -> CGImage?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGImage.cropping(self:to:)")
+func CGImageCreateWithImageInRect(_ image: CGImage, _ rect: CGRect) -> CGImage?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGImage.masking(self:_:)")
+func CGImageCreateWithMask(_ image: CGImage, _ mask: CGImage) -> CGImage?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGImage.__copy(self:maskingColorComponents:)")
+func __CGImageCreateWithMaskingColors(_ image: CGImage, _ components: UnsafePointer<CGFloat>) -> CGImage?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGImage.copy(self:colorSpace:)")
+func CGImageCreateCopyWithColorSpace(_ image: CGImage, _ space: CGColorSpace) -> CGImage?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGImageRetain(_ image: CGImage) -> CGImage
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGImageRelease(_ image: CGImage)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.isMask(self:)")
+func CGImageIsMask(_ image: CGImage) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.width(self:)")
+func CGImageGetWidth(_ image: CGImage) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.height(self:)")
+func CGImageGetHeight(_ image: CGImage) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.bitsPerComponent(self:)")
+func CGImageGetBitsPerComponent(_ image: CGImage) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.bitsPerPixel(self:)")
+func CGImageGetBitsPerPixel(_ image: CGImage) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.bytesPerRow(self:)")
+func CGImageGetBytesPerRow(_ image: CGImage) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.colorSpace(self:)")
+func CGImageGetColorSpace(_ image: CGImage) -> CGColorSpace?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.alphaInfo(self:)")
+func CGImageGetAlphaInfo(_ image: CGImage) -> CGImageAlphaInfo
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.dataProvider(self:)")
+func CGImageGetDataProvider(_ image: CGImage) -> CGDataProvider?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.decode(self:)")
+func CGImageGetDecode(_ image: CGImage) -> UnsafePointer<CGFloat>?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.shouldInterpolate(self:)")
+func CGImageGetShouldInterpolate(_ image: CGImage) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.renderingIntent(self:)")
+func CGImageGetRenderingIntent(_ image: CGImage) -> CGColorRenderingIntent
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.bitmapInfo(self:)")
+func CGImageGetBitmapInfo(_ image: CGImage) -> CGBitmapInfo
+@available(iOS 12.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.byteOrderInfo(self:)")
+func CGImageGetByteOrderInfo(_ image: CGImage) -> CGImageByteOrderInfo
+@available(iOS 12.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.pixelFormatInfo(self:)")
+func CGImageGetPixelFormatInfo(_ image: CGImage) -> CGImagePixelFormatInfo
+@available(iOS 9.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGImage.utType(self:)")
+func CGImageGetUTType(_ image: CGImage) -> CFString?

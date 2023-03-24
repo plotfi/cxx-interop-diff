@@ -1,0 +1,38 @@
+
+var COREVIDEO_INCLUDED_IOSURFACE_HEADER_FILE: Int32 { get }
+@available(iOS, unavailable)
+let kCVPixelBufferIOSurfaceOpenGLTextureCompatibilityKey: CFString
+@available(iOS, unavailable)
+let kCVPixelBufferIOSurfaceOpenGLFBOCompatibilityKey: CFString
+@available(iOS 4.0, *)
+let kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey: CFString
+@available(iOS 5.0, *)
+let kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey: CFString
+@available(iOS 5.0, *)
+let kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey: CFString
+
+/**
+	@function   CVPixelBufferGetIOSurface
+	@abstract   Returns the IOSurface backing the pixel buffer, or NULL if it is not backed by an IOSurface.
+	@param      pixelBuffer Target PixelBuffer.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferGetIOSurface(_ pixelBuffer: CVPixelBuffer?) -> Unmanaged<IOSurfaceRef>?
+
+/**
+    @function   CVPixelBufferCreateWithIOSurface
+    @abstract   Call to create a single CVPixelBuffer for a passed-in IOSurface.
+    @discussion The CVPixelBuffer will retain the IOSurface.
+    	IMPORTANT NOTE: If you are using IOSurface to share CVPixelBuffers between processes
+    	and those CVPixelBuffers are allocated via a CVPixelBufferPool, it is important
+    	that the CVPixelBufferPool does not reuse CVPixelBuffers whose IOSurfaces are still
+    	in use in other processes.  
+    	CoreVideo and IOSurface will take care of this for if you use IOSurfaceCreateMachPort 
+    	and IOSurfaceLookupFromMachPort, but NOT if you pass IOSurfaceIDs.
+    @param      surface		            The IOSurface to wrap.
+    @param      pixelBufferAttributes   A dictionary with additional attributes for a a pixel buffer. This parameter is optional. See PixelBufferAttributes for more details.
+    @param      pixelBufferOut          The new pixel buffer will be returned here
+    @result     returns kCVReturnSuccess on success.
+*/
+@available(iOS 4.0, *)
+func CVPixelBufferCreateWithIOSurface(_ allocator: CFAllocator?, _ surface: IOSurfaceRef, _ pixelBufferAttributes: CFDictionary?, _ pixelBufferOut: UnsafeMutablePointer<Unmanaged<CVPixelBuffer>?>) -> CVReturn

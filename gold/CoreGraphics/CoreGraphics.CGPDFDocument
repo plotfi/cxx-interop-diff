@@ -1,0 +1,162 @@
+
+class CGPDFDocument : _CFObject {
+}
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument")
+typealias CGPDFDocumentRef = CGPDFDocument
+struct CGPDFAccessPermissions : OptionSet, @unchecked Sendable {
+  init(rawValue: UInt32)
+  let rawValue: UInt32
+  typealias RawValue = UInt32
+  typealias Element = CGPDFAccessPermissions
+  typealias ArrayLiteralElement = CGPDFAccessPermissions
+  static var allowsLowQualityPrinting: CGPDFAccessPermissions { get }
+  @available(swift, obsoleted: 3, renamed: "allowsLowQualityPrinting")
+  static var AllowsLowQualityPrinting: CGPDFAccessPermissions { get }
+  static var allowsHighQualityPrinting: CGPDFAccessPermissions { get }
+  @available(swift, obsoleted: 3, renamed: "allowsHighQualityPrinting")
+  static var AllowsHighQualityPrinting: CGPDFAccessPermissions { get }
+  static var allowsDocumentChanges: CGPDFAccessPermissions { get }
+  @available(swift, obsoleted: 3, renamed: "allowsDocumentChanges")
+  static var AllowsDocumentChanges: CGPDFAccessPermissions { get }
+  static var allowsDocumentAssembly: CGPDFAccessPermissions { get }
+  @available(swift, obsoleted: 3, renamed: "allowsDocumentAssembly")
+  static var AllowsDocumentAssembly: CGPDFAccessPermissions { get }
+  static var allowsContentCopying: CGPDFAccessPermissions { get }
+  @available(swift, obsoleted: 3, renamed: "allowsContentCopying")
+  static var AllowsContentCopying: CGPDFAccessPermissions { get }
+  static var allowsContentAccessibility: CGPDFAccessPermissions { get }
+  @available(swift, obsoleted: 3, renamed: "allowsContentAccessibility")
+  static var AllowsContentAccessibility: CGPDFAccessPermissions { get }
+  static var allowsCommenting: CGPDFAccessPermissions { get }
+  @available(swift, obsoleted: 3, renamed: "allowsCommenting")
+  static var AllowsCommenting: CGPDFAccessPermissions { get }
+  static var allowsFormFieldEntry: CGPDFAccessPermissions { get }
+  @available(swift, obsoleted: 3, renamed: "allowsFormFieldEntry")
+  static var AllowsFormFieldEntry: CGPDFAccessPermissions { get }
+}
+@available(iOS 11.0, *)
+let kCGPDFOutlineTitle: CFString
+@available(iOS 11.0, *)
+let kCGPDFOutlineChildren: CFString
+@available(iOS 11.0, *)
+let kCGPDFOutlineDestination: CFString
+@available(iOS 11.0, *)
+let kCGPDFOutlineDestinationRect: CFString
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument.init(_:)")
+func CGPDFDocumentCreateWithProvider(_ provider: CGDataProvider) -> CGPDFDocument?
+extension CGPDFDocument {
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(_ provider: CGDataProvider)
+  @available(iOS 2.0, *)
+  /*not inherited*/ init?(_ url: CFURL)
+  @available(iOS 2.0, *)
+  func getVersion(majorVersion: UnsafeMutablePointer<Int32>, minorVersion: UnsafeMutablePointer<Int32>)
+  @available(iOS 2.0, *)
+  var isEncrypted: Bool { get }
+  @available(iOS 2.0, *)
+  func unlockWithPassword(_ password: UnsafePointer<CChar>) -> Bool
+  @available(iOS 2.0, *)
+  var isUnlocked: Bool { get }
+  @available(iOS 2.0, *)
+  var allowsPrinting: Bool { get }
+  @available(iOS 2.0, *)
+  var allowsCopying: Bool { get }
+  @available(iOS 2.0, *)
+  var numberOfPages: Int { get }
+  @available(iOS 2.0, *)
+  func page(at pageNumber: Int) -> CGPDFPage?
+  @available(iOS 2.0, *)
+  var catalog: CGPDFDictionaryRef? { get }
+  @available(iOS 2.0, *)
+  var info: CGPDFDictionaryRef? { get }
+  @available(iOS 2.0, *)
+  var fileIdentifier: CGPDFArrayRef? { get }
+  @available(iOS 2.0, *)
+  class var typeID: CFTypeID { get }
+  @available(iOS 11.0, *)
+  var outline: CFDictionary? { get }
+  @available(iOS 11.0, *)
+  var accessPermissions: CGPDFAccessPermissions { get }
+  @available(iOS, unavailable)
+  func getMediaBox(page: Int32) -> CGRect
+  @available(iOS, unavailable)
+  func getCropBox(page: Int32) -> CGRect
+  @available(iOS, unavailable)
+  func getBleedBox(page: Int32) -> CGRect
+  @available(iOS, unavailable)
+  func getTrimBox(page: Int32) -> CGRect
+  @available(iOS, unavailable)
+  func getArtBox(page: Int32) -> CGRect
+  @available(iOS, unavailable)
+  func getRotationAngle(page: Int32) -> Int32
+}
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument.init(_:)")
+func CGPDFDocumentCreateWithURL(_ url: CFURL) -> CGPDFDocument?
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGPDFDocumentRetain(_ document: CGPDFDocument) -> CGPDFDocument
+@available(iOS 2.0, *)
+@available(*, unavailable, message: "Core Foundation objects are automatically memory managed")
+func CGPDFDocumentRelease(_ document: CGPDFDocument)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument.getVersion(self:majorVersion:minorVersion:)")
+func CGPDFDocumentGetVersion(_ document: CGPDFDocument, _ majorVersion: UnsafeMutablePointer<Int32>, _ minorVersion: UnsafeMutablePointer<Int32>)
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFDocument.isEncrypted(self:)")
+func CGPDFDocumentIsEncrypted(_ document: CGPDFDocument) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument.unlockWithPassword(self:_:)")
+func CGPDFDocumentUnlockWithPassword(_ document: CGPDFDocument, _ password: UnsafePointer<CChar>) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFDocument.isUnlocked(self:)")
+func CGPDFDocumentIsUnlocked(_ document: CGPDFDocument) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFDocument.allowsPrinting(self:)")
+func CGPDFDocumentAllowsPrinting(_ document: CGPDFDocument) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFDocument.allowsCopying(self:)")
+func CGPDFDocumentAllowsCopying(_ document: CGPDFDocument) -> Bool
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFDocument.numberOfPages(self:)")
+func CGPDFDocumentGetNumberOfPages(_ document: CGPDFDocument) -> Int
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument.page(self:at:)")
+func CGPDFDocumentGetPage(_ document: CGPDFDocument, _ pageNumber: Int) -> CGPDFPage?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFDocument.catalog(self:)")
+func CGPDFDocumentGetCatalog(_ document: CGPDFDocument) -> CGPDFDictionaryRef?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFDocument.info(self:)")
+func CGPDFDocumentGetInfo(_ document: CGPDFDocument) -> CGPDFDictionaryRef?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFDocument.fileIdentifier(self:)")
+func CGPDFDocumentGetID(_ document: CGPDFDocument) -> CGPDFArrayRef?
+@available(iOS 2.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFDocument.typeID()")
+func CGPDFDocumentGetTypeID() -> CFTypeID
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFDocument.outline(self:)")
+func CGPDFDocumentGetOutline(_ document: CGPDFDocument) -> CFDictionary?
+@available(iOS 11.0, *)
+@available(swift, obsoleted: 3, renamed: "getter:CGPDFDocument.accessPermissions(self:)")
+func CGPDFDocumentGetAccessPermissions(_ document: CGPDFDocument) -> CGPDFAccessPermissions
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument.getMediaBox(self:page:)")
+@available(iOS, unavailable)
+func CGPDFDocumentGetMediaBox(_ document: CGPDFDocument, _ page: Int32) -> CGRect
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument.getCropBox(self:page:)")
+@available(iOS, unavailable)
+func CGPDFDocumentGetCropBox(_ document: CGPDFDocument, _ page: Int32) -> CGRect
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument.getBleedBox(self:page:)")
+@available(iOS, unavailable)
+func CGPDFDocumentGetBleedBox(_ document: CGPDFDocument, _ page: Int32) -> CGRect
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument.getTrimBox(self:page:)")
+@available(iOS, unavailable)
+func CGPDFDocumentGetTrimBox(_ document: CGPDFDocument, _ page: Int32) -> CGRect
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument.getArtBox(self:page:)")
+@available(iOS, unavailable)
+func CGPDFDocumentGetArtBox(_ document: CGPDFDocument, _ page: Int32) -> CGRect
+@available(swift, obsoleted: 3, renamed: "CGPDFDocument.getRotationAngle(self:page:)")
+@available(iOS, unavailable)
+func CGPDFDocumentGetRotationAngle(_ document: CGPDFDocument, _ page: Int32) -> Int32

@@ -1,0 +1,63 @@
+
+
+/**
+    @typedef    CVMetalTextureRef
+    @abstract   Metal texture based image buffer
+    @discussion IMPORTANT NOTE: Clients should retain CVMetalTexture objects until they are done using the images in them.
+                Retaining a CVMetalTexture is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
+*/
+typealias CVMetalTexture = CVImageBuffer
+
+/**
+    @typedef    CVMetalTextureRef
+    @abstract   Metal texture based image buffer
+    @discussion IMPORTANT NOTE: Clients should retain CVMetalTexture objects until they are done using the images in them.
+                Retaining a CVMetalTexture is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
+*/
+@available(swift, obsoleted: 3, renamed: "CVMetalTexture")
+typealias CVMetalTextureRef = CVMetalTexture
+@available(iOS 8.0, *)
+func CVMetalTextureGetTypeID() -> CFTypeID
+
+/**
+    @function   CVMetalTextureGetTexture
+    @abstract   Returns the Meta MTLTexture object of the CVMetalTextureRef
+    @param      image Target CVMetalTexture
+    @result     Metal texture
+*/
+@available(iOS 8.0, *)
+func CVMetalTextureGetTexture(_ image: CVMetalTexture) -> MTLTexture?
+
+/**
+    @function   CVMetalTextureIsFlipped
+    @abstract   Returns whether the image is flipped vertically or not.
+    @param      image Target CVMetalTexture
+    @result     True if 0,0 in the texture is upper left, false if 0,0 is lower left
+*/
+@available(iOS 8.0, *)
+func CVMetalTextureIsFlipped(_ image: CVMetalTexture) -> Bool
+
+/**
+    @function   CVMetalTextureGetCleanTexCoords 
+    @abstract   Returns convenient normalized texture coordinates for the part of the image that should be displayed
+    @discussion This function automatically takes into account whether or not the texture is flipped.
+    @param      image Target CVMetalTexture
+    @param      lowerLeft  - array of two floats where the s and t normalized texture coordinates of the lower left corner of the image will be stored
+    @param      lowerRight - array of two floats where the s and t normalized texture coordinates of the lower right corner of the image will be stored
+    @param      upperRight - array of two floats where the s and t normalized texture coordinates of the upper right corner of the image will be stored
+    @param      upperLeft  - array of two floats where the s and t normalized texture coordinates of the upper right corner of the image will be stored
+*/
+@available(iOS 8.0, *)
+func CVMetalTextureGetCleanTexCoords(_ image: CVMetalTexture, _ lowerLeft: UnsafeMutablePointer<Float>, _ lowerRight: UnsafeMutablePointer<Float>, _ upperRight: UnsafeMutablePointer<Float>, _ upperLeft: UnsafeMutablePointer<Float>)
+
+/**
+    @discussion kCVMetalTextureUsage is a property that can be placed on a CVMetalTextureCache to instruct the MTLTextureUsage of the created MTLTexture. Values for this can can be read from MTLTexture.h
+ */
+@available(iOS 11.0, *)
+let kCVMetalTextureUsage: CFString
+
+/**
+ @discussion kCVMetalTextureStorageMode is a property that can be placed on a CVMetalTextureCache to instruct the MTLTextureStorageMode of the created MTLTexture. Values for this can can be read from MTLTexture.h
+ */
+@available(iOS 13.0, *)
+let kCVMetalTextureStorageMode: CFString
